@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4tbv0wkgccw3"]
+
+[ext_resource type="Texture2D" uid="uid://qyvjf7hnqe71" path="res://Animations/回血-小.png" id="1_a5j3x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gnsr"]
+atlas = ExtResource("1_a5j3x")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ag0io"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gnsr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="decoration" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ag0io")

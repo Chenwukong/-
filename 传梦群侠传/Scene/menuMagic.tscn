@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://py5altk2nppw"]
+
+[ext_resource type="Texture2D" uid="uid://cbc6ar3e3lhay" path="res://Icons/●图标 (67).png" id="1_0a1f7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32ikt"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[node name="MenuMagic" type="TextureButton"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.000868056
+anchor_top = -0.007
+anchor_right = 0.313472
+anchor_bottom = 0.057
+offset_left = 3.0
+offset_top = -0.4
+offset_right = 199.88
+offset_bottom = 89.4
+scale = Vector2(0.634527, 0.368069)
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Panel" parent="." groups=["menuMagic"]]
+layout_mode = 0
+offset_left = 53.116
+offset_top = 5.40361
+offset_right = 63.116
+offset_bottom = 13.4036
+scale = Vector2(50.2217, 17.0273)
+theme_override_styles/panel = SubResource("StyleBoxFlat_32ikt")
+
+[node name="name" type="Label" parent="Button"]
+layout_mode = 2
+offset_left = 2.0
+offset_right = 1502.0
+offset_bottom = 682.0
+scale = Vector2(0.00161699, 0.0106651)
+theme_override_font_sizes/font_size = 500
+text = "破空剑"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cost" type="Label" parent="Button"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+offset_left = 7.41507
+offset_top = 2.23562
+offset_right = 87.4151
+offset_bottom = 47.2357
+scale = Vector2(0.0180935, 0.0802489)
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="Sprite2D" parent="Button"]
+position = Vector2(1.236, 3.899)
+scale = Vector2(0.04112, 0.29227)
+texture = ExtResource("1_0a1f7")

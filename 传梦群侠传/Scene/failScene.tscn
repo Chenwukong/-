@@ -1,0 +1,140 @@
+[gd_scene load_steps=9 format=3 uid="uid://qm5s8utmynwu"]
+
+[ext_resource type="Texture2D" uid="uid://227cqmvgljxj" path="res://001-Gameover01.jpg" id="1_n8s53"]
+[ext_resource type="Script" path="res://Script/failScene.gd" id="2_g77xx"]
+[ext_resource type="Texture2D" uid="uid://chigscjadrx02" path="res://Pictures/Pictures/和尚-梦遗.png" id="4_ev2jq"]
+
+[sub_resource type="Animation" id="Animation_seirk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ir4tq"]
+resource_name = "show"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_upah3"]
+_data = {
+"RESET": SubResource("Animation_seirk"),
+"show": SubResource("Animation_ir4tq")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_srhjo"]
+atlas = ExtResource("4_ev2jq")
+region = Rect2(0, 0, 640, 480)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8sv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_srhjo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="failPicture" type="Sprite2D"]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(579, 400.5)
+scale = Vector2(1.80625, 1.66458)
+texture = ExtResource("1_n8s53")
+script = ExtResource("2_g77xx")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = 5.0
+autoplay = true
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+volume_db = 5.0
+autoplay = true
+attenuation = 1e-05
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "show"
+libraries = {
+"": SubResource("AnimationLibrary_upah3")
+}
+
+[node name="Control" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control"]
+position = Vector2(-42.6298, 23.1289)
+sprite_frames = SubResource("SpriteFrames_e8sv2")
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 19.9308
+offset_top = -69.9876
+offset_right = 176.931
+offset_bottom = -6.98761
+theme_override_font_sizes/font_size = 40
+text = "结束游戏"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 19.3771
+offset_top = 2.10263
+offset_right = 176.377
+offset_bottom = 65.1026
+theme_override_font_sizes/font_size = 40
+text = "决不放弃"
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -97.0
+offset_top = -181.0
+offset_right = 47.0
+offset_bottom = -153.0
+text = "施主，你已经击杀了生灵数"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 99.1003
+offset_top = -182.929
+offset_right = 243.1
+offset_bottom = -151.929
+theme_override_font_sizes/font_size = 20
+text = "50"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = -96.8858
+offset_top = -151.089
+offset_right = 47.1142
+offset_bottom = -120.089
+theme_override_font_sizes/font_size = 15
+text = "你要回头吗？"
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]

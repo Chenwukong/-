@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1622wwrq7nir"]
+
+[ext_resource type="Texture2D" uid="uid://bjh21dolt23te" path="res://Icons/佛手.png" id="1_dw10i"]
+[ext_resource type="Script" path="res://Script/menuItem.gd" id="2_duo05"]
+
+[node name="item" type="TextureRect" groups=["bagMenuItem"]]
+custom_minimum_size = Vector2(120, 100)
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = -1.0
+offset_bottom = 342.0
+grow_horizontal = 2
+texture = ExtResource("1_dw10i")
+script = ExtResource("2_duo05")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 79.0
+texture = ExtResource("1_dw10i")
+
+[node name="itemName" type="Label" parent="."]
+layout_mode = 0
+offset_left = 199.0
+offset_top = 20.0
+offset_right = 279.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+text = "佛手"
+
+[node name="itemNum" type="Label" parent="."]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 20.0
+offset_right = 946.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 40
+text = "40
+"
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 92.0
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

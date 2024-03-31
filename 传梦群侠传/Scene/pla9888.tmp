@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3dtk2snxdgij"]
+
+[ext_resource type="Texture2D" uid="uid://0lbgbo1tnwy1" path="res://Characters/无痕-1.png" id="1_frvf4"]
+[ext_resource type="Script" path="res://player.gd" id="1_xyl5n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be8t4"]
+atlas = ExtResource("1_frvf4")
+region = Rect2(0, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nma6d"]
+atlas = ExtResource("1_frvf4")
+region = Rect2(67, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o08g6"]
+atlas = ExtResource("1_frvf4")
+region = Rect2(134, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6a6m"]
+atlas = ExtResource("1_frvf4")
+region = Rect2(201, 0, 67, 91)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lx1r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_be8t4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nma6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o08g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6a6m")
+}],
+"loop": true,
+"name": &"右下移动",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rbu1l"]
+radius = 26.0
+height = 92.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_xyl5n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0lx1r")
+animation = &"右下移动"
+frame_progress = 0.901402
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 1)
+shape = SubResource("CapsuleShape2D_rbu1l")

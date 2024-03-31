@@ -1,0 +1,109 @@
+[gd_scene load_steps=22 format=3 uid="uid://b426qjra4bj27"]
+
+[ext_resource type="Texture2D" uid="uid://cv5rk0eqbtepu" path="res://Animations/73-1.png" id="1_s4j8i"]
+[ext_resource type="Texture2D" uid="uid://codfendma6ge3" path="res://Animations/73-2.png" id="2_3aegl"]
+[ext_resource type="Texture2D" uid="uid://bpdc2i5gjw6o2" path="res://Animations/73-3.png" id="3_x1b78"]
+[ext_resource type="Texture2D" uid="uid://bnjx0336ynrn0" path="res://Animations/73-4.png" id="4_jmfgx"]
+[ext_resource type="Texture2D" uid="uid://cws8icgva5okr" path="res://Animations/73-5.png" id="5_osocs"]
+[ext_resource type="Texture2D" uid="uid://dd7kn232gstiu" path="res://Animations/73-6.png" id="6_dga43"]
+[ext_resource type="Texture2D" uid="uid://bip5m4waysexx" path="res://Animations/73-7.png" id="7_baau1"]
+[ext_resource type="Texture2D" uid="uid://r1hiv670hfql" path="res://Animations/73-8.png" id="8_c5kft"]
+[ext_resource type="Script" path="res://Script/potentialBall.gd" id="9_0bw1j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q3btc"]
+atlas = ExtResource("1_s4j8i")
+region = Rect2(0, 0, 47, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpyog"]
+atlas = ExtResource("2_3aegl")
+region = Rect2(0, 0, 47, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2xgd"]
+atlas = ExtResource("3_x1b78")
+region = Rect2(0, 0, 49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivo76"]
+atlas = ExtResource("4_jmfgx")
+region = Rect2(0, 0, 49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3od46"]
+atlas = ExtResource("5_osocs")
+region = Rect2(0, 0, 48, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef5y7"]
+atlas = ExtResource("6_dga43")
+region = Rect2(0, 0, 48, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k735v"]
+atlas = ExtResource("7_baau1")
+region = Rect2(0, 0, 49, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntmj6"]
+atlas = ExtResource("8_c5kft")
+region = Rect2(0, 0, 49, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2qo5y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q3btc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpyog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2xgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivo76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3od46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef5y7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k735v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntmj6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2cwv"]
+radius = 23.0
+
+[sub_resource type="Gradient" id="Gradient_htal0"]
+offsets = PackedFloat32Array(0, 0.673212)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_71e17"]
+gradient = SubResource("Gradient_htal0")
+fill = 1
+fill_from = Vector2(0.481481, 0.538462)
+fill_to = Vector2(1, 0.00569801)
+
+[node name="potentialBall" type="AnimatedSprite2D"]
+position = Vector2(-9.53674e-07, 0)
+scale = Vector2(0.438776, 0.585106)
+sprite_frames = SubResource("SpriteFrames_2qo5y")
+autoplay = "default"
+frame_progress = 0.880055
+script = ExtResource("9_0bw1j")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_q2cwv")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1.13954, -2.56364)
+scale = Vector2(2.45712, 1.84261)
+energy = 1.24
+texture = SubResource("GradientTexture2D_71e17")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

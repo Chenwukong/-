@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8cngx76f2bqk"]
+
+[ext_resource type="Script" path="res://Script/magicButton.gd" id="1_avppi"]
+[ext_resource type="Texture2D" uid="uid://cbc6ar3e3lhay" path="res://Icons/●图标 (67).png" id="1_hw7us"]
+[ext_resource type="Script" path="res://Script/magic_selectionss.gd" id="1_isroo"]
+
+[node name="Magic" type="Button" groups=["magic"]]
+self_modulate = Color(0.0117647, 0.623529, 1, 1)
+anchors_preset = -1
+anchor_right = 0.190104
+anchor_bottom = 0.03125
+offset_left = 3.0
+offset_top = -6.0
+offset_right = 415.0
+offset_bottom = 24.0
+scale = Vector2(8.8854, 48.4326)
+script = ExtResource("1_isroo")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 83.5078
+offset_top = 1.79631
+offset_right = 91.5078
+offset_bottom = 11.7963
+scale = Vector2(55.8847, 5.19129)
+script = ExtResource("1_avppi")
+
+[node name="name" type="Label" parent="Button"]
+layout_mode = 2
+anchor_left = -0.178
+anchor_top = -0.039
+anchor_right = 1.212
+anchor_bottom = 0.634
+offset_left = -0.382435
+offset_top = -0.234434
+offset_right = 510.498
+offset_bottom = 52.0356
+scale = Vector2(0.0206555, 0.172003)
+theme_override_font_sizes/font_size = 30
+text = "破空剑
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cost" type="Label" parent="Button"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+offset_left = 7.03656
+offset_top = 2.98669
+offset_right = 58.0366
+offset_bottom = 47.9867
+scale = Vector2(0.0180935, 0.0802489)
+theme_override_font_sizes/font_size = 30
+text = "40
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="Sprite2D" parent="Button"]
+position = Vector2(1.48519, 4.76285)
+scale = Vector2(0.04112, 0.29227)
+texture = ExtResource("1_hw7us")
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_entered" from="Button" to="Button" method="_on_mouse_entered"]

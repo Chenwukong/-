@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://csr2bo6lfee2s"]
+
+[ext_resource type="Texture2D" uid="uid://sjsgagtmfq2n" path="res://Animations/传送.png" id="1_cpj3r"]
+[ext_resource type="Script" path="res://Script/teleport.gd" id="2_f5o0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_camux"]
+atlas = ExtResource("1_cpj3r")
+region = Rect2(0, 0, 142, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih87j"]
+atlas = ExtResource("1_cpj3r")
+region = Rect2(142, 0, 142, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggnho"]
+atlas = ExtResource("1_cpj3r")
+region = Rect2(284, 0, 142, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdlml"]
+atlas = ExtResource("1_cpj3r")
+region = Rect2(426, 0, 142, 82)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b7od5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_camux")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih87j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggnho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdlml")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dck7u"]
+radius = 26.0063
+height = 89.97
+
+[node name="teleportCircle" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_b7od5")
+autoplay = "default"
+frame_progress = 0.769814
+script = ExtResource("2_f5o0k")
+
+[node name="area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area2D"]
+rotation = 1.56384
+shape = SubResource("CapsuleShape2D_dck7u")
+
+[connection signal="area_entered" from="area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="area2D" to="." method="_on_area_2d_body_entered"]

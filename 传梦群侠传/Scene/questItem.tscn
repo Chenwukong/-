@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://buy8i1pvjftxi"]
+
+[ext_resource type="Texture2D" uid="uid://bjh21dolt23te" path="res://Icons/佛手.png" id="1_6dphe"]
+[ext_resource type="Script" path="res://Script/questItem.gd" id="2_jbalc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y5qeb"]
+
+[node name="Sprite2D" type="Sprite2D" groups=["questItem"]]
+texture = ExtResource("1_6dphe")
+script = ExtResource("2_jbalc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_y5qeb")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

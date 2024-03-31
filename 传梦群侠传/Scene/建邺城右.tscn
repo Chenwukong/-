@@ -1,0 +1,6434 @@
+[gd_scene load_steps=238 format=3 uid="uid://b4ayp22fdycmj"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_31wdb"]
+[ext_resource type="Texture2D" uid="uid://cvqnevuj05gxq" path="res://Panoramas/建业右.jpg" id="2_i8757"]
+[ext_resource type="Texture2D" uid="uid://bdp1ksfylmwun" path="res://Panoramas/建业右_2.png" id="3_h2meg"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_dfrow"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_5s1mv"]
+[ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="6_ugebd"]
+[ext_resource type="Script" path="res://Script/menuControl.gd" id="7_7lfg1"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="7_whb7q"]
+[ext_resource type="Texture2D" uid="uid://ba0gbvspfp4nd" path="res://菜单.jpg" id="8_fllv5"]
+[ext_resource type="StyleBox" uid="uid://di4oug8y2x4" path="res://Scene/flat.tres" id="9_gtag7"]
+[ext_resource type="StyleBox" uid="uid://diiqem3l2xshe" path="res://Scene/armorItem.tres" id="10_6pneu"]
+[ext_resource type="Script" path="res://Script/menu_character.gd" id="11_2ws8v"]
+[ext_resource type="Texture2D" uid="uid://b3da5qpqi63d2" path="res://Pictures/时追云.png" id="12_wx81q"]
+[ext_resource type="Texture2D" uid="uid://clsl8s4fnu3rt" path="res://Icons/312.png" id="13_x3npv"]
+[ext_resource type="Texture2D" uid="uid://degsqccwdb0hx" path="res://Icons/项链-佛珠.png" id="15_jvn4m"]
+[ext_resource type="Texture2D" uid="uid://cr58gutfo5l2q" path="res://Icons/扇子 (1).png" id="16_q74si"]
+[ext_resource type="Texture2D" uid="uid://dv4bcj0qgcow3" path="res://main character/jiangYuntile000.png" id="17_3pm6m"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="18_543dg"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="19_xs5ys"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="20_f86s7"]
+[ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="21_u1ag4"]
+[ext_resource type="Texture2D" uid="uid://bdrr5ngfvt5tf" path="res://Icons/提醒背景2.png" id="23_t2qkm"]
+[ext_resource type="Texture2D" uid="uid://cwk6k7dfb22a8" path="res://Icons/win_xy.png" id="25_ncqua"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="26_078qh"]
+[ext_resource type="Texture2D" uid="uid://d01t8wubtgj3t" path="res://%U[PB4TP~_3Y(001OWPGWG4.png" id="26_sfkdt"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="27_ogdth"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="29_433ew"]
+[ext_resource type="Texture2D" uid="uid://11k1acnl1bw1" path="res://Characters/孩子-男_w.png" id="30_deh84"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="31_8nk54"]
+[ext_resource type="Texture2D" uid="uid://7xkger2nyr7p" path="res://Animals/人物动作 (3)/251-1.png" id="32_a4ic5"]
+[ext_resource type="Texture2D" uid="uid://dqm4ss5q5nbg6" path="res://Animals/人物动作 (3)/251-2.png" id="33_8nc56"]
+[ext_resource type="Texture2D" uid="uid://ncvlqf8j1nbl" path="res://Characters/dead-男孩1.png" id="33_84e5h"]
+[ext_resource type="Texture2D" uid="uid://b63natad0enll" path="res://Animals/人物动作 (3)/251-25.png" id="34_1hxht"]
+[ext_resource type="AudioStream" uid="uid://bpdipsultd0my" path="res://Audio/SE/066-Animal01.ogg" id="34_pdx3b"]
+[ext_resource type="Texture2D" uid="uid://dk6phu61dpmp3" path="res://Animals/人物动作 (3)/251-26.png" id="35_1p4u1"]
+[ext_resource type="Texture2D" uid="uid://codakkrih1jh0" path="res://Characters/至尊宝.png" id="35_8bkvy"]
+[ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="36_3t8ks"]
+[ext_resource type="Texture2D" uid="uid://idgbe6aiajm3" path="res://Characters/老头.png" id="36_xte55"]
+[ext_resource type="Texture2D" uid="uid://b67nrw18kcp3o" path="res://Characters/妇女-2.png" id="37_bgfns"]
+[ext_resource type="Texture2D" uid="uid://dday3jm6d7ta7" path="res://Battlers/蟹将◆.png" id="41_w0edn"]
+[ext_resource type="Texture2D" uid="uid://06iv4hu10n02" path="res://Battlers/虾兵★5.png" id="42_blrpu"]
+[ext_resource type="Texture2D" uid="uid://nmmeb72hh815" path="res://Characters/烟儿2.png" id="43_fuj7q"]
+[ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="43_wiadm"]
+[ext_resource type="Texture2D" uid="uid://b027elxw82n87" path="res://SeparateAnimation/奔波儿霸/144-20.png" id="44_wp317"]
+[ext_resource type="Texture2D" uid="uid://1qwregwwg672" path="res://Characters/管家.png" id="45_43kqr"]
+[ext_resource type="Texture2D" uid="uid://dqna2b0bofcgn" path="res://SeparateAnimation/奔波儿霸/147-14.png" id="45_hdyf3"]
+[ext_resource type="Texture2D" uid="uid://bxtk546vx8jpd" path="res://Icons/木剑.png" id="46_shuuo"]
+[ext_resource type="Texture2D" uid="uid://cpapyrml1ack5" path="res://deadPng.png" id="46_soviw"]
+[ext_resource type="Texture2D" uid="uid://bch0sf2pfxu86" path="res://Characters/小白龙.png" id="48_wdac0"]
+[ext_resource type="Texture2D" uid="uid://cejkg1su7j72k" path="res://main character/down.png" id="49_bq6ye"]
+[ext_resource type="Texture2D" uid="uid://ddba7lxsa6cqt" path="res://Battlers/☆野猪王★4.png" id="55_4tmup"]
+[ext_resource type="Texture2D" uid="uid://bftnf5cq4ohry" path="res://Battlers/☆鼠先锋◆★2.png" id="56_k2c3x"]
+[ext_resource type="Texture2D" uid="uid://3bypnpivk8ko" path="res://Animations/0野猪攻击.png" id="57_s45m2"]
+[ext_resource type="Texture2D" uid="uid://qyvjf7hnqe71" path="res://Animations/回血-小.png" id="58_scvoy"]
+[ext_resource type="Texture2D" uid="uid://01eiml0re1mo" path="res://Animations/0蜘蛛精攻击.png" id="59_uauyc"]
+[ext_resource type="Texture2D" uid="uid://detma0nmbeo7s" path="res://Battlers/巨蛙◆★2.png" id="60_gmwed"]
+[ext_resource type="Texture2D" uid="uid://jh6kol06yfx7" path="res://Icons/85-1.png" id="60_v24d2"]
+[ext_resource type="Texture2D" uid="uid://br6b5v7xd1l3t" path="res://Icons/80-1.png" id="61_esj5h"]
+[ext_resource type="Texture2D" uid="uid://cvo7gkxbdtiga" path="res://Battlers/狼◆★2.png" id="61_jd53t"]
+[ext_resource type="Texture2D" uid="uid://bqwnjy0vha0fv" path="res://Icons/对话框.png" id="62_bpou1"]
+[ext_resource type="Texture2D" uid="uid://0pcqhlkgkuht" path="res://Battlers/海毛虫◆★2.png" id="62_etqh4"]
+[ext_resource type="Texture2D" uid="uid://dangk5j7ppih8" path="res://Battlers/花妖◆★2.png" id="63_bad4c"]
+[ext_resource type="Texture2D" uid="uid://etal3eier257" path="res://Icons/Item-Cube01.png" id="63_hc42d"]
+[ext_resource type="Texture2D" uid="uid://dsa4sm1cxg3xl" path="res://Battlers/黑熊精◆★2.png" id="64_i5alk"]
+[ext_resource type="Texture2D" uid="uid://bhrccopw4kts6" path="res://Battlers/白熊◆★2.png" id="65_y6kme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdgqb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iincn"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_beghl"]
+bg_color = Color(1, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c338w"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqa4w"]
+bg_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo4tw"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plf1u"]
+bg_color = Color(1, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i5uuf"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8hpw"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n70xf"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhugn"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7j67"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afs4k"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kp0ec"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hpwrm"]
+bg_color = Color(0, 0, 0, 0.584314)
+
+[sub_resource type="Animation" id="Animation_lawvy"]
+resource_name = "PlayerFlash1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("status/Player1:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1), Color(0, 0.509804, 1, 0.513726), Color(0, 0.509804, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_565bd"]
+resource_name = "PlayerFlash2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("status/Player2:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1), Color(0, 0.509804, 1, 0.513726), Color(0, 0.509804, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_n0una"]
+resource_name = "PlayerFlash3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("status/Player3:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1), Color(0, 0.509804, 1, 0.513726), Color(0, 0.509804, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rxve1"]
+resource_name = "PlayerFlash4"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("status/Player4:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1), Color(0, 0.509804, 1, 0.513726), Color(0, 0.509804, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1iyjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/道具:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menuButton/法术:theme_override_styles/normal:bg_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("menuButton/装备:theme_override_styles/normal:bg_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("menuButton/状态:theme_override_styles/normal:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("menuButton/保存冒险:theme_override_styles/normal:bg_color")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("menuButton/读取进度:theme_override_styles/normal:bg_color")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("menuButton/升级加点:theme_override_styles/normal:bg_color")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("menuButton/返回现实:theme_override_styles/normal:bg_color")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("status/Player1:self_modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("status/Player2:self_modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("status/Player3:self_modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("status/Player4:self_modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.509804, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fsmxr"]
+resource_name = "menuButtonFlash1"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/道具:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.541176)]
+}
+
+[sub_resource type="Animation" id="Animation_2qlht"]
+resource_name = "menuButtonFlash2"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/法术:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="Animation" id="Animation_tclef"]
+resource_name = "menuButtonFlash3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/装备:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="Animation" id="Animation_6e1ay"]
+resource_name = "menuButtonFlash4"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/状态:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="Animation" id="Animation_wyqwj"]
+resource_name = "menuButtonFlash5"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/保存冒险:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="Animation" id="Animation_xbwis"]
+resource_name = "menuButtonFlash6"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/读取进度:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="Animation" id="Animation_hx20c"]
+resource_name = "menuButtonFlash7"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/升级加点:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="Animation" id="Animation_iadxd"]
+resource_name = "menuButtonFlash8"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuButton/返回现实:theme_override_styles/normal:bg_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.584314), Color(0, 0, 0, 0.341176), Color(0, 0, 0, 0.584314)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6hcp"]
+_data = {
+"PlayerFlash1": SubResource("Animation_lawvy"),
+"PlayerFlash2": SubResource("Animation_565bd"),
+"PlayerFlash3": SubResource("Animation_n0una"),
+"PlayerFlash4": SubResource("Animation_rxve1"),
+"RESET": SubResource("Animation_1iyjc"),
+"menuButtonFlash1": SubResource("Animation_fsmxr"),
+"menuButtonFlash2": SubResource("Animation_2qlht"),
+"menuButtonFlash3": SubResource("Animation_tclef"),
+"menuButtonFlash4": SubResource("Animation_6e1ay"),
+"menuButtonFlash5": SubResource("Animation_wyqwj"),
+"menuButtonFlash6": SubResource("Animation_xbwis"),
+"menuButtonFlash7": SubResource("Animation_hx20c"),
+"menuButtonFlash8": SubResource("Animation_iadxd")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wlpea"]
+bg_color = Color(0.847059, 0.776471, 0.803922, 1)
+border_width_left = 40
+border_width_top = 40
+border_width_right = 40
+border_width_bottom = 40
+border_color = Color(0.721569, 0.796078, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kjmr3"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhduw"]
+bg_color = Color(1, 0, 0, 1)
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ektcy"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anrhr"]
+bg_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rci0f"]
+bg_color = Color(0.47451, 0.462745, 0.517647, 1)
+border_width_left = 90
+border_width_top = 40
+border_width_right = 40
+border_width_bottom = 40
+border_color = Color(0.2, 0.156863, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vccdv"]
+bg_color = Color(0.47451, 0.462745, 0.517647, 1)
+border_width_left = 90
+border_width_right = 50
+border_width_bottom = 30
+border_color = Color(0.2, 0.156863, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8hecc"]
+bg_color = Color(0.47451, 0.462745, 0.517647, 1)
+border_width_left = 40
+border_width_top = 40
+border_width_right = 40
+border_width_bottom = 40
+border_color = Color(0.2, 0.156863, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iekda"]
+bg_color = Color(0.47451, 0.462745, 0.517647, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w5302"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x82yo"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rat6y"]
+bg_color = Color(0.32549, 0.32549, 0.32549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i27id"]
+bg_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i020p"]
+bg_color = Color(0.376471, 0.368627, 0.360784, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.8, 0.8, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8io1e"]
+bg_color = Color(0.376471, 0.368627, 0.360784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_76ba8"]
+bg_color = Color(0.376471, 0.368627, 0.360784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o6pqb"]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aliwr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hg52k"]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l1es8"]
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 1, 0, 1)
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_ng84d"]
+file = "mainPageBack.ogv"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tif42"]
+bg_color = Color(0.0666667, 0.0352941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5nx7a"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_5h47b"]
+file = "mainPageBack.ogv"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0hms"]
+bg_color = Color(0.0666667, 0.0352941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ggyv"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="Animation" id="Animation_4ou73"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuControl:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menuControl/menuButton:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("menuControl:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_vuku5"]
+resource_name = "menuCallOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuControl:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menuControl/menuButton:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("menuControl:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_sahcu"]
+resource_name = "menuClose"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("menuControl:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("menuControl/menuButton:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("menuControl:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0c0ps"]
+_data = {
+"RESET": SubResource("Animation_4ou73"),
+"menuCallOut": SubResource("Animation_vuku5"),
+"menuClose": SubResource("Animation_sahcu")
+}
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
+vertices = PackedVector2Array(20, 95, 2390, 97, 2393, 2472, 11, 2472, 11, 1492, 9, 1337)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 1492, 11, 2472, 2393, 2472, 2390, 97)])
+
+[sub_resource type="Gradient" id="Gradient_cuie8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
+gradient = SubResource("Gradient_cuie8")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Gradient" id="Gradient_b8qqv"]
+offsets = PackedFloat32Array(0, 0.876578, 0.995792)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ejmod"]
+gradient = SubResource("Gradient_b8qqv")
+fill = 1
+fill_from = Vector2(0.504274, 0.509971)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_quln6"]
+gradient = SubResource("Gradient_b8qqv")
+fill = 1
+fill_from = Vector2(0.726496, 0.133903)
+fill_to = Vector2(0.461538, 0.863248)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6g7r8"]
+atlas = ExtResource("30_deh84")
+region = Rect2(0, 0, 50, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ntct"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6g7r8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb17b"]
+atlas = ExtResource("33_84e5h")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vub8v"]
+atlas = ExtResource("30_deh84")
+region = Rect2(0, 128, 50, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_48ewo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb17b")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vub8v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2bau"]
+atlas = ExtResource("32_a4ic5")
+region = Rect2(0, 0, 53, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d0to"]
+atlas = ExtResource("33_8nc56")
+region = Rect2(0, 0, 53, 55)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sitba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2bau")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d0to")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wvmv"]
+atlas = ExtResource("34_1hxht")
+region = Rect2(0, 0, 65, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26ash"]
+atlas = ExtResource("35_1p4u1")
+region = Rect2(0, 0, 64, 62)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bbmyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3wvmv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26ash")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pqia"]
+atlas = ExtResource("36_xte55")
+region = Rect2(0, 154, 60, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_of2nc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pqia")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3o4x"]
+atlas = ExtResource("37_bgfns")
+region = Rect2(0, 237, 56, 79)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6dtd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3o4x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82tjk"]
+atlas = ExtResource("35_8bkvy")
+region = Rect2(0, 170, 78, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uy7cs"]
+atlas = ExtResource("35_8bkvy")
+region = Rect2(0, 170, 78, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asnn4"]
+atlas = ExtResource("35_8bkvy")
+region = Rect2(78, 170, 78, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_or5xr"]
+atlas = ExtResource("35_8bkvy")
+region = Rect2(156, 170, 78, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ia8l"]
+atlas = ExtResource("35_8bkvy")
+region = Rect2(234, 170, 78, 85)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aacuh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82tjk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uy7cs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asnn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_or5xr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ia8l")
+}],
+"loop": true,
+"name": &"右上",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0ulg"]
+atlas = ExtResource("43_fuj7q")
+region = Rect2(0, 0, 110, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg8m3"]
+atlas = ExtResource("36_3t8ks")
+region = Rect2(0, 192, 55, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_40o45"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0ulg")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg8m3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nndub"]
+atlas = ExtResource("41_w0edn")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lrla"]
+atlas = ExtResource("41_w0edn")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fapq"]
+atlas = ExtResource("41_w0edn")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m34hn"]
+atlas = ExtResource("41_w0edn")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vhkpc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nndub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lrla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fapq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m34hn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo3wn"]
+atlas = ExtResource("42_blrpu")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ab4m"]
+atlas = ExtResource("42_blrpu")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbrsd"]
+atlas = ExtResource("42_blrpu")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wdwi"]
+atlas = ExtResource("42_blrpu")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmsil"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo3wn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ab4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbrsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wdwi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7y1o"]
+atlas = ExtResource("43_wiadm")
+region = Rect2(0, 99, 96, 99)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qt105"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7y1o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci44e"]
+atlas = ExtResource("44_wp317")
+region = Rect2(0, 0, 105, 125)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20hih"]
+atlas = ExtResource("45_hdyf3")
+region = Rect2(0, 0, 74, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxm71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci44e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20hih")
+}],
+"loop": true,
+"name": &"右上",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4imd"]
+atlas = ExtResource("45_43kqr")
+region = Rect2(0, 84, 48, 84)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xqeu4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4imd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
+load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
+
+[sub_resource type="Animation" id="Animation_r8gu3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("城主:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1107, 311)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("城主:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"右上"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("deadLayer/Panel:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("小兵9:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(654, 284)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("敖阳:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1615, 82)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("player/Sprite2D:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_1eey2")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("player:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(484, 437)]
+}
+
+[sub_resource type="Animation" id="Animation_adtpw"]
+resource_name = "deadShow"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("deadLayer/Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 3.8, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m8gmo"]
+resource_name = "奔霸逃跑"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("小兵9:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(628, 291), Vector2(131, 583)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("敖阳:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.5, 4, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1800, 50), Vector2(962, 319), Vector2(962, 319), Vector2(193, 511)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player/Sprite2D:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 9.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_1eey2"), ExtResource("49_bq6ye")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pof5v"]
+resource_name = "斩妖"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(386, 420), Vector2(97, 610)]
+}
+
+[sub_resource type="Animation" id="Animation_k5a20"]
+resource_name = "杀戮"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("城主:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1107, 311), Vector2(1197, 271)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("城主:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"右上"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r45h5"]
+_data = {
+"RESET": SubResource("Animation_r8gu3"),
+"deadShow": SubResource("Animation_adtpw"),
+"奔霸逃跑": SubResource("Animation_m8gmo"),
+"斩妖": SubResource("Animation_pof5v"),
+"杀戮": SubResource("Animation_k5a20")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qjl4"]
+size = Vector2(328.868, 26.7719)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8d68d"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm8mh"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(0, 190, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4x1mw"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(92, 190, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x4c17"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(184, 190, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fv2xg"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(276, 190, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wt84"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(0, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtbxa"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(92, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkt67"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(184, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxm65"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(276, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d83oq"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(0, 285, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hctoh"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(92, 285, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ncrf"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(184, 285, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dif5h"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(276, 285, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ov0ew"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(0, 95, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8yl1d"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(92, 95, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq4e1"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(184, 95, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miptj"]
+atlas = ExtResource("48_wdac0")
+region = Rect2(276, 95, 92, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpb43"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm8mh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4x1mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x4c17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fv2xg")
+}],
+"loop": true,
+"name": &"右上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wt84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtbxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkt67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxm65")
+}],
+"loop": true,
+"name": &"右下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d83oq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hctoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ncrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dif5h")
+}],
+"loop": true,
+"name": &"左上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ov0ew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8yl1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq4e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miptj")
+}],
+"loop": true,
+"name": &"左下",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_xxk76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("姜韵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("二娃2:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+
+[sub_resource type="Animation" id="Animation_03fr6"]
+resource_name = "dead"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("姜韵:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"dead"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("二娃2:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"default", &"dead"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_om1p2"]
+_data = {
+"RESET": SubResource("Animation_xxk76"),
+"dead": SubResource("Animation_03fr6")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkbff"]
+atlas = ExtResource("55_4tmup")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5vl3"]
+atlas = ExtResource("56_k2c3x")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3hjfw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkbff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5vl3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sclf7"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(0, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2igks"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(192, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyyma"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(384, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8seb"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(576, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3qm6"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(768, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll7fi"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(0, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj35p"]
+atlas = ExtResource("57_s45m2")
+region = Rect2(192, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hpp8t"]
+atlas = ExtResource("58_scvoy")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r16oh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2igks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj35p")
+}],
+"loop": false,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hpp8t")
+}],
+"loop": true,
+"name": &"血",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6i1q3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5vl3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ry64i"]
+atlas = ExtResource("58_scvoy")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bd0t4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2igks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj35p")
+}],
+"loop": false,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry64i")
+}],
+"loop": true,
+"name": &"血",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7tge"]
+atlas = ExtResource("59_uauyc")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ncoa6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7tge")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6evve"]
+atlas = ExtResource("60_gmwed")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b0w7y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6evve")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i574s"]
+atlas = ExtResource("61_jd53t")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bqx3b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i574s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxns6"]
+atlas = ExtResource("62_etqh4")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j041i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxns6")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh4br"]
+atlas = ExtResource("63_bad4c")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgife"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh4br")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jaqii"]
+atlas = ExtResource("64_i5alk")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_omtu2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jaqii")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_paph6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2igks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj35p")
+}],
+"loop": false,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry64i")
+}],
+"loop": true,
+"name": &"血",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ulbp8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2igks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj35p")
+}],
+"loop": false,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ry64i")
+}],
+"loop": true,
+"name": &"血",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ishex"]
+atlas = ExtResource("65_y6kme")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4t8hv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ishex")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r6kp5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i574s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecppc"]
+atlas = ExtResource("58_scvoy")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5lxuo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2igks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj35p")
+}],
+"loop": false,
+"name": &"auto",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecppc")
+}],
+"loop": false,
+"name": &"血",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt2i2"]
+atlas = ExtResource("60_gmwed")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsmhs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt2i2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lqbr3"]
+size = Vector2(328.868, 26.7719)
+
+[node name="建邺城右" type="Node2D"]
+script = ExtResource("1_31wdb")
+
+[node name="建业右" type="Sprite2D" parent="."]
+position = Vector2(1256, 432)
+texture = ExtResource("2_i8757")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(1256, 432)
+texture = ExtResource("3_h2meg")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("4_dfrow")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(1615, 17)
+build_mode = 1
+polygon = PackedVector2Array(-2, -1, 266, -2, 75, 113, -57, 181, -120, 237, -141, 263, -363, 376, -356, 459, -281, 434, -201, 494, -247, 542, -317, 583, -445, 527, -441, 449, -523, 493, -512, 553, -256, 681, -229, 707, -137, 746, -46, 742, 10, 722, 8, 646, 92, 606, 97, 683, 121, 700, 177, 670, 182, 667, 186, 658, 180, 614, 207, 525, 309, 477, 382, 443, 473, 479, 521, 450, 514, 378, 519, 327, 642, 264, 648, 342, 702, 399, 735, 361, 850, 426, 794, 460, 867, 493, 866, 539, 509, 710, 435, 646, 363, 686, 416, 720, 441, 751, 371, 792, 311, 752, 360, 832, 362, 853, 104, 854, -278, 852, -423, 775, -535, 827, -597, 785, -475, 709, -889, 476, -1002, 600, -1240, 454, -1402, 537, -1438, 640, -1552, 705, -1607, 634, -1529, 580, -1479, 464, -1297, 384, -1403, 321, -1307, 284, -1220, 323, -1163, 294, -1179, 282, -1219, 240, -1166, 211, -1096, 236, -993, 241, -870, 179, -853, 100, -812, 111, -779, -3, -695, 57, -704, 154, -760, 213, -659, 247, -635, 244, -395, 131, -259, 152)
+
+[node name="player" parent="." instance=ExtResource("5_5s1mv")]
+z_index = 1
+position = Vector2(484, 437)
+scale = Vector2(0.903555, 0.940031)
+metadata/_edit_group_ = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1301, 873)
+stream = ExtResource("6_ugebd")
+volume_db = 4.414
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_whb7q")
+volume_db = 2.432
+max_distance = 1e+06
+
+[node name="enterFightCd" type="Timer" parent="."]
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 7.0
+max_distance = 10000.0
+
+[node name="menuControl" type="Control" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+z_index = 100
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.67, 0.619)
+mouse_filter = 1
+script = ExtResource("7_7lfg1")
+
+[node name="status" type="Control" parent="menuControl"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -816.761
+offset_top = -594.806
+offset_right = -16.7609
+offset_bottom = 5.19397
+grow_horizontal = 2
+mouse_filter = 1
+
+[node name="Player1" type="Panel" parent="menuControl/status" groups=["PlayerStatus"]]
+self_modulate = Color(0, 0.509804, 1, 1)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 30.0
+offset_right = 1550.0
+offset_bottom = 310.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sdgqb")
+
+[node name="characterIcon" type="Sprite2D" parent="menuControl/status/Player1"]
+position = Vector2(100, 130)
+scale = Vector2(0.8, 0.8)
+
+[node name="expText" type="Label" parent="menuControl/status/Player1"]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 1063.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 40
+text = "经验"
+
+[node name="expValue" type="Label" parent="menuControl/status/Player1/expText"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = -5.0
+offset_right = 488.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 40
+text = "100/100"
+
+[node name="name" type="Label" parent="menuControl/status/Player1"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 320.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 40
+text = "时追云"
+
+[node name="levelText" type="Label" parent="menuControl/status/Player1"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 100.0
+offset_right = 393.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 40
+text = "Lv"
+
+[node name="levelValue" type="Label" parent="menuControl/status/Player1/levelText"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "50"
+
+[node name="hpText" type="Label" parent="menuControl/status/Player1"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 100.0
+offset_right = 840.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 40
+text = "气血"
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/status/Player1/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_iincn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_beghl")
+value = 80.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/status/Player1/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/status/Player1"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 190.0
+offset_right = 840.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 40
+text = "仙力"
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/status/Player1/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c338w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqa4w")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/status/Player1/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="player1Button" type="Button" parent="menuControl/status/Player1"]
+modulate = Color(1, 1, 1, 0)
+z_index = 20
+layout_mode = 0
+offset_top = -10.0
+offset_right = 1094.0
+offset_bottom = 287.0
+
+[node name="Player2" type="Panel" parent="menuControl/status" groups=["PlayerStatus"]]
+visible = false
+self_modulate = Color(0, 0.509804, 1, 1)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 320.0
+offset_right = 1550.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sdgqb")
+
+[node name="characterIcon" type="Sprite2D" parent="menuControl/status/Player2"]
+position = Vector2(100, 130)
+scale = Vector2(0.8, 0.8)
+
+[node name="expText" type="Label" parent="menuControl/status/Player2"]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 1063.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 40
+text = "经验"
+
+[node name="expValue" type="Label" parent="menuControl/status/Player2/expText"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = -5.0
+offset_right = 488.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 40
+
+[node name="name" type="Label" parent="menuControl/status/Player2"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 320.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 40
+
+[node name="levelText" type="Label" parent="menuControl/status/Player2"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 100.0
+offset_right = 393.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 40
+text = "Lv"
+
+[node name="levelValue" type="Label" parent="menuControl/status/Player2/levelText"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="hpText" type="Label" parent="menuControl/status/Player2"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 100.0
+offset_right = 840.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 40
+text = "气血"
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/status/Player2/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xo4tw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_plf1u")
+value = 50.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/status/Player2/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/status/Player2"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 190.0
+offset_right = 840.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 40
+text = "仙力"
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/status/Player2/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c338w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqa4w")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/status/Player2/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+
+[node name="player2Button" type="Button" parent="menuControl/status/Player2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1100.0
+offset_bottom = 280.0
+
+[node name="Player3" type="Panel" parent="menuControl/status" groups=["PlayerStatus"]]
+visible = false
+self_modulate = Color(0, 0.509804, 1, 1)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 610.0
+offset_right = 1550.0
+offset_bottom = 890.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sdgqb")
+
+[node name="characterIcon" type="Sprite2D" parent="menuControl/status/Player3"]
+position = Vector2(100, 130)
+scale = Vector2(0.8, 0.8)
+
+[node name="expText" type="Label" parent="menuControl/status/Player3"]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 1063.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 40
+text = "经验"
+
+[node name="expValue" type="Label" parent="menuControl/status/Player3/expText"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = -5.0
+offset_right = 488.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 40
+text = "100/100"
+
+[node name="name" type="Label" parent="menuControl/status/Player3"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 320.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 40
+text = "时追云"
+
+[node name="levelText" type="Label" parent="menuControl/status/Player3"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 100.0
+offset_right = 393.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 40
+text = "Lv"
+
+[node name="levelValue" type="Label" parent="menuControl/status/Player3/levelText"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "50"
+
+[node name="hpText" type="Label" parent="menuControl/status/Player3"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 100.0
+offset_right = 840.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 40
+text = "气血"
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/status/Player3/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xo4tw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_plf1u")
+value = 50.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/status/Player3/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/status/Player3"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 190.0
+offset_right = 840.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 40
+text = "仙力"
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/status/Player3/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c338w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqa4w")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/status/Player3/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="player3Button" type="Button" parent="menuControl/status/Player3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1106.0
+offset_bottom = 276.0
+
+[node name="Player4" type="Panel" parent="menuControl/status" groups=["PlayerStatus"]]
+visible = false
+self_modulate = Color(0, 0.509804, 1, 1)
+layout_mode = 0
+offset_left = 450.0
+offset_top = 900.0
+offset_right = 1550.0
+offset_bottom = 1180.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sdgqb")
+
+[node name="characterIcon" type="Sprite2D" parent="menuControl/status/Player4"]
+position = Vector2(100, 130)
+scale = Vector2(0.8, 0.8)
+
+[node name="expText" type="Label" parent="menuControl/status/Player4"]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 1063.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 40
+text = "经验"
+
+[node name="expValue" type="Label" parent="menuControl/status/Player4/expText"]
+layout_mode = 0
+offset_left = 150.0
+offset_top = -5.0
+offset_right = 488.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 40
+text = "100/100"
+
+[node name="name" type="Label" parent="menuControl/status/Player4"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 10.0
+offset_right = 320.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 40
+text = "时追云"
+
+[node name="levelText" type="Label" parent="menuControl/status/Player4"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 350.0
+offset_top = 100.0
+offset_right = 393.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 40
+text = "Lv"
+
+[node name="levelValue" type="Label" parent="menuControl/status/Player4/levelText"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "50"
+
+[node name="hpText" type="Label" parent="menuControl/status/Player4"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 100.0
+offset_right = 840.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 40
+text = "气血"
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/status/Player4/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xo4tw")
+theme_override_styles/fill = SubResource("StyleBoxFlat_plf1u")
+value = 50.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/status/Player4/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/status/Player4"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 190.0
+offset_right = 840.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 40
+text = "仙力"
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/status/Player4/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_c338w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uqa4w")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/status/Player4/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="player4Button" type="Button" parent="menuControl/status/Player4"]
+modulate = Color(1, 1, 1, 0)
+z_index = 10
+layout_mode = 0
+offset_right = 1106.0
+offset_bottom = 276.0
+
+[node name="menuButton" type="TextureRect" parent="menuControl"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -816.761
+offset_top = -594.806
+offset_right = -16.7609
+offset_bottom = 5.19397
+texture = ExtResource("8_fllv5")
+
+[node name="道具" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 40.0
+offset_right = 142.0
+offset_bottom = 71.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_i5uuf")
+text = "道具"
+
+[node name="法术" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 80.0
+offset_right = 142.0
+offset_bottom = 111.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_v8hpw")
+text = "法术"
+flat = true
+
+[node name="装备" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 120.0
+offset_right = 142.0
+offset_bottom = 151.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_n70xf")
+text = "装备"
+flat = true
+
+[node name="状态" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 160.0
+offset_right = 142.0
+offset_bottom = 191.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_fhugn")
+text = "状态"
+flat = true
+
+[node name="保存冒险" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 200.0
+offset_right = 142.0
+offset_bottom = 231.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_j7j67")
+text = "保存冒险"
+flat = true
+
+[node name="读取进度" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 240.0
+offset_right = 142.0
+offset_bottom = 271.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_afs4k")
+text = "读取进度
+"
+flat = true
+
+[node name="升级加点" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 280.0
+offset_right = 142.0
+offset_bottom = 311.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_kp0ec")
+text = "升级加点
+"
+flat = true
+
+[node name="返回现实" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 320.0
+offset_right = 142.0
+offset_bottom = 351.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_hpwrm")
+text = "返回现实"
+flat = true
+
+[node name="menuButtonPlayer" type="AnimationPlayer" parent="menuControl/menuButton"]
+root_node = NodePath("../..")
+autoplay = "menuButtonFlash1"
+libraries = {
+"": SubResource("AnimationLibrary_n6hcp")
+}
+
+[node name="道具页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="道具分类" type="Panel" parent="menuControl/道具页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -588.0
+offset_right = -312.0
+offset_bottom = 607.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="常规物品" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 100.0
+offset_right = 448.0
+offset_bottom = 193.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/常规物品"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "常规物品"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="战斗物品" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 230.0
+offset_right = 448.0
+offset_bottom = 323.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/战斗物品"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "战斗物品"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="武器" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 38.806
+offset_top = 360.0
+offset_right = 446.806
+offset_bottom = 453.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/武器"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "武器"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="足护" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 490.0
+offset_right = 448.0
+offset_bottom = 583.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/足护"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "足护"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="头饰" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 620.0
+offset_right = 448.0
+offset_bottom = 713.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/头饰"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "头饰"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="衣甲" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 750.0
+offset_right = 448.0
+offset_bottom = 843.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/衣甲"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "衣甲"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="饰品" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 880.0
+offset_right = 448.0
+offset_bottom = 973.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/饰品"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "饰品"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="特殊道具" type="Button" parent="menuControl/道具页面/道具分类" groups=["menuItem"]]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 1010.0
+offset_right = 448.0
+offset_bottom = 1103.0
+
+[node name="Label" type="Label" parent="menuControl/道具页面/道具分类/特殊道具"]
+layout_mode = 0
+offset_left = -6.0
+offset_right = 401.0
+offset_bottom = 95.0
+theme_override_font_sizes/font_size = 40
+text = "特殊道具"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="物品" type="Panel" parent="menuControl/道具页面"]
+layout_mode = 0
+offset_left = -352.0
+offset_top = -588.0
+offset_right = 778.0
+offset_bottom = 436.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="menuControl/道具页面/物品"]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 55.0
+offset_right = 1083.0
+offset_bottom = 977.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="menuControl/道具页面/物品/ScrollContainer"]
+layout_mode = 2
+
+[node name="介绍" type="Panel" parent="menuControl/道具页面"]
+layout_mode = 0
+offset_left = -352.0
+offset_top = 405.0
+offset_right = 777.0
+offset_bottom = 609.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="Label" type="Label" parent="menuControl/道具页面/介绍"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 46.0
+offset_right = 1077.0
+offset_bottom = 159.0
+theme_override_font_sizes/font_size = 40
+text = "介绍"
+vertical_alignment = 1
+
+[node name="角色表" type="Panel" parent="menuControl/道具页面"]
+visible = false
+layout_mode = 0
+offset_left = 122.0
+offset_top = -546.0
+offset_right = 736.0
+offset_bottom = 391.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_wlpea")
+script = ExtResource("11_2ws8v")
+
+[node name="itemPlayer1" type="Panel" parent="menuControl/道具页面/角色表" groups=["itemPlayer"]]
+self_modulate = Color(1, 1, 1, 0.192157)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.065
+anchor_bottom = 0.043
+offset_left = 41.0
+offset_top = 50.0
+offset_right = 535.09
+offset_bottom = 208.709
+mouse_filter = 1
+
+[node name="menuPlayerPic" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -5.0
+offset_right = 188.0
+offset_bottom = 197.0
+texture = ExtResource("12_wx81q")
+expand_mode = 1
+
+[node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer1"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 39.1955
+offset_right = 328.94
+offset_bottom = 94.1955
+theme_override_font_sizes/font_size = 40
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer1/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjmr3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rhduw")
+value = 80.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer1/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer1"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 129.195
+offset_right = 328.94
+offset_bottom = 184.195
+theme_override_font_sizes/font_size = 40
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer1/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ektcy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_anrhr")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer1/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="buff1" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 28.0
+offset_right = 336.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 120.0
+offset_right = 336.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 120.0
+offset_right = 243.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="menuPlayerBut1" type="Button" parent="menuControl/道具页面/角色表/itemPlayer1"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 536.0
+offset_bottom = 202.0
+
+[node name="itemPlayer2" type="Panel" parent="menuControl/道具页面/角色表" groups=["itemPlayer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0.192157)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.065
+anchor_bottom = 0.043
+offset_left = 41.0
+offset_top = 260.0
+offset_right = 535.09
+offset_bottom = 418.709
+
+[node name="menuPlayerPic" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -5.0
+offset_right = 188.0
+offset_bottom = 197.0
+texture = ExtResource("12_wx81q")
+expand_mode = 1
+
+[node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer2"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 39.1955
+offset_right = 328.94
+offset_bottom = 94.1955
+theme_override_font_sizes/font_size = 40
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer2/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjmr3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rhduw")
+value = 80.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer2/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer2"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 129.195
+offset_right = 328.94
+offset_bottom = 184.195
+theme_override_font_sizes/font_size = 40
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer2/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ektcy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_anrhr")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer2/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="buff1" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 28.0
+offset_right = 336.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 120.0
+offset_right = 336.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 120.0
+offset_right = 243.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="menuPlayerBut2" type="Button" parent="menuControl/道具页面/角色表/itemPlayer2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 536.0
+offset_bottom = 202.0
+
+[node name="itemPlayer3" type="Panel" parent="menuControl/道具页面/角色表" groups=["itemPlayer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0.192157)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.065
+anchor_bottom = 0.043
+offset_left = 41.0
+offset_top = 470.0
+offset_right = 535.09
+offset_bottom = 628.709
+
+[node name="menuPlayerPic" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -5.0
+offset_right = 188.0
+offset_bottom = 197.0
+texture = ExtResource("12_wx81q")
+expand_mode = 1
+
+[node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer3"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 39.1955
+offset_right = 328.94
+offset_bottom = 94.1955
+theme_override_font_sizes/font_size = 40
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer3/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjmr3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rhduw")
+value = 80.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer3/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer3"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 129.195
+offset_right = 328.94
+offset_bottom = 184.195
+theme_override_font_sizes/font_size = 40
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer3/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ektcy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_anrhr")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer3/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="buff1" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 28.0
+offset_right = 336.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 120.0
+offset_right = 336.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 120.0
+offset_right = 243.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="menuPlayerBut3" type="Button" parent="menuControl/道具页面/角色表/itemPlayer3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 536.0
+offset_bottom = 202.0
+
+[node name="itemPlayer4" type="Panel" parent="menuControl/道具页面/角色表" groups=["itemPlayer"]]
+visible = false
+self_modulate = Color(1, 1, 1, 0.192157)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.065
+anchor_bottom = 0.043
+offset_left = 41.0
+offset_top = 680.0
+offset_right = 535.09
+offset_bottom = 838.709
+
+[node name="menuPlayerPic" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = -5.0
+offset_right = 188.0
+offset_bottom = 197.0
+texture = ExtResource("12_wx81q")
+expand_mode = 1
+
+[node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer4"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 39.1955
+offset_right = 328.94
+offset_bottom = 94.1955
+theme_override_font_sizes/font_size = 40
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer4/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kjmr3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rhduw")
+value = 80.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer4/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer4"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 248.94
+offset_top = 129.195
+offset_right = 328.94
+offset_bottom = 184.195
+theme_override_font_sizes/font_size = 40
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/道具页面/角色表/itemPlayer4/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 20.0
+offset_right = 280.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ektcy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_anrhr")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/道具页面/角色表/itemPlayer4/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="buff1" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 28.0
+offset_right = 243.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 28.0
+offset_right = 336.0
+offset_bottom = 97.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
+layout_mode = 0
+offset_left = 270.0
+offset_top = 120.0
+offset_right = 336.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
+layout_mode = 0
+offset_left = 177.0
+offset_top = 120.0
+offset_right = 243.0
+offset_bottom = 189.0
+texture = ExtResource("13_x3npv")
+
+[node name="menuPlayerBut4" type="Button" parent="menuControl/道具页面/角色表/itemPlayer4"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 536.0
+offset_bottom = 202.0
+
+[node name="法术页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_right = 1000.0
+offset_bottom = 200.0
+
+[node name="技能介绍" type="Panel" parent="menuControl/法术页面"]
+layout_mode = 0
+offset_left = -850.0
+offset_top = -600.0
+offset_right = 800.0
+offset_bottom = -350.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rci0f")
+
+[node name="description" type="Label" parent="menuControl/法术页面/技能介绍"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 80.0
+offset_right = 140.0
+offset_bottom = 190.0
+theme_override_font_sizes/font_size = 80
+
+[node name="技能表" type="Panel" parent="menuControl/法术页面"]
+self_modulate = Color(0.964706, 0.968627, 0.976471, 1)
+layout_mode = 0
+offset_left = -850.0
+offset_top = -360.0
+offset_right = 800.0
+offset_bottom = 590.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vccdv")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="menuControl/法术页面/技能表"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 0
+offset_left = 40.0
+offset_right = 2040.0
+offset_bottom = 2000.0
+follow_focus = true
+horizontal_scroll_mode = 2
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="menuControl/法术页面/技能表/ScrollContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_constants/h_separation = 500
+theme_override_constants/v_separation = 200
+columns = 3
+
+[node name="装备页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_left = -800.0
+offset_top = -580.0
+offset_right = 200.0
+offset_bottom = -380.0
+
+[node name="装备介绍" type="Panel" parent="menuControl/装备页面"]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8hecc")
+
+[node name="description" type="Label" parent="menuControl/装备页面/装备介绍"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 580.0
+offset_bottom = 200.0
+theme_override_font_sizes/font_size = 40
+text = "[30 攻击】 【+30防御力】"
+vertical_alignment = 1
+
+[node name="装备栏" type="Control" parent="menuControl/装备页面"]
+self_modulate = Color(0.360784, 0.360784, 1, 1)
+custom_minimum_size = Vector2(700, 500)
+anchors_preset = 0
+offset_top = 300.0
+offset_right = 2000.0
+offset_bottom = 800.0
+
+[node name="status" type="Panel" parent="menuControl/装备页面/装备栏"]
+layout_mode = 2
+offset_top = -100.0
+offset_right = 800.0
+offset_bottom = 400.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="name" type="Label" parent="menuControl/装备页面/装备栏/status"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 148.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+text = "小白龙"
+
+[node name="level" type="Label" parent="menuControl/装备页面/装备栏/status"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 120.0
+offset_right = 90.0
+offset_bottom = 175.0
+theme_override_font_sizes/font_size = 40
+text = "Lv "
+
+[node name="levelValue" type="Label" parent="menuControl/装备页面/装备栏/status/level"]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 100.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "27"
+
+[node name="伤害" type="Label" parent="menuControl/装备页面/装备栏/status"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 190.0
+offset_right = 90.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 40
+text = "额外伤害"
+
+[node name="value" type="Label" parent="menuControl/装备页面/装备栏/status/伤害"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 340.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "80"
+
+[node name="arrow" type="Label" parent="menuControl/装备页面/装备栏/status/伤害/value" groups=["arrow"]]
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 140.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "=>"
+
+[node name="changedValue" type="Label" parent="menuControl/装备页面/装备栏/status/伤害/value/arrow"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 169.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "100"
+
+[node name="物理防御" type="Label" parent="menuControl/装备页面/装备栏/status"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 260.0
+offset_right = 114.0
+offset_bottom = 315.0
+theme_override_font_sizes/font_size = 40
+text = "额外物防"
+
+[node name="value" type="Label" parent="menuControl/装备页面/装备栏/status/物理防御"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 340.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "80"
+
+[node name="arrow" type="Label" parent="menuControl/装备页面/装备栏/status/物理防御/value" groups=["arrow"]]
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 146.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "=>"
+
+[node name="changedValue" type="Label" parent="menuControl/装备页面/装备栏/status/物理防御/value/arrow"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 169.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "100
+"
+
+[node name="魔法抗性" type="Label" parent="menuControl/装备页面/装备栏/status"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 330.0
+offset_right = 114.0
+offset_bottom = 385.0
+theme_override_font_sizes/font_size = 40
+text = "额外灵抗"
+
+[node name="value" type="Label" parent="menuControl/装备页面/装备栏/status/魔法抗性"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 340.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "80"
+
+[node name="arrow" type="Label" parent="menuControl/装备页面/装备栏/status/魔法抗性/value" groups=["arrow"]]
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 146.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "=>"
+
+[node name="changedValue" type="Label" parent="menuControl/装备页面/装备栏/status/魔法抗性/value/arrow"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 169.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "100
+"
+
+[node name="速度" type="Label" parent="menuControl/装备页面/装备栏/status"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 400.0
+offset_right = 90.0
+offset_bottom = 455.0
+theme_override_font_sizes/font_size = 40
+text = "额外速度"
+
+[node name="value" type="Label" parent="menuControl/装备页面/装备栏/status/速度"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 340.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "80"
+
+[node name="arrow" type="Label" parent="menuControl/装备页面/装备栏/status/速度/value" groups=["arrow"]]
+visible = false
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_right = 146.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "=>"
+
+[node name="changedValue" type="Label" parent="menuControl/装备页面/装备栏/status/速度/value/arrow"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 169.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "100
+"
+
+[node name="Label7" type="Label" parent="menuControl/装备页面/装备栏/status"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label8" type="Label" parent="menuControl/装备页面/装备栏/status"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="items" type="Panel" parent="menuControl/装备页面/装备栏"]
+layout_mode = 2
+offset_left = 770.0
+offset_top = -100.0
+offset_right = 1590.0
+offset_bottom = 400.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="button1" type="Panel" parent="menuControl/装备页面/装备栏/items" groups=["armorItemButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="itemType" type="Label" parent="menuControl/装备页面/装备栏/items/button1"]
+self_modulate = Color(0.423529, 1, 1, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 60.0
+offset_right = 770.0
+offset_bottom = 117.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("10_6pneu")
+text = "武器"
+
+[node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button1/itemType"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 260.0
+offset_bottom = 60.0
+
+[node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button1/itemType/icon"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="button2" type="Panel" parent="menuControl/装备页面/装备栏/items" groups=["armorItemButton"]]
+self_modulate = Color(1, 1, 0, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="itemType" type="Label" parent="menuControl/装备页面/装备栏/items/button2"]
+self_modulate = Color(0.423529, 1, 1, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 140.0
+offset_right = 770.0
+offset_bottom = 197.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("10_6pneu")
+text = "足护"
+
+[node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button2/itemType"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 260.0
+offset_bottom = 60.0
+
+[node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button2/itemType/icon"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="button3" type="Panel" parent="menuControl/装备页面/装备栏/items" groups=["armorItemButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="itemType" type="Label" parent="menuControl/装备页面/装备栏/items/button3"]
+self_modulate = Color(0.423529, 1, 1, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 220.0
+offset_right = 770.0
+offset_bottom = 277.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("10_6pneu")
+text = "头饰"
+
+[node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button3/itemType"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 260.0
+offset_bottom = 60.0
+
+[node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button3/itemType/icon"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="button4" type="Panel" parent="menuControl/装备页面/装备栏/items" groups=["armorItemButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="itemType" type="Label" parent="menuControl/装备页面/装备栏/items/button4"]
+self_modulate = Color(0.423529, 1, 1, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 300.0
+offset_right = 770.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("10_6pneu")
+text = "衣甲"
+
+[node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button4/itemType"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 260.0
+offset_bottom = 60.0
+
+[node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button4/itemType/icon"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="button5" type="Panel" parent="menuControl/装备页面/装备栏/items" groups=["armorItemButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="itemType" type="Label" parent="menuControl/装备页面/装备栏/items/button5"]
+self_modulate = Color(0.423529, 1, 1, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 380.0
+offset_right = 770.0
+offset_bottom = 437.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("10_6pneu")
+text = "饰品"
+
+[node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button5/itemType"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 260.0
+offset_bottom = 60.0
+
+[node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button5/itemType/icon"]
+layout_mode = 0
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="背包装备" type="Panel" parent="menuControl/装备页面"]
+layout_mode = 0
+offset_top = 700.0
+offset_right = 1590.0
+offset_bottom = 1170.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="itemPanel1" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 500.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel1"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel1/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel1/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+
+[node name="itemPanel2" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 50.0
+offset_right = 1000.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel2"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel2/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel2/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel3" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 50.0
+offset_right = 1500.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel3"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel3/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel3/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel4" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 500.0
+offset_bottom = 210.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel4"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel4/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel4/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel5" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 150.0
+offset_right = 1000.0
+offset_bottom = 210.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel5"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel5/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel5/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel6" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 150.0
+offset_right = 1500.0
+offset_bottom = 210.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel6"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel6/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel6/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel7" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 250.0
+offset_right = 500.0
+offset_bottom = 310.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel7"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel7/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel7/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel8" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 250.0
+offset_right = 1000.0
+offset_bottom = 310.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel8"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel8/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel8/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel9" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 250.0
+offset_right = 1500.0
+offset_bottom = 310.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel9"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel9/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel9/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel10" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 350.0
+offset_right = 500.0
+offset_bottom = 410.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel10"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel10/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel10/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel11" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 550.0
+offset_top = 350.0
+offset_right = 1000.0
+offset_bottom = 410.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel11"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel11/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel11/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="itemPanel12" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 350.0
+offset_right = 1500.0
+offset_bottom = 410.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_iekda")
+
+[node name="itemImage" type="TextureRect" parent="menuControl/装备页面/背包装备/itemPanel12"]
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("15_jvn4m")
+
+[node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel12/itemImage"]
+layout_mode = 2
+offset_left = 80.0
+offset_right = 299.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "werwerwer"
+
+[node name="itemNumber" type="Label" parent="menuControl/装备页面/背包装备/itemPanel12/itemImage/item"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = ":     1"
+
+[node name="Label" type="Label" parent="menuControl/装备页面/背包装备"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = -25.0
+offset_right = 120.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 40
+text = "背包"
+
+[node name="状态页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+anchors_preset = 0
+
+[node name="Panel" type="Panel" parent="menuControl/状态页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -600.0
+offset_right = 800.0
+offset_bottom = 600.0
+theme_override_styles/panel = ExtResource("9_gtag7")
+
+[node name="name" type="Label" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 50.0
+offset_right = 370.0
+offset_bottom = 105.0
+theme_override_font_sizes/font_size = 40
+text = "时追云"
+
+[node name="exp" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 200.0
+offset_right = 920.0
+offset_bottom = 258.0
+theme_override_font_sizes/font_size = 40
+text = "EXP"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/exp"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "500"
+
+[node name="next" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 300.0
+offset_right = 920.0
+offset_bottom = 358.0
+theme_override_font_sizes/font_size = 40
+text = "NEXT"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/next"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "500"
+
+[node name="levelLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 150.0
+offset_right = 140.0
+offset_bottom = 205.0
+theme_override_font_sizes/font_size = 40
+text = "Lv"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/levelLabel"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 146.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="hpText" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 300.0
+offset_right = 180.0
+offset_bottom = 355.0
+theme_override_font_sizes/font_size = 40
+text = "气血"
+
+[node name="hpBar" type="ProgressBar" parent="menuControl/状态页面/Panel/hpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 400.0
+offset_bottom = 40.0
+theme_override_styles/background = SubResource("StyleBoxFlat_w5302")
+theme_override_styles/fill = SubResource("StyleBoxFlat_x82yo")
+value = 80.0
+show_percentage = false
+
+[node name="hpValue" type="Label" parent="menuControl/状态页面/Panel/hpText/hpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="mpText" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 400.0
+offset_right = 180.0
+offset_bottom = 455.0
+theme_override_font_sizes/font_size = 40
+text = "仙力"
+
+[node name="mpBar" type="ProgressBar" parent="menuControl/状态页面/Panel/mpText"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 15.0
+offset_right = 400.0
+offset_bottom = 45.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rat6y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i27id")
+value = 80.0
+show_percentage = false
+
+[node name="mpValue" type="Label" parent="menuControl/状态页面/Panel/mpText/mpBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = -50.0
+offset_right = 124.0
+offset_bottom = -5.0
+theme_override_font_sizes/font_size = 30
+text = "1/100"
+horizontal_alignment = 1
+
+[node name="addDmgLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 500.0
+offset_right = 143.0
+offset_bottom = 558.0
+theme_override_font_sizes/font_size = 40
+text = "额外伤害"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/addDmgLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="physicDefenseLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 600.0
+offset_right = 180.0
+offset_bottom = 658.0
+theme_override_font_sizes/font_size = 40
+text = "物理防御"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/physicDefenseLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="magicDefenseLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 700.0
+offset_right = 180.0
+offset_bottom = 758.0
+theme_override_font_sizes/font_size = 40
+text = "灵力抗性"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/magicDefenseLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="strengthLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 800.0
+offset_right = 180.0
+offset_bottom = 858.0
+theme_override_font_sizes/font_size = 40
+text = "力量"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/strengthLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="critLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 900.0
+offset_right = 180.0
+offset_bottom = 958.0
+theme_override_font_sizes/font_size = 40
+text = "暴击"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/critLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="speedLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1000.0
+offset_right = 180.0
+offset_bottom = 1058.0
+theme_override_font_sizes/font_size = 40
+text = "敏捷"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/speedLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="magicLabel" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 1100.0
+offset_right = 180.0
+offset_bottom = 1158.0
+theme_override_font_sizes/font_size = 40
+text = "灵力"
+
+[node name="value" type="Label" parent="menuControl/状态页面/Panel/magicLabel"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 346.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "60"
+
+[node name="item" type="Label" parent="menuControl/状态页面/Panel"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 800.0
+offset_top = 500.0
+offset_right = 840.0
+offset_bottom = 555.0
+theme_override_font_sizes/font_size = 40
+text = "装备"
+
+[node name="weapon" type="TextureRect" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 600.0
+offset_right = 860.0
+offset_bottom = 660.0
+
+[node name="Label" type="Label" parent="menuControl/状态页面/Panel/weapon"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 148.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "饰品（空）"
+
+[node name="shoes" type="TextureRect" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 715.0
+offset_right = 860.0
+offset_bottom = 775.0
+
+[node name="Label" type="Label" parent="menuControl/状态页面/Panel/shoes"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 148.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "饰品（空）"
+
+[node name="hat" type="TextureRect" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 815.0
+offset_right = 860.0
+offset_bottom = 875.0
+texture = ExtResource("16_q74si")
+
+[node name="Label" type="Label" parent="menuControl/状态页面/Panel/hat"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 148.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "饰品（空）"
+
+[node name="cloth" type="TextureRect" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 915.0
+offset_right = 860.0
+offset_bottom = 975.0
+
+[node name="Label" type="Label" parent="menuControl/状态页面/Panel/cloth"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 148.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "饰品（空）"
+
+[node name="accessories" type="TextureRect" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 1015.0
+offset_right = 860.0
+offset_bottom = 1075.0
+
+[node name="Label" type="Label" parent="menuControl/状态页面/Panel/accessories"]
+layout_mode = 0
+offset_left = 100.0
+offset_right = 148.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "饰品（空）"
+
+[node name="icon" type="TextureRect" parent="menuControl/状态页面/Panel"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 30.0
+offset_right = 505.0
+offset_bottom = 126.0
+scale = Vector2(2, 2)
+texture = ExtResource("17_3pm6m")
+
+[node name="系统信息" type="Control" parent="menuControl"]
+z_index = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="银两" type="Control" parent="menuControl/系统信息"]
+anchors_preset = 0
+offset_left = -600.0
+offset_top = 450.0
+offset_right = -400.0
+offset_bottom = 650.0
+
+[node name="goldValue" type="Label" parent="menuControl/系统信息/银两"]
+layout_mode = 0
+offset_left = -120.0
+offset_right = -5.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "10000"
+
+[node name="goldText" type="Label" parent="menuControl/系统信息/银两"]
+self_modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 80.0
+offset_right = 180.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 50
+text = "银两"
+
+[node name="游戏时间" type="Control" parent="menuControl/系统信息"]
+anchors_preset = 0
+offset_left = -700.0
+offset_top = 250.0
+offset_right = -660.0
+offset_bottom = 290.0
+
+[node name="playTimeValue" type="Label" parent="menuControl/系统信息/游戏时间"]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 218.0
+offset_bottom = 128.0
+theme_override_font_sizes/font_size = 40
+text = "11：00：00"
+
+[node name="playTimeText" type="Label" parent="menuControl/系统信息/游戏时间"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -50.0
+offset_right = 110.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 50
+text = "游戏时间："
+
+[node name="退出页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="退出信息" type="Panel" parent="menuControl/退出页面"]
+z_index = 5
+layout_mode = 0
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i020p")
+
+[node name="返回标题" type="Panel" parent="menuControl/退出页面/退出信息"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 280.0
+offset_bottom = 115.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8io1e")
+
+[node name="TextureButton" type="TextureButton" parent="menuControl/退出页面/退出信息/返回标题"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="返回标题" type="Label" parent="menuControl/退出页面/退出信息/返回标题"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 150.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 35
+text = "返回标题"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="退出游戏" type="Panel" parent="menuControl/退出页面/退出信息"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 180.0
+offset_right = 280.0
+offset_bottom = 235.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_76ba8")
+
+[node name="TextureButton" type="TextureButton" parent="menuControl/退出页面/退出信息/退出游戏"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="退出游戏" type="Label" parent="menuControl/退出页面/退出信息/退出游戏"]
+layout_mode = 0
+offset_left = 10.0
+offset_right = 150.0
+offset_bottom = 49.0
+theme_override_font_sizes/font_size = 35
+text = "退出游戏"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="加点页面" type="Control" parent="menuControl"]
+visible = false
+modulate = Color(0.835294, 0.835294, 0.835294, 1)
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="加点区" type="Panel" parent="menuControl/加点页面"]
+layout_mode = 0
+offset_left = -780.0
+offset_top = -590.0
+offset_right = -380.0
+offset_bottom = 260.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_o6pqb")
+
+[node name="体力加点" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 1
+layout_mode = 0
+offset_left = -1.0
+offset_right = 395.0
+offset_bottom = 130.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/体力加点"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "增加体力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="力量加点" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 125.0
+offset_right = 395.0
+offset_bottom = 252.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/力量加点"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "增加力量"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="气运加点" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 250.0
+offset_right = 395.0
+offset_bottom = 382.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/气运加点"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "增加气运"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="敏捷加点" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 375.0
+offset_right = 393.0
+offset_bottom = 506.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/敏捷加点"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "增加敏捷"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="仙力加点" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 500.0
+offset_right = 395.0
+offset_bottom = 626.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/仙力加点"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "增加仙力"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="确认按钮" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+z_index = 2
+layout_mode = 0
+offset_top = 625.0
+offset_right = 393.0
+offset_bottom = 743.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/确认按钮"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "确认加点"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="重置按钮" type="Button" parent="menuControl/加点页面/加点区" groups=["skillButton"]]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = 729.0
+offset_right = 393.0
+offset_bottom = 839.0
+
+[node name="加点文本" type="Label" parent="menuControl/加点页面/加点区/重置按钮"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 70.0
+offset_top = 30.0
+offset_right = 310.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_aliwr")
+text = "点数重置"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="属性区" type="Panel" parent="menuControl/加点页面"]
+layout_mode = 0
+offset_left = -390.0
+offset_top = -590.0
+offset_right = 780.0
+offset_bottom = 260.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hg52k")
+
+[node name="角色名" type="Label" parent="menuControl/加点页面/属性区"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 30.0
+offset_right = 240.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+text = "时追云"
+
+[node name="等级" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 125.0
+offset_right = 265.0
+offset_bottom = 211.0
+theme_override_font_sizes/font_size = 60
+text = "Lv"
+
+[node name="等级数字" type="Label" parent="menuControl/加点页面/属性区/等级"]
+layout_mode = 0
+offset_left = 125.0
+offset_right = 165.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "60"
+
+[node name="最大气血" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 550.0
+offset_top = 125.0
+offset_right = 790.0
+offset_bottom = 208.0
+theme_override_font_sizes/font_size = 60
+text = "最大气血"
+
+[node name="最大气血数字" type="Label" parent="menuControl/加点页面/属性区/最大气血"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 340.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "4444"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/最大气血/最大气血数字"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_top = 15.0
+offset_right = 255.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 40
+text = "(+ 10)"
+
+[node name="最大仙能" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 550.0
+offset_top = 200.0
+offset_right = 790.0
+offset_bottom = 283.0
+theme_override_font_sizes/font_size = 60
+text = "最大仙能"
+
+[node name="最大仙能数字" type="Label" parent="menuControl/加点页面/属性区/最大仙能"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 436.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 60
+text = "4444"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/最大仙能/最大仙能数字"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_top = 15.0
+offset_right = 192.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 40
+text = "(+ 10)"
+
+[node name="格挡概率" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 325.0
+offset_right = 264.0
+offset_bottom = 408.0
+theme_override_font_sizes/font_size = 60
+text = "格挡概率"
+
+[node name="value" type="Label" parent="menuControl/加点页面/属性区/格挡概率"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "600 =>"
+
+[node name="changedValue" type="Label" parent="menuControl/加点页面/属性区/格挡概率/value"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 290.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "800
+"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/格挡概率/value/changedValue"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_right = 190.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "(+ 5)"
+
+[node name="力量" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 415.0
+offset_right = 440.0
+offset_bottom = 498.0
+theme_override_font_sizes/font_size = 60
+text = "力量"
+
+[node name="value" type="Label" parent="menuControl/加点页面/属性区/力量"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "600 =>"
+
+[node name="changedValue" type="Label" parent="menuControl/加点页面/属性区/力量/value"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 352.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 60
+text = "800
+"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/力量/value/changedValue"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_right = 190.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "(+ 5)"
+
+[node name="暴击" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 505.0
+offset_right = 440.0
+offset_bottom = 588.0
+theme_override_font_sizes/font_size = 60
+text = "暴击几率"
+
+[node name="value" type="Label" parent="menuControl/加点页面/属性区/暴击"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "600 =>"
+
+[node name="changedValue" type="Label" parent="menuControl/加点页面/属性区/暴击/value"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 352.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 60
+text = "800
+"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/暴击/value/changedValue"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_right = 190.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "(+ 5)"
+
+[node name="敏捷" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 595.0
+offset_right = 440.0
+offset_bottom = 678.0
+theme_override_font_sizes/font_size = 60
+text = "敏捷
+"
+
+[node name="value" type="Label" parent="menuControl/加点页面/属性区/敏捷"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "600 =>"
+
+[node name="changedValue" type="Label" parent="menuControl/加点页面/属性区/敏捷/value"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 352.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 60
+text = "800
+"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/敏捷/value/changedValue"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_right = 190.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "(+ 5)"
+
+[node name="仙力" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 685.0
+offset_right = 440.0
+offset_bottom = 768.0
+theme_override_font_sizes/font_size = 60
+text = "仙力"
+
+[node name="value" type="Label" parent="menuControl/加点页面/属性区/仙力"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "600 =>"
+
+[node name="changedValue" type="Label" parent="menuControl/加点页面/属性区/仙力/value"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 352.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 60
+text = "800
+"
+
+[node name="increaseValue" type="Label" parent="menuControl/加点页面/属性区/仙力/value/changedValue"]
+visible = false
+layout_mode = 0
+offset_left = 150.0
+offset_right = 190.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "(+ 5)"
+
+[node name="剩余加点" type="Label" parent="menuControl/加点页面/属性区"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 765.0
+offset_right = 440.0
+offset_bottom = 848.0
+theme_override_font_sizes/font_size = 60
+text = "剩余潜力"
+
+[node name="value" type="Label" parent="menuControl/加点页面/属性区/剩余加点"]
+layout_mode = 0
+offset_left = 300.0
+offset_right = 350.0
+offset_bottom = 83.0
+theme_override_font_sizes/font_size = 60
+text = "5"
+
+[node name="介绍区" type="Panel" parent="menuControl/加点页面"]
+layout_mode = 0
+offset_left = -780.0
+offset_top = 250.0
+offset_right = 780.0
+offset_bottom = 590.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_l1es8")
+
+[node name="总共提高" type="Label" parent="menuControl/加点页面/介绍区"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 814.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 40
+text = "每增加一次此项能力值，可提升能力值"
+
+[node name="Label" type="Label" parent="menuControl/加点页面/介绍区"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 100.0
+offset_right = 126.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 40
+text = "最大气血值0点"
+
+[node name="Label2" type="Label" parent="menuControl/加点页面/介绍区"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 602.0
+offset_bottom = 158.0
+theme_override_font_sizes/font_size = 40
+text = "dfsdfsdfsd"
+
+[node name="保存页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 1500.0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="menuControl/保存页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -500.0
+offset_right = 1120.0
+offset_bottom = 588.0
+stream = SubResource("VideoStreamTheora_ng84d")
+autoplay = true
+
+[node name="description" type="Panel" parent="menuControl/保存页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -590.0
+offset_right = 1120.0
+offset_bottom = -440.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tif42")
+
+[node name="Label" type="Label" parent="menuControl/保存页面/description"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 30.0
+offset_right = 644.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+text = "您要存在哪个档呢？"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="save0" type="Panel" parent="menuControl/保存页面" groups=["saveSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = -200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5nx7a")
+
+[node name="fileNum" type="Label" parent="menuControl/保存页面/save0"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档一"
+
+[node name="chapter" type="Label" parent="menuControl/保存页面/save0"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/保存页面/save0"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/保存页面/save0"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save0button" type="Button" parent="menuControl/保存页面/save0"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1201.0
+offset_bottom = 201.0
+
+[node name="save1" type="Panel" parent="menuControl/保存页面" groups=["saveSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = -150.0
+offset_right = 600.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5nx7a")
+
+[node name="fileNum" type="Label" parent="menuControl/保存页面/save1"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档二"
+
+[node name="chapter" type="Label" parent="menuControl/保存页面/save1"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/保存页面/save1"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/保存页面/save1"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save1button" type="Button" parent="menuControl/保存页面/save1"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1201.0
+offset_bottom = 201.0
+
+[node name="save2" type="Panel" parent="menuControl/保存页面" groups=["saveSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5nx7a")
+
+[node name="fileNum" type="Label" parent="menuControl/保存页面/save2"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档三"
+
+[node name="chapter" type="Label" parent="menuControl/保存页面/save2"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/保存页面/save2"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/保存页面/save2"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save2button" type="Button" parent="menuControl/保存页面/save2"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1201.0
+offset_bottom = 201.0
+
+[node name="save3" type="Panel" parent="menuControl/保存页面" groups=["saveSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = 350.0
+offset_right = 600.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5nx7a")
+
+[node name="fileNum" type="Label" parent="menuControl/保存页面/save3"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档四"
+
+[node name="chapter" type="Label" parent="menuControl/保存页面/save3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/保存页面/save3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/保存页面/save3"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save3button" type="Button" parent="menuControl/保存页面/save3"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1201.0
+offset_bottom = 201.0
+
+[node name="读取页面" type="Control" parent="menuControl"]
+visible = false
+z_index = 2
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 1500.0
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="menuControl/读取页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -500.0
+offset_right = 1120.0
+offset_bottom = 588.0
+stream = SubResource("VideoStreamTheora_5h47b")
+autoplay = true
+
+[node name="description" type="Panel" parent="menuControl/读取页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -590.0
+offset_right = 1120.0
+offset_bottom = -440.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_c0hms")
+
+[node name="Label" type="Label" parent="menuControl/读取页面/description"]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 30.0
+offset_right = 644.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+text = "您要读取哪个档呢？"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="save0" type="Panel" parent="menuControl/读取页面" groups=["loadSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = -400.0
+offset_right = 600.0
+offset_bottom = -200.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ggyv")
+
+[node name="fileNum" type="Label" parent="menuControl/读取页面/save0"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档一"
+
+[node name="chapter" type="Label" parent="menuControl/读取页面/save0"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/读取页面/save0"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/读取页面/save0"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save1" type="Panel" parent="menuControl/读取页面" groups=["loadSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = -150.0
+offset_right = 600.0
+offset_bottom = 50.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ggyv")
+
+[node name="fileNum" type="Label" parent="menuControl/读取页面/save1"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档二"
+
+[node name="chapter" type="Label" parent="menuControl/读取页面/save1"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/读取页面/save1"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/读取页面/save1"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save2" type="Panel" parent="menuControl/读取页面" groups=["loadSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = 100.0
+offset_right = 600.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ggyv")
+
+[node name="fileNum" type="Label" parent="menuControl/读取页面/save2"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档三"
+
+[node name="chapter" type="Label" parent="menuControl/读取页面/save2"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/读取页面/save2"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/读取页面/save2"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="save3" type="Panel" parent="menuControl/读取页面" groups=["loadSlot"]]
+layout_mode = 0
+offset_left = -600.0
+offset_top = 350.0
+offset_right = 600.0
+offset_bottom = 550.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_7ggyv")
+
+[node name="fileNum" type="Label" parent="menuControl/读取页面/save3"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档四"
+
+[node name="chapter" type="Label" parent="menuControl/读取页面/save3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="menuControl/读取页面/save3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="menuControl/读取页面/save3"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="closeButton" type="Button" parent="menuControl" groups=["phoneButton"]]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = -770.0
+offset_top = -549.0
+offset_right = -713.0
+offset_bottom = -486.0
+theme_override_font_sizes/font_size = 40
+text = "X"
+
+[node name="backButton" type="Button" parent="menuControl" groups=["phoneButton"]]
+visible = false
+z_index = 10
+layout_mode = 0
+offset_left = -770.0
+offset_top = -450.0
+offset_right = -713.0
+offset_bottom = -387.0
+theme_override_font_sizes/font_size = 40
+text = "<="
+
+[node name="menuAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0c0ps")
+}
+
+[node name="BattleReward" parent="." instance=ExtResource("18_543dg")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(5, -82)
+navigation_polygon = SubResource("NavigationPolygon_su7y6")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("19_xs5ys")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_f86s7")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_4br6b")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("26_078qh")
+
+[node name="teleportCircle" parent="." instance=ExtResource("27_ogdth")]
+position = Vector2(1739, 46)
+toScene = "建邺城"
+
+[node name="teleportCircle5" parent="." instance=ExtResource("27_ogdth")]
+position = Vector2(1663, 695)
+toScene = "建邺药店"
+
+[node name="teleportCircle2" parent="." instance=ExtResource("27_ogdth")]
+position = Vector2(115, 651)
+toScene = "江南野外"
+
+[node name="teleportCircle3" parent="." instance=ExtResource("27_ogdth")]
+position = Vector2(885, 118)
+toScene = "建邺布店"
+
+[node name="teleportCircle4" parent="." instance=ExtResource("27_ogdth")]
+position = Vector2(2192, 373)
+toScene = "时追云家"
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(2511, 863)
+
+[node name="PointLight2D2" type="PointLight2D" parent="." groups=["nightLight"]]
+position = Vector2(2288, 314.425)
+scale = Vector2(2.23214, 5.74367)
+color = Color(1, 1, 0.760784, 1)
+energy = 2.08
+texture = SubResource("GradientTexture2D_ejmod")
+texture_scale = 0.52
+
+[node name="PointLight2D3" type="PointLight2D" parent="." groups=["nightLight"]]
+position = Vector2(2057.5, 366.5)
+scale = Vector2(0.697113, 1.17788)
+energy = 1.37
+texture = SubResource("GradientTexture2D_quln6")
+texture_scale = 0.65
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+color = Color(0.168627, 0.168627, 0.168627, 1)
+energy = 5.0
+blend_mode = 1
+
+[node name="二娃" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1285, 183)
+sprite_frames = SubResource("SpriteFrames_4ntct")
+npcName = "二娃"
+
+[node name="二娃2" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(957, 425)
+sprite_frames = SubResource("SpriteFrames_48ewo")
+autoplay = "default"
+npcName = "二娃"
+
+[node name="二娃请求" parent="." instance=ExtResource("31_8nk54")]
+visible = false
+position = Vector2(1366, 195)
+
+[node name="威迪" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(559, 288)
+scale = Vector2(0.707547, 0.767857)
+sprite_frames = SubResource("SpriteFrames_sitba")
+autoplay = "default"
+frame_progress = 0.76013
+npcName = "威迪"
+audio = "\"res://Audio/SE/066-Animal01.ogg\""
+animal = true
+
+[node name="威迪2" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1052, 271)
+scale = Vector2(0.707547, 0.767857)
+sprite_frames = SubResource("SpriteFrames_bbmyo")
+autoplay = "default"
+npcName = "威迪"
+audio = "\"res://Audio/SE/066-Animal01.ogg\""
+animal = true
+
+[node name="柳老" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(989, 299)
+scale = Vector2(0.970441, 0.968345)
+sprite_frames = SubResource("SpriteFrames_of2nc")
+autoplay = "default"
+npcName = "威迪"
+audio = "\"res://Audio/SE/066-Animal01.ogg\""
+animal = true
+
+[node name="王姨" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(919, 355)
+scale = Vector2(0.970441, 0.968345)
+sprite_frames = SubResource("SpriteFrames_6dtd4")
+autoplay = "default"
+npcName = "威迪"
+audio = "\"res://Audio/SE/066-Animal01.ogg\""
+animal = true
+
+[node name="npcAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("34_pdx3b")
+volume_db = 3.0
+
+[node name="城主" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1107, 311)
+sprite_frames = SubResource("SpriteFrames_aacuh")
+animation = &"右上"
+npcName = "城主"
+
+[node name="姜韵" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1020, 375)
+sprite_frames = SubResource("SpriteFrames_40o45")
+autoplay = "default"
+npcName = "姜韵"
+
+[node name="小兵" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1056, 505)
+sprite_frames = SubResource("SpriteFrames_vhkpc")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵2" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(337, 418)
+sprite_frames = SubResource("SpriteFrames_vhkpc")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵3" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(819, 243)
+sprite_frames = SubResource("SpriteFrames_rmsil")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵4" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(748, 295)
+sprite_frames = SubResource("SpriteFrames_rmsil")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵5" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1223, 147)
+sprite_frames = SubResource("SpriteFrames_qt105")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵6" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1357, 227)
+sprite_frames = SubResource("SpriteFrames_qt105")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵7" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1224, 224)
+sprite_frames = SubResource("SpriteFrames_fxm71")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵9" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(654, 284)
+sprite_frames = SubResource("SpriteFrames_fxm71")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="小兵8" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1154, 203)
+sprite_frames = SubResource("SpriteFrames_xqeu4")
+autoplay = "default"
+npcName = "小兵"
+
+[node name="effect" parent="小兵8" index="2"]
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r45h5")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(919, 348)
+
+[node name="杀戮" parent="." instance=ExtResource("31_8nk54")]
+position = Vector2(1369, -123)
+triggerEvent = "杀戮"
+
+[node name="时追云赶到" parent="." instance=ExtResource("31_8nk54")]
+visible = false
+position = Vector2(1085, 158)
+rotation = 0.945968
+triggerEvent = "时追云赶到"
+
+[node name="CollisionShape2D" parent="时追云赶到/Area2D" index="0"]
+position = Vector2(148.134, 145.059)
+shape = SubResource("RectangleShape2D_2qjl4")
+
+[node name="Panel" parent="时追云赶到/Area2D" index="1"]
+offset_left = -10.0
+offset_top = 133.0
+offset_right = 248.0
+offset_bottom = 160.0
+
+[node name="deadLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="deadLayer"]
+custom_minimum_size = Vector2(500, 500)
+offset_right = 1152.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8d68d")
+
+[node name="Dead" type="Sprite2D" parent="deadLayer/Panel"]
+z_index = 100
+position = Vector2(582, 349)
+scale = Vector2(1.24502, 1.19715)
+texture = ExtResource("46_soviw")
+
+[node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
+
+[node name="敖阳" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1615, 82)
+sprite_frames = SubResource("SpriteFrames_mpb43")
+animation = &"左下"
+autoplay = "左下"
+npcName = "敖阳"
+
+[node name="npcShape" parent="敖阳/npcBody" index="0"]
+shape = null
+
+[node name="CollisionPolygon2D" parent="敖阳/npcBody" index="1"]
+disabled = true
+
+[node name="deadAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_om1p2")
+}
+
+[node name="木剑" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(992, 457)
+texture = ExtResource("46_shuuo")
+
+[node name="妖魔尸体" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(529, 359)
+rotation = -1.16239
+sprite_frames = SubResource("SpriteFrames_3hjfw")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体" index="2"]
+visible = true
+sprite_frames = SubResource("SpriteFrames_r16oh")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体2" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(795, 199)
+sprite_frames = SubResource("SpriteFrames_6i1q3")
+npcName = "妖魔尸体"
+
+[node name="effect" parent="妖魔尸体2" index="2"]
+visible = true
+position = Vector2(25, -4)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体3" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1130, 242)
+sprite_frames = SubResource("SpriteFrames_ncoa6")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体3/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体3" index="2"]
+visible = true
+position = Vector2(65, 8)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体4" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(893, 382)
+sprite_frames = SubResource("SpriteFrames_b0w7y")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体4/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体4" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体5" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(882, 320)
+sprite_frames = SubResource("SpriteFrames_b0w7y")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体5/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体5" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体6" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1028, 246)
+sprite_frames = SubResource("SpriteFrames_bqx3b")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体6/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体6" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体7" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(999, 209)
+sprite_frames = SubResource("SpriteFrames_j041i")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体7/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体7" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体11" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1126, 245)
+sprite_frames = SubResource("SpriteFrames_j041i")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体11/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体11" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体8" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1119, 205)
+sprite_frames = SubResource("SpriteFrames_bqx3b")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体8/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体8" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体9" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(897, 245)
+sprite_frames = SubResource("SpriteFrames_bqx3b")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体9/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体9" index="2"]
+visible = true
+position = Vector2(-57, -111)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体13" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1472, 140)
+sprite_frames = SubResource("SpriteFrames_jgife")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体13/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体13" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体14" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1388, 201)
+sprite_frames = SubResource("SpriteFrames_jgife")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体14/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体14" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_bd0t4")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体15" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(690.5, 280)
+scale = Vector2(1.00357, 1)
+sprite_frames = SubResource("SpriteFrames_omtu2")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体15/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体15" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_paph6")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体16" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(808, 306)
+sprite_frames = SubResource("SpriteFrames_omtu2")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体16/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体16" index="2"]
+visible = true
+position = Vector2(2, -9)
+sprite_frames = SubResource("SpriteFrames_ulbp8")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体17" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(885, 235)
+sprite_frames = SubResource("SpriteFrames_4t8hv")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体17/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体17" index="2"]
+visible = true
+position = Vector2(2, -9)
+sprite_frames = SubResource("SpriteFrames_ulbp8")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体18" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(957, 250)
+sprite_frames = SubResource("SpriteFrames_4t8hv")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体18/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体18" index="2"]
+visible = true
+position = Vector2(2, -9)
+sprite_frames = SubResource("SpriteFrames_ulbp8")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体10" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1070, 214)
+sprite_frames = SubResource("SpriteFrames_r6kp5")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体10/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体10" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_5lxuo")
+animation = &"血"
+autoplay = "血"
+
+[node name="妖魔尸体12" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(1339, 242)
+sprite_frames = SubResource("SpriteFrames_r6kp5")
+npcName = "妖魔尸体"
+
+[node name="npcShape" parent="妖魔尸体12/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="妖魔尸体12" index="2"]
+visible = true
+position = Vector2(5, 6)
+sprite_frames = SubResource("SpriteFrames_5lxuo")
+animation = &"血"
+autoplay = "血"
+
+[node name="堆积妖魔" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(282, 427)
+scale = Vector2(1.36429, 1.31532)
+sprite_frames = SubResource("SpriteFrames_qsmhs")
+npcName = "堆积妖魔"
+
+[node name="堆积妖魔2" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(314, 408)
+rotation = -1.16239
+sprite_frames = SubResource("SpriteFrames_3hjfw")
+npcName = "堆积妖魔2"
+
+[node name="npcShape" parent="堆积妖魔2/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="堆积妖魔2" index="2"]
+visible = true
+sprite_frames = SubResource("SpriteFrames_r16oh")
+animation = &"血"
+autoplay = "血"
+
+[node name="堆积妖魔3" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(333, 429)
+rotation = -1.16239
+sprite_frames = SubResource("SpriteFrames_3hjfw")
+npcName = "堆积妖魔2"
+
+[node name="npcShape" parent="堆积妖魔3/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="堆积妖魔3" index="2"]
+visible = true
+sprite_frames = SubResource("SpriteFrames_r16oh")
+animation = &"血"
+autoplay = "血"
+
+[node name="堆积妖魔4" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(342, 385)
+rotation = -1.16239
+sprite_frames = SubResource("SpriteFrames_3hjfw")
+npcName = "堆积妖魔2"
+
+[node name="npcShape" parent="堆积妖魔4/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="堆积妖魔4" index="2"]
+visible = true
+sprite_frames = SubResource("SpriteFrames_r16oh")
+animation = &"血"
+autoplay = "血"
+
+[node name="堆积妖魔5" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(375, 393)
+rotation = -1.16239
+sprite_frames = SubResource("SpriteFrames_3hjfw")
+npcName = "堆积妖魔2"
+
+[node name="npcShape" parent="堆积妖魔5/npcBody" index="0"]
+shape = null
+
+[node name="effect" parent="堆积妖魔5" index="2"]
+visible = true
+sprite_frames = SubResource("SpriteFrames_r16oh")
+animation = &"血"
+autoplay = "血"
+
+[node name="斩妖" parent="." instance=ExtResource("31_8nk54")]
+visible = false
+position = Vector2(524, 310)
+triggerEvent = "斩妖"
+
+[node name="CollisionShape2D" parent="斩妖/Area2D" index="0"]
+position = Vector2(-27, 100)
+rotation = 1.29154
+shape = SubResource("RectangleShape2D_lqbr3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("21_u1ag4")
+
+[node name="msgBox" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.584314)
+layout_direction = 2
+anchors_preset = -1
+anchor_left = 0.617
+anchor_top = 0.739
+anchor_right = 0.993
+anchor_bottom = 0.994
+offset_left = -707.784
+offset_top = 5.79999
+offset_right = 466.064
+offset_bottom = 560.8
+grow_vertical = 0
+scale = Vector2(0.269756, 0.268582)
+texture = ExtResource("23_t2qkm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/msgBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.045
+anchor_right = 0.984
+anchor_bottom = 0.771
+offset_left = -54.35
+offset_top = -16.155
+offset_right = 8.71204
+offset_bottom = 140.811
+
+[node name="Label" type="Label" parent="CanvasLayer/msgBox/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "sdfsdf"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/msgBox/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "sdfsdf"
+vertical_alignment = 1
+
+[node name="gameTitle" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 912.0
+offset_top = 17.0
+offset_right = 1233.0
+offset_bottom = 156.0
+scale = Vector2(0.670483, 0.479338)
+texture = ExtResource("23_t2qkm")
+
+[node name="Label" type="Label" parent="CanvasLayer/gameTitle"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 60
+text = "传梦之路"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="map" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_right = 3090.0
+offset_bottom = 2403.0
+scale = Vector2(0.485758, 0.332852)
+texture = ExtResource("2_i8757")
+
+[node name="position" type="TextureRect" parent="CanvasLayer"]
+z_index = 3
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 225.0
+offset_bottom = 144.0
+texture = ExtResource("25_ncqua")
+stretch_mode = 4
+
+[node name="_u[pb4tp~3y(001owpgwg4" type="Sprite2D" parent="CanvasLayer/position"]
+z_index = -1
+position = Vector2(100, 61.5)
+scale = Vector2(0.0540166, 0.063541)
+texture = ExtResource("26_sfkdt")
+
+[node name="xyLabel" type="Label" parent="CanvasLayer/position"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 0.097
+offset_left = 51.0
+offset_top = 110.0
+offset_right = 113.0
+offset_bottom = 123.002
+text = "x: 30   y:40"
+
+[node name="mapName" type="Label" parent="CanvasLayer/position"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 25.0
+offset_right = 169.0
+offset_bottom = 50.0
+text = "东海湾"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/position"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.01
+anchor_bottom = 1.015
+offset_bottom = -0.0100098
+
+[node name="menutButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 1072.0
+offset_top = 729.0
+offset_right = 1194.0
+offset_bottom = 838.0
+scale = Vector2(0.625067, 0.611772)
+texture_normal = ExtResource("60_v24d2")
+texture_pressed = ExtResource("61_esj5h")
+texture_hover = ExtResource("61_esj5h")
+ignore_texture_size = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/menutButton"]
+visible = false
+layout_mode = 0
+offset_left = 14.3984
+offset_top = -44.134
+offset_right = 94.3984
+offset_bottom = 10.866
+scale = Vector2(0.841353, 0.836518)
+theme_override_font_sizes/font_size = 40
+text = "菜单"
+
+[node name="questHint" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(1020.79, 105.751)
+scale = Vector2(0.521952, 1.22454)
+texture = ExtResource("62_bpou1")
+
+[node name="Label" type="Label" parent="CanvasLayer/questHint"]
+visible = false
+modulate = Color(1, 0.376471, 0.305882, 1)
+offset_left = -73.0
+offset_top = -20.0
+offset_right = 87.0
+offset_bottom = 527.0
+scale = Vector2(0.784426, 0.577007)
+theme_override_font_sizes/font_size = 40
+text = "任务提示"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/questHint"]
+modulate = Color(1, 1, 0, 1)
+offset_left = -213.261
+offset_top = -54.9864
+offset_right = -13.2615
+offset_bottom = 64.0136
+scale = Vector2(2.12999, 1.00289)
+theme_override_font_sizes/font_size = 20
+text = "二十大法律解释大陆空军发生考虑到房价"
+autowrap_mode = 1
+
+[node name="hintButton" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1027.25, 763.75)
+scale = Vector2(3.22917, 2.9375)
+texture = ExtResource("63_hc42d")
+
+[node name="hintButton" type="Button" parent="CanvasLayer/hintButton"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 9.0
+
+[node name="Label" type="Label" parent="CanvasLayer/hintButton"]
+visible = false
+offset_left = -5.9613
+offset_top = -21.0214
+offset_right = 74.0387
+offset_bottom = 33.9786
+scale = Vector2(0.155241, 0.172997)
+theme_override_font_sizes/font_size = 40
+text = "提示"
+
+[node name="phoneButtons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="右上" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 549.0
+offset_right = 183.0
+offset_bottom = 583.0
+rotation = 0.698132
+scale = Vector2(1.2, 1.2)
+text = "↑"
+
+[node name="左上" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 9.99997
+offset_top = 590.0
+offset_right = 63.0
+offset_bottom = 624.0
+rotation = -0.698132
+scale = Vector2(1.2, 1.2)
+text = "↑"
+
+[node name="左下" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 628.0
+offset_right = 89.0
+offset_bottom = 662.0
+rotation = 0.698132
+scale = Vector2(1.2, 1.2)
+text = "↓
+"
+
+[node name="右下" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 671.0
+offset_right = 158.0
+offset_bottom = 705.0
+rotation = -0.698132
+scale = Vector2(1.2, 1.2)
+text = "↓"
+
+[connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="button_down" from="menuControl/status/Player1/player1Button" to="menuControl" method="_on_player_1_button_button_down"]
+[connection signal="button_down" from="menuControl/status/Player2/player2Button" to="menuControl" method="_on_player_2_button_button_down"]
+[connection signal="button_down" from="menuControl/status/Player3/player3Button" to="menuControl" method="_on_player_3_button_button_down"]
+[connection signal="button_down" from="menuControl/status/Player4/player4Button" to="menuControl" method="_on_player_4_button_button_down"]
+[connection signal="mouse_entered" from="menuControl/status/Player4/player4Button" to="menuControl" method="_on_player_4_button_mouse_entered"]
+[connection signal="button_down" from="menuControl/menuButton/道具" to="menuControl" method="_on_道具_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/道具" to="menuControl/menuButton/道具" method="_on_button_down" flags=18]
+[connection signal="mouse_entered" from="menuControl/menuButton/道具" to="menuControl/menuButton/道具" method="_on_mouse_entered" flags=18]
+[connection signal="pressed" from="menuControl/menuButton/道具" to="menuControl" method="_on_道具_pressed" flags=18]
+[connection signal="pressed" from="menuControl/menuButton/道具" to="menuControl/menuButton/道具" method="_on_pressed" flags=18]
+[connection signal="toggled" from="menuControl/menuButton/道具" to="menuControl/menuButton/道具" method="_on_toggled" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/法术" to="menuControl" method="_on_法术_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/装备" to="menuControl" method="_on_装备_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/状态" to="menuControl" method="_on_状态_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/保存冒险" to="menuControl" method="_on_保存冒险_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/读取进度" to="menuControl" method="_on_读取进度_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/升级加点" to="menuControl" method="_on_升级加点_button_down" flags=18]
+[connection signal="button_down" from="menuControl/menuButton/返回现实" to="menuControl" method="_on_返回现实_button_down" flags=18]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/常规物品" to="." method="_on_常规物品_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/常规物品" to="menuControl" method="_on_常规物品_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/战斗物品" to="." method="_on_战斗物品_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/战斗物品" to="menuControl" method="_on_战斗物品_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/武器" to="." method="_on_武器_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/武器" to="menuControl" method="_on_武器_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/足护" to="." method="_on_足护_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/足护" to="menuControl" method="_on_足护_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/头饰" to="." method="_on_头饰_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/头饰" to="menuControl" method="_on_头饰_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/衣甲" to="." method="_on_衣甲_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/衣甲" to="menuControl" method="_on_衣甲_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/饰品" to="." method="_on_饰品_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/饰品" to="menuControl" method="_on_饰品_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/特殊道具" to="." method="_on_特殊道具_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/道具分类/特殊道具" to="menuControl" method="_on_特殊道具_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/角色表/itemPlayer1/menuPlayerBut1" to="." method="_on_menu_player_but_1_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/角色表/itemPlayer1/menuPlayerBut1" to="menuControl/道具页面/角色表" method="_on_menu_player_but_1_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/角色表/itemPlayer2/menuPlayerBut2" to="." method="_on_menu_player_but_2_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/角色表/itemPlayer2/menuPlayerBut2" to="menuControl/道具页面/角色表" method="_on_menu_player_but_2_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/角色表/itemPlayer3/menuPlayerBut3" to="menuControl/道具页面/角色表" method="_on_menu_player_but_3_button_down"]
+[connection signal="button_down" from="menuControl/道具页面/角色表/itemPlayer4/menuPlayerBut4" to="menuControl/道具页面/角色表" method="_on_menu_player_but_4_button_down"]
+[connection signal="button_down" from="menuControl/保存页面/save0/save0button" to="menuControl" method="_on_save_0_button_button_down"]
+[connection signal="button_down" from="menuControl/保存页面/save1/save1button" to="menuControl" method="_on_save_1_button_button_down"]
+[connection signal="button_down" from="menuControl/保存页面/save2/save2button" to="menuControl" method="_on_save_2_button_button_down"]
+[connection signal="button_down" from="menuControl/保存页面/save3/save3button" to="menuControl" method="_on_save_3_button_button_down"]
+[connection signal="finished" from="menuControl/读取页面/VideoStreamPlayer2" to="menuControl" method="_on_video_stream_player_2_finished" flags=18]
+[connection signal="button_down" from="menuControl/closeButton" to="." method="_on_close_button_button_down"]
+[connection signal="button_down" from="menuControl/closeButton" to="menuControl" method="_on_close_button_button_down"]
+[connection signal="button_down" from="menuControl/backButton" to="." method="_on_back_button_button_down"]
+[connection signal="button_down" from="menuControl/backButton" to="menuControl" method="_on_back_button_button_down"]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="canPress" to="menuControl" method="_on_can_press_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="timeout" from="addChild" to="menuControl" method="_on_add_child_timeout" flags=18]
+[connection signal="button_down" from="CanvasLayer/position/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/menutButton" to="." method="_on_menut_button_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/menutButton" to="CanvasLayer" method="_on_menut_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/menutButton" to="CanvasLayer" method="_on_menut_button_mouse_exited"]
+[connection signal="button_down" from="CanvasLayer/hintButton/hintButton" to="." method="_on_hint_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_mouse_exited"]
+[connection signal="button_down" from="CanvasLayer/phoneButtons/右上" to="player" method="_on_右上_button_down"]
+[connection signal="button_down" from="CanvasLayer/phoneButtons/左上" to="player" method="_on_左上_button_down"]
+[connection signal="button_down" from="CanvasLayer/phoneButtons/左下" to="player" method="_on_左下_button_down"]
+[connection signal="button_down" from="CanvasLayer/phoneButtons/右下" to="player" method="_on_右下_button_down"]
+
+[editable path="二娃请求"]
+[editable path="小兵8"]
+[editable path="时追云赶到"]
+[editable path="敖阳"]
+[editable path="妖魔尸体"]
+[editable path="妖魔尸体2"]
+[editable path="妖魔尸体3"]
+[editable path="妖魔尸体4"]
+[editable path="妖魔尸体5"]
+[editable path="妖魔尸体6"]
+[editable path="妖魔尸体7"]
+[editable path="妖魔尸体11"]
+[editable path="妖魔尸体8"]
+[editable path="妖魔尸体9"]
+[editable path="妖魔尸体13"]
+[editable path="妖魔尸体14"]
+[editable path="妖魔尸体15"]
+[editable path="妖魔尸体16"]
+[editable path="妖魔尸体17"]
+[editable path="妖魔尸体18"]
+[editable path="妖魔尸体10"]
+[editable path="妖魔尸体12"]
+[editable path="堆积妖魔2"]
+[editable path="堆积妖魔3"]
+[editable path="堆积妖魔4"]
+[editable path="堆积妖魔5"]
+[editable path="斩妖"]

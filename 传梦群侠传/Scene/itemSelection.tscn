@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://epiv30mkeaag"]
+
+[ext_resource type="Script" path="res://Script/itemSelection.gd" id="1_vcdk4"]
+[ext_resource type="Texture2D" uid="uid://cbc6ar3e3lhay" path="res://Icons/●图标 (67).png" id="2_hkhyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_18qcw"]
+
+[node name="Magic" type="Panel" groups=["magic"]]
+self_modulate = Color(0.0117647, 0.623529, 1, 1)
+anchors_preset = -1
+anchor_right = 0.190104
+anchor_bottom = 0.03125
+offset_left = 3.0
+offset_top = -6.0
+offset_right = 415.0
+offset_bottom = 24.0
+scale = Vector2(8.8854, 48.4326)
+theme_override_styles/panel = SubResource("StyleBoxFlat_18qcw")
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 73.8701
+offset_top = 10.0338
+offset_right = 81.8701
+offset_bottom = 18.0338
+scale = Vector2(61.2543, 4.87073)
+script = ExtResource("1_vcdk4")
+
+[node name="name" type="Label" parent="Button"]
+layout_mode = 2
+offset_left = 2.0
+offset_right = 92.0
+offset_bottom = 42.0
+scale = Vector2(0.0206555, 0.172003)
+theme_override_font_sizes/font_size = 30
+text = "破空剑
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="amount" type="Label" parent="Button"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+offset_left = 5.62289
+offset_top = 2.31436
+offset_right = 56.6229
+offset_bottom = 47.3144
+scale = Vector2(0.0180935, 0.0802489)
+theme_override_font_sizes/font_size = 30
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="Sprite2D" parent="Button"]
+position = Vector2(1.23505, 3.8992)
+scale = Vector2(0.04112, 0.29227)
+texture = ExtResource("2_hkhyv")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down" flags=18]

@@ -1,0 +1,599 @@
+[gd_scene load_steps=24 format=3 uid="uid://b1uenf280qwkv"]
+
+[ext_resource type="Script" path="res://Script/battleField.gd" id="1_lq0d5"]
+[ext_resource type="Texture2D" uid="uid://c71bafq4lp6va" path="res://Battlebacks/战斗覆盖.png" id="2_iukom"]
+[ext_resource type="Texture2D" uid="uid://dh1rnj7nu0q4x" path="res://Animations/0天麒攻击.png" id="3_bvcjp"]
+[ext_resource type="Texture2D" uid="uid://dhmi3utawug6b" path="res://Icons/319.png" id="4_f171q"]
+[ext_resource type="Texture2D" uid="uid://c0md4rvqqv7xo" path="res://Icons/320.png" id="4_gagfs"]
+[ext_resource type="Texture2D" uid="uid://cu8d1jc7rtoqg" path="res://Trans/MUN.jpg" id="4_lwi8u"]
+[ext_resource type="Texture2D" uid="uid://ev64yuqvo42t" path="res://Icons/316.png" id="5_rureb"]
+[ext_resource type="Texture2D" uid="uid://pb2du0fcdiyq" path="res://Icons/317.png" id="6_75kbo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux7u1"]
+atlas = ExtResource("3_bvcjp")
+region = Rect2(0, 6900, 768, 460)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx4cr"]
+atlas = ExtResource("3_bvcjp")
+region = Rect2(0, 7458, 768, 438)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxbx3"]
+atlas = ExtResource("3_bvcjp")
+region = Rect2(0, 8060, 768, 380)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa3eg"]
+atlas = ExtResource("3_bvcjp")
+region = Rect2(0, 8634, 768, 581)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nax3u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux7u1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bx4cr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxbx3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa3eg")
+}],
+"loop": false,
+"name": &"破空剑",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_1fju6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bq7x7"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6tsn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfgnr"]
+bg_color = Color(0.286275, 0.788235, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5pe40"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpmlf"]
+bg_color = Color(0, 0.32549, 0.470588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrwsl"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v3y2l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x1sw6"]
+bg_color = Color(1, 1, 0, 0.560784)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.729412, 1, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at4bn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.843137, 0.831373, 0, 1)
+
+[node name="battleField" type="Node2D"]
+script = ExtResource("1_lq0d5")
+
+[node name="battleFieldPicture" type="Sprite2D" parent="."]
+position = Vector2(1, 1)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_iukom")
+
+[node name="screenMagic" type="AnimatedSprite2D" parent="battleFieldPicture"]
+visible = false
+position = Vector2(10, -69.4118)
+scale = Vector2(0.588235, 0.588235)
+sprite_frames = SubResource("SpriteFrames_nax3u")
+animation = &"破空剑"
+frame = 3
+frame_progress = 1.0
+
+[node name="magicName" type="Control" parent="battleFieldPicture"]
+visible = false
+self_modulate = Color(0.545098, 0.545098, 0.545098, 0)
+z_index = 4
+layout_mode = 3
+anchor_left = 0.793
+anchor_top = 0.11
+anchor_right = 0.889
+anchor_bottom = 0.522
+offset_left = -527.52
+offset_top = -68.0941
+offset_right = -548.96
+offset_bottom = -225.854
+
+[node name="ColorRect" type="ColorRect" parent="battleFieldPicture/magicName"]
+self_modulate = Color(0, 0.262745, 0.827451, 0.509804)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.039
+anchor_top = -4.324
+anchor_right = 6.916
+anchor_bottom = 0.626
+offset_left = 5.49863
+offset_top = 0.0196991
+offset_right = -6.58139
+offset_bottom = 0.0186768
+
+[node name="Label" type="Label" parent="battleFieldPicture/magicName/ColorRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.314
+anchor_top = 0.19
+anchor_right = 0.576
+anchor_bottom = 0.715
+offset_left = 0.343788
+offset_top = -71.5612
+offset_right = 9.71078
+offset_bottom = 72.488
+theme_override_colors/font_color = Color(0.878431, 0.968627, 0, 0.760784)
+theme_override_font_sizes/font_size = 30
+text = "破空剑"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="magicSelection" type="Panel" parent="battleFieldPicture"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.890196)
+z_index = 5
+offset_left = -310.0
+offset_top = -119.0
+offset_right = -270.0
+offset_bottom = -47.0
+scale = Vector2(16.011, 4.83205)
+metadata/_edit_group_ = true
+
+[node name="GridBoxContainer" type="GridContainer" parent="battleFieldPicture/magicSelection"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 1022.0
+offset_bottom = 142.0
+scale = Vector2(0.0370848, 0.166863)
+theme_override_constants/h_separation = 500
+theme_override_constants/v_separation = 75
+columns = 2
+
+[node name="magicDescription" type="Panel" parent="battleFieldPicture"]
+visible = false
+self_modulate = Color(0.415686, 0, 0.854902, 1)
+z_index = 5
+anchors_preset = -1
+anchor_right = 0.004
+anchor_bottom = 0.011
+offset_left = -317.059
+offset_top = -201.765
+offset_right = -279.619
+offset_bottom = -167.045
+scale = Vector2(15.9371, 1.99948)
+
+[node name="Label" type="Label" parent="battleFieldPicture/magicDescription"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 2601.0
+offset_bottom = 274.0
+scale = Vector2(0.00415245, 0.0509228)
+theme_override_font_sizes/font_size = 200
+text = "攻击单个敌人，使其速度降低"
+
+[node name="Panel" type="Panel" parent="battleFieldPicture"]
+offset_left = -290.588
+offset_top = -208.824
+offset_right = -129.588
+offset_bottom = -168.824
+
+[node name="Label" type="Label" parent="battleFieldPicture/Panel"]
+z_index = 100
+layout_mode = 0
+offset_left = 30.5883
+offset_top = 5.88239
+offset_right = 280.588
+offset_bottom = 74.8824
+scale = Vector2(0.385782, 0.241298)
+theme_override_font_sizes/font_size = 50
+text = "敌方总血量
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="battleFieldPicture/Panel"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 12.4706
+offset_top = 28.5882
+offset_right = 152.471
+offset_bottom = 34.5882
+theme = SubResource("Theme_1fju6")
+theme_override_styles/background = SubResource("StyleBoxFlat_bq7x7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n6tsn")
+value = 50.0
+show_percentage = false
+
+[node name="enemyInfo" type="Panel" parent="battleFieldPicture"]
+visible = false
+z_index = 4
+offset_left = -318.235
+offset_top = -225.294
+offset_right = 320.765
+offset_bottom = -160.294
+
+[node name="enemyName" type="Label" parent="battleFieldPicture/enemyInfo"]
+layout_mode = 0
+offset_left = 48.8235
+offset_top = 28.8235
+offset_right = 138.824
+offset_bottom = 70.8235
+scale = Vector2(0.625919, 0.625919)
+theme_override_font_sizes/font_size = 30
+text = "狐狸精"
+
+[node name="hpBar" type="ProgressBar" parent="battleFieldPicture/enemyInfo"]
+self_modulate = Color(0.807843, 0, 0.321569, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 321.176
+offset_top = 41.1764
+offset_right = 449.176
+offset_bottom = 53.1764
+theme_override_styles/background = SubResource("StyleBoxFlat_xfgnr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5pe40")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="battleFieldPicture/enemyInfo/hpBar"]
+layout_mode = 0
+offset_left = 33.1176
+offset_top = -26.0
+offset_right = 72.1176
+offset_bottom = -1.00005
+scale = Vector2(0.206801, 0.174396)
+theme_override_colors/font_color = Color(0.764706, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "气血"
+
+[node name="speedBar" type="ProgressBar" parent="battleFieldPicture/enemyInfo"]
+self_modulate = Color(1, 1, 0, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 476.471
+offset_top = 41.1764
+offset_right = 611.471
+offset_bottom = 54.1764
+theme_override_styles/background = SubResource("StyleBoxFlat_fpmlf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vrwsl")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="battleFieldPicture/enemyInfo/speedBar"]
+layout_mode = 0
+offset_left = 33.1176
+offset_top = -26.0
+offset_right = 72.1176
+offset_bottom = -1.00005
+scale = Vector2(0.206801, 0.174396)
+theme_override_colors/font_color = Color(0.945098, 0.796078, 0.152941, 1)
+theme_override_font_sizes/font_size = 100
+text = "行动"
+
+[node name="allyInfo" type="Panel" parent="battleFieldPicture"]
+z_index = 4
+offset_left = -318.235
+offset_top = -225.294
+offset_right = 320.765
+offset_bottom = -160.294
+
+[node name="allyName" type="Label" parent="battleFieldPicture/allyInfo"]
+layout_mode = 0
+offset_left = 48.8235
+offset_top = 28.8235
+offset_right = 138.824
+offset_bottom = 70.8235
+scale = Vector2(0.625919, 0.625919)
+theme_override_font_sizes/font_size = 30
+text = "时追云"
+
+[node name="hpBar" type="ProgressBar" parent="battleFieldPicture/allyInfo"]
+self_modulate = Color(0.807843, 0, 0.321569, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 321.176
+offset_top = 41.1764
+offset_right = 449.176
+offset_bottom = 53.1764
+theme_override_styles/background = SubResource("StyleBoxFlat_xfgnr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5pe40")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="battleFieldPicture/allyInfo/hpBar"]
+layout_mode = 0
+offset_left = 33.1176
+offset_top = -26.0
+offset_right = 72.1176
+offset_bottom = -1.00005
+scale = Vector2(0.206801, 0.174396)
+theme_override_colors/font_color = Color(0.764706, 0, 0, 1)
+theme_override_font_sizes/font_size = 100
+text = "气血"
+
+[node name="Label2" type="Label" parent="battleFieldPicture/allyInfo/hpBar"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 127.0
+offset_bottom = 19.0
+text = "200/200"
+horizontal_alignment = 1
+
+[node name="manaBar" type="ProgressBar" parent="battleFieldPicture/allyInfo"]
+self_modulate = Color(0, 0.627451, 0.882353, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 476.471
+offset_top = 41.1764
+offset_right = 611.471
+offset_bottom = 54.1764
+theme_override_styles/background = SubResource("StyleBoxFlat_v3y2l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vrwsl")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="battleFieldPicture/allyInfo/manaBar"]
+layout_mode = 0
+offset_left = 33.1176
+offset_top = -26.0
+offset_right = 72.1176
+offset_bottom = -1.00005
+scale = Vector2(0.206801, 0.174396)
+theme_override_colors/font_color = Color(0.584314, 0.717647, 1, 1)
+theme_override_font_sizes/font_size = 100
+text = "仙能"
+
+[node name="Label2" type="Label" parent="battleFieldPicture/allyInfo/manaBar"]
+layout_mode = 0
+offset_left = -0.588943
+offset_top = -2.35297
+offset_right = 137.411
+offset_bottom = 16.647
+text = "200/200"
+horizontal_alignment = 1
+
+[node name="buffs" type="Control" parent="battleFieldPicture/allyInfo"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="buff1" type="TextureRect" parent="battleFieldPicture/allyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 208.0
+offset_top = 5.0
+offset_right = 236.0
+offset_bottom = 32.0
+texture = ExtResource("4_f171q")
+expand_mode = 1
+
+[node name="buff2" type="TextureRect" parent="battleFieldPicture/allyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 4.70575
+offset_right = 278.0
+offset_bottom = 31.7058
+texture = ExtResource("5_rureb")
+expand_mode = 1
+
+[node name="buff3" type="TextureRect" parent="battleFieldPicture/allyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 37.0587
+offset_right = 278.0
+offset_bottom = 64.0587
+texture = ExtResource("6_75kbo")
+expand_mode = 1
+
+[node name="buff4" type="TextureRect" parent="battleFieldPicture/allyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 208.823
+offset_top = 37.0587
+offset_right = 236.823
+offset_bottom = 64.0587
+texture = ExtResource("4_gagfs")
+expand_mode = 1
+
+[node name="trans" type="TextureProgressBar" parent="battleFieldPicture"]
+visible = false
+light_mask = 4
+visibility_layer = 4
+z_index = 100
+offset_left = -319.0
+offset_top = -239.0
+offset_right = 321.0
+offset_bottom = 241.0
+scale = Vector2(0.997184, 0.996366)
+value = 100.0
+fill_mode = 8
+texture_progress = ExtResource("4_lwi8u")
+
+[node name="Button" type="Button" parent="battleFieldPicture"]
+z_index = 5
+offset_left = -297.647
+offset_top = 169.412
+offset_right = -238.647
+offset_bottom = 200.412
+text = "返回"
+
+[node name="blockButton" type="Panel" parent="battleFieldPicture"]
+visible = false
+z_index = 10
+offset_left = 236.0
+offset_top = 146.0
+offset_right = 304.0
+offset_bottom = 209.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x1sw6")
+
+[node name="Label" type="Label" parent="battleFieldPicture/blockButton"]
+layout_mode = 0
+offset_left = 17.5294
+offset_top = 21.0588
+offset_right = 57.5294
+offset_bottom = 46.0588
+text = "格挡"
+
+[node name="blockButton" type="Button" parent="battleFieldPicture/blockButton"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 65.0
+text = "格挡"
+
+[node name="currPlayer" type="Control" parent="battleFieldPicture"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 128.235
+offset_top = 181.765
+offset_right = 329.235
+offset_bottom = 284.765
+
+[node name="Panel" type="Panel" parent="battleFieldPicture/currPlayer"]
+layout_mode = 0
+offset_left = -18.8235
+offset_top = -57.0588
+offset_right = 180.176
+offset_bottom = 48.9412
+theme_override_styles/panel = SubResource("StyleBoxFlat_at4bn")
+
+[node name="currPlayerName" type="Label" parent="battleFieldPicture/currPlayer/Panel"]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 141.765
+offset_top = 17.0588
+offset_right = 189.765
+offset_bottom = 39.0588
+pivot_offset = Vector2(58.8235, -21.7647)
+text = "时追云"
+horizontal_alignment = 2
+
+[node name="hpBar" type="ProgressBar" parent="battleFieldPicture/currPlayer/Panel"]
+self_modulate = Color(0.807843, 0, 0.321569, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 21.0
+offset_top = 46.0
+offset_right = 192.0
+offset_bottom = 58.0
+theme_override_styles/background = SubResource("StyleBoxFlat_xfgnr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5pe40")
+value = 50.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="battleFieldPicture/currPlayer/Panel/hpBar"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 140.0
+offset_bottom = 19.0
+text = "200/200"
+horizontal_alignment = 1
+
+[node name="manaBar" type="ProgressBar" parent="battleFieldPicture/currPlayer/Panel"]
+self_modulate = Color(0, 0.627451, 0.882353, 1)
+z_index = 4
+layout_mode = 0
+offset_left = 21.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 77.0
+theme_override_styles/background = SubResource("StyleBoxFlat_v3y2l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vrwsl")
+value = 50.0
+show_percentage = false
+
+[node name="Label2" type="Label" parent="battleFieldPicture/currPlayer/Panel/manaBar"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -2.0
+offset_right = 155.0
+offset_bottom = 20.0
+text = "200/200"
+horizontal_alignment = 1
+
+[node name="buffs" type="Control" parent="battleFieldPicture/currPlayer/Panel"]
+anchors_preset = 0
+offset_left = 20.5882
+offset_top = -2.35292
+offset_right = 60.5882
+offset_bottom = 37.6471
+
+[node name="buff1" type="TextureRect" parent="battleFieldPicture/currPlayer/Panel/buffs"]
+visible = false
+layout_mode = 0
+offset_top = 11.1765
+offset_right = 28.0
+offset_bottom = 38.1765
+texture = ExtResource("4_f171q")
+expand_mode = 1
+
+[node name="buff2" type="TextureRect" parent="battleFieldPicture/currPlayer/Panel/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 30.0
+offset_top = 11.1765
+offset_right = 58.0
+offset_bottom = 38.1765
+texture = ExtResource("4_f171q")
+expand_mode = 1
+
+[node name="buff3" type="TextureRect" parent="battleFieldPicture/currPlayer/Panel/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 60.0
+offset_top = 11.1765
+offset_right = 88.0
+offset_bottom = 38.1765
+texture = ExtResource("4_f171q")
+expand_mode = 1
+
+[node name="buff4" type="TextureRect" parent="battleFieldPicture/currPlayer/Panel/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 90.0
+offset_top = 11.1765
+offset_right = 118.0
+offset_bottom = 38.1765
+texture = ExtResource("4_f171q")
+expand_mode = 1
+
+[node name="systemSound" type="AudioStreamPlayer" parent="."]
+
+[node name="bgmTimer" type="Timer" parent="."]
+wait_time = 1.6
+one_shot = true
+
+[node name="deadTimer" type="Timer" parent="."]
+wait_time = 2.25
+one_shot = true
+
+[node name="canPressTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[connection signal="button_down" from="battleFieldPicture/Button" to="." method="_on_button_button_down"]
+[connection signal="pressed" from="battleFieldPicture/Button" to="." method="_on_button_pressed"]
+[connection signal="button_down" from="battleFieldPicture/blockButton/blockButton" to="." method="_on_block_button_button_down"]
+[connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
+[connection signal="timeout" from="deadTimer" to="." method="_on_dead_timer_timeout"]
+[connection signal="timeout" from="canPressTimer" to="." method="_on_can_press_timer_timeout"]

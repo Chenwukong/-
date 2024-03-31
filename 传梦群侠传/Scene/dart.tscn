@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqtk70jvxa5wk"]
+
+[ext_resource type="Script" path="res://Script/dart.gd" id="1_3fugf"]
+[ext_resource type="Texture2D" uid="uid://fbsonss8iafp" path="res://Icons/含沙射影.png" id="1_4bh8x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qphv6"]
+
+[node name="Dart" type="Node2D"]
+script = ExtResource("1_3fugf")
+
+[node name="DartImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_4bh8x")
+
+[node name="DartArea" type="Area2D" parent="." groups=["dart"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DartArea"]
+shape = SubResource("RectangleShape2D_qphv6")
+
+[connection signal="area_entered" from="DartArea" to="." method="_on_dart_area_area_entered"]

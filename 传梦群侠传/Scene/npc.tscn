@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://ymede6kvxndj"]
+
+[ext_resource type="Texture2D" uid="uid://oble4wracso0" path="res://Characters/乞丐.png" id="1_xjxdm"]
+[ext_resource type="Script" path="res://Script/npc.gd" id="2_lgktk"]
+[ext_resource type="Texture2D" uid="uid://3bypnpivk8ko" path="res://Animations/0野猪攻击.png" id="3_57kn0"]
+[ext_resource type="Texture2D" uid="uid://ya4tce32aguo" path="res://Icons/TalkTo2.png" id="4_6p0jo"]
+[ext_resource type="Texture2D" uid="uid://derdfb0pr21r2" path="res://Icons/TalkTo1.png" id="5_hiofo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux8kn"]
+atlas = ExtResource("1_xjxdm")
+region = Rect2(180, 212, 90, 106)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hm0gx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux8kn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qseu5"]
+radius = 16.304
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sclf7"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(0, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2igks"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(192, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyyma"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(384, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8seb"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(576, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3qm6"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(768, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll7fi"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(0, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jj35p"]
+atlas = ExtResource("3_57kn0")
+region = Rect2(192, 960, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8raqy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sclf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2igks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyyma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8seb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3qm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll7fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jj35p")
+}],
+"loop": false,
+"name": &"auto",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11xyh"]
+atlas = ExtResource("4_6p0jo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6os6n"]
+atlas = ExtResource("5_hiofo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s81bn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11xyh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6os6n")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="npc" type="AnimatedSprite2D" groups=["standNpc"]]
+sprite_frames = SubResource("SpriteFrames_hm0gx")
+script = ExtResource("2_lgktk")
+
+[node name="npcBody" type="StaticBody2D" parent="."]
+position = Vector2(269, 259)
+collision_layer = 5
+collision_mask = 5
+collision_priority = 10.0
+
+[node name="npcShape" type="CollisionShape2D" parent="npcBody"]
+position = Vector2(-261, -246)
+shape = SubResource("CircleShape2D_qseu5")
+disabled = true
+one_way_collision = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="npcBody"]
+build_mode = 1
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -36.0
+offset_top = -49.0
+offset_right = 50.0
+offset_bottom = 53.0
+
+[node name="effect" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_8raqy")
+animation = &"auto"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(9, -59)
+sprite_frames = SubResource("SpriteFrames_s81bn")
+autoplay = "default"
+frame_progress = 0.715169
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

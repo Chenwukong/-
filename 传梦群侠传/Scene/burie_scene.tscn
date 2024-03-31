@@ -1,0 +1,286 @@
+[gd_scene load_steps=15 format=3 uid="uid://bvbnmhi3kbirj"]
+
+[ext_resource type="Script" path="res://Script/burie_scene.gd" id="1_4gr2f"]
+[ext_resource type="Texture2D" uid="uid://dynu5bgeab3fs" path="res://S$B%I9PT{M)~4G`2QJ@$S[I.png" id="1_5vp3g"]
+[ext_resource type="Texture2D" uid="uid://dfcel6kmovcx0" path="res://H3PLVC``AY~U34@(V7TS_VU.png" id="2_wnn4j"]
+[ext_resource type="Texture2D" uid="uid://dme4pjadnhpfg" path="res://4OMKM6%3)L[R4`EJX0TB`ML.png" id="3_j23ji"]
+[ext_resource type="Texture2D" uid="uid://dsr2cpo7fneba" path="res://20240207.png" id="4_wcuba"]
+[ext_resource type="Texture2D" uid="uid://bn41wi2og5jxi" path="res://)R}981MCBH}T00{RZQ~_GGV.png" id="6_g0yn2"]
+[ext_resource type="AudioStream" uid="uid://cxeci2beajgc7" path="res://Audio/BGM/戒网 - Black Myth_ Wukong OST (mp3cut.net).mp3" id="7_vo3kx"]
+
+[sub_resource type="Animation" id="Animation_qro74"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("城主家:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("铁匠家:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("布商家:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("柳老家:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("女主照片:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("时追云家:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5gtta"]
+resource_name = "安葬"
+length = 60.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("城主家:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.2, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("铁匠家:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(6.1, 11.6, 16.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("布商家:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(15.6, 23.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("柳老家:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(22.2, 31),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("女主照片:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(37.7, 43),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("时追云家:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(53.7, 60),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0ssc"]
+_data = {
+"RESET": SubResource("Animation_qro74"),
+"安葬": SubResource("Animation_5gtta")
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kwjsg"]
+load_path = "res://.godot/imported/6X8Y3~FP`$1}G`@8227TU_I.png-d928705e62926a87b232c4713bbb8b91.ctex"
+
+[sub_resource type="Animation" id="Animation_ij3hm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_eaikf"]
+resource_name = "turnDark"
+length = 4.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.6, 4.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hifea"]
+_data = {
+"RESET": SubResource("Animation_ij3hm"),
+"turnDark": SubResource("Animation_eaikf")
+}
+
+[node name="burieScene" type="Sprite2D"]
+script = ExtResource("1_4gr2f")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "安葬"
+libraries = {
+"": SubResource("AnimationLibrary_s0ssc")
+}
+
+[node name="城主家" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(579.5, 399.5)
+scale = Vector2(0.372135, 0.375463)
+texture = ExtResource("1_5vp3g")
+
+[node name="铁匠家" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(579.5, 399.5)
+scale = Vector2(0.372135, 0.375463)
+texture = SubResource("CompressedTexture2D_kwjsg")
+
+[node name="布商家" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(579.5, 399.5)
+scale = Vector2(0.372135, 0.375463)
+texture = ExtResource("2_wnn4j")
+
+[node name="柳老家" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(579.5, 399.5)
+scale = Vector2(0.372135, 0.375463)
+texture = ExtResource("3_j23ji")
+
+[node name="女主照片" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(578.5, 400.5)
+scale = Vector2(0.603646, 0.749074)
+texture = ExtResource("4_wcuba")
+
+[node name="时追云家" type="Sprite2D" parent="."]
+position = Vector2(568.5, 401)
+scale = Vector2(0.304948, 0.375)
+texture = ExtResource("6_g0yn2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vo3kx")
+volume_db = 5.0
+autoplay = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hifea")
+}

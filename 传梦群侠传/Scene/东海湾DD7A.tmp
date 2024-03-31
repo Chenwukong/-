@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcb2u6xa5p55x"]
+
+[ext_resource type="Texture2D" uid="uid://c2cog03pcphav" path="res://panoramas2/东海湾全景.jpg" id="1_4l6s3"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://player.tscn" id="2_5rnyu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="东海湾全景" type="Sprite2D" parent="."]
+position = Vector2(1203, 1198)
+texture = ExtResource("1_4l6s3")
+
+[node name="player" parent="." instance=ExtResource("2_5rnyu")]
+position = Vector2(301, 237)

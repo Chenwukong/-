@@ -1,0 +1,138 @@
+[gd_scene load_steps=5 format=3 uid="uid://cxdsjwmums1gs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b8jbm"]
+bg_color = Color(0, 0.682353, 0.721569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tl6tu"]
+bg_color = Color(0.376471, 0.584314, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.666667, 0.631373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u02uk"]
+bg_color = Color(0, 0.67451, 0.760784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.890196, 0.670588, 0.968627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5n01"]
+bg_color = Color(0, 0.568627, 0.552941, 1)
+
+[node name="shop" type="CanvasLayer"]
+visible = false
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -3.0
+offset_right = 1152.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_b8jbm")
+
+[node name="shopTop" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 143.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tl6tu")
+
+[node name="Button" type="Button" parent="Panel/shopTop" groups=["shopButton"]]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 79.0
+offset_right = 408.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "购买"
+
+[node name="Button2" type="Button" parent="Panel/shopTop" groups=["shopButton"]]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 79.0
+offset_right = 825.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "出售"
+
+[node name="golds" type="Label" parent="Panel/shopTop"]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 79.0
+offset_right = 1153.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "银两： 500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="itemRight" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_left = 825.0
+offset_top = 144.0
+offset_right = 1155.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_u02uk")
+
+[node name="itemLeft" type="Panel" parent="Panel"]
+layout_mode = 0
+offset_top = 143.0
+offset_right = 826.0
+offset_bottom = 800.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/itemLeft"]
+layout_mode = 0
+offset_right = 822.0
+offset_bottom = 659.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/itemLeft/ScrollContainer"]
+layout_mode = 2
+
+[node name="description" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1155.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_o5n01")
+text = "这是一个介绍"
+vertical_alignment = 1
+
+[node name="buyButton" type="Panel" parent="Panel"]
+visible = false
+layout_mode = 0
+offset_left = 827.0
+offset_top = 714.0
+offset_right = 1154.0
+offset_bottom = 801.0
+
+[node name="cancel" type="Button" parent="Panel/buyButton"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 162.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Panel/buyButton/cancel"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 40
+text = "取消"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buy" type="Button" parent="Panel/buyButton"]
+layout_mode = 0
+offset_left = 165.0
+offset_right = 329.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="Panel/buyButton/buy"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 40
+text = "确定"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,0 +1,770 @@
+[gd_scene load_steps=22 format=3 uid="uid://1q3qywgedd6f"]
+
+[ext_resource type="Script" path="res://Script/mainPage.gd" id="1_85dfc"]
+[ext_resource type="AudioStream" uid="uid://bye4bqxcsf5am" path="res://Audio/BGM/Nanhe ninja 长寿郊外 music Fantasy Westward Journey 梦幻西游ost.mp3" id="2_kq46v"]
+[ext_resource type="Texture2D" uid="uid://1hnx7ikkfags" path="res://Trans/001-Fog01.png" id="3_wyn0v"]
+[ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="4_odh5t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sdmx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.854902, 0.827451, 0, 0)
+
+[sub_resource type="Animation" id="Animation_qct72"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640.648, -185.416)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("001-fog01:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.921569)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("001-fog01:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_m5qux"]
+resource_name = "fog"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("001-fog01:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.921569), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("001-fog01:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_t5p5r"]
+resource_name = "title"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("title:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(640.648, -185.416), Vector2(640.648, -100), Vector2(640.648, -40), Vector2(640.648, 20), Vector2(640.648, 80)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p0qt2"]
+_data = {
+"RESET": SubResource("Animation_qct72"),
+"fog": SubResource("Animation_m5qux"),
+"title": SubResource("Animation_t5p5r")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnj2w"]
+shadow_offset = Vector2(5, 5)
+
+[sub_resource type="Animation" id="Animation_qmuq4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cloud:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cloud2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.694118, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cloud3:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lr836"]
+resource_name = "buttons"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cloud:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.835294)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cloud2:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.694118, 0, 0, 0), Color(0.694118, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cloud3:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0.00392157, 1, 0.772549, 0.831373)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y5qxx"]
+_data = {
+"RESET": SubResource("Animation_qmuq4"),
+"buttons": SubResource("Animation_lr836")
+}
+
+[sub_resource type="VideoStreamTheora" id="VideoStreamTheora_f1m4i"]
+file = "mainPageBack.ogv"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2s1g"]
+bg_color = Color(0.0666667, 0.0352941, 0.152941, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y35d"]
+bg_color = Color(0.321569, 0.321569, 0.321569, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_16j0b"]
+bg_color = Color(0.352941, 0.686275, 0.588235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2imo5"]
+bg_color = Color(0.639216, 0.6, 0.478431, 1)
+
+[sub_resource type="Animation" id="Animation_sdyuo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("版权申明:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("游戏申明:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7b2cv"]
+resource_name = "openScene"
+length = 16.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("版权申明:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("游戏申明:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(6, 6.4, 15, 16),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_px8ut"]
+_data = {
+"RESET": SubResource("Animation_sdyuo"),
+"openScene": SubResource("Animation_7b2cv")
+}
+
+[node name="Node2D" type="VideoStreamPlayer"]
+self_modulate = Color(0.352941, 0.827451, 1, 1)
+anchors_preset = -1
+anchor_right = 1.004
+anchor_bottom = 1.0
+offset_right = 768.392
+offset_bottom = 299.0
+scale = Vector2(0.600954, 0.733487)
+autoplay = true
+script = ExtResource("1_85dfc")
+
+[node name="title" type="Label" parent="."]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 640.648
+offset_top = -185.416
+offset_right = 880.648
+offset_bottom = -102.416
+scale = Vector2(2.54856, 2.11679)
+theme_override_colors/font_shadow_color = Color(0, 0, 0.964706, 0.227451)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_4sdmx")
+text = "传梦之路"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "title"
+libraries = {
+"": SubResource("AnimationLibrary_p0qt2")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+autoplay = "fog"
+libraries = {
+"": SubResource("AnimationLibrary_p0qt2")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_kq46v")
+volume_db = 10.247
+autoplay = true
+max_distance = 1e+09
+
+[node name="qq" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1557.52
+offset_top = 1011.61
+offset_right = 1910.52
+offset_bottom = 1071.61
+theme_override_font_sizes/font_size = 41
+text = "QQ群：315974594"
+
+[node name="author" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1560.85
+offset_top = 946.165
+offset_right = 1800.85
+offset_bottom = 1001.17
+theme_override_font_sizes/font_size = 40
+text = "制作人：传梦"
+
+[node name="宣言" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 539.143
+offset_top = 1002.06
+offset_right = 1369.14
+offset_bottom = 1060.06
+theme_override_font_sizes/font_size = 40
+text = "非盈利游戏 请勿盗版贩卖 素材来自网易与网络 "
+
+[node name="001-fog01" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.921569)
+position = Vector2(957.677, 542.652)
+scale = Vector2(7.48134, 4.24952)
+texture = ExtResource("3_wyn0v")
+
+[node name="Cloud" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(434.309, 602.601)
+scale = Vector2(0.152851, 0.152851)
+texture = ExtResource("4_odh5t")
+
+[node name="Label" type="RichTextLabel" parent="Cloud"]
+modulate = Color(0.0117647, 0.0117647, 0.0117647, 1)
+offset_left = -696.741
+offset_top = -222.988
+offset_right = 903.259
+offset_bottom = 323.012
+theme_override_font_sizes/normal_font_size = 350
+theme_override_styles/focus = SubResource("StyleBoxFlat_cnj2w")
+text = "初入尘世 "
+
+[node name="Cloud2" type="Sprite2D" parent="."]
+self_modulate = Color(0.694118, 0, 0, 0)
+position = Vector2(1718.93, 104.978)
+scale = Vector2(0.152851, 0.152851)
+texture = ExtResource("4_odh5t")
+
+[node name="Label" type="RichTextLabel" parent="Cloud2"]
+modulate = Color(0.0117647, 0.0117647, 0.0117647, 1)
+offset_left = -697.0
+offset_top = -205.0
+offset_right = 903.0
+offset_bottom = 305.0
+theme_override_font_sizes/normal_font_size = 350
+theme_override_styles/focus = SubResource("StyleBoxFlat_cnj2w")
+text = "暂缓脚步"
+
+[node name="Cloud3" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(1530.9, 595.784)
+scale = Vector2(0.152851, 0.152851)
+texture = ExtResource("4_odh5t")
+
+[node name="Label" type="RichTextLabel" parent="Cloud3"]
+modulate = Color(0.0117647, 0.0117647, 0.0117647, 1)
+offset_left = -696.741
+offset_top = -222.988
+offset_right = 903.259
+offset_bottom = 323.012
+theme_override_font_sizes/normal_font_size = 350
+theme_override_styles/focus = SubResource("StyleBoxFlat_cnj2w")
+text = "重启旅程
+"
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 290.0
+offset_top = 537.0
+offset_right = 575.0
+offset_bottom = 677.0
+
+[node name="Button2" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1579.16
+offset_top = 28.6304
+offset_right = 1864.16
+offset_bottom = 168.63
+
+[node name="Button3" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 1387.79
+offset_top = 528.98
+offset_right = 1672.79
+offset_bottom = 668.98
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+autoplay = "buttons"
+libraries = {
+"": SubResource("AnimationLibrary_y5qxx")
+}
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="读取页面" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 800.0
+offset_top = 600.0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="VideoStreamPlayer2" type="VideoStreamPlayer" parent="读取页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -500.0
+offset_right = 1120.0
+offset_bottom = 588.0
+stream = SubResource("VideoStreamTheora_f1m4i")
+autoplay = true
+
+[node name="description" type="Panel" parent="读取页面"]
+layout_mode = 0
+offset_left = -800.0
+offset_top = -590.0
+offset_right = 1120.0
+offset_bottom = -440.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_v2s1g")
+
+[node name="Label" type="Label" parent="读取页面/description"]
+layout_mode = 0
+offset_left = 700.0
+offset_top = 30.0
+offset_right = 1240.0
+offset_bottom = 113.0
+theme_override_font_sizes/font_size = 60
+text = "您要读取哪个档？"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="save0" type="Panel" parent="读取页面" groups=["menuLoadSlots"]]
+layout_mode = 0
+offset_left = -450.0
+offset_top = -420.0
+offset_right = 750.0
+offset_bottom = -220.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5y35d")
+
+[node name="fileNum" type="Label" parent="读取页面/save0"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档一"
+
+[node name="chapter" type="Label" parent="读取页面/save0"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="读取页面/save0"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="读取页面/save0"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="loadButton1" type="Button" parent="读取页面/save0"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1203.0
+offset_bottom = 203.0
+
+[node name="save1" type="Panel" parent="读取页面" groups=["menuLoadSlots"]]
+layout_mode = 0
+offset_left = -450.0
+offset_top = -180.0
+offset_right = 750.0
+offset_bottom = 20.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5y35d")
+
+[node name="fileNum" type="Label" parent="读取页面/save1"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档二"
+
+[node name="chapter" type="Label" parent="读取页面/save1"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="读取页面/save1"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="读取页面/save1"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="loadButton2" type="Button" parent="读取页面/save1"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1201.0
+offset_bottom = 199.0
+
+[node name="save2" type="Panel" parent="读取页面" groups=["menuLoadSlots"]]
+layout_mode = 0
+offset_left = -450.0
+offset_top = 60.0
+offset_right = 750.0
+offset_bottom = 260.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5y35d")
+
+[node name="fileNum" type="Label" parent="读取页面/save2"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档三"
+
+[node name="chapter" type="Label" parent="读取页面/save2"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="读取页面/save2"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="读取页面/save2"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="loadButton3" type="Button" parent="读取页面/save2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1199.0
+offset_bottom = 198.0
+
+[node name="save3" type="Panel" parent="读取页面" groups=["menuLoadSlots"]]
+layout_mode = 0
+offset_left = -450.0
+offset_top = 280.0
+offset_right = 750.0
+offset_bottom = 480.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5y35d")
+
+[node name="fileNum" type="Label" parent="读取页面/save3"]
+layout_mode = 0
+offset_left = 20.0
+offset_right = 68.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 40
+text = "存档四"
+
+[node name="chapter" type="Label" parent="读取页面/save3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 20.0
+offset_right = 1120.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 40
+
+[node name="playedTime" type="Label" parent="读取页面/save3"]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 80.0
+offset_right = 1120.0
+offset_bottom = 135.0
+theme_override_font_sizes/font_size = 40
+
+[node name="systemTime" type="Label" parent="读取页面/save3"]
+layout_mode = 0
+offset_left = 350.0
+offset_right = 679.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+
+[node name="loadButton4" type="Button" parent="读取页面/save3"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1199.0
+offset_bottom = 201.0
+
+[node name="addChild" type="Timer" parent="."]
+one_shot = true
+
+[node name="loadGame" type="Timer" parent="."]
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="版权申明" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_top = -11.0
+offset_right = 1919.0
+offset_bottom = 1091.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_16j0b")
+
+[node name="Label" type="Label" parent="版权申明"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 138.885
+offset_right = 1630.0
+offset_bottom = 306.885
+theme_override_font_sizes/font_size = 40
+text = "此为非盈利游戏，目的是为了学习交流
+
+素材来自网易，网络素材，仙剑系列，梦幻群侠传系列，梦仙梦魂，其他梦单等等"
+
+[node name="Label2" type="Label" parent="版权申明"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 384.465
+offset_right = 1630.0
+offset_bottom = 442.465
+theme_override_font_sizes/font_size = 40
+text = "可随意传播，请勿盈利，此游戏内的素材可随意使用，但请注意版权问题!!!"
+
+[node name="Label3" type="Label" parent="版权申明"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 505.803
+offset_right = 1630.0
+offset_bottom = 560.803
+theme_override_font_sizes/font_size = 40
+text = "如果以后也想制作梦单，可以找作者直接索要素材"
+
+[node name="Label4" type="Label" parent="版权申明"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 699.399
+offset_right = 2460.0
+offset_bottom = 928.399
+theme_override_font_sizes/font_size = 40
+text = "哦对了，不能忘记这句话
+
+抵制不良游戏，拒绝盗版游戏。 注意自我保护，谨防受骗上当。
+适度游戏益脑，沉迷游戏伤身。 合理安排时间，享受健康生活。"
+
+[node name="游戏申明" type="Panel" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1107.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_2imo5")
+
+[node name="Label" type="Label" parent="游戏申明"]
+layout_mode = 0
+offset_left = 76.545
+offset_top = 130.882
+offset_right = 1156.54
+offset_bottom = 356.882
+theme_override_font_sizes/font_size = 40
+text = "这是作者的第一款游戏，作者审美几乎为零，请多多担待
+
+游戏中遇到bug，用键盘操作能解决90%，重启游戏解决99%
+
+由于喜爱梦幻群侠传系列和西游奇缘系列才踏上了做游戏的道路
+
+梦幻群侠传多年前迎来了终点，当我们陪伴到了终点之后，所能做的也仅仅是漫长的等待和一丝期许
+
+期待着或许有人为这个系列添砖加瓦，但很不幸，或是败于兴趣，或是败与生活，我们终究是没能等来
+
+但或许也有另一种选择，那就是传递这份梦想，自己为这系列添一把火
+
+这是我的起点，不会是某系列的终点。
+
+
+"
+
+[node name="openScene" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_px8ut")
+}
+
+[connection signal="finished" from="." to="." method="_on_finished"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="Button2" to="." method="_on_button_2_mouse_entered"]
+[connection signal="mouse_exited" from="Button2" to="." method="_on_button_2_mouse_exited"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="mouse_entered" from="Button3" to="." method="_on_button_3_mouse_entered"]
+[connection signal="mouse_exited" from="Button3" to="." method="_on_button_3_mouse_exited"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="finished" from="读取页面/VideoStreamPlayer2" to="." method="_on_video_stream_player_2_finished"]
+[connection signal="button_down" from="读取页面/save0/loadButton1" to="." method="_on_load_button_1_button_down"]
+[connection signal="pressed" from="读取页面/save0/loadButton1" to="." method="_on_load_button_1_pressed"]
+[connection signal="toggled" from="读取页面/save0/loadButton1" to="." method="_on_load_button_1_toggled"]
+[connection signal="pressed" from="读取页面/save1/loadButton2" to="." method="_on_load_button_2_pressed"]
+[connection signal="pressed" from="读取页面/save2/loadButton3" to="." method="_on_load_button_3_pressed"]
+[connection signal="pressed" from="读取页面/save3/loadButton4" to="." method="_on_load_button_4_pressed"]
+[connection signal="timeout" from="addChild" to="." method="_on_add_child_timeout"]
+[connection signal="timeout" from="loadGame" to="." method="_on_load_game_timeout"]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout"]
+[connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout"]
+[connection signal="animation_finished" from="openScene" to="." method="_on_open_scene_animation_finished"]
