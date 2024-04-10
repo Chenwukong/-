@@ -181,7 +181,7 @@ func _process(delta):
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
 			$battleFieldPicture/enemyInfo/speedBar.value = monsters[Global.targetMonsterIdx].speedBar
-			
+		
 		$battleFieldPicture/allyInfo/allyName.text = players[Global.allieSelectIndex].name
 		$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].hp
 		$battleFieldPicture/allyInfo/hpBar.value = players[Global.allieSelectIndex].currHp
@@ -190,6 +190,13 @@ func _process(delta):
 		$battleFieldPicture/allyInfo/manaBar.max_value = players[Global.allieSelectIndex].mp
 		$battleFieldPicture/allyInfo/manaBar.value = players[Global.allieSelectIndex].currMp
 		$battleFieldPicture/allyInfo/manaBar/Label2.text = str(players[Global.allieSelectIndex].currMp) + "/" + str(players[Global.allieSelectIndex].mp)
+		
+		var allyBuffSlot =  $battleFieldPicture/allyInfo/buffs.get_children()
+		for buff in players[Global.allieSelectIndex].buffs:
+			print(buff)
+#		for buff in $battleFieldPicture/allyInfo/buffs.get_children():
+#			print(players[Global.allieSelectIndex])
+		
 	if Global.onItemUsePicking:
 		if Global.currUsingItem.info.effect == "damage":
 			$battleFieldPicture/enemyInfo.visible = true
@@ -206,7 +213,40 @@ func _process(delta):
 			$battleFieldPicture/allyInfo/manaBar.max_value = players[Global.allieSelectIndex].mp
 			$battleFieldPicture/allyInfo/manaBar.value = players[Global.allieSelectIndex].currMp
 			$battleFieldPicture/allyInfo/manaBar/Label2.text = str(players[Global.allieSelectIndex].currMp) + "/" + str(players[Global.allieSelectIndex].mp)	
-		
+			var allyBuffSlot =  $battleFieldPicture/allyInfo/buffs.get_children()
+			for x in allyBuffSlot:
+				x.visible = false
+			for index in players[Global.allieSelectIndex].buffs.size():	
+				print(players[Global.allieSelectIndex])
+				var i = players[Global.allieSelectIndex]
+				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).visible = true	
+				
+				var icon
+				if i.buffs[index].keys()[0] == "onAttackBuff":
+					icon = "res://Icons/317.png"
+				elif i.buffs[index].keys()[0] == "onSpeedBuff":
+					icon = "res://Icons/645.png"
+				elif i.buffs[index].keys()[0] == "onMagicDefenseBuff":
+					icon = "res://Icons/641.png"
+				elif i.buffs[index].keys()[0] == "onPhysicDefenseBuff":
+					icon = "res://Icons/307.png"
+				elif i.buffs[index].keys()[0] == "onMagicBuff":
+					icon = "res://Icons/311.png"
+				elif i.buffs[index].keys()[0] == "onHealBuff":
+					icon = "res://Icons/631.png"									
+				elif i.buffs[index].keys()[0] == "onPoisonDebuff":
+					icon = "res://Icons/319.png"
+				elif i.buffs[index].keys()[0] == "onSleepDebuff":
+					icon = "res://Icons/320.png"
+				elif i.buffs[index].keys()[0] == "onIceDebuff":
+					icon = "res://Icons/621.png"
+				elif i.buffs[index].keys()[0] == "onSpeedDebuff":
+					icon = 	"res://Icons/633.png"
+									
+												
+				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).texture = load(icon)	
+			for buff in players[Global.allieSelectIndex].buffs:
+				print(buff)
 	if Global.onAttackingList:
 		for i in players:
 			if i.name == Global.onAttackingList[0]:
