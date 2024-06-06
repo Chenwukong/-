@@ -44,6 +44,11 @@ var dialogue_line: DialogueLine:
 			character_label.text = "姜韵"
 		elif dialogue_line.character == "敖阳怒" or dialogue_line.character == "敖阳"  or dialogue_line.character == "敖阳哀":
 			character_label.text = "敖阳"			
+		elif dialogue_line.character == "凌若昭哭" or dialogue_line.character == "凌若昭哀"  or dialogue_line.character == "凌若昭怒" or dialogue_line.character == "凌若昭喜" :
+			character_label.text = "凌若昭"				
+			
+			
+			
 		else:
 			character_label.text = tr(dialogue_line.character, "dialogue")
 		if dialogue_line.character == "<null>":
@@ -53,7 +58,7 @@ var dialogue_line: DialogueLine:
 		var name = dialogue_line.character.to_lower()
 	
 	
-		if name == "时追云" or name == "时追云惊" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐":
+		if name == "时追云" or name == "时追云惊" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀"    or name == "凌若昭怒" or name == "凌若喜"                                                            :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
 			mainPortrait.visible = true
 			mainPortrait.texture = load(portraitPath)

@@ -1,0 +1,930 @@
+~ 初见小二
+set Global.onTalk = true
+牛妖: [speed=0.4] 把钱都给我交出来，不然砍死你
+小二: [speed=0.4]别啊牛哥，我是真没钱了
+羊妖: [speed=0.4]我看你是不见棺材不落泪
+牛妖: [speed=0.4]揍他
+小二: [speed=0.7]啊，救命啊！
+时追云怒: [speed=0.7]哪来的两只畜生在此行凶
+牛妖: [speed=0.4]嗯？是个人类，不过身上怎么有股令我讨厌的气息。
+牛妖: [speed=0.4]哼，多管闲事，送上门来的肉，把他吃了吧，顺便抢点银子
+羊妖: [speed=0.7]腿归我
+时追云: [speed=0.7]找死！
+set Global.triggerPlace.get("初见小二").disable = true
+set Global.onTeamPlayer.append("小二")
+set get_tree().current_scene.bossFight("牛羊怪","res://Audio/BGM/仙劍奇俠傳三 - 仗劍 - Battle Them - BGM [1080p].mp3", "system")
+set Global.onFight = true
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set Global.npcVis.get("江南野外").get("牛妖").visible = false
+set Global.npcVis.get("江南野外").get("羊妖").visible = false
+set Global.onTalk = false
+
+=> END
+
+~ 解释抢钱
+set Global.onTalk = true
+set get_tree().current_scene.get_node("小二").get_node("小二").play("右上")
+set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("downStand")
+时追云: [speed=0.4]这位小兄弟你没事吧
+小二: [speed=0.4]哇塞，大哥你这么强啊
+小二: [speed=0.4]三下五除二就把他们两个解决了
+时追云: [speed=0.4]还好吧，你怎么和在战斗的时候穿的不一样
+小二: [speed=0.4]我这件衣服可贵得很呐，所以每次打架前我都会快速脱掉
+时追云: ....
+时追云: 你怎么会一个人在这
+小二: [speed=0.4] 啊，我是给我们掌柜的出来进货的，未曾想被那两只妖怪堵截了
+时追云: [speed=0.4]原来是这样，以后还是要小心为上，现在可不太平。
+时追云: [speed=0.4]话说刚才他们是在抢你钱吗，妖怪也要钱？
+小二: [speed=0.4]妖盟之间都是用人类的钱交易的
+时追云: [speed=0.4]妖盟？那是什么东西
+小二: [speed=0.4]大哥有所不知，这几年大举入侵人类领地的妖魔都是有组织性的，这个组织名叫妖盟
+小二: [speed=0.4]没人知道领头的人是谁，也不知道他们是何时聚集到一起的，只知道他们的目标是人类
+小二: [speed=0.4]而这妖怪之间呢，也是需要交易的
+小二: [speed=0.4]但他们不会铸造铜钱呐，也没有什么类如黄金之类的有价值的东西
+小二: [speed=0.4]所以啊，他们就想了个办法，那就是从人类身上抢夺，不仅解决了货币的问题，并且一只妖怪抢的多，那证明杀的人也多，所以在妖盟里，也是越有钱的地位越高
+时追云: [speed=0.4]这群畜生，果然该死!
+小二: [speed=0.4]那大哥你为何也独自一人在野外呢？
+时追云: [speed=0.4]我在寻找一只妖怪，我要宰了他报仇
+小二: [speed=0.4]是这样啊，那何不去长安城打听消息呢？那里的消息是最灵通的了
+小二: [speed=0.4]正好我也要去长安，小弟和你结伴同行如何？
+时追云: [speed=0.4]也好, 对了，把这两头畜生割点带走吧，我们今晚就吃他们了
+小二: [speed=0.4]额，好吧😧
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=1]
+set Global.mcVisible = false
+set Global.npcVis.get("江南野外").get("小二").visible = false
+set get_tree().change_scene_to_file("res://Scene/"+"大唐官府大厅"+".tscn")
+
+set Global.dial = "system"	
+set Global.onTalk =  false
+=> END
+
+~ 程咬金登场
+set Global.onTalk = true
+set get_tree().current_scene.get_node("程咬金").visible = true
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+程咬金: [speed=0.4]唉，那些反贼残党最近在边境又集结了一股兵力准备捣乱，也不知道哪里来的自信
+师爷: [speed=0.4]将军不可大意啊
+程咬金: [speed=0.4]安禄山那老贼还活着的时候我都不怕，现在就那些东西我还没放在眼里
+程咬金: [speed=0.4]对了，锁妖塔那边情况怎么样了？
+师爷: [speed=0.4] 情况不容乐观，封印应该已经松动的厉害了
+师爷: [speed=0.4] 里面的妖怪要是跑出来。。后果不堪设想啊
+程咬金: [speed=0.4] 我当然也知道，但现在全军集结准备一举歼灭反贼，里面的那些东西不是派一两营士兵就能解决的
+程咬金: [speed=0.4] 况且还需要留点兵力守城门
+程咬金: [speed=0.4]要是那群该死的和尚肯帮忙多简单
+师爷: [speed=0.4]将军是指金山寺的那群和尚吗？
+程咬金: [speed=0.4]那群和尚整天想着吃斋念佛吃斋念佛，也没见出来帮忙打妖怪
+师爷: [speed=0.4]这。。。不可强求，只能靠我们自己
+程咬金: [speed=0.4]那天书中有写什么办法加强封印吗
+师爷: [speed=0.4] 有，但很难，必须得有人去塔顶
+师爷: [speed=0.4] 此事不能强来
+程咬金: [speed=0.4] 你说该怎么办
+师爷: [speed=0.4] 我们应该派一队精兵进去，避免和妖怪们接触，直接去到塔顶
+程咬金: [speed=0.4] 那这事就交给你去办了，我得赶紧走了
+师爷: [speed=0.4] 是
+程咬金: [speed=0.4] 昨天刚晋升的那位呢？
+师爷: [speed=0.4] 额，以我对他的了解，此时应该在帮人跑腿。。
+
+set get_tree().change_scene_to_file("res://Scene/"+"长安城"+".tscn")
+set Global.onTalk =  false
+=> END!
+
+~ 金甲帮书生
+set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
+set get_tree().current_scene.get_node("Camera2D2").make_current()
+
+set get_tree().current_scene.get_node("金甲").visible = true
+set Global.onTalk = true
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+金甲: [speed=0.4]老先生....我已经把书都...摆好了
+书生: [speed=0.4]哎呀，真是谢谢你了将军
+书生: [speed=0.4]坐下来喝杯茶吧
+金甲: [speed=0.4]不了...老先生，我得去帮张婶..喂鸡了
+金甲: [speed=0.4]之后...还得去帮铁兄弟...布置擂台
+书生: [speed=0.4]你这一个个帮过去不累吗？
+金甲: [speed=0.4]职责...所在
+set Global.dial = null
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=2]
+set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = true
+set get_tree().change_scene_to_file("res://Scene/"+"江南野外"+".tscn")
+set Global.mcVisible = true
+set Global.onTalk = false
+=> END
+
+
+~ 小二休息
+set Global.onTalk = true
+小二: [speed=0.4]走这么远的路累死了，我们去那边的瓜蒲歇会吧
+时追云: [speed=0.4]你体力这么差吗
+小二: [speed=0.4]大哥，我们这几天一路上见到一只妖怪杀一只妖怪，见到一对妖怪杀一双，你顶得住我可顶不住啊
+时追云: 。。。
+时追云: [speed=0.4]那就歇一会吧
+set Global.triggerPlace.get("小二休息").disable = true
+set Global.onTalk = false
+=> END
+
+~ 王婆卖瓜
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").position = Vector2(1240,385)
+set Global.npcVis.get("江南野外").get("小二2").visible = true
+set get_tree().current_scene.get_node("player/Sprite2D").texture = load("res://main character/tile008.png")
+set Global.playerDirection = "upStand"
+小二: 哇，这么大的瓜啊
+set Global.playerDirection = ""
+小二: [speed=0.4]来点解解渴吧大娘
+小二: [speed=0.4]多来几颗
+王婆: [speed=0.4]好嘞，两位小伙子等等，我挑些大的给你们尝尝
+时追云: [speed=0.4]有劳了大娘
+王婆: [speed=0.4]不碍事不碍事
+set get_tree().current_scene.get_node("王婆").play("右上")
+小二:  [speed=0.4]这天可真热啊
+小二: [speed=0.4]大娘你是不是有什么东西热发霉了啊
+王婆:  [speed=0.4]小伙子胡说，我这里只有瓜而已
+时追云: 。。。
+set get_tree().current_scene.get_node("王婆").play("default")
+王婆:  [next=1]好了小伙子们，来吃瓜吧，绝对甜
+小二:  [speed=0.4]渴死我了，谢谢大娘，我先不客气了
+时追云: [next=0.5]慢
+时追云: [speed=0.4]大娘，现在兵荒马乱的，野外又有一堆妖怪，你怎么会在这里做生意？
+王婆: [speed=0.4]这，老婆子我这不是缺钱嘛，只好冒险做生意啦。
+时追云: [speed=0.4]如果缺钱的话，去人多的市集不是更好？
+时追云: [speed=0.4]平常在野外只有零散的镖夫和为数不多不得不出行的人，在这里怎么可能有生意，而且还要冒着生命危险
+小二: 额。。。
+王婆: [speed=0.4]小伙子别问这么多了，吃瓜吧，很甜的
+时追云: [speed=0.4]你是妖精吧
+小二: [speed=0.4]额。。。啊？啊！？
+王婆: [speed=0.4]呵呵呵
+
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/SWD5 临敌.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+set get_tree().current_scene.get_node("人头图").visible = true
+
+王婆: [speed=0.4]本来还想给你们的痛快在睡梦中死去的，现在你们得醒着被我摘掉头收藏了哈哈哈
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/ME/smile.wav")
+set get_tree().current_scene.get_node("subSound").play()
+王婆: [speed=0.4]哈哈哈哈哈哈哈哈哈哈哈哈哈
+小二: 哎呀我去,这些西瓜全是。。。
+小二: 呕！
+小二: 我们赶紧跑吧大哥
+小二: [speed=0.4]额，算了，当我没说
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/逗乐.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("人头图").visible = false
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/江南野外.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+时追云: [speed=0.4]我也喜欢收藏，不过收藏的是你们的尸体
+set Global.moveChar(10,-40)
+王婆: [speed=0.4]什。。什么意思
+set Global.moveChar(10,-40)
+王婆: [speed=0.4]你别过来，给我站住
+时追云: [speed=0.4]你不是很喜欢收藏吗，我觉得我们在某种意义上算是同类
+王婆: [speed=0.4]你。。。你
+时追云: [speed=0.4]你的头我也替你摘了！
+set get_tree().current_scene.bossFight("蓝羽妖女","res://Audio/BGM/仙劍奇俠傳三 - 仗劍 - Battle Them - BGM [1080p].mp3", "system")
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set Global.onFight = true
+set Global.npcVis.get("江南野外").get("王婆").visible = false
+
+
+set Global.onTalk = false
+=> END
+
+~ 打赢王婆
+set get_tree().current_scene.get_node("蓝羽妖女头").visible = true
+set Global.onTalk = true
+时追云: [speed=0.4]哼，害了这么多的人，杀她一百次都不够
+时追云: [speed=0.4]不过砍掉他们的头确实比直接杀死有意思多了
+小二: 🫨......
+小二: [speed=0.4]走吧大哥
+时追云: [speed=0.4]嗯，出发去长安
+set Global.npcVis.get("江南野外").get("小二2").visible = false
+set Global.triggerPlace.get("王婆卖瓜").disable = true
+set get_tree().current_scene.get_node("teleportCircle").visible = true
+set get_tree().current_scene.get_node("teleportCircle/area2D/CollisionShape2D").disable = false
+set Global.onTalk = false
+=> END
+
+~ 解围金甲
+set Global.onTalk = true
+set Global.showBlack = false
+set get_tree().current_scene.get_node("妖怪1").visible = true
+set get_tree().current_scene.get_node("妖怪2").visible = true
+set get_tree().current_scene.get_node("妖怪3").visible = true
+set get_tree().current_scene.get_node("士兵3").visible = true
+set get_tree().current_scene.get_node("士兵4").visible = true
+set get_tree().current_scene.get_node("士兵5").visible = true
+set get_tree().current_scene.get_node("士兵6").visible = true
+set get_tree().current_scene.get_node("金甲").visible = true
+
+set Global.triggerPlace.get("解围金甲").disable = true
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set get_tree().current_scene.get_node("CanvasLayer").visible = false
+set get_tree().current_scene.get_node("小二").visible = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/庄严快节奏.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+金甲: [speed=0.4]该。。该死
+金甲: [speed=0.4]妖怪。。又来
+set get_tree().current_scene.get_node("妖怪2").play("fly")
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/雷鸟人.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+时追云: 不好，快帮忙
+小二: [speed=0.4]又打架啊。。。
+小二: [speed=0.4]饶了我吧
+时追云: 别磨蹭了
+小二: [speed=0.4]好吧好吧
+set get_tree().current_scene.bossFight("大鹏","res://Audio/BGM/战斗2.ogg", "金甲")
+
+set Global.onFight = true
+set Global.showBlack = true
+set Global.onTalk = false
+=> END
+
+~ 结识金甲
+set Global.onTalk = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/长安.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play
+set get_tree().current_scene.get_node("妖怪1").visible = false
+set get_tree().current_scene.get_node("妖怪2").visible = false
+set get_tree().current_scene.get_node("妖怪3").visible = false
+set get_tree().current_scene.get_node("士兵3").visible = false
+set get_tree().current_scene.get_node("士兵4").visible = false
+set get_tree().current_scene.get_node("士兵5").visible = false
+set get_tree().current_scene.get_node("士兵6").visible = false
+set get_tree().current_scene.get_node("小二").visible = true
+set get_tree().current_scene.get_node("士兵6").visible = false
+set get_tree().current_scene.get_node("CanvasLayer2/blackSide").visible = false
+
+小二: [speed=0.4]呼，终于打死了，那破鸟的速度真快啊
+金甲: [speed=0.4]你们。。好强
+金甲: [speed=0.4]多谢。。。二位。帮忙
+时追云: [speed=0.4]举手之劳，不必客气
+金甲: [speed=0.4]可惜。。。弟兄们。。又死了一些
+时追云: ...
+金甲: [speed=0.4]安葬。。。他们
+士兵: [speed=0.4]是
+金甲: [speed=0.4]你们来此。。。何事？
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=1.5]
+set get_tree().change_scene_to_file("res://Scene/"+"金甲家"+".tscn")
+set Global.dial = "金甲"
+set Global.onTalk = false
+=> END
+
+~ 金甲吃饭
+set Global.onTalk = true
+set Global.triggerPlace.get("金甲吃饭").disable = true
+金甲: [speed=0.4]找。。妖怪？
+时追云: [speed=0.4]对，我要亲手宰了他
+小二: [speed=0.4]大唐官府的情报应该是最强的了吧
+小二: [speed=0.4]你，哎这位将军你叫什么来着
+金甲: [speed=0.4]大唐官府。。士兵。。。实力分三等，以。。。甲为分
+金甲: [speed=0.4]吾乃金甲！
+小二: [speed=0.4]额，我是问你的名字
+金甲: [speed=0.4]吾乃金甲！
+小二: [speed=0.4](怎么感觉他说这句话的时候这么流畅骄傲🤨？)
+小二: [speed=0.4]算了，当我没说
+时追云: [speed=0.4]那金将军能帮我这个忙吗？
+金甲: [speed=0.4]可以。。。但我们现在。没人
+小二: [speed=0.4]长安可是国都，大唐官府怎么会没人呢
+金甲: [speed=0.4]都去。。。打贼寇了
+金甲: [speed=0.4]我留下来。。守城
+小二: [speed=0.4]哦哦留守将军啊
+金甲: ...
+时追云: [speed=0.4]咳，那金将军不去守城门吗？
+金甲: [speed=0.4]门多。。守一个不方便。。。我待在城中央
+金甲: [speed=0.4]如果哪一边。。。出事了就。鸣鼓。。我。就赶过去
+时追云: [speed=0.4]原来如此
+金甲: [speed=0.4]公务繁忙。。。你们先。吃。。
+金甲: [speed=0.4]告辞
+小二: [speed=0.4]我们闲来无事，一起去看看大将军是如何做事的吧
+时追云: [speed=0.4]也好
+set Global.dial = "金甲"
+set get_tree().change_scene_to_file("res://Scene/"+"长安城"+".tscn")
+set Global.onTalk = false
+=> END
+
+~ 金甲再帮书生
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
+set get_tree().current_scene.get_node("Camera2D2").make_current()
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("时追云").visible = true
+set get_tree().current_scene.get_node("金甲").visible = true
+set get_tree().current_scene.get_node("小二").visible = true
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+书生: [speed=0.4]将军今天又来了啊
+书生: [speed=0.4]还带了两位朋友来，真是幸苦你们了
+小二: 啊？
+金甲: [speed=0.4]我平常。。帮忙。整理书架
+时追云: [speed=0.4]这不算坏事
+小二: [speed=0.4]也是啦，吃饱了正好活动活动，我来帮忙吧
+金甲: [speed=0.4]谢谢
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=1]
+set get_tree().change_scene_to_file("res://Scene/"+"回春堂"+".tscn")
+set Global.onTalk = false
+set Global.dial = "金甲"
+=> END
+
+~ 帮郎中
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("时追云").visible = true
+set get_tree().current_scene.get_node("金甲").visible = true
+set get_tree().current_scene.get_node("小二").visible = true
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+时追云惊: [speed=0.4]柳。。。柳老？ 
+画陀: [speed=0.4]什么？
+时追云: [speed=0.4]哦。。没什么，您和我一位故人很像
+画陀: [speed=0.4]哈哈哈，我们郎中装扮都差不多的，认错也正常
+金甲: [speed=0.4]老先。。。生，我来帮你磨药
+画陀: [speed=0.4]哎哟，那可真是太谢谢了
+
+[next=1]
+set Global.dial = "金甲"	
+set get_tree().change_scene_to_file("res://Scene/"+"霍嫬儿家"+".tscn")
+set Global.onTalk = false
+=> END
+
+~ 看望霍嫬儿
+
+set Global.onTalk = true
+霍嫬儿: 张。。。
+霍嫬儿: [speed=0.4]哦不对不对，金甲哥哥
+霍嫬儿: [speed=0.4]你又来看我啦嘻嘻
+金甲: [speed=0.4]嗯。。。你今天想吃。。什么？
+霍嫬儿: [speed=0.4]糖葫芦
+金甲: [speed=0.4]我说。。。饭
+霍嫬儿: 糖葫芦！
+金甲: ...
+金甲: [speed=0.4]一会。。买给你
+霍嫬儿: 耶耶耶！！！！
+时追云惊: ！！
+小二: 她。。。
+霍嫬儿: [speed=0.4]两位大哥哥，你们也是金甲的朋友吗？
+时追云: 是
+小二: [speed=0.4]啊？哦，对！
+霍嫬儿: [speed=0.4]那你们也是嫬儿的朋友，一会请你们吃糖葫芦西西
+时追云喜: [speed=0.4]那就先谢谢嫬儿了
+金甲: [speed=0.4]今天吃。。。鸡蛋炒饭，好吗？
+霍嫬儿: [speed=0.4]好，嘻嘻
+小二: [speed=0.4]金将军，她这是。。。
+金甲: [speed=0.4]现在。。。别聊
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=1.5]
+set Global.dial = "金甲"	
+set get_tree().change_scene_to_file("res://Scene/"+"金甲家"+".tscn")
+set Global.onTalk = false
+=> END
+
+~ 金甲解释
+set Global.onTalk = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/SWD5 无奈.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+[next=1.5]
+时追云: [speed=0.4]她的腿是怎么回事
+金甲: [speed=0.4]妖怪所为
+小二: [speed=0.4]啥，你说清楚点
+金甲: [speed=0.4]一年前。。。她的村落被毁。。她家里人带着她来到。。长安城避难
+金甲: [speed=0.4]但是不。。巧。。他们遇到了。妖怪
+金甲: [speed=0.4]当我们赶。。到的时候，除了她已经。。。已经没有活人了。
+金甲: [speed=0.4]眼前的。。画面，我永远无法。忘记！
+金甲: [speed=0.4]她的父母，乡亲的。。。残肢散落一地。。身体已经不见
+金甲: [speed=0.4]血沿着路。。流到我的。。。我的鞋边
+金甲: [speed=0.4]而那只。。妖怪。。正。。。正啃着她的腿！
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/explosionb1 (9).ogg")
+set get_tree().current_scene.get_node("subSound").play()
+时追云惊: ！
+小二: [speed=0.4]...
+金甲: [speed=0.4]后来。。。兄弟们和我。。一样。看到这一幕
+金甲: [speed=0.4]死命拼了上去。。。
+金甲: [speed=0.4]之后。。又一些面孔，我再也。。见不到
+金甲: [speed=0.4]索性。。她还活着
+金甲: [speed=0.4]之后。。我就照顾她。至今
+时追云怒: [speed=0.4]这群畜生，早晚有一日得宰光他们
+小二: [speed=0.4]那嫬儿她这样子不痛苦吗？
+金甲: ...
+小二: [speed=0.4]如果是我的话，我可能已经选择。。。
+set get_tree().current_scene.get_node("subSound").play()
+金甲: [speed=0.4]她有活着的权力！
+金甲: [speed=0.4]当时。。。我去看望被大夫救回。。一条命的嫬儿
+金甲: [speed=0.4]她清楚的。。知道，发生了什么
+金甲: [speed=0.4]她告诉我。。她还想活着！
+金甲: [speed=0.4]她想尝遍天下。。。所有的糖葫芦
+金甲: [speed=0.4]她想。。闻好闻的花。。玩好玩的。玩具
+金甲: [speed=0.4]还有。。。她想。。还能回想起父亲娘亲
+时追云惊: [speed=0.4]活着。。记住逝去之人吗
+时追云: ...
+小二: ...
+小二: [speed=0.4]我明白了，是我失言了
+小二: [speed=0.4]她比我勇敢 
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+set get_tree().current_scene.get_node("AnimationPlayer").play("new_animation")
+士兵: [speed=0.4]将军！大事不好了！
+士兵: [speed=0.4]有人死了，你快去看看！
+金甲: [speed=0.4]什么！？
+金甲: [speed=0.4]带。。我去！
+时追云: [speed=0.4]我们也去看看吧
+小二: [speed=0.4]居然有人敢在长安城内动手啊。。
+
+set get_tree().change_scene_to_file("res://Scene/"+"长安城"+".tscn")
+set Global.dial = "金甲"
+set Global.onTalk = false
+=> END
+
+
+~ 查看凶案
+set Global.onTalk = true
+set Global.atNight = true
+set get_tree().current_scene.get_node("DirectionalLight2D").visible = true
+set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
+set get_tree().current_scene.get_node("Camera2D3").make_current()
+set get_tree().current_scene.get_node("警戒士兵").visible = true
+金甲: [speed=0.4]你们。。。怎么看？
+小二: [speed=0.4]残忍啊，全身只剩颗头了
+时追云: [speed=0.4]应该是妖怪所为
+戒色: [speed=0.4]绝对是妖怪所为
+金甲: [speed=0.4]有可能。。。
+小二: [speed=0.4]你们怎么看出来的
+金甲: [speed=0.4]因
+戒色: [speed=0.4]因为谁家正常人杀人会把人啃得几乎只剩个头啊
+戒色: [speed=0.4]做人肉叉烧包不成
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/幽默 - 04.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+小二: [speed=0.4]哦哦，不对话说你谁啊，怎么突然出现的
+金甲: [speed=0.4]你不是。。我们的。人
+金甲: [speed=0.4]你是金山寺的。。。和尚？
+戒色: [speed=0.4]咳咳，小僧正是金山寺的僧人，法号戒色
+金甲: [speed=0.4]你怎么。。。会在
+戒色: [speed=0.4]不重要不重要，人命关天，人人有责，救人一命胜造七级浮屠，啊，虽然他已经归西了
+时追云: 。。。
+小二: 。。。
+戒色: [speed=0.4]咳咳，言归正传。
+
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0情况危机.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+戒色: [speed=0.4]这具尸体不仅仅是死相惨状，而且周围还残留着一股妖气
+金甲: [speed=0.4]妖气。。是什么？
+戒色: [speed=0.4]这个嘛。。我想想怎么解释
+时追云: [speed=0.4]简单来说就是妖精身上的气息，尽管他们种族不同，但或多或少都散发着同一种气息
+时追云: [speed=0.4]而这气息靠闻是闻不出来的，更多的是一种感觉
+戒色: [speed=0.4]对对，就是这样
+金甲: [speed=0.4]城内。。。居然出现了。妖怪
+金甲: [speed=0.4]怎么办。。怎么办
+时追云: [speed=0.4]金甲你不能慌，连你都慌了百姓怎么办
+金甲: [speed=0.4]说的。对！
+时追云: [speed=0.4]首先疏散人群吧，并且下令宵禁
+时追云: [speed=0.4]妖怪既然会躲起来，想来也是怕直接和我们起冲突的...
+时追云: [speed=0.4]派五名士兵一组，挨家挨户彻查有没有妖怪藏匿，如果发现了就立马大声呼喊其他人
+时追云: [speed=0.4]同时。。。需要有一位诱饵勾引
+小二: [speed=0.4]啥
+时追云: [speed=0.4]既然那畜生不愿明着与人类为敌，但又在这偷偷吃人还不处理干净，估计是灵智不高，还很贪嘴
+时追云: [speed=0.4]那畜生只吃一人怕是没吃饱，如果它没躲在某栋民居内，此时只要有个人在偏僻的地方勾引他。。。。
+金甲: [speed=0.4]不远处。。有片。。小树林
+时追云: [speed=0.4]那么。。。
+戒色: [speed=0.4]我自幼吃斋念佛，习得一身佛法，师傅经常夸我有佛缘
+小二: [speed=0.4]你想表达啥。。。
+戒色: [speed=0.4]所以贫僧不适合当诱饵
+小二: [speed=0.4]。。。
+小二: [speed=0.4]那金甲你
+时追云: [speed=0.4]金甲得去指挥官兵搜城
+时追云: [speed=0.4]而我你知道的，寻常妖怪遇见我便走，哪怕是强点的妖怪也会察觉我有异常
+小二: [speed=0.4]。。。
+金甲: [speed=0.4]时少侠。。。有这能力？何来？
+时追云: [speed=0.4]我也不清楚，我几年前遇到妖怪后就有了这般能力，似乎能避开低等妖魔。我不主动攻击的话。
+小二: [speed=0.4]能不能换个士兵去啊
+戒色: [speed=0.4]普通士兵估计会被直接咬死吧
+小二: [speed=0.4]我也会啊！！
+时追云: [speed=0.4]我相信你小二，普通人身手比不过你
+小二: [speed=0.4]虽然是在夸我。。但
+戒色: [speed=0.4]我佛曾经曰过，我不入地狱谁入地狱
+小二: [speed=0.4]谁爱入谁入，你怎么不入
+戒色: [speed=0.4]贫僧自幼吃斋念佛。。
+小二: [speed=0.4]好了好了好了你别念了，我去还不行吗
+金甲: [speed=0.4]我替城。。。内百姓。谢谢你！
+小二: [speed=0.4]...应该的
+set get_tree().change_scene_to_file("res://Scene/"+"小树林"+".tscn")
+set Global.dial = "小二"
+set Global.onTalk = false
+=> END
+
+
+~ 当诱饵
+set Global.onTalk = true
+set get_tree().current_scene.get_node("DirectionalLight2D").visible = true
+小二: [speed=0.4]大哥。。。你在吗
+小二: [speed=0.4]这里也太暗了吧。。。
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/067-Animal02.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+小二: [speed=0.4]卧槽！什么声音
+小二: [speed=0.4]。。。
+小二: [speed=0.4]原来只是只猫啊。
+小二: [speed=0.4]等会如果妖怪真出来了应该不至于秒杀我吧，哈哈
+小二: [speed=0.4]。。。
+小二: [speed=0.4]天啊，我为什么会在这里
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/怪叫-布.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+小二: [speed=0.4]又。。。又是猫吧
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/010-System10.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("鼠先锋").visible = true
+鼠先锋: [speed=0.4]滋滋滋，吵死了
+小二: [speed=0.4]真来啦！
+小二: [speed=0.4]救命啊大哥！！
+鼠先锋: [speed=0.4]滋滋滋，饿
+小二: [speed=0.4]大哥快来救我！老大，我叫你老大行吗！
+鼠先锋: [speed=0.4]吃！
+时追云: [speed=0.4]就是现在！
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/010-System10.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("时追云").visible = true
+鼠先锋: [speed=0.4]吱？
+时追云: [speed=0.4]拿下他！
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/010-System10.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("戒色").visible = true
+戒色: [speed=0.4]贫僧来也
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set get_tree().current_scene.bossFight("鼠先锋","res://Audio/BGM/【战斗】传说开始的地方.mp3", "小二")
+set Global.onTalk = false
+=> END
+
+~ 打赢鼠先锋
+set Global.onTalk = true
+
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/幽默 - 04.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+戒色: [speed=0.4]这仗打的真艰难
+小二: [speed=0.4]喂喂喂，你刚才根本就没帮忙打架吧！！
+时追云: [speed=0.4]。。。
+戒色: [speed=0.4]咳咳
+小二: [speed=0.4]你不是说什么从小学佛吗
+戒色: [speed=0.4]从小学佛。。。佛经，我没说我会打架啊
+戒色: [speed=0.4](死作者没找到我战斗的动画居然让我背锅)
+小二: [speed=0.4]我刚才就应该让你下地狱的
+戒色: [speed=0.4]佛曾经曰过，我不入地狱，我也不想入地狱
+小二: [speed=0.4]。。。
+set get_tree().current_scene.get_node("金甲").visible = true
+set get_tree().current_scene.get_node("AnimationPlayer").play("new_animation")
+金甲: [speed=0.4]出现了。。。妖怪？
+时追云: [speed=0.4]已经解决了
+金甲: [speed=0.4]时。少侠。。厉害！
+金甲: [speed=0.4]我已经。。。和我们。。副官说了你们
+金甲: [speed=0.4]他想。。。。见见。你们
+金甲: [speed=0.4]时少侠。。如果能参军。肯定。。能帮助。很多人！
+时追云: [speed=0.4]...
+时追云: [speed=0.4]抱歉金甲，我现在一心只想报仇，我之后能不能活着都不知道
+金甲: [speed=0.4]没事。。。明日。先见见吧
+金甲: [speed=0.4]他知道。。很多事情。。或许能帮上你
+时追云: [speed=0.4]也好
+戒色: [speed=0.4]事情解决了，那贫僧也告辞了，我师傅又要骂我了
+小二: [speed=0.4]虽然你什么都没干，但真是谢谢你帮忙了
+戒色: [speed=0.4]阿弥了个陀佛
+时追云: [speed=0.4]嗯，有缘再见
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/010-System10.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("戒色").visible = false
+小二: [speed=0.4]臭和尚轻功倒是练的厉害
+金甲: [speed=0.4]哈哈哈
+[next=1]
+
+set get_tree().change_scene_to_file("res://Scene/"+"金甲家"+".tscn")
+set Global.dial = "system"
+set Global.onTalk = false
+=> END
+
+
+~ 起床找金甲
+set Global.onTalk = true
+小二: [speed=0.4]好久没睡的这么舒服了
+小二: [speed=0.4]咦
+小二: [speed=0.4]金甲呢
+时追云: [speed=0.4]金甲一大早就干活去了
+时追云: [speed=0.4]他说准备好了就去大唐官府找他
+小二: [speed=0.4]那我们走吧，顺便逛逛长安城
+时追云: [speed=0.4]你还需要逛长安吗？你不是就住在这里的吗
+小二: [speed=0.4]额，这不是陪老大你逛逛吗，免得你迷路了
+时追云: [speed=0.4]那你不用回去找你老板吗
+小二: [speed=0.4]难得出来，晚几天回去也无妨
+时追云: [speed=0.4]可别丢了工
+小二: [speed=0.4]没事的，走吧走吧
+set Global.onTalk = false
+=> END
+
+
+
+~ 进妓院
+set Global.onTalk = true
+老鸨: [speed=0.4]这里可不是随便就能进去的
+- 还是要进去
+- 算了
+	set Global.onTalk = false
+	=> END
+老鸨: [speed=0.4]你确定真的要进去吗？
+- 确定
+- 还是算了
+	set Global.onTalk = false
+	=> END 
+老鸨: [speed=0.4]你真的确定相信以及肯定要进去吗？
+- 我真的确定
+- 算了
+	set Global.onTalk = false
+	=> END	
+老鸨: [speed=0.4]你真的真的真的要进去吗？！
+- 真的
+- 算了
+	set Global.onTalk = false
+	=> END
+老鸨: [speed=0.4] 好吧，不过我再问你最后一次，你真的要进去吗？
+- 确定
+- 算了
+	set Global.onTalk = false
+	=> END
+老鸨: [speed=0.4]好吧，那就让你进来吧......
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=3]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+老鸨: [speed=0.4]个鬼啊！你是想作者大人进局子吗！
+老鸨: [speed=0.4]给老娘好好通关去！
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=3]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+老鸨: [speed=0.4]怎么？还不想走？
+老鸨: [speed=0.4]好吧，那就让你看看我们的头牌
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("如花").visible = true
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/ME/smile3.wav")
+set get_tree().current_scene.get_node("subSound").play()
+[next=3]
+set get_tree().current_scene.get_node("如花").visible = false
+
+	
+set Global.onTalk = false
+=> END
+
+
+~ 叫你交钱
+set Global.onTalk = true
+牛冠军: 你要和我打擂吗？去旁边交钱
+set Global.onTalk = false
+=> END
+
+~ 交钱
+set Global.onTalk = true
+擂台管理: 请问这位爷是要打擂吗？
+擂台管理: 只要打赢了就会获得奖金哦
+擂台管理: 只要500两即可报名！
+- 我要试试
+	if FightScenePlayers.golds < 500:
+		擂台管理: 你钱不够啊，带够银两再来吧！
+	else:
+		牛冠军: 来吧！
+		时追云: [speed=0.4]小二，只是切磋而已，不要用全力
+		小二: [speed=0.4]哦好
+		set FightScenePlayers.golds -= 500
+		set Global.onFight = true
+		set Global.canLose = true
+		set get_tree().current_scene.bossFight("牛冠军","res://Audio/BGM/仙劍奇俠傳-比武招親.mp3", "打赢牛冠军")
+		set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+- 算了吧
+set Global.onTalk = false
+=> END
+
+
+~ 打赢牛冠军
+set Global.onTalk = true
+set get_tree().current_scene.get_node("battleBgm").stop()
+if Global.lost == false:
+	牛冠军: 啊嘞嘞，你也太强了，佩服佩服
+	#set FightScenePlayers.golds += 1000
+else:
+	牛冠军: 你输了，下次再来比比！
+	set Global.lost = false
+set Global.canLose = false
+
+
+set get_tree().current_scene.get_node("battleBgm").stop()
+set Global.onTalk = false
+
+~ 围观群众1
+set Global.onTalk = true
+围观群众1: 太强了啊牛冠军
+set Global.onTalk = false
+
+=> END
+
+~ 围观群众2
+set Global.onTalk = true
+围观群众2: 这都打赢多少人了啊
+set Global.onTalk = false
+=> END
+
+~ 围观群众3
+set Global.onTalk = true
+围观群众3: 我什么时候能这么强啊
+set Global.onTalk = false
+=> END
+
+~ 围观群众6
+set Global.onTalk = true
+围观群众6: 我要是要这种保镖就不怕妖怪了
+set Global.onTalk = false
+=> END 
+
+~ 周周
+set Global.onTalk = true
+周周: [speed=0.4] 过了这村就没这店了，玫瑰礼服只要99.9包带回家
+set get_tree().current_scene.popShop()
+set Global.onTalk = false
+=> END 
+
+~ 酒店休息
+set Global.onTalk = true
+酒店老板: 只要200两即可休息一晚哟
+- 休息
+	set Global.lostGold(200)
+	set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
+	set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp	
+	set FightScenePlayers.fightScenePlayerData.get("小二").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
+	set FightScenePlayers.fightScenePlayerData.get("小二").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp	
+	set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/Pokemon Healing - Sound Effect (HD).mp3")
+	set get_tree().current_scene.get_node("subSound").play()
+	set FightScenePlayers.golds -= 200
+	[next=5]
+	小二: [speed=0.4](什么鬼声音)
+	
+- 算了
+set Global.onTalk = false
+=> END 
+
+
+
+~ 守门兵甲
+set Global.onTalk = true
+守门兵甲: 前线和后勤都很重要的！隔壁国鸣潮就不懂得这个道理
+set Global.onTalk = false
+=> END 
+
+~ 守门兵乙
+set Global.onTalk = true
+守门兵乙: 我身后的门也被成为安德门，乃皇上赐名，意为安天下，德满地的意思
+set Global.onTalk = false
+=> END 
+
+~ 爷傲奈我何
+set Global.onTalk = true
+爷傲奈我何: [speed=0.4]你要来挨打吗？
+爷傲奈我何: [speed=0.4]我可是很强的，受伤了可别怪我
+- 揍死你
+	set get_tree().current_scene.bossFight("爷傲奈我何","res://Audio/BGM/战斗-任务.mp3", "爷傲奈我何")
+	set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+- 不了
+set Global.onTalk = false
+=> END 
+
+~ 打败爷傲
+set Global.onTalk = true
+爷傲奈我何: 不打了不打了！
+set Global.npcs.get("爷傲奈我何").current_dialogue_index = 0
+set Global.onTalk = false
+=> END 
+
+~ 求加固
+set Global.onTalk = true
+
+set get_tree().current_scene.get_node("小二").visible = true
+金甲: [speed=0.4]你们来。。了
+师爷: [speed=0.4]两位就是昨晚协助金甲清除妖魔的人吧，真是英雄出少年啊
+师爷: [speed=0.4]这位就是时少侠吧？
+时追云: [speed=0.4]是
+师爷: [speed=0.4]而这位就是小二少侠了
+小二: [speed=0.4]啊哈哈哈，叫我小二就好了
+师爷: [speed=0.4]听闻时少侠在追查一只妖怪的下落？
+时追云: [speed=0.4]是，在下此次出远门就是为了斩杀那只妖怪
+师爷: [speed=0.4]唉，这件事恐怕我们也无能为力
+小二: [speed=0.4]啊，连你们也帮不上忙吗
+师爷: [speed=0.4]如果大唐境内有妖魔占山为王大肆屠戮，那我们肯定是会有消息的
+师爷: [speed=0.4]但要是它跑到了别国境内，或者不闹出大动静，以我们的手段，想找到他们也是绝无可能
+师爷: [speed=0.4]我们要妖魔的了解还是太少了，唉
+师爷: [speed=0.4]当初要是我们找点得到消息，建邺也不至于。。。
+时追云: [speed=0.4]...
+师爷: [speed=0.4]抱歉了时少侠
+时追云: [speed=0.4]没事，我会自己找到它的
+小二: [speed=0.4]老大，我祝你早日宰了它
+金甲: [speed=0.4]加。。油！
+小二: [speed=0.4]话说你们表情怎么这么凝重
+师爷: [speed=0.4]实不相瞒，长安城现在其实很危险
+时追云: [speed=0.4]此话怎讲?
+师爷: [speed=0.4]时少侠可知道昨晚那妖魔的来历？
+时追云: [speed=0.4]这倒不知，说起来，哪怕是大部分士兵都去打仗了，城边防守也没松懈，怎么会有妖魔出现在城内
+师爷: [speed=0.4]它应该是从锁妖塔跑出来的！
+小二: [speed=0.4]锁妖塔？长安北边那座高塔吗？
+师爷: [speed=0.4]正是！
+师爷: [speed=0.4]许多年前某日，一道光从天而降，化作玲珑宝塔，由针芒渐至恢宏。其声如雷，惊动整座城池之人。
+师爷: [speed=0.4]有胆大之人走了进去，惊叹里边墙壁雕文之玄妙，但除此之外并没特殊之处，之后往塔顶走，发现落有一本书，其名为封魔天书
+师爷: [speed=0.4]书中记载了如何使用宝塔限制住妖魔
+师爷: [speed=0.4]之前我们其实见不到多少妖魔，所以只派了人守在宝塔外，但并没有多关心。直到几年前，妖魔们仿佛雨后春笋般冒了出来，大肆进攻人类居住地
+时追云: [speed=0.4]...
+师爷: [speed=0.4]我们被打的措手不及，那时候我们才想起这座宝塔。按照上面的咒语催动宝塔，果然妖怪们被顺利收了进去
+小二: [speed=0.4]那不是很好吗？
+师爷: [speed=0.4]是啊，如果能一直这样那自然是好的，我们遇到妖魔只要靠宝塔把他们吸进去就能无伤打赢了
+师爷: [speed=0.4]但我们渐渐发现了一个问题
+时追云: [speed=0.4]什么问题
+师爷: [speed=0.4]那就是锁妖塔的法力是有限的！封印的越多消耗的法力就越多！
+小二: [speed=0.4]法力消耗完了。。。会怎么样？
+师爷: [speed=0.4]我估计里边的妖怪就会。。。全部跑出来！
+师爷: [speed=0.4]之后我们就规定了，除非遇到大妖，不然尽量避免使用锁妖塔制敌
+师爷: [speed=0.4]但尽管是这样，里面的封印还是松动了，而昨夜那只妖怪就是因此跑出来的！
+时追云: [speed=0.4]也就是说这样的话过不了多久就会有越来越多的妖怪从里边跑出来
+小二: [speed=0.4]天呐，里边得关了多少只妖怪啊，这要是在长安跑出来。。。
+师爷: [speed=0.4]后果不堪设想！
+时追云: [speed=0.4]但你有办法对吧，天书应该记载了如何应对这种方法？
+师爷: [speed=0.4]是有办法加固封印，但是需要到塔顶去，所以
+小二: [speed=0.4]喂喂喂，你叫我们过来不会就是要我们跑到塔顶去吧
+小二: [speed=0.4]里边得有多少只妖怪啊，跑到塔顶就算有100条命也不够花啊！
+师爷: [speed=0.4]这确实是不情之请，我们现在人手完全不够，以普通士兵的实力来说进去也是送死
+师爷: [speed=0.4]我听闻时少侠有让妖魔退却之能？
+时追云: [speed=0.4]嗯，普通妖魔会主动避开我，但我不知道原因
+师爷: [speed=0.4]那太好了！这样的话可以避开大部分的妖魔，悄悄前往楼顶
+小二: [speed=0.4]哪里好了啊喂。。如果里边有不长眼的，或者碰到了高等妖魔，那不还是要被围殴了
+时追云: [speed=0.4]如果没人去做的话，会有很多无辜的百姓死去
+时追云: [speed=0.4]这里已经是国都了，如果连这里都沦为妖魔之地，他们还能跑到哪去？
+小二: [speed=0.4]可就我们。。能做什么呢
+金甲: [speed=0.4]我会和。。你们。一起去
+金甲: [speed=0.4]这。。。应该是。。我们的事情
+金甲: [speed=0.4]抱歉。让你们卷。。。进来
+金甲: [speed=0.4]但是。。。我。不想看到。人死
+小二: [speed=0.4]...
+时追云: [speed=0.4]不要在意，有剑者当尽一份力，就算你们不说我也不会放过里边的妖怪
+小二: [speed=0.4]啊？
+时追云: [speed=0.4]那群畜生只是被封印在里边太便宜他们了，不如全宰了
+金甲: [speed=0.4]...
+师爷: [speed=0.4]...
+小二: [speed=0.4]真像是老大你会说的话啊唉
+师爷: [speed=0.4]时少侠。好胆量。但还是尽量避免冲突吧
+时追云: [speed=0.4]嗯
+时追云: [speed=0.4]小二你呢，要去吗？
+小二: [speed=0.4]唉，你们都这么说了我不去岂不是显得我贪生怕死
+时追云: [speed=0.4]不用担心，如果真遇到了危险就躲我身后吧
+小二: [speed=0.4]啊哈，那怎么好意思呢哈哈哈
+师爷: [speed=0.4]那就拜托几位了，我替天下百姓谢谢你们
+时追云: [speed=0.4]不必在意
+师爷: [speed=0.4]进塔之前两位少侠先去休整吧，至于加固封印的事宜。。我会告诉金甲的
+小二: [speed=0.4]走老大，请我去长安酒店吃饭
+时追云: [speed=0.4]你倒真不客气
+小二: [speed=0.4]你银子多，够我们当个饱死鬼了
+时追云: [speed=0.4]晦气
+小二: [speed=0.4]嘿嘿
+set get_tree().current_scene.get_node("小二").visible = false
+set Global.triggerPlace.get("初见若昭").disable = false
+set Global.onTalk = false
+=> END 
+
+~ 初见若昭
+set Global.triggerPlace.get("初见若昭").disable = true
+set get_tree().current_scene.get_node("凌若昭").play("右上哭")
+set Global.onTalk = true
+酒店老板:  走走走，你跟我去官府让老爷们评评理
+凌若昭哭: 你放了我吧, 我真不知道你这里吃饭要给银子
+酒店老板:  你看你说的什么话，谁家酒店吃饭不得要银子啊
+凌若昭哭: 我们山里吃饭都不要钱啊
+酒店老板:  什么跟什么啊。一句话，要么交钱，要么坐牢去
+凌若昭哭: 怎么又要钱了。。。不是要银子吗
+酒店老板:  ....
+酒店老板:  跟我走
+凌若昭哭: 不要
+set get_tree().current_scene.get_node("AnimationPlayer").play("小二付钱")
+set get_tree().current_scene.get_node("小二/小二").play("右上walk")
+[next=0.5]
+set get_tree().current_scene.get_node("小二/小二").play("右上")
+小二: 等等，我来付
+时追云惊: (他的速度有那么快吗!?)
+小二: 老板，她的账我替她付了
+酒店老板: 可以，有人付就行
+set get_tree().current_scene.get_node("凌若昭").play("左上")
+
+
+set Global.onTalk = false
+=> END
+
+~ 没有更多可说的了
+set Global.onTalk = true
+{{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END
+

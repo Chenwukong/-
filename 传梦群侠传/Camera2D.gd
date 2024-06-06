@@ -10,8 +10,12 @@ func _ready():
 		$".".limit_right = 2401
 		$".".limit_bottom = 2396
 	else:
-		$".".limit_left = 0
-		$".".limit_top = 0
+		if get_parent().get_parent().get_node("MarkerLeft"):
+			$".".limit_left = get_parent().get_parent().get_node("MarkerLeft").position.x
+			$".".limit_top = get_parent().get_parent().get_node("MarkerLeft").position.y
+		else:
+			$".".limit_left = 0
+			$".".limit_top = 0		
 		$".".limit_right = get_parent().get_parent().get_node("MarkerRight").position.x
 		$".".limit_bottom = get_parent().get_parent().get_node("MarkerRight").position.y			
 		

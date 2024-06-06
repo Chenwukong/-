@@ -14,7 +14,7 @@ class Monster:
 	var exp: int = 0
 	var gold: int = 0
 	var monsterMagicList = []
-	
+	var type: String = ""
 	func _init(params: Dictionary):
 		name = params.name
 		speed = params.speed if "speed" in params else 0
@@ -27,6 +27,7 @@ class Monster:
 		idle = params.idle
 		exp = params.exp if "exp" in params else 0
 		gold =  params.gold if "gold" in params else 0
+		type = params.type if "type" in params else ""
 		monsterMagicList = params.monsterMagicList if "monsterMagicList" in params else []
 # Define monsters organized by levels using dictionaries
 
@@ -56,7 +57,7 @@ var magics = {
 	"落岩":{
 		"name": "落岩",
 		"attackType": "range",
-		"damage": 50, 
+		"damage": 40, 
 		"cost": 30,
 		"description": "群攻法术",
 		"effectArea": "single",
@@ -64,7 +65,83 @@ var magics = {
 		"animationArea":"enemy",
 		"audio":"res://Audio/SE/落岩.ogg"
 	},	
-	
+	"地裂火":{
+		"name": "地裂火",
+		"attackType": "range",
+		"damage": 60, 
+		"cost": 30,
+		"description": "单体法术",
+		"effectArea": "single",
+		"effectingNum": 1,
+		"animationArea":"enemy",
+		"audio":"res://Audio/SE/火1.ogg"
+	},
+	"泰山压顶":{
+		"name": "泰山压顶",
+		"attackType": "range",
+		"damage": 50, 
+		"cost": 30,
+		"description": "单体法术",
+		"effectArea": "aoe",
+		"effectingNum": 2,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/羊.ogg"
+	},
+	"狐魅术":{
+		"name": "狐魅术",
+		"attackType": "range",
+		"damage": 40, 
+		"cost": 30,
+		"description": "单体法术",
+		"effectArea": "single",
+		"effectingNum": 1,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/女-呀.ogg"
+	},
+	"漫天花雨":{
+		"name": "漫天花雨",
+		"attackType": "range",
+		"damage": 25, 
+		"cost": 30,
+		"description": "群体法术",
+		"effectArea": "aoe",
+		"effectingNum": 8,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/鸟语花香.ogg"
+	},	
+	"静电":{
+		"name": "静电",
+		"attackType": "range",
+		"damage": 60, 
+		"cost": 50,
+		"description": "群体法术",
+		"effectArea": "single",
+		"effectingNum": 1,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/女妖-法术.ogg"
+	},	
+	"奔雷":{
+		"name": "奔雷",
+		"attackType": "range",
+		"damage": 50, 
+		"cost": 50,
+		"description": "群体法术",
+		"effectArea": "aoe",
+		"effectingNum": 3,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/法术3.ogg"
+	},	
+	"烈火":{
+		"name": "烈火",
+		"attackType": "range",
+		"damage": 50, 
+		"cost": 50,
+		"description": "群体法术",
+		"effectArea": "single",
+		"effectingNum": 1,
+		"animationArea":"enemy",
+		"audio": "res://Audio/BGS/火3.ogg"
+	},				
 }
 
 
@@ -72,6 +149,7 @@ var monsters = {
 	"东海湾": {
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
+			"type": "龙",
 			"speed": 30,
 			"level": 1,
 			"magicDefense": 5,
@@ -88,6 +166,7 @@ var monsters = {
 			}),
 		"大海龟": Monster.new({
 			"name": "大海龟",
+			"type": "龙",
 			"speed":20,
 			"level": 1,
 			"magicDefense":5,
@@ -237,7 +316,7 @@ var monsters = {
 			}),	
 		"奔霸": Monster.new({
 			"name": "奔霸",
-			"speed": 4000,
+			"speed": 40000,
 			"level": 1,
 			"magicDefense": 200,
 			"physicDefense": 200,
@@ -366,54 +445,196 @@ var monsters = {
 			],
 			}),														
 	},
-	
-	"东海湾2": {
-		"狐狸精": Monster.new({
-			"name": "狐狸精",
-			"speed": 0,
+	"牛羊怪":{
+		"牛妖":Monster.new({
+			"name": "牛妖",
+			"speed": 30,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 15,
-			"magicDmg": 1,
-			"hp": 100,
-			"exp": 10000000,
-			"gold": 150,
+			"attackDmg": 70,
+			"magicDmg": 2,
+			"hp": 1200,
+			"exp": 300,
+			"gold": 300,
+			"idle": "牛妖idle",
+			 "monsterMagicList": [
+				magics.get("地裂火"),
+			],
+			}),
+		"羊妖":Monster.new({
+			"name": "羊妖",
+			"speed": 30,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 70,
+			"magicDmg": 2,
+			"hp": 1200,
+			"exp": 300,
+			"gold": 300,
+			"idle": "羊妖idle",
+			 "monsterMagicList": [
+				magics.get("泰山压顶"),
+			],
+			}),
+	},
+	"蓝羽妖女":{
+		"蓝羽妖女":Monster.new({
+			"name": "蓝羽妖女",
+			"speed": 40,
+			"level": 1,
+			"magicDefense": 0,
+			"physicDefense": 0,
+			"attackDmg": 80,
+			"magicDmg": 2,
+			"hp": 1500,
+			"exp": 2000,
+			"gold": 500,
+			"idle": "蓝羽妖女idle",
+			 "monsterMagicList": [
+				magics.get("静电"),
+			],
+			})},		
+	"江南野外": {
+		"狐狸精": Monster.new({
+			"name": "狐狸精",
+			"speed": 40,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 30,
+			"attackDmg": 55,
+			"magicDmg": 1.5,
+			"hp": 300,
+			"exp": 100,
+			"gold": 30,
 			"idle": "狐狸精idle",
 			 "monsterMagicList": [
-				magics.get("水漫金山"),
+				magics.get("狐魅术"),
 			],
 			}),
 		"花妖": Monster.new({
 			"name": "花妖",
-			"speed":0,
+			"speed":30,
 			"level": 1,
 			"magicDefense":5,
-			"physicDefense": 20,
-			"attackDmg": 15,
-			"magicDmg": 1,
-			"hp": 100,
-			"exp": 200,
-			"gold":200,
+			"physicDefense": 30,
+			"attackDmg": 55,
+			"magicDmg": 1.5,
+			"hp": 300,
+			"exp": 100,
+			"gold":30,
 			"idle": "花妖idle",
 			 "monsterMagicList": [
-				magics.get("水漫金山"),
+				magics.get("漫天花雨"),
 			],
 		}),
+		"牛妖":Monster.new({
+			"name": "牛妖",
+			"speed": 30,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 50,
+			"magicDmg": 2,
+			"hp": 400,
+			"exp": 100,
+			"gold": 40,
+			"idle": "牛妖idle",
+			 "monsterMagicList": [
+				magics.get("地裂火"),
+			],
+			}),
+		"羊妖":Monster.new({
+			"name": "羊妖",
+			"speed": 35,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 50,
+			"magicDmg": 1.5,
+			"hp": 400,
+			"exp": 100,
+			"gold": 40,
+			"idle": "羊妖idle",
+			 "monsterMagicList": [
+				magics.get("泰山压顶"),
+			],
+			}),
+			
 	},
-	2: {
-		"laoHuJing": Monster.new({
-			"name": "laoHuJing",
-			"speed": 20,
+	"大鹏":{
+		"大鹏":Monster.new({
+			"name": "大鹏",
+			"speed": 140,
+			"level": 1,
+			"magicDefense": 0,
+			"physicDefense": 0,
+			"attackDmg": 80,
+			"magicDmg": 1.5,
+			"hp": 3000,
+			"exp": 3000,
+			"gold": 1000,
+			"idle": "大鹏idle",
+			 "monsterMagicList": [
+				magics.get("奔雷"),
+			],
+			})},		
+	"牛冠军": {
+		"牛冠军": Monster.new({
+			"name": "牛冠军",
+			"speed": 60,
 			"level": 1,
 			"magicDefense": 20,
 			"physicDefense": 20,
-			"attackDmg": 15,
-			"magicDmg": 10,
-			"hp": 50,
-			"idle": null
+			"attackDmg": 300,
+			"magicDmg": 2,
+			"exp": 200,
+			"gold": 800,
+			"hp": 5000,
+			"idle": "牛冠军idle",
+			 "monsterMagicList": [
+				magics.get("烈火"),
+			],			
 		}),
 	},
+	"鼠先锋": {
+		"鼠先锋": Monster.new({
+			"name": "鼠先锋",
+			"speed": 30,
+			"level": 1,
+			"magicDefense": 20,
+			"physicDefense": 20,
+			"attackDmg": 80,
+			"magicDmg": 1.5,
+			"exp": 1500,
+			"gold": 1000,
+			"hp": 2000,
+			"idle": "鼠先锋idle",
+			 "monsterMagicList": [
+				magics.get("奔雷"),
+				magics.get("落岩"),
+			],			
+		}),
+	},
+	"爷傲奈我何": {
+		"爷傲奈我何": Monster.new({
+			"name": "爷傲奈我何",
+			"speed": 60,
+			"level": 1,
+			"magicDefense": 20,
+			"physicDefense": 20,
+			"attackDmg": 50,
+			"magicDmg": 1,
+			"exp": 150,
+			"gold": 0,
+			"hp": 600,
+			"idle": "爷傲奈我何idle",
+			 "monsterMagicList": [
+				magics.get("烈火"),
+			],			
+		}),
+	},			
 }
 
 

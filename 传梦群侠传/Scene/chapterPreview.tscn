@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bikcdnceao7op"]
+
+[ext_resource type="Script" path="res://Script/chapterPreview.gd" id="1_8ibld"]
+[ext_resource type="AudioStream" uid="uid://blr2mldv37cgv" path="res://Audio/ME/擂鼓.ogg" id="2_1sjke"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8ibld")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -6.0
+offset_right = 1160.0
+offset_bottom = 808.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 327.0
+offset_right = 776.0
+offset_bottom = 482.0
+theme_override_font_sizes/font_size = 40
+text = "第一章：始"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1sjke")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

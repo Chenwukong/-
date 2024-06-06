@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b3dtk2snxdgij"]
+[gd_scene load_steps=39 format=3 uid="uid://b3dtk2snxdgij"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_b15sp"]
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="2_yhwia"]
@@ -23,6 +23,10 @@ region = Rect2(164, 117, 82, 117)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ufvwd"]
 atlas = ExtResource("2_yhwia")
 region = Rect2(246, 117, 82, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hok1p"]
+atlas = ExtResource("2_yhwia")
+region = Rect2(0, 117, 82, 117)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2rwmy"]
 atlas = ExtResource("2_yhwia")
@@ -72,6 +76,10 @@ region = Rect2(164, 234, 82, 117)
 atlas = ExtResource("2_yhwia")
 region = Rect2(246, 234, 82, 117)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkr10"]
+atlas = ExtResource("2_yhwia")
+region = Rect2(0, 234, 82, 117)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_0lx1r"]
 animations = [{
 "frames": [{
@@ -89,6 +97,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hok1p")
+}],
+"loop": true,
+"name": &"downStand",
 "speed": 5.0
 }, {
 "frames": [{
@@ -140,6 +156,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkr10")
+}],
+"loop": true,
+"name": &"upStand",
 "speed": 5.0
 }]
 
@@ -246,7 +270,9 @@ texture = SubResource("CompressedTexture2D_1eey2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_0lx1r")
-animation = &"down"
+animation = &"up"
+frame = 2
+frame_progress = 0.448801
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 17)
@@ -273,10 +299,12 @@ shape = SubResource("CapsuleShape2D_q3i4g")
 autostart = true
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(-1, 42)
+target_position = Vector2(-1, 76)
 collision_mask = 4
 
 [node name="RayCast2D2" type="RayCast2D" parent="."]
+visible = false
+enabled = false
 target_position = Vector2(0, 10)
 
 [node name="effect" type="AnimatedSprite2D" parent="."]
@@ -298,6 +326,8 @@ texture = SubResource("GradientTexture2D_lc6m3")
 [node name="readyMove" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]

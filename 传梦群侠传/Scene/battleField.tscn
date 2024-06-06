@@ -287,6 +287,52 @@ theme_override_colors/font_color = Color(0.945098, 0.796078, 0.152941, 1)
 theme_override_font_sizes/font_size = 100
 text = "行动"
 
+[node name="buffs" type="Control" parent="battleFieldPicture/enemyInfo"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="buff1" type="TextureRect" parent="battleFieldPicture/enemyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 154.706
+offset_top = 26.0
+offset_right = 182.706
+offset_bottom = 53.0
+texture = ExtResource("4_f171q")
+expand_mode = 1
+
+[node name="buff2" type="TextureRect" parent="battleFieldPicture/enemyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 195.294
+offset_top = 26.0
+offset_right = 223.294
+offset_bottom = 53.0
+texture = ExtResource("5_rureb")
+expand_mode = 1
+
+[node name="buff3" type="TextureRect" parent="battleFieldPicture/enemyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 234.706
+offset_top = 26.0
+offset_right = 262.706
+offset_bottom = 53.0
+texture = ExtResource("6_75kbo")
+expand_mode = 1
+
+[node name="buff4" type="TextureRect" parent="battleFieldPicture/enemyInfo/buffs"]
+visible = false
+layout_mode = 0
+offset_left = 275.882
+offset_top = 26.0
+offset_right = 303.882
+offset_bottom = 53.0
+texture = ExtResource("4_gagfs")
+expand_mode = 1
+
 [node name="allyInfo" type="Panel" parent="battleFieldPicture"]
 z_index = 4
 offset_left = -318.235
@@ -579,6 +625,7 @@ texture = ExtResource("4_f171q")
 expand_mode = 1
 
 [node name="systemSound" type="AudioStreamPlayer" parent="."]
+volume_db = -1.835
 
 [node name="bgmTimer" type="Timer" parent="."]
 wait_time = 1.6

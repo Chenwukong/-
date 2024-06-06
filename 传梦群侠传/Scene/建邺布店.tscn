@@ -588,14 +588,14 @@ _data = {
 }
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
-vertices = PackedVector2Array(20, 95, 2390, 97, 2393, 2472, 11, 2472, 11, 1492, 9, 1337)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 1492, 11, 2472, 2393, 2472, 2390, 97)])
+vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 2), PackedInt32Array(2, 7, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-53, 16, -52, 615, 9, 1337, 11, 1492, 11, 2472, 2393, 2472, 2390, 97, 744, 20)])
 
-[sub_resource type="Gradient" id="Gradient_cuie8"]
+[sub_resource type="Gradient" id="Gradient_k3l1b"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
-gradient = SubResource("Gradient_cuie8")
+gradient = SubResource("Gradient_k3l1b")
 fill = 1
 fill_from = Vector2(1, 0.612536)
 
@@ -3516,7 +3516,6 @@ offset_bottom = 804.0
 texture = ExtResource("26_wggdg")
 
 [node name="teleportCircle" parent="." instance=ExtResource("27_88rss")]
-visible = false
 position = Vector2(199, 380)
 scale = Vector2(0.887324, 0.829268)
 toScene = "建邺城右"
