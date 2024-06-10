@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bcmswm26mw11a"]
+
+[ext_resource type="Texture2D" uid="uid://bhq31mmgki7ob" path="res://Characters/宝箱.png" id="1_a73jm"]
+[ext_resource type="Script" path="res://Script/treasure.gd" id="1_ss75g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6c1v5"]
+atlas = ExtResource("1_a73jm")
+region = Rect2(114, 138, 114, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6ddht"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6c1v5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wge3q"]
+size = Vector2(55, 41)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ss75g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6ddht")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_wge3q")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

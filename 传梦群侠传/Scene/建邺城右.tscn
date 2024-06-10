@@ -5521,8 +5521,12 @@ position = Vector2(1663, 695)
 toScene = "建邺药店"
 
 [node name="teleportCircle2" parent="." instance=ExtResource("27_ogdth")]
+visible = false
 position = Vector2(115, 651)
 toScene = "江南野外"
+
+[node name="CollisionShape2D" parent="teleportCircle2/area2D" index="0"]
+disabled = true
 
 [node name="teleportCircle3" parent="." instance=ExtResource("27_ogdth")]
 position = Vector2(885, 118)
@@ -6405,6 +6409,7 @@ text = "↓"
 [connection signal="button_down" from="CanvasLayer/phoneButtons/左下" to="player" method="_on_左下_button_down"]
 [connection signal="button_down" from="CanvasLayer/phoneButtons/右下" to="player" method="_on_右下_button_down"]
 
+[editable path="teleportCircle2"]
 [editable path="二娃请求"]
 [editable path="小兵8"]
 [editable path="时追云赶到"]

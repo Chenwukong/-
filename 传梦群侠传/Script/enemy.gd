@@ -16,7 +16,18 @@ var currHp = 0
 @export var alive = true
 @export var exp = 0
 @export var monsterMagicList = []
-
+@export var onHealBuff = false
+@export var onSpeedBuff = false
+@export var onAttackBuff = false
+@export var onMagicBuff = false
+@export var onPhysicDefenseBuff = false
+@export var onMagicDefenseBuff = false
+@export var onPoisonDebuff = false
+@export var onIceDebuff = false
+@export var onSleepDebuff = false
+@export var type = ""
+var healBuffAmount = 0
+var poisonDebuffAmount = 0
 var gold = 0
 var target
 var onIce = false
@@ -27,7 +38,7 @@ var dead = false
 var oriMonsterName 
 var monsters
 #var selectedTarget = false
-
+var buffs = []
 func _ready():
 	oriMonsterName = monsterName
 	monsterName = remove_numbers_from_string(monsterName)
@@ -85,9 +96,9 @@ func _process(delta):
 #	if Global.monsterTarget:
 #		print(alivePlayers[Global.monsterTarget].get_node("getHitEffect").is_playing() == false)
 		
+
 	if speedBar >= 100:
 		speedBar = 0
-		
 		if onIce:
 			onIce -= 1
 			if onIce <= 0:
@@ -104,7 +115,64 @@ func _process(delta):
 				$playerSound.play()			
 		else:		
 			Global.onAttackingList.append(name)
-	
+		for buff in buffs:
+			if "onHealBuff" in buff:
+				buff["onHealBuff"] -= 1
+				if buff["onHealBuff"] <= 0:
+					buffs.erase(buff)					
+			if "onAttackBuff" in buff:
+				buff["onAttackBuff"] -= 1
+				if buff["onAttackBuff"] <= 0:
+					buffs.erase(buff)
+			if "onMagicBuff" in buff:
+				buff["onMagicBuff"] -= 1
+				if buff["onMagicBuff"] <= 0:
+					buffs.erase(buff)			
+			if "onSpeedBuff" in buff:
+				buff["onSpeedBuff"] -= 1
+				if buff["onSpeedBuff"] <= 0:
+					buffs.erase(buff)							
+			if "onPhysicDefenseBuff" in buff:
+				buff["onPhysicDefenseBuff"] -= 1
+				if buff["onPhysicDefenseBuff"] <= 0:
+					buffs.erase(buff)				
+			if "onMagicDefenseBuff" in buff:
+				buff["onMagicDefenseBuff"] -= 1
+				if buff["onMagicDefenseBuff"] <= 0:
+					buffs.erase(buff)						
+			if "onSleepDebuff" in buff:
+				buff["onSleepDebuff"] -= 1
+				if buff["onSleepDebuff"] <= 0:
+					buffs.erase(buff)	
+			if "onIceDebuff" in buff:
+				buff["onIceDebuff"] -= 1
+				if buff["onIceDebuff"] <= 0: 
+					buffs.erase(buff)			
+			if "onPoisonDebuff" in buff:
+				buff["onPoisonDebuff"] -= 1
+				if buff["onPoisonDebuff"] <= 0:
+					buffs.erase(buff)	
+			if "onMagicDefenseDebuff" in buff:
+				buff["onMagicDefenseDebuff"] -= 1
+				if buff["onMagicDefenseDebuff"] <= 0:
+					buffs.erase(buff)		
+			if "onPhysicDefenseDebuff" in buff:
+				buff["onPhysicDefenseDebuff"] -= 1
+				if buff["onPhysicDefenseDebuff"] <= 0:
+					buffs.erase(buff)							
+																																		
+		if onHealBuff:
+			onHealBuff -= 1
+			currHp += healBuffAmount
+			if onHealBuff <= 0:
+				onHealBuff = false
+
+		if onPoisonDebuff:	
+			onPoisonDebuff -= 1
+			currHp -= poisonDebuffAmount
+			if onPoisonDebuff <= 0:
+				onPoisonDebuff = false
+					
 		
 	#检测当前onAttackingList的是不是自己，是的话就触发选择玩家攻击	
 	if Global.onAttackingList.size() > 0 and Global.canEnemyHit:
@@ -233,7 +301,13 @@ func _process(delta):
 			currHp = 0
 			Global.targetMonsterIdx = 0 
 			alive = false
+			var deadSound = randi_range(0,1)
+			if deadSound == 0:
+				$deadSound.stream = load("res://Audio/SE/011-System12.ogg")
+			else:
+				$deadSound.stream = load("res://Audio/SE/小妖-倒地.ogg")
 			$deadSound.play()
+			
 			$deadAnimationPlayer.play("deadAnimation")
 			$deadTimer.start()  # Start the timer only once when hp is less than or equal to 0
 			self.self_modulate = "#ef1354"
@@ -312,6 +386,7 @@ func selectTarget(delta, randi, magicRandi):
 #		Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 		
 	else:#使用法术
+
 		$effectSound.stream = load(monsterMagicList[magicRandi].audio)
 		$effectSound.play()
 		if monsterMagicList[magicRandi].effectArea == "aoe":
@@ -399,10 +474,14 @@ func move():
 	
 
 func _on_button_mouse_entered():
+	
 	if Global.onAttackPicking:
 		$".".modulate = "c7c7c7"
-	
-	
+		Global.target = self
+		Global.targetMonsterIdx = 0
+		for i in monsters.size():
+			if monsters[i] == self:
+				Global.targetMonsterIdx = i
 
 
 func _on_hp_animation_animation_finished(anim_name):

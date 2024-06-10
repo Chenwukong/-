@@ -181,7 +181,37 @@ func _process(delta):
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
 			$battleFieldPicture/enemyInfo/speedBar.value = monsters[Global.targetMonsterIdx].speedBar
-		
+			var enemyBuffSlot =  $battleFieldPicture/enemyInfo/buffs.get_children()
+			for x in enemyBuffSlot:
+				x.visible = false
+
+			for index in Global.target.buffs.size():	
+				var i = Global.target
+				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).visible = true	
+				
+				var icon = ""
+				if i.buffs[index].keys()[0] == "onAttackBuff":
+					icon = "res://Icons/317.png"
+				elif i.buffs[index].keys()[0] == "onSpeedBuff":
+					icon = "res://Icons/645.png"
+				elif i.buffs[index].keys()[0] == "onMagicDefenseBuff":
+					icon = "res://Icons/641.png"
+				elif i.buffs[index].keys()[0] == "onPhysicDefenseBuff":
+					icon = "res://Icons/307.png"
+				elif i.buffs[index].keys()[0] == "onMagicBuff":
+					icon = "res://Icons/311.png"
+				elif i.buffs[index].keys()[0] == "onHealBuff":
+					icon = "res://Icons/631.png"									
+				elif i.buffs[index].keys()[0] == "onPoisonDebuff":
+					icon = "res://Icons/319.png"
+				elif i.buffs[index].keys()[0] == "onSleepDebuff":
+					icon = "res://Icons/320.png"
+				elif i.buffs[index].keys()[0] == "onIceDebuff":
+					icon = "res://Icons/621.png"
+				elif i.buffs[index].keys()[0] == "onSpeedDebuff":
+					icon = 	"res://Icons/633.png"
+									
+				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)			
 		$battleFieldPicture/allyInfo/allyName.text = players[Global.allieSelectIndex].name
 		$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].hp
 		$battleFieldPicture/allyInfo/hpBar.value = players[Global.allieSelectIndex].currHp
@@ -193,7 +223,7 @@ func _process(delta):
 		
 		var allyBuffSlot =  $battleFieldPicture/allyInfo/buffs.get_children()
 		for buff in players[Global.allieSelectIndex].buffs:
-			print(buff)
+			pass
 #		for buff in $battleFieldPicture/allyInfo/buffs.get_children():
 #			print(players[Global.allieSelectIndex])
 		
@@ -204,6 +234,37 @@ func _process(delta):
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
 			$battleFieldPicture/enemyInfo/speedBar.value = monsters[Global.targetMonsterIdx].speedBar
+			var enemyBuffSlot =  $battleFieldPicture/enemyInfo/buffs.get_children()
+			for x in enemyBuffSlot:
+				x.visible = false
+
+			for index in Global.target.buffs.size():	
+				var i = Global.target
+				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).visible = true	
+				
+				var icon = ""
+				if i.buffs[index].keys()[0] == "onAttackBuff":
+					icon = "res://Icons/317.png"
+				elif i.buffs[index].keys()[0] == "onSpeedBuff":
+					icon = "res://Icons/645.png"
+				elif i.buffs[index].keys()[0] == "onMagicDefenseBuff":
+					icon = "res://Icons/641.png"
+				elif i.buffs[index].keys()[0] == "onPhysicDefenseBuff":
+					icon = "res://Icons/307.png"
+				elif i.buffs[index].keys()[0] == "onMagicBuff":
+					icon = "res://Icons/311.png"
+				elif i.buffs[index].keys()[0] == "onHealBuff":
+					icon = "res://Icons/631.png"									
+				elif i.buffs[index].keys()[0] == "onPoisonDebuff":
+					icon = "res://Icons/319.png"
+				elif i.buffs[index].keys()[0] == "onSleepDebuff":
+					icon = "res://Icons/320.png"
+				elif i.buffs[index].keys()[0] == "onIceDebuff":
+					icon = "res://Icons/621.png"
+				elif i.buffs[index].keys()[0] == "onSpeedDebuff":
+					icon = 	"res://Icons/633.png"
+									
+				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)				
 		else:
 			$battleFieldPicture/allyInfo/allyName.text = players[Global.allieSelectIndex].name
 			$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].hp
@@ -217,7 +278,6 @@ func _process(delta):
 			for x in allyBuffSlot:
 				x.visible = false
 			for index in players[Global.allieSelectIndex].buffs.size():	
-				print(players[Global.allieSelectIndex])
 				var i = players[Global.allieSelectIndex]
 				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).visible = true	
 				
@@ -246,17 +306,18 @@ func _process(delta):
 												
 				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).texture = load(icon)	
 			for buff in players[Global.allieSelectIndex].buffs:
-				print(buff)
+				pass
 	if Global.onAttackingList:
 		for i in players:
 			if i.name == Global.onAttackingList[0]:
 				currPlayer = i
 			
 	if areAllPlayersDead() and !deadTrigger:
+		
 		if Global.canLose:
 			for i in players:
 				i.currHp += i.hp/10
-
+			Global.lost = true
 			get_parent().get_node("player").visible = true
 			get_parent().get_node("player").canMove = true
 			get_parent().get_node("enterFightCd").start()
@@ -280,13 +341,19 @@ func _process(delta):
 				get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			else:
 				if !Global.onHurry:
-					get_parent().get_node("AudioStreamPlayer2D").volume_db = 8
+					get_parent().get_node("AudioStreamPlayer2D").volume_db = 4
 				elif Global.onHurry:
 					get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5			
-			
+			get_parent().get_node("battleBgm").stop()
 			queue_free()
+			
 			if dialogue:
-				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(dialogue))
+				var npc = Global.npcs[dialogue]
+				var dialogue_index = npc["current_dialogue_index"]
+				var dialogue_entry = npc["dialogues"][dialogue_index]
+				print(dialogue_entry,dialogue_entry.chapter)
+				var chapterNum = dialogue_entry.chapter
+				DialogueManager.show_chat(load("res://Dialogue/"+str(chapterNum)+".dialogue"),get_npc_dialogue(dialogue))
 			get_parent().get_node("shadow").visible = true
 			get_parent().get_node("CanvasLayer").visible = true
 			get_parent().get_node("battleBgm").stop()
@@ -295,6 +362,8 @@ func _process(delta):
 		else:		
 			deadTrigger = true
 			get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+			$systemSound.stream = load("res://Audio/SE/011-System11.ogg")
+			$systemSound.play()
 			$deadTimer.start()
 		
 		
@@ -338,7 +407,7 @@ func _process(delta):
 				get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
 		queue_free()
 		if dialogue:
-			DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(dialogue))
+			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))
 
 	
 		get_parent().get_node("shadow").visible = true
@@ -605,9 +674,9 @@ func instantiateMonster():
 	var easyLevels = Global.easyLevels
 	
 	# Check if the current scene is in the array of easy levels
-	if Global.currScene in easyLevels:
-		numMonstersToSelect = randi_range(1, Global.dangerScene.get(get_tree().current_scene.name))  # Select 3 to 5 monsters for easy levels
-	
+	#if Global.currScene in easyLevels:
+	numMonstersToSelect = randi_range(Global.dangerScene.get(get_tree().current_scene.name)-2, Global.dangerScene.get(get_tree().current_scene.name))  # Select 3 to 5 monsters for easy levels
+
 	#已被选中加入战斗的怪物，以numMonsterToSelect的随机数加入相应数量的已选中怪物
 	selectedMonsters = []
 	while selectedMonsters.size() < numMonstersToSelect: #and currSceneMonstersName.size() > 0:
@@ -622,6 +691,7 @@ func instantiateMonster():
 		# Set properties for the character instance
 		enemySceneInstance.speed = monsterData.speed
 		enemySceneInstance.magicDefense = monsterData.magicDefense
+		enemySceneInstance.type = monsterData.type
 		enemySceneInstance.physicDefense = monsterData.physicDefense
 		enemySceneInstance.attackDmg = monsterData.attackDmg
 		enemySceneInstance.magicDmg = monsterData.magicDmg 
@@ -832,7 +902,8 @@ func useDart(type, target, delta):
 
 func _on_bgm_timer_timeout():
 	
-	get_parent().get_node("battleBgm").volume_db = 8
+	get_parent().get_node("battleBgm").volume_db = 5
+	
 	if boss == false:
 		get_parent().get_node("battleBgm").stream = load(Global.bgmList[randomBgmIndex])
 		currBgm = Global.bgmList[randomBgmIndex]

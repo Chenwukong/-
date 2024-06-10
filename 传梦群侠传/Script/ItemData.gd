@@ -123,7 +123,10 @@ var cloth = {
 		"key":false,
 		"added":false,
 		"gold": 300
-	}
+	},
+	
+	
+	
 }
 
 var shoes = {
@@ -188,5 +191,16 @@ var hat = {
 		"added":false,
 		"gold": 400
 	},
-		
+}
+var addItemInfo ={
+	"金疮药":{
+		"name": "金疮药",
+		"type": "battleConsume",
+		"bagPlace": "battleItem"
+	},
+	"含沙射影":{
+		"name": "含沙射影",
+		"type": "battleConsume",
+		"bagPlace": "battleItem"
+	}
 }

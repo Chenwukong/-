@@ -460,12 +460,24 @@ func _process(delta):
 	if Global.onArmorItemPage:
 		bagArmorItemsData = FightScenePlayers.bagArmorItem
 		get_node("系统信息").visible = false
+		armorItemButton[0].get_node("itemType/icon").texture = null
+		armorItemButton[0].get_node("itemType/icon/itemName").text = ""
+		armorItemButton[1].get_node("itemType/icon").texture = null
+		armorItemButton[1].get_node("itemType/icon/itemName").text = ""
+		armorItemButton[2].get_node("itemType/icon").texture = null
+		armorItemButton[2].get_node("itemType/icon/itemName").text = ""	
+		armorItemButton[3].get_node("itemType/icon").texture = null
+		armorItemButton[3].get_node("itemType/icon/itemName").text = ""		
+		armorItemButton[4].get_node("itemType/icon").texture = null
+		
+		armorItemButton[4].get_node("itemType/icon/itemName").text = ""					
 		$"装备页面/装备栏/status/level/levelValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].level)
 		$"装备页面/装备栏/status/伤害/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg)
 		$"装备页面/装备栏/status/物理防御/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense)
 		$"装备页面/装备栏/status/魔法抗性/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense)
 		$"装备页面/装备栏/status/速度/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed)
 		if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon:
+			print(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item)
 			armorItemButton[0].get_node("itemType/icon").texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.icon)
 			armorItemButton[0].get_node("itemType/icon/itemName").text = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name
 		if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes:
@@ -1208,6 +1220,16 @@ func _process(delta):
 			
 	if Global.onStatusPage:
 		get_node("系统信息").visible = false
+		$"状态页面/Panel/weapon".texture = null
+		$"状态页面/Panel/weapon/Label".text = "武器(空)"
+		$"状态页面/Panel/shoes".texture = null
+		$"状态页面/Panel/shoes/Label".text = "足护(空)"
+		$"状态页面/Panel/hat".texture = null
+		$"状态页面/Panel/hat/Label".text = "头饰(空)"
+		$"状态页面/Panel/cloth".texture = null
+		$"状态页面/Panel/cloth/Label".text = "衣甲(空)"
+		$"状态页面/Panel/accessories".texture = null
+		$"状态页面/Panel/accessories/Label".text = "饰品(空)"
 		$"状态页面/Panel/name".text = Global.onTeamPlayer[characterIndex]
 		$"状态页面/Panel/levelLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].level)
 		$"状态页面/Panel/exp/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].exp)

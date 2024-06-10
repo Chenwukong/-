@@ -3413,6 +3413,9 @@ animation = &"左下"
 autoplay = "default"
 npcName = "姜韵"
 
+[node name="CollisionPolygon2D" parent="姜韵/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -285, -277, -287, -247, -289, -226, -282, -227, -270, -225, -264, -228, -254, -236, -252, -239, -225, -251, -224, -281, -238, -280, -257, -278, -266, -280)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_mw6ho")
@@ -3706,3 +3709,4 @@ text = "↓"
 [connection signal="button_down" from="CanvasLayer/phoneButtons/右下" to="player" method="_on_右下_button_down"]
 
 [editable path="player"]
+[editable path="姜韵"]

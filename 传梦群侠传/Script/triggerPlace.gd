@@ -14,6 +14,7 @@ func _ready():
 func _process(delta):
 	var places = get_tree().get_nodes_in_group("triggerPlace")
 	for i in places:
+
 		if Global.triggerPlace.get(i.name).disable == true:
 			i.get_node("Area2D/CollisionShape2D").disabled = true
 		if Global.triggerPlace.get(i.name).disable == false:
@@ -22,6 +23,7 @@ func _process(delta):
 func _on_area_2d_area_entered(area):
 	if area.get_parent().is_in_group("mapPlayer") and Global.triggerPlace.get(triggerEvent).disable == false:
 		var player = area.get_parent()
+		print(triggerEvent)
 		match triggerEvent:
 			"二娃请求":
 				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("二娃"))
@@ -45,13 +47,32 @@ func _on_area_2d_area_entered(area):
 				get_tree().change_scene_to_file("res://Scene/"+"建邺城右"+".tscn")
 				Global.dial = "system"							
 			"时追云进城":
-				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("system"))
+				DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue("system"))
 			"时追云赶到":			
-				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("system"))
+				DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue("system"))
 			"斩妖":			
-				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("system"))
+				DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue("system"))
 			"新手警告":
-				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("传梦"))					
+				DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue("传梦"))			
+			"初见小二":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("system"))		
+			"小二休息":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("system"))	
+			"王婆卖瓜":	
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("system"))	
+			"解围金甲":	
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))	
+			"结识金甲":	
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))					
+			"金甲吃饭":	
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))					
+			"帮郎中":	
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))							
+			"看望霍嫬儿":	
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))							
+			"初见若昭":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("若昭"))			
+									
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]

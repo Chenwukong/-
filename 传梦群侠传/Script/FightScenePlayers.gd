@@ -57,7 +57,7 @@ var bagArmorItem = {
 	"大剑":{
 		"info": ItemData.weapon.get("大剑"),
 		"type": "weapon",
-		"number": 1,
+		"number": 2,
 		"added": false
 	},
 	"布衣":{
@@ -81,12 +81,13 @@ var bagArmorItem = {
 }
 
 
-var golds = 0
+var golds = 600
 var seconds = 0
 
 var fightScenePlayerData2= {
 	"时追云":{
 			"name": "时追云",
+			"sex": "male",
 			"icon":"res://portrait/时追云.png",
 			"smallIcon":"res://main character/tile000.png",
 			"alive":true,
@@ -152,6 +153,7 @@ var fightScenePlayerData2= {
 			},
 		"姜韵": {
 			"name": "姜韵",
+			"sex": "female",
 			"icon":"res://Pictures/Pictures/烟儿.png",
 			"smallIcon":"res://main character/jiangYuntile000.png",
 			"playerAttackType": "range",
@@ -357,6 +359,7 @@ var fightScenePlayerData2= {
 var fightScenePlayerData = {
 	"时追云":{
 			"name": "时追云",
+			"sex": "male",
 			"icon":"res://Pictures/Pictures/时追云.png",
 			"smallIcon":"res://main character/tile000.png",
 			"alive":true,
@@ -382,7 +385,7 @@ var fightScenePlayerData = {
 			"addHp": 0,
 			"addMp":0,
 			"mp": 100,
-			"currHp": 220,
+			"currHp": 160,
 			"currMp": 100,
 			"potential": 0,
 			"idle": "时追云idle",
@@ -406,7 +409,20 @@ var fightScenePlayerData = {
 				"audio": "res://Audio/SE/HEAL9.ogg",
 				"duration": 3,
 				"icon":"res://Icons/●图标 (64).png",
-			}
+			},
+			{"name": "飞剑决",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "range",
+				"value": 2.5,
+				"cost": 30,
+				"description": "时追云通过修炼领悟的技能，比平A多点伤害",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/096-Attack08.ogg",
+				"icon": "res://Icons/斩龙诀.png"
+			},	
 	
 			# Add more magic spells as needed
 			],
@@ -423,13 +439,14 @@ var fightScenePlayerData = {
 			},
 		"姜韵": {
 			"name": "姜韵",
-			"icon":"res://Pictures/Pictures/烟儿.png",
+			"sex": "female",
+			"icon":"res://portrait/姜韵.png",
 			"smallIcon":"res://main character/jiangYuntile000.png",
 			"playerAttackType": "range",
 			"playerSpeed": 20,
 			"addPlayerSpeed": 0,
 			"critChance": 1,
-			"addCritChance":0,
+			"addCritChance":0,			
 			"blockChance":1,
 			"level": 1,
 			"exp":0,
@@ -440,7 +457,7 @@ var fightScenePlayerData = {
 			"addPhysicDefense": 0,
 			"str": 100,
 			"addStr":0,
-			"abilityPower": 100,
+			"abilityPower": 1000,
 			"addAbilityPower":0,
 			"additionDmg": 0,
 			"hp": 200,
@@ -623,7 +640,76 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]
 		},
+		"小二": {
+			"name": "小二",
+			"sex": "male",
+			"icon": "res://Pictures/Pictures/1.png",
+			"smallIcon":"res://portrait/小二.png",
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance":0,
+			"blockChance":0,
+			"level": 4,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr":0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"mp": 300,
+			"addMp":0,
+			"currHp": 200,
+			"currMp": 300,
+			"potential": 0,
+			"idle": "小二idle",
+			"autoAttack":'小二autoAttack',
+			"magicAutoAttack": "",
+			"playerMagic":[
+			{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},{
+				"name": "唧唧歪歪",
+				"level": 1,
+				"currExp": 49,
+				"needExp": 50,
+				"attackType": "range",
+				"value": 5,
+				"cost": 30,
+				"description": "小二的言语攻击，噪音污染",	
+				"effectArea": "aoe",
+				"effectingNum": 5,
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/鸟语花香.ogg",
+				"icon": "res://Icons/●图标 (14).png"
+			},			
 
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]
+		},
 }
  
 var datas = {
@@ -899,7 +985,7 @@ func remove_empty_items():
 #				"audio": "res://Audio/SE/男-剑.ogg",
 #				"icon": "res://Icons/●图标 (23).png"
 #			},
-#				"name": "斩龙决",
+#				"name": "飞剑决",
 #				"level": 1,
 #				"currExp": 0,
 #				"needExp": 50,

@@ -73,12 +73,19 @@ func _ready():
 	if Global.npcs.get("姜韵").dialogues[1].trigger == true and get_tree().current_scene.name == "时追云家":
 		$nightBgm.stream = load("res://Audio/BGS/SWD5 音效-深夜.mp3")
 	if Global.dial: 
-		DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(Global.dial))
+		var chapter = get_chapter()
+		DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 		
 func _process(delta):
+	if !Global.onFight:
+		if is_instance_valid($battleBgm):
+			$battleBgm.stop()
+	if Global.mcVisible == false:
+		get_tree().current_scene.get_node("player").visible = false
 	if Input.is_action_just_pressed("r") and !Global.onFight and !Global.onTalk and !Global.menuOut:
+		print("res://Scene/"+get_tree().current_scene.name+".tscn")
 		get_tree().change_scene_to_file("res://Scene/"+get_tree().current_scene.name+".tscn")
-
+	
 	var questItem = get_tree().get_nodes_in_group("questItem")
 	if Global.onQuest == false:
 		for i in questItem:
@@ -594,7 +601,7 @@ func _process(delta):
 	
 	
 	var dialogue = get_parent().get_node("DialogueManager")
-	if Global.onTalk:
+	if Global.onTalk and Global.showBlack:
 		$CanvasLayer.visible = false
 		$CanvasLayer2.visible = true
 	elif haveUi and !Global.onTalk and !Global.menuOut and !Global.onFight:
@@ -784,7 +791,7 @@ func _process(delta):
 
 func check_enter_fight_scene():
 	var randomNum = randi_range(0,5000)
-	print(randomNum)
+	
 	if is_instance_valid($player):
 		if randomNum < FIGHT_SCENE_TRIGGER_PROBABILITY:
 			var instance = preload("res://Scene/battleField.tscn").instantiate()	
@@ -1017,7 +1024,18 @@ func _on_add_num_timer_timeout():
 
 
 func _on_dialogue_timer_timeout():
-	DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(Global.dial))	
+	
+	var chapter = get_chapter()
+	print(chapter, "res://Dialogue/"+chapter+".dialogue")
+	DialogueManager.show_chat(load("res://Dialogue/"+str(chapter)+".dialogue"),get_npc_dialogue(Global.dial))	
+	
+func get_chapter():
+	var npc = Global.npcs[Global.dial]
+	var dialogue_index = npc["current_dialogue_index"]		
+	var chapter = npc["dialogues"][dialogue_index].chapter
+	return chapter
+	
+	
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]

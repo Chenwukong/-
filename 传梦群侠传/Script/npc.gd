@@ -19,7 +19,8 @@ func _ready():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
+	if self.visible == false:
+		$npcBody/CollisionPolygon2D.disabled = true
 	for i in Global.npcVis:
 		if self.name in Global.npcVis.get(i):
 			if get_tree().current_scene.name == i:
@@ -40,7 +41,12 @@ func _on_button_pressed():
 		get_parent().get_node("npcAudio").stream = load(newStream)
 		get_parent().get_node("npcAudio").play()
 	if Global.npcs.has(npcName):
-		DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
+		var npc = Global.npcs[npcName]
+		#DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
+		var dialogue_index = npc["current_dialogue_index"]	
+		var dialogue_entry = npc["dialogues"][dialogue_index]
+		DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(npcName))		
+		
 		get_tree().current_scene.get_node("player")
 		if itemSale.size() > 0:
 			Global.currShopItem = itemSale
@@ -91,7 +97,6 @@ func _on_button_mouse_exited():
 func _on_button_button_down():
 	player = get_tree().current_scene.get_node("player")
 	var distance = self.position.distance_to(player.position)
-	print(distance)
 	if distance > 130:
 		return
 	if Global.onTalk:
@@ -100,8 +105,17 @@ func _on_button_button_down():
 		get_parent().get_node("npcAudio").stream = load(newStream)
 		get_parent().get_node("npcAudio").play()
 	if Global.npcs.has(npcName):
+		var npc = Global.npcs[npcName]
+		#DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
+		var dialogue_index = npc["current_dialogue_index"]	
+		var dialogue_entry
+		if dialogue_index != npc["dialogues"].size():
+			dialogue_entry = npc["dialogues"][dialogue_index]
+			DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(npcName))		
+		else:
+			dialogue_entry = 1
+			DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue(npcName))		
 		
-		DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
 		get_tree().current_scene.get_node("player")
 		if itemSale.size() > 0:
 			Global.currShopItem = itemSale

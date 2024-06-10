@@ -6,7 +6,7 @@ var monsterIdx = -1
 var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
-var dangerScene = {"东海湾":2}
+var dangerScene = {"东海湾":3, "江南野外": 5}
 var menuOut = false
 
 var onAttackingList = []
@@ -48,7 +48,7 @@ var currHitType = ""
 var currPhysicDmg = 0
 var currMagicDmg = 0
 var dealtDmg = 0
-
+var playerDirection = ""
 var onHitEnemy = []
 var onHitAllie = []
 var canBlock = false
@@ -61,7 +61,7 @@ var onItemSelect
 var onItemIndexSelect
 var currMenuItem
 var onMenuItemUsing
-
+var showBlack = true
 var itemPlayers = []
 var itemPlayerIndex
 func connectAutoAttackSignal(enemy_instance):
@@ -69,10 +69,10 @@ func connectAutoAttackSignal(enemy_instance):
 	
 func _on_auto_attack():
 	print("Auto attack signal received")
-
+var lost = false
 var targetMonsterIdx = 0
 var playerMagicList
-
+var lastMagic = {"magicInfo":null}
 var finishingBattle = false
 var onMenuSelectCharacter = false
 var onItemPage = false
@@ -149,9 +149,9 @@ var chapters = {
 	# 直到 chapter10
 }
 
-var current_chapter_id = 1
+var current_chapter_id = 2
 
-
+var mcVisible = true
 var npcVis = {
 	"东海湾":{
 		"鱼叟":{"visible" : true},
@@ -239,7 +239,14 @@ var npcVis = {
 	},
 	"时追云家":{
 		"姜韵": {"visible" : true},
-	}	
+	},
+	"江南野外":{
+		"牛妖": {"visible" : true},
+		"羊妖": {"visible" : true},
+		"小二": {"visible" : true},
+		"小二2": {"visible" : false},
+		"王婆": {"visible" : true},
+	}
 	
 }
 
@@ -387,10 +394,20 @@ var npcs = {
 				{"chapter": 1, "dialogue": "白龙救场", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "安葬", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "斩妖", "unlocked": true, "bgm":null,"trigger":false},
+				#8
+				{"chapter": 2, "dialogue": "初见小二", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "解释抢钱", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "程咬金登场", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "金甲帮书生", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "小二休息", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "王婆卖瓜", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "打赢王婆", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "起床找金甲", "unlocked": true, "bgm":null,"trigger":false},
+				
+				
 			],
-		"current_dialogue_index": 0,	
-		"constNpc": false
-	},	
+		"current_dialogue_index": 14,	
+		"constNpc": false	},	
 	"传梦":{
 		"dialogues": [
 				#0
@@ -398,12 +415,159 @@ var npcs = {
 				],
 			"current_dialogue_index": 0,	
 			"constNpc": false
-		},						
+		},	
+	"老鸨":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "进妓院", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true	
+	},
+	"金甲":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "解围金甲", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "结识金甲", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "金甲吃饭", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "金甲再帮书生", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "帮郎中", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "看望霍嫬儿", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "金甲解释", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "查看凶案", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 5,	
+			"constNpc": false	
+	},
+	"牛冠军":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "叫你交钱", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true
+		},		
+	"擂台管理":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "交钱", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true
+		},
+	"打赢牛冠军":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "打赢牛冠军", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true		
+	},
+	"围观群众1":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "围观群众1", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true				
+	},
+	"围观群众2":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "围观群众2", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true				
+	},
+	"围观群众3":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "围观群众3", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true				
+	},	
+	"围观群众6":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "围观群众6", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true				
+	},		
+	"周周":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "周周", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true				
+	},			
+	"小二":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "当诱饵", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打赢鼠先锋", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": false			
+	},	
+	"酒店老板":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "酒店休息", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true			
+	},		
+	"守门兵甲":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "守门兵甲", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true							
+	},
+	"守门兵乙":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "守门兵乙", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true							
+	},	
+	"爷傲奈我何":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "爷傲奈我何", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打败爷傲", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false							
+	},		
+	"师爷":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "求加固", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false							
+	},	
+	"若昭":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "初见若昭", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false							
+	},										
 }
 var potentialBalls = {
 
 }
-
+var treasureBox = {
+	
+}
 var autoDialogue = {
 	"chapter1":{
 		"男主开头说话":{"dialogue":"男主开头说话", "trigger":false}
@@ -418,6 +582,8 @@ var mapPlayerPos = Vector2(0, 0)
 var haveLantern = false
 var saveData = {}
 var onHurry = false
+var default_trigger_places
+var saved_trigger_places
 var triggerPlace ={
 	"新手警告": {"trigger":false, "disable": false},
 	"二娃请求": {"trigger":false, "disable": true},
@@ -432,14 +598,19 @@ var triggerPlace ={
 	"时追云进城": {"trigger":false, "disable": true},
 	"时追云赶到": {"trigger":false, "disable": true},
 	"斩妖": {"trigger":false, "disable": true},
+	"初见小二": {"trigger":false, "disable": false},
+	"小二休息": {"trigger":false, "disable": false},
+	"王婆卖瓜": {"trigger":false, "disable": false},
+	"解围金甲": {"trigger":false, "disable": false},
+	"初见若昭": {"trigger":false, "disable": false},
 }
 
 func _ready():
 	currScene = get_tree().get_current_scene().get_name()
 
-
+var deltas
 func _process(delta):
-
+	deltas = delta
 	currScene = get_tree().get_current_scene().get_name()
 	if npcs["system"].current_dialogue_index == 5 and get_tree().current_scene.name == "建邺城右" :
 		get_tree().current_scene.get_node("姜韵").play("dead")
@@ -480,6 +651,7 @@ func save():
 	saveData.violencePoint = violencePoint
 	saveData.questHint = questHint
 	saveData.onTeamPet = onTeamPet
+	saveData.treasureBox = treasureBox
 func loadData():
 	currScene = saveData.currScene
 	currPlayer = saveData.currPlayer
@@ -509,6 +681,34 @@ func loadData():
 	violencePoint = saveData.violencePoint
 	questHint = saveData.questHint
 	onTeamPet = saveData.onTeamPet
+	if saveData.has("treasureBox"):
+		treasureBox = saveData.treasureBox
+	default_trigger_places = {
+		"新手警告": {"trigger": false, "disable": false},
+		"二娃请求": {"trigger": false, "disable": true},
+		"城主施舍": {"trigger": false, "disable": true},
+		"王姨尖叫": {"trigger": false, "disable": true},
+		"王姨遇险": {"trigger": false, "disable": true},
+		"管家请求": {"trigger": false, "disable": true},
+		"初见奔霸": {"trigger": false, "disable": true},
+		"时追云杀完2": {"trigger": false, "disable": true},
+		"时追云杀完3": {"trigger": false, "disable": true},
+		"杀戮": {"trigger": false, "disable": true},
+		"时追云进城": {"trigger": false, "disable": true},
+		"时追云赶到": {"trigger": false, "disable": true},
+		"斩妖": {"trigger": false, "disable": true},
+		"初见小二": {"trigger": false, "disable": false},
+		"小二休息": {"trigger": false, "disable": false},
+		"王婆卖瓜": {"trigger": false, "disable": false},
+		"解围金甲": {"trigger":false, "disable": false},
+		"初见若昭": {"trigger":false, "disable": true},
+	}
+	# Ensure saved data has all default places, add if missing
+	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
+	for key in default_trigger_places.keys():
+		if not saved_trigger_places.has(key):
+			saved_trigger_places[key] = default_trigger_places[key]
+	triggerPlace = saved_trigger_places		
 	get_tree().change_scene_to_file("res://Scene/"+saveData.currScene+".tscn")
 func turnDark():
 	var current_scene = get_tree().current_scene
@@ -547,21 +747,37 @@ func addGold(goldAmount):
 	get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/006-System06.ogg")
 	get_tree().current_scene.get_node("subSound").play()
 	get_tree().current_scene.get_node("battleRewardGone").start()
-	Global.systemMsg.append("全队获得了 " + str(goldAmount) + " 银两")
+	Global.systemMsg.append("获得了 " + str(goldAmount) + " 银两")
 	get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 
-func addItem(item,type,bagPlace,num):
-	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").text = str("获得了"+item)
+func lostGold(goldAmount):
+	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(-goldAmount)
+	FightScenePlayers.golds -= goldAmount
+	
 	
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer").visible = true	
-	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = true	
+	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true	
 	
 	get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/006-System06.ogg")
 	get_tree().current_scene.get_node("subSound").play()
 	get_tree().current_scene.get_node("battleRewardGone").start()
+	Global.systemMsg.append("失去了 " + str(goldAmount) + " 银两")
+	get_tree().current_scene.get_node("CanvasLayer").renderMsg()
+
+
+
+func addItem(item,type,bagPlace,num):
+#	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").text = str("获得了"+item)
+#
+#	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer").visible = true	
+#	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = true	
+#
+#	get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/006-System06.ogg")
+#	get_tree().current_scene.get_node("subSound").play()
+#	get_tree().current_scene.get_node("battleRewardGone").start()
 	var bag = FightScenePlayers[bagPlace]
 	if bag.has(item):
-		bag[item].number += 1
+		bag[item].number += num
 	else:
 		bag[item] = {
 			"info": ItemData[type].get(item),
@@ -610,3 +826,21 @@ func complete_task(chapter_id, task_id):
 		Global.chapters[chapter_id]["tasks"][task_id] = true
 		for npc_id in Global.npcs.keys():
 			update_npc_dialogue_index(npc_id)
+func moveChar(x,y):
+	get_tree().current_scene.get_node("player/Sprite2D").visible = false
+	get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
+	get_tree().current_scene.get_node("player/AnimatedSprite2D").play("up")
+	var tween = get_tree().create_tween()
+	var player_node = get_tree().current_scene.get_node("player")  # Get the player node
+	
+	var new_position =  Vector2(0,0)
+	new_position.x = player_node.position.x+x
+	new_position.y = player_node.position.y+y
+	tween.tween_property(get_tree().current_scene.get_node("player"),
+							   "position",  # Property to interpolate
+							   new_position,  # Initial value
+							   1
+							)
+
+	tween.play()
+

@@ -30,7 +30,12 @@ func _on_area_2d_area_entered(area):
 func checkSetPos(currScene, toScene): 
 	if currScene == "新手村":
 		if toScene == "东海湾":
-			return Vector2(2284,1559)			
+			return Vector2(2284,1559)	
+		if toScene == "chapterPreview":
+			return Vector2(2284,1559)				
+			
+			
+					
 	if currScene == "东海湾":
 		if toScene == "建邺城":
 			return Vector2(1215,222)
@@ -54,8 +59,7 @@ func checkSetPos(currScene, toScene):
 		if toScene == "建邺城":
 			return Vector2(584, 1345)
 		if toScene == "江南野外":
-			if Global.npcs["system"].current_dialogue_index > 7:
-				get_tree().change_scene_to_file("res://Scene/"+"thank"+".tscn")
+			return Vector2(2622,1276)	
 		if toScene == "建邺布店":
 			return Vector2(264,308)
 		if toScene == "建邺药店":
@@ -72,3 +76,36 @@ func checkSetPos(currScene, toScene):
 	if currScene == "建邺药店":
 		if toScene == "建邺城右":
 			return Vector2(1717,738)			
+	if currScene == "江南野外":	
+		if toScene == "长安北":
+			return Vector2(2773,353)			
+	if currScene == "长安北":
+		if toScene == "长安城":
+			return Vector2(1353,77)			
+		if toScene == "大唐官府":
+			return Vector2(3654,1974)
+		if toScene == "锁妖塔":
+			return Vector2(2773,353)
+	if currScene == "长安城":
+		if toScene == "长安北":
+			return Vector2(2247,1815)				
+		if toScene == "大唐官府":
+			return Vector2(2492,2050)		
+		if toScene == "金甲家":
+			return Vector2(207,334)
+		if toScene == "长安酒店":
+			return Vector2(154,546)	
+	if currScene == "大唐官府":
+		if toScene == "大唐官府大厅":
+			return Vector2(654,403)			
+										
+	if currScene == "金甲家":		
+		if toScene == "长安城":
+			return Vector2(3831,1253)								
+			
+	if currScene == "长安酒店":
+		if toScene == "长安城":
+			return Vector2(3026,939)			
+		
+		
+		
