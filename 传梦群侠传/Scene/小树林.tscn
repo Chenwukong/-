@@ -868,8 +868,9 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame = 0
-frame_progress = 0.0
+
+[node name="Camera2D" parent="player" index="3"]
+enabled = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -4883,7 +4884,7 @@ stream = ExtResource("33_2e7da")
 max_distance = 1e+09
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(1675, 1909)
+position = Vector2(1858, 1238)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -4918,6 +4919,12 @@ sprite_frames = SubResource("SpriteFrames_42n4c")
 visible = false
 position = Vector2(1352, 1224)
 sprite_frames = SubResource("SpriteFrames_xwu8u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1309.5, 864.174)
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(734, 497)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

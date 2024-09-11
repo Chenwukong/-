@@ -782,14 +782,12 @@ texture = ExtResource("2_gycxv")
 
 [node name="player" parent="." instance=ExtResource("3_y0rqp")]
 z_index = 2
-position = Vector2(1251, 323)
+position = Vector2(2627, 1250)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -4760,12 +4758,8 @@ offset_bottom = 804.0
 texture = ExtResource("29_nril0")
 
 [node name="teleportCircle" parent="." instance=ExtResource("30_dhrgl")]
-visible = false
 position = Vector2(-50, 66)
 toScene = "长安北"
-
-[node name="CollisionShape2D" parent="teleportCircle/area2D" index="0"]
-disabled = true
 
 [node name="teleportCircle2" parent="." instance=ExtResource("30_dhrgl")]
 position = Vector2(2761, 1263)
@@ -4896,6 +4890,9 @@ visible = false
 visible = false
 position = Vector2(1205, 293)
 sprite_frames = SubResource("SpriteFrames_oxwlf")
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-393, 11)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

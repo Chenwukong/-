@@ -12,9 +12,9 @@ func _ready():
 func _process(delta):
 	$Control/num.text = str(buyAmount)	
 	shopItems = get_tree().get_nodes_in_group("shopItem")
-
+	
 func _on_button_pressed():
-	print(321)
+	
 #	if get_tree().current_scene.onItemPicking:
 #		if buyAmount * gold > FightScenePlayers.golds:
 #			return
@@ -24,14 +24,12 @@ func _on_button_pressed():
 	get_tree().current_scene.shopItems[get_tree().current_scene.itemIndex].get_node("Control").visible = false
 	for x in shopItems.size():
 		if shopItems[x] == self:
-			print(1)
 			get_tree().current_scene.itemIndex = x
 			if get_tree().current_scene.onItemPicking or get_tree().current_scene.onItemPicked:
 				print( buyAmount * gold,"x", FightScenePlayers.golds)
 				if buyAmount * gold > FightScenePlayers.golds:	
 					pass	
 				else:
-					print(3)
 					get_tree().current_scene.get_node("shop/Panel/buyButton").visible = true
 					#get_tree().current_scene.onBuy = true
 					get_tree().current_scene.shopItems[get_tree().current_scene.itemIndex].get_node("Control").visible = true

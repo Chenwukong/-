@@ -1,9 +1,12 @@
-[gd_scene load_steps=58 format=3 uid="uid://cb88fi556u5i7"]
+[gd_scene load_steps=87 format=3 uid="uid://cb88fi556u5i7"]
 
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="1_s2t5j"]
 [ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="2_1s4n3"]
 [ext_resource type="Texture2D" uid="uid://caovo28xoxyfw" path="res://Characters/燕子-哭.png" id="3_17x1w"]
 [ext_resource type="Texture2D" uid="uid://clrihvdlhaerp" path="res://Characters/燕子-拜谢.png" id="4_7r7t0"]
+[ext_resource type="Texture2D" uid="uid://bvf2lhcadbesq" path="res://Characters/燕子-招手.png" id="5_w7rja"]
+[ext_resource type="Texture2D" uid="uid://duqwywuf47a4u" path="res://梦魂Animation/0燕子法术2.png" id="6_fsi3j"]
+[ext_resource type="Texture2D" uid="uid://cmid3q1x5a3hy" path="res://Characters/燕子-跳舞.png" id="6_lkyyo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c57qh"]
 atlas = ExtResource("2_1s4n3")
@@ -92,6 +95,22 @@ region = Rect2(140, 0, 70, 98)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c3c68"]
 atlas = ExtResource("3_17x1w")
 region = Rect2(210, 0, 70, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llu8p"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(0, 0, 70, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbyy2"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(70, 0, 70, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0vk0"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(140, 0, 70, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x54ty"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(210, 0, 70, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gd0gl"]
 atlas = ExtResource("4_7r7t0")
@@ -213,6 +232,94 @@ region = Rect2(144, 99, 72, 99)
 atlas = ExtResource("4_7r7t0")
 region = Rect2(216, 99, 72, 99)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwdbn"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vk7cd"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ea66k"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2um0"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8axtj"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_86bw2"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66buf"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aed2l"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73vgx"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_padq3"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vvc3"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lctnd"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wl5cw"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1807"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gori6"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7f7n"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(0, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdt4u"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxbbk"]
+atlas = ExtResource("6_fsi3j")
+region = Rect2(384, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otp81"]
+atlas = ExtResource("6_lkyyo")
+region = Rect2(0, 0, 78, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8fivv"]
+atlas = ExtResource("6_lkyyo")
+region = Rect2(78, 0, 78, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skeix"]
+atlas = ExtResource("6_lkyyo")
+region = Rect2(156, 0, 78, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsroi"]
+atlas = ExtResource("6_lkyyo")
+region = Rect2(234, 0, 78, 103)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_hi8t1"]
 animations = [{
 "frames": [{
@@ -314,6 +421,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"右下哭",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llu8p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbyy2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0vk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x54ty")
+}],
+"loop": true,
+"name": &"右下招手",
 "speed": 5.0
 }, {
 "frames": [{
@@ -450,12 +574,88 @@ animations = [{
 "loop": false,
 "name": &"左下谢",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwdbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vk7cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ea66k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2um0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8axtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_86bw2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66buf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aed2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73vgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_padq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vvc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lctnd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wl5cw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1807")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gori6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7f7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdt4u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxbbk")
+}],
+"loop": true,
+"name": &"施法",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otp81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8fivv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skeix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsroi")
+}],
+"loop": true,
+"name": &"跳舞",
+"speed": 6.0
 }]
 
 [node name="凌若昭" instance=ExtResource("1_s2t5j")]
 sprite_frames = SubResource("SpriteFrames_hi8t1")
-animation = &"右上"
-frame_progress = 0.721343
+animation = &"施法"
+frame_progress = 0.736262
 
 [node name="CollisionPolygon2D" parent="npcBody" index="1"]
 disabled = true

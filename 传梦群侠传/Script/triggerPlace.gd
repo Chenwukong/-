@@ -14,16 +14,15 @@ func _ready():
 func _process(delta):
 	var places = get_tree().get_nodes_in_group("triggerPlace")
 	for i in places:
-
 		if Global.triggerPlace.get(i.name).disable == true:
 			i.get_node("Area2D/CollisionShape2D").disabled = true
 		if Global.triggerPlace.get(i.name).disable == false:
 			i.get_node("Area2D/CollisionShape2D").disabled = false
 
 func _on_area_2d_area_entered(area):
-	if area.get_parent().is_in_group("mapPlayer") and Global.triggerPlace.get(triggerEvent).disable == false:
+	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(triggerEvent).disable == false:
 		var player = area.get_parent()
-		print(triggerEvent)
+		
 		match triggerEvent:
 			"二娃请求":
 				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("二娃"))
@@ -71,8 +70,27 @@ func _on_area_2d_area_entered(area):
 			"看望霍嫬儿":	
 				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))							
 			"初见若昭":
-				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("若昭"))			
-									
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("凌若昭"))			
+			"进塔":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))
+			"再见凌若昭":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("凌若昭"))	
+			"塔2":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))	
+			"塔3":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))	
+			"塔4":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))									
+			"塔5":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))													
+			"塔6":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("金甲"))	
+			"首入国境":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("system"))																				
+			"平定峰":
+				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("程咬金"))													
+																																												
+											
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]

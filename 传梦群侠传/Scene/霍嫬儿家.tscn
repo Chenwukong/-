@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://d4gxufr47jn04"]
+[gd_scene load_steps=102 format=3 uid="uid://d4gxufr47jn04"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_4hfh8"]
 [ext_resource type="Texture2D" uid="uid://b2n0b22536p6r" path="res://panoramas2/建邺_民居.jpg" id="2_vegcx"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://yddrmtw5hsgt" path="res://Characters/鬼将.png" id="31_2vrbv"]
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="32_161n5"]
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="32_agork"]
+[ext_resource type="Texture2D" uid="uid://fruw6wvuq06n" path="res://Characters/_药店老板.png" id="33_xpxhy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aiwie"]
 bg_color = Color(0, 0, 0, 0.584314)
@@ -663,6 +664,70 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tbw31")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv8bu"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(0, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6roj"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(50, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl7ws"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(100, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh0ex"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(150, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjwbh"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(200, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smg2d"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(250, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4if7t"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(300, 152, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nygj2"]
+atlas = ExtResource("33_xpxhy")
+region = Rect2(350, 152, 50, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_adc6n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv8bu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6roj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl7ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh0ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjwbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smg2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4if7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nygj2")
 }],
 "loop": true,
 "name": &"default",
@@ -3707,6 +3772,13 @@ visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
+[node name="画陀" parent="." instance=ExtResource("28_2pb3k")]
+visible = false
+position = Vector2(348.975, 305.378)
+sprite_frames = SubResource("SpriteFrames_adc6n")
+autoplay = "default"
+frame_progress = 0.254012
+
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
 [connection signal="mouse_entered" from="CanvasLayer/menutButton" to="CanvasLayer" method="_on_menut_button_mouse_entered" flags=18]
@@ -3745,6 +3817,7 @@ visible = false
 [connection signal="timeout" from="warnTimer" to="." method="_on_warn_timer_timeout" flags=18]
 
 [editable path="小二"]
+[editable path="小二/小二"]
 [editable path="时追云"]
 [editable path="player"]
 [editable path="看望霍嫬儿"]

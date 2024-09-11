@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvbnmhi3kbirj"]
+[gd_scene load_steps=23 format=3 uid="uid://bvbnmhi3kbirj"]
 
 [ext_resource type="Script" path="res://Script/burie_scene.gd" id="1_4gr2f"]
 [ext_resource type="Texture2D" uid="uid://dynu5bgeab3fs" path="res://S$B%I9PT{M)~4G`2QJ@$S[I.png" id="1_5vp3g"]
@@ -7,6 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://dsr2cpo7fneba" path="res://20240207.png" id="4_wcuba"]
 [ext_resource type="Texture2D" uid="uid://bn41wi2og5jxi" path="res://)R}981MCBH}T00{RZQ~_GGV.png" id="6_g0yn2"]
 [ext_resource type="AudioStream" uid="uid://cxeci2beajgc7" path="res://Audio/BGM/戒网 - Black Myth_ Wukong OST (mp3cut.net).mp3" id="7_vo3kx"]
+[ext_resource type="Texture2D" uid="uid://bdrr5ngfvt5tf" path="res://Icons/提醒背景2.png" id="9_5k6ub"]
+[ext_resource type="Texture2D" uid="uid://cvqnevuj05gxq" path="res://Panoramas/建业右.jpg" id="10_sg1cp"]
+[ext_resource type="Texture2D" uid="uid://cwk6k7dfb22a8" path="res://Icons/win_xy.png" id="11_1346w"]
+[ext_resource type="Texture2D" uid="uid://d01t8wubtgj3t" path="res://%U[PB4TP~_3Y(001OWPGWG4.png" id="12_pew60"]
+[ext_resource type="Texture2D" uid="uid://jh6kol06yfx7" path="res://Icons/85-1.png" id="13_hkjlw"]
+[ext_resource type="Texture2D" uid="uid://br6b5v7xd1l3t" path="res://Icons/80-1.png" id="14_7krmp"]
+[ext_resource type="Texture2D" uid="uid://bqwnjy0vha0fv" path="res://Icons/对话框.png" id="15_xmtbg"]
+[ext_resource type="Texture2D" uid="uid://etal3eier257" path="res://Icons/Item-Cube01.png" id="16_2ug5o"]
 
 [sub_resource type="Animation" id="Animation_qro74"]
 length = 0.001
@@ -273,8 +281,6 @@ position = Vector2(568.5, 401)
 scale = Vector2(0.304948, 0.375)
 texture = ExtResource("6_g0yn2")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_vo3kx")
 volume_db = 5.0
@@ -284,3 +290,244 @@ autoplay = true
 libraries = {
 "": SubResource("AnimationLibrary_hifea")
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="msgBox" type="TextureRect" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.584314)
+layout_direction = 2
+anchors_preset = -1
+anchor_left = 0.617
+anchor_top = 0.739
+anchor_right = 0.993
+anchor_bottom = 0.994
+offset_left = -707.784
+offset_top = 5.79999
+offset_right = 466.064
+offset_bottom = 560.8
+grow_vertical = 0
+scale = Vector2(0.269756, 0.268582)
+texture = ExtResource("9_5k6ub")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/msgBox"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.045
+anchor_right = 0.984
+anchor_bottom = 0.771
+offset_left = -54.35
+offset_top = -16.155
+offset_right = 8.71204
+offset_bottom = 140.811
+
+[node name="Label" type="Label" parent="CanvasLayer/msgBox/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "sdfsdf"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/msgBox/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "sdfsdf"
+vertical_alignment = 1
+
+[node name="gameTitle" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_left = 912.0
+offset_top = 17.0
+offset_right = 1233.0
+offset_bottom = 156.0
+scale = Vector2(0.670483, 0.479338)
+texture = ExtResource("9_5k6ub")
+
+[node name="Label" type="Label" parent="CanvasLayer/gameTitle"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 60
+text = "传梦之路"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="map" type="TextureRect" parent="CanvasLayer"]
+visible = false
+offset_right = 3090.0
+offset_bottom = 2403.0
+scale = Vector2(0.485758, 0.332852)
+texture = ExtResource("10_sg1cp")
+
+[node name="position" type="TextureRect" parent="CanvasLayer"]
+z_index = 3
+offset_left = 25.0
+offset_top = 10.0
+offset_right = 225.0
+offset_bottom = 144.0
+texture = ExtResource("11_1346w")
+stretch_mode = 4
+
+[node name="_u[pb4tp~3y(001owpgwg4" type="Sprite2D" parent="CanvasLayer/position"]
+z_index = -1
+position = Vector2(100, 61.5)
+scale = Vector2(0.0540166, 0.063541)
+texture = ExtResource("12_pew60")
+
+[node name="xyLabel" type="Label" parent="CanvasLayer/position"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 0.097
+offset_left = 51.0
+offset_top = 110.0
+offset_right = 113.0
+offset_bottom = 123.002
+text = "x: 30   y:40"
+
+[node name="mapName" type="Label" parent="CanvasLayer/position"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 25.0
+offset_right = 169.0
+offset_bottom = 50.0
+text = "东海湾"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/position"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.01
+anchor_bottom = 1.015
+offset_bottom = -0.0100098
+
+[node name="menutButton" type="TextureButton" parent="CanvasLayer"]
+offset_left = 1072.0
+offset_top = 729.0
+offset_right = 1194.0
+offset_bottom = 838.0
+scale = Vector2(0.625067, 0.611772)
+texture_normal = ExtResource("13_hkjlw")
+texture_pressed = ExtResource("14_7krmp")
+texture_hover = ExtResource("14_7krmp")
+ignore_texture_size = true
+
+[node name="Label2" type="Label" parent="CanvasLayer/menutButton"]
+visible = false
+layout_mode = 0
+offset_left = 14.3984
+offset_top = -44.134
+offset_right = 94.3984
+offset_bottom = 10.866
+scale = Vector2(0.841353, 0.836518)
+theme_override_font_sizes/font_size = 40
+text = "菜单"
+
+[node name="questHint" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(1020.79, 105.751)
+scale = Vector2(0.521952, 1.22454)
+texture = ExtResource("15_xmtbg")
+
+[node name="Label" type="Label" parent="CanvasLayer/questHint"]
+visible = false
+modulate = Color(1, 0.376471, 0.305882, 1)
+offset_left = -73.0
+offset_top = -20.0
+offset_right = 87.0
+offset_bottom = 527.0
+scale = Vector2(0.784426, 0.577007)
+theme_override_font_sizes/font_size = 40
+text = "任务提示"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/questHint"]
+modulate = Color(1, 1, 0, 1)
+offset_left = -213.261
+offset_top = -54.9864
+offset_right = -13.2615
+offset_bottom = 64.0136
+scale = Vector2(2.12999, 1.00289)
+theme_override_font_sizes/font_size = 20
+text = "二十大法律解释大陆空军发生考虑到房价"
+autowrap_mode = 1
+
+[node name="hintButton" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(1027.25, 763.75)
+scale = Vector2(3.22917, 2.9375)
+texture = ExtResource("16_2ug5o")
+
+[node name="hintButton" type="Button" parent="CanvasLayer/hintButton"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 9.0
+
+[node name="Label" type="Label" parent="CanvasLayer/hintButton"]
+visible = false
+offset_left = -5.9613
+offset_top = -21.0214
+offset_right = 74.0387
+offset_bottom = 33.9786
+scale = Vector2(0.155241, 0.172997)
+theme_override_font_sizes/font_size = 40
+text = "提示"
+
+[node name="phoneButtons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="右上" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 549.0
+offset_right = 183.0
+offset_bottom = 583.0
+rotation = 0.698132
+scale = Vector2(1.2, 1.2)
+text = "↑"
+
+[node name="左上" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 9.99997
+offset_top = 590.0
+offset_right = 63.0
+offset_bottom = 624.0
+rotation = -0.698132
+scale = Vector2(1.2, 1.2)
+text = "↑"
+
+[node name="左下" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 628.0
+offset_right = 89.0
+offset_bottom = 662.0
+rotation = 0.698132
+scale = Vector2(1.2, 1.2)
+text = "↓
+"
+
+[node name="右下" type="Button" parent="CanvasLayer/phoneButtons"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 671.0
+offset_right = 158.0
+offset_bottom = 705.0
+rotation = -0.698132
+scale = Vector2(1.2, 1.2)
+text = "↓"
+
+[connection signal="mouse_entered" from="CanvasLayer/menutButton" to="CanvasLayer" method="_on_menut_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/menutButton" to="CanvasLayer" method="_on_menut_button_mouse_exited"]
+[connection signal="button_down" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_button_down"]
+[connection signal="mouse_entered" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_mouse_exited"]

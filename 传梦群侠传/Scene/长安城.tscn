@@ -1,4 +1,4 @@
-[gd_scene load_steps=182 format=3 uid="uid://3ae56ae6pv0p"]
+[gd_scene load_steps=180 format=3 uid="uid://3ae56ae6pv0p"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2w755"]
 [ext_resource type="Texture2D" uid="uid://bi1gl78smusew" path="res://panoramas2/长安城.PNG" id="2_uidke"]
@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://6lsqkncjry1g" path="res://Characters/秦祥林小.png" id="33_yba0s"]
 [ext_resource type="Texture2D" uid="uid://wnsd1wlc7385" path="res://Characters/武师.png" id="34_07vpc"]
 [ext_resource type="Texture2D" uid="uid://cikd0gev1w1p1" path="res://Characters/樵夫.png" id="35_rh8nu"]
-[ext_resource type="Texture2D" uid="uid://ceo1l7nl25x2i" path="res://Characters/无痕.png" id="36_0ny8e"]
 [ext_resource type="Texture2D" uid="uid://dq7yefi3ktcnq" path="res://Characters/肖遥.png" id="37_2gs0p"]
 [ext_resource type="Texture2D" uid="uid://cl6j0icbdkeyu" path="res://Characters/货商.png" id="38_uu46d"]
 [ext_resource type="Texture2D" uid="uid://ccv4m174lbpsf" path="res://Characters/财主.png" id="39_5chp4"]
@@ -50,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://dsp7clle17vkc" path="res://Characters/卫兵.png" id="47_nigjj"]
 [ext_resource type="Texture2D" uid="uid://gniqeect40oq" path="res://Characters/0狐美人.png" id="49_ilx64"]
 [ext_resource type="Texture2D" uid="uid://408asfro5ci7" path="res://Characters/铁匠-瘦.png" id="50_bgeup"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="51_bceq2"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="51_gxx50"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxdqv"]
@@ -964,21 +964,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f81or"]
-atlas = ExtResource("36_0ny8e")
-region = Rect2(0, 273, 67, 91)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_qjkql"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f81or")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_hk41a"]
 atlas = ExtResource("37_2gs0p")
 region = Rect2(0, 276, 70, 92)
@@ -1367,9 +1352,12 @@ polygon = PackedVector2Array(-999, 164, -779, 205, -411, 382, -593, 493, -819, 3
 [node name="CollisionPolygon2D17" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(529, 61, 296, -44, 336, -116, 490, -181, 564, -217, 602, -176, 456, -102, 605, -37, 557, 23)
 
+[node name="CollisionPolygon2D18" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-817, 558, -935, 725, -955, 831, -1036, 871, -1048, 950, -848, 1056, -684, 1018, -594, 910, -608, 836, -573, 817, -616, 720)
+
 [node name="player" parent="." instance=ExtResource("5_ipaw6")]
 z_index = 1
-position = Vector2(3026, 939)
+position = Vector2(1124, 2151)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -5337,7 +5325,7 @@ texture = ExtResource("28_ksdig")
 
 [node name="teleportCircle2" parent="." instance=ExtResource("29_wpbs3")]
 position = Vector2(206, 201)
-toScene = "大唐官府"
+toScene = "大唐官府 "
 
 [node name="teleportCircle3" parent="." instance=ExtResource("29_wpbs3")]
 position = Vector2(175, 1250)
@@ -5545,13 +5533,6 @@ npcName = "围观群众3"
 [node name="CollisionPolygon2D" parent="npcs/围观群众3/npcBody" index="1"]
 polygon = PackedVector2Array(-285, -308, -297, -288, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -236, -216, -236, -235, -239, -251, -244, -271, -238, -280, -245, -285, -254, -295)
 
-[node name="围观群众4" parent="npcs" instance=ExtResource("31_ablms")]
-position = Vector2(2549, 581)
-sprite_frames = SubResource("SpriteFrames_qjkql")
-
-[node name="CollisionPolygon2D" parent="npcs/围观群众4/npcBody" index="1"]
-polygon = PackedVector2Array(-283, -289, -293, -282, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -238, -220, -236, -238, -239, -252, -247, -280, -262, -294, -258, -282, -281, -293)
-
 [node name="围观群众5" parent="npcs" instance=ExtResource("31_ablms")]
 position = Vector2(2620, 553)
 sprite_frames = SubResource("SpriteFrames_au7w3")
@@ -5590,7 +5571,7 @@ sprite_frames = SubResource("SpriteFrames_7g46g")
 npcName = "书生"
 
 [node name="老鸨" parent="npcs" instance=ExtResource("31_ablms")]
-position = Vector2(246, 722)
+position = Vector2(218, 695)
 sprite_frames = SubResource("SpriteFrames_qp6yb")
 npcName = "老鸨"
 
@@ -5608,6 +5589,7 @@ toScene = "长安酒店"
 
 [node name="teleportCircle6" parent="." instance=ExtResource("29_wpbs3")]
 position = Vector2(124, 1942)
+toScene = "大唐国境"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("29_wpbs3")]
 position = Vector2(1457, 41)
@@ -5657,9 +5639,6 @@ disabled = true
 
 [node name="小二2" parent="警戒士兵" instance=ExtResource("44_fgjcg")]
 position = Vector2(1478, 894)
-
-[node name="CollisionPolygon2D" parent="警戒士兵/小二2/小二/npcBody" index="1"]
-disabled = true
 
 [node name="npc8" parent="警戒士兵" instance=ExtResource("31_ablms")]
 position = Vector2(1578, 966)
@@ -5728,7 +5707,7 @@ disabled = true
 [node name="周周" parent="." instance=ExtResource("31_ablms")]
 position = Vector2(1070, 2105)
 sprite_frames = SubResource("SpriteFrames_wrtsn")
-itemSale = ["锁子甲", null]
+itemSale = ["羊角盔", "珍珠头带", "锁子甲", "天香披肩", "神行靴", "江湖夜雨"]
 npcName = "周周"
 
 [node name="Camera2D3" type="Camera2D" parent="."]
@@ -5740,6 +5719,19 @@ sprite_frames = SubResource("SpriteFrames_5o4tr")
 
 [node name="potentialBall" parent="." instance=ExtResource("51_gxx50")]
 position = Vector2(2537, 2221)
+
+[node name="乞丐" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(114, 1916)
+
+[node name="CollisionPolygon2D" parent="乞丐/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -319, -243, -300, -192, -282, -191, -262, -192, -242, -199, -210, -204, -198, -240, -204, -254, -224, -281, -238, -289, -258, -282, -266, -280)
+
+[node name="凌若昭" parent="." instance=ExtResource("51_bceq2")]
+position = Vector2(1805.76, 959.314)
+frame_progress = 0.798339
+
+[node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
+volume_db = 4.552
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -5836,10 +5828,10 @@ position = Vector2(2537, 2221)
 [editable path="npcs/围观群众1"]
 [editable path="npcs/围观群众2"]
 [editable path="npcs/围观群众3"]
-[editable path="npcs/围观群众4"]
 [editable path="npcs/围观群众5"]
 [editable path="npcs/擂台管理"]
 [editable path="小二"]
+[editable path="小二/小二"]
 [editable path="警戒士兵/npc9"]
 [editable path="警戒士兵/小二2"]
 [editable path="警戒士兵/小二2/小二"]
@@ -5852,3 +5844,4 @@ position = Vector2(2537, 2221)
 [editable path="警戒士兵/npc6"]
 [editable path="警戒士兵/npc7"]
 [editable path="警戒士兵/金甲2"]
+[editable path="乞丐"]

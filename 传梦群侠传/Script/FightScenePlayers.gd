@@ -78,10 +78,22 @@ var bagArmorItem = {
 		"number": 2,	
 		"added": false	
 	},
+	"江湖夜雨":{
+		"info": ItemData.accessories.get("江湖夜雨"),
+		"type": "accessories",
+		"number": 1,	
+		"added": false	
+	},
+	"护身符":{
+		"info": ItemData.accessories.get("护身符"),
+		"type": "accessories",
+		"number": 1,	
+		"added": false	
+	},
 }
 
 
-var golds = 600
+var golds = 20000
 var seconds = 0
 
 var fightScenePlayerData2= {
@@ -353,8 +365,154 @@ var fightScenePlayerData2= {
 			},
 			"buff":["speed","strength","accuracy","defense"]
 		},
+	"凌若昭":{
+		"name": "凌若昭",
+		"sex": "female",
+		"icon":"res://Pictures/Pictures/云燕儿.png",
+		"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+		"alive":true,
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0,
+		"critChance": 1,
+		"addCritChance": 0,
+		"blockChance":1,
+		"level": 15,
+		"exp":0,
+		"needExp":100,
+		"magicDefense": 5,
+		"addMagicDefense": 0,
+		"physicDefense": 5,
+		"addPhysicDefense": 0,
+		"str": 100,
+		"addStr": 0,
+		"abilityPower": 100,
+		"addAbilityPower":0,
+		"additionDmg": 0,
+		"hp": 200,
+		"addHp": 0,
+		"addMp":0,
+		"mp": 100,
+		"currHp": 160,
+		"currMp": 100,
+		"potential": 70,
+		"idle": "凌若昭idle",
+		"autoAttack":'凌若昭autoAttack',
+		#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+		"magicAutoAttack":"凌若昭magicAutoAttack",
+		"playerMagic": [
+			{
+				"name": "催眠",
+				"attackType": "debuff",
+				"buffEffect": ["sleep"], 
+				"cost": 10,
+				"description": "同时催眠3个敌人",	
+				"effectArea": "aoe",
+				"animationArea":"enemy",
+				"effectingNum": 3,
+				"duration": 2,
+				"audio": "res://Audio/SE/法术5.ogg",
+				"icon":"res://Icons/●图标 (88).png",
+			},	{
+				"name": "冰封",
+				"attackType": "debuff",
+				"buffEffect": ["ice"], 
+				"cost": 10,
+				"description": "同时冰封3个敌人",	
+				"effectArea": "aoe",
+				"animationArea":"enemy",
+				"effectingNum": 3,
+				"duration": 2,
+				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+				"icon":"res://Icons/●图标 (119).png",
+			},
+			{
+				"name": "五雷咒",
+				"attackType": "range",
+				"value": 2,				
+				"cost": 100,
+				"description": "引来天雷轰杀单体敌人",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"effectingNum": 1,
+				"audio": "res://Audio/SE/123-Thunder01.ogg",
+				"icon":"res://Icons/五雷.png"
+			},
+		# Add more magic spells as needed
+		],
+		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+		"attackOnEnemySound": null,
+		"item":{
+			"weapon":null,
+			"cloth":null,
+			"hat":null,
+			"shoes":null,
+			"accessories":null
+		},
+		"buff":["speed","strength","accuracy","defense"]		
+},
+	"小二": {
+			"name": "小二",
+			"sex": "male",
+			"icon": "res://Pictures/Pictures/1.png",
+			"smallIcon":"res://portrait/小二.png",
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance":0,
+			"blockChance":0,
+			"level": 4,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr":0,
+			"abilityPower": 1,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"mp": 300,
+			"addMp":0,
+			"currHp": 200,
+			"currMp": 300,
+			"potential": 0,
+			"idle": "小二idle",
+			"autoAttack":'小二autoAttack',
+			"magicAutoAttack": "",
+			"playerMagic":[{
+				"name": "唧唧歪歪",
+				"level": 1,
+				"currExp": 49,
+				"needExp": 50,
+				"attackType": "range",
+				"value": 5,
+				"cost": 30,
+				"description": "小二的言语攻击，噪音污染",	
+				"effectArea": "aoe",
+				"effectingNum": 5,
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/鸟语花香.ogg",
+				"icon": "res://Icons/●图标 (14).png"
+			},			
 
-
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]
+		},		
 }
 var fightScenePlayerData = {
 	"时追云":{
@@ -385,7 +543,7 @@ var fightScenePlayerData = {
 			"addHp": 0,
 			"addMp":0,
 			"mp": 100,
-			"currHp": 160,
+			"currHp": 200,
 			"currMp": 100,
 			"potential": 0,
 			"idle": "时追云idle",
@@ -410,19 +568,7 @@ var fightScenePlayerData = {
 				"duration": 3,
 				"icon":"res://Icons/●图标 (64).png",
 			},
-			{"name": "飞剑决",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "range",
-				"value": 2.5,
-				"cost": 30,
-				"description": "时追云通过修炼领悟的技能，比平A多点伤害",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"audio": "res://Audio/SE/096-Attack08.ogg",
-				"icon": "res://Icons/斩龙诀.png"
-			},	
+
 	
 			# Add more magic spells as needed
 			],
@@ -437,7 +583,7 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]
 			},
-		"姜韵": {
+	"姜韵": {
 			"name": "姜韵",
 			"sex": "female",
 			"icon":"res://portrait/姜韵.png",
@@ -505,32 +651,8 @@ var fightScenePlayerData = {
 				"audio": "res://Audio/SE/133-Wind02.ogg",
 				"icon":"res://Icons/●图标 (77).png",
 			},
-			{
-				"name": "冰封",
-				"attackType": "debuff",
-				"buffEffect": ["ice"], 
-				"cost": 10,
-				"description": "同时冰封3个敌人",	
-				"effectArea": "aoe",
-				"animationArea":"enemy",
-				"effectingNum": 3,
-				"duration": 2,
-				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
-				"icon":"res://Icons/●图标 (119).png",
-			},
-			{
-				"name": "催眠",
-				"attackType": "debuff",
-				"buffEffect": ["sleep"], 
-				"cost": 10,
-				"description": "同时催眠3个敌人",	
-				"effectArea": "aoe",
-				"animationArea":"enemy",
-				"effectingNum": 3,
-				"duration": 2,
-				"audio": "res://Audio/SE/法术5.ogg",
-				"icon":"res://Icons/●图标 (88).png",
-			},
+
+
 			{
 				"name": "回魂术",
 				"attackType": "buff",
@@ -544,18 +666,7 @@ var fightScenePlayerData = {
 				"audio": "res://Audio/SE/法术5.ogg",
 				"icon":"res://Icons/●图标 (84).png"
 			},
-			{
-				"name": "五雷咒",
-				"attackType": "range",
-				"value": 10,				
-				"cost": 10,
-				"description": "引来天雷轰杀单体敌人",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"effectingNum": 1,
-				"audio": "res://Audio/SE/123-Thunder01.ogg",
-				"icon":"res://Icons/五雷.png"
-			},
+
 			
 			# Add more magic spells as needed
 			],
@@ -570,7 +681,7 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]
 		},
-		"大海龟": {
+	"大海龟": {
 			"name": "大海龟",
 			"icon":"",
 			"smallIcon":"",
@@ -640,7 +751,7 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]
 		},
-		"小二": {
+	"小二": {
 			"name": "小二",
 			"sex": "male",
 			"icon": "res://Pictures/Pictures/1.png",
@@ -658,9 +769,9 @@ var fightScenePlayerData = {
 			"addMagicDefense": 0,
 			"physicDefense": 5,
 			"addPhysicDefense": 0,
-			"str": 100,
+			"str": 80,
 			"addStr":0,
-			"abilityPower": 100,
+			"abilityPower": 20,
 			"addAbilityPower":0,
 			"additionDmg": 0,
 			"hp": 200,
@@ -674,14 +785,7 @@ var fightScenePlayerData = {
 			"autoAttack":'小二autoAttack',
 			"magicAutoAttack": "",
 			"playerMagic":[
-			{
-				"name": "千机变",
-				"attackType": "special",
-				"value": 2,				
-				"cost": 10,
-				"description": "小二模仿并释放上一次队友使用的技能",	
-				"icon": "res://Icons/●图标 (91).png",
-			},{
+{
 				"name": "唧唧歪歪",
 				"level": 1,
 				"currExp": 49,
@@ -710,6 +814,171 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]
 		},
+	"凌若昭":{
+			"name": "凌若昭",
+			"sex": "female",
+			"icon":"res://Pictures/Pictures/云燕儿.png",
+			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"level": 15,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 160,
+			"currMp": 100,
+			"potential": 70,
+			"idle": "凌若昭idle",
+			"autoAttack":'凌若昭autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"凌若昭magicAutoAttack",
+			"playerMagic": [
+				{
+					"name": "催眠",
+					"attackType": "debuff",
+					"buffEffect": ["sleep"], 
+					"cost": 10,
+					"description": "同时催眠3个敌人",	
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"effectingNum": 3,
+					"duration": 2,
+					"audio": "res://Audio/SE/法术5.ogg",
+					"icon":"res://Icons/●图标 (88).png",
+				},	{
+					"name": "冰封",
+					"attackType": "debuff",
+					"buffEffect": ["ice"], 
+					"cost": 10,
+					"description": "同时冰封3个敌人",	
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"effectingNum": 3,
+					"duration": 2,
+					"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+					"icon":"res://Icons/●图标 (119).png",
+				},
+				{
+					"name": "五雷咒",
+					"attackType": "range",
+					"value": 2,				
+					"cost": 100,
+					"description": "引来天雷轰杀单体敌人",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"audio": "res://Audio/SE/123-Thunder01.ogg",
+					"icon":"res://Icons/五雷.png"
+				},
+				{
+					"name": "神佑咒",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "buff",
+					"buffEffect": ["currPhysicDefense", "currMagicDefense"], 
+					"value": 50,
+					"cost": 10,
+					"description": "提高防御",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 4,
+					"duration": 3,
+					"audio": "res://Audio/SE/133-Wind02.ogg",
+					"icon":"res://Icons/●图标 (77).png",
+				},
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},
+	"金甲":{
+			"name": "金甲",
+			"sex": "male",
+			"icon":"res://Pictures/Pictures/云燕儿.png",
+			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"level": 1,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 160,
+			"currMp": 100,
+			"potential": 70,
+			"idle": "金甲idle",
+			"autoAttack":'金甲autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"金甲magicAutoAttack",
+			"playerMagic": [
+				{
+					"name": "扎实一剑",
+					"attackType": "multi",
+					"multiHitTimes": 3,
+					"cost": 10,
+					"value": 1.5,
+					"description": "金甲日日夜夜练习的扎实一剑",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"audio": "res://Audio/SE/猛男-喝X.ogg",
+					"icon":"res://Icons/●图标 (88).png",
+				}
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/猛男-喝X.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},
 }
  
 var datas = {
@@ -748,37 +1017,37 @@ func update_status():
 			if player.name == "时追云":
 				if player["level"] == 3:
 					player.get("playerMagic").append(	
-				{"name": "聚力",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "buff",				
-				"value": 30, 
-				"cost": 30,
-				"description": "增加自身攻击力",
-				"effectArea": "single",
-				"effectingNum":1,
-				"animationArea":"self",
-				"buffEffect":["currStr"],
-				"duration": 4,
-				"audio":"res://Audio/SE/男-法术-嗯.ogg",
-				"icon":"res://Icons/●图标 (38).png"
-				})
+						{"name": "聚力",
+						"level": 1,
+						"currExp": 0,
+						"needExp": 50,
+						"attackType": "buff",				
+						"value": 30, 
+						"cost": 30,
+						"description": "增加自身攻击力",
+						"effectArea": "single",
+						"effectingNum":1,
+						"animationArea":"self",
+						"buffEffect":["currStr"],
+						"duration": 4,
+						"audio":"res://Audio/SE/男-法术-嗯.ogg",
+						"icon":"res://Icons/●图标 (38).png"
+						})
 				if player["level"] == 5:
 					player.get("playerMagic").append(
-				{"name": "斩龙决",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "range",
-				"value": 2.5,
-				"cost": 30,
-				"description": "时追云通过修炼领悟的技能，比平A多点伤害",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"audio": "res://Audio/SE/096-Attack08.ogg",
-				"icon": "res://Icons/斩龙诀.png"
-				},									
+						{"name": "飞剑决",
+							"level": 1,
+							"currExp": 0,
+							"needExp": 50,
+							"attackType": "range",
+							"value": 2.5,
+							"cost": 30,
+							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
+							"effectArea": "single",
+							"animationArea":"enemy",
+							"audio": "res://Audio/SE/096-Attack08.ogg",
+							"icon": "res://Icons/斩龙诀.png"
+						},										
 						
 				)
 				
@@ -984,8 +1253,7 @@ func remove_empty_items():
 #				"animationArea":"screen",
 #				"audio": "res://Audio/SE/男-剑.ogg",
 #				"icon": "res://Icons/●图标 (23).png"
-#			},
-#				"name": "飞剑决",
+#			{"name": "飞剑决",
 #				"level": 1,
 #				"currExp": 0,
 #				"needExp": 50,
@@ -997,5 +1265,13 @@ func remove_empty_items():
 #				"animationArea":"enemy",
 #				"audio": "res://Audio/SE/096-Attack08.ogg",
 #				"icon": "res://Icons/斩龙诀.png"
-#			},			
+#			},
+#			{
+#				"name": "千机变",
+#				"attackType": "special",
+#				"value": 2,				
+#				"cost": 10,
+#				"description": "小二模仿并释放上一次队友使用的技能",	
+#				"icon": "res://Icons/●图标 (91).png",
+#			},		
 			# Add more magic spells as needed

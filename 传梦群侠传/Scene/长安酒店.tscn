@@ -605,21 +605,6 @@ gradient = SubResource("Gradient_h5dxg")
 fill = 1
 fill_from = Vector2(1, 0.612536)
 
-[sub_resource type="Animation" id="Animation_isfqi"]
-resource_name = "小二付钱"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("小二:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(214, 485), Vector2(431, 376)]
-}
-
 [sub_resource type="Animation" id="Animation_6sita"]
 length = 0.001
 tracks/0/type = "value"
@@ -633,6 +618,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(214, 485)]
+}
+
+[sub_resource type="Animation" id="Animation_isfqi"]
+resource_name = "小二付钱"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("小二:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(214, 485), Vector2(431, 376)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x2r5n"]
@@ -725,7 +725,7 @@ polygon = PackedVector2Array(11, 614, 120, 673, 159, 611, 495, 446, 516, 478, 63
 
 [node name="player" parent="." instance=ExtResource("5_jgik2")]
 z_index = 1
-position = Vector2(154, 546)
+position = Vector2(167, 551)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -3606,13 +3606,16 @@ sprite_frames = SubResource("SpriteFrames_mh4tg")
 position = Vector2(925, 359)
 
 [node name="初见若昭" parent="." instance=ExtResource("33_sx528")]
+visible = false
 position = Vector2(120, 535)
 triggerEvent = "初见若昭"
 
 [node name="凌若昭" parent="." instance=ExtResource("34_2kbkt")]
+visible = false
 position = Vector2(470, 403)
 
 [node name="小二" parent="." instance=ExtResource("35_j6uxv")]
+visible = false
 position = Vector2(214, 485)
 
 [node name="小二" parent="小二" index="0"]

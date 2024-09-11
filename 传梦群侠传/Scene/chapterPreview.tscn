@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bikcdnceao7op"]
+[gd_scene load_steps=4 format=3 uid="uid://bikcdnceao7op"]
 
 [ext_resource type="Script" path="res://Script/chapterPreview.gd" id="1_8ibld"]
 [ext_resource type="AudioStream" uid="uid://blr2mldv37cgv" path="res://Audio/ME/擂鼓.ogg" id="2_1sjke"]
+[ext_resource type="Texture2D" uid="uid://bku58pevofpht" path="res://B9DA7A1FD31BDD8CBB38E134776F96E5.jpg" id="2_hxkig"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_8ibld")
@@ -11,6 +12,13 @@ self_modulate = Color(0, 0, 0, 1)
 offset_left = -6.0
 offset_right = 1160.0
 offset_bottom = 808.0
+
+[node name="TextureRect" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_right = 1164.0
+offset_bottom = 805.0
+texture = ExtResource("2_hxkig")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 0
@@ -28,7 +36,7 @@ stream = ExtResource("2_1sjke")
 autoplay = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

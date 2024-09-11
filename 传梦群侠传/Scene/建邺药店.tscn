@@ -942,6 +942,9 @@ offset_bottom = 62.0
 theme_override_font_sizes/font_size = 30
 text = "X"
 
+[node name="addNumTimer" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

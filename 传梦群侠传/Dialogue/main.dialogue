@@ -903,7 +903,7 @@ set Global.onTalk = true
 set Global.triggerPlace.get("时追云赶到").disable = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/#心如刀割.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
-时追云惊: 娘子！！！！
+时追云惊: 娘子sadfdsafsadf！！！！
 姜韵哭: 咳咳，夫君，对不起
 姜韵哀: 以后的路要你...自己走了
 时追云哀: 不，我不要，我不要啊
@@ -970,7 +970,7 @@ set Global.npcVis.get("建邺城").get("乞丐2").visible = false
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=61]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-时追云哀: 娘子，我已经把全部乡亲都安葬好了
+时追云哀: 娘子，我已经把全部乡亲都安葬好了1
 时追云哀: 你们不会在外面受冻了，天冷
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=2]
@@ -1027,7 +1027,7 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 大海龟: ...
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
 set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp
-set questHint = "去长安城打听消息"
+set Global.questHint = "去没去过的地方"
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 [next=2]
@@ -1080,7 +1080,7 @@ set Global.npcVis.get("建邺城右").get("堆积妖魔4").visible = false
 set Global.npcVis.get("建邺城右").get("堆积妖魔5").visible = false
 set Global.triggerPlace.get("斩妖").disable = true
 set get_tree().current_scene.get_node("teleportCircle2").visible = true
-set get_tree().current_scene.get_node("teleportCircle2/aread2D/CollisionShape2D").disable = false
+set get_tree().current_scene.get_node("teleportCircle2/area2D/CollisionShape2D").disable = false
 set Global.onTalk =  false
 => END
 #set get_tree().current_scene.get_node("player/Sprite2D").visible = false

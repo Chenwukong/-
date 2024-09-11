@@ -1,6 +1,6 @@
 extends Node2D
 
-var FIGHT_SCENE_TRIGGER_PROBABILITY = 6000
+var FIGHT_SCENE_TRIGGER_PROBABILITY = 700
 var canEnterFight = false
 @export var onFight = false
 var monsters
@@ -43,6 +43,7 @@ func update_cursor():
 	Input.set_custom_mouse_cursor(cursor_frames[int(current_frame)], 0, cursor_scale)
 		
 func _ready():
+	
 	if Global.onPhone:
 		var phoneButtons = get_tree().get_nodes_in_group("phoneButton")
 		for i in phoneButtons:
@@ -80,10 +81,12 @@ func _process(delta):
 	if !Global.onFight:
 		if is_instance_valid($battleBgm):
 			$battleBgm.stop()
+	else:
+		$AudioStreamPlayer2D.stop()
 	if Global.mcVisible == false:
 		get_tree().current_scene.get_node("player").visible = false
 	if Input.is_action_just_pressed("r") and !Global.onFight and !Global.onTalk and !Global.menuOut:
-		print("res://Scene/"+get_tree().current_scene.name+".tscn")
+		
 		get_tree().change_scene_to_file("res://Scene/"+get_tree().current_scene.name+".tscn")
 	
 	var questItem = get_tree().get_nodes_in_group("questItem")
@@ -118,7 +121,7 @@ func _process(delta):
 				for i in shopItems:
 					i.queue_free()				
 				
-				
+			
 			else:
 				onShop = false
 				$shop.visible = false
@@ -752,7 +755,8 @@ func _process(delta):
 			if Global.currScene != "时追云家":
 				$nightBgm.play()
 				$AudioStreamPlayer2D.stop()
-				$DirectionalLight2D.energy = 4.7
+				if is_instance_valid($DirectionalLight2D):
+					$DirectionalLight2D.energy = 4.7
 			else:
 				if !$AudioStreamPlayer2D.is_playing():
 					$AudioStreamPlayer2D.play()
@@ -790,10 +794,10 @@ func _process(delta):
 	Global.onFight = onFight
 
 func check_enter_fight_scene():
-	var randomNum = randi_range(0,5000)
-	
+	var randomNum = randi_range(0,FIGHT_SCENE_TRIGGER_PROBABILITY)
+
 	if is_instance_valid($player):
-		if randomNum < FIGHT_SCENE_TRIGGER_PROBABILITY:
+		if randomNum == 1:
 			var instance = preload("res://Scene/battleField.tscn").instantiate()	
 			$shadow.visible = false
 			get_node("CanvasLayer").visible = false
@@ -817,6 +821,7 @@ func check_enter_fight_scene():
 func bossFight(boss, bossBgm,dialogue = null):
 	var instance = preload("res://Scene/battleField.tscn").instantiate()
 	$shadow.visible = false
+	Global.onFight = true
 	get_node("CanvasLayer").visible = false
 	if !Global.onHurry:
 		get_node("AudioStreamPlayer2D").volume_db = -80
@@ -829,6 +834,7 @@ func bossFight(boss, bossBgm,dialogue = null):
 	instance.dialogue = dialogue
 	add_child(instance)
 	onFight = true
+	
 	canEnterFight = false
 	$player.visible = false
 	$player.canMove = false
@@ -838,7 +844,29 @@ func bossFight(boss, bossBgm,dialogue = null):
 	if circleGroup:
 		for i in circleGroup:
 			i.queue_free()						
-						
+func touchFight():
+	var instance = preload("res://Scene/battleField.tscn").instantiate()
+	$shadow.visible = false
+
+	if !Global.onHurry:
+		get_node("AudioStreamPlayer2D").volume_db = -80
+	$enterFightSound.stream = load("res://Audio/SE/SWD 战斗开始.mp3")
+	$enterFightSound.play()
+	instance.set_name('battleField')
+	add_child(instance)
+	onFight = true
+	Global.onFight = true
+	$CanvasLayer.visible = false
+	canEnterFight = false
+	$player.visible = false
+	$player.canMove = false
+	Global.battleButtonIndex = 0 #重置按钮index
+	$player.target = null
+	circleGroup = get_tree().get_nodes_in_group("circle")
+	if circleGroup:
+		for i in circleGroup:
+			i.queue_free()
+			
 func _on_enter_fight_cd_timeout():
 	canEnterFight = true
 
@@ -1026,7 +1054,7 @@ func _on_add_num_timer_timeout():
 func _on_dialogue_timer_timeout():
 	
 	var chapter = get_chapter()
-	print(chapter, "res://Dialogue/"+chapter+".dialogue")
+	
 	DialogueManager.show_chat(load("res://Dialogue/"+str(chapter)+".dialogue"),get_npc_dialogue(Global.dial))	
 	
 func get_chapter():
@@ -1706,3 +1734,5 @@ func _on_右上_pressed():
 
 func _on_右上_button_down():
 	pass # Replace with function body.
+
+

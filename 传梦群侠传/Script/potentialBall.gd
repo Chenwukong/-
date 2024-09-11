@@ -27,6 +27,6 @@ func _on_area_2d_body_entered(body):
 			body.get_node("AudioStreamPlayer2D").stream = load("res://Audio/SE/回复.ogg")
 			body.get_node("AudioStreamPlayer2D").play()
 			body.get_node("effect").visible = true
-			body.get_node("effect").play()
+			body.get_node("effect").play("potentialBall")
 		queue_free()
 		Global.potentialBalls.get(id).pickUp = true

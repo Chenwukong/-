@@ -28,6 +28,7 @@ func _on_area_2d_area_entered(area):
 	pass
 	
 func checkSetPos(currScene, toScene): 
+	print(currScene, toScene)
 	if currScene == "新手村":
 		if toScene == "东海湾":
 			return Vector2(2284,1559)	
@@ -81,11 +82,14 @@ func checkSetPos(currScene, toScene):
 			return Vector2(2773,353)			
 	if currScene == "长安北":
 		if toScene == "长安城":
+			print(1233333333)
 			return Vector2(1353,77)			
 		if toScene == "大唐官府":
+			print(1233333333)
 			return Vector2(3654,1974)
 		if toScene == "锁妖塔":
 			return Vector2(2773,353)
+			
 	if currScene == "长安城":
 		if toScene == "长安北":
 			return Vector2(2247,1815)				
@@ -95,10 +99,19 @@ func checkSetPos(currScene, toScene):
 			return Vector2(207,334)
 		if toScene == "长安酒店":
 			return Vector2(154,546)	
+		if toScene == "大唐国境":
+			return Vector2(2579,912)
+			
 	if currScene == "大唐官府":
 		if toScene == "大唐官府大厅":
 			return Vector2(654,403)			
-										
+		if toScene == "长安城":
+			return Vector2(288,254)	
+		if toScene == "长安城北":
+			return Vector2(442,417)				
+	if currScene == "大唐官府大厅"	:	
+		if toScene == "大唐官府":
+			return Vector2(2091,1231)												
 	if currScene == "金甲家":		
 		if toScene == "长安城":
 			return Vector2(3831,1253)								
@@ -106,6 +119,47 @@ func checkSetPos(currScene, toScene):
 	if currScene == "长安酒店":
 		if toScene == "长安城":
 			return Vector2(3026,939)			
-		
-		
-		
+	if currScene == "锁妖塔1":
+		if toScene == "锁妖塔2":
+			return Vector2(1950,698)
+		if toScene == "长安北":
+			return Vector2(3154,938)
+	if currScene == "锁妖塔2":
+		if toScene == "锁妖塔1":
+			return Vector2(2218,513)
+		if toScene == "锁妖塔3":
+			return Vector2(2012,1601)		
+	if currScene == "锁妖塔3":
+		if toScene == "锁妖塔2":
+			return Vector2(2137,1700)
+		if toScene == "锁妖塔4":
+			return Vector2(2057,683)	
+	if currScene == "锁妖塔4":
+		if toScene == "锁妖塔3":
+			return Vector2(2137,1700)
+		if toScene == "锁妖塔5":
+			return Vector2(2540, 892)		
+	if currScene == "锁妖塔5":
+		if toScene == "锁妖塔4":
+			return Vector2(2805,787)
+		if toScene == "锁妖塔6":
+			return Vector2(2540, 892)		
+	if currScene == "锁妖塔6":
+		if toScene == "锁妖塔5":
+			return Vector2(1115,1124)
+		if toScene == "锁妖塔7":
+			return Vector2(2073, 1229)	
+	if currScene == "锁妖塔7":
+		if toScene == "锁妖塔6":
+			return Vector2(2000,1090)
+	if currScene == "大唐国境":
+		if toScene == "长安城":
+			return Vector2(193,1877)
+		if toScene == "国境北":
+			return Vector2(2650,900)
+	if currScene == "国境南":
+		if toScene == "大唐国境":
+			return Vector2(2222,1260)
+		if toScene == "平定峰":
+			return Vector2(2460,1222)	
+

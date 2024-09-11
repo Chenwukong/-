@@ -6,7 +6,7 @@ var monsterIdx = -1
 var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
-var dangerScene = {"东海湾":3, "江南野外": 5}
+var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔5":5,"锁妖塔6":5,}
 var menuOut = false
 
 var onAttackingList = []
@@ -43,7 +43,7 @@ var onItemUsing = false
 var currUsingItem = null
 var itemSelectIndex = 0
 var itemList
-
+var canCalculateAfterMulti = true
 var currHitType = ""
 var currPhysicDmg = 0
 var currMagicDmg = 0
@@ -66,7 +66,7 @@ var itemPlayers = []
 var itemPlayerIndex
 func connectAutoAttackSignal(enemy_instance):
 	enemy_instance.connect('autoAttackSignal', self, '_on_auto_attack')
-	
+var noSounds = false
 func _on_auto_attack():
 	print("Auto attack signal received")
 var lost = false
@@ -92,6 +92,7 @@ var onLoadPage = false
 var currShopItem 
 var canEnemyHit = true
 var onQuest = false
+var onMultiHit = 0
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -130,7 +131,7 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云","姜韵"]
+var onTeamPlayer = ["时追云",]
 var onTeamPet = []
 var currPlayerPos
 var currNpc = null
@@ -142,6 +143,7 @@ var onSkipFight = false
 var violencePoint = 0
 var questHint = ""
 
+var damageReward1 = 1
 
 var chapters = {
 	"chapter1": {"completed": false, "tasks": {"task1": false, "task2": false}},
@@ -149,7 +151,7 @@ var chapters = {
 	# 直到 chapter10
 }
 
-var current_chapter_id = 2
+var current_chapter_id = 1
 
 var mcVisible = true
 var npcVis = {
@@ -178,6 +180,7 @@ var npcVis = {
 		"乞丐2": {"visible" : false},
 	},
 	"建邺城右":{
+		"难民": {"visible" : true},
 		"二娃": {"visible" : false},
 		"威迪": {"visible" : true},
 		"威迪2": {"visible" : false},
@@ -246,8 +249,63 @@ var npcVis = {
 		"小二": {"visible" : true},
 		"小二2": {"visible" : false},
 		"王婆": {"visible" : true},
-	}
-	
+	},
+	"大唐官府大厅":{
+		"程咬金": {"visible" : false},
+		"金甲": {"visible" : true},
+	},	
+	"长安城":{
+		"乞丐": {"visible" : true},
+		"凌若昭": {"visible" : false},		
+	},
+	"长安北":{
+		"看守": {"visible" : true},
+		"金甲3": {"visible" : false},
+		"小二2": {"visible" : true},
+	},
+	"锁妖塔1":{
+		"凌若昭":{"visible": true}
+	},
+	"锁妖塔2":{
+		"鳄额呃":{"visible": true}
+	},
+	"锁妖塔3":{
+		"鼠老大":{"visible": true}
+	},
+	"锁妖塔4":{
+		"黑熊王":{"visible": true}
+	},
+	"锁妖塔5":{
+		"蒙面人":{"visible": true}
+	},
+	"锁妖塔6":{
+		"千年树":{"visible": true}
+	},
+	"锁妖塔7":{
+		"鹰孽大王":{"visible": true},
+		"小二":{"visible": false},
+		"凌若昭":{"visible": false},
+		"金甲":{"visible": false},
+		"金甲2":{"visible": false},
+	},
+	"大唐国境":{
+		"反贼小头目":{"visible": true},
+		"npcs":{"visible":true}
+	},	
+	"国境北":{
+		"反贼大头目":{"visible": true},
+		"npcs":{"visible":true}
+	},
+	"国境南":{
+		"反贼大头目":{"visible": true},
+		"npcs":{"visible":true}
+	},
+	"平定峰":{
+		"堕逝": {"visible":true},
+		"程咬金": {"visible":true},
+		"鹰狂": {"visible":true},
+		"npcs":{"visible":true}
+	}							
 }
 
 func changeVis(npcList: Array, scene) -> void:
@@ -394,19 +452,21 @@ var npcs = {
 				{"chapter": 1, "dialogue": "白龙救场", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "安葬", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "斩妖", "unlocked": true, "bgm":null,"trigger":false},
-				#8
+				
 				{"chapter": 2, "dialogue": "初见小二", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "解释抢钱", "unlocked": true, "bgm":null,"trigger":false},
+				#10
 				{"chapter": 2, "dialogue": "程咬金登场", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "金甲帮书生", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "小二休息", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "王婆卖瓜", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "打赢王婆", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "起床找金甲", "unlocked": true, "bgm":null,"trigger":false},
-				
+				{"chapter": 2, "dialogue": "传出塔外", "unlocked": true, "bgm":null,"trigger":false},
+				{"chapter": 2, "dialogue": "首入国境", "unlocked": true, "bgm":null,"trigger":false},
 				
 			],
-		"current_dialogue_index": 14,	
+		"current_dialogue_index": 0,	
 		"constNpc": false	},	
 	"传梦":{
 		"dialogues": [
@@ -435,8 +495,17 @@ var npcs = {
 					{"chapter": 2, "dialogue": "看望霍嫬儿", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 2, "dialogue": "金甲解释", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 2, "dialogue": "查看凶案", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "金甲塔外", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "进塔", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "塔2", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "塔3", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "塔4", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "塔5", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "塔6", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 2, "dialogue": "看望金甲", "unlocked": true, "bgm":null,"trigger":false},			
+					{"chapter": 2, "dialogue": "遮儿学医", "unlocked": true, "bgm":null,"trigger":false},				
 				],
-			"current_dialogue_index": 5,	
+			"current_dialogue_index": 0,	
 			"constNpc": false	
 	},
 	"牛冠军":{
@@ -549,18 +618,105 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 2, "dialogue": "求加固", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "告诉金甲", "unlocked": true, "bgm": null,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false							
 	},	
-	"若昭":{
+	"凌若昭":{
 		"dialogues": [
 				#0
 					{"chapter": 2, "dialogue": "初见若昭", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "再见凌若昭", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "传送方寸", "unlocked": true, "bgm":null,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false							
-	},										
+	},	
+	"鳄额呃":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "塔2boss", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打赢塔2boss", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},
+	"鼠老大":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "塔3boss", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打赢塔3boss", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},		
+	"黑熊王":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "塔4boss", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打赢塔4boss", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},	
+	"蒙面人":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "塔5boss", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打赢塔5boss", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},	
+	"千年树":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "塔6boss", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "打赢塔6boss", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},
+	"鹰孽大王":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "塔7boss", "unlocked": true, "bgm": "res://Audio/BGM/0情况危机.ogg","trigger":false},
+					{"chapter": 2, "dialogue": "打赢塔7boss", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 2, "dialogue": "金甲牺牲", "unlocked": true, "bgm":null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},
+	"反贼小头目":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "反贼小头目", "unlocked": true, "bgm": null,"trigger":false},
+					{"chapter": 2, "dialogue": "打死反贼小头目", "unlocked": true, "bgm": "","trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},				
+	"反贼大头目":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "反贼大头目", "unlocked": true, "bgm": null,"trigger":false},
+					{"chapter": 2, "dialogue": "打死反贼大头目", "unlocked": true, "bgm": "","trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},
+	"程咬金":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "平定峰", "unlocked": true, "bgm": null,"trigger":false},
+					{"chapter": 2, "dialogue": "打死堕逝", "unlocked": true, "bgm": null, "trigger":false},
+					{"chapter": 2, "dialogue": "程咬金切磋", "unlocked": true, "bgm": null,"trigger":false},
+					{"chapter": 2, "dialogue": "学习横扫千军", "unlocked": true, "bgm": null,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false			
+	},											
 }
 var potentialBalls = {
 
@@ -603,7 +759,20 @@ var triggerPlace ={
 	"王婆卖瓜": {"trigger":false, "disable": false},
 	"解围金甲": {"trigger":false, "disable": false},
 	"初见若昭": {"trigger":false, "disable": false},
+	"进塔": {"trigger":false, "disable": false},
+	"再见凌若昭": {"trigger":false, "disable": false},
+	"塔2": {"trigger":false, "disable": false},
+	"塔3": {"trigger":false, "disable": false},
+	"塔4": {"trigger":false, "disable": false},
+	"塔5": {"trigger":false, "disable": false},
+	"塔6": {"trigger":false, "disable": false},
+	"首入国境": {"trigger":false, "disable": false},
+	"平定峰": {"trigger":false, "disable": false},
 }
+var isDead ={
+	"塔5boss": false
+}
+
 
 func _ready():
 	currScene = get_tree().get_current_scene().get_name()
@@ -652,6 +821,7 @@ func save():
 	saveData.questHint = questHint
 	saveData.onTeamPet = onTeamPet
 	saveData.treasureBox = treasureBox
+	saveData.isDead = isDead
 func loadData():
 	currScene = saveData.currScene
 	currPlayer = saveData.currPlayer
@@ -681,6 +851,8 @@ func loadData():
 	violencePoint = saveData.violencePoint
 	questHint = saveData.questHint
 	onTeamPet = saveData.onTeamPet
+	if saveData.has("isDead"):
+		isDead = saveData.isDead
 	if saveData.has("treasureBox"):
 		treasureBox = saveData.treasureBox
 	default_trigger_places = {
@@ -702,6 +874,15 @@ func loadData():
 		"王婆卖瓜": {"trigger": false, "disable": false},
 		"解围金甲": {"trigger":false, "disable": false},
 		"初见若昭": {"trigger":false, "disable": true},
+		"进塔": {"trigger":false, "disable": false},
+		"再见凌若昭": {"trigger":false, "disable": false},
+		"塔2": {"trigger":false, "disable": false},
+		"塔3": {"trigger":false, "disable": false},		
+		"塔4": {"trigger":false, "disable": false},
+		"塔5": {"trigger":false, "disable": false},	
+		"塔6": {"trigger":false, "disable": false},
+		"首入国境": {"trigger":false, "disable": false},
+		"平定峰": {"trigger":false, "disable": false},
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}

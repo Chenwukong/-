@@ -117,7 +117,7 @@ func useItem():
 		Global.onItemSelect = true		
 		if Global.currMenuItem == "避祸香囊":
 			if Global.onSkipFight == true:
-				$"../../..".FIGHT_SCENE_TRIGGER_PROBABILITY = 1500
+				$"../../..".FIGHT_SCENE_TRIGGER_PROBABILITY = 700
 				Global.onSkipFight = false
 			else:
 				$"../../..".FIGHT_SCENE_TRIGGER_PROBABILITY = 0

@@ -7,6 +7,7 @@ var player
 var newStream
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	newStream =  audio.substr(1, audio.length() - 2)
 	for i in Global.npcVis:
 		if self.name in Global.npcVis.get(i):	
@@ -24,11 +25,14 @@ func _process(delta):
 	for i in Global.npcVis:
 		if self.name in Global.npcVis.get(i):
 			if get_tree().current_scene.name == i:
+				
 				if Global.npcVis.get(i).get(self.name).visible == false:
+					
 					self.visible = false
 					get_node("npcBody/npcShape").disabled = true
 					$npcBody/CollisionPolygon2D.disabled = true
 				else:
+				
 					self.visible = true
 					get_node("npcBody/npcShape").disabled = false
 					$npcBody/CollisionPolygon2D.disabled = false
@@ -97,6 +101,7 @@ func _on_button_mouse_exited():
 func _on_button_button_down():
 	player = get_tree().current_scene.get_node("player")
 	var distance = self.position.distance_to(player.position)
+
 	if distance > 130:
 		return
 	if Global.onTalk:
@@ -105,6 +110,7 @@ func _on_button_button_down():
 		get_parent().get_node("npcAudio").stream = load(newStream)
 		get_parent().get_node("npcAudio").play()
 	if Global.npcs.has(npcName):
+		print(3111)
 		var npc = Global.npcs[npcName]
 		#DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
 		var dialogue_index = npc["current_dialogue_index"]	

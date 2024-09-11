@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw2xa4a3g20j6"]
+
+[ext_resource type="Script" path="res://Script/importantMsg.gd" id="1_8jmci"]
+[ext_resource type="AudioStream" uid="uid://c0vdcioyxgepi" path="res://Audio/SE/056-Right02.ogg" id="1_bvpo1"]
+
+[node name="importantMsg" type="Node2D"]
+script = ExtResource("1_8jmci")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 416.0
+offset_bottom = 121.0
+
+[node name="ImportantMsg" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 415.0
+offset_bottom = 121.0
+theme_override_font_sizes/font_size = 20
+text = "歼灭全部守塔妖：伤害永久加10%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_bvpo1")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

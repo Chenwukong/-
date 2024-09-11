@@ -93,11 +93,11 @@ var weapon = {
 		"user": "时追云",
 		"icon": "res://Icons/〓精钢剑 副本.png",
 		"picture": "res://Pictures/〓精钢剑.png",
-		"value": {"additionDmg": 150},
+		"value": {"additionDmg": 100},
 		"description": "伤害+20",
 		"key":false,
 		"added": false,
-		"gold": 600
+		"gold": 1000
 	},
 }
 
@@ -124,6 +124,30 @@ var cloth = {
 		"added":false,
 		"gold": 300
 	},
+	"锁子甲":{
+		"name": "锁子甲",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/ny (1).png",
+		"picture":"res://Pictures/Pictures/ny (1).png",
+		"value": {"addPhysicDefense": 100,"addMagicDefense": 100},
+		"description": "物理防御+100，魔法防御+100",
+		"key":false,
+		"added":false,
+		"gold": 2000
+	},	
+	"天香披肩":{
+		"name": "锁子甲",
+		"user": "all",
+		"icon":  "res://Pictures/ni (5).png",
+		"picture":"res://Pictures/ni (5).png",
+		"value": {"addPhysicDefense": 100,"addMagicDefense": 100},
+		"description": "物理防御+100，魔法防御+100",
+		"key":false,
+		"added":false,
+		"gold": 2000
+	},	
+	
+	
 	
 	
 	
@@ -151,7 +175,19 @@ var shoes = {
 		"key":false,
 		"added":false,
 		"gold": 300
-	}
+	},
+	"神行靴":{
+		"name": "神行靴",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/xz (6).png",
+		"picture": "res://Pictures/Pictures/xz (6).png",
+		"value": {"addPlayerSpeed": 30},
+		"description": "速度+30",
+		"key":false,
+		"added":false,
+		"gold": 1000
+	},	
+	
 }
 
 var accessories = {
@@ -160,12 +196,25 @@ var accessories = {
 		"user": "时追云",
 		"icon": "res://Icons/0016-3b8b41e-00003 副本.png",
 		"picture": "res://Pictures/Pictures/■护身符.png",
-		"value": {"addPlayerSpeed": 50, "addPhysicDefense": 50, "addMagicDefense": 50, "additionDmg":50, "addHp":200},
-		"description": "速度+50, 物理防御+50，灵力防御+50，伤害+50，血量+200",
+		"value": {"addPlayerSpeed": 15, "addPhysicDefense": 50, "addMagicDefense": 50, "additionDmg":50, "addHp":200},
+		"description": "速度+15, 物理防御+50，灵力防御+50，伤害+50，血量+200 (时追云专属)",
 		"key":true,
 		"added":false,
 		"gold":9999999999999999999,
-	}
+	},
+	"江湖夜雨":{
+		"name": "江湖夜雨",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/■江湖夜雨.png",
+		"picture": "res://Pictures/Pictures/■江湖夜雨.png",
+		"value": {"addPlayerSpeed": 10, "addPhysicDefense": 20, "addMagicDefense": 20, "additionDmg":20, "addHp":50},
+		"description": "速度+10, 物理防御+20，灵力防御+20，伤害+20，血量+50",
+		"key":false,
+		"added":false,
+		"gold": 1500,
+	},	
+	
+	
 }
 
 var hat = {
@@ -191,6 +240,29 @@ var hat = {
 		"added":false,
 		"gold": 400
 	},
+	"羊角盔":{
+		"name": "羊角盔",
+		"user": "all",
+		"icon": "res://Icons/羊角盔.png",
+		"picture": "res://Pictures/羊角盔.png",
+		"value": {"addPhysicDefense": 80,},
+		"description": "物理防御+80",
+		"key":false,
+		"added":false,
+		"gold": 2000
+	},
+	"珍珠头带":{
+		"name": "珍珠头带",
+		"user": "all",
+		"icon": "res://Pictures/NT (4).png",
+		"picture": "res://Pictures/NT (4).png",
+		"value": {"addPhysicDefense": 80,},
+		"description": "物理防御+80",
+		"key":false,
+		"added":false,
+		"gold": 2000
+	},	
+			
 }
 var addItemInfo ={
 	"金疮药":{

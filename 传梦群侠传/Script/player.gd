@@ -28,15 +28,16 @@ func _ready():
 	raycast = $RayCast2D3
 	raycast2 =  $RayCast2D2
 	if Global.load == true:
+		print(Global.mapPlayerPos)
 		self.position = Global.mapPlayerPos
 	canMove = false
 	$readyMove.start()
 func _on_play_time_timeout():
-	
+
 	time_played_seconds = FightScenePlayers.seconds
 	time_played_seconds += 1
 	FightScenePlayers.seconds = time_played_seconds
-	
+
 func _process(delta):
 	if Global.onTalk:
 		if Global.playerDirection == "":

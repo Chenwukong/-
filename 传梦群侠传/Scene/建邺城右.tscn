@@ -66,6 +66,9 @@
 [ext_resource type="Texture2D" uid="uid://dsa4sm1cxg3xl" path="res://Battlers/黑熊精◆★2.png" id="64_i5alk"]
 [ext_resource type="Texture2D" uid="uid://bhrccopw4kts6" path="res://Battlers/白熊◆★2.png" id="65_y6kme"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
+load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdgqb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iincn"]
@@ -1071,9 +1074,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
-load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
-
 [sub_resource type="Animation" id="Animation_r8gu3"]
 length = 0.001
 tracks/0/type = "value"
@@ -1191,7 +1191,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_m8gmo"]
 resource_name = "奔霸逃跑"
-length = 10.0
+length = 40.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1235,7 +1235,7 @@ tracks/3/path = NodePath(".:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(7, 10),
+"times": PackedFloat32Array(24.9, 30.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
@@ -1915,6 +1915,9 @@ z_index = 1
 position = Vector2(484, 437)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="player" index="0"]
+texture = SubResource("CompressedTexture2D_1eey2")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -5521,7 +5524,6 @@ position = Vector2(1663, 695)
 toScene = "建邺药店"
 
 [node name="teleportCircle2" parent="." instance=ExtResource("27_ogdth")]
-visible = false
 position = Vector2(115, 651)
 toScene = "江南野外"
 
@@ -5688,6 +5690,7 @@ npcName = "小兵"
 
 [node name="effect" parent="小兵8" index="2"]
 frame = 1
+frame_progress = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -5771,6 +5774,8 @@ visible = true
 sprite_frames = SubResource("SpriteFrames_r16oh")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体2" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(795, 199)
@@ -5783,6 +5788,8 @@ position = Vector2(25, -4)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体3" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1130, 242)
@@ -5798,6 +5805,8 @@ position = Vector2(65, 8)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体4" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(893, 382)
@@ -5813,6 +5822,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体5" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(882, 320)
@@ -5828,6 +5839,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体6" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1028, 246)
@@ -5843,6 +5856,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体7" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(999, 209)
@@ -5858,6 +5873,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体11" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1126, 245)
@@ -5873,6 +5890,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体8" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1119, 205)
@@ -5888,6 +5907,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体9" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(897, 245)
@@ -5903,6 +5924,8 @@ position = Vector2(-57, -111)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体13" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1472, 140)
@@ -5918,6 +5941,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体14" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1388, 201)
@@ -5933,6 +5958,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_bd0t4")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体15" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(690.5, 280)
@@ -5949,6 +5976,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_paph6")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体16" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(808, 306)
@@ -5964,6 +5993,8 @@ position = Vector2(2, -9)
 sprite_frames = SubResource("SpriteFrames_ulbp8")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体17" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(885, 235)
@@ -5979,6 +6010,8 @@ position = Vector2(2, -9)
 sprite_frames = SubResource("SpriteFrames_ulbp8")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体18" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(957, 250)
@@ -5994,6 +6027,8 @@ position = Vector2(2, -9)
 sprite_frames = SubResource("SpriteFrames_ulbp8")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体10" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1070, 214)
@@ -6009,6 +6044,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_5lxuo")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="妖魔尸体12" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(1339, 242)
@@ -6024,6 +6061,8 @@ position = Vector2(5, 6)
 sprite_frames = SubResource("SpriteFrames_5lxuo")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="堆积妖魔" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(282, 427)
@@ -6045,6 +6084,8 @@ visible = true
 sprite_frames = SubResource("SpriteFrames_r16oh")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="堆积妖魔3" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(333, 429)
@@ -6060,6 +6101,8 @@ visible = true
 sprite_frames = SubResource("SpriteFrames_r16oh")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="堆积妖魔4" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(342, 385)
@@ -6075,6 +6118,8 @@ visible = true
 sprite_frames = SubResource("SpriteFrames_r16oh")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="堆积妖魔5" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(375, 393)
@@ -6090,6 +6135,8 @@ visible = true
 sprite_frames = SubResource("SpriteFrames_r16oh")
 animation = &"血"
 autoplay = "血"
+frame = 0
+frame_progress = 0.0
 
 [node name="斩妖" parent="." instance=ExtResource("31_8nk54")]
 visible = false
@@ -6336,6 +6383,10 @@ rotation = -0.698132
 scale = Vector2(1.2, 1.2)
 text = "↓"
 
+[node name="难民" parent="." instance=ExtResource("29_433ew")]
+position = Vector2(143, 569)
+npcName = "难民"
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -6409,6 +6460,7 @@ text = "↓"
 [connection signal="button_down" from="CanvasLayer/phoneButtons/左下" to="player" method="_on_左下_button_down"]
 [connection signal="button_down" from="CanvasLayer/phoneButtons/右下" to="player" method="_on_右下_button_down"]
 
+[editable path="player"]
 [editable path="teleportCircle2"]
 [editable path="二娃请求"]
 [editable path="小兵8"]

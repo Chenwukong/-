@@ -353,8 +353,7 @@ func _process(delta):
 					return 
 				Global.itemPlayerIndex = 0
 				Global.itemPlayers = []
-				print(1122)
-				
+
 				if bagMenuItems[itemSelectIndex].get_node("itemName").text in FightScenePlayers.consumeItem:
 					Global.onItemSelect = false
 					Global.onMenuItemUsing = true
@@ -363,7 +362,8 @@ func _process(delta):
 					if FightScenePlayers.keyItem.get(bagMenuItems[itemSelectIndex].get_node("itemName").text).info.effect != null:
 						Global.onItemSelect = false
 						Global.onMenuItemUsing = true
-						$"道具页面/角色表".visible = true			
+						$"道具页面/角色表".visible = true
+						print(123)			
 				Global.currMenuItem = bagMenuItems[itemSelectIndex].get_node("itemName").text
 				
 				$"../subSound".stream = load("res://Audio/SE/002-System02.ogg")
@@ -1002,7 +1002,7 @@ func _process(delta):
 					if bagArmorItemsData[i].type == "accessories":
 						accessories.append(bagArmorItemsData[i])
 				for i in accessories.size():
-				
+					
 					bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
 					bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
 					bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
@@ -1121,17 +1121,20 @@ func _process(delta):
 							
 					#如果选中的背包位子不是空的
 				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-					if canPress and  armorItemSelectIndex == 4:
+					
+					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4:
 						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()				
+						$"../subSound".play()	
+									
 						#如果选中的背包位子不是空的，并且武器不是空的
+						
 						if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
 							
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
+							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
 							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
 				
 							#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
@@ -1158,6 +1161,12 @@ func _process(delta):
 								FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
 								FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
 						else:
+							if FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "时追云":
+								if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name == "时追云":
+									pass
+								else:
+									return 
+							
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg

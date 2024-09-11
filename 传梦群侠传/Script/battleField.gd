@@ -112,7 +112,8 @@ func _process(delta):
 							icon = "res://Icons/621.png"
 						elif i.buffs[index].keys()[0] == "onSpeedDebuff":
 							icon = 	"res://Icons/633.png"
-											
+						elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
+							icon = 	"res://Icons/305.png"											
 														
 						get_node("battleFieldPicture/currPlayer/Panel/buffs/buff"+str(index+1)).texture = load(icon)	
 					
@@ -184,34 +185,34 @@ func _process(delta):
 			var enemyBuffSlot =  $battleFieldPicture/enemyInfo/buffs.get_children()
 			for x in enemyBuffSlot:
 				x.visible = false
-
-			for index in Global.target.buffs.size():	
-				var i = Global.target
-				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).visible = true	
-				
-				var icon = ""
-				if i.buffs[index].keys()[0] == "onAttackBuff":
-					icon = "res://Icons/317.png"
-				elif i.buffs[index].keys()[0] == "onSpeedBuff":
-					icon = "res://Icons/645.png"
-				elif i.buffs[index].keys()[0] == "onMagicDefenseBuff":
-					icon = "res://Icons/641.png"
-				elif i.buffs[index].keys()[0] == "onPhysicDefenseBuff":
-					icon = "res://Icons/307.png"
-				elif i.buffs[index].keys()[0] == "onMagicBuff":
-					icon = "res://Icons/311.png"
-				elif i.buffs[index].keys()[0] == "onHealBuff":
-					icon = "res://Icons/631.png"									
-				elif i.buffs[index].keys()[0] == "onPoisonDebuff":
-					icon = "res://Icons/319.png"
-				elif i.buffs[index].keys()[0] == "onSleepDebuff":
-					icon = "res://Icons/320.png"
-				elif i.buffs[index].keys()[0] == "onIceDebuff":
-					icon = "res://Icons/621.png"
-				elif i.buffs[index].keys()[0] == "onSpeedDebuff":
-					icon = 	"res://Icons/633.png"
-									
-				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)			
+			if is_instance_valid(Global.target.buffs):
+				for index in Global.target.buffs.size():	
+					var i = Global.target
+					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).visible = true	
+					
+					var icon = ""
+					if i.buffs[index].keys()[0] == "onAttackBuff":
+						icon = "res://Icons/317.png"
+					elif i.buffs[index].keys()[0] == "onSpeedBuff":
+						icon = "res://Icons/645.png"
+					elif i.buffs[index].keys()[0] == "onMagicDefenseBuff":
+						icon = "res://Icons/641.png"
+					elif i.buffs[index].keys()[0] == "onPhysicDefenseBuff":
+						icon = "res://Icons/307.png"
+					elif i.buffs[index].keys()[0] == "onMagicBuff":
+						icon = "res://Icons/311.png"
+					elif i.buffs[index].keys()[0] == "onHealBuff":
+						icon = "res://Icons/631.png"									
+					elif i.buffs[index].keys()[0] == "onPoisonDebuff":
+						icon = "res://Icons/319.png"
+					elif i.buffs[index].keys()[0] == "onSleepDebuff":
+						icon = "res://Icons/320.png"
+					elif i.buffs[index].keys()[0] == "onIceDebuff":
+						icon = "res://Icons/621.png"
+					elif i.buffs[index].keys()[0] == "onSpeedDebuff":
+						icon = 	"res://Icons/633.png"
+										
+					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)			
 		$battleFieldPicture/allyInfo/allyName.text = players[Global.allieSelectIndex].name
 		$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].hp
 		$battleFieldPicture/allyInfo/hpBar.value = players[Global.allieSelectIndex].currHp
@@ -345,13 +346,15 @@ func _process(delta):
 				elif Global.onHurry:
 					get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5			
 			get_parent().get_node("battleBgm").stop()
+			Global.onMultiHit = 0
+			Global.currAttacker = ""
 			queue_free()
 			
 			if dialogue:
 				var npc = Global.npcs[dialogue]
 				var dialogue_index = npc["current_dialogue_index"]
 				var dialogue_entry = npc["dialogues"][dialogue_index]
-				print(dialogue_entry,dialogue_entry.chapter)
+				
 				var chapterNum = dialogue_entry.chapter
 				DialogueManager.show_chat(load("res://Dialogue/"+str(chapterNum)+".dialogue"),get_npc_dialogue(dialogue))
 			get_parent().get_node("shadow").visible = true
@@ -405,6 +408,8 @@ func _process(delta):
 				get_parent().get_node("AudioStreamPlayer2D").volume_db = 8
 			elif Global.onHurry:
 				get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
+		Global.onMultiHit = 0
+		Global.currAttacker = ""
 		queue_free()
 		if dialogue:
 			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))

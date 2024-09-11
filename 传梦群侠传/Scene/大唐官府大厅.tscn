@@ -1,8 +1,8 @@
 [gd_scene load_steps=88 format=3 uid="uid://y4uo16g7ymww"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_e41er"]
-[ext_resource type="Texture2D" uid="uid://cr5lqy1g05c3v" path="res://panoramas2/大唐官府-大堂.jpg" id="2_0u1px"]
-[ext_resource type="Texture2D" uid="uid://eyewv2xsuav2" path="res://panoramas2/大唐官府-大堂_2.png" id="3_56iah"]
+[ext_resource type="Texture2D" uid="uid://b87yk64vocd5j" path="res://panoramas2/大唐官府_程府.jpg" id="2_rdl0p"]
+[ext_resource type="Texture2D" uid="uid://cq2lr8wf3t47y" path="res://panoramas2/大唐官府_程府_2.PNG" id="3_vhpcn"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_xkumv"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_g6fs6"]
 [ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="6_rn7ld"]
@@ -658,18 +658,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="大唐官府大堂" type="Node2D"]
+[node name="大唐官府大厅" type="Node2D"]
 script = ExtResource("1_e41er")
 
 [node name="建业左" type="Sprite2D" parent="."]
 position = Vector2(451, 313)
 rotation = 0.00202572
-texture = ExtResource("2_0u1px")
+texture = ExtResource("2_rdl0p")
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(451, 313)
-texture = ExtResource("3_56iah")
+position = Vector2(445.5, 323)
+scale = Vector2(0.942708, 1.10417)
+texture = ExtResource("3_vhpcn")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 2
@@ -678,7 +679,7 @@ script = ExtResource("4_xkumv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(710, 514, 785, 475, 766, 450, 886, 394, 661, 271, 673, 248, 685, 129, 668, 178, 610, 146, 607, 209, 479, 142, 449, 193, 566, 260, 562, 310, 472, 271, 376, 209, 254, 279, 335, 334, 386, 366, 352, 398, 232, 356, 189, 285, 184, 229, 165, 213, 14, 295, 55, 359, 205, 434, 338, 493, 420, 423, 509, 401, 546, 424, 560, 539, 701, 516)
+polygon = PackedVector2Array(710, 514, 785, 475, 808, 467, 875, 430, 714, 355, 731, 315, 661, 271, 673, 248, 675, 181, 668, 178, 610, 146, 594, 232, 501, 209, 479, 219, 465, 231, 566, 303, 562, 310, 472, 271, 411, 247, 286, 309, 275, 315, 313, 342, 371, 377, 372, 448, 232, 356, 189, 285, 185, 277, 167, 274, 13, 353, 47, 397, 182, 462, 331, 535, 431, 448, 502, 439, 546, 468, 571, 583, 701, 516)
 
 [node name="player" parent="." instance=ExtResource("5_g6fs6")]
 z_index = 1
@@ -3268,7 +3269,7 @@ offset_bottom = 804.0
 texture = ExtResource("16_0ehmo")
 
 [node name="teleportCircle" parent="." instance=ExtResource("17_ph2x1")]
-position = Vector2(752, 497)
+position = Vector2(726, 521)
 toScene = "大唐官府"
 
 [node name="addChild" type="Timer" parent="."]
@@ -3538,12 +3539,12 @@ sprite_frames = SubResource("SpriteFrames_y8jrx")
 npcName = "程咬金"
 
 [node name="师爷" parent="." instance=ExtResource("27_1fync")]
-position = Vector2(475, 269)
+position = Vector2(494, 317)
 sprite_frames = SubResource("SpriteFrames_qnr8a")
 npcName = "师爷"
 
 [node name="金甲" parent="." instance=ExtResource("27_1fync")]
-position = Vector2(404, 347)
+position = Vector2(390, 376)
 sprite_frames = SubResource("SpriteFrames_6stqk")
 npcName = "金甲"
 
@@ -3553,9 +3554,6 @@ visible = false
 [node name="小二" parent="小二" index="0"]
 position = Vector2(482, 362)
 animation = &"左上"
-
-[node name="CollisionPolygon2D" parent="小二/小二/npcBody" index="1"]
-disabled = true
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

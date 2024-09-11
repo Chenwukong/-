@@ -495,7 +495,7 @@ func create_response(data: Dictionary, extra_game_states: Array) -> DialogueResp
 
 # Get the current game states
 func get_game_states(extra_game_states: Array) -> Array:
-	var current_scene: Node = get_current_scene.call()
+	var current_scene: Node = get_current_scene.call()  
 	var unique_states: Array = []
 	for state in extra_game_states + [current_scene] + game_states:
 		if state != null and not unique_states.has(state):
@@ -944,7 +944,8 @@ func resolve(tokens: Array, extra_game_states: Array):
 					value = apply_operation(token.value, get_state_value(lhs.value, extra_game_states), tokens[i+1].value)
 					set_state_value(lhs.value, value, extra_game_states)
 				"property":
-					value = apply_operation(token.value, lhs.value.get(lhs.property), tokens[i+1].value)
+					value = apply_operation(token.value,
+					 lhs.value.get(lhs.property), tokens[i+1].value)
 					if typeof(lhs.value) == TYPE_DICTIONARY:
 						lhs.value[lhs.property] = value
 					else:
