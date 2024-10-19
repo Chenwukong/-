@@ -89,8 +89,56 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("system"))																				
 			"平定峰":
 				DialogueManager.show_chat(load("res://Dialogue/2.dialogue"),get_npc_dialogue("程咬金"))													
-																																												
-											
+			"遣返":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("方寸山秘境"))	
+				
+			"真方寸山":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("凌若昭"))				
+					
+			"想策":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("小二"))
+			"登顶":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("黑山"))
+			"教学千机":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("菩提老祖"))
+			"方寸夜晚小二谈恋爱":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("小二"))																																				
+			"方寸夜晚小二谈恋爱2":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("小二"))																																																	
+			"听见异响":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("system"))											
+			"黑山送剑":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("碧玉剑"))			
+			"重回建邺":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("system"))			
+								
+												
+			"东海海道":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("system"))																					
+			"初遇敖雨":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("敖雨"))		
+			"玉箍棒":
+				DialogueManager.show_chat(load("res://Dialogue/3.dialogue"),get_npc_dialogue("敖雨"))						
+			"救老李头":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("老李头"))			
+			"老李头死":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("老李头"))					
+							
+			"兵分两路":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("兵分两路"))									
+			"花果山拦敌1":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("花果山拦敌"))									
+			"花果山拦敌2":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("花果山拦敌"))																
+			"花果山拦敌3":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("花果山拦敌"))																														
+			"再见奔霸":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("花果山拦敌"))															
+			"到地府入口":
+				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("前往地府"))		
+		
+
+
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]

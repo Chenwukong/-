@@ -70,11 +70,11 @@ func _process(delta):
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 	for i in Global.onTeamPlayer.size():
 		playerStatus[i].visible = true
-
+	
 	mapPlayer = get_tree().get_nodes_in_group("mapPlayer")
 	if Global.menuOut:
 		buttons[buttonIndex].grab_focus()
-	get_node("系统信息/银两/goldValue").text = str(FightScenePlayers.golds)
+	get_node("系统信息/银两/goldValue").text = str(decrypt(FightScenePlayers.golds))
 	get_node("系统信息/游戏时间/playTimeValue").text = str(format_time(FightScenePlayers.seconds))	
 	menuMagic = get_tree().get_nodes_in_group("menuMagic")
 	
@@ -86,7 +86,7 @@ func _process(delta):
 
 	
 	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:
-		
+	
 		if Global.onFight == false and Input.is_action_just_pressed("ui_down"):
 			if buttonIndex == buttons.size() - 1:
 				buttonIndex = 0
@@ -119,18 +119,18 @@ func _process(delta):
 			var player = get_node("status/Player" + str(i + 1))
 			player.get_node("characterIcon").texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].icon)
 			
-			player.get_node("expText/expValue").text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].exp)+ "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].needExp)
+			player.get_node("expText/expValue").text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].exp))+ "/" + str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].needExp))
 			
 			player.get_node("name").text = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].name
 			player.get_node("levelText/levelValue").text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].level)
 			
-			player.get_node("hpText/hpBar").max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].hp + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].addHp
+			player.get_node("hpText/hpBar").max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].hp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].addHp)
 			player.get_node("hpText/hpBar").value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].currHp
-			player.get_node("hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].currHp)+ "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].hp + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].addHp)
+			player.get_node("hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].currHp)+ "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].hp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].addHp))
 			
-			player.get_node("mpText/mpBar").max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].mp
+			player.get_node("mpText/mpBar").max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].mp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].addMp)
 			player.get_node("mpText/mpBar").value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].currMp
-			player.get_node("mpText/mpBar/mpValue").text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].currMp)+ "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].mp)
+			player.get_node("mpText/mpBar/mpValue").text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].currMp)+ "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].mp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].addMp))
 		
 		for i in playerStatus.size():
 			for x in playerStatus:
@@ -138,6 +138,7 @@ func _process(delta):
 					x.self_modulate = "#ffffff"
 	
 		if buttons[buttonIndex].name == "道具":
+			
 			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onItemPage == false:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 				get_parent().get_node("subSound").play()	
@@ -152,6 +153,8 @@ func _process(delta):
 				Global.onMenuSelectCharacter = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 				get_parent().get_node("subSound").play()	
+				
+				
 		if buttons[buttonIndex].name == "装备":
 			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onArmorItemPage == false:
 				get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))		
@@ -160,6 +163,7 @@ func _process(delta):
 				get_parent().get_node("subSound").play()				
 		if buttons[buttonIndex].name == "状态":
 			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onStatusPage:
+				
 				get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))	
 				Global.onMenuSelectCharacter = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
@@ -214,6 +218,10 @@ func _process(delta):
 				get_parent().get_node("subSound").play()	
 
 	if Global.onMenuSelectCharacter:
+		var style = get_theme_stylebox("StyleBoxFlat")
+		style.bg_color = Color(1, 1, 1, 1)
+		
+		
 		if Input.is_action_just_pressed("ui_down"):
 			if characterIndex == Global.onTeamPlayer.size() - 1:
 				characterIndex = 0
@@ -224,7 +232,7 @@ func _process(delta):
 			get_parent().get_node("subSound").play()	
 			for i in playerStatus.size():
 				playerStatus[i].self_modulate = "ffffff"
-						
+					
 		if Input.is_action_just_pressed("ui_up"):
 			if characterIndex == 0:
 				characterIndex = Global.onTeamPlayer.size() - 1
@@ -319,7 +327,6 @@ func _process(delta):
 			else:
 				menuItems[i].modulate =  "ffffff"
 		if Input.is_action_just_pressed("ui_accept") and !Global.onItemSelect and !Global.onMenuItemUsing and canPress:	
-			print(31333)	 
 			var itemScene = load("res://Scene/menuItem.tscn")
 			itemSelectIndex = 0
 			if itemTypeIndex == 0:
@@ -363,7 +370,7 @@ func _process(delta):
 						Global.onItemSelect = false
 						Global.onMenuItemUsing = true
 						$"道具页面/角色表".visible = true
-						print(123)			
+								
 				Global.currMenuItem = bagMenuItems[itemSelectIndex].get_node("itemName").text
 				
 				$"../subSound".stream = load("res://Audio/SE/002-System02.ogg")
@@ -472,12 +479,12 @@ func _process(delta):
 		
 		armorItemButton[4].get_node("itemType/icon/itemName").text = ""					
 		$"装备页面/装备栏/status/level/levelValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].level)
-		$"装备页面/装备栏/status/伤害/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg)
-		$"装备页面/装备栏/status/物理防御/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense)
-		$"装备页面/装备栏/status/魔法抗性/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense)
-		$"装备页面/装备栏/status/速度/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed)
+		$"装备页面/装备栏/status/伤害/value".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg))
+		$"装备页面/装备栏/status/物理防御/value".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense))
+		$"装备页面/装备栏/status/魔法抗性/value".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense))
+		$"装备页面/装备栏/status/速度/value".text = str(round(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed)))
 		if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon:
-			print(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item)
+		
 			armorItemButton[0].get_node("itemType/icon").texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.icon)
 			armorItemButton[0].get_node("itemType/icon/itemName").text = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name
 		if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes:
@@ -583,8 +590,9 @@ func _process(delta):
 			if armorItemSelectIndex == 0:
 				weapons = []
 				for i in bagArmorItemsData:
-					if bagArmorItemsData[i].type == "weapon":
+					if bagArmorItemsData[i].type == "weapon" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name:
 						weapons.append(bagArmorItemsData[i])
+				
 				for i in weapons.size():
 					bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
 					bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
@@ -594,31 +602,33 @@ func _process(delta):
 					
 				if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
 					if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-						if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
+						if decrypt(weapons[BagArmorItemIndex].info.value.additionDmg) > decrypt( FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg) :
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-						elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg))
+						elif decrypt(weapons[BagArmorItemIndex].info.value.additionDmg) <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg))
 
-						elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
+						elif decrypt(weapons[BagArmorItemIndex].info.value.additionDmg) ==  decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg):
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg))
 					else:
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg))
 					
 				
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
 					$"装备页面/装备栏/status/伤害/value/arrow".visible = false
 					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0:
+
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
+							
 							if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
 								FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
 							else:
@@ -633,14 +643,15 @@ func _process(delta):
 							$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
 							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 							$"../subSound".play()
-					#如果选中的背包位子不是空的
-				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+				#如果选中的背包位子不是空的,切换武器
+				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "" and FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name:
 					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0:
+		
 						#如果选中的背包位子不是空的，并且武器不是空的
-						if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
+						if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "" :
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
 							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-				
+							
 							#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
 							if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
 					
@@ -670,6 +681,7 @@ func _process(delta):
 								$"../subSound".play()						
 						else:
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
+
 							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
 							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
@@ -693,20 +705,20 @@ func _process(delta):
 						if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)))
 						elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)))
 
 						elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(decrypt(round(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)))
 					else:
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)))
 						
 			
 				#把装备换到空背包
@@ -730,7 +742,7 @@ func _process(delta):
 							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 							$"../subSound".play()							
 					#如果选中的背包位子不是空的
-				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "" and   (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
 					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 1:
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
@@ -789,24 +801,24 @@ func _process(delta):
 						if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense))
 						elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense))
 
 						elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense))
 					else:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense))
 						
 			
 				#把装备换到空背包
-				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "" :
 					$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
 					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 2:
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
@@ -826,7 +838,7 @@ func _process(delta):
 							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 							$"../subSound".play()							
 					#如果选中的背包位子不是空的
-				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != ""  and (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
 					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 2:
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
@@ -889,36 +901,36 @@ func _process(delta):
 						if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense))
 						
 						elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense))
 						elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense))				
 					else:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense))						
 			
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
@@ -947,7 +959,7 @@ func _process(delta):
 							$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
 							
 					#如果选中的背包位子不是空的
-				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != ""  and (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
 					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 3:
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
@@ -1011,19 +1023,19 @@ func _process(delta):
 						if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense))
 							
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg))					
 							
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed))							
 					
 					
 					
@@ -1031,19 +1043,19 @@ func _process(delta):
 						elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense))
 							
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg))					
 							
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed))		
 						
 						
 						
@@ -1051,19 +1063,19 @@ func _process(delta):
 						elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense))
 							
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg))					
 							
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed))		
 						
 					
 					
@@ -1071,20 +1083,20 @@ func _process(delta):
 					else:
 							$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
 							$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+							$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense))
 							
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
 							$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
+							$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense))						
 							
 							$"装备页面/装备栏/status/速度/value/arrow".visible = true
 							$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
+							$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed))
 							
 							$"装备页面/装备栏/status/伤害/value/arrow".visible = true
 							$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
 						
-							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
+							$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg))									
 			
 			
 				#把装备换到空背包
@@ -1095,6 +1107,7 @@ func _process(delta):
 					$"装备页面/装备栏/status/速度/value/arrow".visible = false
 					
 					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4:
+						FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData
 						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 						$"../subSound".play()						
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
@@ -1105,7 +1118,7 @@ func _process(delta):
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
 							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 							$"../subSound".play()				
-
+							
 							if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
 								FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
 							else:
@@ -1120,9 +1133,10 @@ func _process(delta):
 							$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
 							
 					#如果选中的背包位子不是空的
-				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != ""  and (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
 					
 					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4:
+						FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData
 						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 						$"../subSound".play()	
 									
@@ -1182,7 +1196,7 @@ func _process(delta):
 								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
 					
 					
-	
+			
 			
 
 			if Input.is_action_just_released("esc"):
@@ -1241,21 +1255,24 @@ func _process(delta):
 		$"状态页面/Panel/accessories/Label".text = "饰品(空)"
 		$"状态页面/Panel/name".text = Global.onTeamPlayer[characterIndex]
 		$"状态页面/Panel/levelLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].level)
-		$"状态页面/Panel/exp/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].exp)
-		$"状态页面/Panel/next/value".text =  str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].needExp - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].exp)
-		$"状态页面/Panel/hpText/hpBar".max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].hp + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp
+		$"状态页面/Panel/exp/value".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].exp))
+		$"状态页面/Panel/next/value".text =  str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].needExp) - decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].exp))
+	
+		$"状态页面/Panel/hpText/hpBar".max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].hp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp)
 		$"状态页面/Panel/hpText/hpBar".value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].currHp
-		$"状态页面/Panel/hpText/hpBar/hpValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].currHp) + "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].hp +FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp)
-		$"状态页面/Panel/mpText/mpBar".max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].mp
+		$"状态页面/Panel/hpText/hpBar/hpValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].currHp) + "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].hp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp))
+		
+		$"状态页面/Panel/mpText/mpBar".max_value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].mp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMp)
 		$"状态页面/Panel/mpText/mpBar".value = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].currMp
-		$"状态页面/Panel/mpText/mpBar/mpValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].currMp) + "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].mp)
-		$"状态页面/Panel/addDmgLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg) 
-		$"状态页面/Panel/physicDefenseLabel/value".text =  str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].physicDefense + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense)
-		$"状态页面/Panel/magicDefenseLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].magicDefense + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense)
-		$"状态页面/Panel/strengthLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].str)
-		$"状态页面/Panel/critLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].critChance) + "%"
-		$"状态页面/Panel/speedLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerSpeed)
-		$"状态页面/Panel/magicLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].abilityPower)
+		$"状态页面/Panel/mpText/mpBar/mpValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].currMp) + "/" + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].mp + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMp))
+	
+		$"状态页面/Panel/addDmgLabel/value".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg)) 
+		$"状态页面/Panel/physicDefenseLabel/value".text =  str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].physicDefense + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense))
+		$"状态页面/Panel/magicDefenseLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].magicDefense + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense))
+		$"状态页面/Panel/strengthLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].str + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addStr))
+		$"状态页面/Panel/critLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].critChance + round(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addCritChance))) + "%"
+		$"状态页面/Panel/speedLabel/value".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerSpeed + round(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed)))
+		$"状态页面/Panel/magicLabel/value".text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].abilityPower) + decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addAbilityPower))
 		$"状态页面/Panel/icon".texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].smallIcon)
 		
 		if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon:
@@ -1326,26 +1343,28 @@ func _process(delta):
 
 		Global.onMenuSelectCharacter = false
 		var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
-		$"加点页面/属性区/最大气血/最大气血数字".text = str(currPlayer.hp + currPlayer.addHp) 
-		$"加点页面/属性区/最大仙能/最大仙能数字".text = str(currPlayer.mp +  + currPlayer.addMp)
+	
+		$"加点页面/属性区/最大气血/最大气血数字".text = str(currPlayer.hp + decrypt(currPlayer.addHp)) 
+		$"加点页面/属性区/最大仙能/最大仙能数字".text = str(currPlayer.mp + decrypt(currPlayer.addMp))
 		
-		$"加点页面/属性区/格挡概率/value".text = str(currPlayer.blockChance) + " => "
-		$"加点页面/属性区/格挡概率/value/changedValue".text = str(currPlayer.blockChance)
+		$"加点页面/属性区/格挡概率/value".text = str(currPlayer.blockChance + decrypt(currPlayer.addBlockChance)) + " => "
+		$"加点页面/属性区/格挡概率/value/changedValue".text = str(currPlayer.blockChance + decrypt(currPlayer.addBlockChance))
 		
-		$"加点页面/属性区/力量/value".text = str(currPlayer.str + currPlayer.addStr) + " => "
-		$"加点页面/属性区/力量/value/changedValue".text = str(currPlayer.str + currPlayer.addStr) 
+		$"加点页面/属性区/力量/value".text = str(currPlayer.str + round(decrypt(currPlayer.addStr))) + " => "
+		$"加点页面/属性区/力量/value/changedValue".text = str(currPlayer.str + round(decrypt(currPlayer.addStr))) 
 		
-		$"加点页面/属性区/暴击/value".text = str(currPlayer.critChance + currPlayer.addCritChance) + " => "
-		$"加点页面/属性区/暴击/value/changedValue".text = str(currPlayer.critChance + currPlayer.addCritChance)
+		$"加点页面/属性区/暴击/value".text = str(currPlayer.critChance + decrypt(currPlayer.addCritChance)) + " => "
+		$"加点页面/属性区/暴击/value/changedValue".text = str(currPlayer.critChance + decrypt(currPlayer.addCritChance))
 		
-		$"加点页面/属性区/敏捷/value".text = str(currPlayer.playerSpeed + currPlayer.addPlayerSpeed) + " => "
-		$"加点页面/属性区/敏捷/value/changedValue".text = str(currPlayer.playerSpeed + currPlayer.addPlayerSpeed)
+		$"加点页面/属性区/敏捷/value".text = str(currPlayer.playerSpeed + round(decrypt(currPlayer.addPlayerSpeed))) + " => "
+		$"加点页面/属性区/敏捷/value/changedValue".text = str(currPlayer.playerSpeed + round(decrypt(currPlayer.addPlayerSpeed)))
 		
-		$"加点页面/属性区/仙力/value".text = str(currPlayer.abilityPower + currPlayer.addAbilityPower) + " => "
-		$"加点页面/属性区/仙力/value/changedValue".text = str(currPlayer.abilityPower + currPlayer.addAbilityPower)
+		$"加点页面/属性区/仙力/value".text = str(decrypt(currPlayer.abilityPower) + decrypt(currPlayer.addAbilityPower)) + " => "
+		
+		$"加点页面/属性区/仙力/value/changedValue".text = str(decrypt(currPlayer.abilityPower) + decrypt(currPlayer.addAbilityPower))
 		$"加点页面/属性区/角色名".text = currPlayer.name
 		$"加点页面/属性区/等级/等级数字".text = str(currPlayer.level)
-		$"加点页面/属性区/剩余加点/value".text = str(currPlayer.potential)
+		$"加点页面/属性区/剩余加点/value".text = str(decrypt(currPlayer.potential))
 		
 
 		for i in skillButtons: 
@@ -1385,7 +1404,7 @@ func _process(delta):
 			$"加点页面/介绍区/Label".text = "最大敏捷0.6点"
 			$"加点页面/介绍区/Label2".text = ""					
 		if skillIndex == 4:
-			$"加点页面/介绍区/Label".text = "仙力1点"
+			$"加点页面/介绍区/Label".text = "灵力1点"
 			$"加点页面/介绍区/Label2".text = "最大仙能7点"	
 			$"加点页面/介绍区/总共提高".visible = true						
 		if skillIndex == 5:
@@ -1399,85 +1418,88 @@ func _process(delta):
 					
 		if Input.is_action_just_pressed("ui_accept") and canPress:
 			if skillIndex == 0 and currPlayer.potential > 0:
-				currPlayer.potential -= 1
-				pointOnHp += 1
+				pointOnHp += 1 * Global.enKey
+				currPlayer.potential -= Global.enKey 
+				
+				
 				$"加点页面/属性区/最大气血/最大气血数字".modulate = 	"ff0000"
 				$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = true
-				$"加点页面/属性区/最大气血/最大气血数字/increaseValue".text = "(+ " + str(pointOnHp * 7) + ")"
+				$"加点页面/属性区/最大气血/最大气血数字/increaseValue".text = "(+ " + str(decrypt(pointOnHp) * 7) + ")"
 #				if pointOnHp >0:
 #					$"加点页面/属性区/物理防御/value/changedValue".modulate = "ff0000"
 #				$"加点页面/属性区/物理防御/value/changedValue"
 #				$"加点页面/属性区/物理防御/value/changedValue/increaseValue".visible = true
 #				$"加点页面/属性区/物理防御/value/changedValue/increaseValue"	.text = "(+ " + str(pointOnHp * 1) + ")"
 			elif skillIndex == 1 and currPlayer.potential > 0:
-				pointOnStr += 1
-				currPlayer.potential -= 1
+				pointOnStr += 1 * Global.enKey
+				currPlayer.potential -= Global.enKey 
+				
 				if pointOnStr >0:
 					$"加点页面/属性区/力量/value/changedValue".modulate = "ff0000"
 				$"加点页面/属性区/力量/value/changedValue"	
-				$"加点页面/属性区/力量/value/changedValue/increaseValue".text = "(+ " + str(pointOnStr * 1) + ")"
+				$"加点页面/属性区/力量/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnStr) * 1) + ")"
 				$"加点页面/属性区/力量/value/changedValue/increaseValue".visible = true
 			elif skillIndex == 2 and currPlayer.potential > 0:
-				pointOnLuck += 1
-				currPlayer.potential -= 1
+				pointOnLuck += 1 * Global.enKey
+				currPlayer.potential -= Global.enKey 
 				if pointOnLuck >0:
 					$"加点页面/属性区/暴击/value/changedValue".modulate = "ff0000"				
 					$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ff0000"	
 				$"加点页面/属性区/格挡概率/value/changedValue"
 				$"加点页面/属性区/格挡概率/value/changedValue/increaseValue".visible = true
-				$"加点页面/属性区/格挡概率/value/changedValue/increaseValue".text = "(+ " + str(pointOnLuck * 0.25) + ")"	
+				$"加点页面/属性区/格挡概率/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnLuck) * 0.25) + ")"	
 										
 				$"加点页面/属性区/暴击/value/changedValue"
 				$"加点页面/属性区/暴击/value/changedValue/increaseValue".visible = true
-				$"加点页面/属性区/暴击/value/changedValue/increaseValue".text = "(+ " + str(pointOnLuck * 0.25) + ")"	
+				$"加点页面/属性区/暴击/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnLuck) * 0.25) + ")"	
 			elif skillIndex == 3 and currPlayer.potential > 0:	
-				pointOnSpeed += 0.6
-				currPlayer.potential -= 1
+				pointOnSpeed += 1 * Global.enKey
+				currPlayer.potential -= Global.enKey 
 				if pointOnSpeed  >0:
 					$"加点页面/属性区/敏捷/value/changedValue".modulate = "ff0000"					
 				$"加点页面/属性区/敏捷/value/changedValue"	
-				$"加点页面/属性区/敏捷/value/changedValue/increaseValue".text = "(+ " + str(pointOnSpeed * 0.6) + ")"
+				$"加点页面/属性区/敏捷/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnSpeed) * 0.6) + ")"
 				$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = true
 			elif skillIndex == 4 and currPlayer.potential > 0:	
-				pointOnMagic += 1
-				currPlayer.potential -= 1
+				pointOnMagic += 1 * Global.enKey
+				currPlayer.potential -= Global.enKey 
 				if pointOnMagic >0:
 					$"加点页面/属性区/仙力/value/changedValue".modulate = "ff0000"				
 					$"加点页面/属性区/最大仙能/最大仙能数字".modulate = "ff0000"
 					
 				$"加点页面/属性区/仙力/value/changedValue"
-				$"加点页面/属性区/仙力/value/changedValue/increaseValue".text = "(+ " + str(pointOnMagic * 1) + ")"
+				$"加点页面/属性区/仙力/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnMagic) * 1) + ")"
 				$"加点页面/属性区/仙力/value/changedValue/increaseValue".visible = true
 				$"加点页面/属性区/最大仙能/最大仙能数字"
-				$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".text = "(+ " + str(pointOnMagic * 7) + ")"
+				$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".text = "(+ " + str(decrypt(pointOnMagic) * 7) + ")"
 				$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".visible = true
 				
 			elif skillIndex == 5:	
 				if pointOnHp > 0:
-					currPlayer.addHp += pointOnHp * 7
-					currPlayer.addPhysicDefense += pointOnHp * 1
+					currPlayer.addHp += pointOnHp * 7 
+					currPlayer.addPhysicDefense += pointOnHp 
 					$"加点页面/属性区/最大气血/最大气血数字".modulate = "ffffff"
 					$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = false
 					$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"
 					$"加点页面/属性区/格挡概率/value/changedValue/increaseValue"	.visible = false				
 				if pointOnStr > 0:	
-					currPlayer.addStr += pointOnStr
+					currPlayer.addStr += pointOnStr 
 					$"加点页面/属性区/力量/value/changedValue".modulate = "ffffff"		
 					$"加点页面/属性区/力量/value/changedValue/increaseValue".visible = false
 				if pointOnLuck > 0:	
-					currPlayer.addCritChance += pointOnLuck * 0.25
-					currPlayer.blockChance += pointOnLuck * 0.25
+					currPlayer.addCritChance += pointOnLuck * 0.25 
+					currPlayer.addBlockChance += pointOnLuck * 0.25
 					$"加点页面/属性区/暴击/value/changedValue".modulate = "ffffff"		
 					$"加点页面/属性区/暴击/value/changedValue/increaseValue".visible = false
 					$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"		
 					$"加点页面/属性区/格挡概率/value/changedValue/increaseValue".visible = false
 				if pointOnSpeed > 0 :
-					currPlayer.addPlayerSpeed += pointOnSpeed 
+					currPlayer.addPlayerSpeed += pointOnSpeed * 0.5 
 					$"加点页面/属性区/敏捷/value/changedValue".modulate = "ffffff"			
 					$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = false
 				if pointOnMagic > 0:
 					currPlayer.addAbilityPower	+=  pointOnMagic
-					currPlayer.addMp += pointOnMagic * 7
+					currPlayer.addMp += pointOnMagic * 7 
 					$"加点页面/属性区/仙力/value/changedValue".modulate = "ffffff"		
 					$"加点页面/属性区/仙力/value/changedValue/increaseValue".visible = false	
 					$"加点页面/属性区/最大仙能/最大仙能数字".modulate = "ffffff"		
@@ -1618,7 +1640,9 @@ func saveGame():
 	var data = {}
 	
 	FightScenePlayers.saveData()
+	
 	data.FightScenePlayers = FightScenePlayers.datas
+
 	
 	Global.save()
 	data.Global = Global.saveData
@@ -1632,23 +1656,28 @@ func saveGame():
 	file.store_var(data)
 
 func loadGame():
-
+	
 	var savePath = "user://saveFile"+str(Global.saveIndex)
 	var file = FileAccess.open(savePath, FileAccess.READ)
 	var data = file.get_var()		
+	if Global.uniqueId != data.Global.uniqueId:
+		return
 
 	FightScenePlayers.datas = data.FightScenePlayers
+	
 	FightScenePlayers.loadData()
 	
-	
+
 	Global.saveData = data.Global
+	
+	
 	if mapPlayer:
 		mapPlayer[0].queue_free()
 	
 	Global.loadData()
 	Global.load = true
 	$"../addChild".start()
-	$"..".modulate = "000000"
+	get_parent().get_parent().modulate = "#000000"
 func _on_video_stream_player_finished():
 	$"保存页面/VideoStreamPlayer".play()
 	
@@ -1674,26 +1703,29 @@ func _on_video_stream_player_2_finished():
 	$"读取页面/VideoStreamPlayer2".play()
 
 func _on_道具_button_down():	
-	buttonIndex = 0
-	move_道具页面_to_top()
-	if !Global.onFight and Global.onItemPage == false:
-		canPress = false
-		$"../canPress".start()		
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-		get_parent().get_node("subSound").play()	
-		Global.onItemPage = true
-		$"道具页面".visible = true
+	if !Global.onSavePage and !Global.onLoadPage and !Global.onArmorItemPage:
+		buttonIndex = 0
+		move_道具页面_to_top()
+		if !Global.onFight and Global.onItemPage == false:
+			canPress = false
+			$"../canPress".start()	
+				
+			$"../subSound".stream = load("res://Audio/SE/002-System02.ogg")
+			$"../subSound".play()	
+			Global.onItemPage = true
+			$"道具页面".visible = true
 
 func _on_法术_button_down():
-	buttonIndex = 1
-	if !Global.onMenuSelectCharacter and !Global.onMagicPage:
-		move_status_to_top()
-		canPress = false
-		$"../canPress".start()
-		get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))
-		Global.onMenuSelectCharacter = true
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-		get_parent().get_node("subSound").play()		
+	if !Global.onSavePage and !Global.onLoadPage:
+		buttonIndex = 1
+		if !Global.onMenuSelectCharacter and !Global.onMagicPage:
+			move_status_to_top()
+			canPress = false
+			$"../canPress".start()
+			get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))
+			Global.onMenuSelectCharacter = true
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+			get_parent().get_node("subSound").play()		
 func _on_装备_button_down():
 	buttonIndex = 2
 	if !Global.onMenuSelectCharacter and !Global.onArmorItemPage:
@@ -1720,7 +1752,7 @@ func _on_保存冒险_button_down():
 	if !Global.onMenuSelectCharacter and !Global.onSavePage:
 		buttonIndex = 4
 		move()
-		print(321)
+	
 		canPress = false
 		$"../canPress".start()
 		Global.onSavePage = true
@@ -1731,6 +1763,7 @@ func _on_保存冒险_button_down():
 
 		for i in saveSlots.size():
 			var savePath = "user://saveFile"+str(i)
+			
 			var file = FileAccess.open(savePath, FileAccess.READ)
 
 			if file and file.file_exists(savePath):
@@ -2011,7 +2044,7 @@ func _on_体力加点_button_down():
 	skillIndex = 0
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
-		currPlayer.potential -= 1
+		currPlayer.potential -= Global.enKey 
 		pointOnHp += 1
 		$"加点页面/属性区/最大气血/最大气血数字".modulate = 	"ff0000"
 		$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = true
@@ -2025,7 +2058,7 @@ func _on_力量加点_button_down():
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
 		pointOnStr += 1
-		currPlayer.potential -= 1
+		currPlayer.potential -= Global.enKey 
 		if pointOnStr >0:
 			$"加点页面/属性区/力量/value/changedValue".modulate = "ff0000"
 		$"加点页面/属性区/力量/value/changedValue"	
@@ -2054,7 +2087,7 @@ func _on_敏捷加点_button_down():
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
 		pointOnSpeed += 1
-		currPlayer.potential -= 1
+		currPlayer.potential -= Global.enKey 
 		if pointOnSpeed  >0:
 			$"加点页面/属性区/敏捷/value/changedValue".modulate = "ff0000"					
 		$"加点页面/属性区/敏捷/value/changedValue"	
@@ -2066,7 +2099,7 @@ func _on_仙力加点_button_down():
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
 		pointOnMagic += 1
-		currPlayer.potential -= 1
+		currPlayer.potential -= Global.enKey 
 		if pointOnMagic >0:
 			$"加点页面/属性区/仙力/value/changedValue".modulate = "ff0000"				
 			$"加点页面/属性区/最大仙能/最大仙能数字".modulate = "ff0000"
@@ -2083,8 +2116,8 @@ func _on_确认按钮_button_down():
 	skillIndex = 5
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if pointOnHp > 0:
-		currPlayer.addHp += pointOnHp * 7
-		currPlayer.addPhysicDefense += pointOnHp * 1
+		currPlayer.addHp += pointOnHp * 7 * Global.enKey 
+		currPlayer.addPhysicDefense += pointOnHp * 1 * Global.enKey 
 		$"加点页面/属性区/最大气血/最大气血数字".modulate = "ffffff"
 		$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = false
 		$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"
@@ -2101,7 +2134,7 @@ func _on_确认按钮_button_down():
 		$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"		
 		$"加点页面/属性区/格挡概率/value/changedValue/increaseValue".visible = false
 	if pointOnSpeed > 0 :
-		currPlayer.addPlayerSpeed += pointOnSpeed 
+		currPlayer.addPlayerSpeed += pointOnSpeed * Global.enKey 
 		$"加点页面/属性区/敏捷/value/changedValue".modulate = "ffffff"			
 		$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = false
 	if pointOnMagic > 0:
@@ -2307,6 +2340,7 @@ func _on_load_3_button_button_down():
 
 
 func _on_weapon_but_button_down():
+
 	armorItemSelectIndex = 0
 	if armorItemSelectIndex != 0:
 		onBagArmorItemSelect = false
@@ -2413,7155 +2447,67 @@ func _on_acc_but_button_down():
 
 func _on_bag_button_1_button_down():
 	BagArmorItemIndex = 0
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
+	bagButton()
 
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					
-					
 
 func _on_bag_button_2_button_down():
 	BagArmorItemIndex = 1
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
+	bagButton()
 
 func _on_bag_button_3_button_down():
 	BagArmorItemIndex = 2
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
+	bagButton()
 
 func _on_bag_button_4_button_down():
 	BagArmorItemIndex = 3
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
-
-
-
-
-
-
+	bagButton()
 
 
 func _on_bag_button_5_button_down():
 	BagArmorItemIndex = 4
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
+	bagButton()
 
 
 
 
 func _on_bag_button_6_button_down():
 	BagArmorItemIndex = 5
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
+	bagButton()
 
 
 
 
 func _on_bag_button_7_button_down():
 	BagArmorItemIndex = 6
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
-
-
+	bagButton()
 
 
 func _on_bag_button_8_button_down():
 	BagArmorItemIndex = 7
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
-
+	bagButton()
 
 
 
 func _on_bag_button_9_button_down():
 	BagArmorItemIndex = 8
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
-
+	bagButton()
 
 
 
 func _on_bag_button_10_button_down():
 	BagArmorItemIndex = 9
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
+	bagButton()
 
 
 
 
 func _on_bag_button_11_button_down():
 	BagArmorItemIndex = 10
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
+	bagButton()
 
 func _on_bag_button_12_button_down():
 	BagArmorItemIndex = 11
-	if armorItemSelectIndex == 0:
-		weapons = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "weapon":
-				weapons.append(bagArmorItemsData[i])
-		for i in weapons.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
-
-			
-		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
-
-				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
-			else:
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
-			
-		
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			if armorItemSelectIndex == 0:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
-					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and armorItemSelectIndex == 0:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
-  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
-						"type": "weapon",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-	if armorItemSelectIndex == 1:
-		shoes = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "shoes":
-				shoes.append(bagArmorItemsData[i])
-		for i in shoes.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
-		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-
-				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-			else:
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			if armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
-					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 1:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
-  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
-						"type": "shoes",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()												
-	if armorItemSelectIndex == 2:
-		hats = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
-				hats.append(bagArmorItemsData[i])
-		for i in hats.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
-		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-
-				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
-				
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			if  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
-					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()							
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 2:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
-  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
-						"type": "hat",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()						
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()			
-	
-	if armorItemSelectIndex == 3:
-		cloths = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
-				cloths.append(bagArmorItemsData[i])
-		for i in cloths.size():
-			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
-			
-			
-			
-		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
-				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			if  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()							
-					
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-					}
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
-					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 3:
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
-				
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-							$"../subSound".play()
-					else:
-						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-						$"../subSound".play()
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
-  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
-						"type": "cloth",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				
-				else:
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-	if armorItemSelectIndex == 4:
-		accessories = []
-		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "accessories":
-				accessories.append(bagArmorItemsData[i])
-		for i in accessories.size():
-		
-			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
-			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
-			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
-		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
-			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)							
-			
-			
-			
-			
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-				
-				
-				
-				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
-				
-			
-			
-			
-			else:
-					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
-					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
-					
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
-					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
-					
-					$"装备页面/装备栏/status/速度/value/arrow".visible = true
-					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
-					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
-					
-					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
-					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
-				
-					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
-	
-	
-		#把装备换到空背包
-		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-			$"装备页面/装备栏/status/速度/value/arrow".visible = false
-			
-			if  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()						
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
-					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-					$"../subSound".play()				
-
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
-					else:
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-					}
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
-					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
-					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
-					
-			#如果选中的背包位子不是空的
-		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
-			if canPress and  armorItemSelectIndex == 4:
-				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
-				$"../subSound".play()				
-				#如果选中的背包位子不是空的，并且武器不是空的
-				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
-					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
-					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
-					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
-			
-						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
-							return
-						else:
-							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
-							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-							for i in bagArmorItems.size():
-								bagArmorItems[i].get_node("itemImage").texture = null
-								bagArmorItems[i].get_node("itemImage/item").text = ""
-								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
-					else:
-
-						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
-  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
-						"type": "accessories",
-						"number": 1,
-						"added": false
-						}
-						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
-				else:
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
-					
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
-					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
-					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
-					for i in bagArmorItems.size():
-						bagArmorItems[i].get_node("itemImage").texture = null
-						bagArmorItems[i].get_node("itemImage/item").text = ""
-						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
-
+	bagButton()
 
 func move_status_to_top():
 	self.move_child($status, self.get_child_count() - 3)
@@ -9800,3 +2746,606 @@ func _on_texture_button_button_down():
 func _on_退出游戏按钮_button_down():
 	pass # Replace with function body.
 
+func bagButton():
+	if armorItemSelectIndex == 0:
+		weapons = []
+		for i in bagArmorItemsData:
+			if bagArmorItemsData[i].type == "weapon" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name:
+				weapons.append(bagArmorItemsData[i])
+		for i in weapons.size():
+			bagArmorItems[i].get_node("itemImage").texture = load(weapons[i].info.icon )
+			bagArmorItems[i].get_node("itemImage/item").text = weapons[i].info.name
+			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(weapons[i].number)
+
+			
+		if weapons.size() > BagArmorItemIndex and weapons[BagArmorItemIndex]:
+			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
+				if weapons[BagArmorItemIndex].info.value.additionDmg >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg :
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
+				elif weapons[BagArmorItemIndex].info.value.additionDmg <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg  + weapons[BagArmorItemIndex].info.value.additionDmg)
+
+				elif weapons[BagArmorItemIndex].info.value.additionDmg ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg:
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg+ weapons[BagArmorItemIndex].info.value.additionDmg)
+			else:
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + weapons[BagArmorItemIndex].info.value.additionDmg)
+			
+		
+		#把装备换到空背包
+		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
+			if armorItemSelectIndex == 0:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
+					else:
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
+  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
+						"type": "weapon",
+						"number": 1,
+						"added": false
+					}
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = null	
+					$"装备页面/装备栏/items/button1/itemType/icon".texture = null
+					$"装备页面/装备栏/items/button1/itemType/icon/itemName".text = ""
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()
+			#如果选中的背包位子不是空的
+		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+			if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+				return
+			if canPress and armorItemSelectIndex == 0:
+				#如果选中的背包位子不是空的，并且武器不是空的
+				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
+		
+					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
+			
+						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
+							return
+						else:
+							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name).number += 1
+							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+							for i in bagArmorItems.size():
+								bagArmorItems[i].get_node("itemImage").texture = null
+								bagArmorItems[i].get_node("itemImage/item").text = ""
+								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()
+					else:
+
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name] = {
+  						"info": ItemData.weapon.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name),
+						"type": "weapon",
+						"number": 1,
+						"added": false
+						}
+						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()						
+				else:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+					for i in bagArmorItems.size():
+						bagArmorItems[i].get_node("itemImage").texture = null
+						bagArmorItems[i].get_node("itemImage/item").text = ""
+						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()
+	if armorItemSelectIndex == 1:
+		shoes = []
+		for i in bagArmorItemsData:
+			if bagArmorItemsData[i].type == "shoes":
+				shoes.append(bagArmorItemsData[i])
+		for i in shoes.size():
+			bagArmorItems[i].get_node("itemImage").texture = load(shoes[i].info.icon )
+			bagArmorItems[i].get_node("itemImage/item").text = shoes[i].info.name
+			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(shoes[i].number)
+		if shoes.size() > BagArmorItemIndex and shoes[BagArmorItemIndex]:
+			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
+				if shoes[BagArmorItemIndex].info.value.addPlayerSpeed >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed :
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed))
+				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed  + shoes[BagArmorItemIndex].info.value.addPlayerSpeed))
+
+				elif shoes[BagArmorItemIndex].info.value.addPlayerSpeed ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed:
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed+ shoes[BagArmorItemIndex].info.value.addPlayerSpeed))
+			else:
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + shoes[BagArmorItemIndex].info.value.addPlayerSpeed))
+				
+
+		#把装备换到空背包
+		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+			$"装备页面/装备栏/status/速度/value/arrow".visible = false
+			if armorItemSelectIndex == 1:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name].number += 1
+					else:
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
+  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
+						"type": "shoes",
+						"number": 1,
+						"added": false
+					}
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = null	
+					$"装备页面/装备栏/items/button2/itemType/icon".texture = null
+					$"装备页面/装备栏/items/button2/itemType/icon/itemName".text = ""
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()							
+			#如果选中的背包位子不是空的
+		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+			if canPress and  armorItemSelectIndex == 1:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+					return
+				#如果选中的背包位子不是空的，并且武器不是空的
+				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
+		
+					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
+			
+						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
+							return
+						else:
+							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name).number += 1
+							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+							for i in bagArmorItems.size():
+								bagArmorItems[i].get_node("itemImage").texture = null
+								bagArmorItems[i].get_node("itemImage/item").text = ""
+								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()							
+					else:
+
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name] = {
+  						"info": ItemData.shoes.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name),
+						"type": "shoes",
+						"number": 1,
+						"added": false
+						}
+						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()						
+				else:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+					for i in bagArmorItems.size():
+						bagArmorItems[i].get_node("itemImage").texture = null
+						bagArmorItems[i].get_node("itemImage/item").text = ""
+						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()												
+	if armorItemSelectIndex == 2:
+		hats = []
+		for i in bagArmorItemsData:
+			if bagArmorItemsData[i].type == "hat":
+				hats.append(bagArmorItemsData[i])
+		for i in hats.size():
+			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
+			bagArmorItems[i].get_node("itemImage/item").text = hats[i].info.name
+			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(hats[i].number)
+		if hats.size() > BagArmorItemIndex and hats[BagArmorItemIndex]:
+			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
+				if hats[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense :
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
+				elif hats[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense  + hats[BagArmorItemIndex].info.value.addPhysicDefense)
+
+				elif hats[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense+ hats[BagArmorItemIndex].info.value.addPhysicDefense)
+			else:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + hats[BagArmorItemIndex].info.value.addPhysicDefense)
+				
+	
+		#把装备换到空背包
+		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
+			if  armorItemSelectIndex == 2:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name].number += 1
+					else:
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
+  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
+						"type": "hat",
+						"number": 1,
+						"added": false
+					}
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = null	
+					$"装备页面/装备栏/items/button3/itemType/icon".texture = null
+					$"装备页面/装备栏/items/button3/itemType/icon/itemName".text = ""
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()							
+			#如果选中的背包位子不是空的
+		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+			if canPress and  armorItemSelectIndex == 2:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+					return				
+				#如果选中的背包位子不是空的，并且武器不是空的
+				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
+		
+					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
+			
+						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
+							return
+						else:
+							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name).number += 1
+							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+							for i in bagArmorItems.size():
+								bagArmorItems[i].get_node("itemImage").texture = null
+								bagArmorItems[i].get_node("itemImage/item").text = ""
+								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()							
+					else:
+
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name] = {
+  						"info": ItemData.hat.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name),
+						"type": "hat",
+						"number": 1,
+						"added": false
+						}
+						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()						
+				else:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+					for i in bagArmorItems.size():
+						bagArmorItems[i].get_node("itemImage").texture = null
+						bagArmorItems[i].get_node("itemImage/item").text = ""
+						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""						
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()			
+	
+	if armorItemSelectIndex == 3:
+		cloths = []
+		for i in bagArmorItemsData:
+			if bagArmorItemsData[i].type == "cloth":
+				cloths.append(bagArmorItemsData[i])
+		for i in cloths.size():
+			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
+			bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
+			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
+			
+			
+			
+		if cloths.size() > BagArmorItemIndex and cloths[BagArmorItemIndex]:
+			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
+				if cloths[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense :
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)
+				
+				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense  + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense  + cloths[BagArmorItemIndex].info.value.addMagicDefense)
+				elif cloths[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense+ cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense+ cloths[BagArmorItemIndex].info.value.addMagicDefense)				
+			else:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + cloths[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + cloths[BagArmorItemIndex].info.value.addMagicDefense)						
+	
+		#把装备换到空背包
+		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
+			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
+			if  armorItemSelectIndex == 3:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name].number += 1
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()							
+					
+					else:
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
+  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
+						"type": "cloth",
+						"number": 1,
+						"added": false
+					}
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = null	
+					$"装备页面/装备栏/items/button4/itemType/icon".texture = null
+					$"装备页面/装备栏/items/button4/itemType/icon/itemName".text = ""
+					
+			#如果选中的背包位子不是空的
+		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+			if canPress and  armorItemSelectIndex == 3:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+					return
+				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
+					
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
+					
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
+		
+					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name):
+			
+						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
+							return
+						else:
+							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name).number += 1
+							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+							for i in bagArmorItems.size():
+								bagArmorItems[i].get_node("itemImage").texture = null
+								bagArmorItems[i].get_node("itemImage/item").text = ""
+								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
+							$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+							$"../subSound".play()
+					else:
+						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+						$"../subSound".play()
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name] = {
+  						"info": ItemData.cloth.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.name),
+						"type": "cloth",
+						"number": 1,
+						"added": false
+						}
+						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
+				
+				else:
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+					for i in bagArmorItems.size():
+						bagArmorItems[i].get_node("itemImage").texture = null
+						bagArmorItems[i].get_node("itemImage/item").text = ""
+						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
+	if armorItemSelectIndex == 4:
+		accessories = []
+		for i in bagArmorItemsData:
+			if bagArmorItemsData[i].type == "accessories":
+				accessories.append(bagArmorItemsData[i])
+		for i in accessories.size():
+		
+			bagArmorItems[i].get_node("itemImage").texture = load(accessories[i].info.icon )
+			bagArmorItems[i].get_node("itemImage/item").text = accessories[i].info.name
+			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(accessories[i].number)
+		if accessories.size() > BagArmorItemIndex and accessories[BagArmorItemIndex]:
+			if  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
+				if accessories[BagArmorItemIndex].info.value.addPhysicDefense >  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense :
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
+					
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
+					
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(round(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed))							
+			
+			
+			
+			
+				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense <  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
+					
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
+					
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "red"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
+				
+				
+				
+				
+				elif accessories[BagArmorItemIndex].info.value.addPhysicDefense ==  FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)
+					
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)					
+					
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "ffffff"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)		
+				
+			
+			
+			
+			else:
+					$"装备页面/装备栏/status/物理防御/value/arrow".visible = true
+					$"装备页面/装备栏/status/物理防御/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/物理防御/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense + accessories[BagArmorItemIndex].info.value.addPhysicDefense)
+					
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = true
+					$"装备页面/装备栏/status/魔法抗性/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/魔法抗性/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense + accessories[BagArmorItemIndex].info.value.addMagicDefense)						
+					
+					$"装备页面/装备栏/status/速度/value/arrow".visible = true
+					$"装备页面/装备栏/status/速度/value/arrow".modulate = "green"
+					$"装备页面/装备栏/status/速度/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed + accessories[BagArmorItemIndex].info.value.addPlayerSpeed)
+					
+					$"装备页面/装备栏/status/伤害/value/arrow".visible = true
+					$"装备页面/装备栏/status/伤害/value/arrow".modulate = "green"
+				
+					$"装备页面/装备栏/status/伤害/value/arrow/changedValue".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg + accessories[BagArmorItemIndex].info.value.additionDmg)									
+	
+	
+		#把装备换到空背包
+		if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+			$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
+			$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
+			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
+			$"装备页面/装备栏/status/速度/value/arrow".visible = false
+			
+			if  armorItemSelectIndex == 4:
+				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+				$"../subSound".play()						
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories != null:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addHp
+					$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+					$"../subSound".play()				
+
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name].number += 1
+					else:
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
+  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
+						"type": "accessories",
+						"number": 1,
+						"added": false
+					}
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = null	
+					$"装备页面/装备栏/items/button5/itemType/icon".texture = null
+					$"装备页面/装备栏/items/button5/itemType/icon/itemName".text = ""
+					
+			#如果选中的背包位子不是空的
+		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+			if FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user != "all" and FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user :
+				return			
+			if canPress and  armorItemSelectIndex == 4:
+				$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
+				$"../subSound".play()				
+				#如果选中的背包位子不是空的，并且武器不是空的
+				if $"装备页面/装备栏/items/button5/itemType/icon/itemName".text != "":
+					
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addMagicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg- FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed					
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp				
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
+		
+					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
+					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name):
+			
+						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name == FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.name:
+							return
+						else:
+							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+							FightScenePlayers.bagArmorItem.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name).number += 1
+							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+							for i in bagArmorItems.size():
+								bagArmorItems[i].get_node("itemImage").texture = null
+								bagArmorItems[i].get_node("itemImage/item").text = ""
+								bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
+					else:
+
+						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name] = {
+  						"info": ItemData.accessories.get(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name),
+						"type": "accessories",
+						"number": 1,
+						"added": false
+						}
+						FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+						FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info	
+				else:
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addMagicDefense
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addHp += FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addHp
+					
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true
+					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).number -= 1
+					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories = FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info
+					for i in bagArmorItems.size():
+						bagArmorItems[i].get_node("itemImage").texture = null
+						bagArmorItems[i].get_node("itemImage/item").text = ""
+						bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""	
+
+func decrypt(value):
+	return value / Global.enKey

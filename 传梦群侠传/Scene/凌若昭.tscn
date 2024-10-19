@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://cb88fi556u5i7"]
+[gd_scene load_steps=91 format=3 uid="uid://cb88fi556u5i7"]
 
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="1_s2t5j"]
 [ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="2_1s4n3"]
@@ -215,6 +215,22 @@ region = Rect2(140, 98, 70, 98)
 [sub_resource type="AtlasTexture" id="AtlasTexture_faigt"]
 atlas = ExtResource("3_17x1w")
 region = Rect2(210, 98, 70, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqmdv"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(0, 100, 70, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbyg6"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(70, 100, 70, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0oiu"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(140, 100, 70, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owaql"]
+atlas = ExtResource("5_w7rja")
+region = Rect2(210, 100, 70, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djov3"]
 atlas = ExtResource("4_7r7t0")
@@ -560,6 +576,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_rqmdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbyg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0oiu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owaql")
+}],
+"loop": true,
+"name": &"左下招手",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_djov3")
 }, {
 "duration": 1.0,
@@ -654,8 +687,8 @@ animations = [{
 
 [node name="凌若昭" instance=ExtResource("1_s2t5j")]
 sprite_frames = SubResource("SpriteFrames_hi8t1")
-animation = &"施法"
-frame_progress = 0.736262
+animation = &"左下招手"
+frame_progress = 0.761977
 
 [node name="CollisionPolygon2D" parent="npcBody" index="1"]
 disabled = true

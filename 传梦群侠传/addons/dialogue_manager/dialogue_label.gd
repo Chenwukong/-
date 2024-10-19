@@ -17,7 +17,7 @@ signal skipped_typing()
 ## Emitted when typing finishes.
 signal finished_typing()
 
-
+var emoji_sprite = $"../../../emoji_sprite"
 ## The action to press to skip typing.
 @export var skip_action: StringName = &"ui_cancel"
 
@@ -33,14 +33,25 @@ signal finished_typing()
 ## The amount of time to pause when exposing a character present in pause_at_characters.
 @export var seconds_per_pause_step: float = 0.3
 
-
+var animated_sprite: AnimatedSprite2D ## AnimatedSprite2D reference for emoji
+var emoji = ["生气","大哭","大笑","天使","女拜","微笑","心碎","怒喝","恶魔","握手","无奈","爱心","狗头","男拜", "羞涩", "自信", "魔鬼", "亲吻", "玫瑰", "惊愕","吐舌","点赞","倒赞","墨镜",
+			 "猪头","惊讶","月亮","流汗", "瞌睡", "你好", "跳舞", "疑惑","比耶","惊呆","呕吐", "锤头", "闭嘴", "教训","开心","不听","垂涎","出发","加油","好色","互亲","鼻血","汗颜"]
+var currEmoji
+var newText
 ## The current line of dialogue.
 var dialogue_line:
 	set(next_dialogue_line):
 		dialogue_line = next_dialogue_line
 		custom_minimum_size = Vector2.ZERO
-		text = dialogue_line.text
+		#text = dialogue_line.text
+		newText = dialogue_line.text.substr(0, dialogue_line.text.length() - 2)
+		text = dialogue_line.text.substr(0, dialogue_line.text.length() - 2)
+		var last_two_chars =dialogue_line.text.substr(dialogue_line.text.length() - 2, 2)
+
+		
+		
 	get:
+		
 		return dialogue_line
 
 ## Whether the label is currently typing itself out.
@@ -75,19 +86,33 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if self.is_typing and visible_ratio < 1 and InputMap.has_action(skip_action) and event.is_action_pressed(skip_action):
+		#return
 		get_viewport().set_input_as_handled()
 		skip_typing()
 
 
 ## Start typing out the text
 func type_out() -> void:
-	text = dialogue_line.text
+	#text = dialogue_line.text
+	var emoji_sprite = $"../../../emoji_sprite"
+	
+	emoji_sprite.position = Vector2(150,69)
+	emoji_sprite.visible = false
+	var last_two_chars =dialogue_line.text.substr(dialogue_line.text.length() - 2, 2)
+	if last_two_chars in emoji:
+		currEmoji = last_two_chars
+		text = dialogue_line.text.substr(0, dialogue_line.text.length() - 2)
+		
+	else:
+		text = dialogue_line.text
+	
 	visible_characters = 0
 	visible_ratio = 0
 	_waiting_seconds = 0
 	_last_wait_index = -1
 	_last_mutation_index = -1
-
+	
+		
 	self.is_typing = true
 
 	# Allow typing listeners a chance to connect
@@ -95,6 +120,7 @@ func type_out() -> void:
 
 	if get_total_character_count() == 0:
 		self.is_typing = false
+
 	elif seconds_per_step == 0:
 		_mutate_remaining_mutations()
 		visible_characters = get_total_character_count()
@@ -108,9 +134,17 @@ func skip_typing() -> void:
 	self.is_typing = false
 	skipped_typing.emit()
 
+func _play_emoji_animation(emoji: String) -> void:
+	emoji_sprite = $"../../../emoji_sprite"  # 假设场景中的 AnimatedSprite2D 节点叫做 "emoji_sprite"
+	emoji_sprite.visible = true
+	emoji_sprite.play(currEmoji)
 
+
+	
 # Type out the next character(s)
 func _type_next(delta: float, seconds_needed: float) -> void:
+	emoji_sprite = $"../../../emoji_sprite"
+
 	if visible_characters == get_total_character_count():
 		return
 
@@ -129,10 +163,26 @@ func _type_next(delta: float, seconds_needed: float) -> void:
 		_last_wait_index = visible_characters
 		_waiting_seconds += additional_waiting_seconds
 		paused_typing.emit(_get_pause(visible_characters))
+		emoji_sprite.visible = false
 	else:
 		visible_characters += 1
 		if visible_characters <= get_total_character_count():
 			spoke.emit(get_parsed_text()[visible_characters - 1], visible_characters - 1, _get_speed(visible_characters))
+	
+	
+			emoji_sprite.position.x += 25
+			if visible_characters == 20:
+				emoji_sprite.position.x = 150
+				emoji_sprite.position.y += 30 
+			if visible_characters == 40:
+				emoji_sprite.position.x = 150
+				emoji_sprite.position.y += 30 				
+		if visible_characters ==  get_total_character_count():
+			
+			if currEmoji != "<null>" and currEmoji != null :
+				_play_emoji_animation(currEmoji)
+				currEmoji = null
+
 		# See if there's time to type out some more in this frame
 		seconds_needed += seconds_per_step * (1.0 / _get_speed(visible_characters))
 		if seconds_needed > delta:

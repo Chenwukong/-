@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 200
+var speed = 1000
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
@@ -28,8 +28,8 @@ func _ready():
 	raycast = $RayCast2D3
 	raycast2 =  $RayCast2D2
 	if Global.load == true:
-		print(Global.mapPlayerPos)
-		self.position = Global.mapPlayerPos
+		if self:
+			self.position = Global.mapPlayerPos
 	canMove = false
 	$readyMove.start()
 func _on_play_time_timeout():
@@ -323,20 +323,26 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_accept") and !Global.onFight and !Global.menuOut and !get_parent().onShop:	
 	
 		if raycast.is_colliding():	
-		
-			if raycast.get_collider().get_parent().is_in_group("standNpc") and Global.npcs.has(raycast.get_collider().get_parent().name):
+			if raycast.get_collider().get_parent().is_in_group("standNpc") and raycast.get_collider().get_parent().npcName != "":#and Global.npcs.has(raycast.get_collider().get_parent().npcName):
+				if raycast.get_collider().get_parent().talked:
 				
+					return				
+			
+				if raycast.get_collider().get_parent().name == "小师弟"  or raycast.get_collider().get_parent().name == "小师弟2" or raycast.get_collider().get_parent().name == "小师弟3":
+					raycast.get_collider().get_parent().talked = true
 				if raycast.get_collider().get_parent().audio != "":
 					get_parent().get_node("npcAudio").stream = load(raycast.get_collider().get_parent().newStream)
 					get_parent().get_node("npcAudio").play()
-				var npc = Global.npcs[raycast.get_collider().get_parent().name]
+				var npc = Global.npcs[raycast.get_collider().get_parent().npcName]
 				var dialogue_index = npc["current_dialogue_index"]	
 				var dialogue_entry
 				if dialogue_index != npc["dialogues"].size():
 					dialogue_entry = npc["dialogues"][dialogue_index]
-					DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(raycast.get_collider().get_parent().name))
+				
+					DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(raycast.get_collider().get_parent().npcName))
 				else:
-					DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue(raycast.get_collider().get_parent().name))
+					
+					DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue(raycast.get_collider().get_parent().npcName))
 				var direction = global_position - raycast.get_collider().get_parent().global_position
 				var angle_deg = rad_to_deg(direction.angle())  # 获取角度并转换为度数
 				angle_deg = fmod(angle_deg + 360, 360)  # 标准化到0到360度
@@ -402,9 +408,11 @@ func _on_area_2d_area_entered(area):
 
 func _on_area_2d_body_entered(body):
 	if body.name == "npcBody":
-	
 		velocity = Vector2(0,0)
-
+	if body.get_parent().name == "黑山" and body.get_parent().onChase == true:
+		Global.npcs.get("黑山")["current_dialogue_index"] = 0
+		get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+			
 
 func _on_右上_button_down():
 	onArrowButton = true

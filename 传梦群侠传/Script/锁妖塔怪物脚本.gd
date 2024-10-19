@@ -17,6 +17,8 @@ func _process(delta):
 #		velocity = Vector2.ZERO
 	move_and_slide()
 func changeDir():
+	if Global.onFight:
+		return
 	var dir = randi_range(0,3)
 	if dir == 0:
 		velocity = Vector2(-1, 1) * speed
@@ -40,5 +42,8 @@ func _on_animated_sprite_2d_animation_finished():
 func _on_area_2d_area_entered(area):
 	velocity = Vector2.ZERO
 	if area.name == "playerTouch" and area.get_parent().velocity.x != 0:
-		get_parent().touchFight()
+		if get_tree().current_scene.name == "花果山":
+			get_parent().get_parent().touchFight()
+		else:
+			get_parent().touchFight()
 		self.queue_free()

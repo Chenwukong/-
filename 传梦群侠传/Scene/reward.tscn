@@ -1,12 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvh00u3eljhxv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0yyr"]
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_color = Color(0, 0.509804, 0.101961, 0.584314)
-shadow_size = 20
+[ext_resource type="Texture2D" uid="uid://cwx0di0j6jv1v" path="res://道具消息提示框.png" id="1_2ml4y"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -19,26 +13,26 @@ offset_bottom = 40.0
 [node name="CanvasLayer" type="CanvasLayer" parent="BattleReward"]
 visible = false
 
-[node name="Panel" type="Panel" parent="BattleReward/CanvasLayer"]
-self_modulate = Color(0.32549, 0.513726, 0.968627, 0.788235)
+[node name="Panel" type="TextureRect" parent="BattleReward/CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0.933333)
 anchors_preset = -1
 anchor_left = 0.224
 anchor_top = 0.117
 anchor_right = 0.682
 anchor_bottom = 0.345
 offset_left = -0.0480042
-offset_top = 0.399994
+offset_top = 0.400009
 offset_right = 0.335938
-offset_bottom = -3.05176e-05
-theme_override_styles/panel = SubResource("StyleBoxFlat_u0yyr")
+offset_bottom = 15.0
+texture = ExtResource("1_2ml4y")
 
 [node name="gold" type="Label" parent="BattleReward/CanvasLayer/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 13.0
-offset_top = 86.0
-offset_right = 523.0
-offset_bottom = 131.0
+offset_left = 31.0
+offset_top = 81.0
+offset_right = 541.0
+offset_bottom = 126.0
 theme_override_colors/font_color = Color(0.854902, 0.870588, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "获得金钱： "
@@ -57,10 +51,10 @@ text = "10000
 [node name="item" type="Label" parent="BattleReward/CanvasLayer/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 12.0
-offset_top = 55.0
-offset_right = 522.0
-offset_bottom = 100.0
+offset_left = 30.0
+offset_top = 50.0
+offset_right = 540.0
+offset_bottom = 95.0
 theme_override_colors/font_color = Color(0.854902, 0.870588, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "获得"
@@ -69,10 +63,10 @@ vertical_alignment = 1
 [node name="exp" type="Label" parent="BattleReward/CanvasLayer/Panel"]
 visible = false
 layout_mode = 0
-offset_left = 13.0
-offset_top = 26.0
-offset_right = 525.0
-offset_bottom = 71.0
+offset_left = 31.0
+offset_top = 21.0
+offset_right = 543.0
+offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 0.988235, 0.505882, 1)
 theme_override_font_sizes/font_size = 30
 text = "获得经验： 

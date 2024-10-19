@@ -26,6 +26,7 @@ var currHp = 0
 @export var onIceDebuff = false
 @export var onSleepDebuff = false
 @export var type = ""
+@export var luck = 0
 var digit_sprite
 var digit_image_path = "res://数字/"
 var healBuffAmount = 0
@@ -36,12 +37,16 @@ var onIce = false
 var onSleep = false
 var players = []
 var dead = false
+var canAttack = false
 @export var delay_timer: Timer
 var oriMonsterName 
 var monsters
 #var selectedTarget = false
 var buffs = []
 var treeHealed = false
+var onMagicDefenseDebuff = false
+var onPhysicDefenseDebuff = false
+var canAttackTimerStarted = false
 func _ready():
 	oriMonsterName = monsterName
 	monsterName = remove_numbers_from_string(monsterName)
@@ -64,6 +69,12 @@ var deltas
 var itemList = []
 
 func _process(delta):
+
+	if onMagicDefenseDebuff:
+		magicDefense = magicDefense * 0.3
+	if onPhysicDefenseDebuff:
+		physicDefense = physicDefense * 0.3
+	
 	if self.name == "千年树0":
 		self.scale.x = 2
 		self.scale.y = 2
@@ -71,7 +82,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("ui_accept"):
 			Global.blocked = true
 			Global.canBlock = false
-			get_tree().current_scene.get_node("battleField/battleFieldPicture/blockButton").visible = false
+			get_tree().current_scene.get_node("battleFieldLayer/battleField/battleFieldPicture/blockButton").visible = false
 			get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/兵器-钝器.ogg")
 			get_tree().current_scene.get_node("subSound").play()
 			Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "block")			
@@ -97,7 +108,8 @@ func _process(delta):
 
 #	if onIce:
 #		$debuff.play("冰封")
-	
+#	if onPhysicDefenseDebuff:
+#		$debuff.play("破甲")	
 #	if Global.monsterTarget:
 #		print(alivePlayers[Global.monsterTarget].get_node("getHitEffect").is_playing() == false)
 		
@@ -117,7 +129,8 @@ func _process(delta):
 				onSleep = false
 				$debuff.visible = false
 				$playerSound.stream = load("res://Audio/SE/warn.ogg")
-				$playerSound.play()			
+				$playerSound.play()						
+				
 		else:		
 			Global.onAttackingList.append(name)
 		for buff in buffs:
@@ -175,13 +188,39 @@ func _process(delta):
 		if onPoisonDebuff:	
 			onPoisonDebuff -= 1
 			currHp -= poisonDebuffAmount
+			FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
 			if onPoisonDebuff <= 0:
 				onPoisonDebuff = false
-					
+		if onMagicDefenseDebuff:
+			onMagicDefenseDebuff -= 1
+			if onMagicDefenseDebuff == 0:
+				onMagicDefenseDebuff = false
+		if onPhysicDefenseDebuff:
+			onPhysicDefenseDebuff -= 1
+			if onPhysicDefenseDebuff == 0:
+				onPhysicDefenseDebuff = false						
 		
 	#检测当前onAttackingList的是不是自己，是的话就触发选择玩家攻击	
 	if Global.onAttackingList.size() > 0 and Global.canEnemyHit:
-		
+		if monsterName and self.currHp <= 0 and !dead:
+			dead = true
+			currHp = 0
+			Global.targetMonsterIdx = 0 
+			alive = false
+			var deadSound = randi_range(0,1)
+			if deadSound == 0:
+				$deadSound.stream = load("res://Audio/SE/011-System12.ogg")
+			else:
+				$deadSound.stream = load("res://Audio/SE/小妖-倒地.ogg")
+			$deadSound.play()
+			
+			$deadAnimationPlayer.play("deadAnimation")
+			$deadTimer.start()  # Start the timer only once when hp is less than or equal to 0
+			self.self_modulate = "#ef1354"
+			self.get_node("hpAnimation").play("hpDrop")
+			self.play(monsterName + "hurt")
+			gotHit = true 
+			return
 		if !Global.onHitEnemy and monsterName and alive and Global.onAttackingList[0] != name:
 			self.play(monsterName + "idle")
 		if name == Global.onAttackingList[0] and alive and Global.selectedTarget == false and Global.onItemUsing == false :
@@ -191,10 +230,15 @@ func _process(delta):
 				randi = 0
 			treeHealed = false
 			
-			magicRandi = randi_range(0, monsterMagicList.size()-1)
-			selectTarget(delta, randi, magicRandi)
-			get_tree().current_scene.get_node("subSound").stream = load("")
-			get_tree().current_scene.get_node("subSound").play()
+			if !canAttackTimerStarted:
+				canAttackTimerStarted = true
+				$canAttack.start()
+			
+			if Global.canAttack:
+				magicRandi = randi_range(0, monsterMagicList.size()-1)
+				selectTarget(delta, randi, magicRandi)
+				get_tree().current_scene.get_node("subSound").stream = load("")
+				get_tree().current_scene.get_node("subSound").play()
 		elif name == Global.onAttackingList[0] and Global.selectedTarget == false:
 			Global.onAttackingList.pop_front()
 
@@ -204,7 +248,7 @@ func _process(delta):
 			if self.name == "千年树0" and treeHealed == false:
 			
 				treeHealed = true
-				self.currHp += 50
+				self.currHp += 100
 				$hpControl.visible = true
 				var disDamage = display_damage(50,"heal")
 				get_node("hpControl").add_child(disDamage)
@@ -226,13 +270,28 @@ func _process(delta):
 				
 				var damage_to_deduct = self.attackDmg  * float(Global.alivePlayers[Global.monsterTarget].currPhysicDefense)/ float(1000)
 				Global.dealtDmg =  self.attackDmg - damage_to_deduct
+		
+				
+				
 				if Global.blocked:
 					Global.dealtDmg /= 2
 				Global.blocked = false
 				Global.canBlock = false
-				get_tree().current_scene.get_node("battleField/battleFieldPicture/blockButton").visible = false
-				Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)
+				get_tree().current_scene.get_node("battleFieldLayer/battleField/battleFieldPicture/blockButton").visible = false
 				
+				Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)
+				if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
+					Global.alivePlayers[Global.monsterTarget].alive = false
+					Global.alivePlayers[Global.monsterTarget].get_node("Control").visible = false
+					Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "dead")
+					get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/011-System11.ogg")
+					get_tree().current_scene.get_node("oneTimeSound").play()								
+				
+				
+				
+				Global.wait = true
+				$waitTimer.start()
+				FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
 				Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg))
 				Global.alivePlayers[Global.monsterTarget].get_node("hpControl").visible = true
 				Global.alivePlayers[Global.monsterTarget].get_node("AnimationPlayer").play("hpControl")
@@ -249,7 +308,7 @@ func _process(delta):
 					
 				
 		elif Global.monsterTarget != null or Global.onHitPlayer.size()>0 and Global.onAttackingList[0] == name and randi == 1 and monsterMagicList.size() > 0:
-			if monsterMagicList.size()>0 and monsterMagicList[magicRandi].attackType == "range" or monsterMagicList.size()>0 and monsterMagicList[magicRandi].attackType == "debuff":
+			if monsterMagicList.size()>0 and monsterMagicList[magicRandi].attackType == "range":
 				if monsterMagicList.size() > 0 and monsterMagicList[magicRandi].effectArea == "single":
 					if Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").animation == monsterMagicList[magicRandi].name and Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").is_playing() == false:
 					
@@ -264,11 +323,24 @@ func _process(delta):
 							Global.dealtDmg =  self.magicDmg *  monsterMagicList[magicRandi].damage - damage_to_deduct
 							
 							Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)		
+
+							
+							
+							FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
 							Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg))
 							Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
 							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")
+							if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
+								print(Global.alivePlayers[Global.monsterTarget].playerName)
+								Global.alivePlayers[Global.monsterTarget].alive = false
+								Global.alivePlayers[Global.monsterTarget].get_node("Control").visible = false
+								Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "dead")
+								print(Global.alivePlayers[Global.monsterTarget].playerName)
+								get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/011-System11.ogg")
+								get_tree().current_scene.get_node("oneTimeSound").play()							
+							
 							self.play(monsterName + "idle")
 							Global.onAttackingList.pop_front()
 							Global.onAttacking = false
@@ -279,7 +351,8 @@ func _process(delta):
 							Global.onHitPlayer = []
 							Global.canEnemyHit = false
 							$"攻击间隔".start()
-			
+				
+
 							
 				elif monsterMagicList.size() > 0 and  monsterMagicList[magicRandi].effectArea == "aoe":		
 					if Global.onHitPlayer.size()>0 and Global.onHitPlayer[0].get_node("getHitEffect").animation == monsterMagicList[magicRandi].name and Global.onHitPlayer[0].get_node("getHitEffect").is_playing() == false:
@@ -294,12 +367,24 @@ func _process(delta):
 							var damage_to_deduct = self.magicDmg  *  monsterMagicList[randi_range(0, magicRandi)].damage * float(i.currMagicDefense)/ float(1000)
 							Global.dealtDmg =  self.magicDmg *  monsterMagicList[magicRandi].damage - damage_to_deduct
 							
-							i.currHp -= round(Global.dealtDmg)		
+							i.currHp -= round(Global.dealtDmg)	
+							i.play(i.playerName + "idle")
+							FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)	
+							if i.currHp <= 0:
+							
+								i.alive = false
+								i.get_node("Control").visible = false
+								
+								i.play(i.playerName + "dead")
+							
+								get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/011-System11.ogg")
+								get_tree().current_scene.get_node("oneTimeSound").play()									
+							
 							i.get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg))
 							i.get_node('Control/hpBar').value = i.currHp
 							i.get_node("getHitEffect").stop()
 							i.get_node("getHitEffect").visible = false
-							i.play(i.playerName + "idle")
+							
 							self.play(monsterName + "idle")
 							Global.onAttackingList.pop_front()
 							Global.onAttacking = false
@@ -325,12 +410,23 @@ func _process(delta):
 						var damage_to_deduct = self.magicDmg  *  monsterMagicList[randi_range(0, magicRandi)].damage * float(Global.alivePlayers[Global.monsterTarget].currMagicDefense)/ float(1000)
 						Global.dealtDmg =  self.magicDmg *  monsterMagicList[magicRandi].damage - damage_to_deduct
 						
-						Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)		
+						Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)	
+						FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)	
 						Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg))
 						Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 						Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 						Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
 						Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")
+						if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
+							print(Global.alivePlayers[Global.monsterTarget].playerName)
+							Global.alivePlayers[Global.monsterTarget].alive = false
+							Global.alivePlayers[Global.monsterTarget].get_node("Control").visible = false
+							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "dead")
+							print(Global.alivePlayers[Global.monsterTarget].playerName)
+							get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/011-System11.ogg")
+							get_tree().current_scene.get_node("oneTimeSound").play()								
+						
+						
 						self.play(monsterName + "idle")
 						Global.onAttackingList.pop_front()
 						Global.onAttacking = false
@@ -342,8 +438,31 @@ func _process(delta):
 						Global.canEnemyHit = false
 						$"攻击间隔".start()						
 	
-	
-	
+			elif monsterMagicList.size()>0 and monsterMagicList[magicRandi].attackType == "debuff":
+				if Global.onHitPlayer.size()>0 and Global.onHitPlayer[0].get_node("getHitEffect").animation == monsterMagicList[magicRandi].name and Global.onHitPlayer[0].get_node("getHitEffect").is_playing() == false:
+					for i in Global.onHitPlayer:
+						if monsterMagicList[magicRandi].debuffType == "ice":
+							i.onIceDebuff = monsterMagicList[magicRandi].duration
+						i.self_modulate = "#ffffff"
+						i.get_node("AnimationPlayer").stop()
+						#i.play(i.playerName + "hurt")
+						i.get_node("hpControl/hpLabel").modulate = "c80038"
+						i.get_node("AnimationPlayer").play("hpControl")
+
+						i.get_node("getHitEffect").stop()
+						i.get_node("getHitEffect").visible = false
+						i.play(i.playerName + "idle")
+						self.play(monsterName + "idle")
+						Global.onAttackingList.pop_front()
+						Global.onAttacking = false
+						
+						Global.monsterTarget = null
+						position = monsterPosition
+						Global.selectedTarget = false					
+						Global.onHitPlayer = []
+						Global.canEnemyHit = false
+						$"攻击间隔".start()				
+
 	##给远程写的，如果是被打的目标就受伤动画，打完恢复idle
 	if Global.onHitEnemy.has(self):
 		self.play(monsterName + "hurt")
@@ -404,7 +523,7 @@ func _on_dead_timer_timeout():
 	self.call_deferred("queue_free")
 
 func selectTarget(delta, randi, magicRandi):
-
+	
 	if players.size() != 0:
 		for i in players:
 			if i.alive == false:	
@@ -417,10 +536,11 @@ func selectTarget(delta, randi, magicRandi):
 		$effectSound.stream = load("res://Audio/SE/打击1.ogg")
 		$effectSound.play()
 		Global.monsterTarget = randi_range(0, Global.alivePlayers.size() - 1)
-		var blockChance = FightScenePlayers.fightScenePlayerData.get(Global.alivePlayers[Global.monsterTarget].name).blockChance
+		
+		var blockChance = FightScenePlayers.fightScenePlayerData.get(Global.alivePlayers[Global.monsterTarget].name).blockChance +  FightScenePlayers.fightScenePlayerData.get(Global.alivePlayers[Global.monsterTarget].name).addBlockChance
 		if randi_range(0,100) <= blockChance:
 			Global.canBlock = true
-			get_tree().current_scene.get_node("battleField/battleFieldPicture/blockButton").visible = true
+			get_tree().current_scene.get_node("battleFieldLayer/battleField/battleFieldPicture/blockButton").visible = true
 				
 		
 		
@@ -525,7 +645,7 @@ func selectTarget(delta, randi, magicRandi):
 #		alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)		
 #		alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg))
 #		alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = alivePlayers[Global.monsterTarget].currHp
-	
+
 func moveCharacter(delta):
 	var moveSpeed = 15 
 	var newPosition = position.lerp(Vector2(Global.alivePlayers[Global.monsterTarget].position.x-60, Global.alivePlayers[Global.monsterTarget].position.y-60)  , moveSpeed * delta)
@@ -547,7 +667,13 @@ func _on_button_button_down():
 			move()
 			
 	if monsters and Global.onMagicAttackPicking:
-		Global.currPlayer.castMagic(deltas, Global.currPlayerMagic[Global.magicSelectIndex],self, "mouse",false) 	
+		
+		if Global.currUsingMagic.attackType == "multi":
+	
+			Global.currPlayer.cast_magic_multiple_times(deltas, Global.currUsingMagic, Global.target, "keyboard", 3 )
+			
+		else:
+			Global.currPlayer.castMagic(deltas, Global.currPlayerMagic[Global.magicSelectIndex],self, "mouse",false) 	
 		Global.onMagicAttackPicking = false
 		
 	if monsters and Global.onItemUsePicking:
@@ -563,7 +689,8 @@ func move():
 	
 
 func _on_button_mouse_entered():
-	
+	if Global.onMultiHit >0:
+		return
 	if Global.onAttackPicking:
 		$".".modulate = "c7c7c7"
 		Global.target = self
@@ -610,3 +737,15 @@ func display_damage(damage, type):
 		damage_node.add_child(digit_sprite)
 		offset_x += digit_sprite.texture.get_width()# Adjust this value as needed
 	return damage_node
+
+
+func _on_wait_timer_timeout():
+	Global.wait = false
+
+
+
+
+
+func _on_can_attack_timeout():
+	canAttackTimerStarted = false
+	Global.canAttack = true

@@ -3,6 +3,7 @@ extends Node2D
 @export var items = {}
 @export var goldAmount = 0
 @export var gold: bool = false
+@export var special: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if id in Global.treasureBox:
@@ -27,14 +28,16 @@ func _on_area_2d_body_entered(body):
 		#FightScenePlayers.fightScenePlayerData.get(i).potential += 5
 		if gold:
 			Global.addGold(goldAmount)
-			print(1234)
+			
 		else:
-			print(items.keys())
 			for i in items.keys():
 				var info = ItemData.addItemInfo[i]
-				print(123)
+				
 				Global.addItem(info["name"], info["type"], info["bagPlace"], items[i])
 		body.get_node("AudioStreamPlayer2D").stream = load("res://Audio/SE/006-System06.ogg")
 		body.get_node("AudioStreamPlayer2D").play()
 		queue_free()
 		Global.treasureBox.get(id).pickUp = true
+		if special:
+			get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "柳生留: 有需要的人就拿去吧"
+			get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true	

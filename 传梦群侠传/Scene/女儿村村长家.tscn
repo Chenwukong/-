@@ -1,0 +1,457 @@
+[gd_scene load_steps=36 format=3 uid="uid://cwu1ctp3jc2hq"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_5j8sl"]
+[ext_resource type="Texture2D" uid="uid://bmaknm5fsitv0" path="res://panoramas2/门派_女儿村村长家.jpg" id="2_se4rt"]
+[ext_resource type="Texture2D" uid="uid://bevl2s5777yms" path="res://panoramas2/门派_女儿村村长家_2.png" id="3_ulcnd"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_2f5c6"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_w7gkg"]
+[ext_resource type="AudioStream" uid="uid://72ue7atgjfmk" path="res://Audio/BGM/网易游戏 - 女儿村.mp3" id="6_3peih"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_4slru"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_72pgp"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_ef2se"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_3nbel"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_hbcaj"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="12_tist8"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="13_h2r8a"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="14_8pnng"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="15_hoqro"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_suqq0"]
+[ext_resource type="Texture2D" uid="uid://cp6bc4tqcegur" path="res://Characters/☆绿烟儿.png" id="18_m1n61"]
+[ext_resource type="Texture2D" uid="uid://cponeub3nl6l7" path="res://Characters/上官.png" id="19_diyfy"]
+[ext_resource type="Texture2D" uid="uid://8dhcfoig53hr" path="res://Characters/3血无命.png" id="19_jlagy"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
+vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7, 2), PackedInt32Array(2, 7, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-53, 16, -52, 615, 9, 1337, 11, 1492, 11, 2472, 2393, 2472, 2390, 97, 744, 20)])
+
+[sub_resource type="Gradient" id="Gradient_k3l1b"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
+gradient = SubResource("Gradient_k3l1b")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtjsw"]
+bg_color = Color(0, 0.682353, 0.721569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxelm"]
+bg_color = Color(0.376471, 0.584314, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.666667, 0.631373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byih7"]
+bg_color = Color(0, 0.67451, 0.760784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.890196, 0.670588, 0.968627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee7n4"]
+bg_color = Color(0, 0.568627, 0.552941, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gky42"]
+atlas = ExtResource("18_m1n61")
+region = Rect2(0, 95, 71, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rok4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gky42")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wbw2"]
+atlas = ExtResource("19_diyfy")
+region = Rect2(0, 0, 72, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_piwgs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wbw2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_a62bh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0yb2x"]
+resource_name = "turnDark"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.7, 3, 3.0001, 3.0002, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_chicken_timer_timeout"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mw6ho"]
+_data = {
+"RESET": SubResource("Animation_a62bh"),
+"turnDark": SubResource("Animation_0yb2x")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixj00"]
+atlas = ExtResource("19_jlagy")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8wqh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixj00")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="女儿村村长家" type="Node2D"]
+script = ExtResource("1_5j8sl")
+
+[node name="建业-布店" type="Sprite2D" parent="."]
+position = Vector2(355, 238)
+texture = ExtResource("2_se4rt")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(355, 238)
+texture = ExtResource("3_ulcnd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("4_2f5c6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(509, 359, 460, 331, 262, 434, 154, 378, 166, 361, 157, 349, 154, 319, 111, 302, 46, 267, 41, 258, 124, 222, 271, 280, 269, 265, 219, 188, 305, 147, 432, 215, 465, 195, 340, 114, 444, 58, 551, 106, 607, 138, 524, 187, 503, 235, 518, 261, 550, 291, 601, 317, 508, 363)
+
+[node name="player" parent="." instance=ExtResource("5_w7gkg")]
+z_index = 1
+position = Vector2(433, 251)
+scale = Vector2(0.903555, 0.940031)
+
+[node name="Camera2D" parent="player" index="3"]
+zoom = Vector2(1.7, 1.7)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(713, 475)
+stream = ExtResource("6_3peih")
+volume_db = 4.414
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="enterFightCd" type="Timer" parent="."]
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.163
+max_distance = 10000.0
+
+[node name="BattleReward" parent="." instance=ExtResource("7_4slru")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(5, -82)
+navigation_polygon = SubResource("NavigationPolygon_su7y6")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("8_72pgp")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ef2se")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_4br6b")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("10_3nbel")
+
+[node name="teleportCircle" parent="." instance=ExtResource("11_hbcaj")]
+position = Vector2(539, 328)
+scale = Vector2(0.887324, 0.829268)
+toScene = "女儿村"
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(750, 559)
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-38, -79)
+
+[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
+visible = false
+stream = ExtResource("12_tist8")
+volume_db = 2.432
+max_distance = 1e+06
+
+[node name="shop" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="shop"]
+offset_left = -3.0
+offset_right = 1152.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_xtjsw")
+
+[node name="shopTop" type="Panel" parent="shop/Panel"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 143.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kxelm")
+
+[node name="Button" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 79.0
+offset_right = 408.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "购买"
+
+[node name="Button2" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 79.0
+offset_right = 825.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "出售"
+
+[node name="golds" type="Label" parent="shop/Panel/shopTop"]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 79.0
+offset_right = 1153.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "银两： 500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="itemRight" type="Panel" parent="shop/Panel"]
+layout_mode = 0
+offset_left = 825.0
+offset_top = 144.0
+offset_right = 1155.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_byih7")
+
+[node name="itemLeft" type="Panel" parent="shop/Panel"]
+layout_mode = 0
+offset_top = 143.0
+offset_right = 826.0
+offset_bottom = 800.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="shop/Panel/itemLeft"]
+layout_mode = 0
+offset_right = 822.0
+offset_bottom = 659.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="shop/Panel/itemLeft/ScrollContainer"]
+layout_mode = 2
+
+[node name="description" type="Label" parent="shop/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1155.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_ee7n4")
+text = "这是一个介绍"
+vertical_alignment = 1
+
+[node name="buyButton" type="Panel" parent="shop/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 827.0
+offset_top = 714.0
+offset_right = 1154.0
+offset_bottom = 801.0
+
+[node name="cancel" type="Button" parent="shop/Panel/buyButton"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 162.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="shop/Panel/buyButton/cancel"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 40
+text = "取消"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buy" type="Button" parent="shop/Panel/buyButton"]
+layout_mode = 0
+offset_left = 165.0
+offset_right = 329.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="shop/Panel/buyButton/buy"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 40
+text = "确定"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="Button" parent="shop"]
+offset_left = 1098.0
+offset_top = 12.0
+offset_right = 1151.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 30
+text = "X"
+
+[node name="addNumTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="warnTimer" type="Timer" parent="."]
+
+[node name="menuControl" parent="." instance=ExtResource("13_h2r8a")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("14_8pnng")]
+
+[node name="Node2D" parent="." instance=ExtResource("17_suqq0")]
+position = Vector2(-75.5606, 53.0747)
+items = {
+"小还丹": 5
+}
+
+[node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="npc" parent="." instance=ExtResource("15_hoqro")]
+position = Vector2(600, 211)
+sprite_frames = SubResource("SpriteFrames_7rok4")
+script = null
+
+[node name="上官冕" parent="." instance=ExtResource("15_hoqro")]
+position = Vector2(314, 182)
+sprite_frames = SubResource("SpriteFrames_piwgs")
+npcName = "上官冕"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mw6ho")
+}
+
+[node name="逆无邪" parent="." instance=ExtResource("15_hoqro")]
+position = Vector2(265, 201)
+sprite_frames = SubResource("SpriteFrames_t8wqh")
+npcName = "逆无邪"
+
+[connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="button_down" from="shop/Panel/shopTop/Button" to="." method="_on_button_button_down" flags=18]
+[connection signal="button_down" from="shop/Panel/shopTop/Button2" to="." method="_on_button_2_button_down" flags=18]
+[connection signal="button_down" from="shop/Panel/buyButton/cancel" to="." method="_on_cancel_button_down" flags=18]
+[connection signal="button_down" from="shop/Panel/buyButton/buy" to="." method="_on_buy_button_down" flags=18]
+[connection signal="button_down" from="shop/close" to="." method="_on_close_button_down" flags=18]
+[connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
+[connection signal="timeout" from="warnTimer" to="." method="_on_warn_timer_timeout" flags=18]
+
+[editable path="player"]

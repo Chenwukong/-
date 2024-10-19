@@ -1,14 +1,23 @@
 extends Node
-
+var hashTable = {}
+var gold = 0
+var golds = 0
+var seconds = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	golds *= Global.enKey
+	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+
 	update_status()
 	update_players_with_item_stats()
 	remove_empty_items()
+
+
+
 	
 func callFightScenePlayerData():
 	var playerDataList = []
@@ -21,714 +30,888 @@ func callFightScenePlayerData():
 			
 	return playerDataList
 var keyItem = {
-
+#	"洗髓丹":{
+#		"info": ItemData.keyItem.get("洗髓丹"),
+#		"number": 5
+#	},
 }
 var consumeItem = {
-	"佛手":{
-		"info": ItemData.consume.get("佛手"),
-		"number": 5
-	},
-	"佛跳墙":{
-		"info": ItemData.consume.get("佛跳墙"),
-		"number": 5
-	},
-	"西瓜":{
-		"info": ItemData.consume.get("西瓜"),
-		"number": 10
-	},	
+#	"佛手":{
+#		"info": ItemData.consume.get("佛手"),
+#		"number": 5
+#	},
+#	"佛跳墙":{
+#		"info": ItemData.consume.get("佛跳墙"),
+#		"number": 5
+#	},
+#	"西瓜":{
+#		"info": ItemData.consume.get("西瓜"),
+#		"number": 100
+#	},	
 }
 
 var battleItem = {
-	"金疮药":{
-		"info": ItemData.battleConsume.get("金疮药"),
-		"number": 5
-	},
-	"含沙射影":{
-		"info": ItemData.battleConsume.get("含沙射影"),
-		"number": 10
-	}
+#	"金疮药":{
+#		"info": ItemData.battleConsume.get("金疮药"),
+#		"number": 5
+#	},
+#	"含沙射影":{
+#		"info": ItemData.battleConsume.get("含沙射影"),
+#		"number": 10
+#	}
 }
 
 var questItem = {
 	
 }
 
+var petFoodBall = 0
+var petFood = 1
 var bagArmorItem = {
 	"大剑":{
 		"info": ItemData.weapon.get("大剑"),
 		"type": "weapon",
-		"number": 2,
-		"added": false
-	},
-	"布衣":{
-		"info": ItemData.cloth.get("布衣"),
-		"type": "cloth",
 		"number": 1,
 		"added": false
 	},
-	"方巾":{
-		"info": ItemData.hat.get("方巾"),
-		"type": "hat",
-		"number": 1,
-		"added": false
-	},
-	"草鞋":{
-		"info": ItemData.shoes.get("草鞋"),
-		"type": "shoes",
-		"number": 2,	
-		"added": false	
-	},
-	"江湖夜雨":{
-		"info": ItemData.accessories.get("江湖夜雨"),
-		"type": "accessories",
-		"number": 1,	
-		"added": false	
-	},
-	"护身符":{
-		"info": ItemData.accessories.get("护身符"),
-		"type": "accessories",
-		"number": 1,	
-		"added": false	
-	},
+#	"碧玉剑":{
+#		"info": ItemData.weapon.get("碧玉剑"),
+#		"type": "weapon",
+#		"number": 1,
+#		"added": false
+#	},
+	
+#	"布衣":{
+#		"info": ItemData.cloth.get("布衣"),
+#		"type": "cloth",
+#		"number": 1,
+#		"added": false
+#	},
+#	"方巾":{
+#		"info": ItemData.hat.get("方巾"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},
+
+#	"草鞋":{
+#		"info": ItemData.shoes.get("草鞋"),
+#		"type": "shoes",
+#		"number": 1,	
+#		"added": false	
+#	},
+#	"护身符":{
+#		"info": ItemData.accessories.get("护身符"),
+#		"type": "accessories",
+#		"number": 1,	
+#		"added": false	
+#	},	
+#	"江湖夜雨":{
+#		"info": ItemData.accessories.get("江湖夜雨"),
+#		"type": "accessories",
+#		"number": 1,	
+#		"added": false	
+#	},
+#	"精钢剑":{
+#		"info": ItemData.weapon.get("精钢剑"),
+#		"type": "weapon",
+#		"number": 1,	
+#		"added": false	
+#	},
+#	"赤铁双剑":{
+#		"info": ItemData.weapon.get("赤铁双剑"),
+#		"type": "weapon",
+#		"number": 1,	
+#		"added": false	
+#	},
+#	"面具":{
+#		"info": ItemData.hat.get("面具"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},
+#	"珍珠头带":{
+#		"info": ItemData.hat.get("珍珠头带"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},	
+#	"皮鞋":{
+#		"info": ItemData.shoes.get("皮鞋"),
+#		"type": "shoes",
+#		"number": 2,	
+#		"added": false	
+#	},	
+
+
+
 }
 
 
-var golds = 20000
-var seconds = 0
+
 
 var fightScenePlayerData2= {
-	"时追云":{
-			"name": "时追云",
-			"sex": "male",
-			"icon":"res://portrait/时追云.png",
-			"smallIcon":"res://main character/tile000.png",
-			"alive":true,
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance": 0,
-			"blockChance":1,
-			"level": 1,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr": 0,
-			"abilityPower": 100,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"addMp":0,
-			"mp": 100,
-			"currHp": 200,
-			"currMp": 100,
-			"potential": 0,
-			"idle": "时追云idle",
-			"autoAttack":'时追云autoAttack',
-			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
-			"magicAutoAttack":"时追云magicAutoAttack",
-			"playerMagic": [
-				{
+#	"时追云":{
+#			"name": "时追云",
+#			"sex": "male",
+#			"icon":"res://Pictures/Pictures/时追云.png",
+#			"smallIcon":"res://main character/tile000.png",
+#			"alive":true,
+#			"playerAttackType": "melee",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0* Global.enKey,
+#			"critChance": 1,
+#			"addCritChance": 0,
+#			"blockChance":1,
+#			"addBlockChance": 0* Global.enKey,
+#			"level": 1,
+#			"exp": 0 * Global.enKey,
+#			"needExp": 100 * Global.enKey,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0* Global.enKey,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0* Global.enKey,
+#			"str": 100 ,
+#			"addStr": 0 * Global.enKey,
+#			"abilityPower": 0,
+#			"addAbilityPower":0 * Global.enKey,
+#			"additionDmg": 0 * Global.enKey,
+#			"hp": 200,
+#			"addHp": 0 * Global.enKey,
+#			"addMp": 0 * Global.enKey,
+#			"mp": 100,
+#			"currHp": 220,
+#			"currMp": 100,
+#			"potential": 0 * Global.enKey,
+#			"idle": "时追云idle",
+#			"autoAttack":'时追云autoAttack',
+#			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+#			"magicAutoAttack":"时追云magicAutoAttack",
+#			"playerMagic": [
+#				{
+#				"name": "调息法",
+#				"level": 1,
+#				"currExp": 0,
+#				"needExp": 50,
+#				"attackType": "buff",
+#				"buffEffect": ["currHp","currMp",], 
+#				"value": 100,
+#				"cost": 30,
+#				"description": "调息周身运转，恢复状态",	
+#				"effectArea": "single",
+#				"effectingNum": 1,
+#				"animationArea":"allie",
+#				"audio": "res://Audio/SE/HEAL9.ogg",
+#				"duration": 3,
+#				"icon":"res://Icons/●图标 (64).png",
+#			},
+#
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+#			"attackOnEnemySound": null,
+#			"item":{
+#				"weapon":null,
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]
+#			},
+#	"姜韵": {
+#			"name": "姜韵",
+#			"sex": "female",
+#			"icon":"res://Pictures/Pictures/烟儿.png",
+#			"smallIcon":"res://main character/jiangYuntile000.png",
+#			"playerAttackType": "range",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0,
+#			"critChance": 1,
+#			"addCritChance":0,
+#			"blockChance":1,
+#			"addBlockChance": 0,
+#			"level": 40,
+#			"exp":0,
+#			"needExp":100,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0,
+#			"str": 100,
+#			"addStr":0,
+#			"abilityPower": 100,
+#			"addAbilityPower":0,
+#			"additionDmg": 0,
+#			"hp": 200,
+#			"addHp": 0,
+#			"mp": 100,
+#			"addMp":0,
+#			"currHp": 200,
+#			"currMp": 200,
+#			"potential": 0,
+#			"idle": "姜韵idle",
+#			"autoAttack":'姜韵autoAttack',
+#			"magicAutoAttack": "",
+#			"playerMagic":[
+#				{
+#				"name": "回春术",
+#				"level": 1,
+#				"currExp": 49,
+#				"needExp": 50,
+#				"attackType": "buff",
+#				"buffEffect": ["currHp","currStr"], 
+#				"value": 50,
+#				"cost": 10,
+#				"description": "回复血量",	
+#				"effectArea": "single",
+#				"effectingNum": 1,
+#				"animationArea":"allie",
+#				"audio": "res://Audio/SE/108-Heal04.ogg",
+#				"duration": 3,
+#				"icon":"res://Icons/●图标 (16).png",
+#			},
+#			{
+#				"name": "一苇渡江",
+#				"level": 1,
+#				"currExp": 0,
+#				"needExp": 50,
+#				"attackType": "buff",
+#				"buffEffect": ["currPlayerSpeed"], 
+#				"value": 300,
+#				"cost": 10,
+#				"description": "提升速度",	
+#				"effectArea": "aoe",
+#				"animationArea":"allie",
+#				"effectingNum": 2,
+#				"duration": 4,
+#				"audio": "res://Audio/SE/133-Wind02.ogg",
+#				"icon":"res://Icons/●图标 (77).png",
+#			},
+#			{
+#				"name": "回魂术",
+#				"attackType": "buff",
+#				"buffEffect": ["alive"], 
+#				"cost": 10,
+#				"description": "复活一个友军",	
+#				"effectArea": "single",
+#				"animationArea":"allie",
+#				"effectingNum": 1,
+#				"duration": 2,
+#				"audio": "res://Audio/SE/法术5.ogg",
+#				"icon":"res://Icons/●图标 (84).png"
+#			},
+#
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/女-中性-出手.ogg",
+#			"attackOnEnemySound": "res://Audio/SE/法术1.ogg",
+#			"item":{
+#				"weapon":null,
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]
+#		},
+#	"大海龟": {
+#			"name": "大海龟",
+#			"icon":"",
+#			"smallIcon":"",
+#			"playerAttackType": "melee",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0,
+#			"critChance": 1,
+#			"addCritChance":0,
+#			"blockChance":100,
+#			"addBlockChance": 0,
+#			"level": 4,
+#			"exp":0,
+#			"needExp":100,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0,
+#			"str": 100,
+#			"addStr":0,
+#			"abilityPower": 100,
+#			"addAbilityPower":0,
+#			"additionDmg": 0,
+#			"hp": 200,
+#			"addHp": 0,
+#			"mp": 300,
+#			"addMp":0,
+#			"currHp": 200,
+#			"currMp": 300,
+#			"potential": 0,
+#			"idle": "大海龟idle",
+#			"autoAttack":'大海龟autoAttack',
+#			"magicAutoAttack": "",
+#			"playerMagic":[
+#			{
+#				"name": "水攻",
+#				"attackType": "range",
+#				"damageSource": "AP",
+#				"value": 2,				
+#				"cost": 10,
+#				"description": "水产基本法术",	
+#				"effectArea": "single",
+#				"animationArea":"enemy",
+#				"effectingNum": 1,
+#				"audio":"res://Audio/SE/法术12.ogg",
+#				"icon": "res://Icons/水攻.png",
+#			},{
+#				"name": "水漫金山",
+#				"attackType": "range",
+#				"damageSource": "AP",
+#				"value": 1, 
+#				"cost": 40,
+#				"description": "群攻法术",
+#				"effectArea": "aoe",
+#				"effectingNum": 4,
+#				"animationArea":"enemy",
+#				"audio":"res://Audio/SE/法术12.ogg",
+#				"icon":"res://Icons/●图标 (120).png"
+#			},			
+#
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+#			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+#			"item":{
+#				"weapon":null,
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]
+#		},
+#	"凌若昭":{
+#		"name": "凌若昭",
+#		"sex": "female",
+#		"icon":"res://Pictures/Pictures/云燕儿.png",
+#		"smallIcon":"res://main character/若昭右下.png",
+#		"alive":true,
+#		"playerAttackType": "melee",
+#		"playerSpeed": 20,
+#		"addPlayerSpeed": 0,
+#		"critChance": 1,
+#		"addCritChance": 0,
+#		"blockChance":1,
+#		"addBlockChance": 0,
+#		"level": 15,
+#		"exp":0,
+#		"needExp":100,
+#		"magicDefense": 5,
+#		"addMagicDefense": 0,
+#		"physicDefense": 5,
+#		"addPhysicDefense": 0,
+#		"str": 100,
+#		"addStr": 0,
+#		"abilityPower": 100,
+#		"addAbilityPower":0,
+#		"additionDmg": 0,
+#		"hp": 200,
+#		"addHp": 0,
+#		"addMp":0,
+#		"mp": 100,
+#		"currHp": 160,
+#		"currMp": 100,
+#		"potential": 70,
+#		"idle": "凌若昭idle",
+#		"autoAttack":'凌若昭autoAttack',
+#		#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+#		"magicAutoAttack":"凌若昭magicAutoAttack",
+#		"playerMagic": [
+##			{
+##				"name": "催眠",
+##				"attackType": "debuff",
+##				"buffEffect": ["sleep"], 
+##				"cost": 10,
+##				"description": "同时催眠3个敌人",	
+##				"effectArea": "aoe",
+##				"animationArea":"enemy",
+##				"effectingNum": 3,
+##				"duration": 2,
+##				"audio": "res://Audio/SE/法术5.ogg",
+##				"icon":"res://Icons/●图标 (88).png",
+##			},	{
+##				"name": "冰封",
+##				"attackType": "debuff",
+##				"buffEffect": ["ice"], 
+##				"cost": 10,
+##				"description": "同时冰封3个敌人",	
+##				"effectArea": "aoe",
+##				"animationArea":"enemy",
+##				"effectingNum": 3,
+##				"duration": 2,
+##				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+##				"icon":"res://Icons/●图标 (119).png",
+##			},
+#			{
+#				"name": "五雷咒",
+#				"attackType": "range",
+#				"damageSource": "AP",
+#				"value": 2.5,				
+#				"cost": 60,
+#				"description": "引来天雷轰杀单体敌人",	
+#				"effectArea": "single",
+#				"animationArea":"enemy",
+#				"effectingNum": 1,
+#				"audio": "res://Audio/SE/123-Thunder01.ogg",
+#				"icon":"res://Icons/五雷.png"
+#			},
+#		# Add more magic spells as needed
+#		],
+#		"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
+#		"attackOnEnemySound": null,
+#		"item":{
+#				"weapon":ItemData.weapon.get("竹节双剑"),
+#				"cloth": ItemData.cloth.get("锦衣"),
+#				"hat":ItemData.hat.get("面具"),
+#				"shoes":ItemData.shoes.get("皮鞋"),
+#				"accessories":null
+#		},
+#		"buff":["speed","strength","accuracy","defense"]		
+#	},
+#	"小二": {
+#			"name": "小二",
+#			"sex": "male",
+#			"icon": "res://portrait/小二.png",
+#			"smallIcon":"res://main character/小二右下.png",
+#			"playerAttackType": "melee",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0,
+#			"critChance": 1,
+#			"addCritChance":0,
+#			"blockChance":0,
+#			"addBlockChance": 0,
+#			"level": 70,
+#			"exp":0,
+#			"needExp":100,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0,
+#			"str": 100,
+#			"addStr":0,
+#			"abilityPower": 20,
+#			"addAbilityPower":0,
+#			"additionDmg": 0,
+#			"hp": 200,
+#			"addHp": 0,
+#			"mp": 300,
+#			"addMp":0,
+#			"currHp": 200,
+#			"currMp": 300,
+#			"potential": 30,
+#			"idle": "小二idle",
+#			"autoAttack":'小二autoAttack',
+#			"magicAutoAttack": "",
+#			"playerMagic":[{
+#				"name": "唧唧歪歪",
+#				"level": 1,
+#				"currExp": 49,
+#				"needExp": 50,
+#				"attackType": "range",
+#				"damageSource": "AP",
+#				"value": 5,
+#				"cost": 30,
+#				"description": "小二的言语攻击，噪音污染",	
+#				"effectArea": "aoe",
+#				"effectingNum": 5,
+#				"animationArea":"enemy",
+#				"audio": "res://Audio/SE/鸟语花香.ogg",
+#				"icon": "res://Icons/●图标 (14).png"
+#			},			
+#
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+#			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+#			"item":{
+#				"weapon": ItemData.weapon.get("木头"),
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]
+#		},		
+#	"金甲":{
+#			"name": "金甲",
+#			"sex": "male",
+#			"icon": "",
+#			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+#			"alive":true,
+#			"playerAttackType": "melee",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0,
+#			"critChance": 1,
+#			"addCritChance": 0,
+#			"blockChance":1,
+#			"addBlockChance": 0,
+#			"level": 13,
+#			"exp":0,
+#			"needExp":100,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0,
+#			"str": 100,
+#			"addStr": 0,
+#			"abilityPower": 100,
+#			"addAbilityPower":0,
+#			"additionDmg": 0,
+#			"hp": 200,
+#			"addHp": 0,
+#			"addMp":0,
+#			"mp": 100,
+#			"currHp": 160,
+#			"currMp": 100,
+#			"potential": 70,
+#			"idle": "金甲idle",
+#			"autoAttack":'金甲autoAttack',
+#			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+#			"magicAutoAttack":"金甲magicAutoAttack",
+#			"playerMagic": [
+#				{
+#					"name": "扎实一剑",
+#					"attackType": "melee",
+#					"multiHitTimes": 1,
+#					"damageSource": "AD",
+#					"cost": 10,
+#					"value": 2.6,
+#					"description": "金甲日日夜夜练习的扎实一剑",	
+#					"effectArea": "single",
+#					"animationArea":"enemy",
+#					"effectingNum": 1,
+#					"audio": "res://Audio/SE/猛男-喝X.ogg",
+#					"icon":"res://Icons/●图标 (88).png",
+#				}
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/猛男-喝X.ogg",
+#			"attackOnEnemySound": null,
+#			"item":{
+#				"weapon":null,
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]		
+#	},
+#	"敖雨":{
+#			"name": "敖雨",
+#			"sex": "female",
+#			"icon": "",
+#			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+#			"alive":true,
+#			"playerAttackType": "melee",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0,
+#			"critChance": 1,
+#			"addCritChance": 0,
+#			"blockChance":1,
+#			"addBlockChance": 0,
+#			"level": 30,
+#			"exp":0,
+#			"needExp":100,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0,
+#			"str": 100,
+#			"addStr": 0,
+#			"abilityPower": 10,
+#			"addAbilityPower":0,
+#			"additionDmg": 0,
+#			"hp": 200,
+#			"addHp": 0,
+#			"addMp":0,
+#			"mp": 100,
+#			"currHp": 9000,
+#			"currMp": 9000,
+#			"potential": 70,
+#			"idle": "敖雨idle",
+#			"autoAttack":'敖雨autoAttack',
+#			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+#			"magicAutoAttack":"金甲magicAutoAttack",
+#			"playerMagic": [
+#				{
+#				"name": "虚沉冰封",
+#				"attackType": "debuff",
+#				"buffEffect": ["ice"], 
+#				"cost": 10,
+#				"description": "百分百控制住一个人一个回合",	
+#				"effectArea": "single",
+#				"animationArea":"enemy",
+#				"effectingNum": 1,
+#				"duration": 1,
+#				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+#				"icon":"res://Icons/●图标 (119).png",
+#			},
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/女-呀.ogg",
+#			"attackOnEnemySound": null,
+#			"item":{
+#				"weapon":null,
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]		
+#	},		
+#	"敖阳":{
+#			"name": "敖阳",
+#			"sex": "male",
+#			"icon": "res://Pictures/¤敖白.png",
+#			"smallIcon":"res://Pictures/¤敖白.png",
+#			"alive":true,
+#			"playerAttackType": "melee",
+#			"playerSpeed": 20,
+#			"addPlayerSpeed": 0,
+#			"critChance": 1,
+#			"addCritChance": 0,
+#			"blockChance":1,
+#			"addBlockChance": 0,
+#			"level": 40,
+#			"exp":0,
+#			"needExp":100,
+#			"magicDefense": 5,
+#			"addMagicDefense": 0,
+#			"physicDefense": 5,
+#			"addPhysicDefense": 0,
+#			"str": 100,
+#			"addStr": 0,
+#			"abilityPower": 300,
+#			"addAbilityPower":0,
+#			"additionDmg": 0,
+#			"hp": 200,
+#			"addHp": 0,
+#			"addMp":0,
+#			"mp": 100,
+#			"currHp": 500,
+#			"currMp": 500,
+#			"potential": 70,
+#			"idle": "敖阳idle",
+#			"autoAttack":'敖阳autoAttack',
+#			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+#			"magicAutoAttack":"敖阳magicAutoAttack",
+#			"playerMagic": [
+#				{
+#				"name": "龙卷雨击",
+#				"attackType": "range",
+#				"damageSource": "AP",
+#				"value": 3, 
+#				"cost": 40,
+#				"description": "群攻法术",
+#				"effectArea": "aoe",
+#				"effectingNum": 8,
+#				"animationArea":"screen",
+#				"audio":"res://Audio/SE/暗雷.ogg",
+#				"icon":"res://Icons/龙卷雨击.png"
+#			},
+#			# Add more magic spells as needed
+#			],
+#			"autoAttackSound": "res://Audio/SE/逍遥生攻击剑.ogg",
+#			"attackOnEnemySound": null,
+#			"item":{
+#				"weapon":null,
+#				"cloth":null,
+#				"hat":null,
+#				"shoes":null,
+#				"accessories":null
+#			},
+#			"buff":["speed","strength","accuracy","defense"]		
+#	},	
+#
+#	}
+	"时追云": {
+		"name": "时追云",
+		"sex": "male",
+		"icon": "res://Pictures/Pictures/时追云.png",
+		"smallIcon": "res://main character/tile000.png",
+		"alive": true,
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 1,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 1,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 100,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 0,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 100,
+		"addMp": 0 * Global.enKey,
+		"currHp": 220,
+		"currMp": 100,
+		"potential": 0 * Global.enKey,
+		"idle": "时追云idle",
+		"autoAttack": "时追云autoAttack",
+		"magicAutoAttack": "时追云magicAutoAttack",
+		"playerMagic": [
+			{
 				"name": "调息法",
 				"level": 1,
 				"currExp": 0,
 				"needExp": 50,
 				"attackType": "buff",
-				"buffEffect": ["currHp","currMp",], 
+				"buffEffect": ["currHp", "currMp"],
 				"value": 100,
 				"cost": 30,
-				"description": "调息周身运转，恢复状态",	
+				"description": "调息周身运转，恢复状态",
 				"effectArea": "single",
 				"effectingNum": 1,
-				"animationArea":"allie",
+				"animationArea": "allie",
 				"audio": "res://Audio/SE/HEAL9.ogg",
 				"duration": 3,
-				"icon":"res://Icons/●图标 (64).png",
-			}			
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
-			"attackOnEnemySound": null,
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
-			},
-		"姜韵": {
-			"name": "姜韵",
-			"sex": "female",
-			"icon":"res://Pictures/Pictures/烟儿.png",
-			"smallIcon":"res://main character/jiangYuntile000.png",
-			"playerAttackType": "range",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance":0,
-			"blockChance":1,
-			"level": 1,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr":0,
-			"abilityPower": 100,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"mp": 100,
-			"addMp":0,
-			"currHp": 200,
-			"currMp": 200,
-			"potential": 0,
-			"idle": "姜韵idle",
-			"autoAttack":'姜韵autoAttack',
-			"magicAutoAttack": "",
-			"playerMagic":[
-				{
-				"name": "回春术",
-				"level": 1,
-				"currExp": 49,
-				"needExp": 50,
-				"attackType": "buff",
-				"buffEffect": ["currHp","currStr"], 
-				"value": 50,
-				"cost": 10,
-				"description": "回复血量",	
-				"effectArea": "single",
-				"effectingNum": 1,
-				"animationArea":"allie",
-				"audio": "res://Audio/SE/108-Heal04.ogg",
-				"duration": 3,
-				"icon":"res://Icons/●图标 (16).png",
-			},
-			{
-				"name": "一苇渡江",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "buff",
-				"buffEffect": ["currPlayerSpeed"], 
-				"value": 300,
-				"cost": 10,
-				"description": "提升速度",	
-				"effectArea": "aoe",
-				"animationArea":"allie",
-				"effectingNum": 2,
-				"duration": 4,
-				"audio": "res://Audio/SE/133-Wind02.ogg",
-				"icon":"res://Icons/●图标 (77).png",
-			},
-			{
-				"name": "冰封",
-				"attackType": "debuff",
-				"buffEffect": ["ice"], 
-				"cost": 10,
-				"description": "同时冰封3个敌人",	
-				"effectArea": "aoe",
-				"animationArea":"enemy",
-				"effectingNum": 3,
-				"duration": 2,
-				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
-				"icon":"res://Icons/●图标 (119).png",
-			},
-			{
-				"name": "催眠",
-				"attackType": "debuff",
-				"buffEffect": ["sleep"], 
-				"cost": 10,
-				"description": "同时催眠3个敌人",	
-				"effectArea": "aoe",
-				"animationArea":"enemy",
-				"effectingNum": 3,
-				"duration": 2,
-				"audio": "res://Audio/SE/法术5.ogg",
-				"icon":"res://Icons/●图标 (88).png",
-			},
-			{
-				"name": "回魂术",
-				"attackType": "buff",
-				"buffEffect": ["alive"], 
-				"cost": 10,
-				"description": "复活一个友军",	
-				"effectArea": "single",
-				"animationArea":"allie",
-				"effectingNum": 1,
-				"duration": 2,
-				"audio": "res://Audio/SE/法术5.ogg",
-				"icon":"res://Icons/●图标 (84).png"
-			},
-			{
-				"name": "五雷咒",
-				"attackType": "range",
-				"value": 10,				
-				"cost": 10,
-				"description": "引来天雷轰杀单体敌人",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"effectingNum": 1,
-				"audio": "res://Audio/SE/123-Thunder01.ogg",
-				"icon":"res://Icons/五雷.png"
-			},
-			
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/女-中性-出手.ogg",
-			"attackOnEnemySound": "res://Audio/SE/法术1.ogg",
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
-		},"大海龟": {
-			"name": "大海龟",
-			"icon":"",
-			"smallIcon":"",
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance":0,
-			"blockChance":100,
-			"level": 1,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr":0,
-			"abilityPower": 100,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"mp": 300,
-			"addMp":0,
-			"currHp": 200,
-			"currMp": 300,
-			"potential": 0,
-			"idle": "大海龟idle",
-			"autoAttack":'大海龟autoAttack',
-			"magicAutoAttack": "",
-			"playerMagic":[
-			{
-				"name": "水攻",
-				"attackType": "range",
-				"value": 2,				
-				"cost": 10,
-				"description": "水产基本法术",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"effectingNum": 1,
-				"audio":"res://Audio/SE/法术12.ogg",
-				"icon": "res://Icons/水攻.png",
-			},{
-				"name": "水漫金山",
-				"attackType": "range",
-				"value": 1, 
-				"cost": 40,
-				"description": "群攻法术",
-				"effectArea": "aoe",
-				"effectingNum": 4,
-				"animationArea":"enemy",
-				"audio":"res://Audio/SE/法术12.ogg",
-				"icon":"res://Icons/●图标 (120).png"
-			},			
-
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
-			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
-		},
-	"凌若昭":{
-		"name": "凌若昭",
-		"sex": "female",
-		"icon":"res://Pictures/Pictures/云燕儿.png",
-		"smallIcon":"res://Pictures/Pictures/云燕儿.png",
-		"alive":true,
-		"playerAttackType": "melee",
-		"playerSpeed": 20,
-		"addPlayerSpeed": 0,
-		"critChance": 1,
-		"addCritChance": 0,
-		"blockChance":1,
-		"level": 15,
-		"exp":0,
-		"needExp":100,
-		"magicDefense": 5,
-		"addMagicDefense": 0,
-		"physicDefense": 5,
-		"addPhysicDefense": 0,
-		"str": 100,
-		"addStr": 0,
-		"abilityPower": 100,
-		"addAbilityPower":0,
-		"additionDmg": 0,
-		"hp": 200,
-		"addHp": 0,
-		"addMp":0,
-		"mp": 100,
-		"currHp": 160,
-		"currMp": 100,
-		"potential": 70,
-		"idle": "凌若昭idle",
-		"autoAttack":'凌若昭autoAttack',
-		#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
-		"magicAutoAttack":"凌若昭magicAutoAttack",
-		"playerMagic": [
-			{
-				"name": "催眠",
-				"attackType": "debuff",
-				"buffEffect": ["sleep"], 
-				"cost": 10,
-				"description": "同时催眠3个敌人",	
-				"effectArea": "aoe",
-				"animationArea":"enemy",
-				"effectingNum": 3,
-				"duration": 2,
-				"audio": "res://Audio/SE/法术5.ogg",
-				"icon":"res://Icons/●图标 (88).png",
-			},	{
-				"name": "冰封",
-				"attackType": "debuff",
-				"buffEffect": ["ice"], 
-				"cost": 10,
-				"description": "同时冰封3个敌人",	
-				"effectArea": "aoe",
-				"animationArea":"enemy",
-				"effectingNum": 3,
-				"duration": 2,
-				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
-				"icon":"res://Icons/●图标 (119).png",
-			},
-			{
-				"name": "五雷咒",
-				"attackType": "range",
-				"value": 2,				
-				"cost": 100,
-				"description": "引来天雷轰杀单体敌人",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"effectingNum": 1,
-				"audio": "res://Audio/SE/123-Thunder01.ogg",
-				"icon":"res://Icons/五雷.png"
-			},
-		# Add more magic spells as needed
+				"icon": "res://Icons/●图标 (64).png"
+			}
 		],
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
-		"item":{
-			"weapon":null,
-			"cloth":null,
-			"hat":null,
-			"shoes":null,
-			"accessories":null
+		"item": {
+			"weapon": ItemData.weapon.get("大剑"),
+			"cloth": ItemData.cloth.get("布衣"),
+			"hat": ItemData.hat.get("方巾"),
+			"shoes": ItemData.shoes.get("草鞋"),
+			"accessories": null
 		},
-		"buff":["speed","strength","accuracy","defense"]		
-},
-	"小二": {
-			"name": "小二",
-			"sex": "male",
-			"icon": "res://Pictures/Pictures/1.png",
-			"smallIcon":"res://portrait/小二.png",
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance":0,
-			"blockChance":0,
-			"level": 4,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr":0,
-			"abilityPower": 1,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"mp": 300,
-			"addMp":0,
-			"currHp": 200,
-			"currMp": 300,
-			"potential": 0,
-			"idle": "小二idle",
-			"autoAttack":'小二autoAttack',
-			"magicAutoAttack": "",
-			"playerMagic":[{
-				"name": "唧唧歪歪",
-				"level": 1,
-				"currExp": 49,
-				"needExp": 50,
-				"attackType": "range",
-				"value": 5,
-				"cost": 30,
-				"description": "小二的言语攻击，噪音污染",	
-				"effectArea": "aoe",
-				"effectingNum": 5,
-				"animationArea":"enemy",
-				"audio": "res://Audio/SE/鸟语花香.ogg",
-				"icon": "res://Icons/●图标 (14).png"
-			},			
-
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
-			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
-		},		
-}
-var fightScenePlayerData = {
-	"时追云":{
-			"name": "时追云",
-			"sex": "male",
-			"icon":"res://Pictures/Pictures/时追云.png",
-			"smallIcon":"res://main character/tile000.png",
-			"alive":true,
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance": 0,
-			"blockChance":1,
-			"level": 1,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr": 0,
-			"abilityPower": 100,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"addMp":0,
-			"mp": 100,
-			"currHp": 200,
-			"currMp": 100,
-			"potential": 0,
-			"idle": "时追云idle",
-			"autoAttack":'时追云autoAttack',
-			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
-			"magicAutoAttack":"时追云magicAutoAttack",
-			"playerMagic": [
-				{
-				"name": "调息法",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "buff",
-				"buffEffect": ["currHp","currMp",], 
-				"value": 100,
-				"cost": 30,
-				"description": "调息周身运转，恢复状态",	
-				"effectArea": "single",
-				"effectingNum": 1,
-				"animationArea":"allie",
-				"audio": "res://Audio/SE/HEAL9.ogg",
-				"duration": 3,
-				"icon":"res://Icons/●图标 (64).png",
-			},
-
-	
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
-			"attackOnEnemySound": null,
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
-			},
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	},
 	"姜韵": {
-			"name": "姜韵",
-			"sex": "female",
-			"icon":"res://portrait/姜韵.png",
-			"smallIcon":"res://main character/jiangYuntile000.png",
-			"playerAttackType": "range",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance":0,			
-			"blockChance":1,
-			"level": 1,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr":0,
-			"abilityPower": 1000,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"mp": 100,
-			"addMp":0,
-			"currHp": 200,
-			"currMp": 100000,
-			"potential": 0,
-			"idle": "姜韵idle",
-			"autoAttack":'姜韵autoAttack',
-			"magicAutoAttack": "",
-			"playerMagic":[
-				{
+		"name": "姜韵",
+		"sex": "female",
+		"icon": "res://portrait/姜韵.png",
+		"smallIcon": "res://main character/jiangYuntile000.png",
+		"playerAttackType": "range",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 1,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 40,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 100,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 100,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 100,
+		"addMp": 0 * Global.enKey,
+		"currHp": 1000,
+		"currMp": 100,
+		"potential": 0 * Global.enKey,
+		"idle": "姜韵idle",
+		"autoAttack": "姜韵autoAttack",
+		"magicAutoAttack": "",
+		"playerMagic": [
+			{
 				"name": "回春术",
 				"level": 1,
 				"currExp": 49,
 				"needExp": 50,
 				"attackType": "buff",
-				"buffEffect": ["currHp","currStr",], 
-				"value": 50,
+				"buffEffect": ["currHp", "currStr"],
+				"value": 400,
 				"cost": 10,
-				"description": "回复血量",	
+				"description": "回复血量",
 				"effectArea": "single",
 				"effectingNum": 1,
-				"animationArea":"allie",
+				"animationArea": "allie",
 				"audio": "res://Audio/SE/108-Heal04.ogg",
 				"duration": 3,
-				"icon":"res://Icons/●图标 (16).png",
-			},
-			{
-				"name": "一苇渡江",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "buff",
-				"buffEffect": ["currPlayerSpeed"], 
-				"value": 300,
-				"cost": 10,
-				"description": "提升速度",	
-				"effectArea": "aoe",
-				"animationArea":"allie",
-				"effectingNum": 2,
-				"duration": 4,
-				"audio": "res://Audio/SE/133-Wind02.ogg",
-				"icon":"res://Icons/●图标 (77).png",
-			},
-
-
-			{
-				"name": "回魂术",
-				"attackType": "buff",
-				"buffEffect": ["alive"], 
-				"cost": 10,
-				"description": "复活一个友军",	
-				"effectArea": "single",
-				"animationArea":"allie",
-				"effectingNum": 1,
-				"duration": 2,
-				"audio": "res://Audio/SE/法术5.ogg",
-				"icon":"res://Icons/●图标 (84).png"
-			},
-
-			
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/女-中性-出手.ogg",
-			"attackOnEnemySound": "res://Audio/SE/法术1.ogg",
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
+				"icon": "res://Icons/●图标 (16).png"
+			}
+		],
+		"autoAttackSound": "res://Audio/SE/女-中性-出手.ogg",
+		"attackOnEnemySound": "res://Audio/SE/法术1.ogg",
+		"item": {
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
+			"accessories": null
 		},
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	},
 	"大海龟": {
-			"name": "大海龟",
-			"icon":"",
-			"smallIcon":"",
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance":0,
-			"blockChance":100,
-			"level": 4,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr":0,
-			"abilityPower": 100,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"mp": 300,
-			"addMp":0,
-			"currHp": 200,
-			"currMp": 300,
-			"potential": 0,
-			"idle": "大海龟idle",
-			"autoAttack":'大海龟autoAttack',
-			"magicAutoAttack": "",
-			"playerMagic":[
+		"name": "大海龟",
+		"icon": "",
+		"smallIcon": "",
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 100,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 4,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 100,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 100,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 300,
+		"addMp": 0 * Global.enKey,
+		"currHp": 300,
+		"currMp": 300,
+		"potential": 0 * Global.enKey,
+		"idle": "大海龟idle",
+		"autoAttack": "大海龟autoAttack",
+		"magicAutoAttack": "",
+		"playerMagic": [
 			{
 				"name": "水攻",
 				"attackType": "range",
-				"value": 2,				
+				"damageSource": "AP",
+				"value": 2,
 				"cost": 10,
-				"description": "水产基本法术",	
+				"description": "水产基本法术",
 				"effectArea": "single",
-				"animationArea":"enemy",
+				"animationArea": "enemy",
 				"effectingNum": 1,
-				"audio":"res://Audio/SE/法术12.ogg",
-				"icon": "res://Icons/水攻.png",
+				"audio": "res://Audio/SE/法术12.ogg",
+				"icon": "res://Icons/水攻.png"
 			},{
 				"name": "水漫金山",
 				"attackType": "range",
-				"value": 1, 
+				"damageSource": "AP",
+				"value": 1.5, 
 				"cost": 40,
 				"description": "群攻法术",
 				"effectArea": "aoe",
@@ -736,191 +919,150 @@ var fightScenePlayerData = {
 				"animationArea":"enemy",
 				"audio":"res://Audio/SE/法术12.ogg",
 				"icon":"res://Icons/●图标 (120).png"
-			},			
-
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
-			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
+			},	
+			
+			
+			
+		],
+		"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+		"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+		"item": {
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
+			"accessories": null
 		},
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	},
 	"小二": {
-			"name": "小二",
-			"sex": "male",
-			"icon": "res://Pictures/Pictures/1.png",
-			"smallIcon":"res://portrait/小二.png",
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance":0,
-			"blockChance":0,
-			"level": 4,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 80,
-			"addStr":0,
-			"abilityPower": 20,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"mp": 300,
-			"addMp":0,
-			"currHp": 200,
-			"currMp": 300,
-			"potential": 0,
-			"idle": "小二idle",
-			"autoAttack":'小二autoAttack',
-			"magicAutoAttack": "",
-			"playerMagic":[
-{
+		"name": "小二",
+		"sex": "male",
+		"icon": "res://portrait/小二.png",
+		"smallIcon": "res://main character/小二右下.png",
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 0,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 8,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 80,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 100 * Global.enKey,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 300,
+		"addMp": 0 * Global.enKey,
+		"currHp": 2000,
+		"currMp": 300,
+		"potential": 30 * Global.enKey,
+		"idle": "小二idle",
+		"autoAttack": "小二autoAttack",
+		"magicAutoAttack": "",
+		"playerMagic": [
+			{
 				"name": "唧唧歪歪",
-				"level": 1,
-				"currExp": 49,
+				"level": 1.5,
+				"currExp": 0,
 				"needExp": 50,
 				"attackType": "range",
-				"value": 5,
+				"damageSource": "AP",
+				"value": 1,
 				"cost": 30,
-				"description": "小二的言语攻击，噪音污染",	
+				"description": "小二的言语攻击，噪音污染",
 				"effectArea": "aoe",
 				"effectingNum": 5,
-				"animationArea":"enemy",
+				"animationArea": "enemy",
 				"audio": "res://Audio/SE/鸟语花香.ogg",
 				"icon": "res://Icons/●图标 (14).png"
-			},			
-
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
-			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
+			}
+		],
+		"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+		"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+		"item": {
+			"weapon": ItemData.weapon.get("木头"),
+			"cloth": ItemData.cloth.get("布衣"),
+			"hat": ItemData.hat.get("方巾"),
+			"shoes": ItemData.shoes.get("草鞋"),
+			"accessories": null
 		},
-	"凌若昭":{
-			"name": "凌若昭",
-			"sex": "female",
-			"icon":"res://Pictures/Pictures/云燕儿.png",
-			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
-			"alive":true,
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance": 0,
-			"blockChance":1,
-			"level": 15,
-			"exp":0,
-			"needExp":100,
-			"magicDefense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100,
-			"addStr": 0,
-			"abilityPower": 100,
-			"addAbilityPower":0,
-			"additionDmg": 0,
-			"hp": 200,
-			"addHp": 0,
-			"addMp":0,
-			"mp": 100,
-			"currHp": 160,
-			"currMp": 100,
-			"potential": 70,
-			"idle": "凌若昭idle",
-			"autoAttack":'凌若昭autoAttack',
-			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
-			"magicAutoAttack":"凌若昭magicAutoAttack",
-			"playerMagic": [
-				{
-					"name": "催眠",
-					"attackType": "debuff",
-					"buffEffect": ["sleep"], 
-					"cost": 10,
-					"description": "同时催眠3个敌人",	
-					"effectArea": "aoe",
-					"animationArea":"enemy",
-					"effectingNum": 3,
-					"duration": 2,
-					"audio": "res://Audio/SE/法术5.ogg",
-					"icon":"res://Icons/●图标 (88).png",
-				},	{
-					"name": "冰封",
-					"attackType": "debuff",
-					"buffEffect": ["ice"], 
-					"cost": 10,
-					"description": "同时冰封3个敌人",	
-					"effectArea": "aoe",
-					"animationArea":"enemy",
-					"effectingNum": 3,
-					"duration": 2,
-					"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
-					"icon":"res://Icons/●图标 (119).png",
-				},
-				{
-					"name": "五雷咒",
-					"attackType": "range",
-					"value": 2,				
-					"cost": 100,
-					"description": "引来天雷轰杀单体敌人",	
-					"effectArea": "single",
-					"animationArea":"enemy",
-					"effectingNum": 1,
-					"audio": "res://Audio/SE/123-Thunder01.ogg",
-					"icon":"res://Icons/五雷.png"
-				},
-				{
-					"name": "神佑咒",
-					"level": 1,
-					"currExp": 0,
-					"needExp": 50,
-					"attackType": "buff",
-					"buffEffect": ["currPhysicDefense", "currMagicDefense"], 
-					"value": 50,
-					"cost": 10,
-					"description": "提高防御",	
-					"effectArea": "aoe",
-					"animationArea":"allie",
-					"effectingNum": 4,
-					"duration": 3,
-					"audio": "res://Audio/SE/133-Wind02.ogg",
-					"icon":"res://Icons/●图标 (77).png",
-				},
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
-			"attackOnEnemySound": null,
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]		
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	},
+	"凌若昭": {
+		"name": "凌若昭",
+		"sex": "female",
+		"icon": "res://Pictures/Pictures/云燕儿.png",
+		"smallIcon": "res://main character/若昭右下.png",
+		"alive": true,
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 1,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 15,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 100,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 100,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 100,
+		"addMp": 0 * Global.enKey,
+		"currHp": 160,
+		"currMp": 100,
+		"potential": 60 * Global.enKey,
+		"idle": "凌若昭idle",
+		"autoAttack": "凌若昭autoAttack",
+		"magicAutoAttack": "凌若昭magicAutoAttack",
+		"playerMagic": [
+			{
+				"name": "五雷咒",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 2.8,
+				"cost": 100,
+				"description": "引来天雷轰杀单体敌人",
+				"effectArea": "single",
+				"animationArea": "enemy",
+				"effectingNum": 1,
+				"audio": "res://Audio/SE/123-Thunder01.ogg",
+				"icon": "res://Icons/五雷.png"
+			}
+		],
+		"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
+		"attackOnEnemySound": null,
+		"item": {
+			"weapon": ItemData.weapon.get("竹节双剑"),
+			"cloth": ItemData.cloth.get("锦衣"),
+			"hat": ItemData.hat.get("面具"),
+			"shoes": ItemData.shoes.get("皮鞋"),
+			"accessories": null
+		},
+		"buff": ["speed", "strength", "accuracy", "defense"]
 	},
 	"金甲":{
 			"name": "金甲",
 			"sex": "male",
-			"icon":"res://Pictures/Pictures/云燕儿.png",
+			"icon": "",
 			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
 			"alive":true,
 			"playerAttackType": "melee",
@@ -929,7 +1071,8 @@ var fightScenePlayerData = {
 			"critChance": 1,
 			"addCritChance": 0,
 			"blockChance":1,
-			"level": 1,
+			"addBlockChance": 0,
+			"level": 13,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -955,10 +1098,651 @@ var fightScenePlayerData = {
 			"playerMagic": [
 				{
 					"name": "扎实一剑",
-					"attackType": "multi",
-					"multiHitTimes": 3,
+					"attackType": "melee",
+					"damageSource": "AD",
+					"multiHitTimes": 1,
 					"cost": 10,
-					"value": 1.5,
+					"value": 2,
+					"description": "金甲日日夜夜练习的扎实一剑",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"audio": "res://Audio/SE/猛男-喝X.ogg",
+					"icon":"res://Icons/●图标 (88).png",
+				}
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/猛男-喝X.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},	
+	
+	
+	
+	
+	"敖雨": {
+		"name": "敖雨",
+		"sex": "female",
+		"icon": "",
+		"smallIcon": "res://Pictures/Pictures/云燕儿.png",
+		"alive": true,
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 1,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 35,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 100,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 10,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 100,
+		"addMp": 0 * Global.enKey,
+		"currHp": 1000,
+		"currMp": 600,
+		"potential": 70 * Global.enKey,
+		"idle": "敖雨idle",
+		"autoAttack": "敖雨autoAttack",
+		"magicAutoAttack": "",
+		"playerMagic": [
+			{
+				"name": "虚沉冰封",
+				"attackType": "debuff",
+				"buffEffect": ["ice"],
+				"cost": 100,
+				"description": "百分百控制住一个人一个回合",
+				"effectArea": "single",
+				"animationArea": "enemy",
+				"duration": 1,
+				"effectingNum": 1,
+				"chance": 100000,
+				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+				"icon": "res://Icons/●图标 (119).png"
+			},
+			{
+				"name": "水满金山",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 2,
+				"cost": 60,
+				"description": "水漫金山的进阶法术",
+				"effectArea": "aoe",
+				"effectingNum": 6,
+				"animationArea": "enemy",
+				"audio": "res://Audio/SE/127-Water02.ogg",
+				"icon": "res://Icons/●图标 (14).png"
+			}
+		],
+		"autoAttackSound": "res://Audio/SE/女-呀.ogg",
+		"attackOnEnemySound": null,
+		"item": {
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
+			"accessories": null
+		},
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	},
+	"敖阳": {
+		"name": "敖阳",
+		"sex": "male",
+		"icon": "res://Pictures/¤敖白.png",
+		"smallIcon": "res://Pictures/¤敖白.png",
+		"alive": true,
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 0 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 1,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 40,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		 "addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 100,
+		"addStr": 0 * Global.enKey,
+		"abilityPower": 300,
+		"addAbilityPower": 0 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 0 * Global.enKey,
+		"mp": 100,
+		"addMp": 0 * Global.enKey,
+		"currHp": 500,
+		"currMp": 500,
+		"potential": 70 * Global.enKey,
+		"idle": "敖阳idle",
+		"autoAttack": "敖阳autoAttack",
+		"magicAutoAttack": "敖阳magicAutoAttack",
+		"playerMagic": [
+
+			{
+				"name": "龙卷雨击",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 3,
+				"cost": 150,
+				"description": "群攻法术",
+				"effectArea": "aoe",
+				"effectingNum": 8,
+				"animationArea": "screen",
+				"audio": "res://Audio/SE/暗雷.ogg",
+				"icon": "res://Icons/龙卷雨击.png"
+			},
+			{
+				"name": "双龙戏珠",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 3.5,
+				"cost": 40,
+				"description": "龙王法术",
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea": "enemy",
+				"audio": "res://Audio/SE/双龙戏猪.ogg",
+				"icon": "res://Icons/●图标 (1).png"
+			},				
+			
+		],
+		"autoAttackSound": "res://Audio/SE/逍遥生攻击剑.ogg",
+		"attackOnEnemySound": null,
+		"item": {
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
+			"accessories": null
+		},
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	}
+}
+
+
+	
+	
+var fightScenePlayerData = {
+	"时追云":{
+			"name": "时追云",
+			"sex": "male",
+			"icon":"res://Pictures/Pictures/时追云.png",
+			"smallIcon":"res://main character/tile000.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 1,
+			"exp": 0 ,
+			"needExp":100 ,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100 ,
+			"addStr": 0,
+			"abilityPower": 0,
+			"addAbilityPower":0 ,
+			"additionDmg": 0 * Global.enKey,
+			"hp": 200,
+			"addHp": 0 ,
+			"addMp": 0 ,
+			"mp": 100,
+			"currHp": 20000,
+			"currMp": 100,
+			"potential": 0,
+			"idle": "时追云idle",
+			"autoAttack":'时追云autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"时追云magicAutoAttack",
+			"playerMagic": [
+				{
+				"name": "调息法",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currHp","currMp",], 
+				"value": 100,
+				"cost": 30,
+				"description": "调息周身运转，恢复状态",	
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea":"allie",
+				"audio": "res://Audio/SE/HEAL9.ogg",
+				"duration": 3,
+				"icon":"res://Icons/●图标 (64).png",
+			},
+			
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]
+			},
+	"姜韵": {
+			"name": "姜韵",
+			"sex": "female",
+			"icon":"res://portrait/姜韵.png",
+			"smallIcon":"res://main character/jiangYuntile000.png",
+			"playerAttackType": "range",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance":0,			
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 40,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr":0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"mp": 100,
+			"addMp":0,
+			"currHp": 1000,
+			"currMp": 100,
+			"potential": 0,
+			"idle": "姜韵idle",
+			"autoAttack":'姜韵autoAttack',
+			"magicAutoAttack": "",
+			"playerMagic":[
+				{
+				"name": "回春术",
+				"level": 1,
+				"currExp": 49,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currHp","currStr",], 
+				"value": 400,
+				"cost": 10,
+				"description": "回复血量",	
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea":"allie",
+				"audio": "res://Audio/SE/108-Heal04.ogg",
+				"duration": 3,
+				"icon":"res://Icons/●图标 (16).png",
+			},
+			{
+				"name": "一苇渡江",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currPlayerSpeed"], 
+				"value": 300,
+				"cost": 10,
+				"description": "提升速度",	
+				"effectArea": "aoe",
+				"animationArea":"allie",
+				"effectingNum": 2,
+				"duration": 4,
+				"audio": "res://Audio/SE/133-Wind02.ogg",
+				"icon":"res://Icons/●图标 (77).png",
+			},
+
+
+			{
+				"name": "回魂术",
+				"attackType": "buff",
+				"buffEffect": ["alive"], 
+				"cost": 10,
+				"description": "复活一个友军",	
+				"effectArea": "single",
+				"animationArea":"allie",
+				"effectingNum": 1,
+				"duration": 2,
+				"audio": "res://Audio/SE/法术5.ogg",
+				"icon":"res://Icons/●图标 (84).png"
+			},
+						{
+					"name": "催眠",
+					"attackType": "debuff",
+					"buffEffect": ["sleep"], 
+					"cost": 100,
+					"chance": 30,
+					"description": "同时催眠3个敌人",	
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"effectingNum": 3,
+					"duration": 2,
+					"audio": "res://Audio/SE/法术5.ogg",
+					"icon":"res://Icons/●图标 (88).png",
+				},
+			
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/女-中性-出手.ogg",
+			"attackOnEnemySound": "res://Audio/SE/法术1.ogg",
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]
+		},
+	"大海龟": {
+			"name": "大海龟",
+			"icon":"",
+			"smallIcon":"",
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance":0,
+			"blockChance":100,
+			"addBlockChance": 0,
+			"level": 4,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr":0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"mp": 300,
+			"addMp":0,
+			"currHp": 200,
+			"currMp": 300,
+			"potential": 0,
+			"idle": "大海龟idle",
+			"autoAttack":'大海龟autoAttack',
+			"magicAutoAttack": "",
+			"playerMagic":[
+			{
+				"name": "水攻",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 2,				
+				"cost": 10,
+				"description": "水产基本法术",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"effectingNum": 1,
+				"audio":"res://Audio/SE/法术12.ogg",
+				"icon": "res://Icons/水攻.png",
+			},{
+				"name": "水漫金山",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 1, 
+				"cost": 40,
+				"description": "群攻法术",
+				"effectArea": "aoe",
+				"effectingNum": 4,
+				"animationArea":"enemy",
+				"audio":"res://Audio/SE/法术12.ogg",
+				"icon":"res://Icons/●图标 (120).png"
+			},			
+
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]
+		},
+	"小二": {
+			"name": "小二",
+			"sex": "male",
+			"icon": "res://portrait/小二.png",
+			"smallIcon": "res://main character/小二右下.png",
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance":0,
+			"blockChance":0,
+			"addBlockChance": 0,
+			"level": 20,
+			"exp": 0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 80,
+			"addStr":0,
+			"abilityPower": 100 * Global.enKey,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"mp": 300,
+			"addMp":0,
+			"currHp": 2000,
+			"currMp": 300,
+			"potential": 30,
+			"idle": "小二idle",
+			"autoAttack":'小二autoAttack',
+			"magicAutoAttack": "",
+			"playerMagic":[
+	{
+				"name": "唧唧歪歪",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"damageSource": "AP",
+				"attackType": "range",
+				"value": 1,
+				"cost": 30,
+				"description": "小二的言语攻击，噪音污染",	
+				"effectArea": "aoe",
+				"effectingNum": 5,
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/鸟语花香.ogg",
+				"icon": "res://Icons/●图标 (14).png"
+			},{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"animationArea": "enemy",
+				"cost": 10,
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},				
+
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
+			"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]
+		},
+	"凌若昭":{
+			"name": "凌若昭",
+			"sex": "female",
+			"icon":"res://Pictures/Pictures/云燕儿.png",
+			"smallIcon":"res://main character/若昭右下.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 15,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 160,
+			"currMp": 100,
+			"potential": 60,
+			"idle": "凌若昭idle",
+			"autoAttack":'凌若昭autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"凌若昭magicAutoAttack",
+			"playerMagic": [
+#				{
+#					"name": "催眠",
+#					"attackType": "debuff",
+#					"buffEffect": ["sleep"], 
+#					"cost": 10,
+#					"description": "同时催眠3个敌人",	
+#					"effectArea": "aoe",
+#					"animationArea":"enemy",
+#					"effectingNum": 3,
+#					"duration": 2,
+#					"audio": "res://Audio/SE/法术5.ogg",
+#					"icon":"res://Icons/●图标 (88).png",
+#				},	{
+#					"name": "冰封",
+#					"attackType": "debuff",
+#					"buffEffect": ["ice"], 
+#					"cost": 10,
+#					"description": "同时冰封3个敌人",	
+#					"effectArea": "aoe",
+#					"animationArea":"enemy",
+#					"effectingNum": 3,
+#					"duration": 2,
+#					"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+#					"icon":"res://Icons/●图标 (119).png",
+#				},
+				{
+					"name": "五雷咒",
+					"attackType": "range",
+					"damageSource": "AP",
+					"value": 2.5,				
+					"cost": 100,
+					"description": "引来天雷轰杀单体敌人",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"audio": "res://Audio/SE/123-Thunder01.ogg",
+					"icon":"res://Icons/五雷.png"
+				},
+
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":ItemData.weapon.get("竹节双剑"),
+				"cloth": ItemData.cloth.get("锦衣"),
+				"hat":ItemData.hat.get("面具"),
+				"shoes":ItemData.shoes.get("皮鞋"),
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},
+	"金甲":{
+			"name": "金甲",
+			"sex": "male",
+			"icon": "",
+			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 13,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 100,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 160,
+			"currMp": 100,
+			"potential": 70,
+			"idle": "金甲idle",
+			"autoAttack":'金甲autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"金甲magicAutoAttack",
+			"playerMagic": [
+				{
+					"name": "扎实一剑",
+					"attackType": "melee",
+					"damageSource": "AD",
+					"multiHitTimes": 1,
+					"cost": 10,
+					"value": 2,
 					"description": "金甲日日夜夜练习的扎实一剑",	
 					"effectArea": "single",
 					"animationArea":"enemy",
@@ -979,41 +1763,291 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]		
 	},
+	"敖雨":{
+			"name": "敖雨",
+			"sex": "female",
+			"icon": "",
+			"smallIcon":"res://Pictures/Pictures/云燕儿.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 40,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 10,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 1000,
+			"currMp": 1000,
+			"potential": 70,
+			"idle": "敖雨idle",
+			"autoAttack":'敖雨autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"金甲magicAutoAttack",
+			"playerMagic": [
+				{
+				"name": "虚沉冰封",
+				"attackType": "debuff",
+				"buffEffect": ["ice"], 
+				"cost": 400,
+				"chance": 1000,
+				"description": "百分百控制住一个人一个回合",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"effectingNum": 1,
+				"duration": 1,
+				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+				"icon":"res://Icons/●图标 (119).png",
+			},
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/女-呀.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},
+	"敖阳":{
+			"name": "敖阳",
+			"sex": "male",
+			"icon": "res://Pictures/¤敖白.png",
+			"smallIcon":"res://Pictures/¤敖白.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 40,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 300,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 200,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 500,
+			"currMp": 500,
+			"potential": 70,
+			"idle": "敖阳idle",
+			"autoAttack":'敖阳autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"敖阳magicAutoAttack",
+			"playerMagic": [
+				{
+				"name": "龙卷雨击",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 3, 
+				"cost": 40,
+				"description": "群攻法术",
+				"effectArea": "aoe",
+				"effectingNum": 8,
+				"animationArea":"screen",
+				"audio":"res://Audio/SE/暗雷.ogg",
+				"icon":"res://Icons/龙卷雨击.png"
+			},			{
+				"name": "双龙戏珠",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 3.5,
+				"cost": 40,
+				"description": "龙王法术",
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea": "enemy",
+				"audio": "res://Audio/SE/双龙戏猪.ogg",
+				"icon": "res://Icons/●图标 (1).png"
+			},				
+			
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/逍遥生攻击剑.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},	
+	
+	
 }
- 
+
 var datas = {
 	
 }
 
+#func saveData():
+#
+#
+#	fightScenePlayerData.get("时追云").additionDmg = decrypt(fightScenePlayerData.get("时追云").additionDmg)
+#	datas.battleItem = battleItem.duplicate()
+#	datas.bagArmorItem = bagArmorItem.duplicate()
+#	datas.seconds = seconds
+#	datas.golds = golds
+#	print(fightScenePlayerData.get("时追云").additionDmg)
+#	datas.fightScenePlayerData = fightScenePlayerData.duplicate()
+#
+#
+#	datas.questItem = questItem
+#	datas.keyItem = keyItem
+#	datas.consumeItem = consumeItem
+#	datas.petFoodBall = petFoodBall
+#	datas.petFood = petFood
+#	print(datas.fightScenePlayerData.get("时追云").additionDmg)
+#	fightScenePlayerData.get("时追云").additionDmg = fightScenePlayerData.get("时追云").additionDmg * Global.enKey
+#	print(datas.fightScenePlayerData.get("时追云").additionDmg)
+#
 func saveData():
-	datas.battleItem = battleItem
-	datas.bagArmorItem = bagArmorItem
+	# 对所有玩家的数据进行处理
+	for player_name in fightScenePlayerData.keys():
+		var player_data = fightScenePlayerData[player_name]
+		
+		# 解密所有带 * Global.enKey 的字段
+		player_data.addPlayerSpeed = decrypt(player_data.addPlayerSpeed)
+		player_data.addCritChance = decrypt(player_data.addCritChance)
+		player_data.addBlockChance = decrypt(player_data.addBlockChance)
+		player_data.exp = decrypt(player_data.exp)
+		player_data.needExp = decrypt(player_data.needExp)
+		player_data.addMagicDefense = decrypt(player_data.addMagicDefense)
+		player_data.addPhysicDefense = decrypt(player_data.addPhysicDefense)
+		player_data.addStr = decrypt(player_data.addStr)
+		player_data.addAbilityPower = decrypt(player_data.addAbilityPower)
+		player_data.additionDmg = decrypt(player_data.additionDmg)
+		player_data.addHp = decrypt(player_data.addHp)
+		player_data.addMp = decrypt(player_data.addMp)
+		player_data.potential = decrypt(player_data.potential)
+
+	# 处理其他数据的保存
+	datas.battleItem = battleItem.duplicate()
+	datas.bagArmorItem = bagArmorItem.duplicate()
 	datas.seconds = seconds
-	datas.golds = golds
-	datas.fightScenePlayerData = fightScenePlayerData
+	datas.golds = decrypt(golds)
+
+	# 深拷贝 fightScenePlayerData 进 datas
+	datas.fightScenePlayerData = deep_copy(fightScenePlayerData)
+
 	datas.questItem = questItem
 	datas.keyItem = keyItem
 	datas.consumeItem = consumeItem
+	datas.petFoodBall = petFoodBall
+	datas.petFood = petFood
+	
+	# 保存完成后，将数据重新加密
+	for player_name in fightScenePlayerData.keys():
+		var player_data = fightScenePlayerData[player_name]
+		
+		# 重新加密所有带 * Global.enKey 的字段
+		player_data.addPlayerSpeed *= Global.enKey
+		player_data.addCritChance *= Global.enKey
+		player_data.addBlockChance *= Global.enKey
+		player_data.exp *= Global.enKey
+		player_data.needExp *= Global.enKey
+		player_data.addMagicDefense *= Global.enKey
+		player_data.addPhysicDefense *= Global.enKey
+		player_data.addStr *= Global.enKey
+		player_data.addAbilityPower *= Global.enKey
+		player_data.additionDmg *= Global.enKey
+		player_data.addHp *= Global.enKey
+		player_data.addMp *= Global.enKey
+		player_data.potential *= Global.enKey
+
+
+
+# 递归深拷贝函数
+func deep_copy(original):
+	if typeof(original) == TYPE_DICTIONARY:
+		var copy_dict = {}
+		for key in original.keys():
+			copy_dict[key] = deep_copy(original[key])
+		return copy_dict
+	elif typeof(original) == TYPE_ARRAY:
+		var copy_array = []
+		for element in original:
+			copy_array.append(deep_copy(element))
+		return copy_array
+	else:
+		return original
+
 func loadData():
+	# 遍历每个玩家的数据，重新加密所有带 * Global.enKey 的字段
+	for player_name in datas.fightScenePlayerData.keys():
+		var player_data = datas.fightScenePlayerData[player_name]
+			
+		# 重新加密所有带 * Global.enKey 的字段
+		player_data.addPlayerSpeed *= Global.enKey
+		player_data.addCritChance *= Global.enKey
+		player_data.addBlockChance *= Global.enKey
+		player_data.exp *= Global.enKey
+		player_data.needExp *= Global.enKey
+		player_data.addMagicDefense *= Global.enKey
+		player_data.addPhysicDefense *= Global.enKey
+		player_data.addStr *= Global.enKey
+		player_data.addAbilityPower *= Global.enKey
+		player_data.additionDmg *= Global.enKey
+		player_data.addHp *= Global.enKey
+		player_data.addMp *= Global.enKey
+		player_data.potential *= Global.enKey
+
+	# 处理其他游戏数据
 	battleItem = datas.battleItem	
 	bagArmorItem = datas.bagArmorItem
 	seconds = datas.seconds
-	golds = datas.golds
+	golds = datas.golds * Global.enKey
+	
+	# 将解密后的 fightScenePlayerData 赋值回去
 	fightScenePlayerData = datas.fightScenePlayerData
+	
+	# 处理其他数据的加载
 	questItem = datas.questItem
 	keyItem = datas.keyItem
 	consumeItem = datas.consumeItem
-	
-	
+	petFoodBall = datas.petFoodBall
+	petFood = datas.petFood
+
 func update_status():
 	for player_name in fightScenePlayerData:
 		var player = fightScenePlayerData[player_name]
 
-		while player["exp"] >= player["needExp"]:  # Use while loop to handle multiple level-ups
+		while decrypt(player["exp"]) >= decrypt(player["needExp"]):  # Use while loop to handle multiple level-ups
 			#player["exp"] -= player["needExp"]  # Subtract the needed exp for current level
 			player["level"] += 1
-			player.potential += 5
-			player["needExp"] = calculate_exp_for_player_level(player["level"])
+			player.potential +=  5 * Global.enKey
+			player["needExp"] = calculate_exp_for_player_level(player["level"]) * Global.enKey
 			if player.name == "时追云":
 				if player["level"] == 3:
 					player.get("playerMagic").append(	
@@ -1040,7 +2074,8 @@ func update_status():
 							"currExp": 0,
 							"needExp": 50,
 							"attackType": "range",
-							"value": 2.5,
+							"damageSource": "AD",
+							"value": 2.2,
 							"cost": 30,
 							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
 							"effectArea": "single",
@@ -1068,7 +2103,9 @@ func update_status():
 						
 		# Update attack damage based on player level
 		if player.has("level"):
-			player["needExp"] = calculate_exp_for_player_level(player["level"])
+
+			player["needExp"] = calculate_exp_for_player_level(player["level"]) * Global.enKey
+			#player["needExp"] * Global.enKey
 			var level = player["level"]
 			#damage
 			var baseDmg = 40 # Base damage at level 1
@@ -1082,13 +2119,13 @@ func update_status():
 			#hp
 			var hpIncrease = calculate_hp_for_level(level)
 			player["hp"] = hpIncrease
-			if player["hp"] < player["currHp"]:
+			if player["hp"]  + player["addHp"] < player["currHp"]:
 				player["currHp"] = player["hp"]
 			#speed
 			player["playerSpeed"] = calculate_speed_for_level(player["level"],player["name"])
 			#mp
 			player["mp"] = calculate_mp_for_level(player["level"], player["name"])
-			
+			player["abilityPower"] = calculate_abilityPower_for_level(player["level"], player["name"])
 			
 			
 func calculate_exp_for_magic_level(level):
@@ -1096,9 +2133,9 @@ func calculate_exp_for_magic_level(level):
 	return 50 * level
 
 func calculate_exp_for_player_level(level):
-	var baseExp = 50
+	var baseExp = 60
 	var linearComponent = 500 * (level - 1)  # Linear growth
-	var exponentialComponent = baseExp * pow(1.14, level - 1)  # Exponential growth
+	var exponentialComponent = baseExp * pow(1.2, level - 1)  # Exponential growth
 
 	# Combine linear and exponential components
 	var totalExp = linearComponent + exponentialComponent
@@ -1114,7 +2151,7 @@ func calculate_defense_for_level(level, player =null):
 	var totalDefense = baseDefense + defenseIncreasePerLevel * (level - 1)
 	return totalDefense
 func calculate_hp_for_level(level):
-	var baseHp = 200  # Base HP at level 1
+	var baseHp = 220  # Base HP at level 1
 	var finalHp = 2500  # Desired HP at level 100
 	var hpIncreasePerLevel = (finalHp - baseHp) / 99  # Linear increase per level
 
@@ -1125,10 +2162,36 @@ func calculate_speed_for_level(level, player = null):
 	var baseSpeed = 50.0  # Base speed at level 1
 	var speedIncreasePerLevel = 2  # Speed increase per level
 	if player == "大海龟":
-		baseSpeed = 30.0
+		baseSpeed = 35.0
+	if player == "敖阳" or player == "敖雨" or player == "金甲":
+		speedIncreasePerLevel = 4
+	if player == "大海龟":
+		speedIncreasePerLevel = 3		
+		
+		
 	var totalSpeed = baseSpeed + speedIncreasePerLevel * (level - 1)
 
 	return totalSpeed
+	
+func calculate_abilityPower_for_level(level, player = null):
+	var baseAp = 90.0  # Base speed at level 1
+	var apIncreasePerLevel = 1  # Speed increase per level
+	var totalAp = baseAp + apIncreasePerLevel * (level - 1)	
+	if player == "大海龟" or player == "敖雨":
+		apIncreasePerLevel = 3  # Speed increase per level
+	if player == "敖阳":
+		apIncreasePerLevel = 4 # Speed increase per level
+
+	totalAp = baseAp + apIncreasePerLevel * (level - 1)		
+		
+	
+	return totalAp * Global.enKey
+#	if player == "敖阳":
+#		var baseAp = 1.0  # Base speed at level 1
+#		var apIncreasePerLevel = 10  # Speed increase per level
+#		var totalAp = baseAp + apIncreasePerLevel * (level - 1)
+#		print(totalAp)
+#		return totalAp		
 	
 func calculate_mp_for_level(level, player = null):
 	
@@ -1195,83 +2258,179 @@ func remove_empty_items():
 	# Remove the items outside the loop to avoid modifying the dictionary while iterating
 	for key in keys_to_remove:
 		bagArmorItem.erase(key)
-#{
-#				"name": "唧唧歪歪",
-#				"level": 1,
-#				"currExp": 49,
-#				"needExp": 50,
-#				"attackType": "range",
-#				"value": 5,
-#				"cost": 30,
-#				"description": "饼干的言语攻击，伤害拉满",	
-#				"effectArea": "aoe",
-#				"effectingNum": 5,
-#				"animationArea":"enemy",
-#				"audio": "res://Audio/SE/鸟语花香.ogg",
-#				"icon": "res://Icons/●图标 (14).png"
-#			},
-#			{
-#				"name": "舍命一击",
-#				"level": 1,
-#				"currExp": 0,
-#				"needExp": 50,
-#				"attackType": "melee",
-#				"value": 3, 
-#				"cost": 30,
-#				"description": "全力攻击，休息一回合",
-#				"effectArea": "single",
-#				"animationArea":"enemy",
-#				"audio": "res://Audio/SE/男-剑.ogg",
-#				"icon": "res://Icons/●图标 (13).png",
-#			},
-#			{
-#				"name": "聚力",
-#				"level": 1,
-#				"currExp": 0,
-#				"needExp": 50,
-#				"attackType": "buff",				
-#				"value": 30, 
-#				"cost": 30,
-#				"description": "增加自身攻击力",
-#				"effectArea": "single",
-#				"effectingNum":1,
-#				"animationArea":"self",
-#				"buffEffect":["currAttackDmg"],
-#				"duration": 4,
-#				"audio":"res://Audio/SE/男-法术-嗯.ogg",
-#				"icon":"res://Icons/●图标 (38).png"
-#			},{
-#				"name": "破空剑",
-#				"level": 1,
-#				"currExp": 0,
-#				"needExp": 50,
-#				"attackType": "melee",
-#				"value": 5,
-#				"cost": 30,
-#				"description": "高伤害",	
-#				"effectArea": "single",
-#				"animationArea":"screen",
-#				"audio": "res://Audio/SE/男-剑.ogg",
-#				"icon": "res://Icons/●图标 (23).png"
-#			{"name": "飞剑决",
-#				"level": 1,
-#				"currExp": 0,
-#				"needExp": 50,
-#				"attackType": "range",
-#				"value": 2.5,
-#				"cost": 30,
-#				"description": "时追云通过修炼领悟的技能，比平A多点伤害",	
-#				"effectArea": "single",
-#				"animationArea":"enemy",
-#				"audio": "res://Audio/SE/096-Attack08.ogg",
-#				"icon": "res://Icons/斩龙诀.png"
-#			},
-#			{
-#				"name": "千机变",
-#				"attackType": "special",
-#				"value": 2,				
-#				"cost": 10,
-#				"description": "小二模仿并释放上一次队友使用的技能",	
-#				"icon": "res://Icons/●图标 (91).png",
-#			},		
-			# Add more magic spells as needed
+var unLearnMagic = {
+			"催眠咒":{
+					"name": "催眠",
+					"attackType": "debuff",
+					"buffEffect": ["sleep"], 
+					"cost": 100,
+					"chance": 30,
+					"description": "同时催眠3个敌人",	
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"effectingNum": 3,
+					"duration": 2,
+					"audio": "res://Audio/SE/法术5.ogg",
+					"icon":"res://Icons/●图标 (88).png",
+				},	
+			"舍命一击":{
+				"name": "舍命一击",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "melee",
+				"value": 3, 
+				"cost": 30,
+				"description": "全力攻击，休息一回合",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (13).png",
+			},
+			"横扫千军":{
+				"name": "横扫千军",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 3,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1.6, 
+				"cost": 50,
+				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},
+			"破空剑":{
+				"name": "破空剑",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "melee",
+				"value": 5,
+				"cost": 30,
+				"description": "高伤害",	
+				"effectArea": "single",
+				"animationArea":"screen",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (23).png"
+			},
+			"千机变":{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"animationArea": "enemy",
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},		
+			"神佑咒":{
+					"name": "神佑咒",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "buff",
+					"buffEffect": ["currPhysicDefense", "currMagicDefense"], 
+					"value": 200,
+					"cost": 10,
+					"description": "提高防御",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 4,
+					"duration": 3,
+					"audio": "res://Audio/SE/133-Wind02.ogg",
+					"icon":"res://Icons/●图标 (77).png",
+				},
+			"破甲术":{
+					"name": "破甲术",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "debuff",
+					"buffEffect": ["physicDefenseDebuff", "magicDefenseDebuff"], 
+					"value": 200,
+					"cost": 400,
+					"description": "此次战斗永久降低大量被击中目标的防御",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"duration": 3000,
+					"audio": "res://Audio/SE/133-Wind02.ogg",
+					"icon":"res://Icons/●图标 (86).png",
+				},
+			"高等炼体术":{
+					"name": "高等炼体术",
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "passive",
+					"buffEffect": ["currPhysicDefense", "currMagicDefense","currPlayerSpeed"], 
+					"value": 100,
+					"cost": 10,
+					"description": "被动提高双抗，伤害，速度，血量，仙能。不可使用",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 4,
+					"duration": 3,
+					"audio": "res://Icons/●图标 (89).png",
+					"icon":"res://Icons/●图标 (85).png"
+				},
+			"虚空斩":{
+				"name": "虚空斩",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "melee",
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 4, 
+				"cost": 50,
+				"description": "剑斩虚空",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},
+}
+func learnMagic(character, magicName):
+	var magicList = fightScenePlayerData.get(character).playerMagic
+	magicList.append(unLearnMagic.get(magicName))
+
+#func compare_dictionaries(dict1: Dictionary, dict2: Dictionary) -> bool:
+#	# Check if the keys and values are different in any way
+#	for key in dict1.keys():
+#		if not dict2.has(key) or dict1[key] != dict2[key]:
+#			return true
+#
+#	# Check if there are keys in dict2 that are not in dict1
+#	for key in dict2.keys():
+#		if not dict1.has(key):
+#			return true
+#
+#	# No differences found
+#	return false
+func compare_dictionaries(dict1: Dictionary, dict2: Dictionary) -> Dictionary:
+	var differences = {}
+	
+	# 遍历第一个字典
+	for key in dict1.keys():
+		if not dict2.has(key):
+			differences[key] = {"status": "missing in dict2", "value": dict1[key]}
+		elif dict1[key] != dict2[key]:
+			differences[key] = {"status": "different", "value_in_dict1": dict1[key], "value_in_dict2": dict2[key]}
+	
+	# 遍历第二个字典，查找只存在于 dict2 中的键
+	for key in dict2.keys():
+		if not dict1.has(key):
+			differences[key] = {"status": "missing in dict1", "value": dict2[key]}
+	
+	return differences
+
+func decrypt(value):
+	return value / Global.enKey
+
+func healAll():
+	for i in fightScenePlayerData:
+		fightScenePlayerData[i].currHp = fightScenePlayerData[i].addHp + fightScenePlayerData[i].hp

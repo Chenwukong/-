@@ -102,7 +102,7 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 	# You have to provide a valid dialogue resource
 	assert(resource != null, DialogueConstants.translate("runtime.no_resource"))
 	assert(resource.lines.size() > 0, DialogueConstants.translate("runtime.no_content").format({ file_path = resource.resource_path }))
-
+	
 	# Inject any "using" states into the game_states
 	for state_name in resource.using_states:
 		var autoload = get_tree().root.get_node_or_null(state_name)
@@ -113,7 +113,7 @@ func get_next_dialogue_line(resource: DialogueResource, key: String = "", extra_
 
 	# Get the line data
 	var dialogue: DialogueLine = await get_line(resource, key, extra_game_states)
-
+	
 	# If our dialogue is nothing then we hit the end
 	if not is_valid(dialogue):
 		dialogue_ended.emit(resource)
@@ -262,7 +262,7 @@ func show_chat(resource: DialogueResource, title: String = "", extra_game_states
 	var balloon: Node = load("res://chat_ballon/chat.tscn").instantiate()
 	get_current_scene.call().add_child(balloon)
 	balloon.start(resource, title, extra_game_states)
-
+	
 	return balloon 
 func show_mainChat(resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> CanvasLayer:
 	var balloon: Node = load("res://mainBallon/chat.tscn").instantiate()
@@ -943,7 +943,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 				"variable":
 					value = apply_operation(token.value, get_state_value(lhs.value, extra_game_states), tokens[i+1].value)
 					set_state_value(lhs.value, value, extra_game_states)
-				"property":
+				"property": 
 					value = apply_operation(token.value,
 					 lhs.value.get(lhs.property), tokens[i+1].value)
 					if typeof(lhs.value) == TYPE_DICTIONARY:
@@ -1068,6 +1068,7 @@ func is_valid(line: DialogueLine) -> bool:
 
 
 func thing_has_method(thing, method: String, args: Array) -> bool:
+
 	match typeof(thing):
 		TYPE_DICTIONARY:
 			return method in DialogueConstants.SUPPORTED_DICTIONARY_METHODS

@@ -1,0 +1,337 @@
+[gd_scene load_steps=31 format=3 uid="uid://cthcx45uw5cy"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_sf8l8"]
+[ext_resource type="Texture2D" uid="uid://ijug5juyicdv" path="res://panoramas2/龙宫_海底迷宫2.jpg" id="2_5ee8s"]
+[ext_resource type="Texture2D" uid="uid://c0oyxkapkdfbi" path="res://panoramas2/龙宫_海底迷宫2_2.png" id="3_dlp34"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_rxmwx"]
+[ext_resource type="AudioStream" uid="uid://bao5bccf0iapd" path="res://Audio/BGM/海底迷宫2.mp3" id="5_2phmf"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="6_hnl5h"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="7_7blrp"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="8_r3chg"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="9_e4aio"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="10_gwjp8"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_04xn6"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="12_4xog4"]
+[ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="13_o0lc4"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialball.tscn" id="14_8o2bl"]
+[ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="15_itgcl"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="16_330mq"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="17_as1pu"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="18_60xu7"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_mtpw1"]
+[ext_resource type="Texture2D" uid="uid://cr0urcbiw28kc" path="res://Characters/货商-大胖子.png" id="21_v3328"]
+[ext_resource type="Shader" path="res://shader/东海龙宫.gdshader" id="22_to5dw"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qah27"]
+vertices = PackedVector2Array(4592, 82, 4563, 1943, 1132, 1966, -771, 1956, -780, 1306, -793, 91)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-793, 91, -780, 1306, -771, 1956, 1132, 1966, 4563, 1943, 4592, 82)])
+
+[sub_resource type="Gradient" id="Gradient_dqxuq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pkdgm"]
+gradient = SubResource("Gradient_dqxuq")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_m3pvt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5ro7l"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(50, 0), Vector2(0, 0), Vector2(-50, 0), Vector2(0, 0), Vector2(50, 0), Vector2(0, 0), Vector2(-50, 0), Vector2(50, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j25iq"]
+_data = {
+"RESET": SubResource("Animation_m3pvt"),
+"shake": SubResource("Animation_5ro7l")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5xb2"]
+atlas = ExtResource("21_v3328")
+region = Rect2(258, 0, 86, 78)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sn2cw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5xb2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vfn2s"]
+shader = ExtResource("22_to5dw")
+shader_parameter/water_deep = Color(0, 0.647059, 1, 0.278431)
+shader_parameter/water_shallow = Color(0, 0.7, 1, 0.15)
+shader_parameter/time_scale = 0.05
+shader_parameter/wave_scale = 10.0
+shader_parameter/distortion_strength = 0.05
+
+[node name="海底迷宫2" type="Node2D"]
+script = ExtResource("1_sf8l8")
+
+[node name="建业左" type="Sprite2D" parent="."]
+position = Vector2(4630.95, 1022.45)
+scale = Vector2(1.31047, 1.24007)
+texture = ExtResource("2_5ee8s")
+offset = Vector2(-2153, -82)
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(1808, 920)
+scale = Vector2(1.30923, 1.24369)
+texture = ExtResource("3_dlp34")
+
+[node name="player" parent="." instance=ExtResource("4_rxmwx")]
+z_index = 1
+position = Vector2(1316, 1346)
+scale = Vector2(0.903555, 0.940031)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="player" index="1"]
+animation = &"down"
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1301, 873)
+stream = ExtResource("5_2phmf")
+volume_db = 4.414
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="enterFightCd" type="Timer" parent="."]
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 7.0
+max_distance = 10000.0
+
+[node name="BattleReward" parent="." instance=ExtResource("6_hnl5h")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(8, -83)
+navigation_polygon = SubResource("NavigationPolygon_qah27")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("7_7blrp")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_r3chg")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_pkdgm")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("9_e4aio")
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(977, 331)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(2639, 1510)
+
+[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1922, 1097)
+stream = ExtResource("10_gwjp8")
+volume_db = 2.432
+max_distance = 1e+06
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+color = Color(0.168627, 0.168627, 0.168627, 1)
+energy = 5.0
+blend_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(603, 488)
+
+[node name="addNumTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="npcs" type="Node2D" parent="."]
+
+[node name="teleportCircle5" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(5733, 1706)
+toScene = "方寸厢房"
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(127, 2229)
+toScene = "东海海道"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(1227, 1506, 1229, 1354, 982, 1343, 982, 1288, 1158, 1210, 1332, 1214, 1438, 1114, 1593, 1092, 1648, 1020, 1769, 1006, 1943, 1043, 2066, 905, 2050, 809, 1890, 754, 1273, 789, 1152, 948, 1103, 1010, 993, 978, 984, 788, 1200, 665, 1200, 528, 1163, 455, 1555, 378, 1635, 357, 1732, 452, 2401, 464, 2511, 337, 2602, 372, 2542, 494, 2533, 551, 2368, 632, 2225, 626, 2205, 761, 2361, 788, 2464, 874, 2551, 945, 2643, 961, 2642, 1123, 2518, 1243, 2415, 1342, 2119, 1318, 1915, 1321, 1701, 1338, 1652, 1260, 1447, 1315, 1445, 1507)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1589, 496, 1412, 546, 1383, 634, 1638, 629, 1645, 519)
+
+[node name="Node2D2" parent="." instance=ExtResource("12_4xog4")]
+position = Vector2(3126, 873)
+items = {
+"西瓜": 10
+}
+
+[node name="battleBgm" type="AudioStreamPlayer" parent="."]
+
+[node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_o0lc4")
+volume_db = 4.552
+
+[node name="potentialBall" parent="." instance=ExtResource("14_8o2bl")]
+position = Vector2(1706, 1743)
+id = "方寸山1"
+
+[node name="shake" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j25iq")
+}
+
+[node name="backgroundSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_itgcl")
+volume_db = -14.0
+autoplay = true
+
+[node name="teleportCircle" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(5471, 1451)
+toScene = "东海龙宫"
+
+[node name="cloudTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="menuControl" parent="." instance=ExtResource("16_330mq")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("17_as1pu")]
+
+[node name="teleportCircle2" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(5817, 1169)
+toScene = "东海海道2"
+
+[node name="petFoodBall" parent="." instance=ExtResource("18_60xu7")]
+position = Vector2(5827, 826)
+id = "东海海道1"
+
+[node name="petFoodBall2" parent="." instance=ExtResource("18_60xu7")]
+position = Vector2(4014, 153)
+id = "东海海道2"
+
+[node name="Node2D" parent="." instance=ExtResource("12_4xog4")]
+position = Vector2(1066, 830)
+id = "海底迷宫2"
+goldAmount = 1000
+gold = true
+
+[node name="傲来杂货老板" parent="." instance=ExtResource("20_mtpw1")]
+position = Vector2(3407, 1029)
+sprite_frames = SubResource("SpriteFrames_sn2cw")
+npcName = "傲来杂货老板 "
+
+[node name="teleportCircle4" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(2624, 1047)
+toScene = "海底迷宫3"
+
+[node name="teleportCircle6" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(2529, 385)
+toScene = "海底迷宫1"
+
+[node name="teleportCircle7" parent="." instance=ExtResource("11_04xn6")]
+position = Vector2(1325, 1456)
+toScene = "海底迷宫1"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 100
+material = SubResource("ShaderMaterial_vfn2s")
+offset_top = -47.0
+offset_right = 4294.0
+offset_bottom = 2292.0
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
+[connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
+
+[editable path="player"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer/importantMsg"]

@@ -30,19 +30,42 @@ var selectedMonsters
 var currBgm = ""
 var dialogue = null
 var canPress = true
+var sceneName
 func areAllPlayersDead() -> bool:
 	for player in players:
 		if player.alive:
 			return false
 	# If the loop completes without finding any living player, return true
 	return true
-
-func _ready():
+var preValue = 0
+func _ready(): 
+	$battleFieldPicture/Panel.position = Vector2(-402,-300) 
 	
+	
+	get_tree().current_scene.get_node("CanvasLayer2").visible = false
+	sceneName =  get_tree().current_scene.name
+	if sceneName == "东海湾":
+		$battleFieldPicture.texture = load("res://Battlebacks/东海湾.jpg")
+	else:
+		$battleFieldPicture.texture = load ("res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png")
+		#$battleFieldPicture.texture = load ("res://Battlebacks/战斗覆盖.png")
+	
+	get_tree().current_scene.get_node("CanvasLayer2").visible = false
+	get_node("battleFieldPicture/trans").value = 100
+	#get_node("battleFieldPicture/trans").visible = true
+	Global.canEnemyHit = true
+	Global.onHitEnemy = []
+	Global.lost = false
+	Global.onFight = true
+	Global.selectedTarget = false
+	Global.target = null
+	Global.onAttacking = false
+	Global.monsterTarget = null
 	if Global.atNight == true:
-		get_parent().get_node("nightBgm").stop()
+		get_tree().current_scene.get_node("nightBgm").stop()
 	
 	randiTrans = randi_range(0,9)
+	
 	# Load the Character2D scene
 	enemyScene = preload("res://Scene/enemy.tscn")
 	fightScenePlayerScene = preload("res://Scene/fightScenePlayer.tscn")
@@ -72,25 +95,52 @@ func _ready():
 #	get_parent().get_node("AudioStreamPlayer2D").play()
 	
 func _process(delta):
+	get_tree().current_scene.get_node("player").canMove = false
 	#var players = get_tree().get_nodes_in_group("fightScenePlayer")
+	if !Global.onAttacking or Global.onMagicAttacking:
+		preValue = getCurrTotalHp()
+	var increment = $battleFieldPicture/Panel/ProgressBar.value - preValue
+	var increment_percentage = (increment /$battleFieldPicture/Panel/ProgressBar.max_value ) * 100
+	if Global.onBoss:
+		if increment_percentage >= 15:
+			$AnimationPlayer.play("shake")
+	
+	if Global.onHurry:
+	
+		get_parent().get_parent().get_node("battleBgm").volume_db = -80
+	else:
+		get_parent().get_parent().get_node("battleBgm").volume_db = 5
+	
+	
 	if Global.onAttackingList.size() > 0:
 		if Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet:
-			$battleFieldPicture/currPlayer.visible = true
-			$battleFieldPicture/currPlayer/Panel/currPlayerName.text = Global.onAttackingList[0]
-			$battleFieldPicture/currPlayer/Panel/hpBar/Label2.text = str(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currHp) + "/" + str(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).hp + FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).addHp)
-			$battleFieldPicture/currPlayer/Panel/hpBar.max_value = FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).hp + FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).addHp
-			$battleFieldPicture/currPlayer/Panel/hpBar.value = FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currHp
-			$battleFieldPicture/currPlayer/Panel/manaBar/Label2.text = str(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currMp) + "/" + str(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).mp + FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).addMp)
-			$battleFieldPicture/currPlayer/Panel/manaBar.max_value = FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).mp + FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).addMp
-			$battleFieldPicture/currPlayer/Panel/manaBar.value = FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currMp			
-			var children = $battleFieldPicture/currPlayer/Panel/buffs.get_children()
+			if currPlayer:
+				$battleFieldPicture/currPlayer.visible = true
+				$battleFieldPicture/currPlayer/Panel/currPlayerName.text = Global.onAttackingList[0]
+				$battleFieldPicture/allyInfo/hpBar/Label2.text = str(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currHp) + "/" + str(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).hp + FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).addHp)
+
+			
+				$battleFieldPicture/currPlayer/Panel/background/hpBar/Label2.text = str(currPlayer.currHp) + "/"  + str(currPlayer.totalHp)
+				#$battleFieldPicture/currPlayer/Panel/background/hpBar.max_value = FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).hp + FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).addHp
+				$battleFieldPicture/currPlayer/Panel/background/hpBar.max_value = currPlayer.totalHp
+				$battleFieldPicture/currPlayer/Panel/background/manaBar/Label2.text = str(currPlayer.currMp) + "/"+str(currPlayer.totalMp)	
+				$battleFieldPicture/currPlayer/Panel/background/manaBar.max_value = currPlayer.totalMp
+				
+					
+				decrease_value_over_time_player(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currMp, 0.07, "mp")
+				decrease_value_over_time_player(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currHp, 0.07, "hp")
+
+				
+					
+				$battleFieldPicture/currPlayer/Panel/head.texture = load(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).icon)
+			var children = $battleFieldPicture/currPlayer/Panel/background/buffs.get_children()
 			for i in children:
 				i.visible = false
 			for i in players:
 				if i.name == Global.onAttackingList[0]:
-					#print(i.buffs,111)
+				
 					for index in i.buffs.size():					
-						get_node("battleFieldPicture/currPlayer/Panel/buffs/buff"+str(index+1)).visible = true
+						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).visible = true
 						var icon
 						if i.buffs[index].keys()[0] == "onAttackBuff":
 							icon = "res://Icons/317.png"
@@ -114,8 +164,9 @@ func _process(delta):
 							icon = 	"res://Icons/633.png"
 						elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
 							icon = 	"res://Icons/305.png"											
-														
-						get_node("battleFieldPicture/currPlayer/Panel/buffs/buff"+str(index+1)).texture = load(icon)	
+						elif i.buffs[index].keys()[0] == "onTireDebuff":
+							icon = 	"res://Icons/629.png"																
+						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).texture = load(icon)	
 					
 		else:
 			$battleFieldPicture/currPlayer.visible = false
@@ -125,56 +176,72 @@ func _process(delta):
 			
 			
 			
-	get_parent().get_node("DirectionalLight2D").energy = 0	
+	get_parent().get_parent().get_node("DirectionalLight2D").energy = 0	
 	if Global.atNight == true:
-		get_parent().get_node("nightBgm").stop()
-		
+		get_tree().current_scene.get_node("nightBgm").stop()
+	if get_tree().current_scene.name == "东海湾" or get_tree().current_scene.name == "建邺北":
+		$battleFieldPicture/trans.texture_progress = load("res://Trans/0623C906.jpg")
+	if get_tree().current_scene.name == "方寸山":
+			$battleFieldPicture/trans.texture_progress = load("res://Battlebacks/bj4.jpg")
+	
+	
+	
 	if randiTrans == 0:
 		get_node("battleFieldPicture/trans").set_fill_mode(0)
-		get_node("battleFieldPicture/trans").self_modulate.a  = 0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  = 0.8
 		get_node("battleFieldPicture/trans").value -= 1 
 	elif randiTrans == 1:
 		get_node("battleFieldPicture/trans").set_fill_mode(1)
-		get_node("battleFieldPicture/trans").self_modulate.a  = 0.5 
+		get_node("battleFieldPicture/trans").self_modulate.a  = 0.8 
+		get_node("battleFieldPicture/trans").value -= 1
+	elif randiTrans == 2:
 		get_node("battleFieldPicture/trans").set_fill_mode(2)
-		get_node("battleFieldPicture/trans").self_modulate.a  =0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  =0.8
 		get_node("battleFieldPicture/trans").value -= 1
 	elif randiTrans == 3:
 		get_node("battleFieldPicture/trans").set_fill_mode(3)
-		get_node("battleFieldPicture/trans").self_modulate.a  =0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  =0.8
 		get_node("battleFieldPicture/trans").value -= 1 	
 	elif randiTrans == 4:
 		get_node("battleFieldPicture/trans").set_fill_mode(4)
-		get_node("battleFieldPicture/trans").self_modulate.a  = 0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  = 0.8
 		get_node("battleFieldPicture/trans").value -= 1	
 	elif randiTrans == 5:
 		get_node("battleFieldPicture/trans").set_fill_mode(5)
-		get_node("battleFieldPicture/trans").self_modulate.a  =0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  =0.8
 		get_node("battleFieldPicture/trans").value -= 1 	
 	elif randiTrans == 6:
 		get_node("battleFieldPicture/trans").set_fill_mode(6)
-		get_node("battleFieldPicture/trans").self_modulate.a  =0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  =0.8
 		get_node("battleFieldPicture/trans").value -= 1
 	elif randiTrans == 7:
 		get_node("battleFieldPicture/trans").set_fill_mode(7)
-		get_node("battleFieldPicture/trans").self_modulate.a  =0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  =0.8
 		get_node("battleFieldPicture/trans").value -= 1 	
 	elif randiTrans == 8:
 		get_node("battleFieldPicture/trans").set_fill_mode(8)
-		get_node("battleFieldPicture/trans").self_modulate.a  =0.5
+		get_node("battleFieldPicture/trans").self_modulate.a  =0.8
 		get_node("battleFieldPicture/trans").value -= 1		
 	elif randiTrans == 9:
 		get_node("battleFieldPicture/trans").self_modulate.a -= 0.01	
 	if get_node("battleFieldPicture/trans").value == 0:
 		get_node("battleFieldPicture/trans").visible = false
-
+		
 	monsters = get_tree().get_nodes_in_group("monster")
 	players = get_tree().get_nodes_in_group("fightScenePlayers")
 	
-			
-	$battleFieldPicture/Panel/ProgressBar.value = getCurrTotalHp()
+		
+	
+	decrease_value_over_time(getCurrTotalHp(),0.17)
+	$battleFieldPicture/Panel/ProgressBar/Label.text = str(ceil(($battleFieldPicture/Panel/ProgressBar.value / $battleFieldPicture/Panel/ProgressBar.max_value) * 100)) + "%"
+
+	
+	
+	
+	#$battleFieldPicture/Panel/ProgressBar.value = getCurrTotalHp()
 	
 	$battleFieldPicture/enemyInfo.visible = false
+
 	if Global.onAttackPicking or Global.onMagicAttackPicking:
 		if Global.target and monsters:
 			$battleFieldPicture/enemyInfo.visible = true
@@ -185,7 +252,7 @@ func _process(delta):
 			var enemyBuffSlot =  $battleFieldPicture/enemyInfo/buffs.get_children()
 			for x in enemyBuffSlot:
 				x.visible = false
-			if is_instance_valid(Global.target.buffs):
+			if Global.target and Global.target.buffs: 
 				for index in Global.target.buffs.size():	
 					var i = Global.target
 					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).visible = true	
@@ -211,23 +278,31 @@ func _process(delta):
 						icon = "res://Icons/621.png"
 					elif i.buffs[index].keys()[0] == "onSpeedDebuff":
 						icon = 	"res://Icons/633.png"
+					elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
+						icon = 	"res://Icons/305.png"											
+					elif i.buffs[index].keys()[0] == "onTireDebuff":
+						icon = 	"res://Icons/629.png"									
+					
+					
 										
 					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)			
 		$battleFieldPicture/allyInfo/allyName.text = players[Global.allieSelectIndex].name
-		$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].hp
+		$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].totalHp
+		
 		$battleFieldPicture/allyInfo/hpBar.value = players[Global.allieSelectIndex].currHp
-		$battleFieldPicture/allyInfo/hpBar/Label2.text = str(players[Global.allieSelectIndex].currHp) + "/" + str(players[Global.allieSelectIndex].hp)
+		$battleFieldPicture/allyInfo/hpBar/Label2.text = str(players[Global.allieSelectIndex].currHp) + "/" + str(players[Global.allieSelectIndex].totalHp)
 	
-		$battleFieldPicture/allyInfo/manaBar.max_value = players[Global.allieSelectIndex].mp
+		$battleFieldPicture/allyInfo/manaBar.max_value = players[Global.allieSelectIndex].totalMp
 		$battleFieldPicture/allyInfo/manaBar.value = players[Global.allieSelectIndex].currMp
-		$battleFieldPicture/allyInfo/manaBar/Label2.text = str(players[Global.allieSelectIndex].currMp) + "/" + str(players[Global.allieSelectIndex].mp)
+		$battleFieldPicture/allyInfo/manaBar/Label2.text = str(players[Global.allieSelectIndex].currMp) + "/" + str(players[Global.allieSelectIndex].totalMp)
 		
 		var allyBuffSlot =  $battleFieldPicture/allyInfo/buffs.get_children()
 		for buff in players[Global.allieSelectIndex].buffs:
 			pass
 #		for buff in $battleFieldPicture/allyInfo/buffs.get_children():
 #			print(players[Global.allieSelectIndex])
-		
+	if Global.onAttacking:
+		$battleFieldPicture/enemyInfo.visible = false	
 	if Global.onItemUsePicking:
 		if Global.currUsingItem.info.effect == "damage":
 			$battleFieldPicture/enemyInfo.visible = true
@@ -264,6 +339,11 @@ func _process(delta):
 					icon = "res://Icons/621.png"
 				elif i.buffs[index].keys()[0] == "onSpeedDebuff":
 					icon = 	"res://Icons/633.png"
+				elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
+					icon = 	"res://Icons/305.png"											
+				elif i.buffs[index].keys()[0] == "onTireDebuff":
+					icon = 	"res://Icons/629.png"													
+									
 									
 				get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)				
 		else:
@@ -303,8 +383,11 @@ func _process(delta):
 					icon = "res://Icons/621.png"
 				elif i.buffs[index].keys()[0] == "onSpeedDebuff":
 					icon = 	"res://Icons/633.png"
-									
-												
+				elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
+					icon = 	"res://Icons/305.png"											
+				elif i.buffs[index].keys()[0] == "onTireDebuff":
+					icon = 	"res://Icons/629.png"													
+										
 				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).texture = load(icon)	
 			for buff in players[Global.allieSelectIndex].buffs:
 				pass
@@ -314,15 +397,24 @@ func _process(delta):
 				currPlayer = i
 			
 	if areAllPlayersDead() and !deadTrigger:
-		
+		Global.onBoss = false
+		for player in players:
+			if player["currHp"] <= 0:
+				FightScenePlayers.fightScenePlayerData[player.name].alive = true
+				FightScenePlayers.fightScenePlayerData[player.name].currHp = player["hp"]/10
 		if Global.canLose:
 			for i in players:
-				i.currHp += i.hp/10
+				if i.currHp <= 0:
+					i.alive = true
+					i.currHp = (i.hp + i.addHp )/7
+				
+				
+				
 			Global.lost = true
-			get_parent().get_node("player").visible = true
-			get_parent().get_node("player").canMove = true
-			get_parent().get_node("enterFightCd").start()
-			get_parent().onFight = false
+			get_parent().get_parent().get_node("player").visible = true
+			get_parent().get_parent().get_node("player").canMove = true
+			get_parent().get_parent().get_node("enterFightCd").start()
+			get_parent().get_parent().onFight = false
 			Global.monsterIdx = -1
 			Global.onAttackingList = []
 			Global.finishingBattle = true
@@ -338,18 +430,21 @@ func _process(delta):
 			Global.onHitPlayer = []
 			Global.killedAmount += selectedMonsters.size()
 			if Global.atNight:
-				get_parent().get_node("nightBgm").play()
-				get_parent().get_node("DirectionalLight2D").energy = 4.7	
+				get_parent().get_parent().get_node("nightBgm").play()
+				get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			else:
 				if !Global.onHurry:
-					get_parent().get_node("AudioStreamPlayer2D").volume_db = 4
+					get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4
 				elif Global.onHurry:
-					get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5			
-			get_parent().get_node("battleBgm").stop()
+					get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5			
+			get_parent().get_parent().get_node("battleBgm").stop()
 			Global.onMultiHit = 0
+			Global.target = null
+			Global.monsterTarget = null
 			Global.currAttacker = ""
 			queue_free()
-			
+
+			FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
 			if dialogue:
 				var npc = Global.npcs[dialogue]
 				var dialogue_index = npc["current_dialogue_index"]
@@ -357,37 +452,60 @@ func _process(delta):
 				
 				var chapterNum = dialogue_entry.chapter
 				DialogueManager.show_chat(load("res://Dialogue/"+str(chapterNum)+".dialogue"),get_npc_dialogue(dialogue))
-			get_parent().get_node("shadow").visible = true
-			get_parent().get_node("CanvasLayer").visible = true
-			get_parent().get_node("battleBgm").stop()
+			get_parent().get_parent().get_node("shadow").visible = true
+			get_parent().get_parent().get_node("CanvasLayer").visible = true
+			get_parent().get_parent().get_node("battleBgm").stop()
 			if !Global.onHurry:
-				get_parent().get_node("AudioStreamPlayer2D").play()				
+				get_parent().get_parent().get_node("AudioStreamPlayer2D").play()				
 		else:		
 			deadTrigger = true
-			get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
-			$systemSound.stream = load("res://Audio/SE/011-System11.ogg")
-			$systemSound.play()
+
 			$deadTimer.start()
-		
+			
 		
 	#循环播放随机战斗背景音乐
-	if get_parent().get_node("battleBgm").is_playing() == false:
-		get_parent().get_node("battleBgm").stream = load(currBgm)
-		get_parent().get_node("battleBgm").play()
+	if get_parent().get_parent().get_node("battleBgm").is_playing() == false and currBgm != "":
+		get_parent().get_parent().get_node("battleBgm").stream = load(currBgm)
+		get_parent().get_parent().get_node("battleBgm").play()
 	
 	#如果怪物等于0就摧毁战斗场景并且让一切恢复成战斗之前
 	if monsters.size() <= 0:	
+		Global.onBoss = false
+		Global.onFight = false
 		for i in players:
-			i.currHp += i.hp/10
-
-		get_parent().get_node("player").visible = true
-		get_parent().get_node("player").canMove = true
-		get_parent().get_node("enterFightCd").start()
-		get_parent().onFight = false
+			i.currHp += (i.hp + decrypt(i.addHp) )/7
+			i.currMp += (i.mp + decrypt(i.addMp)) /7
+			
+			if i.currHp > i.hp:
+				i.currHp = i.hp
+				
+					
+			if i.currMp > i.mp:
+				i.currMp = i.mp
+				
+			if i.haveGao == true:
+				if i.currHp > i.hp - 500:
+					i.currHp = i.hp - 500
+					
+						
+				if i.currMp > i.mp - 500:
+					i.currMp = i.mp - 500					
+				
+				
+			if i.currMp > i.mp+ decrypt(i.addMp):
+				i.currMp = i.mp+ decrypt(i.addMp)
+			if i.currHp <= 0:
+				i.alive = true
+				i.currHp = (i.hp + decrypt(i.addHp) )/7
+			
+		get_parent().get_parent().get_node("player").visible = true
+		get_parent().get_parent().get_node("player").canMove = true
+		get_parent().get_parent().get_node("enterFightCd").start()
+		get_parent().get_parent().onFight = false
 		Global.monsterIdx = -1
 		Global.onAttackingList = []
-		get_parent().get_node("subSound").stream = load("res://Audio/ME/胜利.wav")
-		get_parent().get_node("subSound").play()
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/ME/胜利.wav")
+		get_parent().get_parent().get_node("subSound").play()
 		Global.finishingBattle = true
 		Global.alivePlayers = []
 		
@@ -401,45 +519,48 @@ func _process(delta):
 		Global.onHitPlayer = []
 		Global.killedAmount += selectedMonsters.size()
 		if Global.atNight:
-			get_parent().get_node("nightBgm").play()
-			get_parent().get_node("DirectionalLight2D").energy = 4.7	
+			get_parent().get_parent().get_node("nightBgm").play()
+			get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 		else:
 			if !Global.onHurry:
-				get_parent().get_node("AudioStreamPlayer2D").volume_db = 8
+				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 8
 			elif Global.onHurry:
-				get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
+				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
 		Global.onMultiHit = 0
 		Global.currAttacker = ""
 		queue_free()
+		
 		if dialogue:
 			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))
 
 	
-		get_parent().get_node("shadow").visible = true
-		get_parent().get_node("CanvasLayer").visible = true
+		get_parent().get_parent().get_node("shadow").visible = true
+		get_parent().get_parent().get_node("CanvasLayer").visible = true
 		#战后结算经验和金币
-		get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false
-		get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = true
-		get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true
-		get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").text = str(totalExp)
-		get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(totalGold)
-		Global.systemMsg.append("全队获得了 " + str(totalExp) + " 经验 "+ "和 "+ str(totalGold) + " 金币")
+		
+		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false
+		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = true
+		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true
+		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").text = str(totalExp)
+		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(totalGold)
+		Global.systemMsg.append("全队获得了 " + str(totalExp) + " 经验 "+ "和 "+ str(totalGold) + " 银两")
 		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 		for player_name in FightScenePlayers.fightScenePlayerData:
 			var player = FightScenePlayers.fightScenePlayerData[player_name]
-			player["exp"] += totalExp
-		FightScenePlayers.golds += totalGold
-		get_parent().get_node("battleBgm").stop()
+			player["exp"] += totalExp * Global.enKey
+		FightScenePlayers.golds += totalGold * Global.enKey
+		get_parent().get_parent().get_node("battleBgm").stop()
 		if !Global.onHurry:
-			get_parent().get_node("AudioStreamPlayer2D").play()
+			get_parent().get_parent().get_node("AudioStreamPlayer2D").play()
 		for i in Global.onTeamPet:
 			for player in players:
 				if player.name == i:
 					player.currHp = FightScenePlayers.fightScenePlayerData.get(i).hp
 					player.currMp = FightScenePlayers.fightScenePlayerData.get(i).mp
+			
 			FightScenePlayers.fightScenePlayerData.get(i).currHp = 	FightScenePlayers.fightScenePlayerData.get(i).hp
 			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp				
-			
+
 			
 #		var rand = randi_range(0, 2)
 #		if rand >= 1 :
@@ -459,15 +580,15 @@ func _process(delta):
 				else:
 					Global.targetMonsterIdx += 1
 				Global.target = monsters[Global.targetMonsterIdx]
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-				get_parent().get_node("subSound").play()					
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+				get_parent().get_parent().get_node("subSound").play()					
 			if Input.is_action_just_pressed("ui_right"):
 				if Global.targetMonsterIdx == 0:
 					Global.targetMonsterIdx = monsters.size() - 1
 				else:
 					Global.targetMonsterIdx -= 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-				get_parent().get_node("subSound").play()					
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+				get_parent().get_parent().get_node("subSound").play()					
 		else:
 			Global.target = players[Global.allieSelectIndex]  
 			if Input.is_action_just_pressed("ui_right"):
@@ -476,14 +597,14 @@ func _process(delta):
 				else:
 					Global.allieSelectIndex += 1
 				Global.target = players[Global.allieSelectIndex]
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-				get_parent().get_node("subSound").play()	
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+				get_parent().get_parent().get_node("subSound").play()	
 			if Input.is_action_just_pressed("ui_left"):
 				if Global.allieSelectIndex == 0:
 					return
 				Global.allieSelectIndex -= 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-				get_parent().get_node("subSound").play()					
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+				get_parent().get_parent().get_node("subSound").play()					
 	elif Global.onAttackPicking:
 			#Global.target = monsters[Global.targetMonsterIdx]  
 			if Input.is_action_just_pressed("ui_left"):
@@ -492,15 +613,16 @@ func _process(delta):
 				else:
 					Global.targetMonsterIdx += 1
 				Global.target = monsters[Global.targetMonsterIdx]
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-				get_parent().get_node("subSound").play()					
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+				get_parent().get_parent().get_node("subSound").play()					
 			if Input.is_action_just_pressed("ui_right"):
+			
 				if Global.targetMonsterIdx == 0:
 					Global.targetMonsterIdx = monsters.size() - 1
 				else:
 					Global.targetMonsterIdx -= 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-				get_parent().get_node("subSound").play()						
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+				get_parent().get_parent().get_node("subSound").play()						
 	#道具用在谁身上				
 	if Global.onItemUsePicking:
 		#if Global.currPlayerMagic.size()>0:
@@ -539,42 +661,44 @@ func _process(delta):
 				if Global.magicSelectIndex <= 1:
 					return
 				else:
-					Global.magicSelectIndex -= 2	
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()						
+					Global.magicSelectIndex -= 3	
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()						
 					
 			if Input.is_action_just_pressed("ui_down"):
-				if Global.magicSelectIndex >= magicPanel.size() - 2:
+				if Global.magicSelectIndex >= magicPanel.size() - 3:
 					return
 				else:
-					Global.magicSelectIndex += 2	
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()	
+					Global.magicSelectIndex += 3	
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()	
 
 
 			if Input.is_action_just_pressed("ui_left"):
 				if Global.magicSelectIndex == 0:
 					return
 				Global.magicSelectIndex -= 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()					
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()					
 			if Input.is_action_just_pressed("ui_right"):
 				if Global.magicSelectIndex == Global.currPlayerMagic.size() - 1:
 					return
 				Global.magicSelectIndex += 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()				
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()				
 			
 
 			
 			if Input.is_action_just_released("ui_accept"):
+				if Global.playerMagicList[Global.magicSelectIndex].name == "高等炼体术":
+					return
 				if Global.playerMagicList[Global.magicSelectIndex].cost > currPlayer.currMp:
 					$systemSound.stream = load("res://Audio/SE/humandie2 (5).ogg")
 					$systemSound.play()
 					return		
 				else:
-					get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-					get_parent().get_node("subSound").play()	
+					get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+					get_parent().get_parent().get_node("subSound").play()	
 								
 					Global.onMagicSelectPicking = false
 					Global.onMagicAttackPicking = true					
@@ -585,37 +709,37 @@ func _process(delta):
 					return
 				else:
 					Global.itemSelectIndex -= 2	
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()						
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()						
 			if Input.is_action_just_pressed("ui_down"):
 				if Global.itemSelectIndex >= Global.itemList.size() - 2:
 					return
 				else:
 					Global.itemSelectIndex += 2	
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()	
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()	
 
 
 			if Input.is_action_just_pressed("ui_left"):
 				if Global.itemSelectIndex == 0:
 					return
 				Global.itemSelectIndex -= 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()					
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()					
 			if Input.is_action_just_pressed("ui_right"):
 				if Global.itemSelectIndex == Global.itemList.size() - 1:
 					return
 				Global.itemSelectIndex += 1
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-				get_parent().get_node("subSound").play()				
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+				get_parent().get_parent().get_node("subSound").play()				
 			
 
 			
 			if Input.is_action_just_released("ui_accept"):
 				Global.onItemSelectPicking = false
 				Global.onItemUsePicking = true					
-				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-				get_parent().get_node("subSound").play()				
+				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+				get_parent().get_parent().get_node("subSound").play()				
 			
 			
 			#magicPanel[2].get_node("Button").grab_focus()
@@ -706,6 +830,7 @@ func instantiateMonster():
 		enemySceneInstance.monsterMagicList = monsterData.monsterMagicList
 		enemySceneInstance.exp = monsterData.exp
 		enemySceneInstance.gold = monsterData.gold
+		enemySceneInstance.luck = monsterData.luck
 		enemySceneInstance.monsterIndex = monsterIdx + 1
 		enemySceneInstance.set_name(enemySceneInstance.monsterName + str(monsterIdx + 1))
 		
@@ -738,7 +863,7 @@ func instantiateMonster():
 func instantiateBoss():
 	currSceneMonstersData = callBoss()
 	setMonsterName()
-	
+	Global.onBoss = true
 	# Determine the number of monsters to select based on the level
 	var numMonstersToSelect = currSceneMonstersData.size() # Default value for higher levels
 
@@ -800,34 +925,49 @@ func instantiateBoss():
 		enemySceneInstance.play(enemySceneInstance.idle)
 				
 func instantiatePlayers():
-	fightScenePlayerData = FightScenePlayers.callFightScenePlayerData()
-	
+	fightScenePlayerData = FightScenePlayers.callFightScenePlayerData()              
+	var zindex = $battleFieldPicture.z_index + 10
 	for i in fightScenePlayerData:
 		var fightScenePlayerSceneInstance = fightScenePlayerScene.instantiate()
+		fightScenePlayerSceneInstance.z_index = zindex
+		zindex -= 1
 		fightScenePlayerSceneInstance.add_to_group("fightScenePlayers")
 		fightScenePlayerSceneInstance.idle = i.idle
 		fightScenePlayerSceneInstance.autoAttack = i.autoAttack
 		fightScenePlayerSceneInstance.magicAutoAttack = i.magicAutoAttack
 		fightScenePlayerSceneInstance.playerName = i.name
 		fightScenePlayerSceneInstance.playerAttackType = i.playerAttackType
+		
+		
 		fightScenePlayerSceneInstance.hp = i.hp
 		fightScenePlayerSceneInstance.mp = i.mp
+		fightScenePlayerSceneInstance.addHp = i.addHp
+		fightScenePlayerSceneInstance.addMp = i.addMp	
+		
 		fightScenePlayerSceneInstance.playerSpeed = i.playerSpeed
 		fightScenePlayerSceneInstance.playerMagic = i.playerMagic
+		
 		fightScenePlayerSceneInstance.str = i.str
 		fightScenePlayerSceneInstance.addStr = i.addStr
 		
+
 		
 		fightScenePlayerSceneInstance.abilityPower = i.abilityPower
+		fightScenePlayerSceneInstance.addAbilityPower = i.addAbilityPower
+		
+		
 		fightScenePlayerSceneInstance.autoAttackSound = i.autoAttackSound
 		fightScenePlayerSceneInstance.attackOnEnemySound = i.attackOnEnemySound
+		
 		fightScenePlayerSceneInstance.physicDefense = i.physicDefense 
 		fightScenePlayerSceneInstance.magicDefense = i.magicDefense 
 		fightScenePlayerSceneInstance.additionDmg = i.additionDmg
 		fightScenePlayerSceneInstance.addMagicDefense = i.addMagicDefense
 		fightScenePlayerSceneInstance.addPhysicDefense = i.addPhysicDefense
 		fightScenePlayerSceneInstance.addPlayerSpeed = i.addPlayerSpeed
-		fightScenePlayerSceneInstance.addHp = i.addHp
+		
+
+		
 		var rightDmg = i.additionDmg
 		var rightAddMagicDefense = i.addMagicDefense
 		var rightAddPhyicDefense = i.addPhysicDefense
@@ -868,9 +1008,11 @@ func instantiatePlayers():
 			Global.battleButtonIndex = 0
 
 func getCurrTotalHp():
+	
 	var currValue = 0 
-	for i in monsters:	
-		currValue += i.currHp
+	for i in monsters:
+		if is_instance_valid(i):	
+			currValue += i.currHp
 	return currValue
 		
 
@@ -907,19 +1049,24 @@ func useDart(type, target, delta):
 
 func _on_bgm_timer_timeout():
 	
-	get_parent().get_node("battleBgm").volume_db = 5
-	
+	get_parent().get_parent().get_node("battleBgm").volume_db = 5
+	if Global.onHurry:
+		get_parent().get_parent().get_node("battleBgm").volume_db = -80
+		
+		
 	if boss == false:
-		get_parent().get_node("battleBgm").stream = load(Global.bgmList[randomBgmIndex])
+		get_parent().get_parent().get_node("battleBgm").stream = load(Global.bgmList[randomBgmIndex])
 		currBgm = Global.bgmList[randomBgmIndex]
 	else:
-		get_parent().get_node("battleBgm").stream = load(bossBgm)
+		if bossBgm == null:
+			return
+		get_parent().get_parent().get_node("battleBgm").stream = load(bossBgm)
 		currBgm = bossBgm
 	
 	if !Global.onHurry:
-		if get_parent().get_node("battleBgm").stream:	
-			get_parent().get_node("battleBgm").stream.loop
-			get_parent().get_node("battleBgm").play()
+		if get_parent().get_parent().get_node("battleBgm").stream:	
+			get_parent().get_parent().get_node("battleBgm").stream.loop
+			get_parent().get_parent().get_node("battleBgm").play()
 
 
 func _on_dead_timer_timeout():
@@ -936,8 +1083,8 @@ func get_npc_dialogue(npc_id):
 				update_npc_dialogue_index(npc_id)
 				if npc["dialogues"][dialogue_index].bgm != null:
 				
-					self.get_parent().get_node("AudioStreamPlayer2D").stream = load(npc["dialogues"][dialogue_index].bgm)
-					self.get_parent().get_node("AudioStreamPlayer2D").play()
+					self.get_parent().get_parent().get_node("AudioStreamPlayer2D").stream = load(npc["dialogues"][dialogue_index].bgm)
+					self.get_parent().get_parent().get_node("AudioStreamPlayer2D").play()
 				return dialogue_entry["dialogue"]
 			
 		return "没有更多可说的了"
@@ -973,8 +1120,8 @@ func _on_button_button_down():
 		canPress = false
 		$canPressTimer.start()
 		Global.onAttackPicking = false
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
-		get_parent().get_node("subSound").play()			
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
+		get_parent().get_parent().get_node("subSound").play()			
 	if Global.onMagicSelectPicking:
 		canPress = false
 		$canPressTimer.start()
@@ -986,19 +1133,19 @@ func _on_button_button_down():
 		get_node("battleFieldPicture/magicDescription").visible = false	
 		for i in magicPanel:
 			i.queue_free()
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
-		get_parent().get_node("subSound").play()
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
+		get_parent().get_parent().get_node("subSound").play()
 	if Global.onMagicAttackPicking:
 		$battleFieldPicture/allyInfo.visible = false
-		$battleFieldPicture/enemyInfo.visible = false		
+		
 		canPress = false
 		$canPressTimer.start()		
 		Global.onMagicAttackPicking = false
 		Global.onMagicSelectPicking = true
 		get_node("battleFieldPicture/magicSelection").visible = true
 		get_node("battleFieldPicture/magicDescription").visible = true
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
-		get_parent().get_node("subSound").play()			
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
+		get_parent().get_parent().get_node("subSound").play()			
 		
 						
 	if Global.onItemSelectPicking:
@@ -1011,18 +1158,18 @@ func _on_button_button_down():
 		get_node("battleFieldPicture/magicDescription").visible = false	
 		for i in magicPanel:
 			i.queue_free()
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
-		get_parent().get_node("subSound").play()	
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
+		get_parent().get_parent().get_node("subSound").play()	
 	if Global.onItemUsePicking:
 		$battleFieldPicture/allyInfo.visible = false
-		$battleFieldPicture/enemyInfo.visible = false
+		
 		get_node("battleFieldPicture/Panel").visible = true
 		Global.onItemUsePicking = false
 		Global.onItemSelectPicking = true
 		get_node("battleFieldPicture/magicSelection").visible = true
 		get_node("battleFieldPicture/magicDescription").visible = true
-		get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
-		get_parent().get_node("subSound").play()			
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
+		get_parent().get_parent().get_node("subSound").play()			
 
 func _on_can_press_timer_timeout():
 	canPress = true
@@ -1047,7 +1194,7 @@ func _on_block_button_button_down():
 	if Global.canBlock:
 		Global.blocked = true
 		Global.canBlock = false
-		get_tree().current_scene.get_node("battleField/battleFieldPicture/blockButton").visible = false
+		get_tree().current_scene.get_node("battleFieldLayer/battleField/battleFieldPicture/blockButton").visible = false
 		#get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/兵器-钝器.ogg")
 		get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/097-Attack09.ogg")
 		get_tree().current_scene.get_node("subSound").play()
@@ -1057,3 +1204,41 @@ func _on_block_button_button_down():
 		Global.alivePlayers[Global.monsterTarget].self_modulate = "#ffffff"
 		Global.alivePlayers[Global.monsterTarget].get_node("blockEffect").play("block")
 		Global.alivePlayers[Global.monsterTarget].get_node("blockEffect").visible = true
+
+
+
+func decrease_value_over_time(target_value: float, duration: float):
+	var initial_value = $battleFieldPicture/Panel/ProgressBar.value
+	
+	var time_passed = 0.0
+	while time_passed < duration:
+		time_passed += get_process_delta_time()
+		var progress = time_passed / duration
+		$battleFieldPicture/Panel/ProgressBar.value = lerp(initial_value, target_value, progress)
+		await get_tree().create_timer(0.01).timeout  # Adjust the delay for smoothness
+	$battleFieldPicture/Panel/ProgressBar.value = target_value  # Ensure the value reaches exactly the target value
+	
+func decrease_value_over_time_player(target_value: float, duration: float, type):
+	var initial_value
+	if type == "hp":
+		initial_value = $battleFieldPicture/currPlayer/Panel/background/hpBar.value
+	else:
+		initial_value = $battleFieldPicture/currPlayer/Panel/background/manaBar.value
+	var time_passed = 0.0
+	while time_passed < duration:
+		time_passed += get_process_delta_time()
+		var progress = time_passed / duration
+		if type == "hp":
+			$battleFieldPicture/currPlayer/Panel/background/hpBar.value = lerp(initial_value, target_value, progress)
+		else:
+			$battleFieldPicture/currPlayer/Panel/background/manaBar.value = lerp(initial_value, target_value, progress)
+		await get_tree().create_timer(0.01).timeout  # Adjust the delay for smoothness
+		
+	if type == "hp":
+		$battleFieldPicture/currPlayer/Panel/background/hpBar.value	= target_value
+	else:
+		$battleFieldPicture/currPlayer/Panel/background/manaBar.value	= target_value	
+
+ 
+func decrypt(value):
+	return value/Global.enKey

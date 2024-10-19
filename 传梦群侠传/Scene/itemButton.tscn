@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://cqluwse07fcub"]
+
+[ext_resource type="Script" path="res://Script/itemSelection.gd" id="1_qcxfs"]
+[ext_resource type="Texture2D" uid="uid://cfd11s0uy132x" path="res://战斗技能-技能选中.png" id="2_0l2e7"]
+[ext_resource type="Texture2D" uid="uid://cbc6ar3e3lhay" path="res://Icons/●图标 (67).png" id="2_tuguo"]
+[ext_resource type="Texture2D" uid="uid://co6jrblk2hrnt" path="res://战斗技能-技能未选中.png" id="3_dyfyg"]
+[ext_resource type="Texture2D" uid="uid://chjm618o70fed" path="res://战斗技能-技能.png" id="4_sqx4l"]
+
+[node name="Magic" type="Button" groups=["magic"]]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.202257
+anchor_bottom = 0.0475
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 419.0
+offset_bottom = 32.0
+scale = Vector2(0.0148301, 0.10866)
+script = ExtResource("1_qcxfs")
+metadata/_edit_use_anchors_ = true
+
+[node name="技能选中" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -122.0
+offset_top = -17.0
+offset_right = 318.0
+offset_bottom = 109.0
+scale = Vector2(1.80309, 0.816277)
+mouse_filter = 2
+texture = ExtResource("2_0l2e7")
+
+[node name="技能未选中" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -121.986
+offset_top = -15.648
+offset_right = 307.014
+offset_bottom = 110.352
+scale = Vector2(1.84882, 0.807188)
+mouse_filter = 2
+texture = ExtResource("3_dyfyg")
+
+[node name="技能" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -142.0
+offset_top = -29.0
+offset_right = 473.0
+offset_bottom = 97.0
+scale = Vector2(1.28875, 0.926961)
+mouse_filter = 2
+texture = ExtResource("4_sqx4l")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 84.0
+offset_top = 2.0
+offset_right = 92.0
+offset_bottom = 12.0
+scale = Vector2(67.9284, 5.19973)
+
+[node name="name" type="Label" parent="Button"]
+layout_mode = 2
+anchor_left = -0.178
+anchor_top = -0.039
+anchor_right = 1.212
+anchor_bottom = 0.634
+offset_left = 0.424
+offset_top = 0.39
+offset_right = 386.304
+offset_bottom = 52.66
+scale = Vector2(0.0206555, 0.172003)
+theme_override_font_sizes/font_size = 30
+text = "破空剑
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="amount" type="Label" parent="Button"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 2
+offset_left = 6.45969
+offset_top = 2.62476
+offset_right = 57.4597
+offset_bottom = 47.6248
+scale = Vector2(0.0180935, 0.0802489)
+theme_override_font_sizes/font_size = 30
+text = "40
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="icon" type="Sprite2D" parent="Button"]
+position = Vector2(-1.35762, 4.6702)
+scale = Vector2(0.0748249, 0.409961)
+texture = ExtResource("2_tuguo")
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 6.0
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Button2" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -67.0
+offset_top = -9.0
+offset_right = 674.0
+offset_bottom = 74.0
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered" flags=18]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered" flags=18]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited" flags=18]
+[connection signal="pressed" from="." to="." method="_on_pressed" flags=18]
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="button_down" from="Button2" to="." method="_on_button_2_button_down"]
+[connection signal="mouse_entered" from="Button2" to="." method="_on_button_2_mouse_entered"]

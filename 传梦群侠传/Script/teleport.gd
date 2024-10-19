@@ -3,6 +3,8 @@ extends AnimatedSprite2D
 
 var currScene
 var noNightScene
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	currScene = get_tree().current_scene
@@ -10,18 +12,27 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if toScene in Global.cantShow:
+		visible = false
+		$area2D/CollisionShape2D.disabled = true
+	else:
+		visible = true
+		$area2D/CollisionShape2D.disabled = false		
 
 func _on_area_2d_body_entered(body):
+	print(currScene, toScene)
 	if body.is_in_group("mapPlayer"):
 		if Global.atNight:
 			for i in noNightScene:
 				if toScene == i:
 					return
-		get_tree().change_scene_to_file("res://Scene/"+toScene+".tscn")
-		Global.mapPlayerPos = checkSetPos(currScene.name, toScene)
-	
+
+		if toScene == "江南野外" and Global.current_chapter_id == 2:
+			get_tree().change_scene_to_file("res://Scene/chapterPreview.tscn")
+		else:
+			get_tree().change_scene_to_file("res://Scene/"+toScene+".tscn")
+			Global.mapPlayerPos = checkSetPos(currScene.name, toScene)
+		
 	
 	Global.load = true
 func _on_area_2d_area_entered(area):
@@ -40,22 +51,22 @@ func checkSetPos(currScene, toScene):
 	if currScene == "东海湾":
 		if toScene == "建邺城":
 			return Vector2(1215,222)
-		if toScene == "东海龙宫":
-			pass
+		if toScene == "东海海道":
+			return Vector2(1598, 481)
 	if currScene == "建邺城":
 		if toScene == "东海湾":
 			return Vector2(148, 693)		
 		if toScene == "建邺城右":
 			return Vector2(1639, 96)
 		if toScene == "李善人家1":
-			return Vector2(581, 388)
+			return Vector2(582, 459)
 	if currScene == "李善人家1":
 		if toScene == "建邺城":
 			return Vector2(121, 522)	
 		if toScene == "李善人家2":
 			return Vector2(767,332)
 	if currScene == "李善人家2":
-		return Vector2(186, 368)
+		return Vector2(190, 434)
 	if currScene == "建邺城右":
 		if toScene == "建邺城":
 			return Vector2(584, 1345)
@@ -79,16 +90,21 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1717,738)			
 	if currScene == "江南野外":	
 		if toScene == "长安北":
-			return Vector2(2773,353)			
+			return Vector2(2773,353)	
+		if toScene == "建邺城右":	
+			return Vector2(214, 480)	
+					
 	if currScene == "长安北":
 		if toScene == "长安城":
-			print(1233333333)
 			return Vector2(1353,77)			
 		if toScene == "大唐官府":
-			print(1233333333)
 			return Vector2(3654,1974)
-		if toScene == "锁妖塔":
-			return Vector2(2773,353)
+		if toScene == "锁妖塔1":
+			return Vector2(1519,1479)
+		if toScene ==  "江南野外":
+			return Vector2(-16, 157)	
+			
+			
 			
 	if currScene == "长安城":
 		if toScene == "长安北":
@@ -101,13 +117,15 @@ func checkSetPos(currScene, toScene):
 			return Vector2(154,546)	
 		if toScene == "大唐国境":
 			return Vector2(2579,912)
+		if toScene == "回春堂":
+			return Vector2(445,410)
 			
 	if currScene == "大唐官府":
 		if toScene == "大唐官府大厅":
 			return Vector2(654,403)			
 		if toScene == "长安城":
 			return Vector2(288,254)	
-		if toScene == "长安城北":
+		if toScene == "长安北":
 			return Vector2(442,417)				
 	if currScene == "大唐官府大厅"	:	
 		if toScene == "大唐官府":
@@ -115,7 +133,9 @@ func checkSetPos(currScene, toScene):
 	if currScene == "金甲家":		
 		if toScene == "长安城":
 			return Vector2(3831,1253)								
-			
+	if currScene == "回春堂":
+		if toScene == "长安城":
+			return Vector2(1754,2002)				
 	if currScene == "长安酒店":
 		if toScene == "长安城":
 			return Vector2(3026,939)			
@@ -136,14 +156,14 @@ func checkSetPos(currScene, toScene):
 			return Vector2(2057,683)	
 	if currScene == "锁妖塔4":
 		if toScene == "锁妖塔3":
-			return Vector2(2137,1700)
+			return Vector2(1997,635)
 		if toScene == "锁妖塔5":
-			return Vector2(2540, 892)		
+			return Vector2(2635, 942)		
 	if currScene == "锁妖塔5":
 		if toScene == "锁妖塔4":
 			return Vector2(2805,787)
 		if toScene == "锁妖塔6":
-			return Vector2(2540, 892)		
+			return Vector2(1147, 1055)		
 	if currScene == "锁妖塔6":
 		if toScene == "锁妖塔5":
 			return Vector2(1115,1124)
@@ -155,11 +175,133 @@ func checkSetPos(currScene, toScene):
 	if currScene == "大唐国境":
 		if toScene == "长安城":
 			return Vector2(193,1877)
-		if toScene == "国境北":
+		if toScene == "国境南":
 			return Vector2(2650,900)
 	if currScene == "国境南":
 		if toScene == "大唐国境":
 			return Vector2(2222,1260)
 		if toScene == "平定峰":
 			return Vector2(2460,1222)	
-
+	if currScene == "方寸山迷境":
+		return Vector2(526,2133)	
+	if currScene == "方寸山":
+		if toScene == "灵台宫":
+			return Vector2(116, 397)
+		if toScene == "方寸厢房":
+			return Vector2(444,324)
+	if currScene == "方寸厢房":
+		return Vector2(3352,1981)
+	if currScene == "灵台宫":
+		return Vector2(2763, 137)
+	if currScene == "东海海道": 
+		if toScene == "东海海道2":
+			return Vector2(1094, 949)
+		if toScene == "东海湾":
+			return Vector2(1928, 758)
+	if currScene == "东海海道2": 
+		if toScene == "东海海道":
+			return Vector2(1094, 949)
+		if toScene == "东海海道3":
+			return Vector2(1567, 1316)			
+	if currScene == "东海海道3": 
+		if toScene == "东海海道2":
+			return Vector2(3110, 1086)
+		if toScene == "东海龙宫":
+			return Vector2(256, 2151)						
+	if currScene == "东海龙宫":
+		if toScene == "水晶宫":
+			return Vector2(130,388)
+		if toScene == "东海海道3":
+			return Vector2(2786,908)
+	if currScene == "水晶宫":
+		return Vector2(2258,1051)
+	if currScene == "东海沉船":
+		if toScene == "东海沉船内":
+			return Vector2(1474,736)
+		if toScene == "海底迷宫1":
+			return Vector2(1182, 1319)			
+	if currScene == "东海沉船内":
+		return Vector2(1803,220)
+	if currScene == "傲来国":
+		if toScene == "傲来杂货铺":
+			return Vector2(1989, 1084)
+		if toScene == "傲来酒店":
+			return Vector2(2346, 1252)
+		if toScene == "傲来布店":
+			return Vector2(1945, 1012)
+		if toScene == "傲来钱庄":
+			return Vector2(1945, 1012)		
+		if toScene == "傲来武器铺":
+			return Vector2(1490, 976)	
+		if toScene == "傲来民居":
+			return Vector2(301, 368)	
+		if toScene == "傲来药店":
+			return Vector2(520,400)							
+		if toScene == "女儿村":
+			return Vector2(2336, 2423)		
+		if toScene == "花果山":
+			return Vector2(2336, 2423)					
+				
+				
+						
+	if currScene == "傲来酒店":
+		return Vector2(2618, 2134)
+	if currScene == "傲来杂货铺":
+		return Vector2(2744, 1192)
+	if currScene == "傲来布店":
+		return Vector2(-371, 1299)
+	if currScene == "傲来钱庄":
+		return Vector2(1081, 1490)		
+	if currScene == "傲来武器铺":
+		return Vector2(1550, 1867)
+	if currScene == "傲来民居":
+		return Vector2(398,540)
+	if currScene == "傲来药店":
+		return Vector2(133,1924)		
+		
+		
+	if currScene == "女儿村":
+		if toScene == "傲来国":
+			return Vector2(-891, -117)
+		if toScene == "女儿村村长家":
+			return Vector2(433, 251)
+		if toScene == "女儿村民居":
+			return Vector2(1490, 976)
+	if currScene == "女儿村村长家":
+		return Vector2(271, 251)
+	if currScene == "女儿村民居":
+		return Vector2(1795,452)
+	if currScene == "花果山":
+		if toScene == "水帘洞":
+			return Vector2(469, 1479)						
+	if currScene == "水帘洞":
+		return Vector2(861, 957)			
+			
+	if currScene == "海底迷宫1":
+		if toScene == "花果山":
+			return Vector2(2361, 2209)
+		if toScene == "海底迷宫1":
+			return Vector2(1182, 1319)				
+		if toScene == "海底迷宫2":
+			return Vector2(1296, 1340)			
+	if currScene == "海底迷宫2":
+		if toScene == "海底迷宫1":
+			return Vector2(2531,454)			
+		if toScene == "海底迷宫3":
+			return Vector2(1114, 1108)		
+	if currScene == "海底迷宫3":
+		if toScene == "海底迷宫2":
+			return Vector2(2499,1022)
+		if toScene == "海底迷宫1":
+			return Vector2(2531,454)			
+		if toScene == "海底迷宫4":
+			return Vector2(1233, 1263)	
+	if currScene == "海底迷宫4":
+		
+		if toScene == "海底迷宫3":
+			return Vector2(2597, 437)				
+		if toScene == "海底迷宫5":
+			return Vector2(1626, 1244)	
+	if currScene == "海底迷宫5":
+		if toScene == "海底迷宫4":
+			return Vector2(2360, 1299)				

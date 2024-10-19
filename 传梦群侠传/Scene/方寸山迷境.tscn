@@ -1,0 +1,305 @@
+[gd_scene load_steps=25 format=3 uid="uid://c2foiwbrx1gq6"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_yk08l"]
+[ext_resource type="Texture2D" uid="uid://dbxppwjyqbbvb" path="res://Panoramas/方寸山下.jpg" id="2_nn8n4"]
+[ext_resource type="Texture2D" uid="uid://cq2lr8wf3t47y" path="res://panoramas2/大唐官府_程府_2.PNG" id="3_2s10e"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_f700t"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_lxrqn"]
+[ext_resource type="AudioStream" uid="uid://qvprmxblk0r6" path="res://Audio/BGM/#子母河.mp3" id="6_ut7ns"]
+[ext_resource type="AudioStream" uid="uid://dm15lxip8rjcw" path="res://Audio/SE/018-Teleport01.ogg" id="7_m8b4s"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="13_gfqt7"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="14_koh1m"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="15_k13o0"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="16_wu0rd"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="17_5buft"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_wpcwd"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="28_den3e"]
+[ext_resource type="PackedScene" uid="uid://m2nxckxrrk01" path="res://Scene/方寸tp.tscn" id="29_4ao2p"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialball.tscn" id="32_7pc5c"]
+[ext_resource type="Texture2D" uid="uid://c6pobr2ky8j85" path="res://Panoramas/方寸山中.jpg" id="32_a0sgb"]
+[ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="32_uuc21"]
+[ext_resource type="Texture2D" uid="uid://ck4nc3mnl6hpy" path="res://Panoramas/方寸山上.jpg" id="33_7necr"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="34_h7rrx"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
+vertices = PackedVector2Array(3594, 92, 3621, 3089, 32, 3080, 11, 1492, 9, 1337, 20, 95)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 1492, 32, 3080, 3621, 3089, 3594, 92)])
+
+[sub_resource type="Gradient" id="Gradient_h5dxg"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s2iao"]
+gradient = SubResource("Gradient_h5dxg")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ycij"]
+size = Vector2(167.564, 179.832)
+
+[node name="方寸山迷境" type="Node2D"]
+modulate = Color(0.596078, 0.596078, 0.596078, 1)
+position = Vector2(-197, 59)
+script = ExtResource("1_yk08l")
+
+[node name="建业左" type="Sprite2D" parent="."]
+position = Vector2(451, 313)
+rotation = 0.00202572
+texture = ExtResource("2_nn8n4")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(445.5, 323)
+scale = Vector2(0.942708, 1.10417)
+texture = ExtResource("3_2s10e")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("4_f700t")
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-1272, -883, -25, -691, -2, -429, -1319, -61, -1279, -896)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-1342, 218, -1101, 163, -895, 231, -567, 158, -499, -55, -328, -35, -139, 141, 50, 63, 672, 216, 668, 320, 713, 346, 834, 118, 1024, 135, 1311, -80, 1424, -225, 1339, -236, 1322, -133, 1241, -89, 843, -82, 585, -201, 359, -287, -41, -627, -128, -696, -30, -768, 406, -408, 440, -373, 670, -299, 762, -248, 872, -178, 1219, -189, 1271, -368, 1505, -299, 1991, -693, 1897, -414, 1862, -388, 1571, -242, 1149, 194, 1243, 252, 1327, 194, 1500, 250, 1678, -178, 1928, -313, 1997, -375, 2089, -651, 2175, -522, 1777, 145, 1553, 352, 1347, 286, 1234, 446, 1315, 395, 2086, 540, 1978, 665, 1556, 576, 1428, 744, 1294, 761, 638, 631, 626, 535, 323, 407, 155, 354, -237, 422, -339, 384, -394, 265, -541, 342, -648, 292, -675, 371, -829, 405, -1323, 380)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-1197, -1711, -1246, -1195, -17, -1102, -19, -1741)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-151, -1472, -176, -863, 147, -788, 847, -931, 945, -1092, 792, -1424, 695, -1859, 491, -2009, -59, -1975)
+
+[node name="player" parent="." instance=ExtResource("5_lxrqn")]
+z_index = 1
+position = Vector2(-650, 237)
+scale = Vector2(0.903555, 0.940031)
+metadata/_edit_group_ = true
+
+[node name="Camera2D" parent="player" index="3"]
+zoom = Vector2(1.6, 1.6)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1301, 873)
+stream = ExtResource("6_ut7ns")
+volume_db = 14.814
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="enterFightCd" type="Timer" parent="."]
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_m8b4s")
+volume_db = 7.0
+max_distance = 10000.0
+
+[node name="BattleReward" parent="." instance=ExtResource("13_gfqt7")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(-1408, -2293)
+navigation_polygon = SubResource("NavigationPolygon_kwa23")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("14_koh1m")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_k13o0")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_s2iao")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("16_wu0rd")
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-1281, -2192)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(2222, 790)
+rotation = 3.12272
+
+[node name="方寸山中" type="Sprite2D" parent="."]
+position = Vector2(947, -377)
+texture = ExtResource("32_a0sgb")
+
+[node name="方寸山上" type="Sprite2D" parent="."]
+position = Vector2(1043, -1451)
+texture = ExtResource("33_7necr")
+
+[node name="Cloud" type="Sprite2D" parent="."]
+self_modulate = Color(0.709804, 0.709804, 0.709804, 0.972549)
+position = Vector2(-2373.56, -1516.18)
+scale = Vector2(3.79225, 3.79225)
+texture = ExtResource("32_uuc21")
+
+[node name="方寸tp" type="Node2D" parent="."]
+
+[node name="方寸tp" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(1122, 136)
+color = "purple"
+
+[node name="方寸tp2" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(379, -340)
+
+[node name="方寸tp3" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(1237, -137)
+color = "green"
+
+[node name="方寸tp4" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+self_modulate = Color(1, 0, 1, 1)
+position = Vector2(1744, -270)
+frame_progress = 0.367695
+color = "purple"
+
+[node name="方寸tp5" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(2029, -647)
+frame_progress = 0.367695
+color = "red"
+
+[node name="方寸tp6" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+self_modulate = Color(1, 0, 1, 1)
+position = Vector2(-453, -462)
+frame_progress = 0.367695
+color = "purple"
+
+[node name="方寸tp15" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+self_modulate = Color(1, 0, 1, 1)
+position = Vector2(-696, -624)
+frame_progress = 0.367695
+color = "red"
+
+[node name="方寸tp14" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(-720, -366)
+frame_progress = 0.367695
+color = "blue"
+
+[node name="方寸tp7" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(-935, -518)
+frame_progress = 0.367695
+color = "black"
+
+[node name="方寸tp8" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(-990, -1357)
+frame_progress = 0.367695
+color = "black"
+
+[node name="方寸tp9" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(-714, -1587)
+frame_progress = 0.367695
+color = "red"
+
+[node name="方寸tp16" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(-1022, -1585)
+frame_progress = 0.367695
+color = "purple "
+
+[node name="方寸tp10" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(185, -1542)
+frame_progress = 0.367695
+color = "green"
+
+[node name="方寸tp12" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(558, -1539)
+frame_progress = 0.367695
+color = "black"
+
+[node name="方寸tp13" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(560, -1237)
+frame_progress = 0.367695
+color = "purple"
+
+[node name="方寸tp11" parent="方寸tp" instance=ExtResource("29_4ao2p")]
+position = Vector2(190, -1229)
+frame_progress = 0.367695
+color = "red"
+
+[node name="teleportCircle" parent="." instance=ExtResource("17_5buft")]
+position = Vector2(1255, -1793)
+toScene = "方寸山"
+
+[node name="potentialBall" parent="." instance=ExtResource("32_7pc5c")]
+position = Vector2(1939.84, -991)
+scale = Vector2(0.602364, 0.585106)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="遣返" parent="." instance=ExtResource("34_h7rrx")]
+visible = false
+position = Vector2(717, 408)
+triggerEvent = "遣返"
+
+[node name="CollisionShape2D" parent="遣返/Area2D" index="0"]
+position = Vector2(6.78198, 33.5)
+shape = SubResource("RectangleShape2D_7ycij")
+
+[node name="menuControl" parent="." instance=ExtResource("28_den3e")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("20_wpcwd")]
+
+[connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+
+[editable path="player"]
+[editable path="遣返"]

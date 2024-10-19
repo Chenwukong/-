@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://m2nxckxrrk01"]
+
+[ext_resource type="Texture2D" uid="uid://dvhscqt84n5fg" path="res://Characters/传送.png" id="1_w3usv"]
+[ext_resource type="Script" path="res://Script/方寸tp.gd" id="2_ese4l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ub23"]
+atlas = ExtResource("1_w3usv")
+region = Rect2(0, 0, 142, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3asnr"]
+atlas = ExtResource("1_w3usv")
+region = Rect2(142, 0, 142, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykxbv"]
+atlas = ExtResource("1_w3usv")
+region = Rect2(284, 0, 142, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_orcrh"]
+atlas = ExtResource("1_w3usv")
+region = Rect2(426, 0, 142, 82)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0semn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ub23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3asnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykxbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_orcrh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vpqeu"]
+radius = 46.2709
+
+[node name="方寸tp" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_0semn")
+autoplay = "default"
+frame_progress = 0.550143
+script = ExtResource("2_ese4l")
+color = ""
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vpqeu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

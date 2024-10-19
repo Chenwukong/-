@@ -5,6 +5,8 @@ extends CanvasLayer
 @onready var character_label: RichTextLabel = %CharacterLabel
 @onready var portrait = $Balloon/TextureRect
 @onready var mainPortrait = $Balloon/TextureRect2
+@onready var 小二portrait = $Balloon/TextureRect4
+@onready var 敖雨portrait = $"Balloon/敖雨rect"
 
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
@@ -38,7 +40,7 @@ var dialogue_line: DialogueLine:
 		dialogue_line = next_dialogue_line
 
 		character_label.visible = not dialogue_line.character.is_empty()
-		if dialogue_line.character == "时追云惊" or dialogue_line.character == "时追云怒" or dialogue_line.character == "时追云哀" or dialogue_line.character == "时追云喜":
+		if dialogue_line.character == "时追云惊" or dialogue_line.character == "时追云怒" or dialogue_line.character == "时追云红眼" or dialogue_line.character == "时追云红眼怒" or dialogue_line.character == "时追云哀" or dialogue_line.character == "时追云喜":
 			character_label.text = "时追云"
 		elif dialogue_line.character == "姜韵喜" or dialogue_line.character == "姜韵" or dialogue_line.character == "姜韵怒" or dialogue_line.character == "姜韵哀" or dialogue_line.character == "姜韵恐" or dialogue_line.character == "姜韵哭":
 			character_label.text = "姜韵"
@@ -58,15 +60,33 @@ var dialogue_line: DialogueLine:
 		var name = dialogue_line.character.to_lower()
 	
 	
-		if name == "时追云" or name == "时追云惊" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"                                                               :
-			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
+		if name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕"                                                           :
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			mainPortrait.visible = true
 			mainPortrait.texture = load(portraitPath)
 			portrait.visible = false
+			敖雨portrait.visible = false
+			小二portrait.visible = false
+		elif name == "小二":
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			敖雨portrait.visible = false
+			小二portrait.visible = true
+			小二portrait.texture = load(portraitPath)
+			portrait.visible = false			 
+			mainPortrait.visible = false
+		elif name == "敖雨":
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			敖雨portrait.visible = true
+			敖雨portrait.texture = load(portraitPath)
+			小二portrait.visible = false
+			portrait.visible = false			 
+			mainPortrait.visible = false			
 		else:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
 			portrait.visible = true
 			portrait.texture = load(portraitPath)
+			敖雨portrait.visible = false
+			小二portrait.visible = false
 			mainPortrait.visible = false
 
 		dialogue_label.hide()
@@ -142,7 +162,8 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 #		get_viewport().set_input_as_handled()
 #		dialogue_label.skip_typing()
 #		return
-
+	if event.is_action_pressed("ui_cancel"):
+		return
 	if not is_waiting_for_input: return
 	if dialogue_line.responses.size() > 0: return
 

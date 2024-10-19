@@ -1,0 +1,1997 @@
+~ this_is_a_node_title
+
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => this_is_a_node_title
+- End the conversation => END
+Nathan: For more information see the online documentation.
+
+=> END
+
+~ 假方寸
+set Global.onTalk = true
+凌若昭: [speed=0.5]好了，我们到啦，睁开眼吧~
+小二: [speed=0.5] 哎哟我去，这也太高了吧，这是飞起来的岛吗！！
+凌若昭: [speed=0.5]嘻嘻，厉害吧墨镜
+时追云: [speed=0.5]壮观倒是很壮观。。但怎么
+小二: [speed=0.5]感觉有点阴生生的
+凌若昭喜: [speed=0.5]嘿嘿嘿，这是秘密
+小二: [speed=0.5]怎么都到这了还这么多秘密=_=
+凌若昭喜: [speed=0.5]没办法嘛，师傅交待过我了，要你们自己找上山的道路
+小二: [speed=0.5]上山的路还要找吗？这看起来也没多少岔路啊
+凌若昭: [speed=0.5]不行的，这山上是有法力的
+时追云: [speed=0.5]那你呢？
+凌若昭喜: [speed=0.5]我跟着你们走
+凌若昭哀: [speed=0.5]不过师傅不准我帮你们闭嘴
+凌若昭喜: [speed=0.5]但是我可以给你们点提示:
+凌若昭: [speed=0.5] 赤寻墨 墨寻赤
+凌若昭: [speed=0.5] 绿寻紫 紫寻绿
+凌若昭: [speed=0.5] 赤紫不相逢 黄蓝合是道
+凌若昭: [speed=0.5]还有还有，一遵规，二觅赤，三不遵，四无光，五合色	
+凌若昭: [speed=0.5]还有还有还有！不管怎么样都绝对绝对绝对绝对不要连续走两次相同颜色的法阵！
+小二: [speed=0.5] 。。。
+时追云惊: [speed=0.5]。。。
+小二: [speed=0.5]什么意思啊这？你直接杀了我吧鼻血
+小二: [speed=0.5]你师傅可真烦讷，明明是他找我们吧
+小二: [speed=0.5]虽然大概率就只是找老大而已。。。
+凌若昭: [speed=0.5]我师傅说，他要见你们，但你们不也想见他吗？已经把你们带到这了，之后那就自己想办法上来
+时追云: [speed=0.5]高人做事，想必是有他的用意，往前走自然能找到路，走吧
+凌若昭喜: [speed=0.5]嘻嘻，试试嘛，我相信你们加油
+小二: [speed=0.5]好吧好吧
+凌若昭喜: [speed=0.5]加油加油加油！出发
+
+set Global.questHint = " 赤寻墨 墨寻赤 绿寻紫 紫寻绿 赤紫不相逢 黄蓝合是道 一遵规，二觅赤，三不遵，四无光，五合色 莫走相同色"
+set Global.onTalk = false
+=> END
+
+
+~ 遣返
+set Global.onTalk = true
+时追云惊: [speed=0.5]我们怎么回来了
+小二: [speed=0.5]！！？？怎么回事惊愕
+凌若昭: [speed=0.5]...闭嘴
+小二: [speed=0.5]难道，我们走错法阵的话就会让我们回到原地，一直转来转去。。。
+时追云: [speed=0.5]看来是这样了，看来若昭的师傅确实不是凡人
+小二: [speed=0.5]是啊，想见他一面都这么难，本人估计也很难对付
+凌若昭: [speed=0.5] ...闭嘴
+小二: [speed=0.5]唉，老大，若昭估计是真不会帮我们了，你说咋搞
+时追云: [speed=0.5]她刚才貌似有教我们什么口诀，你还记得吗？
+小二: [speed=0.5]额，说是什么红色找黑色。。绿色找紫色
+时追云: [speed=0.5]一一思索每句话的意思，应该就能找到上山的路了
+小二: [speed=0.5]我突然怀念打打杀杀的日子了
+小二: [speed=0.5]感觉头好痒，要长脑子了鼻血
+凌若昭: ...
+时追云: [speed=0.5]算了，继续走走看吧
+小二: [speed=0.5]啊啊啊啊啊
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = "res://Audio/BGM/#子母河.mp3"
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+set Global.onTalk = false
+=> END
+
+~ 真方寸山
+set Global.onTalk = true
+set Global.triggerPlace.get("真方寸山").disable = true
+小二: [speed=0.5] 这里又是哪!!???
+小二: [speed=0.5] 我们不是到山顶了吗？惊愕
+时追云: [speed=0.5]恐怕这里才是真正的方寸山
+小二: [speed=0.5]说起来确实和刚才的地方很像，又不太一样
+小二: [speed=0.5]感觉。。。更气派了
+时追云: [speed=0.5]这才有点人间仙境的感觉
+凌若昭喜: [speed=0.5]嘻嘻，你们太厉害啦，这么快就闯过第一关啦大笑
+小二: [speed=0.5]哪快了，不知道转来转去转了多久！
+小二: [speed=0.5]等等，什么叫闯过了第一关。。难道
+凌若昭喜: [speed=0.5]嘻嘻，是的，这次你们脚下踩着的是真的方寸山了，而我们山门前有个守门神
+凌若昭喜: [speed=0.5]只需要再击败他， 我们就能见到我师傅啦
+凌若昭: [speed=0.5]不过十几年来我都没见过有凡人去到山顶过，哪怕有聪明的人闯过了第一关，也会被门神拦下丢走
+小二: [speed=0.5]守门神。。。听着就很不妙的样子啊，你透露一下，他有多强啊？
+凌若昭: [speed=0.5]额。。。
+凌若昭: [speed=0.5]如果拿我们之前遇到的鹰孽对比的话，鹰孽在他手里只能算一只小鸟
+小二: [speed=0.5]啊？？？？比鹰孽还强好几倍！？
+凌若昭哀: [speed=0.5]我通常会被几招打败
+凌若昭: [speed=0.5]师傅说是我太贪玩了，但我感觉他真的很强很强！
+小二: [speed=0.5]连你都打不过。。。
+凌若昭哀: [speed=0.5]小二哥，师傅刚刚和我说了，如果你们不想上去，也不强求，只要和后面的师姐说一声就行了，她会送你们走
+时追云: [speed=0.5]如果连守门的人都不强我们也没来这的必要。
+时追云: [speed=0.5]走，去会会他
+凌若昭喜: [speed=0.5]嘻嘻，太好了，你们不会走了！
+小二: [speed=0.5](如果在这里退缩了是不是再也不会和若昭有交集了呢)无奈
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 提毗
+set Global.onTalk = true
+set Global.npcVis.get("长安城").get("提毗").visible = true
+if get_tree().current_scene.name == "方寸山":
+	提毗: 师傅叫我在这里帮人传送到长安，你要去吗？
+	- 去
+		set get_tree().change_scene_to_file("res://Scene/"+"长安城"+".tscn")
+	- 不去
+else:
+	提毗: 要回方寸山嘛
+	- 去
+		set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+	- 不去	
+set Global.onTalk = false
+=> END
+
+~ 闯山
+set Global.onTalk = true
+
+黑山: [speed=0.5]这不是若昭嘛，下山回来啦？微笑
+黑山: [speed=0.5]还有这是。。。哟？是凡人，可真稀奇啊
+黑山: [speed=0.5]不过，这里可不是凡人该来的地方，从哪来回哪去吧邪魅
+时追云: [speed=0.5]一口一个凡人，难道你们已经脱离了人的范畴了吗
+小二: [speed=0.5]那不就不是人了？
+黑山: [speed=0.5]嘿，你们两拐着弯骂谁呢
+时追云: [speed=0.5]骂不是人的
+凌若昭喜: [speed=0.5]噗！
+黑山: [speed=0.5]你！
+小二: [speed=0.5]哎，你生什么气，我们是在骂不是人的东西，又没说你
+黑山: [speed=0.5]少废话！一句话：你们站在这，我不会动你们
+黑山: [speed=0.5]但要是你们再敢往前走，我就要把你们们狠狠的揍一顿
+黑山: [speed=0.5]到时候看看是你两嘴皮子厉害还是我的剑厉害
+小二: [speed=0.5]谁怕你啊！
+时追云: [speed=0.5]我不会往回走的！
+黑山: [speed=0.5]哼！偏向绝处走！
+黑山: [speed=0.5]若昭你走开点
+凌若昭: [speed=0.5]我。。
+黑山: [speed=0.5]怎么，你要帮他们不成？
+凌若昭哀: [speed=0.5]我我没有
+凌若昭: [speed=0.5]我只是突然想挑战你
+黑山: [speed=0.5]啊？
+黑山: [speed=0.5]你居然还敢来和我打
+凌若昭: [speed=0.5](这应该不算是帮小二他们吧...不算吧？)
+凌若昭: [speed=0.5](我这是怎么了，平常绝对不敢这么违背师傅的命令的)
+凌若昭: [speed=0.5](但是，我不能让他们独自面对！)
+黑山: [speed=0.5]你下山一趟胆子倒是变大了不小，罢了，一起来吧
+小二: [speed=0.5](呜呜呜若昭果然还是不会眼睁睁的看着我们受难的)大哭
+时追云: [speed=0.5]来！
+小二: [speed=0.5]呵！
+set get_tree().current_scene.bossFight("黑山","res://Audio/BGM/网易游戏 - 战斗2.mp3", "黑山")
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set Global.onFight = true
+set Global.canLose = true
+
+set Global.onTalk = false
+=> END
+
+~ 落败黑山
+set Global.canLose = false
+set Global.onTalk = true
+黑山: [speed=0.5]哼哼哼，怎么样，服气了没
+时追云惊: [speed=0.5](这家伙是铁打的吗，为什么剑砍在他身上丝毫没有效果)惊愕
+小二: [speed=0.5]我靠，你是王八转世吧，这么硬
+黑山: [speed=0.5]什么王八！真是没见识！
+黑山: [speed=0.5]我这是把绝学神佑术练入体内了墨镜
+黑山: [speed=0.5]哪怕是同级别的人也难以伤我
+黑山: [speed=0.5]就凭你们这点三脚猫功夫就别想砍的动我了
+黑山: [speed=0.5]再者说了，就算没有这神佑护体之法，你们也扛不住我几剑啊
+黑山: [speed=0.5]今天大爷我大发慈悲，你们感觉麻溜点滚，从哪来回哪去
+小二: [speed=0.5]哼，我就不走，我就待在这里，你能拿我怎样
+黑山: [speed=0.5]你有种再过来一步
+小二: [speed=0.5]我就不过去，你过来
+黑山: [speed=0.5]你过来
+小二: [speed=0.5]你过来
+黑山: [speed=0.5]你过来！
+小二: [speed=0.5]你过来！
+时追云: [speed=0.5]。。。流汗
+小二: [speed=0.5]嘿嘿，你不敢先攻过来怕不是因为有某种禁令在身吧，比如不能首先攻击闯山的人，也不能攻击没越界的人
+黑山: [speed=0.5]...
+黑山: [speed=0.5]算你猜对了，那又怎么样
+小二: [speed=0.5]我们就在这熬死你，看谁能熬
+黑山: [speed=0.5]。。。。。。。。。。。。。
+黑山: [speed=0.5]晕，没见过你这么无耻的，输了还不赶紧滚，居然还在这里赖着鼻血
+时追云: [speed=0.5]我们必须要过去
+黑山: [speed=0.5]不可能，除非你们能打得过我，这是规矩！
+小二: [speed=0.5](不行，和他吵下去没意义，必须得让老大上山)
+小二: [speed=0.5]那个门神哥，你在这里这么多年不无聊吗
+黑山: [speed=0.5]什么门神哥，我叫黑山！
+小二: [speed=0.5]不重要！黑山啊，你这么多年守山门不觉得无聊，不感觉少了人世间很多美味吗
+黑山: [speed=0.5]额，说起来，我是有点怀念当年人间的食物了
+黑山: [speed=0.5]葫芦鸡，翡翠珍珠汤
+黑山: [speed=0.5]可那又怎么样
+小二: [speed=0.5]你让我们过去，我们回头给你带点好吃的怎么样
+黑山: [speed=0.5]那怎么行！
+小二: [speed=0.5]反正山顶那家伙离这里这么远，不会知道的
+小二: [speed=0.5]如果有人上山了你也没有什么惩罚吧
+黑山: [speed=0.5]这个。。是没有
+黑山: [speed=0.5]但是不行就是不行！
+小二: [speed=0.5]我们又不是上山去放火，有什么不行的！
+黑山: [speed=0.5]祖师对我恩重如山，他说什么就是什么，说什么我都不会让你们过去的！
+黑山: [speed=0.5]你们赶紧走，就算赖在这里我也比你们能熬，我可是守了几十年了
+小二: [speed=0.5]天呐，几十年
+时追云: [speed=0.5]...
+凌若昭哀: [speed=0.5]对不起追云哥，我也没办法了
+时追云: [speed=0.5]我不会放弃的，既然你师傅有能推测人位置的神通，我就必须要找到他！
+小二: [speed=0.5]可这家伙真是又臭又硬啊
+凌若昭: [speed=0.5]这么熬下去也不是办法，黑山他可是真的能守在这里五十年不走的
+黑山: [speed=0.5]哼哼，是五十一年了
+时追云: ...
+凌若昭: [speed=0.5]那边有一间厢房，我们先过去休息会再想办法吧
+时追云: [speed=0.5]嗯
+set get_tree().change_scene_to_file("res://Scene/"+"方寸厢房"+".tscn")
+set Global.dial = "黑山"
+
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 想策
+set Global.onTalk = true
+set Global.dial = null
+set Global.npcVis.get("方寸厢房").get("小二").visible = true
+set Global.npcVis.get("方寸厢房").get("凌若昭").visible = true
+
+小二: [speed=0.5]唉，打也打不过，说也说不通，这可咋上去
+凌若昭哀: [speed=0.5]对不起追云哥，都是我太没用了
+时追云: [speed=0.5]这怎么能怪你，你能帮我们已经是很大的助力了
+时追云: [speed=0.5]听他说，他身体那么硬是因为把神佑术练入体内了？
+凌若昭: [speed=0.5]嗯，听说把神佑术练到极致的人可以做到这种事，平常不需要掐咒念诀，全身会不间断的有神佑术的效果
+凌若昭: [speed=0.5]并且看样子是比普通的神佑术还强很多...至少我没办法做到像他那么强大
+时追云: [speed=0.5]一点缺点都没有吗？
+凌若昭: [speed=0.5]可能只有他自己知道了
+小二: [speed=0.5]那他怎么可能告诉我们啊。。。
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/母鸡.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+
+小二: ...
+小二: [speed=0.5] 呵呵呵，有了
+小二: [speed=0.5]我就不信一个几十年都吸风饮露的人会经得起诱惑
+时追云: [speed=0.5]你想做什么
+小二: [speed=0.5]你们等我一会，我生个火...恶魔
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set Global.dial = "黑山"
+set Global.mapPlayerPos = Vector2(2877, 2104)
+
+set Global.onTalk = false
+=> END
+
+~ 被勾引
+set Global.onTalk = true
+set get_tree().current_scene.get_node("黑山").onChase = true
+set Global.npcVis.get("方寸厢房").get("小二").visible = false
+set Global.npcVis.get("方寸厢房").get("凌若昭").visible = false
+
+黑山: 我去，什么味道这么香，香的过分了啊垂涎
+set get_tree().current_scene.get_node("AnimationPlayer").play("被勾引")
+[next=3]
+小二: [speed=0.5]就是现在，跑！
+黑山: [speed=0.5]什么声音！？
+凌若昭: [speed=0.5] 去山顶！
+set get_tree().current_scene.get_node("AnimationPlayer").play("追逐")
+
+ 
+
+set Global.onTalk = false
+=> END
+
+~ 登顶
+set Global.onTalk = true
+set get_tree().current_scene.get_node("黑山").onChase = false
+set Global.triggerPlace.get("登顶").disable = true
+
+set Global.dial = null
+黑山:  [speed=0.5]你们几只小老鼠，到此为止了魔鬼
+黑山: [speed=0.5] 地烈火！
+set get_tree().current_scene.get_node("火").visible = true
+set get_tree().current_scene.get_node("火2").visible = true
+小二: 糟了！
+凌若昭哭: 完了要被追上了 
+
+黑山:  [speed=0.5]吃我一剑！
+时追云惊: ！！！
+
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/法术14.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+
+set get_tree().current_scene.get_node("火").visible = false
+set get_tree().current_scene.get_node("火2").visible = false
+神秘人: 呵呵呵呵呵呵呵，罢了罢了。
+神秘人: 黑山，你退下吧
+
+
+黑山:  [speed=0.5]啊？哦，是！
+
+set Global.npcVis.get("方寸山").get("黑山").visible = false
+时追云: [speed=0.5]为什么脑海里突然响起了声音
+小二: [speed=0.5]也没看见人啊？？
+凌若昭喜: [speed=0.5]这是我师傅在用千里传音和我们说话
+神秘人: [speed=0.5]既然来了，就进来坐吧
+时追云: [speed=0.5]...
+时追云: [speed=0.5]走吧
+小二: [speed=0.5]总算能见到他了，真不容易
+set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
+set Global.onTalk = false
+=> END
+
+~ 初见菩提
+set Global.onTalk = true
+凌若昭喜: [speed=0.5]师傅！~ 我完成任务啦，我按照师命把人带回来啦跳舞
+
+set Global.npcVis.get("灵台宫").get("凌若昭").visible = true
+set get_tree().current_scene.get_node("凌若昭").play("跳舞")
+set Global.npcVis.get("灵台宫").get("小二").visible = true
+
+
+菩提老祖: [speed=0.5]呵呵呵呵，你这小鬼头，下山一趟真是学灵精了微笑
+菩提老祖: [speed=0.5]我叫你把他们带来过山门，你偏说是按照我的命令把他们带上来的
+凌若昭喜: [speed=0.5]嘻嘻，那我错了嘛师傅
+菩提老祖: [speed=0.5]哎？我只说了你学灵精了，可不曾说你做错了
+凌若昭: [speed=0.5]那？
+菩提老祖: [speed=0.5]你要是把一起出生入死的朋友丢下了，让他们独自面对黑山，那我才是要失望，你这趟山也算是白下了
+菩提老祖: [speed=0.5]这次任务不仅是让你把人带回来，也是要磨练你的阅历与考验你的是非观。
+菩提老祖: [speed=0.5]现在看来，你做的，不错
+凌若昭喜: [speed=0.5]嘻嘻，谢谢师傅
+时追云: [speed=0.5]...
+菩提老祖: [speed=0.5]这位就是时小友吧，我等候你多时了
+时追云: [speed=0.5]恕晚辈冒昧，我们似乎不曾见过吧？为何你早就认识我一样，还准确的知道我的行踪
+菩提老祖: [speed=0.5]你我二人是未曾见过，但我以另一种方式"见"过你了，而且我的一位老友也经常和我提起你
+时追云惊: [speed=0.5]你的老友？是谁？
+菩提老祖: [speed=0.5]呵呵呵呵，既然他还未想你表明身份，那我也不便越俎代庖。
+菩提老祖: [speed=0.5]等你能走到那一步，自然就会知道了
+时追云: [speed=0.5]...
+菩提老祖: [speed=0.5]我想你大老远跑来也不是为了此事吧？
+时追云: [speed=0.5]对，3年前，有只妖怪屠杀了建邺满城的人，你可知道他现在的位子
+菩提老祖: [speed=0.5]我知道！
+时追云怒: [speed=0.5]他在何处！！！
+菩提老祖: [speed=0.5]...
+菩提老祖: [speed=0.5]时小友，你觉得黑山的实力如何
+时追云: [speed=0.5]为什么突然问这个？
+菩提老祖: [speed=0.5]强，还是不强
+时追云: [speed=0.5]很强，我们差的不是一招半式，哪怕使用全力也不可能击败他
+时追云: [speed=0.5]如果是和他单打独斗，想必会输的更快
+菩提老祖: [speed=0.5]好，那你回想一下当初那只妖怪的实力
+菩提老祖: [speed=0.5]你应该切身体验过了，想必不会忘却
+时追云: [speed=0.5]...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]他很强，或许比黑山还强
+时追云: [speed=0.5]...
+菩提老祖: [speed=0.5]看来你很明朗结果了
+菩提老祖: [speed=0.5]我可以给你下个定论，就算你们全部联手起来打他一个，胜算都不到三成
+凌若昭: [speed=0.5]哎呀，师傅你直接出手帮时大哥不就好了吗，你随手一挥就能灭了那妖怪吧
+时追云: [speed=0.5]...
+小二: [speed=0.5] (若昭的师傅这么厉害啊？)
+菩提老祖: [speed=0.5]呵呵呵呵，我不会离开方寸山的
+时追云: [speed=0.5]敢请前辈告知位置！
+菩提老祖: [speed=0.5]小友何必如此着急
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/【十二幻梦】.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+菩提老祖: [speed=0.5]我明白，经历了那一切，你可能早已将生死置之度外
+菩提老祖: [speed=0.5]但你现在还是一无所有吗？
+小二: [speed=0.5]老大，不用怕，我们一起去宰了他！
+凌若昭: [speed=0.5]大不了和他拼了！
+时追云: [speed=0.5]...
+时追云: [speed=0.5](他说的对，小二和若昭也一定会跟来的)
+时追云: [speed=0.5](曾经我只有一个人，可以不要命的和妖魔拼杀，可不知道何时起，身边已经多了这么多温暖)
+时追云: [speed=0.5](之前的小战斗我或许还能挡在他们面前，但接下来..)
+时追云: [speed=0.5](他们相信我，可我不能带着他们送死)
+时追云: [speed=0.5](不行！我必须要冷静下来)
+菩提老祖: [speed=0.5]呵呵呵呵，我这里有几间厢房，你们二位暂且住下，如何？
+菩提老祖: [speed=0.5]你且放宽心，岂不闻欲速则不达
+时追云: [speed=0.5]...
+时追云: [speed=0.5]好
+时追云: [speed=0.5]敢问前辈大名
+菩提老祖: [speed=0.3]一沙一世界，一花一天堂，一树一菩提，一叶一如来
+菩提老祖: [speed=0.5]叫我菩提即可
+小二: [speed=0.5]哎，那可不敢，看你向个老祖宗，还是叫你菩提老祖吧
+菩提老祖: [speed=0.5]哈哈哈哈，倒是有许多人这么叫我
+菩提老祖: [speed=0.5]那我是不是也得叫你烤鸡小友呢哈哈哈哈
+小二: [speed=0.5]额，这你都知道了
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
+[next=5]
+set get_tree().change_scene_to_file("res://Scene/"+"方寸厢房"+".tscn")
+set Global.dial = "菩提老祖"
+set Global.onTalk = false
+set Global.npcVis.get("灵台宫").get("小二").visible = false
+set Global.npcVis.get("灵台宫").get("凌若昭").visible = false
+=> END
+
+~ 厢房休息
+set Global.onTalk = true
+set Global.dial = null
+小二: [speed=0.5]老大，你说那个菩提老祖有多强啊
+时追云: [speed=0.5]恐怕不是我们的实力能够想象的
+时追云: [speed=0.5]黑山之前追我们的时候，火可不是自己灭的
+时追云: [speed=0.5]他能千米之外轻松灭掉黑山的火，起码至今为之，我没有见过如此神通
+小二: [speed=0.5]啊对对，昨晚临走前还说我是烤鸡小友，感觉不管离多远的事情，他都知道
+小二: [speed=0.5]嘶。。。那我们现在说话他不会也
+时追云: [speed=0.5]。。。
+时追云: [speed=0.5]前辈应该不会那么无聊来听我们闲聊汗颜
+时追云: ...
+小二: ...
+时追云: [speed=0.5]应该吧
+小二: [speed=0.5]我觉得菩提老祖的胡子挺帅的
+时追云: [speed=0.5]呵呵
+时追云: [speed=0.5]他昨天好像叫我们这个时辰去找他，该走了
+小二: [speed=0.5]嗯
+set Global.questHint = "该起身去找菩提祖师了"
+set Global.npcVis.get("灵台宫").get("菩提老祖").visible = false
+set Global.npcVis.get("方寸山").get("菩提老祖").visible = true
+set Global.onTalk = false
+=> END
+
+~ 菩提解惑
+set Global.onTalk = true
+时追云: [speed=0.5]前辈，我们来了
+小二: [speed=0.5]早啊菩提老祖
+set Global.npcVis.get("方寸山").get("小二").visible = true
+set Global.npcVis.get("方寸山").get("凌若昭").visible = true
+
+set get_tree().current_scene.get_node("凌若昭").play("左下招手")
+凌若昭喜: [speed=0.5]快来快来，祖师和你们说大事
+菩提老祖: [speed=0.5]呵呵呵呵，你这小丫头，真是改不了这急躁的性格
+set get_tree().current_scene.get_node("凌若昭").play("左下")
+小二: [speed=0.5]什么大事？
+时追云: [speed=0.5]...
+菩提老祖: [speed=0.5]呵呵呵呵，时小友不必多虑，我没道理害你们
+时追云: [speed=0.5](莫非他连读人心这种事都做得到？)
+菩提老祖: [speed=0.5]有时能，有时不能
+时追云惊: [speed=0.5] 。。。
+菩提老祖: [speed=0.5]对心思纯净，眼神无瑕之人，毫无阻碍
+菩提老祖: [speed=0.5]而精神污秽，骄奢淫虐之人，我也看不透
+菩提老祖: [speed=0.5]我最不敢说的事情就是能看透人心，这点我永远没有自信
+时追云: [speed=0.5]前辈的神通似乎真的已经不。。。
+菩提老祖: [speed=0.5]不是人？
+小二: [speed=0.5]额。。果然这句话也被你听见了汗颜
+菩提老祖: [speed=0.5]哈哈哈哈哈，此话原也不错，我等躯壳确实已于凡人不同
+菩提老祖: [speed=0.5]此并非自诩高上，此乃修炼之路必经之事
+时追云: [speed=0.5]我不明白
+菩提老祖: [speed=0.5]人的知识受周围所影响，人的阅历受经历所影响，时小友，你了解这个世界吗？
+时追云: [speed=0.5]我有过很多猜疑，但苦于无法证实
+菩提老祖: [speed=0.5]哦？我或许可以解答一二！
+时追云: [speed=0.5]这些年我见过不要妖怪，大部分都是我见过的普通之物修行而成
+时追云: [speed=0.5]如果草木飞虫走兽皆能修炼成妖，那么人为什么没有修炼到那种地步，如果有。。那么
+菩提老祖: [speed=0.5]不错，凡人修炼，即为仙！也称为仙人！
+菩提老祖: [speed=0.5]仙也不只是人类专属称呼，只要修炼成型并且与人为善，都被天地赐予仙的称呼
+时追云: [speed=0.5]怎么可能。。那些。。那些妖怪
+小二: [speed=0.5]什。。。什么意思啊
+菩提老祖: [speed=0.5]如果一只鼠精，它修炼成人形，之后见人便吃，整日为非作歹，那它便是妖！
+菩提老祖: [speed=0.5]换一个念头，它修炼成人形，尽己所能帮人，惩奸除恶，护满城百姓周全，那他便是仙！
+时追云: [speed=0.5]这。。实在颠覆我的观念
+菩提老祖: [speed=0.5]我明白，其实大部分精怪修炼成人形之后，因缺少管教，也还保留着野兽时期的习性，所以难免都成妖
+菩提老祖: [speed=0.5]真正能被称为仙的其实也并不多
+小二: [speed=0.5]是仙是妖，皆在一念之间？
+菩提老祖: [speed=0.5]呵呵呵呵，然也
+时追云: [speed=0.5]...
+时追云: [speed=0.5]恐怕前辈并不止于仙人之列吧
+菩提老祖: [speed=0.5]我属于什么，并不重要，但在仙之上，其实还有一等
+时追云: [speed=0.5]是什么
+菩提老祖: [speed=0.5]神！
+菩提老祖: [speed=0.5]神掌管灶台，姻缘，富贵，才华，乃至寿命
+菩提老祖: [speed=0.5]凡间一切诸多事宜，皆由神掌控
+时追云惊: [speed=0.5]居然真的有神吗
+小二: [speed=0.5]姻缘...
+菩提老祖: [speed=0.5]而掌管诸多神明的，便是天庭！
+时追云怒: [speed=0.5]等等，你刚才说神明掌管天下的一切，那么建邺是怎么回事！
+时追云怒: [speed=0.5]生老病死乃规律我不过问，可建邺明明是被一群妖魔给屠杀的！这难道也是天庭的安排吗！
+菩提老祖: [speed=0.5]非也
+菩提老祖: [speed=0.5]虽说天庭掌管天下诸般事宜，但也不是万能的，特别是三年前。。。
+时追云: [speed=0.5]三年前。。。到底怎么了？
+菩提老祖: [speed=0.5]此事我暂且不能告诉你，以免现在的你牵扯过大
+菩提老祖: [speed=0.5]你现在的目标不是刨根问底，是去找奔霸吧
+时追云惊: [speed=0.5]奔霸？就是那畜生的名字吗
+菩提老祖: [speed=0.5]是
+时追云怒: [speed=0.5]...
+小二: [speed=0.5](...老大还好吧)
+凌若昭: [speed=0.5](...)
+时追云: [speed=0.5]呼
+时追云: [speed=0.5]还请前辈明说，留我们在此处所为何事
+菩提老祖: [speed=0.5]建邺受难，我也难逃其咎，那畜生不宰，建邺冤魂不散！
+菩提老祖: [speed=0.5]我虽不能离开此处，但是我可授法一二，助你们除妖，如何？
+小二: [speed=0.5]太好了！谢谢祖师！大笑
+菩提老祖: [speed=0.5]你这滑头，改口的倒是挺快微笑
+时追云: [speed=0.5]如能获得前辈指点一二，晚辈感激不尽！
+菩提老祖: [speed=0.5]好，先从追云来吧
+菩提老祖: [speed=0.5]追云，你的战斗方式，我见你出招颇有人间精粹武学之影
+菩提老祖: [speed=0.5]你的武艺已经无可挑剔了，没有太多可精进的地方了
+菩提老祖: [speed=0.5]可你肉体凡胎，在与妖怪对峙的时候难免会落入下风，故此，我便授予你灵气入体之法，以此助你打开修行的门槛
+菩提老祖: [speed=0.5]之后我将顺道授予你高等炼体术
+菩提老祖: [speed=0.5]此法可助你步伐敏捷，力量刚猛，血肉抗刀，精神不萎，体如天马
+菩提老祖: [speed=0.5]你可有异议？
+时追云: [speed=0.5]晚辈无异议，想来此法极为适合我
+时追云: [speed=0.5]只是晚辈不明，到底灵力是什么？
+菩提老祖: [speed=0.5]灵力乃散落在天地间的微小能量，修炼之人就是把灵力修入体内，纳为己用，一般来说，没有灵力的人除非武力高强，并不可能伤的到高等妖魔
+时追云: [speed=0.5]可我依稀记得，我第一次遇见妖魔的时候，便能斩杀他们了，难道我长久以来一直都有灵力在身吗
+菩提老祖: [speed=0.5]...
+菩提老祖: [speed=0.5]没错，你的体内确实早有一股灵力了，只是你自己一直不知道，也不懂得如何去运用它
+菩提老祖: [speed=0.5]至于你没修炼，这又灵力如何而来，就得靠你自己想了
+时追云: [speed=0.5]...
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0众志成城.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+菩提老祖: [speed=0.7]你仔细听好：静心凝神，天地为本，呼吸吐纳，万物归元。心随意动，气随心行，四方灵气，汇入丹田。周身畅通，无处不达，天地同修，身心合一。凝气成灵，聚灵为力，破茧化蝶，腾云踏雾。
+时追云: [speed=0.5]静心凝神，天地为本，呼吸吐纳，万物归元。
+时追云: [speed=0.5]心随意动，气随心行，四方灵气，汇入丹田。
+时追云: [speed=0.5]周身畅通，无处不达，天地同修，身心合一。
+时追云: [speed=0.5]凝气成灵，聚灵为力，破茧化蝶，腾云踏雾。
+时追云: [speed=0.5]呵！
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/男-剑.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set FightScenePlayers.learnMagic("时追云", "高等炼体术")
+
+set get_tree().current_scene.get_node("clouds/Cloud").moveCloud()
+
+set get_tree().current_scene.get_node("player/隐龙").visible = true
+set get_tree().current_scene.get_node("player/隐龙").play("default")
+set get_tree().current_scene.get_node("AnimationPlayer").play("shake") 
+[next=2]
+菩提老祖: [speed=0.5]这是！！灵气化龙。。。隐隐化现惊愕
+小二: [speed=0.5]灵气化龙？什么东西，看着好强
+菩提老祖: [speed=0.5]灵气化龙之人，之后的实力不可估量！
+凌若昭喜: [speed=0.5]时大哥第一次用灵气就这么厉害耶
+时追云: [speed=0.5]我感觉四周的能量在向我聚拢，除此之外。。。还
+菩提老祖: [speed=0.5]还有什么？
+时追云: [speed=0.5]我还感觉他们在我体内四处乱撞，但又聚散为整
+菩提老祖: [speed=0.5]接纳它，让它们为你所用
+时追云: [speed=0.5] 呵！
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/男-剑.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+菩提老祖: [speed=0.5] 追云，你先在这里修炼，小二你随我进来
+小二: [speed=0.5]哦
+凌若昭: [speed=0.5] 
+[next=0.1] [next=auto]
+菩提老祖: [speed=0.5] 若昭你就呆在外面看着点追云
+凌若昭: [speed=0.5] 哦
+凌若昭喜: [speed=0.5] 小二加油！
+小二: [speed=0.5] 嗯嗯！
+
+set get_tree().current_scene.get_node("player/隐龙").visible = false
+set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
+set Global.npcVis.get("灵台宫").get("小二").visible = true
+set Global.triggerPlace.get("教学千机").disable = false
+
+set get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")
+
+set Global.onTalk = false
+=> END
+
+
+
+~ 教学千机
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
+set get_tree().current_scene.get_node("小二").position = Vector2(400,258)
+set Global.triggerPlace.get("教学千机").disable = true
+
+小二: [speed=0.5]嘿嘿嘿，菩提祖师，你要教我什么啊，也像老大的那么厉害吗微笑
+菩提老祖: [speed=0.5] 他学的强，是因为他本身强，法术也有适合与不适合之分
+小二: [speed=0.5] 那我适合什么啊？
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/#沧桑叹.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+菩提老祖: [speed=0.5] 很遗憾，我这里没有适合你的法术
+小二: [speed=0.5] 啊？
+小二: [speed=0.5] 哈哈哈哈，我果然没什么资质
+菩提老祖: [speed=0.5] 这与你的资质无关，当水桶被封住的时候，是怎么样也不可能舀的出水来的
+菩提老祖: [speed=0.5] 不破不立，堵不如疏
+小二: [speed=0.5]......
+小二: [speed=0.5] 祖师，你果然什么都知道，对吗
+菩提老祖: [speed=0.5]你的情况很罕见
+菩提老祖: [speed=0.5] 我不会干涉你的选择，但我还是要劝你一句，该面对的终有一天需要面对
+小二: [speed=0.5]我也不知道该怎么办，但绝对不能是现在。
+菩提老祖: [speed=0.5]我这里虽然没有适合你的法术，但我有一种奇术，或许会对你有用
+菩提老祖: [speed=0.5]我相信以你的滑头劲，能运用好它
+菩提老祖: [speed=0.5]此技，名曰千机变，乃天地间至妙之法，万法归一，千象万变
+菩提老祖: [speed=0.5]千机变者，通天悟地，能以无上心境感知他人术法，瞬息之间便可如己所用。无论剑法、掌法、咒法，或是任何奇技异术，皆可借力化形，施于敌前。”
+小二: [speed=0.5]千机变...
+[next=2]
+set FightScenePlayers.learnMagic("小二", "千机变")
+set Global.atDark = true
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set Global.npcVis.get("方寸山").get("菩提老祖").visible = false
+set Global.dial = "菩提老祖"
+set Global.onTalk = false
+=> END
+
+~ 篝火烧烤
+set Global.onTalk = true
+set Global.dial = null
+
+set Global.npcVis.get("灵台宫").get("小二").visible = false
+set get_tree().current_scene.get_node("小二").position = Vector2(2806,362)
+set get_tree().current_scene.get_node("凌若昭").position = Vector2(2980,344)
+set get_tree().current_scene.get_node("player").position = Vector2(2835,493)
+set get_tree().current_scene.get_node("篝火").visible = true
+set get_tree().current_scene.get_node("黑山2").visible = true
+
+黑山: [speed=0.5]呜哇啊啊啊啊啊啊大哭
+黑山: [speed=0.5]你这小子，全镇子的人都死了，你居然在那样的情况下守灵了三年
+黑山: [speed=0.5]呜哇啊啊啊啊啊啊大哭
+时追云: [speed=0.5]...
+小二: [speed=0.5] 你怎么也在这里，你不去守山门吗
+黑山: [speed=0.5]无妨无妨，本来也没什么人能进来
+黑山: [speed=0.5]话说小兄弟你那个烤鸡，能不能分给我点
+小二: [speed=0.5]想要啊？
+黑山: [speed=0.5]啊对对对，额，这个，老夫前几天追你们也是职责所在嘛
+小二: [speed=0.5]你怎么会在这里给菩提老祖当守门的啊，看起来你也不像是弟子
+黑山: [speed=0.5]额，这个嘛，说起来。。。
+凌若昭喜: [speed=0.5]嘻嘻，其实黑山以前是个无恶不作的人，一日我师傅路过便顺手降伏了他
+黑山: [speed=0.5]有幸得祖师教诲，我那是痛改前非啊
+凌若昭喜: [speed=0.5]我怎么听说你当初是痛哭流涕求饶来着
+黑山: [speed=0.5]咳咳咳，你就不要提老事了汗颜
+黑山: [speed=0.5]哎对对对，这一面再烤熟一点
+小二: [speed=0.5]给你吃点也不是不行，但你得透露下你那奇怪的身体是怎么练的
+黑山: [speed=0.5]你是说神佑入体嘛
+小二: [speed=0.5]对啊，如果我有你这功夫，别人怎么砍我都不怕了
+黑山: [speed=0.5]其实嘛，这招和拿剑小子这几天练的差不多
+时追云: [speed=0.5]和我差不多吗？
+黑山: [speed=0.5]嗯，神佑术就是灵气的一种运用，而神佑入体就是熟练度的事了
+黑山: [speed=0.5]其实你现在的防御也不是普通人可以撼动得了
+时追云: [speed=0.5]暂时没什么感觉
+黑山: [speed=0.5]你等之后与人对战的时候就能感觉到了
+黑山: [speed=0.5]啊对，鸡腿多撒点料
+小二: [speed=0.5]那你这招这是练了多久啊
+黑山: [speed=0.5]十年摸到门槛，二十年小成，三十年大成，四十年炉火纯青
+小二: [speed=0.5]四。。。四十年
+小二: [speed=0.5]算了，我还是烤我的鸡腿吧
+黑山: [speed=0.5]哈哈哈哈，小二兄弟你也别难过，就冲你这只鸡，在这方寸山境内，老夫绝对罩你
+凌若昭: [speed=0.5]对了小二，你这几天练的怎么样啦，师傅教给你什么厉害的绝招啦
+小二: [speed=0.5]额，说是厉害的绝招也不算，但是某种情况下确实也会很厉害
+凌若昭: [speed=0.5] 什么呀，完全听不懂不听
+小二: [speed=0.5]等之后你就知道啦，现在还没完全掌握呢
+小二: [speed=0.5]对了若昭，你是什么时候拜入的菩提祖师门下啊
+凌若昭哀: [speed=0.5]我也记不清了，我的父母似乎是把我抛弃在了迷境的山门外
+凌若昭: [speed=0.5]听我师傅说当时的我自己摸索到了这里
+小二: [speed=0.5]那么小就能过那鬼阵法啊。。。
+小二: [speed=0.5]你也太聪明了惊呆
+凌若昭喜: [speed=0.5]嘻嘻
+时追云: [speed=0.5]说起来小二你似乎也没怎么提起你的事情吧
+时追云: [speed=0.5]之前不是说在给你的掌柜出门采集吗
+时追云: [speed=0.5]怎么在长安也没见到他
+小二: [speed=0.5]哎呀那破工作我早就不想干了，做店小二哪有跟着老大走南闯北有意思
+时追云: [speed=0.5]我又不得不去的理由，你和若昭实在是没必要...
+小二: [speed=0.5]打住啊老大，我可不想听那一套罗里吧嗦的
+小二: [speed=0.5]如果不是你，我估计早就成了那牛妖和羊妖的粪便了，我虽然读的书不多，但也知道瑕疵必报的道理
+凌若昭喜: [speed=0.5]小二，瑕疵必报不是这么用的啦，不过我也是！
+凌若昭哀: [speed=0.5]若昭在这山上没有什么朋友，我不希望你们任何人出事，你们要独创妖魔领地，我绝对不会坐地起价的！
+黑山: [speed=0.5]坐地起价也不是这么用的吧。。。
+黑山: [speed=0.5]还有老夫好歹也算半个朋友吧...
+凌若昭喜: [speed=0.5]略略略
+凌若昭喜: [speed=0.5]不一样的啦，黑山大哥和师兄是都很照顾我，但是和朋友有区别
+黑山: [speed=0.5]我看你是胳膊肘往外拐了
+时追云: [speed=0.5]好吧，但之后你们必须要在我身后
+时追云: [speed=0.5]这始终是我的事情，如果你们因此而有什么意外，我就太失败了
+小二: [speed=0.5]那当然，我可是很惜命的
+凌若昭喜: [speed=0.5]实在有危险的话大不了我们一起跑
+时追云: [speed=0.5]好了，时候也不早了，休息吧。
+黑山: [speed=0.5]剩下的鸡。。。
+小二: [speed=0.5]全给你吧
+黑山: [speed=0.5]好兄弟点赞
+
+
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
+[next=3]
+set get_tree().current_scene.get_node("篝火").visible = false
+set get_tree().current_scene.get_node("黑山2").visible = false
+set Global.npcVis.get("方寸山").get("小二").visible = false
+set Global.npcVis.get("方寸山").get("凌若昭").visible = false
+set Global.atDark = false
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set Global.mapPlayerPos = Vector2(2425,350)
+
+set Global.onTalk = false
+=> END
+
+
+~ 初见罗师兄
+set Global.onTalk = true
+罗师兄: [speed=0.5]若昭你回来啦，这次下山感觉怎么样啊大笑
+凌若昭喜: [speed=0.5]妖怪们有点难对付，还有吃饭居然要收我东西
+罗师兄: [speed=0.5]难对付？不应该啊，你此行也没去什么妖魔领地啊，最多遇见一些小妖
+凌若昭: [speed=0.5]也还是有些强力妖怪的嘛
+罗师兄: [speed=0.5]嗯，遇到强大妖怪就不要硬拼了，用封睡符使其沉睡即可
+凌若昭: [speed=0.5]其实我下山后突然就找不到符了
+罗师兄: [speed=0.5]这么重要的东西怎么也给丢了
+凌若昭哭: [speed=0.5]突然就消失不见了
+罗师兄: [speed=0.5]唉你这丫头，我再给你写一张吧
+凌若昭喜: [speed=0.5]嘻嘻谢谢罗师兄
+罗师兄: [speed=0.5]不过你也不能白拿。最近有些小师弟调皮的很，不肯好好用功，你去把他们揍一顿再回来找我
+凌若昭: [speed=0.5]好，包在我身上
+set Global.onTalk = false
+=> END
+
+~ 完成罗任务
+set Global.onTalk = true
+if Global.quests.get("方寸罗师兄").get("小师弟") < 3:
+	罗师兄: [speed=0.5]还有小师弟没教训呢吧
+	set Global.npcs.get("罗师兄").current_dialogue_index = 1
+else:
+	罗师兄: [speed=0.5]嘿嘿，教训的不错，这张符就给你了吧
+	set FightScenePlayers.learnMagic("凌若昭", "催眠咒")
+	set get_tree().current_scene.showMsg("若昭可以用催眠咒了！")
+	set Global.npcVis.get("方寸山").get("小师弟").visible = false
+	set Global.npcVis.get("方寸山").get("小师弟2").visible = false
+	set Global.npcVis.get("方寸山").get("小师弟3").visible = false
+	set Global.quests.get("方寸罗师兄").complete = true
+set Global.onTalk = false
+=> END
+
+
+~ 小师弟
+set Global.onTalk = true
+小师弟: [speed=0.5]我不练功我不练功！
+
+set get_tree().current_scene.bossFight("小师弟","res://Audio/BGM/金庸-战斗.mp3", "小师弟")
+#set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set Global.onFight = true
+
+set Global.onTalk = false
+=> END
+
+~ 教训师弟
+set Global.onTalk = true
+set Global.npcs.get("小师弟").current_dialogue_index = 0
+set Global.changeQuest("方寸罗师兄","小师弟","add", 1)
+小师弟: [speed=0.5]呜呜呜呜呜，我回去修炼就是了
+set Global.onTalk = false
+=> END
+
+~ 送丹药
+set Global.onTalk = true
+
+	
+菩提老祖: [speed=0.5]追云，你的高等炼体术这阵子练的如何了
+时追云: [speed=0.5]我感觉最近身飞如燕，力大无穷，体力似乎也用不完
+菩提老祖: [speed=0.5]那看来你并没有怠慢修炼，并且修炼的速度远超常人
+菩提老祖: [speed=0.5]是心里一直想着复仇的缘故吗？
+时追云: [speed=0.5]我没有一天不想宰了那畜生，这种仇恨只会随着日子的积累而加深
+小二: [speed=0.5]祖师你不会是要老大放弃仇恨什么的吧
+时追云: [speed=0.5]...
+菩提老祖: [speed=0.5]哈哈哈哈，他当日犯下的孽，终有一日也必享受他的果
+菩提老祖: [speed=0.5]如论天地因果，这也是自然的，如劝追云放弃追杀他，反而是违了因果
+小二: [speed=0.5]哦哦那就好
+菩提老祖: [speed=0.5]那你的千机变练的如何了呢？
+小二: [speed=0.5]啊哈哈，这个嘛，我感觉练的不错了，都能模仿个七七八八
+菩提老祖: [speed=0.5]哈哈哈哈，那听起来也不错
+小二: [speed=0.5]嘿嘿
+菩提老祖: [speed=0.5]这是几枚洗髓丹，你们且收下
+set Global.addItem("洗髓丹", "keyItem", "keyItem", 3)
+时追云: [speed=0.5]这为何用？
+小二: [speed=0.5]听起来就很厉害，能让我们实力暴涨吗？
+菩提老祖: [speed=0.5]也似水中捞月矣,枉费功夫
+小二: [speed=0.5]啊？那这丹药作用是什么啊？
+菩提老祖: [speed=0.5]此丹虽然不能令你们实力暴涨，一日千里，但能洗髓伐骨，散去一切
+小二: [speed=0.5]额，还是不懂
+菩提老祖: [speed=0.5]修行之路千千万万，如若有一日，你们觉得修行的道路出错了，可用此丹散去修为，重新开始
+小二: [speed=0.5]啊？！啊？？？
+小二: [speed=0.5]那有什么用啊，我才不吃
+菩提老祖: [speed=0.5]呵呵呵呵，且收下吧，用与不用全看你们自己，散去修为有时候也不一定是坏事
+时追云: [speed=0.5]好，谢谢祖师
+小二: [speed=0.5]对了对了祖师，你觉得我们什么时候能去找那奔霸啊
+菩提老祖: [speed=0.5]呵呵呵呵，你们要走我可不会阻拦，不过这次过山门可没法用美食勾引了吧
+小二: [speed=0.5]额。。。难道要
+时追云: [speed=0.5]正面击败黑山！怒喝
+小二: [speed=0.5]而且祖师你也还没告诉我们到哪去找那妖怪吧
+菩提老祖: [speed=0.5]呵呵呵呵
+小二: [speed=0.5]唉，那还是再练一阵子吧，不知道多请他吃点东西能不能手下留情
+时追云: [speed=0.5]走吧，继续去修炼
+
+
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
+[next=2]
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set Global.mapPlayerPos = Vector2(2877, 2104)
+
+set Global.dial = "小二"
+set Global.atDark = true
+set Global.onTalk = false
+=> END
+
+
+~ 方寸夜晚小二谈恋爱
+set Global.onTalk = true
+set Global.dial = null
+时追云: [speed=0.5]有点睡不着，小二也不见人影，去山上逛逛吧月亮
+set Global.questHint = "山上随便逛逛"
+set Global.npcVis.get("方寸山").get("小二").visible = true
+set Global.npcVis.get("方寸山").get("凌若昭").visible = true
+
+set get_tree().current_scene.get_node("小二").position = Vector2(875,107)
+set get_tree().current_scene.get_node("小二/小二").play("左上")
+set get_tree().current_scene.get_node("凌若昭").position = Vector2(1015, 49)
+set get_tree().current_scene.get_node("凌若昭").play("左上")
+
+set Global.triggerPlace.get("方寸夜晚小二谈恋爱2").disable = false
+
+set Global.onTalk = false
+=> END
+
+~ 方寸夜晚小二谈恋爱2
+set Global.onTalk = true
+set Global.triggerPlace.get("方寸夜晚小二谈恋爱2").disable = true
+小二: [speed=0.4]那个，若昭啊，你以后有没有什么梦想啊
+凌若昭: [speed=0.4]嗯，每天能不饿肚子，顺便杀点妖魔就好了
+小二: [speed=0.4]杀妖魔才是顺便的吗。。。
+凌若昭: [speed=0.4]因为饿了就没办法施咒了啊
+小二: [speed=0.4]哈哈哈哈哈，也是。那我以后会多准备点吃的给你的
+凌若昭喜: [speed=0.4]嘻嘻小二你真好
+小二: [speed=0.4]你们山上的夜色可真不是凡间能看到的
+小二: [speed=0.4]还有股与世隔绝的宁静
+凌若昭: [speed=0.4]是啊，每当我无聊的时候，就会在这里看天空
+小二: [speed=0.4]看的时候会想什么吗？
+凌若昭: [speed=0.4]我经常在想，如果我没被爸妈抛弃，现在会是什么样的
+凌若昭哀: [speed=0.4]而他们为什么会抛弃我
+凌若昭: [speed=0.4]有好几次都哭了出来，之后师傅和师姐师兄就会过来安慰我
+小二: [speed=0.4]或许，他们有不得不抛弃你的原因
+凌若昭: [speed=0.4]不得不抛弃的原因？
+小二: [speed=0.4]嗯，我也很小就成了孤儿，但我明白他是无奈之举
+小二: [speed=0.4]把我抛弃，或许就是最好的选择了
+凌若昭: [speed=0.4]小二，原来你也是...
+凌若昭: [speed=0.4]难怪我们会这么投缘
+小二: [speed=0.4]或许吧
+小二: [speed=0.4]俗话说的可怜人更怜惜可怜人？
+小二: [speed=0.4]我能遇见你和老大，应该是我这辈子最幸运的事情了吧
+凌若昭喜: [speed=0.4]小二...我认识你也很开心
+凌若昭: [speed=0.4]很长很长的时间里若昭都没法和别人说心里话，我怕他们太担心我
+凌若昭: [speed=0.4]但现在有你了
+凌若昭喜: [speed=0.4]我以后能一直和你说悄悄话吗跳舞
+小二: [speed=0.4]当然可以啊，我也很喜欢和你相处
+凌若昭: [speed=0.4]小二，你会一直陪着我吗？
+小二: [speed=0.4]只要你需要，我就会在你身边羞涩
+凌若昭喜: [speed=0.4]嘻嘻爱心
+小二: [speed=0.4]若昭我...羞涩
+凌若昭: [speed=0.4]怎么啦？ 
+小二: [speed=0.4]额，没什么，看星星吧
+时追云: [speed=0.4](这小子，关键时刻没胆了吗，还越聊跑的越远)
+
+set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
+[next=4]
+
+set Global.npcVis.get("方寸山").get("小二").visible = false
+set Global.npcVis.get("方寸山").get("凌若昭").visible = false
+set Global.dial = "灵鹿"
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set Global.mapPlayerPos = Vector2(2774, 1690)
+
+
+set Global.atDark = false
+set Global.onTalk = false
+=> END
+
+~ 灵鹿
+set Global.onTalk = true
+set Global.onTeamSmallPet.append("小鹿")
+set Global.npcVis.get("方寸山").get("小鹿").visible = true
+set Global.npcVis.get("方寸山").get("凌若昭").visible = true
+
+set Global.npcVis.get("方寸山").get("小二").visible = true
+set get_tree().current_scene.get_node("小二/小二").play("右上")
+
+set get_tree().current_scene.get_node("小二").position = Vector2(2445, 505)
+
+set get_tree().current_scene.get_node("AnimationPlayer").play("灵鹿")
+凌若昭喜: [speed=0.5]小鹿小鹿，这里开心
+
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/077-Small04.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+灵鹿: [speed=0.5]呜——呜——
+小二: [speed=0.5]好乖的小鹿啊
+set get_tree().current_scene.get_node("凌若昭").play("右下")
+凌若昭喜: [speed=0.5]嗯，小鹿它一直都这么乖的
+小二: [speed=0.5]它就叫小鹿啊？
+凌若昭喜: [speed=0.5]是啊，它也喜欢我这么叫它
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/077-Small04.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+灵鹿: [speed=0.5]呜——呜——
+时追云: [speed=0.5]它似乎与普通的动物不同，也不像是妖怪
+凌若昭: [speed=0.5]嗯，动物修炼也分好多种的，小鹿生下来就在山上，吃的都是佳果，饮的都是仙露，吸收了很多灵气，所以自带圣洁的气息
+凌若昭: [speed=0.5]而那些在你死我活，弱肉强食的环境中长大的妖怪，身上就自带一种血腥恶臭的气息
+凌若昭: [speed=0.5]之前下山的时候不宜带上它
+凌若昭: [speed=0.5]对了哦，它可是很强的，还能帮人疗伤呢！
+时追云: [speed=0.5]果真是圣灵
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/077-Small04.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+灵鹿: [speed=0.5]呜——呜——
+凌若昭: [speed=0.5]可是我们接下来可能要去很危险的地方啊
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/077-Small04.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+灵鹿: [speed=0.5]呜——呜——
+凌若昭: [speed=0.5]好吧，那你接下来要待我后面哦
+小二: [speed=0.5]额。。。你是怎么和它沟通的，它和你说了什么？
+凌若昭喜: [speed=0.5]它说它要跟我们下山，帮我们战斗和疗伤
+小二: [speed=0.5]那下山了它吃什么？
+凌若昭: [speed=0.5]平常的食物它应该也吃，但要是有灵气的东西喂给小鹿吃，它应该会变得强一点。
+小二: [speed=0.5]这个大陆真是神奇
+凌若昭喜: [speed=0.5]是啊，九州大陆，像小鹿这样的灵兽应该还有很多很多
+时追云: [speed=0.5]如果以后能找到这些助力，面对妖魔的时候也可以更轻松一点了吧
+小二: [speed=0.5]走走走，带上它再去打几次黑山出发
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
+[next=3]
+set Global.atDark = true
+set get_tree().current_scene.get_node("小二/小二").play("右下")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+set Global.npcVis.get("方寸山").get("小鹿").visible = false
+set Global.npcVis.get("方寸山").get("小二").visible = true
+set get_tree().current_scene.get_node("小二").position = Vector2(2806,362)
+set get_tree().current_scene.get_node("凌若昭").position = Vector2(2980,344)
+set get_tree().current_scene.get_node("凌若昭").play("左下")
+set get_tree().current_scene.get_node("player").position = Vector2(2835,493)
+set get_tree().current_scene.get_node("篝火").visible = true
+set get_tree().current_scene.get_node("黑山2").visible = true
+
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/欢乐家园.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+黑山: [speed=0.5] 我说你们怎么这阵子一直找我挨揍呢，原来是这样鼻血
+黑山: [speed=0.5]不过我是不会手下留情的，你们想下山就得打赢老夫
+小二: [speed=0.5]你那身体谁打的动啊！哪怕是老大学会了高等炼体法也打不动你啊
+时追云: [speed=0.5]黑山大哥的防御确实坚硬
+黑山: [speed=0.5]哼哼，给老夫说好话也不会放你们过去的邪魅
+小二: [speed=0.5]那算了，今天就我们自己吃
+凌若昭: [speed=0.5]哼，我们不理他了！
+黑山: [speed=0.5]哎哎哎，你们别这样无奈
+时追云: [speed=0.5]其实冷静过后，我明白真正的阻碍其实并不是黑山大哥，而是实力的差距
+时追云: [speed=0.5]哪怕他放我们下山，最后我们也会遇到这种强敌，到那个时候输了可就真的会死了
+黑山: [speed=0.5]你能明白这点就说明祖师这阵子给你的修炼有成果了
+时追云: [speed=0.5]什么意思？
+黑山: [speed=0.5]还记得你们来的第一天坑蒙拐骗跑上山来吗
+小二: [speed=0.5]额
+黑山: [speed=0.5]其实祖师早就吩咐过我了，不必死拦，但一定要让你们感受一下实力的差距
+小二: [speed=0.5]那你被吃的吸引也是假的咯？
+黑山: [speed=0.5]咳咳，那是真的，不过追你们的时候也没怎么用全力罢了教训
+时追云: [speed=0.5]祖师的想法着实令人猜不透
+凌若昭: [speed=0.5]在我印象里他总是这样，但最后我发现他永远是对的，所以明令和我说的事情我都会听从
+小二: [speed=0.5]可你之前和我们一起对抗黑山耶
+凌若昭: [speed=0.5]啊哈哈，可他没有明说不行嘛
+:......
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0地狱少女.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+小二: [speed=0.5]话说老大，你有想过复仇完了之后要做什么吗？
+时追云: [speed=0.5]曾经想过，如果复仇成功了就自尽一了百了，如果失败了，死了也就死了。
+小二: [speed=0.5]啊。。。那你岂不是去复仇不管怎么样都是要死
+凌若昭: [speed=0.5]...
+时追云: [speed=0.5]那是曾经的想法，但现在没这个念头了
+小二: [speed=0.5]为什么？
+时追云: [speed=0.5]因为嫬儿，她点醒了我，好好的活着是为了记住逝去之人
+时追云: [speed=0.5]那么小的她，在失去全家人和双腿之后，还是在坚强的活着，她很幸运，遇到了金甲
+时追云: [speed=0.5]她也用自己的行为回应了金甲的善行，她是在狂风轰鸣之下仍然生长的青草
+时追云: [speed=0.5]而我又怎么可以输给一个孩子呢，何况
+时追云: [speed=0.5]我之前一直没想起，我娘子和我说的最后一句话是。。。好好的替她活下去
+小二: 呜呜呜呜大哭
+凌若昭: 呜呜呜大哭
+黑山: 呜哇啊啊啊啊啊啊啊大哭
+时追云: [speed=0.5]。。。。。。
+时追云: [speed=0.5]你们小声点，要吵到道长们休息了
+黑山: [speed=0.5]呜哇啊啊啊啊啊啊时老弟你说的太好了大哭
+某道士: [speed=0.5]吵死了，还让不让人睡觉了！！！
+时追云: 。。。
+凌若昭: 。。。
+小二: 。。。
+黑山: 。。。
+黑山: [speed=0.5]咳咳，言归正传，其实想破我的神佑入体也不是没有办法
+小二: [speed=0.5]哦？什么办法?
+黑山: [speed=0.5]一种就是修为比我高，在和我的灵力碰撞中直接击垮我的身体
+小二: [speed=0.5]那不是废话
+黑山: [speed=0.5]还有一种嘛，如果你的灵力不敌，那么为何不集中在一点，凝聚之后再出招呢教训
+时追云惊: [speed=0.5]聚集于一点
+黑山: [speed=0.5]你小子学东西是很快，但对灵力的经验还是太少了。
+黑山: [speed=0.5]我敢说用这个方法，配送祖师传给你的高等联体法，天下少有能抵挡得住你的攻击的生物了
+时追云: [speed=0.5]可这是你的保命之法吧，你把他的破解方法说出来...
+黑山: [speed=0.5]哪有那么严重，比老夫强的不需要用这一招，比老夫弱的也不需要身体硬抗，再说了在这山上能遇到什么人
+黑山: [speed=0.5]老夫可不是那种知道了方法之后就能随便击败的人，你们，还得练
+小二: [speed=0.5]你等着吧老匹夫，要不了多久我们就要击败你
+黑山: [speed=0.5]嘿嘿嘿，我等着！大笑
+
+set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
+[next=4]
+set Global.atDark = false
+set Global.dial = "system"
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set Global.npcVis.get("方寸山").get("凌若昭").visible = false
+set Global.npcVis.get("方寸山").get("小二").visible = false
+
+set Global.onTalk = false
+=> END
+
+
+~ 破甲术
+set Global.onTalk = true
+set Global.npcVis.get("方寸山").get("黑山").visible = true
+set get_tree().current_scene.get_node("player").position = Vector2(2199, 138)
+[next=2]
+set get_tree().current_scene.get_node("AnimationPlayer").play("破甲术")
+set FightScenePlayers.learnMagic("时追云", "破甲术")
+[next=2]
+时追云: [speed=0.5]总算练成了
+小二: [speed=0.5]恭喜啊老大，这下我们说不定就能打败黑山了！
+时追云: [speed=0.5]嗯！再去找他试试！
+set Global.questHint = "再去试试挑战黑山！"
+set Global.npcs.get("黑山").dialogues[5].unlocked = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/圆周率 - 优雅嘲讽.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()	
+set Global.dial = null
+set Global.onTalk = false
+=> END
+
+
+~ 击败黑山前
+set Global.onTalk = true
+
+黑山: [speed=0.5]哼哼，老夫看你们的眼神不一样了，这次有信心吗
+时追云: [speed=0.5]嗯，来战吧！
+set Global.canLose = true
+set get_tree().current_scene.bossFight("黑山","res://Audio/BGM/网易游戏 - 战斗2.mp3", "黑山")
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set Global.npcs.get("黑山").dialogues[6].unlocked = true
+
+set Global.onTalk = false
+=> END
+
+~ 击败黑山后
+set Global.onTalk = true
+if Global.lost == true:
+	黑山: [speed=0.5]啊哈哈哈哈哈，你还是再去练练吧
+	set Global.npcs.get("黑山").current_dialogue_index = 5
+	set Global.npcs.get("黑山").dialogues[6].unlocked = false
+else:
+	set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0众志成城.mp3")
+	set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()	
+	黑山: [speed=0.5]！！！
+	小二: [speed=0.5]哈哈哈哈哈哈，我们赢了！
+	凌若昭喜: [speed=0.5]耶！！！！！
+	时追云: [speed=0.5]承让了
+	黑山: [speed=0.5]哈哈哈哈哈哈，好小子，居然真让你给练成了，我看你接下来是要翻天了大笑
+	小二: [speed=0.5]真是不容易啊
+	凌若昭喜: [speed=0.5]这下我们终于可以去打那妖怪了大笑
+	时追云: [speed=0.5]我知道不管怎么样你们都会和我去的，所以
+	时追云: [speed=0.5]我在这里感谢你们的生死相伴
+	时追云: [speed=0.5]还有黑山大哥，多谢你这阵子的栽培
+	小二: [speed=0.5]嘿嘿，说的这么见外
+	黑山: [speed=0.5]我可没教你什么，都是你自己练的点赞
+	凌若昭: [speed=0.5]我们去告诉师父吧
+	set Global.questHint = "去告诉菩提祖师吧！"
+	set Global.npcs.get("菩提老祖").dialogues[6].unlocked = true
+	
+
+
+set Global.onTalk = false
+=> END
+
+~ 告知打赢
+set Global.onTalk = true
+凌若昭喜: [speed=0.5]师傅，我们..
+菩提老祖: [speed=0.5]呵呵呵呵，知道了，你们打赢黑山了
+凌若昭哭: [speed=0.5]哎呀，你又这样，让我把话说完嘛大哭
+菩提老祖: [speed=0.5]哦，哈哈哈，下回我一定让你说完
+小二: [speed=0.5]祖师你这能力真是有点恐怖了，到底能听多远啊，一直在听吗
+菩提老祖: [speed=0.5]你这滑头，还想打探我能力不成
+小二: [speed=0.5]嘿嘿嘿
+时追云: [speed=0.5]祖师，既然我们已经打赢黑山了。。。恳请告知我那畜生的位子
+菩提老祖: [speed=0.5]他现在就在傲来国！而具体在哪，需要你们自己去找。
+时追云: [speed=0.5]傲来国...好，我们这就动身
+小二: [speed=0.5]额，这么着急啊
+菩提老祖: [speed=0.5]事实上，我建议你们先去一趟东海龙宫
+时追云: [speed=0.5]东海龙宫，是什么地方？
+凌若昭: [speed=0.5]啊！我知道，是东海龙王住的地方
+时追云: [speed=0.5]龙王又是谁？
+凌若昭: [speed=0.5]额，时大哥你真要恶补下仙界的知识了
+菩提老祖: [speed=0.5]龙王就是俗称的海神，四位龙王分别掌管东海、西海、南海、北海
+菩提老祖: [speed=0.5]龙王不仅是四海的守护者，还是掌控风雨、江河湖泊等水域的神灵，具有调节气候、降雨滋润大地的职责。
+菩提老祖: [speed=0.5]而他们住的地方，被称为龙宫
+时追云惊: [speed=0.5]等等，东海。。建邺不就在东海附近吗，东海湾。。。接连着东海龙宫吗惊愕
+菩提老祖: [speed=0.5]是，其实很多神仙都在凡人世界看得到的地方，但往往不轻易被人察觉，就算有人看见了，也会被解成是神话传说
+时追云: [speed=0.5]那祖师为何建议我去那里，这和我去找奔霸有什么关系？
+菩提老祖: [speed=0.5]那里，有着一位你的故人，他或许能够助你剿灭那妖怪
+菩提老祖: [speed=0.5]你暂且先住一晚，我先教你们避水诀，明天你们再动身，这样时机正好
+时追云: [speed=0.5]什么时机？
+菩提老祖: [speed=0.5]天机不可泄露，如果我告诉你，那么一切就变了。未来能预不可知。
+时追云: [speed=0.5]...
+时追云: [speed=0.5]好，我相信祖师的判断
+set get_tree().change_scene_to_file("res://Scene/"+"水晶宫"+".tscn")
+set Global.dial = "敖阳"
+set Global.cantShow.erase("江南野外")
+
+
+set Global.onTalk = false
+=> END
+
+~ 机关人
+set Global.onTalk = true
+时追云: 拿它练习下功法吧
+set get_tree().current_scene.bossFight("机关人", "res://Audio/BGM/战斗-森林.mp3", null)
+
+
+set Global.onFight = true
+set Global.onTalk = false
+=> END
+
+~ 龙王聚会
+set Global.onTalk = true
+set Global.dial = null
+set get_tree().current_scene.get_node("player").visible = false
+
+北海龙王: [speed=0.5]考虑的怎么样了贤侄，也该考虑直接让出这四海之主的位置了吧，何必还要举行海权祭呢
+
+西海龙王: [speed=0.5]是啊，毕竟三年前你的虾兵蟹将们可是被带走了大半啊
+南海龙王: [speed=0.5]我们也是为你好啊，现在已经不比当年了，随便来个妖群部落就能让这里死伤大半了吧
+敖阳: [speed=0.5]就不劳烦各位叔叔费心了，具体谁来当四海之主，就由后天的海权祭来决定吧
+敖阳: [speed=0.5]谁赢了，谁就是四海之主，以后四海也都以他为尊，一切凭真本事说话
+北海龙王: [speed=0.5]哼，不识抬举
+西海龙王: [speed=0.5]唉，这又是何必呢
+南海龙王: [speed=0.5]哼哼
+敖雨: [speed=0.5]你们这些老不死的，也就敢乘着东海现在空虚来逞威风了，当年一个个的还不是和哈巴狗似的巴结我父亲
+北海龙王: [speed=0.5]你这女娃，好生无礼，看我教训你！
+敖阳: [speed=0.5]敖雨，别说话了
+敖阳: [speed=0.5]至于各位，我就不留你们了
+北海龙王: [speed=0.5]你！
+敖阳: [speed=0.5]还不走吗！？
+北海龙王: [speed=0.5]...
+北海龙王: [speed=0.5](东海虽然现在整体实力弱，但这小子还是有些真本事在的，真打起来岂不是让其他两人得了便宜)
+北海龙王: [speed=0.5]哼，我不和你们这些小辈一般见识
+西海龙王: [speed=0.5](这老东西，倒挺谨慎，我刚才是不是该拱一把火的)
+西海龙王: [speed=0.5]走吧走吧
+南海龙王: [speed=0.5]也罢，贤侄可要好自为之啊
+set Global.npcVis.get("水晶宫").get("南海龙王").visible = false
+set Global.npcVis.get("水晶宫").get("西海龙王").visible = false
+set Global.npcVis.get("水晶宫").get("北海龙王").visible = false
+敖雨: [speed=0.5]哥，他们分明就是看我们东海现在势弱，前来逼宫的，居然连海权祭都不想举行就想让我们交出位子！
+敖阳: [speed=0.5]这我当然知道，但我们有什么办法呢，靠着海权祭我们至少能凭个人实力取胜，但要是起全面冲突，不管谁赢了，都对局面不好
+敖阳: [speed=0.5]他们一定会联手先把我们踢出棋局，哪怕是海权祭估计也不会公平的
+敖阳: [speed=0.5]但起码我们暂时还能仗着龙泉之力支撑着局面
+敖雨: [speed=0.5]可惜我还不够强，不然我要把他们这些败类一个个插成龙肉串
+敖阳: [speed=0.5]额，不要这么暴力。我希望的是维持现状，大家都是同类，我不希望在我们之间起真的战争，哪怕是为了手底下的人也不行
+敖雨: [speed=0.5]哥，你就是太善良太迂腐了，这样会被欺负到头顶的！
+敖雨: [speed=0.5]不对，我们早就已经被欺负到头顶了！
+敖阳: [speed=0.5]或许我确实不适合掌管龙宫，父亲他的决定也许是错的吧
+敖雨: [speed=0.5]你都不适合难道我适合啊，父亲他是个大英雄，他的决定不会错的
+敖雨: [speed=0.5]他把东海交给你，交给了我们，我们不能让他失望！
+敖阳: [speed=0.5]嗯，但在这次海权祭结束之后，我有件事情要先去办完...
+set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
+set get_tree().current_scene.get_node("player").position = Vector2(2835,493)
+set Global.mapPlayerPos = Vector2(2835,493)
+set Global.dial = "system"
+
+set Global.onTalk = false
+=> END
+
+
+~ 又失眠
+set Global.onTalk = true
+set Global.atDark = true
+时追云: [speed=0.5]又失眠了，我最近这是怎么了月亮
+时追云: [speed=0.5]难道是因为终于快要结束这一切了吗
+时追云: [speed=0.5]心里隐隐感觉有些不安
+时追云: [speed=0.5]算了，吹下清风缓解下心神吧
+set get_tree().current_scene.get_node("AudioStreamPlayer2D2").stream = load("res://Audio/SE/男妖-唔喝哈.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D2").play()
+set Global.dial = null
+set Global.questHint = "在四周随便逛逛吧(自寻位置触发剧情"
+
+set Global.triggerPlace.get("听见异响").disable = false
+set Global.onTalk = false
+=> END
+
+~ 听见异响
+set Global.onTalk = true
+set Global.triggerPlace.get("听见异响").disable = true
+时追云惊: [speed=0.5]这是什么怪物的声音，光听着就让人不寒而栗，之前祖师有嘱咐过我们不要下去
+时追云惊: [speed=0.5]这下面到底关着什么东西惊愕
+set get_tree().current_scene.get_node("菩提老祖").position = Vector2(1730, 107)
+set Global.npcVis.get("方寸山").get("菩提老祖").visible = true
+菩提老祖: [speed=0.5]追云，停下吧，不要再往前走了
+时追云惊: [speed=0.5]祖师，这下面到底关着什么东西？
+时追云惊: [speed=0.5]为什么方寸山里，会有这种我连闻到气息都感觉颤栗的东西？
+菩提老祖: [speed=0.5]...
+菩提老祖: [speed=0.5]这和你没关系，走吧，去睡觉
+时追云: [speed=0.5]祖师，我还可以相信你吗
+菩提老祖: [speed=0.5]不可不信，也不该全信
+时追云: [speed=0.5]您到底是什么意思
+菩提老祖: [speed=0.5]你只需要知道，我所做的一切都是为了这个世界能走到我看到的未来
+菩提老祖: [speed=0.5]如果我将事情与你全盘托出，未来可能就会发生巨大的变化，到那时我们就真输了
+菩提老祖: [speed=0.5]所以，不要再往前走了
+时追云: [speed=0.5]...
+时追云: [speed=0.5]好
+菩提老祖: [speed=0.5]早点歇息
+set Global.npcVis.get("方寸山").get("菩提老祖").visible = false
+set get_tree().change_scene_to_file("res://Scene/"+"宝库"+".tscn")
+set Global.dial = "敖阳"
+set Global.onTalk = false
+=> END
+
+
+~ 吸魂
+set Global.onTalk = true
+敖阳: [speed=0.5]唉，不知道父亲的宝库里有没有什么能帮得上我得宝物
+敖阳: [speed=0.5]人间已经很乱了，要是他们这些家伙再添乱，百姓永不得安宁
+敖阳: [speed=0.5]明天的海权祭我一定要赢！
+set get_tree().current_scene.get_node("npc").visible = true
+神秘人: [speed=0.5]吸魂大法！
+set get_tree().current_scene.get_node("敖阳/effects/吸魂").visible =true
+set get_tree().current_scene.get_node("敖阳/effects/吸魂").play()
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0妖族阴谋.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+敖阳: [speed=0.5]呃啊！！
+set get_tree().current_scene.get_node("敖阳").play("跪下")
+敖阳: [speed=0.5]你是谁，居然敢暗地里下黑手
+神秘人: [speed=0.5]哼哼
+敖雨: [speed=0.5]什么声音，哥你还好吗
+神秘人: [speed=0.5]...
+神秘人: [speed=0.5]哼哼，算你走运
+set get_tree().current_scene.get_node("npc").visible = false
+[next=2]
+set get_tree().current_scene.get_node("敖阳").play("趴下")
+[next=1]
+
+set get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")
+set Global.dial = "system"
+set Global.atDark = false
+set Global.onTalk = false
+=> END
+
+~ 离山
+set Global.onTalk = true
+set Global.dial = null
+set Global.npcVis.get("方寸山").get("黑山").visible = false
+set Global.triggerPlace.get("黑山送剑").disable = false
+set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
+set Global.npcVis.get("灵台宫").get("小二").visible = true
+set Global.npcVis.get("灵台宫").get("凌若昭").visible = true
+set get_tree().current_scene.get_node("player").position = Vector2(401, 267)
+
+
+时追云: [speed=0.5]我们是时候动身了，多谢祖师这些日子的教导
+小二: [speed=0.5]还真有点舍不得这里的宁静
+凌若昭: [speed=0.5]等我们解决了那妖怪，我们可以一起住在这里
+小二: [speed=0.5]听起来。。。不错，嘿嘿
+菩提老祖: [speed=0.5]在你们走前，我想问追云最后一个问题
+时追云: [speed=0.5]祖师请说
+菩提老祖: [speed=0.5]到底何为妖
+时追云: [speed=0.5]...
+时追云: [speed=0.5]当我们刚见面的时候祖师就和我说过了，妖和仙，一念之间
+时追云: [speed=0.5]但我内心实在还是无法认同，我还是认为妖就是妖！
+菩提老祖: [speed=0.5]呵呵呵呵，继续你的旅程吧，时追云
+菩提老祖: [speed=0.5]当下次见面的时候，我还会问你这个问题
+小二: [speed=0.5]...
+小二: [speed=0.5]话说黑山呢，他跑哪去了
+凌若昭: [speed=0.5]哦，他昨晚说了，他怕送你们走了之后太伤感，今天就不来送你们了
+小二: [speed=0.5]嘿！这老大叔，我们要走了居然不出来送我们一程，好歹给他做了那么多顿饭
+小二: [speed=0.5]话说我们为什么要走路去啊，若昭你没办法把我们直接传送过去吗
+凌若昭: [speed=0.5]不行的，我只能传送我去过的地方，我没去过东海湾
+小二: [speed=0.5]奥，好吧
+时追云: [speed=0.5]走吧，路在我们自己脚下
+小二: [speed=0.5]嗯嗯，走啦祖师，回头见
+凌若昭: [speed=0.5]师傅再见
+菩提老祖: [speed=0.5]呵呵呵呵
+set Global.questHint = "下山去找提毗师姐送你们回长安吧"
+set Global.npcVis.get("灵台宫").get("小二").visible = false
+set Global.npcVis.get("灵台宫").get("凌若昭").visible = false
+set Global.onTalk = false
+=> END
+
+~ 黑山送剑
+set Global.onTalk = true
+set Global.triggerPlace.get("黑山送剑").disable = true
+set Global.npcVis.get("方寸山").get("碧玉剑").visible = true
+set get_tree().current_scene.get_node("AnimationPlayer").play("黑山送剑")
+嗖！
+时追云惊: [speed=0.5]这是！？
+小二: [speed=0.5]这不是黑山的随身配剑吗，从没看剑这把剑离开他
+凌若昭: [speed=0.5]他是什么意思呀
+黑山: [speed=0.5]时小子，虽然我不能陪你一起去剿妖，但不代表我是吃白饭的
+黑山: [speed=0.5]你身上的凡品已经不适合你了，拿着去斩妖不是丢人吗
+黑山: [speed=0.5]这把剑从我修行起就没离开过我，已经有了些许灵气
+黑山: [speed=0.5]你带着它，给你的娘子报仇！别给我们方寸山丢脸！
+小二: [speed=0.5]呜呜呜呜呜，黑山你这老大叔果然还是来送我们了大哭
+黑山: [speed=0.5]呜哇啊啊啊啊啊，你们这些臭小子赶紧办完事赶紧回来
+时追云喜: [speed=0.5]哈哈哈哈哈，多谢黑山大哥了，我们会尽快回来的
+凌若昭喜: [speed=0.5]再见啦大大师兄~
+黑山: [speed=0.5]呜哇啊啊啊啊啊啊大哭
+黑山: [speed=0.5]赶紧走赶紧走！
+set Global.npcVis.get("方寸山").get("碧玉剑").visible = false
+set Global.addItem("碧玉剑", "weapon", "bagArmorItem", 1)
+set Global.cantShow.erase("东海海道")
+set Global.triggerPlace.get("重回建邺").disable = false
+set Global.cantShow.erase("建邺城右")
+set Global.onTalk = false
+=> END
+
+
+~ 重回建邺
+set Global.onTalk = true
+set Global.triggerPlace.get("重回建邺").disable = true
+时追云: [speed=0.5]...
+小二: [speed=0.5]这些妖怪尸体。。。
+小二: [speed=0.5]老大，这里是。。。
+时追云: [speed=0.5]这里是建邺，曾经这里也居住着许多人
+凌若昭: [speed=0.5]...
+小二: [speed=0.5]那老大你要回家看看吗
+时追云: [speed=0.5]...
+时追云: [speed=0.5]不用了，等宰了那头畜生我再回来见我娘子
+时追云: [speed=0.5]不会太远了，我马上就会拿着它的头祭拜你们了...
+
+
+set Global.onTalk = false
+=> END
+
+~ 东海海道
+set Global.onTalk = true
+set Global.triggerPlace.get("东海海道").disable = true
+时追云惊: [speed=0.5]我之前一直都不知道这里有这么大一条海道惊愕
+凌若昭: [speed=0.5]很正常，很多仙人住的地方都有类似的这样的结界，比如方寸山
+凌若昭: [speed=0.5]这里的还比较低级，只能迷住没有灵力的人的双眼
+小二: [speed=0.5]方寸山的那个确实令人头疼多了
+时追云: [speed=0.5]前面貌似就是通道的尽头了
+小二: [speed=0.5]希望这避水诀真的有用吧。。。
+凌若昭: [speed=0.5]当然有用啦，那可是师傅教的
+
+set Global.onTalk = false
+=> END
+
+~ 初遇敖雨
+set Global.onTalk = true
+set Global.triggerPlace.get("初遇敖雨").disable = true
+set FightScenePlayers.healAll()
+时追云惊: [speed=0.5]这就是龙宫吗，真不像是人间的建筑
+小二: [speed=0.5]我们现在确实不在人间啊，是在水下，不过这避水诀真的有用哎，还能正常呼吸，真神奇
+时追云: [speed=0.5]确实是，甚至还能和你们说话
+凌若昭喜: [speed=0.5]神奇的法术还有很多呢
+蟹将: [speed=0.5]站住！
+虾兵: [speed=0.5]你们是谁！
+时追云: [speed=0.5](这些妖魔。。。似乎很熟悉)
+时追云: [speed=0.5]...
+时追云惊: [speed=0.5]是你们！
+虾兵: [speed=0.5]套什么近乎！快说你们是谁
+时追云怒: [speed=0.5]当年就是你们进攻的建邺城！
+蟹将: [speed=0.5]建邺城...那不是
+
+set Global.npcVis.get("东海龙宫").get("敖雨").visible = true
+敖雨: [speed=0.5]有人在闹事？
+敖雨: [speed=0.5]就是你们在闹事啊？
+时追云怒: [speed=0.5]我们闹事？
+时追云怒: [speed=0.5] 那你们之前做的事算什么，这里是妖魔窟不成！
+敖雨: [speed=0.5]你在胡说八道什么！气死我了！你是其他海派来的吧，看招！
+时追云怒: [speed=0.5] 找死！怒喝
+set get_tree().current_scene.bossFight("敖雨","res://Audio/BGM/切磋比武.mp3", "敖雨")
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+
+set Global.onTalk = false
+=> END
+
+~ 解除误会
+set Global.onTalk = true
+敖雨: [speed=0.5]哼，人多欺负人少算怎么回事，有种和我单挑！
+时追云怒: [speed=0.5] 单挑就单挑，小二若昭你们不准出手
+小二: [speed=0.5] (第一次见老大这样，还是听他的吧)
+敖雨: [speed=0.5] 虚！沉！冰！封！
+set Global.npcVis.get("东海龙宫").get("敖阳").visible = true
+set get_tree().current_scene.get_node("敖阳").play("左下walk")
+set get_tree().current_scene.get_node("AnimationPlayer").play("解除误会")
+
+敖阳: [speed=0.5] 敖雨，住手！
+时追云惊: [speed=0.5]恩公，是你!？
+set get_tree().current_scene.get_node("敖阳").play("default")
+
+敖阳: [speed=0.5]你是...
+敖阳惊: [speed=0.5]你是当初我在建邺城看到的人类
+敖阳惊: [speed=0.5]你怎么会在这里
+时追云: [speed=0.5]三年前建邺全城被灭，我苦练武艺，一路追查，但都毫无线索
+时追云: [speed=0.5]之后有幸拜的菩提真人门下，这才有了线索，他叫我先来这里寻求帮助
+时追云: [speed=0.5]没想到在这里会遇到恩公
+敖雨: [speed=0.5]什么。。。你是建邺的人
+时追云: [speed=0.5]嗯
+敖阳: [speed=0.5]那刚才怎么会起了冲突呢？
+时追云: [speed=0.5]因为三年前屠杀建邺的妖魔，正是带着虾兵蟹将，与这里的守门人一模一样
+敖阳哀: [speed=0.5]这也怪不得你认错，其实当初那群屠杀建邺的虾兵蟹将还有他们的头领奔霸确实是从我们这里出去的
+时追云惊: [speed=0.5]什么！？
+敖阳: [speed=0.5]三年前局势动荡，神佛和妖魔打的不分上下，之后有一天又突然停止了，但所有人都知道，妖魔族群还会卷土重来
+敖阳: [speed=0.5]所以有一些人见妖魔突然变得如此之强，萌生了降敌一派
+敖阳怒: [speed=0.5]而那奔霸就是投降一派！他本是我们东海龙宫的大将军，实力比龙王都强，又手握兵权，所以更是带走了一堆带有投降念头的虾兵蟹将
+敖阳: [speed=0.5]而那天他们似乎走的很匆忙，像是要执行什么命令一般，全部跑去了建邺。而当时我还在闭关修炼，当我得知的时候。。已经。。。
+凌若昭怒: [speed=0.5]仙佛怎么会和妖魔打的不分上下呢，不是说一直以来不都是天庭掌管三界吗，为什么妖怪们突然变得这么厉害了
+敖阳: [speed=0.5]具体的我也不清楚，当时我并没有在第一线战斗，而是我父亲，但他现在也已经失踪了
+敖阳: [speed=0.5]而天庭也很久没有向我们下达指示了，所以在人界司职的神仙洞府都有点乱了
+小二: [speed=0.5]那你们不能去天上看看吗？
+敖阳: [speed=0.5]不行的，没有指示的话私自上天庭可是死罪，而且我父王临走前告知我无论如何都不要上天庭
+敖雨: [speed=0.5]那个。。。对不起！
+时追云: [speed=0.5]...为何突然道歉
+敖雨: [speed=0.5]建邺那件事是我们地方仙的失职，我们龙宫本来该保佑近海凡人风调雨顺的，但是现在却害的你们。。。。所以，对不起！
+时追云: [speed=0.5]你不需要道歉， 如果把责任怪罪到你们身上就等于那畜生少了一分罪责，冤有头债有主，他才是我要击杀的对象
+时追云: [speed=0.5]刚才我也有冲动的地方，抱歉
+敖雨: [speed=0.5]哈，那我们不打架咯？吐舌
+时追云: [speed=0.5]嗯
+敖雨: [speed=0.5]你这剑法到底是怎么练的啊，刚才差点被你砍翻了，好像你身上还带了灵力耶，你真的是凡人吗
+set get_tree().current_scene.get_node("敖阳").play("跪下")
+敖阳: [speed=0.5]咳
+敖雨: [speed=0.5]哥！
+时追云惊: [speed=0.5]恩公？
+set Global.npcVis.get("敖阳寝宫").get("敖阳").visible = true
+set Global.npcVis.get("敖阳寝宫").get("敖雨").visible = true
+[next=2]
+set get_tree().change_scene_to_file("res://Scene/"+"敖阳寝宫"+".tscn")
+set Global.mapPlayerPos = Vector2(357, 289)
+
+set Global.dial = "敖雨"
+
+set Global.onTalk = false
+=> END
+
+
+
+
+~ 敖阳寝宫
+set Global.onTalk = true
+
+set Global.npcVis.get("东海龙宫").get("敖阳").visible = false
+set Global.npcVis.get("东海龙宫").get("敖雨").visible = false
+敖阳: [speed=0.5]抱歉，让你们看笑话了
+时追云: [speed=0.5]恩公你怎么会伤的这么重
+敖阳: [speed=0.5]你也别叫我恩公恩公的了，我也没帮上你什么
+时追云: [speed=0.5]当初如果不是你即使赶到，我可能已经被奔霸给杀了
+敖雨: [speed=0.5]我大哥是前些日子被偷袭了，在自家被偷袭了！
+小二: [speed=0.5]你们龙宫也能被偷袭？能来这里的人不多吧
+敖雨: [speed=0.5]肯定是那几个老家伙！
+时追云: [speed=0.5]谁？
+敖雨: [speed=0.5]刚才我哥说的投降一派，其中就包括其他三海龙王
+敖雨: [speed=0.5]他们虽然没有明说，但是种种行为都表明，他们是要投降给妖魔！
+凌若昭怒: [speed=0.5]他们不怕天庭惩罚吗！？
+敖雨: [speed=0.5]很多人都在说天庭现在也是自身难保了，还不如改投妖怪，还能混得大点的官
+时追云: [speed=0.5]看来仙人也不都是好东西，给畜生当走狗，猪狗不如
+敖雨: [speed=0.5]哈哈哈，骂的好！
+时追云: [speed=0.5]那他们又为何来偷袭恩公？
+敖雨: [speed=0.5]肯定是为了海权祭！
+时追云: [speed=0.5]海权祭是干什么的？
+敖雨: [speed=0.5]我们四海每50年就会举行一次海权祭，四大海派出各自的代表进行比试
+敖雨: [speed=0.5]而赢到了最后的一方，最后就会成为四海之主，四海所有人皆以他为首，而最重要的是
+小二: [speed=0.5]单这一点不足以让他们大费周章吧
+敖雨: [speed=0.5]对！四海之主的头衔是一方面，另一方面就是四海之主能够拥有使用龙泉的权力
+敖雨: [speed=0.5]龙泉是海族至宝，可以调动四大海域所有海洋，等于拥有了它就等于掌握了全部的大海
+敖雨: [speed=0.5]而他们估计就是想以此增加投降妖怪的时候的筹码！
+时追云怒: [speed=0.5]有这种东西不想着去剿灭妖魔，反而是拿来投降，真是蠢到家了 
+敖雨: [speed=0.5]对！我和我哥就是想着绝对不能把龙泉交给他们！
+小二: [speed=0.5]那你们不举行这个海权祭不就行了吗，把龙泉掌握在手里，他们硬来你们就用这个力量威慑他们
+敖阳: [speed=0.5]不行的，海权祭是必须要举行的仪式，这关乎于龙泉是否承认资格，否则就算强行占有龙泉，龙泉也会排斥的
+敖雨: [speed=0.5]本来比拼个人实力我们两个不一定会输的，但是我哥他现在受了重伤...
+凌若昭怒: [speed=0.5]那群人真是不可原谅！
+敖阳: [speed=0.5]对了，菩提大仙说奔霸在哪里？
+时追云: [speed=0.5]傲来国
+敖阳惊: [speed=0.5]居然就在傲来国，亏我这几年一直在寻找他的藏身处，原来是灯下黑了...
+敖阳: [speed=0.5]你尚且。。。等我几天，等我们海权祭结束了，我和你一起去讨伐那妖怪
+敖阳: [speed=0.5]对了，你叫什么名字
+时追云: [speed=0.5]我叫时追云
+时追云: [speed=0.5]既然恩公有伤，那就由我来代劳吧
+小二:  [speed=0.5]嘿嘿
+敖阳: [speed=0.5]啊？
+set get_tree().change_scene_to_file("res://Scene/"+"水晶宫"+".tscn")
+set Global.dial = null
+set Global.onTalk = false
+=> END
+
+~ 劝说
+set Global.onTalk = true
+set Global.npcVis.get("水晶宫").get("敖阳").visible = false
+敖雨: [speed=0.5]喂，你真的要代表我们参加海权祭吗？疑惑
+敖雨: [speed=0.5]你们要面对的可是各大龙族的精英
+敖雨: [speed=0.5]而且他们还有可能出损招
+时追云: [speed=0.5]一群贪生怕死的鼠辈，在窝里不出来便罢了，在外暗箭伤人还妄图向妖魔投降，此等懦夫，我有何惧
+敖雨: [speed=0.5]我真是越来越喜欢你了，骂的太好了点赞
+时追云: [speed=0.5]...
+敖雨: [speed=0.5]既然你都这么说了，那我也不阻止你了，你先休整一下，等你准备好了就和我说吧
+时追云: [speed=0.5]好
+
+set Global.onTalk = false
+=> END
+
+
+~ 传送海斗场
+set Global.onTalk = true
+set Global.questHint = "准备好了就去和敖雨说话"
+敖雨: [speed=0.5]准备好了？那我们走吧
+set get_tree().change_scene_to_file("res://Scene/"+"海斗场"+".tscn")
+set Global.dial = "敖雨"
+set Global.onTalk = false
+=> END
+
+
+
+~ 第一轮决斗
+set Global.onTalk = true
+set Global.npcVis.get("海斗场").get("小二").visible = true
+set Global.npcVis.get("海斗场").get("凌若昭").visible = true
+
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+时追云: [speed=0.5]话说这海权祭是以什么形式进行的？
+敖雨: [speed=0.5]擂台制，由前任四海之主先守擂，最后站在场上的一方就赢了
+敖雨: [speed=0.5]不过你们不用担心，每一方最多派出五个人，我想他们大概率是两四个手下和自己亲自上场
+小二: [speed=0.5]东道主先守擂我倒是理解，但谁会先来挑战呢，先出手的人不是会被消耗吗
+敖雨: [speed=0.5]如果一直没人应战那么就是东道主赢了，而先挑战的人也有好处，那就是会获得一部分龙泉之力提升
+敖雨: [speed=0.5]而守擂的人赢了的话，也会获得一部分暂时的龙泉之力，如果站到最后的话，就会获得永久的一小部分龙泉之力
+小二: [speed=0.5]真是简单粗暴的方式啊。。。
+敖雨: [speed=0.5]最早的龙族就是崇尚武力的，这种方式确实就是实力至上主义。。。但那时候的龙族也没想到现在会有族类这么败落吧
+北海龙王: [speed=0.5] 敖阳呢？你们怎么派了些人类来哈哈哈哈哈
+西海龙王: [speed=0.5] 怕不是知道自己要输了所以拉些人类上来送死了哈哈哈哈
+南海龙王: [speed=0.5]哼哼，看来四海之主的位子要在我们三个之间产生了
+虾将: [speed=0.5]就看我的吧龙王，看我把他们砸烂
+蟹将: [speed=0.5]凡人也敢来参加我们海权祭，真是找死
+小二: [speed=0.5] 哎呀哎呀哎呀，我没听错吧。老大，我怎么听到一些老鼠在吱吱叫
+凌若昭: [speed=0.5]是哦！叫的好大声！
+时追云: [speed=0.5]老鼠扎堆，和腐臭的同类在一起自然叫的欢响
+北海龙王: [speed=0.5]大胆，居然敢这么和我们说话，你是什么东西！
+西海龙王: [speed=0.5]你们是不要命了是吗，凡人！
+南海龙王: [speed=0.5]哼哼
+小二: [speed=0.5]我要命，很要命，不过你们这些老鼠夺不走
+巨蛙: [speed=0.5]桀桀桀，最近是很少吃人类了，看来今天能饱餐一顿了
+时追云惊: [speed=0.5]这巨蛙。。。
+北海龙王: [speed=0.5]算你有眼力，这可是我花费了大量时间培养的巨蛙品种，前几年虽然跑掉了一个，但剩下的这只才是我最完美的作品
+时追云: [speed=0.5]前几年在东海湾出现的巨蛙是你养的
+北海龙王: [speed=0.5]原来他跑去东海湾了吗，哈哈哈哈，估计吃了个饱吧
+时追云怒: [speed=0.5]他们似乎已经养成了吃人的习惯，你养他们的方式就是吃人吗！
+北海龙王: [speed=0.5]哼，只要培养出来一只精英，喂一点人算什么，不过人的能量真是庞大啊...
+西海龙王: [speed=0.5]北老龙，你也发现了这点是吧
+北海龙王: [speed=0.5]嗯？你也是啊
+西海龙王: [speed=0.5]哈哈哈哈哈哈
+南海龙王: [speed=0.5]哼哼，这几年天庭一点消息也没有，抓人方便了许多
+小二: [speed=0.5]你们这些家伙...
+凌若昭怒: [speed=0.5]你们把凡人的命当作什么了
+敖雨: [speed=0.5]你们真是我族之耻！
+北海龙王: [speed=0.5]饲料虫蝇而已，何足为重
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("up")
+set get_tree().current_scene.get_node("AnimationPlayer").play("walkUp")
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/Immediate Music - Dark Side Of Power (No Choir).mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+时追云怒: [speed=0.5]很好，你们真对的起凡人给你们的供奉怒喝
+时追云: [speed=0.5]我遇见过一个塔灵，他虽然失去了记忆，但是还是遵循了本能，去保护凡人
+时追云: [speed=0.5]他是真正的人类守护神
+时追云: [speed=0.5]当我第一次见到仙人的时候感觉他们很神秘，有深不可测的实力与以民为本的善，他也确实是这样
+时追云: [speed=0.5]他甚至教化了一个无恶不作的人，成为一个坚守职责，但又体谅人的仙人
+时追云: [speed=0.5]当我第二次见到仙人的时候，虽然起了冲突，但还是能发现他们的善良和作为神仙的责任心
+时追云怒: [speed=0.5]而第三次我却只见到了一群畜生败类
+时追云怒: [speed=0.5]如果让你们继续为非作歹，对凡人的伤害不会比妖魔更少
+时追云怒: [speed=0.5]你们不配被称为仙人了，你们的内心已于妖魔无异
+时追云怒: [speed=0.5]或者说，你们已经可以被称之为妖怪了！怒喝
+北海龙王: [speed=0.5]唧唧歪歪的你到底想说什么！
+时追云: [speed=0.5]我的意思是，你们今天全都走不了了！怒喝
+时追云: [speed=0.5]我要把你们全都宰了怒喝
+时追云怒: [speed=0.5]把你们的命留在这里给被你们杀死的凡人赔罪！怒喝
+西海龙王: [speed=0.5]真是狂妄至极！
+南海龙王: [speed=0.5]哼哼，我看是你走不出去了！
+北海龙王: [speed=0.5]忍不了你了，蟹将，给我砸烂他！
+蟹将: [speed=0.5]是大王！看我的！
+
+set get_tree().current_scene.get_node("蟹将").play("walk")
+set get_tree().current_scene.get_node("AnimationPlayer").play("蟹黄walk")
+[next=1]
+set get_tree().current_scene.bossFight("蟹将","res://Audio/BGM/网易游戏 - 战斗2.mp3", "敖雨")
+
+set Global.onTalk = false
+=> END
+
+~ 第二轮决斗
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player/effects/龙泉之力").visible = true
+set get_tree().current_scene.get_node("player/effects/龙泉之力").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/110-Heal06.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set Global.damageReward1 += 0.2
+set get_tree().current_scene.get_node("蟹将").visible = false
+时追云: [speed=0.5]这就是龙泉之力吗，感觉浑身灵力充盈
+北海龙王: [speed=0.5]你。。。你居然真的敢杀了他
+set get_tree().current_scene.get_node("player/effects/龙泉之力").visible = false
+北海龙王: [speed=0.5]东海！这就是你们的行事吗！！
+敖雨: [speed=0.5]我们。。。
+时追云: [speed=0.5]怎么？刚才我们一进来就对我们喊打喊杀，这会我真杀了你们的人，你反倒惊讶了
+时追云: [speed=0.5]还是说你觉得只有你们能杀人，别人杀你不得？可笑！
+南海龙王: [speed=0.5](看来这人类不是普通人啊)
+西海龙王: [speed=0.5]北老龙，看来你的蟹将不太行啊，居然被一个凡人给斩杀了
+北海龙王: [speed=0.5]我。。。我要你死！！！！
+北海龙王: [speed=0.5]巨蛙，给我上！给我吃了他！！
+巨蛙: [speed=0.5] 桀桀桀，是龙王
+巨蛙: [speed=0.5]那蟹将只是个废物罢了，你能打死他也不算什么，准备在我的胃里被腐蚀吧
+时追云: [speed=0.5]我曾经见到的那只巨蛙也和你笑得一样难听
+巨蛙: [speed=0.5]你说什么！
+时追云: [speed=0.5]后来我把它的舌头给割了下来当皮筋用
+时追云: [speed=0.5]正好，现在看来可以有第二根了
+巨蛙: 狂妄！
+set get_tree().current_scene.get_node("巨蛙").play("walk")
+set get_tree().current_scene.get_node("AnimationPlayer").play("巨蛙walk")
+[next=1]
+set get_tree().current_scene.bossFight("巨蛙兄","res://Audio/BGM/网易游戏 - 战斗2.mp3", "敖雨")
+set Global.onTalk = false
+=> END
+
+~ 第三轮决斗
+set Global.onTalk = true
+set Global.npcVis.get("海斗场").get("巨蛙").visible = false
+北海龙王: 不要啊啊！！！！！
+北海龙王: [speed=0.5]我花费多年心血培养出来的巨蛙品种
+北海龙王: [speed=0.5]我绝对要杀了你，绝对要杀了你！！！
+西海龙王: [speed=0.5](这小子连战两场，现在应该就是摘桃子的最好时机了)
+西海龙王: [speed=0.5]北老龙，你消消气，不过是一只巨蛙嘛，再培养就是了
+西海龙王: [speed=0.5]窝壳贝，你上去教训教训那凡人，给巨蛙和蟹将报仇
+set get_tree().current_scene.get_node("AnimationPlayer").play("窝壳贝walk")
+[next=1]
+小二: [speed=0.5]这东西原来会动的吗，我还以为是装饰品
+set get_tree().current_scene.bossFight("窝壳贝","res://Audio/BGM/网易游戏 - 战斗2.mp3", "敖雨")
+
+set Global.onTalk = false
+=> END
+
+
+
+~ 第四轮决斗
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player/effects/龙泉之力").visible = true
+set get_tree().current_scene.get_node("player/effects/龙泉之力").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/110-Heal06.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set Global.damageReward1 += 0.2
+
+set get_tree().current_scene.get_node("窝壳贝").visible = false
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/Immediate Music - Dark Side Of Power (No Choir).mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+西海龙王: [speed=0.5]居。。。居然连窝壳贝都
+set get_tree().current_scene.get_node("player/effect").visible = false
+小二: [speed=0.5]感觉老大一个人都要把他们宰光了。。。
+敖雨: [speed=0.5]他。。。比我想象的还要强
+西海龙王: [speed=0.5]虾将，你给我去解决了他
+虾将: [speed=0.5]啊？我？
+......
+时追云: [speed=0.5]没有人敢过来了吗
+西海龙王: [speed=0.5]不争气的东西，赶紧给我上去！
+虾将: [speed=0.5]不要。。。我不要，我跑还不行吗
+
+set get_tree().current_scene.get_node("AnimationPlayer").play("虾将walk")
+set get_tree().current_scene.get_node("npc4/effects").visible = true
+set get_tree().current_scene.get_node("npc4/effects/飞剑诀").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/096-Attack08.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+[next=1]
+set get_tree().current_scene.get_node("npc4").visible = false
+set get_tree().current_scene.get_node("player/effects/龙泉之力").visible = true
+set get_tree().current_scene.get_node("player/effects/龙泉之力").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/110-Heal06.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set Global.damageReward1 += 0.2
+
+
+北海龙王: [speed=0.5]！！！
+set get_tree().current_scene.get_node("player/effects/龙泉之力").visible = false
+
+西海龙王: [speed=0.5]你在做什么！！
+南海龙王: [speed=0.5]他可都没上场。。。
+敖雨: [speed=0.5]龙泉再次给了他力量，龙泉是承认了刚才的战斗的！
+时追云: [speed=0.5]你们还没听懂吗
+时追云: [speed=0.5]上场？当你们拿屠刀伸向凡人的时候你们就已经在与我战斗的场上了
+时追云: [speed=0.5]我说了，要拿你们的命献祭去给那些被你们害死的凡人
+时追云怒: [speed=0.5]是谁给了你们狗胆！怒喝
+时追云怒: [speed=0.5]这将是我对你们单方面的屠杀
+时追云怒: [speed=0.5]你们上是死，你们不上，也是死！
+时追云怒: [speed=0.5]下一个！怒喝
+南海龙王: [speed=0.5](怎么这么慢，还没偷到吗)
+set get_tree().change_scene_to_file("res://Scene/"+"龙泉"+".tscn")
+set Global.dial = "敖雨"
+set Global.onTalk = false
+=> END
+
+~ 偷龙泉
+set Global.onTalk = true
+
+碧水夜叉: [speed=0.5]这个就是龙泉了吧哈哈哈哈，真是得来不费功夫
+set Global.npcVis.get("龙泉").get("敖阳").visible = true
+敖阳: [speed=0.5]那可不一定
+碧水夜叉: ！！！
+碧水夜叉: [speed=0.5]你。。你怎么会
+敖阳: [speed=0.5]我怎么会在这里是吗。哼！
+敖阳: [speed=0.5]要不是时公子和我说你们有可能来偷龙泉，我还真不一定能想的到
+敖阳: [speed=0.5]明明你们用不了，却想着来偷，你们脑子是不是有问题
+碧水夜叉: [speed=0.5]我们是用不了，但是妖王大人能用啊
+敖阳怒: [speed=0.5]原来你们打的是这个算盘
+碧水夜叉: [speed=0.5]哼，之前的你我可能打不过，现在你的嘛，全身还疼呢吧
+敖阳: [speed=0.5]果然是你们！南海！
+碧水夜叉: [speed=0.5]知道的太晚了，受死吧！
+[next=1]
+set get_tree().change_scene_to_file("res://Scene/"+"海斗场"+".tscn")
+set Global.mapPlayerPos = Vector2(352,190)
+set Global.onTalk = false
+=> END
+
+
+
+~ 第五轮决斗
+set Global.onTalk = true
+
+set get_tree().current_scene.get_node("player").position =  Vector2(352,190)
+set Global.npcVis.get("海斗场").get("巨蛙").visible = false
+set get_tree().current_scene.get_node("蟹将").visible = false
+set get_tree().current_scene.get_node("npc4").visible = false
+set get_tree().current_scene.get_node("窝壳贝").visible = false
+
+
+
+
+时追云: [speed=0.5]没有人了吗，没有人我就自己下去找一个了
+敖雨: [speed=0.5](汗。。。这样子马上就会被围攻了吧，我都以为我够激进的了)
+西海龙王: [speed=0.5](再这样下去真要被他杀完了，他身上的龙泉之力都要叠爆了吧)
+北海龙王: [speed=0.5] (不行，如果我先出手的话岂不是要被其他两家占了便宜)
+南海龙王: [speed=0.5] ...
+时追云: [speed=0.5]那就你了，那个黑的
+南海龙王: [speed=0.5]为。。。为什么是我
+时追云: [speed=0.5]我格外讨厌黑龙王
+海夜叉: [speed=0.5]我不能让你伤害我主
+set get_tree().current_scene.get_node("AnimationPlayer").play("海夜叉walk")
+[next=1]
+时追云: [speed=0.5]为什么要助纣为虐
+海夜叉: [speed=0.5]他是我的主人，不管他是不是对的，我都听命于他！
+时追云: [speed=0.5]明白了，完成你的使命，然后受死吧
+set get_tree().current_scene.bossFight("海夜叉","res://Audio/BGM/网易游戏 - 战斗2.mp3", "敖雨")
+
+set Global.onTalk = false
+=> END
+
+
+~ 围殴
+set Global.onTalk = true
+set get_tree().current_scene.get_node("海夜叉").visible= false
+
+set get_tree().current_scene.get_node("player/effects/龙泉之力").visible = true
+set get_tree().current_scene.get_node("player/effects/龙泉之力").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/110-Heal06.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set Global.damageReward1 += 0.2
+
+时追云: [speed=0.5]好了，还剩下你们了
+北海龙王: [speed=0.5]你。。。你这么做和妖怪有什么区别
+西海龙王: [speed=0.5]对。。对，你不能杀我们，你会遭天谴的！
+时追云: [speed=0.5]这些是被你们杀死的人所说过的话吗
+北海龙王: [speed=0.5] ...
+南海龙王:  [speed=0.5] 这。。。
+时追云: [speed=0.5]我本来就已经很想杀你们了，你们不必再加深我杀你们的欲望
+时追云: [speed=0.5]说我是妖也行。我---就是专杀你们的妖！
+南海龙王: [speed=0.5]狂妄！
+南海龙王: [speed=0.5]你们两个快别互相猜忌了，真要他把我们杀光吗！一起上！
+北海龙王: [speed=0.5]好，一起宰了他！
+敖雨: [speed=0.5]你们要破坏规则吗！
+北海龙王: [speed=0.5]不然让他把我们杀了不成！
+西海龙王: [speed=0.5]我管你什么规则，把你们全杀了再举行比试，龙泉就是我们的了！
+小二: [speed=0.5]老大我们来帮你！
+敖雨: [speed=0.5]我来助你！
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPet.append("敖雨")
+set get_tree().current_scene.bossFight("龙王们","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "敖雨")
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 敖阳到场
+
+set Global.onTalk = true
+set Global.npcVis.get("海斗场").get("北海龙王").visible = false
+set Global.npcVis.get("海斗场").get("西海龙王").visible = false
+set Global.npcVis.get("海斗场").get("南海龙王").visible = false
+
+set Global.damageReward1 -= 0.7
+set get_tree().current_scene.get_node("敖阳").play("左上walk")
+set get_tree().current_scene.get_node("AnimationPlayer").play("敖阳walk")
+[next=1]
+敖阳惊: [speed=0.5]几位龙王呢？
+set get_tree().current_scene.get_node("敖阳").play("左上")
+时追云: [speed=0.5]全死了
+敖阳惊: [speed=0.5]全。。。全死了？
+敖阳惊: [speed=0.5]不就比个武吗怎么全死了？！
+敖雨: [speed=0.5]哥，他们拿凡人喂养自己的战将，他们罪该万死
+敖阳怒: [speed=0.5]什么！？竟然有这种事，该杀！
+小二: [speed=0.5]那这些剩下的虾兵蟹将怎么办？
+敖阳: [speed=0.5]...
+敖阳: [speed=0.5]时少侠，放他们走吧
+时追云: [speed=0.5]你确定吗？
+敖阳: [speed=0.5]嗯，几位龙王越了底线，杀了也无妨，真要闹到天庭上去他们也是死罪
+敖阳: [speed=0.5]但要是把其他龙宫的全杀了，没人管理海，那临海城市的百姓就要遭殃了
+时追云: [speed=0.5]好，那就放了他们
+敖阳怒: [speed=0.5]你们给我听着，以后不许再动凡人一根汗毛，不然下场就和你们的主子一样！
+敖阳怒: [speed=0.5]过阵子我会派人过去管理，在那之前给我好好待在深海内反省！怒喝
+虾兵蟹将: [speed=0.5]是是是！
+set get_tree().change_scene_to_file("res://Scene/"+"水晶宫"+".tscn")
+set Global.dial = "敖雨"
+
+
+set Global.onTalk = false
+=> END
+
+~ 去寻奔霸
+set Global.onTalk = true
+
+敖阳: [speed=0.5]这次真是多亏了你们了，不愧是菩提真人门下的弟子
+时追云: [speed=0.5]举手之劳而已，恩公别怪我杀孽太重便好
+敖阳: [speed=0.5]怎么会！纵容恶人等于祸害好人，即便你不出手我也会动手
+敖阳: [speed=0.5]维稳就是为了他们不害到凡人，但他们既然已经堕落成这样了那也没必要留着他们了
+敖雨: [speed=0.5]没有那些惹事精了，这下四海就好管多了
+敖阳: [speed=0.5]论惹事你也不差。。。
+敖雨: [speed=0.5]话说哥你那边没事吧
+敖阳: [speed=0.5]刚才确实有个夜叉想要偷龙泉，还好我靠近龙泉，可以用龙泉之力击败他
+敖阳: [speed=0.5]他们的目的竟然是想直接交给妖盟那边
+时追云: [speed=0.5]说起龙泉之力，貌似还有一部分在我身上，怎么还回去
+敖雨: [speed=0.5]海权祭的胜者就是会留一部分在身上的，我们想拿也拿不走
+敖阳: [speed=0.5]这也算是我们的谢礼吧
+时追云: [speed=0.5]好吧
+时追云: [speed=0.5]所以妖盟到底是谁建立的，没人管吗
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = "res://Audio/BGM/0情况危机"
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+敖阳: [speed=0.5]三年前突然有一些东西和天庭神佛打了起来
+敖阳: [speed=0.5]当时整个天庭一直传来厮杀的声音，久久没有停息，直到有一天，突然天上就没声音了
+敖阳: [speed=0.5]自那之后天庭再也没给我们这些凡间任职的小神信息
+敖阳: [speed=0.5]而自那之后突然有一股叫妖盟的势力崛起，许多妖怪加入了他们，他们实力强大，人数众多，我们这些小神也根本不可能动的了他们
+敖阳: [speed=0.5]现在根本就没有多少信息，只知道妖盟那边的老大自称妖皇，带领着一群手下时不时的骚扰人间
+时追云: [speed=0.5]骚扰？
+敖阳: [speed=0.5]嗯，只能用骚扰这个词，他们很明显没有尽全力，不然人类不可能挡得住
+敖阳: [speed=0.5]他们给我的感觉，更像是在圈养人类，而不是为了杀光人类
+时追云惊: [speed=0.5]圈养人类！？
+凌若昭怒: [speed=0.5]他们到底有什么目的！
+敖阳: [speed=0.5]不知道，他们是在明处，但我们却获得不了一点信息
+敖阳: [speed=0.5]我有抓了一些骚扰人间的小妖来审问，但他们宁死都也不肯透露一点信息
+时追云: [speed=0.5]妖怪不应该都这么有骨气吧？
+敖阳: [speed=0.5]他们的脸上透露着不是勇气，而是恐惧！一种超过了魂飞魄散的恐惧！
+小二: [speed=0.5]比魂飞魄散还可怕。。。那到底是什么事情
+敖阳: [speed=0.5]据我所知，奔霸也是加入了妖盟！
+敖阳: [speed=0.5]这次去找奔霸，他绝对不可能是一个人，他的身边可能会是一个妖怪军团
+时追云: [speed=0.5]就算把挡在我面前的妖怪全部杀光我也会走到他面前，一剑一剑的杀死他
+敖阳: [speed=0.5]我会和你一起去，之前因为海权祭的事情一直没法专心去找他，现在终于可以抽身了
+敖雨: [speed=0.5]我也去！
+敖阳: [speed=0.5]你去干什么！你留下
+敖雨: [speed=0.5]你们可以为了大义闯进妖魔窟，难道我不行吗？
+敖雨: [speed=0.5]我作为建邺守护神之一，本就有职责去追杀奔霸，纠正当年的错误！
+敖阳: [speed=0.5]...
+敖阳: [speed=0.5]好吧，但你绝对不能逞强
+敖雨: [speed=0.5]我知道啦
+小二: [speed=0.5]太好了，本来我还有点慌的，有你们帮忙，情况也没那么绝望了
+时追云: [speed=0.5] 那我们休整几日便出发吧，恩公你也先养伤
+敖阳: [speed=0.5] 嗯，我顺便也得处理下四海事务
+敖阳: [speed=0.5] 敖雨，你这几天就带着他们逛逛吧
+敖雨: [speed=0.5] 哦好
+凌若昭喜: [speed=0.5] 终于有时间可以看看这龙宫了
+set Global.npcVis.get("水晶宫").get("敖雨").visible = false
+set Global.questHint = "去龙宫最壮观的地方看看吧！"
+set Global.triggerPlace.get("玉箍棒").disable = false
+set Global.dial = null
+set Global.onTalk = false
+=> END
+
+~ 玉箍棒
+set Global.onTalk = true
+set Global.triggerPlace.get("玉箍棒").disable = true
+set Global.npcVis.get("东海龙宫").get("小二").visible = true
+set Global.npcVis.get("东海龙宫").get("凌若昭").visible = true
+set Global.npcVis.get("东海龙宫").get("敖雨2").visible = true
+set get_tree().current_scene.get_node("金箍棒2").visible = true
+set get_tree().current_scene.get_node("player").position = Vector2(635,940)
+小二: [speed=0.5]我去，好大一根棍子！
+凌若昭: [speed=0.5]这是金箍棒吗？
+凌若昭: [speed=0.5]不对不对，金箍棒很早以前就已经被我师兄给拿走了
+时追云: [speed=0.5]你师兄？
+凌若昭: [speed=0.5]嗯，我师兄就是齐天大圣孙悟空
+凌若昭: [speed=0.5]他很久以前就是在东海龙宫获得的他的武器金箍棒，大禹治水的如意神珍，可随主人心意变大变小
+小二: [speed=0.5]这么神奇？
+敖雨: [speed=0.5]是啊，那是我们龙宫之前的至宝。没想到你还是孙大圣的师妹
+凌若昭: [speed=0.5]虽然说他是我师兄，但他应该不认识我啦，我入门的时候他已经不在师门很久了
+敖雨: [speed=0.5]他当年把金箍棒拿走之后我父王不知道又从哪里找了根玉箍棒。。。虽然威力比不上金箍棒，但是也能变大变小，沉重无比
+敖雨: [speed=0.5]听说还有激发主人潜力的能力
+小二: [speed=0.5]变大变小？怎么变大变小？
+凌若昭喜: [speed=0.5]你能控制它吗？
+敖雨: [speed=0.5]我不行。。。它和金箍棒一样，只会听从于它认为有资格的主人
+敖雨: [speed=0.5]孙大圣当年好像只是指着金箍棒说了几句变小，它就真的变小了
+小二: [speed=0.5]变小变小？
+set get_tree().current_scene.getJinGuBang()
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=6]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+小二: [speed=0.5]额，为什么会惊愕
+敖雨: [speed=0.5]！！！？？？惊愕
+凌若昭: [speed=0.5]噫？惊愕
+时追云惊: [speed=0.5]小二？
+小二: [speed=0.5]它怎么会飞到我面前。。。。
+敖雨: [speed=0.5]这东西在这几百年没反应了，我都以为父王是骗我的
+敖雨: [speed=0.5]现在看来，难道你就是它认可的主人
+
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/旅愁.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+小二: [speed=0.5]不，不可能！
+时追云: [speed=0.5]小二？
+小二: [speed=0.5]我不配成为它的主人，它不可能是我的！
+小二: [speed=0.5]你把它收走吧
+敖雨: [speed=0.5]都已经被你拆下来了我怎么收走怎么放回去
+小二: [speed=0.5]...
+时追云: [speed=0.5]你为什么如此抗拒它？
+小二: [speed=0.5]这么珍贵的东西，它是属于真正的英雄的...而我。。。我只是个
+时追云: [speed=0.5]你登顶了锁妖塔，救了长安的百姓，之后更是参加剿灭叛军的战场
+时追云: [speed=0.5]这次又阻止了那群败类投降妖怪，此些壮举，你为何不配拥有它
+小二: [speed=0.5]老大...我真的不可以收了它，会出事的
+敖雨: [speed=0.5]这种绝世神兵我都送你了你还不要啊？？？
+凌若昭: [speed=0.5]...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]那这武器我先替你收着，有一天你一定会需要他的
+小二: [speed=0.5]嗯。。。
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = ""
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+敖雨: [speed=0.5]？？？怎么你也拿得动！
+时追云: [speed=0.5]额，我应该拿不动吗？
+敖雨: [speed=0.5]它虽然变小了，但它的重量可没变，不是它认定的主人可没法举起它。。。
+时追云: [speed=0.5]那就不知道了，可能是和我练的功法有关系吧
+敖雨: [speed=0.5]你们一个个的可真是怪胎
+set Global.dial = "敖雨"
+[next=1]
+set get_tree().change_scene_to_file("res://Scene/"+"水晶宫"+".tscn")
+
+set Global.onTalk = false
+=> END
+
+
+~ 离开东海龙宫
+set Global.onTalk = true
+敖阳: [speed=0.5]你们休息好了吗?
+时追云: [speed=0.5]嗯
+小二: [speed=0.5]那我们怎么去傲来国？
+敖雨: [speed=0.5]什么怎么去，跟着我们飞过去不就好了
+时追云: [speed=0.5]飞...
+小二: [speed=0.5]若昭你去过傲来。。。。算了当我没问汗颜
+敖雨: [speed=0.5]？
+时追云: [speed=0.5]我们并没有飞天入地的神通汗颜
+敖阳: [speed=0.5] 好吧，忘记这点了汗颜
+小二: [speed=0.5]你们会不会那种，嗖的一下带我们传送过去的法术
+敖雨: [speed=0.5]神仙可不能万能的啊
+敖阳: [speed=0.5]那我们乘船去吧
+[next=2]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().change_scene_to_file("res://Scene/"+"傲来船"+".tscn")
+set Global.dial = "敖雨"
+
+set Global.onTalk = false
+=> END
+
+~ 傲来船
+set Global.onTalk = true
+set Global.onTeamPet.append("敖阳")
+
+小二: [speed=0.5]你们还说神仙不是万能的，用灵力驱动这么大的船游动都做得到
+时追云: [speed=0.5]说起来我倒是第一次离开大唐国土
+小二: [speed=0.5]我也是
+敖雨: [speed=0.5]我们应该离傲来国不远了
+敖阳: [speed=0.5]傲来国在仙界也算有名了，毕竟是孙大圣居住的地方
+凌若昭: [speed=0.5]师兄居住的地方？疑惑
+敖阳: [speed=0.5]嗯，他就住在傲来国花果山水帘洞
+敖阳: [speed=0.5]传说它藏在一片奔腾的瀑布之后，洞口被水流掩盖， 但其实洞内别有洞天，晶莹的石壁如同宝石一般闪耀，水流在洞中回响，
+小二: [speed=0.5]哇，这么神奇
+凌若昭喜: [speed=0.5]我们之后一起去看看吧
+时追云: [speed=0.5]还是得先找到奔霸再说，毕竟我们在明，他们在暗
+小二: [speed=0.5]也是，也许我们一上岸就被几百个妖怪包围了说不定
+敖雨: [speed=0.5]喂，你可别乌鸦嘴啊
+时追云: [speed=0.5]你们有没有觉得附近，特别的安静
+凌若昭: [speed=0.5]好像是哦
+小二: [speed=0.5]大海中间平静也很正常吧
+敖阳: [speed=0.5]确实不对劲，一点鸟类鱼群都没有，海面也异常的平静
+小二: [speed=0.5]应该不会有什么事吧。。。。
+敖雨: [speed=0.5]不对！
+敖阳惊: [speed=0.5]有什么东西在海底拉我们的船
+时追云惊: ！！！
+set get_tree().current_scene.get_node("AnimationPlayer").play("shake")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/SE/131-Earth03.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+[next=1]
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/SE/023-Dive03.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+[next=1]
+
+set Global.current_chapter_id = 4
+
+set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
+set Global.dial = "敖雨"
+set Global.onTalk = false
+=> END
+

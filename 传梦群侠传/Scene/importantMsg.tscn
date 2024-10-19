@@ -1,20 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dw2xa4a3g20j6"]
+[gd_scene load_steps=4 format=3 uid="uid://dw2xa4a3g20j6"]
 
 [ext_resource type="Script" path="res://Script/importantMsg.gd" id="1_8jmci"]
 [ext_resource type="AudioStream" uid="uid://c0vdcioyxgepi" path="res://Audio/SE/056-Right02.ogg" id="1_bvpo1"]
+[ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="2_7fgc8"]
 
 [node name="importantMsg" type="Node2D"]
 script = ExtResource("1_8jmci")
 
-[node name="Panel" type="Panel" parent="."]
-self_modulate = Color(0, 0, 0, 1)
-offset_right = 416.0
-offset_bottom = 121.0
+[node name="Panel" type="TextureRect" parent="."]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 446.0
+offset_bottom = 166.0
+texture = ExtResource("2_7fgc8")
+expand_mode = 1
 
 [node name="ImportantMsg" type="Label" parent="Panel"]
+modulate = Color(0, 0.388235, 1, 1)
 layout_mode = 0
-offset_right = 415.0
-offset_bottom = 121.0
+offset_left = 13.0
+offset_top = 25.0
+offset_right = 428.0
+offset_bottom = 146.0
 theme_override_font_sizes/font_size = 20
 text = "歼灭全部守塔妖：伤害永久加10%"
 horizontal_alignment = 1
