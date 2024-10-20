@@ -1264,7 +1264,7 @@ var default_trigger_places
 var saved_trigger_places
 var totalPotentialBall = 0
 var uniqueId
-var countDown = false
+var countDownOn = false
 var triggerPlace ={
 	"新手警告": {"trigger":false, "disable": false},
 	"二娃请求": {"trigger":false, "disable": true},

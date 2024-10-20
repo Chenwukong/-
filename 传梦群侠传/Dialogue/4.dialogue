@@ -959,7 +959,7 @@ set Global.onTalk = false
 ~ 洞外碰面
 set Global.onTalk = true
 set get_tree().current_scene.baseChance = 800
-set Global.countDown = true
+set Global.countDownOn = true
 set get_tree().current_scene.get_node("AnimationPlayer").play("moveCamera")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=3]
@@ -1036,7 +1036,8 @@ set Global.onTalk = false
 
 ~ 再见奔霸
 set Global.onTalk = true
-set Global.countDown = false
+set Global.countDownOn = false
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").pitch_scale = 1.0
 set Global.triggerPlace.get("再见奔霸").disable = true
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("leftStand")
 set get_tree().current_scene.get_node("player").position = Vector2(1509, 327)

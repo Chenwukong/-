@@ -576,7 +576,7 @@ func _on_count_down_timer_timeout():
 	var seconds = values % 60  # 计算剩余秒数
 	# 使用字符串格式化显示 "分钟:秒"，确保秒数为两位数
 	$countDown.text = str(minutes) + ":" + str("%02d" % seconds)	
-	if values == 0 and Global.countDown:
+	if values == 0 and Global.countDownOn:
 		get_tree().change_scene_to_file("res://Scene/failScene.tscn")
 
 

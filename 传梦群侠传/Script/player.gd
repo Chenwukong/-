@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 1000
+var speed = 200
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
