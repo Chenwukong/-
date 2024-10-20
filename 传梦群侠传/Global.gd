@@ -1264,6 +1264,7 @@ var default_trigger_places
 var saved_trigger_places
 var totalPotentialBall = 0
 var uniqueId
+var countDown = false
 var triggerPlace ={
 	"新手警告": {"trigger":false, "disable": false},
 	"二娃请求": {"trigger":false, "disable": true},
@@ -1378,7 +1379,7 @@ func save():
 	saveData.cantShow = cantShow
 	saveData.onTeamSmallPet = onTeamSmallPet
 func loadData():
-	#onTeamSmallPet = saveData.onTeamSmallPet 
+	onTeamSmallPet = saveData.onTeamSmallPet 
 	currScene = saveData.currScene
 	currPlayer = saveData.currPlayer
 	onTeamPlayer = saveData.onTeamPlayer

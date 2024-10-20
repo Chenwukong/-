@@ -13,6 +13,7 @@ var firstCheck = false
 var values
 var toSix = false
 var cost = 0
+
 func get_all_audio_stream_player2D():
 	var audio_players = []
 	var all_nodes = get_tree().current_scene.get_children()
@@ -575,7 +576,7 @@ func _on_count_down_timer_timeout():
 	var seconds = values % 60  # 计算剩余秒数
 	# 使用字符串格式化显示 "分钟:秒"，确保秒数为两位数
 	$countDown.text = str(minutes) + ":" + str("%02d" % seconds)	
-	if values == 0:
+	if values == 0 and Global.countDown:
 		get_tree().change_scene_to_file("res://Scene/failScene.tscn")
 
 

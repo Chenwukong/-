@@ -67,7 +67,7 @@ set get_tree().current_scene.get_node("近海恶蛟/").visible = false
 	敖雨: [speed=0.5]唉。。。没办法了
 	[next=1]
 	set get_tree().change_scene_to_file("res://Scene/"+"傲来国"+".tscn")
-	set Global.dial = "system"	
+	set Global.dial = "敖雨"	
 
 set Global.onTalk = false
 => END
@@ -666,6 +666,9 @@ set Global.onTalk = false
 ~ 初进花果山
 set Global.onTalk = true
 set Global.onHurry = true
+
+set get_tree().current_scene.get_node("player").position = Vector2(-290, 2216)
+
 大鹏: [speed=0.5]这次的食物送上来了嘛
 大鹏: [speed=0.5]不对，你们。。站住！
 时追云怒: [speed=0.5]动手！怒喝
@@ -723,6 +726,7 @@ set Global.npcVis.get("花果山").get("黑蝠3").visible = false
 set Global.npcVis.get("花果山").get("兔子精").visible = false
 set Global.onTeamPet.append("敖阳")
 set Global.onTeamPlayer.append("小二")
+set Global.npcVis.get("花果山").get("敖阳").visible = false
 时追云: [speed=0.5]你们那边也解决了吗
 小二: [speed=0.5]搞定啦
 敖阳: [speed=0.5]嗯继续往前走吧
@@ -955,6 +959,7 @@ set Global.onTalk = false
 ~ 洞外碰面
 set Global.onTalk = true
 set get_tree().current_scene.baseChance = 800
+set Global.countDown = true
 set get_tree().current_scene.get_node("AnimationPlayer").play("moveCamera")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=3]
@@ -1031,6 +1036,7 @@ set Global.onTalk = false
 
 ~ 再见奔霸
 set Global.onTalk = true
+set Global.countDown = false
 set Global.triggerPlace.get("再见奔霸").disable = true
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("leftStand")
 set get_tree().current_scene.get_node("player").position = Vector2(1509, 327)
