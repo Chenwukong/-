@@ -390,7 +390,7 @@ func _process(delta):
 						
 						cast_magic_multiple_times(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, 3)
 					else:
-						
+						print(Global.lastMagic)
 						castMagic(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, true)
 					
 					
@@ -487,6 +487,8 @@ func _process(delta):
 			target.get_node("getHitEffect").visible = false
 			target.self_modulate = "#ffffff"
 		elif controlType == "keyboard":
+			if !is_instance_valid(Global.target):
+				return
 			if Global.target.name == "敖阳" or Global.target.name == "时追云" or Global.target.name == "敖雨" or Global.target.name == "大海龟" or Global.target.name == "小二"  or Global.target.name == "姜韵"  or Global.target.name == "金甲"  or Global.target.name == "凌若昭":
 				return   
 			if crit == "normal":
@@ -953,7 +955,7 @@ func _process(delta):
 		#如果法术不是buff，那就指向敌人
 		
 		get_parent().get_node("Panel").visible = true
-		if Global.currPlayerMagic[Global.magicSelectIndex].attackType != "buff":
+		if Global.currPlayerMagic[Global.magicSelectIndex].attackType != "buff" and monsters.size()>0:
 			Global.target = monsters[Global.targetMonsterIdx]
 			target = monsters[Global.targetMonsterIdx]
 			targetPosition = Global.target.position
@@ -1166,7 +1168,8 @@ func attack(target, type):
 
 func castMagic(delta, magic, target, type, onLastMagic):
 	magicControlType = type
-	
+	if onLastMagic:
+		Global.target = castLastMagic.target
 	if magic.name != "千机变":
 		castLastMagic.magicInfo = magic
 		castLastMagic.target = target
@@ -1314,6 +1317,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 				
 			if magicControlType == "keyboard":
 				Global.onHitEnemy.append(Global.target)
+				
 				if Global.target != null:
 					targetPosition = Global.target.position
 					
@@ -1325,7 +1329,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 					damage_to_deduct = self.currStr * magic.value * float(Global.target.physicDefense)/1000 
 					Global.dealtDmg =  (self.currStr * magic.value - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg))* Global.damageReward1
 					Global.dealtDmg *= checkIncreaseDmg(magic)
-					
+					print(222, Global.dealtDmg)
 					
 					
 					var disDamage = display_damage(round(Global.dealtDmg),"normal")
@@ -1581,6 +1585,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 					elif Global.lastMagic.magicInfo.name == "横扫千军":
 						cast_magic_multiple_times(delta, Global.lastMagic.magicInfo, Global.lastMagic.target, Global.lastMagic.type,3)
 					else:
+						
 						castMagic(delta, Global.lastMagic.magicInfo,Global.lastMagic.target, Global.lastMagic.type, false)
 				else:
 					pass

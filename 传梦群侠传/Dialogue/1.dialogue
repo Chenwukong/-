@@ -10,14 +10,31 @@ set Global.onTalk = true
 set Global.onTalk = false
 
 => END
+~ addMember
+set Global.onTeamPlayer.append("小二")
+
+=> END
+
+
+~ 宝箱质问
+set Global.onTalk = true
+擅拿他人财物非侠士所为，确定要拿取吗？
+·
+- 就拿
+	set Global.canTake = true
+	set Global.violencePoint -= 5
+	set Global.showViolence("negative",5)
+- 算了
+
+set Global.onTalk = false
+=> END	
 
 ~ 新手警告
 set Global.onTalk = true
 传梦: 这是传梦之路试玩版，目前还有许多的bug。
-传梦: 请注意！如果你被卡住了，请按r刷新场景，如果用鼠标突然无法移动，请用键盘
-传梦: 如果用键盘无法移动，请用鼠标移动一下
-传梦: 按m打开地图（虽然暂时没啥用，除非你真的是路痴）
-传梦: esc打开菜单
+传梦: 请您选择本次游戏使用键盘操作还是鼠标操作
+- 键盘操作
+- 鼠标操作
 传梦: 好了再多说一句就要惹人烦了，通过后面这个传送点开始游戏吧😎
 set Global.triggerPlace.get("新手警告").disable = true
 set Global.onTalk = false
@@ -149,7 +166,7 @@ set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightSceneP
 
 set Global.npcVis.get("建邺城右").get("二娃").visible = true
 set Global.triggerPlace.get("二娃请求").disable = false
-
+set Global.questHint = "继续捕鱼去吧"
 set Global.onTalk = false
 set Global.currNpc = null
 => END
@@ -279,7 +296,7 @@ set Global.addGold(100)
 set Global.questHint = "把身上的酒给两位差哥后继续捕鱼吧"
 set Global.npcs.get("丁真").dialogues[1].unlocked = true
 set Global.npcs.get("丙假").dialogues[1].unlocked = true
-
+set Global.violencePoint += 5
 set Global.onTalk = false
 set Global.currNpc = null
 => END	
@@ -723,6 +740,7 @@ set Global.npcVis.get("东海湾").get("小兵5").visible = true
 set Global.npcVis.get("东海湾").get("小兵6").visible = true
 set Global.triggerPlace.get("初见奔霸").disable = false
 set Global.currNpc = null
+set Global.questHint = "继续再次捕鱼"
 set Global.onTalk = false
 => END
 

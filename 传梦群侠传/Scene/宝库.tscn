@@ -3434,14 +3434,13 @@ wait_time = 0.1
 [node name="warnTimer" type="Timer" parent="."]
 
 [node name="player" parent="." instance=ExtResource("16_kfhy4")]
-visible = false
 z_index = 1
 position = Vector2(558.978, 491.823)
 rotation = 0.00493002
 scale = Vector2(0.903555, 0.940031)
 
 [node name="Camera2D" parent="player" index="3"]
-position = Vector2(18.4401, -32.4179)
+position = Vector2(22.9813, 271.809)
 zoom = Vector2(0.965, 0.965)
 
 [node name="effect" parent="player" index="8"]
@@ -3474,14 +3473,14 @@ id = "水晶宫1"
 
 [node name="npc" parent="." instance=ExtResource("17_ey0fw")]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(385.117, 503.693)
+position = Vector2(382.424, 414.748)
 sprite_frames = SubResource("SpriteFrames_h41ua")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_cb3h4")
 
 [node name="敖阳" parent="." instance=ExtResource("24_3ujrs")]
-position = Vector2(653.891, 493.865)
+position = Vector2(550.475, 397.057)
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

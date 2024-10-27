@@ -55,7 +55,8 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	$violencePoint/TextureProgressBar/Label.text = str(Global.violencePoint) + "%"
+	$violencePoint/TextureProgressBar.value = Global.violencePoint
 	if sceneName == "方寸山迷境":
 		$currState.visible = true	
 	if !Global.musicOn:

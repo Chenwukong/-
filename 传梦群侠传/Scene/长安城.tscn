@@ -1,4 +1,4 @@
-[gd_scene load_steps=121 format=3 uid="uid://3ae56ae6pv0p"]
+[gd_scene load_steps=125 format=3 uid="uid://3ae56ae6pv0p"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2w755"]
 [ext_resource type="Texture2D" uid="uid://bi1gl78smusew" path="res://panoramas2/长安城.PNG" id="2_uidke"]
@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://gniqeect40oq" path="res://Characters/0狐美人.png" id="49_ilx64"]
 [ext_resource type="Texture2D" uid="uid://408asfro5ci7" path="res://Characters/铁匠-瘦.png" id="50_bgeup"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="51_bceq2"]
-[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialball.tscn" id="51_gxx50"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="51_gxx50"]
 [ext_resource type="Texture2D" uid="uid://cclhnu6j21du5" path="res://Characters/道姑.png" id="52_gyxru"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxdqv"]
@@ -605,6 +605,36 @@ shader_parameter/scale = 1.0
 shader_parameter/particle_count = 50
 shader_parameter/fade_edge = 0.1
 shader_parameter/center_density = 0.5
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cydmx"]
+atlas = ExtResource("47_nigjj")
+region = Rect2(232, 0, 116, 103)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ir8he"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cydmx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_df2y7"]
+atlas = ExtResource("47_nigjj")
+region = Rect2(0, 309, 116, 103)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1ba5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_df2y7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="长安城" type="Node2D"]
 script = ExtResource("1_2w755")
@@ -1382,6 +1412,26 @@ offset_left = -34.0
 offset_top = 2.0
 offset_right = 4328.0
 offset_bottom = 2245.0
+
+[node name="大唐" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(385.632, 215.52)
+sprite_frames = SubResource("SpriteFrames_ir8he")
+
+[node name="大唐2" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(169, 310)
+sprite_frames = SubResource("SpriteFrames_ir8he")
+
+[node name="大唐3" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(1281, 32)
+sprite_frames = SubResource("SpriteFrames_ir8he")
+
+[node name="大唐4" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(183, 1702)
+sprite_frames = SubResource("SpriteFrames_ir8he")
+
+[node name="大唐5" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(497, 1876)
+sprite_frames = SubResource("SpriteFrames_y1ba5")
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

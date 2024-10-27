@@ -18,6 +18,7 @@ var canMove = false
 var timerCalled = false
 var turnIdleCalled = false
 var target
+var targets = []
 var magicInfo
 var players
 var targetFound = false
@@ -48,6 +49,23 @@ func _process(delta):
 		if state == idle:
 			play(petName + idle)
 		elif state == "magic":
+			magicInfo = SmallPetData.currSmallPetData[petName].petMagic
+			
+			if monsters.size() >magicInfo.hitNum:
+				while targets.size()<magicInfo.hitNum:
+					var randi = randi_range(0,aliveMonsters.size()-1)
+					if (aliveMonsters[randi] in targets) == false:
+						targets.append(aliveMonsters[randi])
+			else:
+				for target in monsters:
+					targets.append(target)				
+						
+			for target in targets:
+				if is_instance_valid(target):
+					target.get_node("debuff").visible = true
+					target.get_node("debuff").play(magicInfo.name)
+					target.get_node("getHitEffect").visible = true
+					target.get_node("getHitEffect").play(magicInfo.name)			
 			
 			play(petName + magic)
 			
@@ -82,7 +100,8 @@ func _on_animation_finished():
 			SmallPetData.currSmallPetData[petName].hungry -= SmallPetData.currSmallPetData[petName].hungryValue
 	if state == magic:
 		castMagic()
-	
+		if is_instance_valid(target):
+			target.get_node("getHitEffect").visible = false
 	state = idle
 	canMove = false
 	position = oriPosition	
@@ -94,7 +113,7 @@ func attack():
 		target.get_node("Label").text = str(str)
 		target.get_node("petHpAnimation").play("petHp")
 		target.currHp -= str 
-	print(SmallPetData.currSmallPetData[petName].hungry)
+	
 func castMagic():
 	magicInfo = SmallPetData.currSmallPetData[petName].petMagic
 	if magicInfo.type == "healing":
@@ -104,7 +123,17 @@ func castMagic():
 				alivePlayer.append(i)
 		if find_player_with_lowest_hp_percent(alivePlayer):
 			find_player_with_lowest_hp_percent(alivePlayer).currHp += magicInfo.value
+	if magicInfo.type == "ice":
 		
+			for target in targets:
+				if is_instance_valid(target):
+					if target.onIce:
+						return
+					target.onIce = magicInfo.duration
+					target.buffs.append({"onIceDebuff":  magicInfo.duration})
+					target.get_node("Label").text = str(magicInfo.value)
+					target.get_node("petHpAnimation").play("petHp")
+					target.currHp -= magicInfo.value	
 		
 func moveCharacter(delta):
 	

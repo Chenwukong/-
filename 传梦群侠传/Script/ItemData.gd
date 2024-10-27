@@ -13,9 +13,23 @@ var keyItem = {
 		"useAble":true,
 		"gold": 50		
 	},
+	"鱼大爷之帽":{
+		"name": "鱼大爷之帽",
+		"effect": null,
+		"value": 100,
+		"icon": "res://Pictures/Pictures/■麻布帽.png",
+		"picture":"res://Pictures/Pictures/■麻布帽.png",
+		"description": "鱼大爷遗落的帽子",
+		"audio": "res://Audio/SE/056-Right02.ogg",
+		"key":true,
+		"useAble":false,
+		"gold": 9999999		
+	},	
+	
+	
 	"传字牌":{
 		"name": "传字牌",
-		"effect": "special",
+		"effect": null,
 		"value": 100,
 		"icon": "res://Pictures/传.png",
 		"picture":"res://Pictures/传.png",
@@ -27,7 +41,7 @@ var keyItem = {
 	},
 	"桃木棒":{
 		"name": "桃木棒",
-		"effect": "special",
+		"effect": null,
 		"value": 100,
 		"icon": "res://Pictures/ba (1).png",
 		"picture":"res://Pictures/ba (1).png",
@@ -148,7 +162,7 @@ var weapon = {
 		"icon": "res://Icons/〓大刀 副本.png",
 		"picture":"res://Pictures/Pictures/〓大刀.png",
 		"value": {"additionDmg":60 * Global.enKey},
-		"description": "时追云专属武器，伤害+60",
+		"description": "时追云专属武器，伤害+60，大剑的造型为什么是一把刀",
 		"key":false,
 		"added": false,
 		"gold": 200
@@ -159,7 +173,7 @@ var weapon = {
 		"icon": "res://Icons/〓精钢剑 副本.png",
 		"picture": "res://Pictures/〓精钢剑.png",
 		"value": {"additionDmg": 100 * Global.enKey},
-		"description": "时追云专属武器，伤害+100",
+		"description": "时追云专属武器，伤害+100，精诚所至，精钢为开",
 		"key":false,
 		"added": false,
 		"gold": 800
@@ -168,7 +182,7 @@ var weapon = {
 		"name": "黄金剑",
 		"user": "时追云",
 		"icon": "res://Icons/〓黄金剑 副本.png",
-		"picture": "res://Pictures/Pictures/〓黄金剑.png",
+		"picture":"res://Pictures/〓黄金剑.png",
 		"value": {"additionDmg": 140 * Global.enKey},
 		"description": "时追云专属武器，伤害+140，黄金居然也很硬",
 		"key":false,
@@ -181,7 +195,7 @@ var weapon = {
 		"icon": "res://Icons/〓竹节双剑 副本.png",
 		"picture": "res://Icons/〓竹节双剑 副本.png",
 		"value": {"additionDmg": 25 * Global.enKey},
-		"description": "凌若昭专属武器，伤害+25",
+		"description": "凌若昭专属武器，伤害+25，为什么要拿竹子打人，但有人都用木头了...",
 		"key":false,
 		"added": false,
 		"gold": 200
@@ -192,7 +206,7 @@ var weapon = {
 		"icon": "res://Icons/〓赤铁双剑 副本.png",
 		"picture": "res://Pictures/〓赤血双剑.png",
 		"value": {"additionDmg": 75 * Global.enKey},
-		"description": "凌若昭专属武器，伤害+75",
+		"description": "凌若昭专属武器，伤害+75,总算是用上铁器了",
 		"key":false,
 		"added": false,
 		"gold": 1700
@@ -203,7 +217,7 @@ var weapon = {
 		"icon": "res://Icons/〓赤血双剑 副本.png",
 		"picture": "res://Pictures/〓赤血双剑.png",
 		"value": {"additionDmg": 200 * Global.enKey},
-		"description": "凌若昭专属武器，伤害+150",
+		"description": "凌若昭专属武器，伤害+150，这只是赤铁双剑撒了狗血吧",
 		"key":false,
 		"added": false,
 		"gold": 10000
@@ -236,7 +250,7 @@ var weapon = {
 		"icon": "res://Icons/00木头1.png",
 		"picture": "res://Icons/00木头1.png",
 		"value": {"additionDmg": 20 * Global.enKey},
-		"description": "小二专属武器，伤害+20，为什么还是木头",
+		"description": "小二专属武器，伤害+20，为什么还是木头，为什么总是木头",
 		"key":false,
 		"added": false,
 		"gold": 20
@@ -248,7 +262,7 @@ var weapon = {
 		"icon": "res://Icons/〓碧玉剑 副本.png",
 		"picture": "res://Pictures/〓碧玉剑.png",
 		"value": {"additionDmg": 300* Global.enKey},
-		"description": "时追云专属武器，伤害+300，好像能吸收灵气",
+		"description": "时追云专属武器，伤害+300，带着黑山的灵气",
 		"key":true,
 		"added": false,
 		"gold": 10000
@@ -263,7 +277,7 @@ var cloth = {
 		"icon": "res://Icons/0750-80e74115-00000 副本.png",
 		"picture": "res://Pictures/Pictures/ny (6).png",
 		"value": {"addPhysicDefense": 15 * Global.enKey,"addMagicDefense": 15* Global.enKey },
-		"description": "物理防御+15，魔法防御+15",
+		"description": "物理防御+15，魔法防御+15，江湖人必备布衣",
 		"key":false,
 		"added":false,
 		"gold": 100
@@ -274,7 +288,7 @@ var cloth = {
 		"icon": "res://Icons/1410-eeaa3c26-00000 副本.png",
 		"picture":"res://Pictures/Pictures/ny (2).png",
 		"value": {"addPhysicDefense": 30 * Global.enKey,"addMagicDefense": 30 * Global.enKey},
-		"description": "物理防御+30，魔法防御+30",
+		"description": "物理防御+30，魔法防御+30，好看才能增加防御",
 		"key":false,
 		"added":false,
 		"gold": 400
@@ -285,7 +299,7 @@ var cloth = {
 		"icon": "res://Pictures/Pictures/ny (1).png",
 		"picture":"res://Pictures/Pictures/ny (1).png",
 		"value": {"addPhysicDefense": 100 * Global.enKey,"addMagicDefense": 100 * Global.enKey},
-		"description": "物理防御+100，魔法防御+100",
+		"description": "物理防御+100，魔法防御+100，帅气衣甲",
 		"key":false,
 		"added":false,
 		"gold": 1000
@@ -296,7 +310,7 @@ var cloth = {
 		"icon":  "res://Pictures/ni (5).png",
 		"picture":"res://Pictures/ni (5).png",
 		"value": {"addPhysicDefense": 100 * Global.enKey,"addMagicDefense": 100 * Global.enKey},
-		"description": "物理防御+100，魔法防御+100",
+		"description": "物理防御+100，魔法防御+100，带有香气",
 		"key":false,
 		"added":false,
 		"gold": 1000
@@ -307,7 +321,7 @@ var cloth = {
 		"icon": "res://Pictures/Pictures/ny (7).png",
 		"picture":"res://Pictures/Pictures/ny (7).png",
 		"value": {"addPhysicDefense": 200 * Global.enKey,"addMagicDefense": 200 * Global.enKey},
-		"description": "物理防御+200，魔法防御+200",
+		"description": "物理防御+200，魔法防御+200，笨重，但有效",
 		"key":false,
 		"added":false,
 		"gold": 10000
@@ -318,7 +332,7 @@ var cloth = {
 		"icon":  "res://Pictures/ni (5).png",
 		"picture":"res://Pictures/ni (5).png",
 		"value": {"addPhysicDefense": 200 * Global.enKey,"addMagicDefense": 200 * Global.enKey},
-		"description": "物理防御+200，魔法防御+200",
+		"description": "物理防御+200，魔法防御+200,已经开始乱起名了",
 		"key":false,
 		"added":false,
 		"gold": 10000
@@ -335,7 +349,7 @@ var shoes = {
 		"icon": "res://Icons/0283-30225bdd-00004 副本.png",
 		"picture": "res://Pictures/Pictures/xz (8).png",
 		"value": {"addPlayerSpeed": 15 * Global.enKey},
-		"description": "速度+15",
+		"description": "速度+15，可是刘皇叔之作？",
 		"key":false,
 		"added":false,
 		"gold": 100,
@@ -346,7 +360,7 @@ var shoes = {
 		"icon": "res://Icons/0283-30225bdd-00003 副本.png",
 		"picture": "res://Pictures/Pictures/xz (7).png",
 		"value": {"addPlayerSpeed": 20 * Global.enKey},
-		"description": "速度+20",
+		"description": "速度+20，人造革",
 		"key":false,
 		"added":false,
 		"gold": 300
@@ -357,7 +371,7 @@ var shoes = {
 		"icon": "res://Pictures/Pictures/xz (6).png",
 		"picture": "res://Pictures/Pictures/xz (6).png",
 		"value": {"addPlayerSpeed": 30 * Global.enKey},
-		"description": "速度+30",
+		"description": "速度+30，飞起",
 		"key":false,
 		"added":false,
 		"gold": 800
@@ -368,7 +382,7 @@ var shoes = {
 		"icon": "res://Pictures/Pictures/xz (9).png",
 		"picture": "res://Pictures/Pictures/xz (9).png",
 		"value": {"addPlayerSpeed": 40 * Global.enKey},
-		"description": "速度+40",
+		"description": "速度+40，天鞋无暇之作",
 		"key":false,
 		"added":false,
 		"gold": 6000

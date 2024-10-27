@@ -496,7 +496,7 @@ set get_tree().current_scene.get_node("DirectionalLight2D").visible = true
 set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
 set get_tree().current_scene.get_node("Camera2D3").make_current()
 
-
+set get_tree().current_scene.get_node("小二2").visible = true
 set get_tree().current_scene.get_node("警戒士兵").visible = true
 set Global.npcVis.get("长安城").get("警戒士兵").visible = true
 set get_tree().current_scene.get_node("警戒士兵/金甲2").visible =true 
@@ -847,7 +847,7 @@ set Global.onTalk = true
 		
 	set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/Pokemon Healing - Sound Effect (HD).mp3")
 	set get_tree().current_scene.get_node("subSound").play()
-	set FightScenePlayers.golds -= 200
+
 	[next=5]
 	小二: [speed=0.4](什么鬼声音)
 	

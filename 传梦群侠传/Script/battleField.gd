@@ -10,7 +10,7 @@ var monsterIdx = Global.monsterIdx #获取怪物的index，根据这个锁定目
 var playerIdx = Global.playerIdx
 
 var fightScenePlayerData = []
-
+var triggerQueueFree = false
 var monsters #获取已经实例化的怪物
 var players
 
@@ -31,6 +31,7 @@ var currBgm = ""
 var dialogue = null
 var canPress = true
 var sceneName
+var rewardAdded = false
 func areAllPlayersDead() -> bool:
 	for player in players:
 		if player.alive:
@@ -39,12 +40,13 @@ func areAllPlayersDead() -> bool:
 	return true
 var preValue = 0
 func _ready(): 
+	totalExp = 0
 	$battleFieldPicture/Panel.position = Vector2(-402,-300) 
 	
-	
+	showLastHit()
 	get_tree().current_scene.get_node("CanvasLayer2").visible = false
 	sceneName =  get_tree().current_scene.name
-	if sceneName == "东海湾":
+	if sceneName == "东海湾" or  sceneName == "小树林":
 		$battleFieldPicture.texture = load("res://Battlebacks/东海湾.jpg")
 	else:
 		$battleFieldPicture.texture = load ("res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png")
@@ -255,6 +257,7 @@ func _process(delta):
 			if Global.target and Global.target.buffs: 
 				for index in Global.target.buffs.size():	
 					var i = Global.target
+					
 					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).visible = true	
 					
 					var icon = ""
@@ -443,7 +446,7 @@ func _process(delta):
 			Global.monsterTarget = null
 			Global.currAttacker = ""
 			queue_free()
-
+			totalExp = 0
 			FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
 			if dialogue:
 				var npc = Global.npcs[dialogue]
@@ -470,7 +473,11 @@ func _process(delta):
 	
 	#如果怪物等于0就摧毁战斗场景并且让一切恢复成战斗之前
 	if monsters.size() <= 0:	
-		Global.onBoss = false
+		
+	
+			
+		
+		
 		Global.onFight = false
 		for i in players:
 			i.currHp += (i.hp + decrypt(i.addHp) )/7
@@ -504,10 +511,12 @@ func _process(delta):
 		get_parent().get_parent().onFight = false
 		Global.monsterIdx = -1
 		Global.onAttackingList = []
-		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/ME/胜利.wav")
-		get_parent().get_parent().get_node("subSound").play()
+
 		Global.finishingBattle = true
 		Global.alivePlayers = []
+
+		
+			
 		
 		Global.onAttackPicking = false
 		Global.onMagicAttackPicking = false
@@ -528,7 +537,7 @@ func _process(delta):
 				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
 		Global.onMultiHit = 0
 		Global.currAttacker = ""
-		queue_free()
+		
 		
 		if dialogue:
 			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))
@@ -545,10 +554,15 @@ func _process(delta):
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(totalGold)
 		Global.systemMsg.append("全队获得了 " + str(totalExp) + " 经验 "+ "和 "+ str(totalGold) + " 银两")
 		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
-		for player_name in FightScenePlayers.fightScenePlayerData:
-			var player = FightScenePlayers.fightScenePlayerData[player_name]
-			player["exp"] += totalExp * Global.enKey
-		FightScenePlayers.golds += totalGold * Global.enKey
+		if !rewardAdded:
+			rewardAdded = true
+			for player_name in FightScenePlayers.fightScenePlayerData:
+				if player_name in Global.onTeamPlayer or player_name in Global.onTeamPet:
+					var player = FightScenePlayers.fightScenePlayerData[player_name]
+				
+				
+					player["exp"] += totalExp * Global.enKey
+			FightScenePlayers.golds += totalGold * Global.enKey
 		get_parent().get_parent().get_node("battleBgm").stop()
 		if !Global.onHurry:
 			get_parent().get_parent().get_node("AudioStreamPlayer2D").play()
@@ -560,7 +574,18 @@ func _process(delta):
 			
 			FightScenePlayers.fightScenePlayerData.get(i).currHp = 	FightScenePlayers.fightScenePlayerData.get(i).hp
 			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp				
-
+		if Global.onBoss:
+			queue_free()
+			totalExp = 0
+			Global.onBoss = false
+			return
+		if !triggerQueueFree and !Global.onBoss:
+			totalExp = 0
+			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/ME/胜利.wav")
+			get_parent().get_parent().get_node("subSound").play()
+			$AnimationPlayer.play("lastHit")
+			triggerQueueFree = true
+			$queueFree.start()	
 			
 #		var rand = randi_range(0, 2)
 #		if rand >= 1 :
@@ -1242,3 +1267,14 @@ func decrease_value_over_time_player(target_value: float, duration: float, type)
  
 func decrypt(value):
 	return value/Global.enKey
+
+
+func _on_big_magic_timer_timeout():
+	$battleFieldPicture/bigMagic.visible = false
+
+func showLastHit():
+	pass
+
+
+func _on_queue_free_timeout():
+	queue_free()

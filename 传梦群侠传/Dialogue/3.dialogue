@@ -505,7 +505,7 @@ set get_tree().current_scene.get_node("凌若昭").play("左下")
 时追云: [speed=0.5]可我依稀记得，我第一次遇见妖魔的时候，便能斩杀他们了，难道我长久以来一直都有灵力在身吗
 菩提老祖: [speed=0.5]...
 菩提老祖: [speed=0.5]没错，你的体内确实早有一股灵力了，只是你自己一直不知道，也不懂得如何去运用它
-菩提老祖: [speed=0.5]至于你没修炼，这又灵力如何而来，就得靠你自己想了
+菩提老祖: [speed=0.5]至于你没修炼，这又灵力如何而来，我就不得而知了
 时追云: [speed=0.5]...
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0众志成城.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
@@ -525,7 +525,7 @@ set get_tree().current_scene.get_node("player/隐龙").visible = true
 set get_tree().current_scene.get_node("player/隐龙").play("default")
 set get_tree().current_scene.get_node("AnimationPlayer").play("shake") 
 [next=2]
-菩提老祖: [speed=0.5]这是！！灵气化龙。。。隐隐化现惊愕
+菩提老祖: [speed=0.5]这是！！灵气化龙。。。惊愕
 小二: [speed=0.5]灵气化龙？什么东西，看着好强
 菩提老祖: [speed=0.5]灵气化龙之人，之后的实力不可估量！
 凌若昭喜: [speed=0.5]时大哥第一次用灵气就这么厉害耶
@@ -538,7 +538,7 @@ set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio
 set get_tree().current_scene.get_node("oneTimeSound").play()
 菩提老祖: [speed=0.5] 追云，你先在这里修炼，小二你随我进来
 小二: [speed=0.5]哦
-凌若昭: [speed=0.5] 
+凌若昭: [speed=0.5]我也去
 [next=0.1] [next=auto]
 菩提老祖: [speed=0.5] 若昭你就呆在外面看着点追云
 凌若昭: [speed=0.5] 哦
@@ -578,7 +578,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 菩提老祖: [speed=0.5]你的情况很罕见
 菩提老祖: [speed=0.5] 我不会干涉你的选择，但我还是要劝你一句，该面对的终有一天需要面对
 小二: [speed=0.5]我也不知道该怎么办，但绝对不能是现在。
-菩提老祖: [speed=0.5]我这里虽然没有适合你的法术，但我有一种奇术，或许会对你有用
+菩提老祖: [speed=0.5]我这里虽然没有适合你的法术，但我有一种奇技，或许会对你有用
 菩提老祖: [speed=0.5]我相信以你的滑头劲，能运用好它
 菩提老祖: [speed=0.5]此技，名曰千机变，乃天地间至妙之法，万法归一，千象万变
 菩提老祖: [speed=0.5]千机变者，通天悟地，能以无上心境感知他人术法，瞬息之间便可如己所用。无论剑法、掌法、咒法，或是任何奇技异术，皆可借力化形，施于敌前。”
@@ -644,11 +644,17 @@ set get_tree().current_scene.get_node("黑山2").visible = true
 小二: [speed=0.5]那么小就能过那鬼阵法啊。。。
 小二: [speed=0.5]你也太聪明了惊呆
 凌若昭喜: [speed=0.5]嘻嘻
+小二: [speed=0.5]这些阵法结界难道每个都这么难破嘛
+凌若昭: [speed=0.5]虽说各位仙家的结界对普通人来说很厉害，但对我们方寸山而言就都是小儿科了
+凌若昭: [speed=0.5]其实大部分阵法都能依靠主人长期携带之物破解
+小二: [speed=0.5]这又是什么原理
+凌若昭: [speed=0.5]物品随主人久了多少都会带点他们的灵气，依靠着和结界相同的灵气，一般而言都可破解他们的结界
+小二: [speed=0.5]原来如此
 时追云: [speed=0.5]说起来小二你似乎也没怎么提起你的事情吧
 时追云: [speed=0.5]之前不是说在给你的掌柜出门采集吗
 时追云: [speed=0.5]怎么在长安也没见到他
 小二: [speed=0.5]哎呀那破工作我早就不想干了，做店小二哪有跟着老大走南闯北有意思
-时追云: [speed=0.5]我又不得不去的理由，你和若昭实在是没必要...
+时追云: [speed=0.5]我有不得不去的理由，你和若昭实在是没必要...
 小二: [speed=0.5]打住啊老大，我可不想听那一套罗里吧嗦的
 小二: [speed=0.5]如果不是你，我估计早就成了那牛妖和羊妖的粪便了，我虽然读的书不多，但也知道瑕疵必报的道理
 凌若昭喜: [speed=0.5]小二，瑕疵必报不是这么用的啦，不过我也是！
@@ -862,6 +868,8 @@ set Global.onTalk = false
 ~ 灵鹿
 set Global.onTalk = true
 set Global.onTeamSmallPet.append("小鹿")
+set Global.smallPet.append("小鹿")
+
 set Global.npcVis.get("方寸山").get("小鹿").visible = true
 set Global.npcVis.get("方寸山").get("凌若昭").visible = true
 

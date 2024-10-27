@@ -1,10 +1,11 @@
 extends Node
 var hashTable = {}
 var gold = 0
-var golds = 0
+var golds = 10000 * Global.enKey
 var seconds = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	return
 	golds *= Global.enKey
 	
 
@@ -74,6 +75,12 @@ var bagArmorItem = {
 		"number": 1,
 		"added": false
 	},
+	"黄金剑":{
+		"info": ItemData.weapon.get("黄金剑"),
+		"type": "weapon",
+		"number": 2,
+		"added": false
+	},
 #	"碧玉剑":{
 #		"info": ItemData.weapon.get("碧玉剑"),
 #		"type": "weapon",
@@ -81,25 +88,25 @@ var bagArmorItem = {
 #		"added": false
 #	},
 	
-#	"布衣":{
-#		"info": ItemData.cloth.get("布衣"),
-#		"type": "cloth",
-#		"number": 1,
-#		"added": false
-#	},
-#	"方巾":{
-#		"info": ItemData.hat.get("方巾"),
-#		"type": "hat",
-#		"number": 1,
-#		"added": false
-#	},
+	"布衣":{
+		"info": ItemData.cloth.get("布衣"),
+		"type": "cloth",
+		"number": 1,
+		"added": false
+	},
+	"方巾":{
+		"info": ItemData.hat.get("方巾"),
+		"type": "hat",
+		"number": 1,
+		"added": false
+	},
 
-#	"草鞋":{
-#		"info": ItemData.shoes.get("草鞋"),
-#		"type": "shoes",
-#		"number": 1,	
-#		"added": false	
-#	},
+	"草鞋":{
+		"info": ItemData.shoes.get("草鞋"),
+		"type": "shoes",
+		"number": 1,	
+		"added": false	
+	},
 #	"护身符":{
 #		"info": ItemData.accessories.get("护身符"),
 #		"type": "accessories",
@@ -789,10 +796,10 @@ var fightScenePlayerData2= {
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
 		"item": {
-			"weapon": ItemData.weapon.get("大剑"),
-			"cloth": ItemData.cloth.get("布衣"),
-			"hat": ItemData.hat.get("方巾"),
-			"shoes": ItemData.shoes.get("草鞋"),
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes":null ,
 			"accessories": null
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
@@ -990,10 +997,10 @@ var fightScenePlayerData2= {
 		"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
 		"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
 		"item": {
-			"weapon": ItemData.weapon.get("木头"),
-			"cloth": ItemData.cloth.get("布衣"),
-			"hat": ItemData.hat.get("方巾"),
-			"shoes": ItemData.shoes.get("草鞋"),
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
 			"accessories": null
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
@@ -1051,10 +1058,10 @@ var fightScenePlayerData2= {
 		"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
 		"attackOnEnemySound": null,
 		"item": {
-			"weapon": ItemData.weapon.get("竹节双剑"),
-			"cloth": ItemData.cloth.get("锦衣"),
-			"hat": ItemData.hat.get("面具"),
-			"shoes": ItemData.shoes.get("皮鞋"),
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
 			"accessories": null
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
@@ -1100,7 +1107,7 @@ var fightScenePlayerData2= {
 					"name": "扎实一剑",
 					"attackType": "melee",
 					"damageSource": "AD",
-					"multiHitTimes": 1,
+			
 					"cost": 10,
 					"value": 2,
 					"description": "金甲日日夜夜练习的扎实一剑",	
@@ -1298,7 +1305,7 @@ var fightScenePlayerData = {
 			"blockChance":1,
 			"addBlockChance": 0,
 			"level": 1,
-			"exp": 0 ,
+			"exp": 10 ,
 			"needExp":100 ,
 			"magicDefense": 5,
 			"addMagicDefense": 0,
@@ -1315,7 +1322,7 @@ var fightScenePlayerData = {
 			"mp": 100,
 			"currHp": 20000,
 			"currMp": 100,
-			"potential": 0,
+			"potential": 100,
 			"idle": "时追云idle",
 			"autoAttack":'时追云autoAttack',
 			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
@@ -1338,7 +1345,23 @@ var fightScenePlayerData = {
 				"duration": 3,
 				"icon":"res://Icons/●图标 (64).png",
 			},
-			
+				{
+				"name": "横扫千军",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 3,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1.6, 
+				"cost": 50,
+				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
@@ -1740,7 +1763,6 @@ var fightScenePlayerData = {
 					"name": "扎实一剑",
 					"attackType": "melee",
 					"damageSource": "AD",
-					"multiHitTimes": 1,
 					"cost": 10,
 					"value": 2,
 					"description": "金甲日日夜夜练习的扎实一剑",	
@@ -2130,7 +2152,7 @@ func update_status():
 			
 func calculate_exp_for_magic_level(level):
 	# You can adjust this formula as per your requirement
-	return 50 * level
+	return 20 * level
 
 func calculate_exp_for_player_level(level):
 	var baseExp = 60

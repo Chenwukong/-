@@ -99,6 +99,7 @@ var onMultiHit = 0
 var fangCunState = 1
 var atDark = false
 var onBoss = false
+var isBoss = ["巨蛙","鹰孽","堕逝","黑山","奔霸",]
 var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
@@ -142,9 +143,10 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云",]
+var onTeamPlayer = ["时追云"]
 var onTeamPet = []
-var onTeamSmallPet = []
+var onTeamSmallPet = ["敖雨"]
+var smallPets = []
 var currPlayerPos
 var currNpc = null
 var saveIndex = 0
@@ -154,7 +156,7 @@ var systemMsg = [
 ]
 var onPet = false
 var onSkipFight = false
-var violencePoint = 0
+var violencePoint = 30
 var questHint = ""
 
 var damageReward1 = 1
@@ -167,7 +169,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 1
+var current_chapter_id = 4
 
 var mcVisible = true
 var npcVis = {
@@ -440,13 +442,17 @@ var npcVis = {
 	},	
 										
 }
-
+var baseChance = 0
 var musicOn = true
 var enKey = randi_range(1, 3000)
+
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
 	"传梦之路":{"传":false,"梦":false,"之":false,"路":false,      "complete":false}
 }
+
+var canTake = false
+
 
 func changeVis(npcList: Array, scene) -> void:
 	for npc in npcList:
@@ -455,6 +461,26 @@ func changeVis(npcList: Array, scene) -> void:
 		
 var load = false
 var npcs = {
+	"addMember": {
+		"dialogues": [ 
+			#0
+			{"chapter": 1, "dialogue": "addMember", "unlocked": true, "bgm":null, "trigger":false},
+		],
+		"current_dialogue_index": 0,
+		"constNpc": false
+	},
+	"宝箱1": {
+		"dialogues": [ 
+			#0
+			{"chapter": 1, "dialogue": "宝箱质问", "unlocked": true, "bgm":null, "trigger":false},
+		],
+		"current_dialogue_index": 0,
+		"constNpc": true
+	},
+	
+	
+	
+	
 	"鱼叟": {
 		"dialogues": [ 
 			#0
@@ -536,7 +562,7 @@ var npcs = {
 				{"chapter": 1, "dialogue": "王姨遇险", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "王姨得救", "unlocked": true, "bgm":null,"trigger":false},
 			],
-		"current_dialogue_index": 0,	
+		"current_dialogue_index": 1,	
 		"constNpc": false
 	},
 	"柳老":{
@@ -1342,6 +1368,7 @@ func _process(delta):
 
 
 func save():
+	saveData.baseChance = baseChance
 	saveData.currScene = currScene
 	saveData.currPlayer = currPlayer
 	saveData.onTeamPlayer = onTeamPlayer
@@ -1379,6 +1406,7 @@ func save():
 	saveData.cantShow = cantShow
 	saveData.onTeamSmallPet = onTeamSmallPet
 func loadData():
+	baseChance = saveData.baseChance
 	onTeamSmallPet = saveData.onTeamSmallPet 
 	currScene = saveData.currScene
 	currPlayer = saveData.currPlayer
@@ -1517,10 +1545,8 @@ func addGold(goldAmount):
 
 func lostGold(goldAmount):
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(-goldAmount)
-	FightScenePlayers.golds *= enKey
-	FightScenePlayers.golds -= enKey * goldAmount
 	
-	
+	FightScenePlayers.golds = ( decrypt(FightScenePlayers.golds) - goldAmount ) * enKey 
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer").visible = true	
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true	
 	
@@ -1619,6 +1645,16 @@ func changeQuest(location1, location2, method, value):
 func decrypt(value):
 	return value / enKey
 
-
 func countDown(value):
 	get_tree().current_scene.get_node("CanvasLayer").countDown(value)
+
+func showViolence(type,value):
+	pass
+	get_tree().current_scene.get_node("CanvasLayer/violencePoint").visible = true
+	if type == "negative":
+		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").modulate = "red"
+		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").text = "-" + str(value)
+	else:
+		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").modulate = "green"
+		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").text = "+" + str(value)
+	get_tree().current_scene.get_node("CanvasLayer/AnimationPlayer").play("showViolence")

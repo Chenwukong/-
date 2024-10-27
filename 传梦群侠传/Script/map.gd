@@ -29,7 +29,7 @@ var onSellPicking
 var onSaleItemPicked
 
 
-
+var playerPosition
 var shopItems
 var itemIndex = 0
 var canPress = true
@@ -44,8 +44,9 @@ func update_cursor():
 	Input.set_custom_mouse_cursor(cursor_frames[int(current_frame)], 0, cursor_scale)
 		
 func _ready():
-
-		
+	playerPosition = get_node("player").position
+	if Global.onTalk:
+		Global.menuOut = false
 	if Global.onPhone:
 		var phoneButtons = get_tree().get_nodes_in_group("phoneButton")
 		for i in phoneButtons:
@@ -80,7 +81,8 @@ func _ready():
 		DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 		
 func _process(delta):
-	
+	if Global.onTalk:
+		Global.menuOut = false
 	
 	if has_node("backgroundSoundEffect"):
 		if $backgroundSoundEffect.is_playing() == false:
@@ -101,8 +103,8 @@ func _process(delta):
 	if Global.mcVisible == false:
 		get_tree().current_scene.get_node("player").visible = false
 	if Input.is_action_just_pressed("r") and !Global.onFight and !Global.onTalk and !Global.menuOut:
-		
-		get_tree().change_scene_to_file("res://Scene/"+get_tree().current_scene.name+".tscn")
+		get_node("player").position = playerPosition
+		#get_tree().change_scene_to_file("res://Scene/"+get_tree().current_scene.name+".tscn")
 	
 	var questItem = get_tree().get_nodes_in_group("questItem")
 	if Global.onQuest == false:
@@ -250,7 +252,7 @@ func _process(delta):
 			if onItemPicking:
 				onSale = false
 				onBuy = false
-				$shop/Panel/buyButton.visible = false
+				#$shop/Panel/buyButton.visible = false
 			if Input.is_action_just_pressed("ui_down") and !onItemPicked:
 				if itemIndex == shopItems.size() - 1:
 					itemIndex = 0
@@ -335,14 +337,14 @@ func _process(delta):
 		if onItemPicked and shopButtonIndex == 0 :
 			onSale = false
 			onBuy = false
-			$shop/Panel/buyButton.visible = false
+			#$shop/Panel/buyButton.visible = false
 			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :	
 				$shop/Panel/buyButton.visible = false	
 				onBuy = false
 				onSale = false
 				onItemPicked = false
 				onItemPicking = true
-				$shop/Panel/buyButton.visible = false
+				
 				shopItems[itemIndex].get_node("Control").visible = false
 				shopItems[itemIndex].buyAmount = 1
 				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
@@ -844,7 +846,7 @@ func _process(delta):
 func check_enter_fight_scene():
 	if Global.onTalk:
 		return
-	var randomNum = randi_range( baseChance,FIGHT_SCENE_TRIGGER_PROBABILITY)
+	var randomNum = randi_range(Global.baseChance,FIGHT_SCENE_TRIGGER_PROBABILITY)
 
 	if is_instance_valid($player):
 		if randomNum == 1:
@@ -1659,6 +1661,7 @@ func _on_cancel_button_down():
 
 func _on_buy_button_down():
 	if onBuy or onItemPicked or onItemPicking:
+		shopItems[itemIndex].buyAmount = 1
 		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
 		$subSound.play()						
 		onBuy = false

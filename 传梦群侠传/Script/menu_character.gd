@@ -106,8 +106,8 @@ func useItem():
 					if i.get_node("itemNum").text == "0":
 						i.visible = false	
 				for i in Global.onTeamPlayer.size():
-					get_node("itemPlayer"+str(i+1)+"/mpText/mpBar").value =FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currMp									
-			if item.info.effect == "hp":
+					get_node("itemPlayer"+str(i+1)+"/mpText/mpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currMp									
+			if item.info.effect == "hp": 
 				
 				if FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currHp == FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp):
 					return
@@ -137,12 +137,10 @@ func useItem():
 		if Global.currMenuItem == "避祸香囊":
 			print(Global.onSkipFight)
 			if Global.onSkipFight == true:
-				print(111)
-				get_tree().current_scene.baseChance = 0
+				Global.baseChance = 0
 				Global.onSkipFight = false
 			else:
-				print(222)
-				get_tree().current_scene.baseChance= 800
+				Global.baseChance= 800
 				Global.onSkipFight = true
 		if Global.currMenuItem == "洗髓丹":
 			for i in FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).item.keys():

@@ -133,6 +133,9 @@ func _on_button_button_down():
 #	if get_tree().current_scene.onItemPicking:
 #		if buyAmount * gold > FightScenePlayers.golds:
 #			return
+	
+	get_parent().get_parent().get_parent().get_parent().get_node("buyButton").visible = true
+
 	if get_tree().current_scene.onItemPicking:	
 		get_tree().current_scene.onItemPicked = false
 	elif get_tree().current_scene.onSellPicking:

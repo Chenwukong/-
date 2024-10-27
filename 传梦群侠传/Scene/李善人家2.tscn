@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bkxrrsplip4fb"]
+[gd_scene load_steps=25 format=3 uid="uid://bkxrrsplip4fb"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_htvie"]
 [ext_resource type="Texture2D" uid="uid://ddpquvbrw522e" path="res://panoramas2/建邺_民居内室.jpg" id="2_lyb0e"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_5rkek"]
 [ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="6_4sski"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="15_1qaj3"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_o6umc"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="18_ypwph"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="19_p2nyu"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="20_5x4gf"]
@@ -215,6 +216,13 @@ polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -293, -217, -27
 [node name="menuControl" parent="." instance=ExtResource("23_w0s6m")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("15_1qaj3")]
+
+[node name="Node2D" parent="." instance=ExtResource("16_o6umc")]
+position = Vector2(439.102, 191.418)
+id = "城主家1"
+gold = true
+special = "5000"
+violencePointTreasure = true
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

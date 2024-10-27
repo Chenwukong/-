@@ -2070,7 +2070,7 @@ func _on_气运加点_button_down():
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
 		pointOnLuck += 1
-		currPlayer.potential -= 1
+		currPlayer.potential -= Global.enKey
 		if pointOnLuck >0:
 			$"加点页面/属性区/暴击/value/changedValue".modulate = "ff0000"				
 			$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ff0000"	
@@ -2123,12 +2123,12 @@ func _on_确认按钮_button_down():
 		$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"
 		$"加点页面/属性区/格挡概率/value/changedValue/increaseValue"	.visible = false				
 	if pointOnStr > 0:	
-		currPlayer.addStr += pointOnStr
+		currPlayer.addStr += pointOnStr * Global.enKey 
 		$"加点页面/属性区/力量/value/changedValue".modulate = "ffffff"		
 		$"加点页面/属性区/力量/value/changedValue/increaseValue".visible = false
 	if pointOnLuck > 0:	
-		currPlayer.addCritChance += pointOnLuck * 0.25
-		currPlayer.blockChance += pointOnLuck * 0.25
+		currPlayer.addCritChance += pointOnLuck * 0.25 * Global.enKey
+		currPlayer.addBlockChance += pointOnLuck * 0.25 * Global.enKey 
 		$"加点页面/属性区/暴击/value/changedValue".modulate = "ffffff"		
 		$"加点页面/属性区/暴击/value/changedValue/increaseValue".visible = false
 		$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"		
@@ -2138,8 +2138,8 @@ func _on_确认按钮_button_down():
 		$"加点页面/属性区/敏捷/value/changedValue".modulate = "ffffff"			
 		$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = false
 	if pointOnMagic > 0:
-		currPlayer.addAbilityPower	+=  pointOnMagic
-		currPlayer.addMp += pointOnMagic * 7
+		currPlayer.addAbilityPower	+=  pointOnMagic * Global.enKey 
+		currPlayer.addMp += pointOnMagic * 7 * Global.enKey 
 		$"加点页面/属性区/仙力/value/changedValue".modulate = "ffffff"		
 		$"加点页面/属性区/仙力/value/changedValue/increaseValue".visible = false	
 		$"加点页面/属性区/最大仙能/最大仙能数字".modulate = "ffffff"		
@@ -2170,7 +2170,7 @@ func _on_重置按钮_button_down():
 	$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".visible = false				
 	
 	
-	currPlayer.potential += pointOnLuck + pointOnHp +pointOnSpeed + pointOnMagic + pointOnStr
+	currPlayer.potential += (pointOnLuck + pointOnHp +pointOnSpeed + pointOnMagic + pointOnStr) * Global.enKey
 			
 	pointOnLuck= 0
 	pointOnHp= 0
@@ -2899,14 +2899,13 @@ func bagButton():
 					$"../subSound".play()							
 			#如果选中的背包位子不是空的
 		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+	
 			if canPress and  armorItemSelectIndex == 1:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
-					return
 				#如果选中的背包位子不是空的，并且武器不是空的
 				if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
 					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
 					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
-		
+					print(11)
 					#如果背包里已经有当前身上的装备了，那么检测是否和同一种装备切换，如果是的话就什么都不做，如果不是的话那么背包里和身上装备同名的数量+1，并且被切换的背包里的装备-1
 					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
 			
@@ -2948,7 +2947,7 @@ func bagButton():
 	if armorItemSelectIndex == 2:
 		hats = []
 		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "hat":
+			if bagArmorItemsData[i].type == "hat" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex:
 				hats.append(bagArmorItemsData[i])
 		for i in hats.size():
 			bagArmorItems[i].get_node("itemImage").texture = load(hats[i].info.icon )
@@ -2998,7 +2997,7 @@ func bagButton():
 			#如果选中的背包位子不是空的
 		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
 			if canPress and  armorItemSelectIndex == 2:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
 					return				
 				#如果选中的背包位子不是空的，并且武器不是空的
 				if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
@@ -3047,7 +3046,7 @@ func bagButton():
 	if armorItemSelectIndex == 3:
 		cloths = []
 		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth":
+			if bagArmorItemsData[i].type == "cloth" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex:
 				cloths.append(bagArmorItemsData[i])
 		for i in cloths.size():
 			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
@@ -3121,7 +3120,7 @@ func bagButton():
 			#如果选中的背包位子不是空的
 		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
 			if canPress and  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
 					return
 				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
 					

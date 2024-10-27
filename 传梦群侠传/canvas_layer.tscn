@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://b7m0e2bvanxoi"]
+[gd_scene load_steps=112 format=3 uid="uid://b7m0e2bvanxoi"]
 
 [ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="1_njpa6"]
 [ext_resource type="Texture2D" uid="uid://don6orbkj2qf8" path="res://消息底图.png" id="2_xnght"]
@@ -42,6 +42,8 @@
 [ext_resource type="Texture2D" uid="uid://iypemk2hsl5s" path="res://加点按钮.png" id="39_r2b75"]
 [ext_resource type="Texture2D" uid="uid://bqig48gxqim4a" path="res://减点按钮.png" id="40_tdy6y"]
 [ext_resource type="PackedScene" uid="uid://dw2xa4a3g20j6" path="res://Scene/importantMsg.tscn" id="42_ng58e"]
+[ext_resource type="Texture2D" uid="uid://bx51d0l0fho7f" path="res://481ad2924ccd063412907f6dc0fdfa0197f016b1bbeb8-S3VwuI.png" id="43_v7ni5"]
+[ext_resource type="Texture2D" uid="uid://dhif2lng23c62" path="res://蓝条.png" id="44_dbqnd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tvqb"]
 atlas = ExtResource("11_guwxw")
@@ -606,6 +608,43 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_ipml6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("violencePoint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_f8apv"]
+resource_name = "showViolence"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("violencePoint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pt2ya"]
+_data = {
+"RESET": SubResource("Animation_ipml6"),
+"showViolence": SubResource("Animation_f8apv")
+}
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_njpa6")
@@ -1856,6 +1895,74 @@ theme_override_font_sizes/font_size = 40
 text = "1:40"
 
 [node name="countDownTimer" type="Timer" parent="."]
+
+[node name="violencePoint" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 244.0
+offset_top = 8.0
+offset_right = 816.0
+offset_bottom = 86.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="violencePoint"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 200.0
+offset_top = -44.0
+offset_right = 246.0
+offset_bottom = 5.0
+scale = Vector2(5.10546, 2.87671)
+texture = ExtResource("43_v7ni5")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="violencePoint/TextureRect"]
+layout_mode = 0
+offset_left = 7.83472
+offset_top = 18.0762
+offset_right = 907.835
+offset_bottom = 374.076
+scale = Vector2(0.101553, 0.103032)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/shadow_outline_size = 100
+theme_override_font_sizes/font_size = 100
+text = "仁德"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="violencePoint"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 48.0
+offset_right = 566.0
+offset_bottom = 104.0
+nine_patch_stretch = true
+texture_under = ExtResource("44_dbqnd")
+texture_progress = ExtResource("44_dbqnd")
+tint_under = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="violencePoint/TextureProgressBar"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 12.0
+offset_right = 336.0
+offset_bottom = 51.0
+theme_override_font_sizes/font_size = 30
+text = "95%"
+
+[node name="Label" type="Label" parent="violencePoint"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 60.0
+offset_right = 613.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 30
+text = "+5"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pt2ya")
+}
 
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="menutButton" to="." method="_on_menut_button_button_down"]

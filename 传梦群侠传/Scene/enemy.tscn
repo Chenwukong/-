@@ -1,4 +1,4 @@
-[gd_scene load_steps=1957 format=3 uid="uid://crkde5xlru4dq"]
+[gd_scene load_steps=1958 format=3 uid="uid://crkde5xlru4dq"]
 
 [ext_resource type="Texture2D" uid="uid://c7afo2n2fa4ua" path="res://Animations/@@@@狐狸精攻击.png" id="1_6lpcr"]
 [ext_resource type="Texture2D" uid="uid://ctprvvab7b7og" path="res://梦魂Animation/@@@@兔子怪攻击.png" id="1_8rmnv"]
@@ -10372,10 +10372,14 @@ tracks/0/keys = {
 "values": [Vector2(1.429, -80), Vector2(1.429, -75), Vector2(1.429, -80)]
 }
 
+[sub_resource type="Animation" id="Animation_70ee8"]
+resource_name = "shader"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dhorc"]
 _data = {
 "RESET": SubResource("Animation_35y2p"),
-"select": SubResource("Animation_kcx3g")
+"select": SubResource("Animation_kcx3g"),
+"shader": SubResource("Animation_70ee8")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wujo"]
@@ -12898,6 +12902,10 @@ libraries = {
 
 [node name="waitTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="bigMagicSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 8.0
+max_distance = 9999.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

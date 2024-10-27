@@ -81,7 +81,7 @@ var magics = {
 	"地裂火":{
 		"name": "地裂火",
 		"attackType": "range",
-		"damage": 60, 
+		"damage": 100, 
 		"cost": 30,
 		"description": "单体法术",
 		"effectArea": "single",
@@ -367,7 +367,6 @@ var monsters = {
 			"luck": 10,
 			"idle": "巨蛙idle",
 			 "monsterMagicList": [
-				magics.get("水漫金山"),
 				magics.get("水攻"),
 			],
 			}),		
@@ -666,7 +665,7 @@ var monsters = {
 			"exp": 30,
 			"luck": 10,
 			"type": "",
-			"gold": 30,
+			"gold": 50,
 			"idle": "狐狸精idle",
 			 "monsterMagicList": [
 				magics.get("狐魅术"),
@@ -683,7 +682,7 @@ var monsters = {
 			"luck": 10,
 			"hp": 300,
 			"exp": 40,
-			"gold":30,
+			"gold":50,
 			"type": "",
 			"idle": "花妖idle",
 			 "monsterMagicList": [
@@ -702,7 +701,7 @@ var monsters = {
 			"hp": 400,
 			"exp": 35,
 			"type": "",
-			"gold": 40,
+			"gold": 60,
 			"idle": "牛妖idle",
 			 "monsterMagicList": [
 				magics.get("地裂火"),
@@ -720,7 +719,7 @@ var monsters = {
 			"hp": 400,
 			"exp": 35,
 			"type": "",
-			"gold": 40,
+			"gold": 60,
 			"idle": "羊妖idle",
 			 "monsterMagicList": [
 				magics.get("泰山压顶"),
@@ -739,7 +738,7 @@ var monsters = {
 			"magicDmg": 1.5,
 			"hp": 3000,
 			"exp": 400,
-			"gold": 1000,
+			"gold": 1500,
 			"idle": "大鹏idle",
 			 "monsterMagicList": [
 				magics.get("奔雷"),
@@ -758,7 +757,7 @@ var monsters = {
 			"exp": 200,
 			"gold": 800,
 			"luck": 0,
-			"hp": 5000,
+			"hp": 3000,
 			"idle": "牛冠军idle",
 			 "monsterMagicList": [
 				magics.get("烈火"),
@@ -776,7 +775,7 @@ var monsters = {
 			"attackDmg": 120,
 			"magicDmg": 2,
 			"exp": 300,
-			"gold": 1000,
+			"gold": 1200,
 			"hp": 1500,
 			"idle": "鼠先锋idle",
 			 "monsterMagicList": [
@@ -797,7 +796,7 @@ var monsters = {
 			"magicDmg": 1,
 			"exp": 150,
 			"luck": 10,
-			"gold": 10,
+			"gold": 80,
 			"hp": 600,
 			"idle": "爷傲奈我何idle",
 			 "monsterMagicList": [
@@ -818,7 +817,7 @@ var monsters = {
 			"hp": 430,
 			"exp": 30,
 			"luck": 10,
-			"gold": 30,
+			"gold": 50,
 			"idle": "狐狸精idle",
 			 "monsterMagicList": [
 				magics.get("狐魅术"),
@@ -836,7 +835,7 @@ var monsters = {
 			"hp": 400,
 			"exp": 30,
 			"luck": 10,
-			"gold":30,
+			"gold":50,
 			"idle": "花妖idle",
 			 "monsterMagicList": [
 				magics.get("漫天花雨"),
@@ -876,7 +875,7 @@ var monsters = {
 			"luck": 10,
 			"hp": 600,
 			"exp": 35,
-			"gold": 40,
+			"gold": 60,
 			"idle": "牛妖idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -894,7 +893,7 @@ var monsters = {
 			"hp": 550,
 			"luck": 10,
 			"exp": 35,
-			"gold": 40,
+			"gold": 60,
 			"idle": "羊妖idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -933,7 +932,7 @@ var monsters = {
 			"hp": 620,
 			"luck": 10,
 			"exp": 45,
-			"gold": 40,
+			"gold": 60,
 			"idle": "兔子精idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -950,7 +949,7 @@ var monsters = {
 			"magicDmg": 1.5,
 			"hp": 700,
 			"exp": 50,
-			"gold": 40,
+			"gold": 60,
 			"idle": "黑熊精idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -1050,7 +1049,7 @@ var monsters = {
 			"idle": "鹰孽大王idle",
 			 "monsterMagicList": [
 				magics.get("地裂火"),
-				magics.get("天火陨石"),
+				#magics.get("天火陨石"),
 				#magics.get("吸魂大法"),
 			],
 		}),				
@@ -1141,7 +1140,7 @@ var monsters = {
 			"physicDefense": 0,
 			"attackDmg": 320,
 			"magicDmg": 2,
-			"hp": 5000,
+			"hp": 7000,
 			"exp": 1000,
 			"gold": 2000,
 			"type":"",
