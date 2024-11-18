@@ -53,7 +53,7 @@ size = Vector2(237.328, 160.542)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_t5ukq"]
 a = Vector2(134, 64)
-b = Vector2(11.7759, 10.5511)
+b = Vector2(89, 112)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_yxi4v"]
 a = Vector2(134, 64)
@@ -650,7 +650,6 @@ position = Vector2(2165, 1126)
 texture = ExtResource("3_ibq0p")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 light_mask = 2
 visibility_layer = 2
 position = Vector2(1480, 393)
@@ -713,7 +712,7 @@ rotation = 1.80545
 shape = SubResource("SegmentShape2D_yxi4v")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(771, 14.0001)
+position = Vector2(994, 75)
 rotation = 1.80545
 shape = SubResource("SegmentShape2D_yxi4v")
 
@@ -732,14 +731,14 @@ position = Vector2(-283, 419)
 polygon = PackedVector2Array(6, 3, 95, 3, 224, -50, 214, -92, 298, -92, 281, -54, 84, 34)
 
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(757, 54)
+position = Vector2(754, 59)
 build_mode = 1
-polygon = PackedVector2Array(15, -11, -60, 56, -46, 97, 10, 75, 140, 148, 202, 107, 272, 138, 332, 108, 392, 71, 321, -40, 297, 6, 183, 58)
+polygon = PackedVector2Array(11, -2, -60, 56, -46, 97, 10, 75, 140, 148, 202, 107, 272, 138, 332, 108, 392, 71, 321, -40, 297, 6, 213.046, 44.2947, 183, 58, 18, -1)
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(757, 54)
+position = Vector2(778, -706)
 build_mode = 1
-polygon = PackedVector2Array(15, -11, -94, 88, -50, 120, -25, 116, 10, 75, 140, 148, 202, 107, 272, 138, 332, 108, 392, 71, 321, -40, 297, 6, 183, 58)
+polygon = PackedVector2Array(16, -7, -94, 88, -50, 120, -25, 116, 10, 75, 140, 148, 202, 107, 272, 138, 332, 108, 392, 71, 321, -40, 297, 6, 183, 58)
 
 [node name="CollisionPolygon2D10" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(1265, -181, 1314, -196, 1358, -159, 1407, -123, 1479, -78, 1493, 25, 1397, 69, 1318, 53, 1233, -38, 1336, -96, 1324, -149)
@@ -775,7 +774,7 @@ polygon = PackedVector2Array(-817, 558, -935, 725, -955, 831, -1036, 871, -1048,
 
 [node name="player" parent="." instance=ExtResource("5_ipaw6")]
 z_index = 1
-position = Vector2(2008, 1084)
+position = Vector2(1126, 2168)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -1110,7 +1109,7 @@ frame_progress = 0.0
 frame = 4
 
 [node name="擂台管理" parent="npcs" instance=ExtResource("31_ablms")]
-position = Vector2(2658, 311)
+position = Vector2(2610, 284)
 sprite_frames = SubResource("SpriteFrames_d0wjy")
 npcName = "擂台管理"
 
@@ -1432,6 +1431,8 @@ sprite_frames = SubResource("SpriteFrames_ir8he")
 [node name="大唐5" parent="." instance=ExtResource("31_ablms")]
 position = Vector2(497, 1876)
 sprite_frames = SubResource("SpriteFrames_y1ba5")
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

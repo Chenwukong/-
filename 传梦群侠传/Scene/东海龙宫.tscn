@@ -1,7 +1,8 @@
-[gd_scene load_steps=56 format=3 uid="uid://dt3gtbmb04pj8"]
+[gd_scene load_steps=57 format=3 uid="uid://dt3gtbmb04pj8"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_a530w"]
 [ext_resource type="Texture2D" uid="uid://plqdn6606dut" path="res://panoramas2/龙宫全景.jpg" id="2_a3je7"]
+[ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_r0uvb"]
 [ext_resource type="Texture2D" uid="uid://83ov4ba26kpp" path="res://panoramas2/龙宫全景_2.png" id="3_w4ihn"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_wd3b2"]
 [ext_resource type="AudioStream" uid="uid://dcqqjq16grsk0" path="res://Audio/BGM/#水下场景.ogg" id="5_6pd6e"]
@@ -12,14 +13,14 @@
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="10_yen5r"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_6qbrp"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="12_wqtrn"]
-[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialball.tscn" id="13_8lktv"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="13_8lktv"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="14_18ta8"]
 [ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="17_20g6y"]
+[ext_resource type="Shader" path="res://shader/wave.gdshader" id="18_6gvuf"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="19_hwkcf"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="20_8crwt"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="21_gqlqy"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="22_1v2xb"]
-[ext_resource type="Shader" path="res://shader/东海龙宫.gdshader" id="22_4huqe"]
 [ext_resource type="Texture2D" uid="uid://dyxtnbfsqis5s" path="res://SeparateAnimation/敖雨/971-11.png" id="23_4fqt8"]
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="23_lgun2"]
 [ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="23_xna0r"]
@@ -79,12 +80,10 @@ _data = {
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lvc32"]
-shader = ExtResource("22_4huqe")
-shader_parameter/water_deep = Color(0, 0.647059, 1, 0.278431)
-shader_parameter/water_shallow = Color(0, 0.7, 1, 0.15)
-shader_parameter/time_scale = 0.05
-shader_parameter/wave_scale = 10.0
-shader_parameter/distortion_strength = 0.05
+shader = ExtResource("18_6gvuf")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(1, 2, 4, 1)
+shader_parameter/wave_transparency = 0.14
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bmfa1"]
 atlas = ExtResource("23_xna0r")
@@ -334,8 +333,10 @@ animations = [{
 
 [node name="东海龙宫" type="Node2D"]
 script = ExtResource("1_a530w")
+shader = ExtResource("2_r0uvb")
 
 [node name="建业左" type="Sprite2D" parent="."]
+material = ExtResource("2_r0uvb")
 position = Vector2(4315, 1207)
 texture = ExtResource("2_a3je7")
 offset = Vector2(-2153, -82)

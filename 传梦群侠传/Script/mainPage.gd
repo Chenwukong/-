@@ -39,7 +39,8 @@ func _ready():
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-
+	var gpu_name = RenderingServer.get_video_adapter_name()
+	
 	mapPlayer = get_tree().get_nodes_in_group("mapPlayer")
 	current_frame += delta / frame_rate
 	if current_frame >= cursor_frames.size():
@@ -321,22 +322,7 @@ func _on_open_scene_animation_finished(anim_name):
 
 func _on_button_button_down():
 	print("")
-#	$openScene.play("openScene")
-#	$AudioStreamPlayer2D.stream = load("res://Audio/BGM/欢乐家园.mp3")
-#	$AudioStreamPlayer2D.play()
-#	$title.visible = false
-#	$author.visible = false
-#	$qq.visible = false
-#	$Cloud.visible = false
-#	$Cloud2.visible = false
-#	$Cloud3.visible = false
-#	$Button.visible = false
-#	$Button2.visible = false
-#	$Button3.visible = false
-#	FightScenePlayers.fightScenePlayerData = FightScenePlayers.fightScenePlayerData2
-#	$"版权申明".visible = true
-#	$"游戏申明".visible = true
-	
+
 
 
 func _on_button_pressed():
@@ -353,5 +339,11 @@ func _on_button_pressed():
 	$Button2.visible = false
 	$Button3.visible = false
 	FightScenePlayers.fightScenePlayerData = FightScenePlayers.fightScenePlayerData2
+	Global.current_chapter_id = 1
+	Global.onTeamPlayer = []
+	Global.onTeamPlayer.append("时追云")
+	Global.onTeamPet = []
+	Global.onTeamSmallPet = []
+	FightScenePlayers.golds = 0
 	$"版权申明".visible = true
 	$"游戏申明".visible = true

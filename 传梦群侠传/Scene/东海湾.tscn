@@ -1,6 +1,7 @@
-[gd_scene load_steps=112 format=3 uid="uid://dcb2u6xa5p55x"]
+[gd_scene load_steps=113 format=3 uid="uid://dcb2u6xa5p55x"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_pfo0l"]
+[ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_d4hde"]
 [ext_resource type="Texture2D" uid="uid://c2cog03pcphav" path="res://panoramas2/东海湾全景.jpg" id="2_ulmbe"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_f0txs"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="3_usrc1"]
@@ -39,9 +40,9 @@ radius = 33.0
 height = 162.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
-vertices = PackedVector2Array(20, 95, 2390, 97, 2393, 2472, 11, 2472, 11, 1492, 9, 1337)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 1492, 11, 2472, 2393, 2472, 2390, 97)])
+vertices = PackedVector2Array(-403, 85, 2802, 72, 2797, 2478, -398, 1229, -396, 2487, -403, 1493)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-403, 85, -398, 1229, -403, 1493, -396, 2487, 2797, 2478, 2802, 72)])
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6gqj"]
 atlas = ExtResource("14_8r1tx")
@@ -639,7 +640,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("DirectionalLight2D:energy")
+tracks/4/path = NodePath("DirectionalLight2D2:energy")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -659,42 +660,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [&"down", &"dead"]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("王姨:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 2, 4.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(391, 2087), Vector2(1204, 1934), Vector2(1279, 1437)]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("王姨:visible")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(5.8),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("王姨:animation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"右上"]
 }
 
 [sub_resource type="Animation" id="Animation_nkovl"]
@@ -801,6 +766,7 @@ size = Vector2(136.5, 91)
 
 [node name="东海湾" type="Node2D"]
 script = ExtResource("1_pfo0l")
+shader = ExtResource("2_d4hde")
 
 [node name="东海湾全景" type="Sprite2D" parent="."]
 position = Vector2(1201, 1197.1)
@@ -808,7 +774,7 @@ texture = ExtResource("2_ulmbe")
 
 [node name="player" parent="." instance=ExtResource("3_f0txs")]
 z_index = 2
-position = Vector2(2082, 1228)
+position = Vector2(2128, 1564)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -1227,12 +1193,14 @@ toScene = "东海海道"
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
 [node name="Node2D3" parent="." instance=ExtResource("3_usrc1")]
-position = Vector2(2140.64, 1183.95)
+position = Vector2(2879, 1339)
 id = "东海湾4"
 items = {
 "鱼大爷之帽": 1
 }
 special = "鱼大爷"
+
+[node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered"]

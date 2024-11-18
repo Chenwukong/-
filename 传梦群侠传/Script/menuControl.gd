@@ -87,7 +87,7 @@ func _process(delta):
 	
 	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:
 	
-		if Global.onFight == false and Input.is_action_just_pressed("ui_down"):
+		if Global.onFight == false and Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 			if buttonIndex == buttons.size() - 1:
 				buttonIndex = 0
 				buttons[buttonIndex].grab_focus()
@@ -97,7 +97,7 @@ func _process(delta):
 			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()	
-		if Global.onFight == false and Input.is_action_just_pressed("ui_up"):
+		if Global.onFight == false and Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:
 			if buttonIndex == 0:
 				buttonIndex = buttons.size() - 1
 				buttons[buttonIndex].grab_focus()
@@ -107,7 +107,7 @@ func _process(delta):
 			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()	
-		if Global.onFight == false and Input.is_action_just_pressed("esc"):
+		if Global.onFight == false and (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 			characterIndex = 0
 #			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
 #			get_parent().get_node("subSound").play()				
@@ -139,7 +139,7 @@ func _process(delta):
 	
 		if buttons[buttonIndex].name == "道具":
 			
-			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onItemPage == false:
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onItemPage == false and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 				get_parent().get_node("subSound").play()	
 				Global.onItemPage = true
@@ -148,7 +148,7 @@ func _process(delta):
 				$"../canPress".start()
 				
 		if buttons[buttonIndex].name == "法术":
-			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onMagicPage == false:
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onMagicPage == false and !Global.noKeyboard:
 				get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))
 				Global.onMenuSelectCharacter = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
@@ -156,20 +156,20 @@ func _process(delta):
 				
 				
 		if buttons[buttonIndex].name == "装备":
-			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onArmorItemPage == false:
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and Global.onArmorItemPage == false and !Global.noKeyboard:
 				get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))		
 				Global.onMenuSelectCharacter = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 				get_parent().get_node("subSound").play()				
 		if buttons[buttonIndex].name == "状态":
-			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onStatusPage:
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onStatusPage and !Global.noKeyboard:
 				
 				get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))	
 				Global.onMenuSelectCharacter = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 				get_parent().get_node("subSound").play()				
 		if buttons[buttonIndex].name == "保存冒险":
-			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onSavePage:
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onSavePage and !Global.noKeyboard:
 				Global.onSavePage = true
 				$"保存页面".visible = true
 				Global.saveIndex = 0
@@ -186,7 +186,7 @@ func _process(delta):
 						saveSlots[i].get_node("chapter").text = "章节" + str(data.Global.current_chapter_id)
 #						saveSlots[i].get_node("systemTime").text = data.formatDate
 		if buttons[buttonIndex].name == "读取进度":
-			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onLoadPage and Global.menuOut:
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.onLoadPage and Global.menuOut and !Global.noKeyboard:
 				Global.onLoadPage = true
 		
 				$"读取页面".visible = true
@@ -205,13 +205,13 @@ func _process(delta):
 						loadSlots[i].get_node("chapter").text = "章节" + str(data.Global.current_chapter_id)
 						loadSlots[i].get_node("systemTime").text = data.formatDate
 		if buttons[buttonIndex].name == "升级加点":
-			if Global.onFight == false and Input.is_action_just_released("ui_accept"):
+			if Global.onFight == false and Input.is_action_just_released("ui_accept") and !Global.noKeyboard:
 				get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))	
 				Global.onMenuSelectCharacter = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 				get_parent().get_node("subSound").play()				
 		if buttons[buttonIndex].name == "返回现实":
-			if !Global.onFight and Input.is_action_just_released("ui_accept") and !Global.onQuitMenu:
+			if !Global.onFight and Input.is_action_just_released("ui_accept") and !Global.onQuitMenu and !Global.noKeyboard:
 				Global.onQuitMenu = true
 				$"退出页面".visible = true	
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
@@ -222,7 +222,7 @@ func _process(delta):
 		style.bg_color = Color(1, 1, 1, 1)
 		
 		
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_just_pressed("ui_down")and !Global.noKeyboard:
 			if characterIndex == Global.onTeamPlayer.size() - 1:
 				characterIndex = 0
 			else:
@@ -233,7 +233,7 @@ func _process(delta):
 			for i in playerStatus.size():
 				playerStatus[i].self_modulate = "ffffff"
 					
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:
 			if characterIndex == 0:
 				characterIndex = Global.onTeamPlayer.size() - 1
 			else:
@@ -243,7 +243,7 @@ func _process(delta):
 			get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()				
-		if Input.is_action_just_pressed("ui_accept") and canPress:
+		if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 			canPress = false
 	
 			$"../canPress".start()
@@ -286,7 +286,7 @@ func _process(delta):
 				skillIndex = 0
 				
 
-		if Input.is_action_just_pressed("esc"):
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard :
 			Global.onMenuSelectCharacter = false
 			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
 			characterIndex = 0
@@ -295,7 +295,7 @@ func _process(delta):
 			move_menuButton_to_top()
 	if Global.onItemPage:
 		get_node("系统信息").visible = false
-		if Input.is_action_just_pressed("ui_up") and !Global.onItemSelect and !Global.onMenuItemUsing:
+		if Input.is_action_just_pressed("ui_up") and !Global.onItemSelect and !Global.onMenuItemUsing and !Global.noKeyboard:
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()
 			for i in bagMenuItems:
@@ -304,7 +304,7 @@ func _process(delta):
 				itemTypeIndex = menuItems.size()-1
 			else:			
 				itemTypeIndex -= 1
-		if Input.is_action_just_pressed("ui_down") and !Global.onItemSelect and !Global.onMenuItemUsing:
+		if Input.is_action_just_pressed("ui_down") and !Global.onItemSelect and !Global.onMenuItemUsing and !Global.noKeyboard:
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()
 			for i in bagMenuItems:
@@ -313,7 +313,7 @@ func _process(delta):
 				itemTypeIndex = 0
 			else:			
 				itemTypeIndex += 1
-		if Input.is_action_just_pressed("esc") and !Global.onItemSelect and !Global.onMenuItemUsing:
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.onItemSelect and !Global.onMenuItemUsing and !Global.noKeyboard:
 			move_menuButton_to_top()
 			itemTypeIndex = 0
 			$"道具页面".visible = false
@@ -326,7 +326,7 @@ func _process(delta):
 				menuItems[i].modulate = "00ffff"			
 			else:
 				menuItems[i].modulate =  "ffffff"
-		if Input.is_action_just_pressed("ui_accept") and !Global.onItemSelect and !Global.onMenuItemUsing and canPress:	
+		if Input.is_action_just_pressed("ui_accept") and !Global.onItemSelect and !Global.onMenuItemUsing and canPress and !Global.noKeyboard:	
 			var itemScene = load("res://Scene/menuItem.tscn")
 			itemSelectIndex = 0
 			if itemTypeIndex == 0:
@@ -352,7 +352,7 @@ func _process(delta):
 				$"道具页面/介绍/Label".text = bagMenuItems[itemSelectIndex].description
 				
 				
-			if Input.is_action_just_pressed("ui_accept") and !Global.onMenuItemUsing and canPress:
+			if Input.is_action_just_pressed("ui_accept") and !Global.onMenuItemUsing and canPress and !Global.noKeyboard:
 				
 				canPress = false
 				$"../canPress".start()
@@ -375,7 +375,7 @@ func _process(delta):
 				
 				$"../subSound".stream = load("res://Audio/SE/002-System02.ogg")
 				$"../subSound".play()					
-			if Input.is_action_just_pressed("ui_up") and !Global.onMenuItemUsing:
+			if Input.is_action_just_pressed("ui_up") and !Global.onMenuItemUsing and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()
 				if itemSelectIndex ==0:
@@ -383,14 +383,14 @@ func _process(delta):
 				else:			
 					itemSelectIndex -= 1
 					
-			if Input.is_action_just_pressed("ui_down") and !Global.onMenuItemUsing:
+			if Input.is_action_just_pressed("ui_down") and !Global.onMenuItemUsing and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()
 				if itemSelectIndex == bagMenuItems.size()-1:
 					itemSelectIndex = 0
 				else:			
 					itemSelectIndex += 1	
-			if Input.is_action_just_pressed("esc"):
+			if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 				for i in bagMenuItems:
 					i.queue_free()	
 					$"道具页面/介绍/Label".text = ""
@@ -404,7 +404,7 @@ func _process(delta):
 					else:
 						i.get_node("itemName").modulate = "ffffff"
 		if Global.onMenuItemUsing:
-			if Input.is_action_just_pressed("ui_accept") and canPress:
+			if Input.is_action_just_pressed("ui_accept") and canPress  and !Global.noKeyboard :
 				$"道具页面/角色表".useItem()
 	
 	
@@ -417,7 +417,7 @@ func _process(delta):
 			menuMagic[menuMagicIndex].get_node("name").modulate = "yellow"
 		
 			
-			if Input.is_action_just_pressed("ui_up"):
+			if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()				
 				if menuMagicIndex <= 2:
@@ -426,7 +426,7 @@ func _process(delta):
 					menuMagicIndex -= 3
 				get_node("法术页面/技能介绍/description").text = "[" + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic[menuMagicIndex].description + "]"
 	
-			if Input.is_action_just_pressed("ui_down"):
+			if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()				
 				if menuMagicIndex >= menuMagic.size() - 2:
@@ -437,21 +437,21 @@ func _process(delta):
 					else:
 						return
 				get_node("法术页面/技能介绍/description").text = "[" + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic[menuMagicIndex].description + "]"
-			if Input.is_action_just_pressed("ui_left"):
+			if Input.is_action_just_pressed("ui_left") and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()					
 				if menuMagicIndex == 0:
 					return
 				menuMagicIndex -= 1
 				get_node("法术页面/技能介绍/description").text = "[" + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic[menuMagicIndex].description + "]"
-			if Input.is_action_just_pressed("ui_right"):
+			if Input.is_action_just_pressed("ui_right") and !Global.noKeyboard:
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()					
 				if menuMagicIndex == menuMagic.size() - 1:
 					return
 				menuMagicIndex += 1
 				get_node("法术页面/技能介绍/description").text = "[" + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic[menuMagicIndex].description + "]"
-			if Input.is_action_just_pressed("esc"):
+			if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 				get_node("系统信息").visible = true
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
 				get_parent().get_node("subSound").play()	
@@ -501,14 +501,14 @@ func _process(delta):
 			armorItemButton[4].get_node("itemType/icon").texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.icon)
 		
 		if onArmorItemSelect:
-			if Input.is_action_just_pressed("ui_down"):
+			if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 				if armorItemSelectIndex == 4:
 					armorItemSelectIndex = 0
 				else:
 					armorItemSelectIndex += 1
 				$"../subSound".stream = load("res://Audio/SE/001-System01.ogg")
 				$"../subSound".play()			
-			if Input.is_action_just_pressed("ui_up"):
+			if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:
 				if armorItemSelectIndex == 0:
 					armorItemSelectIndex = 4
 				else:
@@ -553,7 +553,7 @@ func _process(delta):
 		
 		
 				
-		if Input.is_action_just_released("esc") and !onBagArmorItemSelect:
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !onBagArmorItemSelect and !Global.noKeyboard:
 			move_menuButton_to_top()
 			get_node("系统信息").visible = true
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
@@ -564,7 +564,7 @@ func _process(delta):
 			characterIndex = 0
 			onBagArmorItemSelect = false
 	
-		if onArmorItemSelect and Input.is_action_just_released("ui_accept") and canPress:
+		if onArmorItemSelect and Input.is_action_just_released("ui_accept") and canPress and !Global.noKeyboard:
 			onBagArmorItemSelect = true
 			BagArmorItemIndex = 0  
 			onArmorItemSelect = false
@@ -624,7 +624,7 @@ func _process(delta):
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
 					$"装备页面/装备栏/status/伤害/value/arrow".visible = false
-					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0:
+					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0 and !Global.noKeyboard:
 
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
@@ -645,7 +645,7 @@ func _process(delta):
 							$"../subSound".play()
 				#如果选中的背包位子不是空的,切换武器
 				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "" and FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name:
-					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0:
+					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0 and !Global.noKeyboard:
 		
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "" :
@@ -724,7 +724,7 @@ func _process(delta):
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
 					$"装备页面/装备栏/status/速度/value/arrow".visible = false
-					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 1:
+					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 1 and !Global.noKeyboard:
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes != null:
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed
 							if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.name):
@@ -743,7 +743,7 @@ func _process(delta):
 							$"../subSound".play()							
 					#如果选中的背包位子不是空的
 				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "" and   (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
-					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 1:
+					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 1 and !Global.noKeyboard:
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button2/itemType/icon/itemName".text != "":
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPlayerSpeed - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.shoes.value.addPlayerSpeed + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPlayerSpeed
@@ -820,7 +820,7 @@ func _process(delta):
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "" :
 					$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
-					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 2:
+					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 2 and !Global.noKeyboard:
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat != null:
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense
 							if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.name):
@@ -839,7 +839,7 @@ func _process(delta):
 							$"../subSound".play()							
 					#如果选中的背包位子不是空的
 				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != ""  and (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
-					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 2:
+					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 2 and !Global.noKeyboard:
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button3/itemType/icon/itemName".text != "":
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.hat.value.addPhysicDefense + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.addPhysicDefense
@@ -936,7 +936,7 @@ func _process(delta):
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
 					$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
 					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
-					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 3:
+					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 3 and !Global.noKeyboard:
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth != null:
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addPhysicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addPhysicDefense
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].addMagicDefense -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.cloth.value.addMagicDefense
@@ -960,7 +960,7 @@ func _process(delta):
 							
 					#如果选中的背包位子不是空的
 				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != ""  and (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
-					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 3:
+					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 3 and !Global.noKeyboard:
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
 						
@@ -1101,12 +1101,13 @@ func _process(delta):
 			
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
+					print(111)
 					$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
 					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
 					$"装备页面/装备栏/status/伤害/value/arrow".visible = false
 					$"装备页面/装备栏/status/速度/value/arrow".visible = false
 					
-					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4:
+					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4 and !Global.noKeyboard:
 						FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData
 						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 						$"../subSound".play()						
@@ -1135,7 +1136,7 @@ func _process(delta):
 					#如果选中的背包位子不是空的
 				elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != ""  and (FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user ==FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name or FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user == "all" ):
 					
-					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4:
+					if canPress and Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 4 and !Global.noKeyboard:
 						FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData
 						$"../subSound".stream = load("res://Audio/SE/interface003.ogg")
 						$"../subSound".play()	
@@ -1199,7 +1200,7 @@ func _process(delta):
 			
 			
 
-			if Input.is_action_just_released("esc"):
+			if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 				onArmorItemSelect = true
 				onBagArmorItemSelect = false
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
@@ -1212,14 +1213,14 @@ func _process(delta):
 					bagArmorItems[i].get_node("itemImage/item").text = ""
 					bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ""
 					bagArmorItems[i].self_modulate = "ffffff"
-			if Input.is_action_just_pressed("ui_up"):
+			if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:
 				if BagArmorItemIndex <= 2:
 					return
 				else:
 					BagArmorItemIndex  -= 3
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()						
-			if Input.is_action_just_pressed("ui_down"):
+			if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 				if BagArmorItemIndex  > 8:
 					return
 				else:
@@ -1228,13 +1229,13 @@ func _process(delta):
 				get_parent().get_node("subSound").play()	
 
 
-			if Input.is_action_just_pressed("ui_left"):
+			if Input.is_action_just_pressed("ui_left") and !Global.noKeyboard:
 				if BagArmorItemIndex  == 0:
 					return
 				BagArmorItemIndex  -= 1
 				get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_node("subSound").play()					
-			if Input.is_action_just_pressed("ui_right"):
+			if Input.is_action_just_pressed("ui_right") and !Global.noKeyboard:
 				if BagArmorItemIndex  == 11:
 					return
 				BagArmorItemIndex += 1
@@ -1294,7 +1295,7 @@ func _process(delta):
 		if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories:
 			$"状态页面/Panel/accessories".texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.icon)
 			$"状态页面/Panel/accessories/Label".text = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.accessories.name
-		if Input.is_action_just_pressed("esc"):
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 			Global.onMenuSelectCharacter = false
 			move_menuButton_to_top()
 			$"状态页面".visible = false
@@ -1305,19 +1306,19 @@ func _process(delta):
 			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))			
 			characterIndex = 0				
 	if Global.onQuitMenu:
-		if Input.is_action_just_pressed("esc"):
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 			move_menuButton_to_top()
 			$"退出页面".visible = false
 			Global.onQuitMenu = false
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
 			get_parent().get_node("subSound").play()				
 			
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 			if quitIndex == 1:
 				quitIndex = 0
 			else:		
 				quitIndex += 1
-		if Input.is_action_just_pressed("ui_up"):		
+		if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:		
 			if quitIndex == 0:
 				quitIndex = 1
 			else:		
@@ -1329,7 +1330,7 @@ func _process(delta):
 		else:
 			$"退出页面/退出信息/返回标题".self_modulate = "ffffff"
 			$"退出页面/退出信息/退出游戏".self_modulate = "000000"
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") and !Global.noKeyboard:
 			if quitIndex == 1:
 				get_tree().quit()
 			else:
@@ -1372,7 +1373,7 @@ func _process(delta):
 				i.get_node("加点文本").modulate = "00ffff"
 			else:
 				i.get_node("加点文本").modulate = "ffffff"
-		if Input.is_action_just_pressed("esc"):
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") )and !Global.noKeyboard:
 			move_menuButton_to_top()
 			$"加点页面".visible = false
 			Global.onSkillPointPage = false
@@ -1381,12 +1382,12 @@ func _process(delta):
 			get_parent().get_node("subSound").play()	
 			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))			
 			characterIndex = 0
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 			if skillIndex == 6:
 				skillIndex = 0
 			else:		
 				skillIndex += 1
-		if Input.is_action_just_pressed("ui_up"):		
+		if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:		
 				if skillIndex  == 0:
 					skillIndex  = 6
 				else:		
@@ -1416,7 +1417,7 @@ func _process(delta):
 			$"加点页面/介绍区/Label2".text = ""							
 			$"加点页面/介绍区/总共提高".visible = false		
 					
-		if Input.is_action_just_pressed("ui_accept") and canPress:
+		if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 			if skillIndex == 0 and currPlayer.potential > 0:
 				pointOnHp += 1 * Global.enKey
 				currPlayer.potential -= Global.enKey 
@@ -1536,14 +1537,14 @@ func _process(delta):
 				pointOnMagic= 0
 				pointOnStr = 0				
 	if Global.onSavePage:
-		if Input.is_action_just_pressed("esc"):
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 			move_menuButton_to_top()
 			Global.onSavePage = false
 			$"保存页面".visible = false
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
 			get_parent().get_node("subSound").play()		
 			get_node("系统信息").visible = true			
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 			if Global.saveIndex == 3:
 				Global.saveIndex = 0
 			else:
@@ -1551,7 +1552,7 @@ func _process(delta):
 
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()
-		if Input.is_action_just_pressed("ui_up"):	
+		if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:	
 			if Global.saveIndex == 0:
 				Global.saveIndex = 3
 			else:
@@ -1559,7 +1560,7 @@ func _process(delta):
 	
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()				
-		if Input.is_action_just_pressed("ui_accept") and canPress:
+		if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 			saveGame()
 
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/008-System08.ogg")
@@ -1578,14 +1579,14 @@ func _process(delta):
 			else:
 				i.self_modulate = "ffffff94"	
 	if Global.onLoadPage:
-		if Input.is_action_just_pressed("esc"):
+		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") ) and !Global.noKeyboard:
 			move_menuButton_to_top()
 			Global.onLoadPage = false
 			$"读取页面".visible = false
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
 			get_parent().get_node("subSound").play()		
 			get_node("系统信息").visible = true			
-		if Input.is_action_just_pressed("ui_down"):
+		if Input.is_action_just_pressed("ui_down") and !Global.noKeyboard:
 			if Global.saveIndex == 3:
 				Global.saveIndex = 0
 			else:
@@ -1593,7 +1594,7 @@ func _process(delta):
 
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()
-		if Input.is_action_just_pressed("ui_up"):	
+		if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:	
 			if Global.saveIndex == 0:
 				Global.saveIndex = 3
 			else:
@@ -1601,7 +1602,7 @@ func _process(delta):
 	
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 			get_parent().get_node("subSound").play()				
-		if Input.is_action_just_pressed("ui_accept") and canPress:
+		if Input.is_action_just_pressed("ui_accept") and canPress  and !Global.noKeyboard:
 			
 			var savePath = "user://saveFile"+str(Global.saveIndex)
 			var file = FileAccess.open(savePath, FileAccess.READ)	
@@ -3046,7 +3047,7 @@ func bagButton():
 	if armorItemSelectIndex == 3:
 		cloths = []
 		for i in bagArmorItemsData:
-			if bagArmorItemsData[i].type == "cloth" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex:
+			if bagArmorItemsData[i].type == "cloth" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex or bagArmorItemsData[i].info.user == "all":
 				cloths.append(bagArmorItemsData[i])
 		for i in cloths.size():
 			bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
@@ -3120,7 +3121,8 @@ func bagButton():
 			#如果选中的背包位子不是空的
 		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
 			if canPress and  armorItemSelectIndex == 3:
-				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
+				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].sex != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user and FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user != "all":
+					print(123)
 					return
 				if $"装备页面/装备栏/items/button4/itemType/icon/itemName".text != "":
 					
@@ -3348,3 +3350,200 @@ func bagButton():
 
 func decrypt(value):
 	return value / Global.enKey
+	
+
+
+func _on_close_button_button_down():
+	Global.menuOut = false
+	$".".visible = false
+
+
+func _on_back_button_button_down():
+	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:
+		if Global.onFight == false:
+			characterIndex = 0			
+			if Global.onMagicPage == false:
+				buttonIndex = 0 
+			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+	if Global.onMenuSelectCharacter:
+		Global.onMenuSelectCharacter = false
+		get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+		characterIndex = 0
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+		get_parent().get_node("subSound").play()		
+		move_menuButton_to_top()	
+	if Global.onItemPage:
+		if !Global.onItemSelect and !Global.onMenuItemUsing:
+			move_menuButton_to_top()
+			itemTypeIndex = 0
+			$"道具页面".visible = false
+			Global.onItemPage = false
+			get_node("系统信息").visible = true
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()		
+		if Global.onItemSelect:
+			for i in bagMenuItems:
+				i.queue_free()	
+				$"道具页面/介绍/Label".text = ""
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()
+			Global.onItemSelect = false			
+	if Global.onMagicPage:
+		get_node("系统信息").visible = true
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+		get_parent().get_node("subSound").play()	
+		Global.onMagicPage = false
+		menuMagicIndex = 0
+		get_node("法术页面").visible = false
+		get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+		move_menuButton_to_top()
+		for i in get_tree().get_nodes_in_group("menuMagic"):
+			i.get_parent().queue_free()
+		characterIndex = 0
+	if Global.onArmorItemPage:			
+		if  !onBagArmorItemSelect:
+			move_menuButton_to_top()
+			get_node("系统信息").visible = true
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()	
+			Global.onArmorItemPage = false
+			get_node("装备页面").visible = false
+			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+			characterIndex = 0
+			onBagArmorItemSelect = false
+	if  onBagArmorItemSelect:
+		onArmorItemSelect = true
+		onBagArmorItemSelect = false
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+		get_parent().get_node("subSound").play()	
+		for arrow in arrows:
+			arrow.visible = false
+			arrow.modulate = "ffffff"
+		for i in bagArmorItems.size():
+			bagArmorItems[i].get_node("itemImage").texture = null
+			bagArmorItems[i].get_node("itemImage/item").text = ""
+			bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ""
+			bagArmorItems[i].self_modulate = "ffffff"
+	if Global.onStatusPage:
+			Global.onMenuSelectCharacter = false
+			move_menuButton_to_top()
+			$"状态页面".visible = false
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()	
+			get_node("系统信息").visible = true
+			Global.onStatusPage = false
+			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))			
+			characterIndex = 0	
+	if Global.onQuitMenu:
+			move_menuButton_to_top()
+			$"退出页面".visible = false
+			Global.onQuitMenu = false
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()	
+	if Global.onSkillPointPage:
+			move_menuButton_to_top()
+			$"加点页面".visible = false
+			Global.onSkillPointPage = false
+			get_node("系统信息").visible = true
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()	
+			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))			
+			characterIndex = 0
+	if Global.onSavePage:
+			move_menuButton_to_top()
+			Global.onSavePage = false
+			$"保存页面".visible = false
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()		
+			get_node("系统信息").visible = true	
+	if Global.onLoadPage:
+			move_menuButton_to_top()
+			Global.onLoadPage = false
+			$"读取页面".visible = false
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()		
+			get_node("系统信息").visible = true		
+
+
+func _on_down_button_button_down():
+	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:	
+			if buttonIndex == buttons.size() - 1:
+				buttonIndex = 0
+				buttons[buttonIndex].grab_focus()
+			else:
+				buttonIndex += 1
+				buttons[buttonIndex].grab_focus()
+			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+			get_parent().get_node("subSound").play()	
+
+
+func _on_up_button_button_down():
+	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:
+		if buttonIndex == 0:
+			buttonIndex = buttons.size() - 1
+			buttons[buttonIndex].grab_focus()
+		else:
+			buttonIndex -= 1
+			buttons[buttonIndex].grab_focus()
+		get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_node("subSound").play()	
+	if Global.onMenuSelectCharacter:
+		var style = get_theme_stylebox("StyleBoxFlat")
+		style.bg_color = Color(1, 1, 1, 1)
+		if characterIndex == 0:
+			characterIndex = Global.onTeamPlayer.size() - 1
+		else:
+			characterIndex -= 1
+		for i in playerStatus.size():
+			playerStatus[i].self_modulate = "ffffff"				
+		get_node("menuButton/menuButtonPlayer").play("PlayerFlash" + str(characterIndex + 1))
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_node("subSound").play()	
+	if Global.onItemPage:
+		get_node("系统信息").visible = false
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_node("subSound").play()
+		for i in bagMenuItems:
+			i.queue_free()			
+		if itemTypeIndex ==0:
+			itemTypeIndex = menuItems.size()-1
+		else:			
+			itemTypeIndex -= 1
+		if Global.onItemSelect:			
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+			get_parent().get_node("subSound").play()
+			if itemSelectIndex ==0:
+				itemSelectIndex = bagMenuItems.size()-1
+			else:			
+				itemSelectIndex -= 1
+	if Global.onMagicPage:
+		get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_node("subSound").play()				
+		if menuMagicIndex <= 2:
+			return
+		else:
+			menuMagicIndex -= 3
+		get_node("法术页面/技能介绍/description").text = "[" + FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic[menuMagicIndex].description + "]"
+	if Global.onArmorItemPage:
+		if armorItemSelectIndex == 0:
+			armorItemSelectIndex = 4
+		else:
+			armorItemSelectIndex -= 1
+		$"../subSound".stream = load("res://Audio/SE/001-System01.ogg")
+		$"../subSound".play()		
+		if  onBagArmorItemSelect:
+			if BagArmorItemIndex <= 2:
+				return
+			else:
+				BagArmorItemIndex  -= 3
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+			get_parent().get_node("subSound").play()
+	if Global.onQuitMenu:			
+		if Input.is_action_just_pressed("ui_up") and !Global.noKeyboard:		
+			if quitIndex == 0:
+				quitIndex = 1
+			else:		
+				quitIndex -= 1	
+			

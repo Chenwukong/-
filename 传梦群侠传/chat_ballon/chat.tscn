@@ -1,13 +1,17 @@
-[gd_scene load_steps=423 format=3 uid="uid://d1psa2w4drbnv"]
+[gd_scene load_steps=427 format=3 uid="uid://d1psa2w4drbnv"]
 
 [ext_resource type="Script" path="res://chat_ballon/chatBalloon.gd" id="1_l52tu"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_065px"]
-[ext_resource type="Texture2D" uid="uid://boxqtuo0snyuo" path="res://Icons/提醒背景.png" id="2_fyg1y"]
+[ext_resource type="Texture2D" uid="uid://bm3vbhjdu1fe6" path="res://Pictures/对话框.png" id="2_cbykq"]
+[ext_resource type="Texture2D" uid="uid://cxgka8w3ojqkg" path="res://Pictures/对话框2.png" id="2_k1epe"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_86jyl"]
 [ext_resource type="Texture2D" uid="uid://bd2fn3qdbl3sv" path="res://Pictures/Pictures/¤黑熊精.png" id="3_iuf66"]
+[ext_resource type="Texture2D" uid="uid://c14hfppuwn757" path="res://Pictures/框.png" id="3_kxjc0"]
 [ext_resource type="Texture2D" uid="uid://bxy5krj1dmfmi" path="res://portrait/时追云红眼.png" id="5_vlhgy"]
 [ext_resource type="Texture2D" uid="uid://b1swkwvj21vgc" path="res://portrait/敖雨.png" id="7_byoll"]
+[ext_resource type="FontFile" uid="uid://chjrjt643xgk1" path="res://Aa剑豪体.ttf" id="7_f5hwo"]
 [ext_resource type="Texture2D" uid="uid://b7wylylxkcc82" path="res://b2392dc59bd8c465deb69c2265ec0fddd7a0ceb847ae-x67mVP.png" id="7_k3mrf"]
+[ext_resource type="FontFile" uid="uid://br3sd2jmwtvyi" path="res://方正少儿_GBK.ttf" id="9_a2iv6"]
 [ext_resource type="Texture2D" uid="uid://c4q58x8xhypv8" path="res://Animations/表情87.png" id="10_flcg5"]
 [ext_resource type="Texture2D" uid="uid://0rcc1eg7mi7o" path="res://Animations/表情0.png" id="10_twj2a"]
 [ext_resource type="Texture2D" uid="uid://cwkumude62stu" path="res://Animations/表情1.png" id="10_vbxru"]
@@ -2879,44 +2883,48 @@ script = ExtResource("1_l52tu")
 
 [node name="Balloon" type="TextureRect" parent="."]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.854902)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 202.0
-offset_top = -341.0
-offset_right = -150.0
-offset_bottom = -141.0
+offset_left = 38.0
+offset_top = -521.0
+offset_right = -225.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1.25055, 0.936228)
 theme = SubResource("Theme_qq3yp")
-texture = ExtResource("2_fyg1y")
+texture = ExtResource("2_k1epe")
 
 [node name="TextureRect3" type="TextureRect" parent="Balloon"]
+visible = false
 layout_mode = 0
-offset_left = -129.0
-offset_top = -24.0
-offset_right = 896.0
-offset_bottom = 208.0
-texture = ExtResource("7_k3mrf")
+offset_left = -13.594
+offset_top = -24.5667
+offset_right = 1011.41
+offset_bottom = 527.433
+scale = Vector2(0.902289, 1.10824)
+texture = ExtResource("3_kxjc0")
 
 [node name="TextureRect" type="TextureRect" parent="Balloon"]
 z_index = -1
 layout_mode = 0
-offset_left = -24.0
-offset_top = -344.0
-offset_right = 1010.0
-offset_bottom = 565.0
+offset_left = 63.1721
+offset_top = -222.168
+offset_right = 1097.17
+offset_bottom = 686.832
 scale = Vector2(0.630088, 0.584083)
 texture = ExtResource("3_iuf66")
 
 [node name="TextureRect2" type="TextureRect" parent="Balloon"]
 z_index = -1
 layout_mode = 0
-offset_left = 515.0
-offset_top = -254.0
-offset_right = 980.0
-offset_bottom = 320.0
+offset_left = 494.982
+offset_top = -162.354
+offset_right = 959.982
+offset_bottom = 411.646
 scale = Vector2(0.630088, 0.584083)
 texture = ExtResource("5_vlhgy")
 
@@ -2924,10 +2932,10 @@ texture = ExtResource("5_vlhgy")
 visible = false
 z_index = -1
 layout_mode = 0
-offset_left = 589.0
-offset_top = -239.0
-offset_right = 887.0
-offset_bottom = 263.0
+offset_left = 550.957
+offset_top = -126.038
+offset_right = 870.957
+offset_bottom = 375.962
 scale = Vector2(0.630088, 0.584083)
 texture = ExtResource("5_vlhgy")
 
@@ -2936,46 +2944,53 @@ visible = false
 modulate = Color(0.784314, 0.784314, 0.784314, 1)
 z_index = -1
 layout_mode = 0
-offset_left = 363.0
-offset_top = -323.0
-offset_right = 2363.0
-offset_bottom = 1677.0
+offset_left = 379.033
+offset_top = -196.533
+offset_right = 2379.03
+offset_bottom = 1803.47
 scale = Vector2(0.276292, 0.240079)
 texture = ExtResource("7_byoll")
 
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 175.123
+offset_top = 90.7899
+offset_right = 778.123
+offset_bottom = 569.79
+mouse_filter = 1
+theme_override_fonts/normal_font = ExtResource("7_f5hwo")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "时追云"
+fit_content = true
+scroll_active = false
+
 [node name="Dialogue" type="MarginContainer" parent="Balloon"]
+z_index = 10
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 81.0
-offset_top = -1.0
-offset_right = -144.0
-offset_bottom = -44.0
+offset_left = 122.0
+offset_top = 175.0
+offset_right = -75.0
+offset_bottom = -46.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.950246, 0.751089)
 theme = SubResource("Theme_dcbsf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Balloon/Dialogue"]
 layout_mode = 2
 alignment = 1
 
-[node name="CharacterLabel" type="RichTextLabel" parent="Balloon/Dialogue/VBoxContainer"]
-unique_name_in_owner = true
-self_modulate = Color(1, 1, 0.00392157, 1)
-layout_mode = 2
-mouse_filter = 1
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-text = "Character"
-fit_content = true
-scroll_active = false
-
 [node name="DialogueLabel" parent="Balloon/Dialogue/VBoxContainer" instance=ExtResource("2_065px")]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 25
+theme_override_fonts/normal_font = ExtResource("9_a2iv6")
+theme_override_font_sizes/normal_font_size = 28
 text = "怎么可能发生的士大夫啊圣诞节分厘卡撒旦 "
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]
@@ -2985,10 +3000,10 @@ anchor_left = 0.226
 anchor_top = 0.166
 anchor_right = 0.961
 anchor_bottom = 0.168
-offset_left = -97.8
-offset_top = -263.2
-offset_right = -95.12
-offset_bottom = 140.472
+offset_left = -91.3622
+offset_top = -110.858
+offset_right = -88.6823
+offset_bottom = 292.814
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -3018,10 +3033,157 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="emoji_sprite" type="AnimatedSprite2D" parent="Balloon"]
+position = Vector2(165.527, 197.601)
+sprite_frames = SubResource("SpriteFrames_tw22l")
+animation = &"不听"
+autoplay = "大笑"
+
+[node name="Balloon2" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 205.0
+offset_top = -341.0
+offset_right = -147.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = SubResource("Theme_qq3yp")
+texture = ExtResource("2_cbykq")
+
+[node name="TextureRect3" type="TextureRect" parent="Balloon2"]
+visible = false
+layout_mode = 0
+offset_left = -129.0
+offset_top = -24.0
+offset_right = 896.0
+offset_bottom = 208.0
+texture = ExtResource("7_k3mrf")
+
+[node name="TextureRect" type="TextureRect" parent="Balloon2"]
+z_index = -1
+layout_mode = 0
+offset_left = -24.0
+offset_top = -344.0
+offset_right = 1010.0
+offset_bottom = 565.0
+scale = Vector2(0.630088, 0.584083)
+texture = ExtResource("3_iuf66")
+
+[node name="TextureRect2" type="TextureRect" parent="Balloon2"]
+z_index = -1
+layout_mode = 0
+offset_left = 515.0
+offset_top = -254.0
+offset_right = 980.0
+offset_bottom = 320.0
+scale = Vector2(0.630088, 0.584083)
+texture = ExtResource("5_vlhgy")
+
+[node name="TextureRect4" type="TextureRect" parent="Balloon2"]
+visible = false
+z_index = -1
+layout_mode = 0
+offset_left = 589.0
+offset_top = -239.0
+offset_right = 887.0
+offset_bottom = 263.0
+scale = Vector2(0.630088, 0.584083)
+texture = ExtResource("5_vlhgy")
+
+[node name="敖雨rect" type="TextureRect" parent="Balloon2"]
+visible = false
+modulate = Color(0.784314, 0.784314, 0.784314, 1)
+z_index = -1
+layout_mode = 0
+offset_left = 363.0
+offset_top = -323.0
+offset_right = 2363.0
+offset_bottom = 1677.0
+scale = Vector2(0.276292, 0.240079)
+texture = ExtResource("7_byoll")
+
+[node name="Dialogue" type="MarginContainer" parent="Balloon2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = -2.0
+offset_right = -143.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_dcbsf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Balloon2/Dialogue"]
+layout_mode = 2
+alignment = 1
+
+[node name="CharacterLabel" type="RichTextLabel" parent="Balloon2/Dialogue/VBoxContainer"]
+self_modulate = Color(1, 1, 0.00392157, 1)
+layout_mode = 2
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "Character"
+fit_content = true
+scroll_active = false
+
+[node name="DialogueLabel" parent="Balloon2/Dialogue/VBoxContainer" instance=ExtResource("2_065px")]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 25
+text = "怎么可能发生的士大夫啊圣诞节分厘卡撒旦 "
+
+[node name="Responses" type="MarginContainer" parent="Balloon2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.226
+anchor_top = 0.166
+anchor_right = 0.961
+anchor_bottom = 0.168
+offset_left = -97.8
+offset_top = -263.2
+offset_right = -95.12
+offset_bottom = 140.472
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResponsesMenu" type="VBoxContainer" parent="Balloon2/Responses" node_paths=PackedStringArray("response_template")]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 2
+script = ExtResource("3_86jyl")
+response_template = NodePath("../../../Balloon/Responses/ResponsesMenu/ResponseExample")
+
+[node name="ResponseExample" type="Button" parent="Balloon2/Responses/ResponsesMenu"]
+layout_mode = 2
+text = "Response example"
+
+[node name="Label" type="Label" parent="Balloon2"]
+visible = false
+self_modulate = Color(0.584314, 0.584314, 0.584314, 0.537255)
+layout_mode = 2
+offset_left = 402.0
+offset_top = 5.0
+offset_right = 1142.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 30
+text = "梦"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="emoji_sprite" type="AnimatedSprite2D" parent="Balloon2"]
 position = Vector2(150, 69)
 sprite_frames = SubResource("SpriteFrames_tw22l")
-animation = &"比耶"
+animation = &"不听"
 autoplay = "大笑"
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
+[connection signal="gui_input" from="Balloon2" to="." method="_on_balloon_gui_input"]
+[connection signal="response_selected" from="Balloon2/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

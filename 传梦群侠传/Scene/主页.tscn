@@ -732,6 +732,15 @@ libraries = {
 "": SubResource("AnimationLibrary_px8ut")
 }
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 449.286
+offset_top = -94.0712
+offset_right = 1412.29
+offset_bottom = -31.0712
+theme_override_font_sizes/font_size = 40
+text = "来修改boss数据的玩家，请打开monsterData脚本修改"
+
 [connection signal="finished" from="." to="." method="_on_finished"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]

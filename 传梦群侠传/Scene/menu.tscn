@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://5rdlt34b6d4g"]
+[gd_scene load_steps=63 format=3 uid="uid://5rdlt34b6d4g"]
 
 [ext_resource type="Script" path="res://Script/menuControl.gd" id="1_wcoq5"]
 [ext_resource type="StyleBox" uid="uid://dkvtj1qfivlob" path="res://Scene/menuHpBack.tres" id="2_lscjf"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://biubkf1irk4a8" path="res://_US@8H~G[YOXT1%BR`3%(R1.png" id="9_2874n"]
 [ext_resource type="Texture2D" uid="uid://dv4bcj0qgcow3" path="res://main character/jiangYuntile000.png" id="9_opgk1"]
 [ext_resource type="AudioStream" uid="uid://lld2y0qxwvqb" path="res://Audio/SE/002-System02.ogg" id="10_f2eqa"]
+[ext_resource type="Texture2D" uid="uid://crpya3ugv6tfl" path="res://1.png" id="13_f3xtk"]
+[ext_resource type="Texture2D" uid="uid://blmfianhw2hci" path="res://圈.png" id="14_s4onr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyw1c"]
 bg_color = Color(0.443137, 0.443137, 0.443137, 0.313726)
@@ -4361,10 +4363,10 @@ offset_bottom = 201.0
 visible = false
 z_index = 10
 layout_mode = 0
-offset_left = -770.0
-offset_top = -549.0
-offset_right = -713.0
-offset_bottom = -486.0
+offset_left = 50.0
+offset_top = 56.0
+offset_right = 107.0
+offset_bottom = 119.0
 theme_override_font_sizes/font_size = 40
 text = "X"
 
@@ -4372,12 +4374,68 @@ text = "X"
 visible = false
 z_index = 10
 layout_mode = 0
-offset_left = -770.0
-offset_top = -450.0
-offset_right = -713.0
-offset_bottom = -387.0
+offset_left = 50.0
+offset_top = 150.0
+offset_right = 107.0
+offset_bottom = 213.0
 theme_override_font_sizes/font_size = 40
 text = "<="
+
+[node name="phoneControl" type="Node2D" parent="menuControl"]
+z_index = 300
+position = Vector2(38.806, 890.145)
+scale = Vector2(1.59912, 1.65708)
+
+[node name="upButton" type="TextureButton" parent="menuControl/phoneControl"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("13_f3xtk")
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="downButton" type="TextureButton" parent="menuControl/phoneControl"]
+offset_top = 120.0
+offset_right = 59.0
+offset_bottom = 160.0
+scale = Vector2(1, -1)
+texture_normal = ExtResource("13_f3xtk")
+stretch_mode = 6
+
+[node name="rightButton" type="TextureButton" parent="menuControl/phoneControl"]
+offset_left = 94.0594
+offset_top = 29.0505
+offset_right = 153.059
+offset_bottom = 69.0505
+rotation = 1.5708
+texture_normal = ExtResource("13_f3xtk")
+stretch_mode = 6
+
+[node name="leftButton" type="TextureButton" parent="menuControl/phoneControl"]
+offset_left = -33.835
+offset_top = 87.8156
+offset_right = 25.165
+offset_bottom = 127.816
+rotation = -1.5708
+texture_normal = ExtResource("13_f3xtk")
+stretch_mode = 6
+
+[node name="acceptButton" type="TextureButton" parent="menuControl/phoneControl"]
+offset_left = 928.79
+offset_top = 121.848
+offset_right = 1050.79
+offset_bottom = 203.848
+rotation = -1.5708
+texture_normal = ExtResource("14_s4onr")
+stretch_mode = 6
+
+[node name="acceptButton2" type="TextureButton" parent="menuControl/phoneControl"]
+offset_left = -5.5983
+offset_top = 32.4153
+offset_right = 116.402
+offset_bottom = 114.415
+scale = Vector2(0.550564, 0.554953)
+texture_normal = ExtResource("14_s4onr")
+stretch_mode = 6
 
 [node name="canPress" type="Timer" parent="."]
 wait_time = 0.2
@@ -4456,4 +4514,8 @@ libraries = {
 [connection signal="button_down" from="menuControl/读取页面/save1/load1button" to="menuControl" method="_on_load_1_button_button_down" flags=18]
 [connection signal="button_down" from="menuControl/读取页面/save2/load2button" to="menuControl" method="_on_load_2_button_button_down" flags=18]
 [connection signal="button_down" from="menuControl/读取页面/save3/load3button" to="menuControl" method="_on_load_3_button_button_down" flags=18]
+[connection signal="button_down" from="menuControl/closeButton" to="menuControl" method="_on_close_button_button_down"]
+[connection signal="button_down" from="menuControl/backButton" to="menuControl" method="_on_back_button_button_down"]
+[connection signal="button_down" from="menuControl/phoneControl/upButton" to="menuControl" method="_on_up_button_button_down"]
+[connection signal="button_down" from="menuControl/phoneControl/downButton" to="menuControl" method="_on_down_button_button_down"]
 [connection signal="timeout" from="canPress" to="menuControl" method="_on_can_press_timeout"]

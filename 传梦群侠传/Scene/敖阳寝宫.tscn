@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="16_qntrp"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="17_wqsrl"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="18_kpymd"]
+[ext_resource type="Shader" path="res://shader/wave.gdshader" id="19_bemnu"]
 [ext_resource type="Texture2D" uid="uid://fruw6wvuq06n" path="res://Characters/_药店老板.png" id="19_kesau"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="20_2smdl"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_6qfii"]
@@ -19,7 +20,6 @@
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="22_v838x"]
 [ext_resource type="Texture2D" uid="uid://bch0sf2pfxu86" path="res://Characters/小白龙.png" id="23_0id8q"]
 [ext_resource type="Texture2D" uid="uid://bijs6hcxcn546" path="res://SeparateAnimation/敖雨/971-12.png" id="24_e5xok"]
-[ext_resource type="Shader" path="res://shader/东海龙宫.gdshader" id="25_x5mkw"]
 
 [sub_resource type="Animation" id="Animation_4ou73"]
 length = 0.001
@@ -166,12 +166,10 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mc1oo"]
-shader = ExtResource("25_x5mkw")
-shader_parameter/water_deep = Color(0, 0.647059, 1, 0.278431)
-shader_parameter/water_shallow = Color(0, 0.7, 1, 0.15)
-shader_parameter/time_scale = 0.05
-shader_parameter/wave_scale = 10.0
-shader_parameter/distortion_strength = 0.05
+shader = ExtResource("19_bemnu")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(1, 2, 4, 1)
+shader_parameter/wave_transparency = 0.097
 
 [node name="敖阳寝宫" type="Node2D"]
 script = ExtResource("1_yhd2h")

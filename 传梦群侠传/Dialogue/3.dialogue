@@ -1897,8 +1897,11 @@ set get_tree().current_scene.get_node("player").position = Vector2(635,940)
 敖雨: [speed=0.5]孙大圣当年好像只是指着金箍棒说了几句变小，它就真的变小了
 小二: [speed=0.5]变小变小？
 set get_tree().current_scene.getJinGuBang()
+set get_tree().current_scene.add_shader()
+
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=6]
+set get_tree().current_scene.remove_shader()
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 小二: [speed=0.5]额，为什么会惊愕
 敖雨: [speed=0.5]！！！？？？惊愕

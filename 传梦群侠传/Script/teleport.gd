@@ -20,19 +20,20 @@ func _process(delta):
 		$area2D/CollisionShape2D.disabled = false		
 
 func _on_area_2d_body_entered(body):
-	print(currScene, toScene)
+	
 	if body.is_in_group("mapPlayer"):
 		if Global.atNight:
 			for i in noNightScene:
 				if toScene == i:
 					return
-
+		
 		if toScene == "江南野外" and Global.current_chapter_id == 2:
 			get_tree().change_scene_to_file("res://Scene/chapterPreview.tscn")
 		else:
+			Global.prevScene = currScene.name
 			get_tree().change_scene_to_file("res://Scene/"+toScene+".tscn")
 			Global.mapPlayerPos = checkSetPos(currScene.name, toScene)
-		
+
 	
 	Global.load = true
 func _on_area_2d_area_entered(area):
@@ -304,4 +305,108 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1626, 1244)	
 	if currScene == "海底迷宫5":
 		if toScene == "海底迷宫4":
-			return Vector2(2360, 1299)				
+			return Vector2(2360, 1299)	
+	if currScene == "地府":
+		if toScene == "地府迷宫1":
+			return Vector2(185,1932)
+		if toScene == "轮回司":
+			return Vector2(1208,1533)
+		if toScene == "森罗殿":
+			return Vector2(1641, 1420)
+	if currScene == "森罗殿":
+			return Vector2(241, 1081)			
+	if currScene == "轮回司":
+			return Vector2(1682, 1336)							
+	if currScene == "地府迷宫1":
+		if toScene == "地府":
+			return Vector2(283, 232)
+		if toScene == "地府迷宫2":
+			return Vector2()
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+						
+	if currScene == "北俱芦洲":
+		if toScene == "凤巢1":
+			return Vector2(900,1760)	
+		if toScene == "龙窟1":
+			return Vector2(2552, 1960)	
+	if currScene == "凤巢1":
+		if toScene == "北俱芦洲":
+			return Vector2(634, -150)
+		if toScene == "凤巢2":
+			return Vector2(185, 660)
+	if currScene == "凤巢2":
+		if toScene == "凤巢1":
+			return Vector2(1440,593)
+		if toScene == "凤巢3":
+			return Vector2(151, 745)
+	if currScene == "凤巢3":
+		if toScene == "凤巢2":
+			return Vector2(2290, 965)
+		if toScene == "凤巢4":
+			return Vector2(357,817)	
+	if currScene == "凤巢4":
+		if toScene == "凤巢3":
+			return Vector2(2320,1750)
+		if toScene == "凤巢5":
+			return Vector2(1440,1764)	
+	if currScene == "凤巢5":
+		if toScene == "凤巢4":
+			return Vector2(1373,590)
+		if toScene == "凤巢6":
+			return Vector2(109, 1678)	
+	if currScene == "凤巢6":
+		if toScene == "凤巢5":
+			return Vector2(2142,621)
+		if toScene == "凤巢7":
+			return Vector2(88, 1067)	
+	if currScene == "凤巢7":
+		if toScene == "凤巢6":
+			return Vector2(2225, 1086)
+			
+	if currScene == "龙窟1":
+		if toScene == "北俱芦洲":
+			return Vector2(-850, 1268)
+		if toScene == "龙窟2":
+			return Vector2(2338, 1385)
+	if currScene == "龙窟2":
+		if toScene == "龙窟1":
+			return Vector2(-91, 755)
+		if toScene == "龙窟3":
+			return Vector2(-40, 492)
+	if currScene == "龙窟3":
+		if toScene == "龙窟2":
+			return Vector2(315, 1727)
+		if toScene == "龙窟4":
+			return Vector2(32, 1730)	
+	if currScene == "龙窟4":
+		if toScene == "龙窟3":
+			return Vector2(2280,1403)
+		if toScene == "龙窟5":
+			return Vector2(2323,644)	
+	if currScene == "龙窟5":
+		if toScene == "龙窟4":
+			return Vector2(2355,1386)
+		if toScene == "龙窟6":
+			return Vector2(481, 1690)	
+	if currScene == "龙窟6":
+		if toScene == "龙窟5":
+			return Vector2(689,1652)
+		if toScene == "龙窟7":
+			return Vector2(-11, 599)	
+	if currScene == "龙窟7":
+		if toScene == "龙窟6":
+			return Vector2(2114,719)

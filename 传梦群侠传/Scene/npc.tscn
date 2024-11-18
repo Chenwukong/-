@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://ymede6kvxndj"]
+[gd_scene load_steps=180 format=3 uid="uid://ymede6kvxndj"]
 
 [ext_resource type="Texture2D" uid="uid://oble4wracso0" path="res://Characters/乞丐.png" id="1_xjxdm"]
 [ext_resource type="Script" path="res://Script/npc.gd" id="2_lgktk"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://j7gtu7d6ccfq" path="res://梦魂Animation/法术-吸血.png" id="6_rjlik"]
 [ext_resource type="Texture2D" uid="uid://dj5a5sg5g5uti" path="res://梦魂Animation/——【撕裂盾牌】.png" id="7_anfsb"]
 [ext_resource type="Texture2D" uid="uid://bf3yio7elv58h" path="res://Animations/法术-斩龙诀.png" id="9_raxpq"]
+[ext_resource type="Texture2D" uid="uid://djm2to8biaceg" path="res://梦魂Animation/持续-冰封.png" id="12_uf00m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ux8kn"]
 atlas = ExtResource("1_xjxdm")
@@ -1074,6 +1075,154 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_c6op3"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhphb"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rdxv"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6t7f"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xylrs"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmo12"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ovluk"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mq6w"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iu4tm"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ld8j5"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyju5"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf288"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k7hj"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bw6k0"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8i1v"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjf8t"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(0, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wlpu"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt7px"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(384, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qenvs"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(576, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ytct"]
+atlas = ExtResource("12_uf00m")
+region = Rect2(768, 576, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8qtsn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c6op3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhphb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5rdxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6t7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xylrs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmo12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ovluk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mq6w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iu4tm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ld8j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyju5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf288")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k7hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bw6k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8i1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjf8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wlpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt7px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qenvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ytct")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="npc" type="AnimatedSprite2D" groups=["standNpc"]]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_hm0gx")
@@ -1135,6 +1284,9 @@ frame_progress = 1.0
 [node name="飞剑诀" type="AnimatedSprite2D" parent="effects"]
 position = Vector2(10, 18)
 sprite_frames = SubResource("SpriteFrames_87bod")
+
+[node name="持续冰封" type="AnimatedSprite2D" parent="effects"]
+sprite_frames = SubResource("SpriteFrames_8qtsn")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]

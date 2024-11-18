@@ -42,7 +42,7 @@ func _process(delta):
 					$npcBody/CollisionPolygon2D.disabled = false
 
 func _on_button_pressed():
-	
+	return
 	if Global.onTalk or Global.onFight:
 		return
 
@@ -54,6 +54,7 @@ func _on_button_pressed():
 		#DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
 		var dialogue_index = npc["current_dialogue_index"]	
 		var dialogue_entry = npc["dialogues"][dialogue_index]
+		print(dialogue_entry)
 		DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(npcName))		
 		
 		get_tree().current_scene.get_node("player")
@@ -69,7 +70,7 @@ func get_npc_dialogue(npc_id):
 	
 		if npc["dialogues"].size() > dialogue_index:
 			var dialogue_entry = npc["dialogues"][dialogue_index]
-			if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id:
+			if dialogue_entry["unlocked"]:
 				update_npc_dialogue_index(npc_id)
 				if npc["dialogues"][dialogue_index].bgm != null:
 				
@@ -92,6 +93,7 @@ func complete_task(chapter_id, task_id):
 
 
 func _on_button_mouse_entered():
+	return
 	player = get_tree().current_scene.get_node("player")
 	var distance = self.position.distance_to(player.position)
 	if !Global.onFight:
@@ -103,7 +105,7 @@ func _on_button_mouse_exited():
 	Global.onButton = false
 
 func _on_button_button_down():
-
+	return
 	if talked or Global.onPet:
 		return
 	if name == "小师弟" or name == "小师弟2" or name == "小师弟3":

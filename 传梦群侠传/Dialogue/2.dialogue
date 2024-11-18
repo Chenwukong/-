@@ -81,29 +81,29 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 程咬金: [speed=0.4]唉，那些反贼残党最近在边境又集结了一股兵力准备捣乱，也不知道哪里来的自信
 师爷: [speed=0.4]将军不可大意啊
-程咬金: [speed=0.4]那老贼头子还活着的时候老子都不怕，现在就那些东西老子还没放在眼里邪魅
+程咬金: [speed=0.4]那老贼头子还活着的时候老子都不怕，现在就那些东西老子还没放在眼里
 程咬金: [speed=0.4]对了，锁妖塔那边情况怎么样了？
-师爷: [speed=0.4] 情况不容乐观，封印应该已经松动的厉害了
-师爷: [speed=0.4] 里面的妖怪要是跑出来。。后果不堪设想啊
-程咬金: [speed=0.4] 我当然也知道，但现在全军集结准备一举歼灭反贼，里面的那些东西不是派一两营士兵就能解决的
-程咬金: [speed=0.4] 况且还需要留点兵力守城门
+师爷: [speed=0.4]情况不容乐观，封印应该已经松动的厉害了
+师爷: [speed=0.4]里面的妖怪要是跑出来。。后果不堪设想啊
+程咬金: [speed=0.4]我当然也知道，但现在全军集结准备一举歼灭反贼，里面的那些东西不是派一两营士兵就能解决的
+程咬金: [speed=0.4]况且还需要留点兵力守城门
 程咬金: [speed=0.4]最近城内也要加派人手巡逻
 程咬金: [speed=0.4]要是那群该死的和尚肯帮忙多简单
 师爷: [speed=0.4]将军是指金山寺的那群和尚吗？
 程咬金: [speed=0.4]那群和尚整天想着吃斋念佛吃斋念佛，也没见出来帮忙打妖怪
 师爷: [speed=0.4]这。。。不可强求，只能靠我们自己
 程咬金: [speed=0.4]那天书中有写什么办法加强封印吗
-师爷: [speed=0.4] 有，但是...
-师爷: [speed=0.4] 此事不能强来
+师爷: [speed=0.4]有，但是...
+师爷: [speed=0.4]此事不能强来
 程咬金: [speed=0.4] 你说该怎么办
 师爷: [speed=0.4] 我们应该派一队精兵进去，避免和妖怪们接触，直接去到塔顶
 程咬金: [speed=0.4] 那这事就交给你去办了, 我带三成的兵力走就够了
-师爷: [speed=0.4] 啊？这样会不会太
-师爷: [speed=0.4] 最近骚扰城门的小妖其实不多了，大可不必留这么多吧
+师爷: [speed=0.4]啊？这样会不会太
+师爷: [speed=0.4]最近骚扰城门的小妖其实不多了，大可不必留这么多吧
 程咬金: [speed=0.4]就是这样老子才觉得奇怪，就听我的吧
-师爷: [speed=0.4] 是
+师爷: [speed=0.4]是
 程咬金: [speed=0.4] 那家伙呢？
-师爷: [speed=0.4] 额，以我对他的了解，此时应该在帮人跑腿。。流汗
+师爷: [speed=0.4]额，以我对他的了解，此时应该在帮人跑腿。。流汗
 set Global.npcVis.get("大唐官府大厅").get("程咬金").visible = false
 
 set get_tree().change_scene_to_file("res://Scene/"+"长安城"+".tscn")
@@ -426,7 +426,7 @@ set Global.onTalk = false
 
 ~ 金甲解释
 set Global.onTalk = true
-
+set get_tree().current_scene.get_node("player").position = Vector2(550,414)
 set get_tree().current_scene.get_node("士兵").visible =true
 set get_tree().current_scene.get_node("金甲").visible =true
 set get_tree().current_scene.get_node("小二/小二").visible =true 
@@ -499,6 +499,7 @@ set get_tree().current_scene.get_node("Camera2D3").make_current()
 set get_tree().current_scene.get_node("小二2").visible = true
 set get_tree().current_scene.get_node("警戒士兵").visible = true
 set Global.npcVis.get("长安城").get("警戒士兵").visible = true
+set Global.npcVis.get("长安城").get("小二2").visible = true
 set get_tree().current_scene.get_node("警戒士兵/金甲2").visible =true 
 set get_tree().current_scene.get_node("警戒士兵/小二2/小二").visible =true 
 金甲: [speed=0.4]你们。。。怎么看？
@@ -761,7 +762,7 @@ set Global.onTalk = true
 擂台管理: 只要打赢了就会获得奖金哦
 擂台管理: 只要500两即可报名！自信
 - 我要试试
-	if FightScenePlayers.golds < 500:
+	if FightScenePlayers.golds/Global.enKey < 500:
 		擂台管理: 你钱不够啊，带够银两再来吧！
 	else:
 		牛冠军: 来吧！
@@ -1287,6 +1288,8 @@ set Global.onTalk = true
 时追云: [speed=0.4]其中狐狸精和花妖最难分辨，她们模仿的很像，但它们的气味却隐藏不住
 小二: [speed=0.4]长知识了
 金甲: [speed=0.4]原来。。。如此
+小二: [speed=0.4]可老大你是怎么练的？感觉你砍什么妖怪都不在话下
+时追云: [speed=0.4]我每天都在与妖怪生死相搏，久而久之自然就形成战斗本能了
 set Global.triggerPlace.get("塔3").disable = true
 set Global.onTalk = false
 => END
@@ -1452,13 +1455,13 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res:
 蒙面人: [speed=0.4]呵呵呵呵
 蒙面人: [speed=0.4]选吧，交钱还是和我交手
 - 交钱
-	if FightScenePlayers.golds < 20000
+	if FightScenePlayers.golds/Global.enKey < 2000:
 		蒙面人: 呵呵呵呵，你们好像没这么多钱啊，那我可不能放你们过去了
 		set get_tree().current_scene.bossFight("蒙面人","res://Audio/BGM/轩辕-战斗2.mp3", "蒙面人")
 		set Global.onFight = true
 		set get_tree().current_scene.get_node("CanvasLayer2").visible = false	
 	else:
-		set FightScenePlayers.golds -= 20000
+		set Global.lostGold(2000)
 		蒙面人: 呵呵呵，明智的选择，我就不打扰你们拯救世界了
 		set Global.npcVis.get("锁妖塔5").get("蒙面人").visible = false
 		小二: [speed=0.4] 老大，就这么放他走了啊？不像平常的你啊

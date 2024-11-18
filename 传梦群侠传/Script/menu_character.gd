@@ -58,7 +58,7 @@ func _process(delta):
 				if i.get_node("itemNum").text == "0":
 					$"../..".itemSelectIndex = 0
 					i.queue_free()			
-		if Input.is_action_just_released("ui_accept"):	
+		if Input.is_action_just_released("ui_accept") and !Global.noKeyboard:	
 			pass
 		for i in Global.itemPlayers:
 			if i == Global.itemPlayers[Global.itemPlayerIndex]:

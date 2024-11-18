@@ -105,7 +105,7 @@ var buffs = []
 var multiCanCulate = true
 var critChance 
 var haveGao = false
-
+var commanButtonIndex = 0
 func _ready():
 
 	if self.playerName == "时追云":
@@ -181,7 +181,7 @@ func _ready():
 		FightScenePlayers.fightScenePlayerData.get(playerName).currHp = FightScenePlayers.fightScenePlayerData.get(playerName).hp
 	get_node("hpControl").visible = false
 func _process(delta):
-
+	
 	if Global.currUsingMagic and Global.currUsingMagic.animationArea == "screen":
 		for i in monsters:
 			i.get_node("getHitEffect").visible = false
@@ -373,7 +373,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("ui_down"):
 				if Global.battleButtonIndex== 3:
 					Global.battleButtonIndex = -1
-				print(Global.battleButtonIndex)
+		
 				Global.battleButtonIndex += 1
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()				
@@ -387,10 +387,13 @@ func _process(delta):
 			if Input.is_action_pressed("alt") and Input.is_action_pressed("q"):
 				if castLastMagic.magicInfo:
 					if castLastMagic.magicInfo.attackType == "multi":
-						
+						if currMp < castLastMagic.magicInfo.cost:
+							return						
 						cast_magic_multiple_times(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, 3)
 					else:
-						print(Global.lastMagic)
+						if currMp < castLastMagic.magicInfo.cost:
+							return
+						print(currMp, "//", castLastMagic.magicInfo.cost)
 						castMagic(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, true)
 					
 					
@@ -402,14 +405,14 @@ func _process(delta):
 			if monsters:
 		
 				Global.target = monsters[Global.targetMonsterIdx]
-			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) or Input.is_action_pressed("rightClick"):
+			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0") or Input.is_action_just_pressed("rightClick") ) or Input.is_action_pressed("rightClick"):
 				get_parent().get_node("Panel").visible = true
 				Global.onAttackPicking = false
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/interface002.ogg")
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()			
 			
 			
-			if Input.is_action_pressed("ui_accept"):
+			if Input.is_action_pressed("ui_accept")  and !Global.noKeyboard:
 				if Global.target or target and canAttack == true:
 					attack(Global.target, "keyboard")
 					if playerName != '姜韵':
@@ -827,10 +830,10 @@ func _process(delta):
 					canDefense = false
 					$canDefense.start()
 					
-					currHp += hp /10
-					currMp += mp/10
-					if currMp > mp:
-						currMp = mp
+					currHp += hp /7
+					currMp += mp/7
+					if currMp > mp + self.addMp:
+						currMp = mp + self.addMp
 					speedBar = 0
 					$Control/speedBar.value = 0
 					self.play(playerName + "defend")
@@ -868,7 +871,7 @@ func _process(delta):
 		
 		get_parent().get_node("magicSelection").visible = false
 		get_parent().get_node("magicDescription").visible = false
-		if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0"))  or Input.is_action_pressed("rightClick"):
+		if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0") or Input.is_action_just_pressed("rightClick") )   or Input.is_action_pressed("rightClick"):
 			get_parent().get_node("Panel").visible = true
 			Global.onMagicAttackPicking = false
 			Global.onMagicSelectPicking = true
@@ -883,7 +886,7 @@ func _process(delta):
 		
 		get_parent().get_node("magicSelection").visible = false
 		get_parent().get_node("magicDescription").visible = false
-		if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0"))  or Input.is_action_pressed("rightClick"):
+		if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0") or Input.is_action_just_pressed("rightClick") ):
 			get_parent().get_node("Panel").visible = true
 			get_parent().get_node("allyInfo").visible = false
 			Global.onItemUsePicking = false
@@ -967,7 +970,7 @@ func _process(delta):
 			Global.target = players[Global.allieSelectIndex]
 			target = Global.target
 
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") and !Global.noKeyboard:
 		
 			if playerMagic[Global.magicSelectIndex].attackType == "multi":
 				multiPosition = targetPosition
@@ -976,7 +979,7 @@ func _process(delta):
 				
 				cast_magic_multiple_times(delta, playerMagic[Global.magicSelectIndex], Global.target, "keyboard", playerMagic[Global.magicSelectIndex].multiHitTimes )
 			else:
-				print(playerMagic[Global.magicSelectIndex])
+
 				castMagic(delta, playerMagic[Global.magicSelectIndex], Global.target, "keyboard", false)
 			Global.onAttackPicking = false
 			Global.onMagicAttackPicking = false
@@ -991,7 +994,7 @@ func _process(delta):
 		
 			#get_node("AnimationPlayer").play("selectIndic")
 		#Global.allieTarget = players[Global.allieSelectIndex]
-		if Input.is_action_just_pressed("ui_accept"):
+		if Input.is_action_just_pressed("ui_accept") and !Global.noKeyboard:
 			Global.target = players[Global.allieSelectIndex]
 
 			useItem(Global.currUsingItem, Global.target, "keyboard") 	
@@ -1012,23 +1015,36 @@ func _process(delta):
 	##下面设置按钮选中的时候变绿色,并且设置按钮效果
 	if attackButton.has_focus() and Global.onMultiHit == 0:
 		attackButton.modulate = "#00f2e9"
-		
+		commanButtonIndex = 1
 		magicButton.modulate = "#ffffff"
 		defenseButton.modulate = "#ffffff"
 		itemButton.modulate = "#ffffff"
 		if get_parent().get_parent().canPress:
 			if Global.onAttackPicking == false and canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
-				if Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick"): #重点 用pressed的话在按压过程中就触发代码了，所以按的同时会触发之后的判断条件，所以要改成released
-					if canAttack:
-						Global.onAttackPicking = true
-						get_parent().get_node("enemyInfo").visible = false
-						get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-						get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()							
+				if Global.noKeyboard:
+					if Input.is_action_just_released("leftClick"): #重点 用pressed的话在按压过程中就触发代码了，所以按的同时会触发之后的判断条件，所以要改成released
+				
+						if canAttack:
+							Global.onAttackPicking = true
+							get_parent().get_node("enemyInfo").visible = false
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()							
+				elif Global.noMouse:
+					if Input.is_action_just_released("ui_accept"): #重点 用pressed的话在按压过程中就触发代码了，所以按的同时会触发之后的判断条件，所以要改成released
+					
+						if canAttack:
+							Global.onAttackPicking = true
+							get_parent().get_node("enemyInfo").visible = false
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()								
+	
+	
+	
 	
 	
 	elif magicButton.has_focus() and Global.onMultiHit == 0:
 		magicButton.modulate = "#00f2e9"
-		
+		commanButtonIndex = 2
 		attackButton.modulate = "#ffffff"
 		defenseButton.modulate = "#ffffff"
 		itemButton.modulate = "#ffffff"
@@ -1036,53 +1052,91 @@ func _process(delta):
 		if get_parent().get_parent().canPress:
 			if Global.onAttackingList:
 				if Global.onMagicSelectPicking == false and Global.onMagicAttackPicking == false and Global.onMagicAttacking == false and self.playerName == Global.onAttackingList[0]:
-					if Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick"):
-						$battleCommends.visible = false
-						Global.onMagicSelectPicking = true
-						Global.magicSelectIndex = 0
-						get_parent().get_node("magicDescription").visible = true
-						get_parent().get_node("magicSelection").visible = true
-						get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-						get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()							
-					
-						for i in playerMagic:
-							magicScene = preload("res://Scene/magic_selection.tscn")
-							var magicSceneInstance = magicScene.instantiate()
-							magicSceneInstance.get_node("Button/name").text = i.name
-							magicSceneInstance.get_node("Button/cost").text = str(i.cost)
-							magicSceneInstance.get_node("Button/icon").texture = load(i.icon)
-							if i.cost > currMp:
-								magicSceneInstance.get_node("Button").modulate.a = 0.4
-							get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)
-					
-				
-			
+					if Global.noKeyboard:
+						if Input.is_action_just_released("leftClick"):
+							$battleCommends.visible = false
+							Global.onMagicSelectPicking = true
+							Global.magicSelectIndex = 0
+							get_parent().get_node("magicDescription").visible = true
+							get_parent().get_node("magicSelection").visible = true
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()							
+
+							for i in playerMagic:
+								magicScene = preload("res://Scene/magic_selection.tscn")
+								var magicSceneInstance = magicScene.instantiate()
+								magicSceneInstance.get_node("Button/name").text = i.name
+								magicSceneInstance.get_node("Button/cost").text = str(i.cost)
+								magicSceneInstance.get_node("Button/icon").texture = load(i.icon)
+								if i.cost > currMp:
+									magicSceneInstance.get_node("Button").modulate.a = 0.4
+								get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)
+					elif Global.noMouse:
+						if Input.is_action_just_released("ui_accept"):
+							$battleCommends.visible = false
+							Global.onMagicSelectPicking = true
+							Global.magicSelectIndex = 0
+							get_parent().get_node("magicDescription").visible = true
+							get_parent().get_node("magicSelection").visible = true
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+							get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()							
+
+							for i in playerMagic:
+								magicScene = preload("res://Scene/magic_selection.tscn")
+								var magicSceneInstance = magicScene.instantiate()
+								magicSceneInstance.get_node("Button/name").text = i.name
+								magicSceneInstance.get_node("Button/cost").text = str(i.cost)
+								magicSceneInstance.get_node("Button/icon").texture = load(i.icon)
+								if i.cost > currMp:
+									magicSceneInstance.get_node("Button").modulate.a = 0.4
+								get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)
+		
 	elif defenseButton.has_focus() and Global.onMultiHit == 0:
 		defenseButton.modulate = "#00f2e9"
 		
 		attackButton.modulate = "#ffffff"
 		magicButton.modulate = "#ffffff"
 		itemButton.modulate = "#ffffff"
-		
-		if Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick") :
-			if canDefense:
-				canDefense = false
-				$canDefense.start()
-				
-				currHp += hp /10
-				currMp += mp/10
-				if currMp > mp:
-					currMp = mp
-				speedBar = 0
-				$Control/speedBar.value = 0
-				self.play(playerName + "defend")
-				self.get_node("battleCommends").visible = false
-				get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-				get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()
+		commanButtonIndex = 3
+		if Global.noKeyboard:
+			if Input.is_action_just_released("leftClick"):
+				if canDefense:
+					canDefense = false
+					$canDefense.start()
+					
+					currHp += hp /10
+					currMp += mp/10
+					if currMp > mp:
+						currMp = mp
+					speedBar = 0
+					$Control/speedBar.value = 0
+					self.play(playerName + "defend")
+					self.get_node("battleCommends").visible = false
+					get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+					get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()
+		elif Global.noMouse:
+			if Input.is_action_just_released("ui_accept"):		
+				if canDefense:
+					canDefense = false
+					$canDefense.start()
+					
+					currHp += hp /7
+					currMp += mp/7
+					if currMp > mp + self.addMp:
+						currMp = mp + self.addMp
+					speedBar = 0
+					$Control/speedBar.value = 0
+					self.play(playerName + "defend")
+					self.get_node("battleCommends").visible = false
+					get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+					get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()					
+					
+					
+					
 								
 	elif itemButton.has_focus() and Global.onMultiHit == 0:
 		itemButton.modulate = "#00f2e9"
-		
+		commanButtonIndex = 4
 		attackButton.modulate = "#ffffff"
 		magicButton.modulate = "#ffffff"
 		defenseButton.modulate = "#ffffff"
@@ -1090,7 +1144,7 @@ func _process(delta):
 		if get_parent().get_parent().canPress:
 			if Global.onAttackingList and itemList.size()>0:
 				if Global.onItemSelectPicking == false and Global.onItemUsePicking == false and Global.onItemUsing == false and self.playerName == Global.onAttackingList[0]:
-					if Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick"):
+					if (Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick")) and !Global.noKeyboard :
 						$battleCommends.visible = false
 						Global.onItemSelectPicking = true
 						get_parent().get_node("magicDescription").visible = true
@@ -1329,7 +1383,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 					damage_to_deduct = self.currStr * magic.value * float(Global.target.physicDefense)/1000 
 					Global.dealtDmg =  (self.currStr * magic.value - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg))* Global.damageReward1
 					Global.dealtDmg *= checkIncreaseDmg(magic)
-					print(222, Global.dealtDmg)
+		
 					
 					
 					var disDamage = display_damage(round(Global.dealtDmg),"normal")
@@ -1583,6 +1637,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 					if Global.lastMagic.magicInfo.name == "千机变":
 						pass
 					elif Global.lastMagic.magicInfo.name == "横扫千军":
+						Global.lastMagic.magicInfo.value * 0.7
 						cast_magic_multiple_times(delta, Global.lastMagic.magicInfo, Global.lastMagic.target, Global.lastMagic.type,3)
 					else:
 						

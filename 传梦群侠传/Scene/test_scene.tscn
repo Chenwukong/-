@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://c4pdxgde5xmdv"]
+[gd_scene load_steps=121 format=3 uid="uid://c4pdxgde5xmdv"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ftxft"]
 [ext_resource type="Texture2D" uid="uid://c2cog03pcphav" path="res://panoramas2/东海湾全景.jpg" id="2_wjbmj"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bp16kssv75fga" path="res://Characters/小兵.png" id="15_xj1hd"]
 [ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="16_5npm0"]
 [ext_resource type="Texture2D" uid="uid://bu8bsjea3pgpq" path="res://SeparateAnimation/敖雨/971-27.png" id="16_ye1it"]
+[ext_resource type="Texture2D" uid="uid://dsp7clle17vkc" path="res://Characters/卫兵.png" id="17_j13cy"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="17_uwb5d"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="18_oh2mj"]
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="19_la2jm"]
@@ -328,7 +329,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_88p36"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_gqall"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -349,6 +350,74 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_dky11")
+}],
+"loop": true,
+"name": &"右下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bf8uk")
+}],
+"loop": true,
+"name": &"左上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bohu4")
+}],
+"loop": true,
+"name": &"左下",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tscsw"]
+atlas = ExtResource("17_j13cy")
+region = Rect2(0, 0, 116, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iygd"]
+atlas = ExtResource("17_j13cy")
+region = Rect2(116, 0, 116, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eugr"]
+atlas = ExtResource("17_j13cy")
+region = Rect2(232, 0, 116, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyrgr"]
+atlas = ExtResource("17_j13cy")
+region = Rect2(348, 0, 116, 103)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_88p36"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15c8w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kys8t")
+}],
+"loop": true,
+"name": &"右上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tscsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iygd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eugr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyrgr")
 }],
 "loop": true,
 "name": &"右下",
@@ -1002,7 +1071,8 @@ frame = 4
 
 [node name="丙假" parent="." instance=ExtResource("12_bwu7k")]
 position = Vector2(1139, 1323)
-sprite_frames = SubResource("SpriteFrames_88p36")
+sprite_frames = SubResource("SpriteFrames_gqall")
+animation = &"右下"
 autoplay = "default"
 npcName = "丙假"
 
@@ -1018,6 +1088,27 @@ polygon = PackedVector2Array(-270, -284, -310, -277, -296, -248, -293, -217, -27
 frame_progress = 0.0
 
 [node name="飞剑诀" parent="丙假/effects" index="1"]
+frame = 4
+
+[node name="丙假2" parent="." instance=ExtResource("12_bwu7k")]
+position = Vector2(1411, 1333)
+sprite_frames = SubResource("SpriteFrames_88p36")
+animation = &"右下"
+autoplay = "default"
+npcName = "丙假"
+
+[node name="npcShape" parent="丙假2/npcBody" index="0"]
+position = Vector2(-266.417, -253.214)
+
+[node name="CollisionPolygon2D" parent="丙假2/npcBody" index="1"]
+position = Vector2(59.0578, -3.05176e-05)
+scale = Vector2(1.17587, 1)
+polygon = PackedVector2Array(-270, -284, -310, -277, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
+
+[node name="effect" parent="丙假2" index="2"]
+frame_progress = 0.0
+
+[node name="飞剑诀" parent="丙假2/effects" index="1"]
 frame = 4
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -1277,6 +1368,7 @@ max_distance = 90000.0
 [editable path="丁真"]
 [editable path="丁真2"]
 [editable path="丙假"]
+[editable path="丙假2"]
 [editable path="王姨尖叫"]
 [editable path="王姨遇险"]
 [editable path="杀戮"]

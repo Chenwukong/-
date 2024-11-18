@@ -1,7 +1,8 @@
-[gd_scene load_steps=74 format=3 uid="uid://b1uenf280qwkv"]
+[gd_scene load_steps=76 format=3 uid="uid://b1uenf280qwkv"]
 
 [ext_resource type="Script" path="res://Script/battleField.gd" id="1_lq0d5"]
 [ext_resource type="Texture2D" uid="uid://1dxnu5vbd5lj" path="res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png" id="2_tenfk"]
+[ext_resource type="Material" uid="uid://dhxnral6tugrp" path="res://shader/battleField.tres" id="2_yx76r"]
 [ext_resource type="Texture2D" uid="uid://cddclg043crea" path="res://梦魂Animation/0天麒攻击.png" id="3_kin0l"]
 [ext_resource type="Texture2D" uid="uid://dhmi3utawug6b" path="res://Icons/319.png" id="4_f171q"]
 [ext_resource type="Texture2D" uid="uid://ctll0vsae61qt" path="res://梦魂Animation/龙卷.png" id="4_g6a1e"]
@@ -24,15 +25,17 @@
 [ext_resource type="Texture2D" uid="uid://dpeyxkt3ncgr5" path="res://pixelcut-export.png" id="16_mc7yf"]
 [ext_resource type="Texture2D" uid="uid://gbfb871kdyqe" path="res://姓名框.png" id="16_t4y3a"]
 [ext_resource type="Texture2D" uid="uid://dhif2lng23c62" path="res://蓝条.png" id="16_ve1ko"]
-[ext_resource type="PackedScene" uid="uid://dr48s2i0wfecm" path="res://Scene/smallpet.tscn" id="17_pm2e0"]
+[ext_resource type="PackedScene" uid="uid://dr48s2i0wfecm" path="res://Scene/smallPet.tscn" id="17_pm2e0"]
 [ext_resource type="Texture2D" uid="uid://b8tvmmek8cuf5" path="res://己方战斗信息=背景.png" id="17_vx8tj"]
 [ext_resource type="AudioStream" uid="uid://dg48w2u34bmg6" path="res://Audio/SE/096-Attack08.ogg" id="17_y7ypy"]
 [ext_resource type="Texture2D" uid="uid://dr2shhjgilwsr" path="res://己方战斗信息=条框背景.png" id="18_6vgq3"]
 [ext_resource type="Texture2D" uid="uid://b4xj7ode0dpcu" path="res://portrait/奔霸.png" id="28_fyu4i"]
 [ext_resource type="Texture2D" uid="uid://27gjvwybksvx" path="res://Pictures/boss大头图背景.png" id="28_gmkaw"]
 [ext_resource type="Texture2D" uid="uid://w266am0r2dys" path="res://Pictures/boss技能回合倒计时.png" id="30_ebkmt"]
-[ext_resource type="Shader" path="res://shader/lastHit.gdshader" id="31_olfj1"]
+[ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="30_g0eyk"]
 [ext_resource type="Texture2D" uid="uid://dwwdkb7hrqs35" path="res://Pictures/最后一击.png" id="31_q7ksy"]
+[ext_resource type="Texture2D" uid="uid://crpya3ugv6tfl" path="res://1.png" id="34_3p67s"]
+[ext_resource type="Texture2D" uid="uid://blmfianhw2hci" path="res://圈.png" id="35_81uef"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m424q"]
 atlas = ExtResource("3_kin0l")
@@ -287,9 +290,6 @@ corner_detail = 20
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_at4bn"]
 bg_color = Color(0, 0, 0, 0)
 border_color = Color(0.843137, 0.831373, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_66yet"]
-shader = ExtResource("31_olfj1")
 
 [sub_resource type="Animation" id="Animation_ogaks"]
 length = 0.001
@@ -1130,10 +1130,11 @@ expand_mode = 1
 [node name="currPlayerName" type="Label" parent="battleFieldPicture/currPlayer/Panel"]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 0
-offset_left = 144.849
-offset_top = 49.5462
-offset_right = 192.849
-offset_bottom = 71.5462
+offset_left = 115.862
+offset_top = 57.8581
+offset_right = 223.862
+offset_bottom = 106.858
+scale = Vector2(0.856075, 0.801498)
 pivot_offset = Vector2(58.8235, -21.7647)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "时追云"
@@ -1182,30 +1183,32 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="battleFieldPicture/bigMagic"]
 self_modulate = Color(1, 0, 0, 1)
-offset_left = 164.069
-offset_top = 13.4334
-offset_right = 564.069
-offset_bottom = 173.433
-scale = Vector2(0.429543, 0.432522)
+offset_left = 164.0
+offset_top = 13.0
+offset_right = 564.0
+offset_bottom = 158.0
+scale = Vector2(0.345808, 0.348206)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 5
 theme_override_constants/shadow_outline_size = 10
+theme_override_fonts/font = ExtResource("30_g0eyk")
 theme_override_font_sizes/font_size = 100
 text = "大海无量"
 
 [node name="roundCountDown" type="Label" parent="battleFieldPicture"]
 visible = false
 self_modulate = Color(1, 0, 1, 1)
-offset_left = -374.152
-offset_top = -178.352
-offset_right = 107.848
-offset_bottom = 59.6483
+offset_left = -370.016
+offset_top = -182.083
+offset_right = 111.984
+offset_bottom = 55.9171
 scale = Vector2(0.346962, 0.199214)
-theme_override_font_sizes/font_size = 200
+theme_override_font_sizes/font_size = 150
 text = "5"
 horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="battleFieldPicture/roundCountDown"]
 layout_mode = 0
@@ -1218,21 +1221,22 @@ texture = ExtResource("30_ebkmt")
 [node name="Label" type="Label" parent="battleFieldPicture/roundCountDown"]
 self_modulate = Color(1, 0, 0, 1)
 layout_mode = 0
-offset_left = -48.0
-offset_right = 1152.0
-offset_bottom = 356.0
-scale = Vector2(0.313784, 0.656828)
+offset_left = -23.8431
+offset_top = 29.9714
+offset_right = 1476.16
+offset_bottom = 385.971
+scale = Vector2(0.254073, 0.499755)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/outline_size = 10
 theme_override_constants/shadow_outline_size = 60
 theme_override_font_sizes/font_size = 300
-text = "剩余回合："
+text = "怒击回合："
 
 [node name="lastHit" type="TextureRect" parent="battleFieldPicture"]
 visible = false
-material = SubResource("ShaderMaterial_66yet")
+material = ExtResource("2_yx76r")
 offset_left = -526.502
 offset_top = -334.329
 offset_right = 457.498
@@ -1269,6 +1273,65 @@ one_shot = true
 wait_time = 0.7
 one_shot = true
 
+[node name="bossPos" type="Marker2D" parent="."]
+position = Vector2(-116.832, -76.2376)
+
+[node name="phoneControl" type="Node2D" parent="."]
+z_index = 300
+position = Vector2(-422.772, 491.089)
+scale = Vector2(1.41484, 1.46612)
+
+[node name="upButton" type="TextureButton" parent="phoneControl"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("34_3p67s")
+stretch_mode = 6
+metadata/_edit_use_anchors_ = true
+
+[node name="downButton" type="TextureButton" parent="phoneControl"]
+offset_top = 120.0
+offset_right = 59.0
+offset_bottom = 160.0
+scale = Vector2(1, -1)
+texture_normal = ExtResource("34_3p67s")
+stretch_mode = 6
+
+[node name="rightButton" type="TextureButton" parent="phoneControl"]
+offset_left = 94.0594
+offset_top = 29.0505
+offset_right = 153.059
+offset_bottom = 69.0505
+rotation = 1.5708
+texture_normal = ExtResource("34_3p67s")
+stretch_mode = 6
+
+[node name="leftButton" type="TextureButton" parent="phoneControl"]
+offset_left = -33.835
+offset_top = 87.8156
+offset_right = 25.165
+offset_bottom = 127.816
+rotation = -1.5708
+texture_normal = ExtResource("34_3p67s")
+stretch_mode = 6
+
+[node name="acceptButton" type="TextureButton" parent="phoneControl"]
+offset_left = 665.106
+offset_top = 127.632
+offset_right = 787.106
+offset_bottom = 209.633
+rotation = -1.5708
+texture_normal = ExtResource("35_81uef")
+stretch_mode = 6
+
+[node name="acceptButton2" type="TextureButton" parent="phoneControl"]
+offset_left = -5.5983
+offset_top = 32.4153
+offset_right = 116.402
+offset_bottom = 114.415
+scale = Vector2(0.550564, 0.554953)
+texture_normal = ExtResource("35_81uef")
+stretch_mode = 6
+
 [connection signal="button_down" from="battleFieldPicture/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="battleFieldPicture/blockButton/blockButton" to="." method="_on_block_button_button_down"]
 [connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
@@ -1276,3 +1339,9 @@ one_shot = true
 [connection signal="timeout" from="canPressTimer" to="." method="_on_can_press_timer_timeout"]
 [connection signal="timeout" from="bigMagicTimer" to="." method="_on_big_magic_timer_timeout"]
 [connection signal="timeout" from="queueFree" to="." method="_on_queue_free_timeout"]
+[connection signal="button_down" from="phoneControl/upButton" to="." method="_on_up_button_button_down"]
+[connection signal="button_up" from="phoneControl/upButton" to="." method="_on_up_button_button_up"]
+[connection signal="button_down" from="phoneControl/downButton" to="." method="_on_down_button_button_down"]
+[connection signal="button_down" from="phoneControl/rightButton" to="." method="_on_right_button_button_down"]
+[connection signal="button_down" from="phoneControl/leftButton" to="." method="_on_left_button_button_down"]
+[connection signal="button_down" from="phoneControl/acceptButton" to="." method="_on_accept_button_button_down"]

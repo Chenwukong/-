@@ -37,18 +37,18 @@ var keyItem = {
 #	},
 }
 var consumeItem = {
-#	"佛手":{
-#		"info": ItemData.consume.get("佛手"),
-#		"number": 5
-#	},
-#	"佛跳墙":{
-#		"info": ItemData.consume.get("佛跳墙"),
-#		"number": 5
-#	},
-#	"西瓜":{
-#		"info": ItemData.consume.get("西瓜"),
-#		"number": 100
-#	},	
+	"佛手":{
+		"info": ItemData.consume.get("佛手"),
+		"number": 5
+	},
+	"佛跳墙":{
+		"info": ItemData.consume.get("佛跳墙"),
+		"number": 5
+	},
+	"西瓜":{
+		"info": ItemData.consume.get("西瓜"),
+		"number": 100
+	},	
 }
 
 var battleItem = {
@@ -66,7 +66,7 @@ var questItem = {
 	
 }
 
-var petFoodBall = 0
+var petFoodBall = 50
 var petFood = 1
 var bagArmorItem = {
 	"大剑":{
@@ -75,19 +75,19 @@ var bagArmorItem = {
 		"number": 1,
 		"added": false
 	},
-	"黄金剑":{
-		"info": ItemData.weapon.get("黄金剑"),
-		"type": "weapon",
-		"number": 2,
-		"added": false
-	},
+#	"黄金剑":{
+#		"info": ItemData.weapon.get("黄金剑"),
+#		"type": "weapon",
+#		"number": 2,
+#		"added": false
+#	},
 #	"碧玉剑":{
 #		"info": ItemData.weapon.get("碧玉剑"),
 #		"type": "weapon",
 #		"number": 1,
 #		"added": false
 #	},
-	
+#
 	"布衣":{
 		"info": ItemData.cloth.get("布衣"),
 		"type": "cloth",
@@ -116,7 +116,7 @@ var bagArmorItem = {
 #	"江湖夜雨":{
 #		"info": ItemData.accessories.get("江湖夜雨"),
 #		"type": "accessories",
-#		"number": 1,	
+#		"number": 2,	
 #		"added": false	
 #	},
 #	"精钢剑":{
@@ -1109,7 +1109,7 @@ var fightScenePlayerData2= {
 					"damageSource": "AD",
 			
 					"cost": 10,
-					"value": 2,
+					"value": 3,
 					"description": "金甲日日夜夜练习的扎实一剑",	
 					"effectArea": "single",
 					"animationArea":"enemy",
@@ -1170,20 +1170,20 @@ var fightScenePlayerData2= {
 		"autoAttack": "敖雨autoAttack",
 		"magicAutoAttack": "",
 		"playerMagic": [
-			{
-				"name": "虚沉冰封",
-				"attackType": "debuff",
-				"buffEffect": ["ice"],
-				"cost": 100,
-				"description": "百分百控制住一个人一个回合",
-				"effectArea": "single",
-				"animationArea": "enemy",
-				"duration": 1,
-				"effectingNum": 1,
-				"chance": 100000,
-				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
-				"icon": "res://Icons/●图标 (119).png"
-			},
+#			{
+#				"name": "虚沉冰封",
+#				"attackType": "debuff",
+#				"buffEffect": ["ice"],
+#				"cost": 100,
+#				"description": "百分百控制住一个人一个回合",
+#				"effectArea": "single",
+#				"animationArea": "enemy",
+#				"duration": 1,
+#				"effectingNum": 1,
+#				"chance": 100000,
+#				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+#				"icon": "res://Icons/●图标 (119).png"
+#			},
 			{
 				"name": "水满金山",
 				"attackType": "range",
@@ -1304,10 +1304,10 @@ var fightScenePlayerData = {
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 1,
-			"exp": 10 ,
+			"level": 91,
+			"exp": 0,
 			"needExp":100 ,
-			"magicDefense": 5,
+			"magicDeense": 5,
 			"addMagicDefense": 0,
 			"physicDefense": 5,
 			"addPhysicDefense": 0,
@@ -1356,7 +1356,7 @@ var fightScenePlayerData = {
 				"duration": 1,
 				"value": 1.6, 
 				"cost": 50,
-				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
+				"description": "全力攻击三次，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
 				"effectArea": "single",
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/男-剑.ogg",
@@ -1572,7 +1572,7 @@ var fightScenePlayerData = {
 			"addCritChance":0,
 			"blockChance":0,
 			"addBlockChance": 0,
-			"level": 20,
+			"level": 90,
 			"exp": 0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1590,7 +1590,7 @@ var fightScenePlayerData = {
 			"addMp":0,
 			"currHp": 2000,
 			"currMp": 300,
-			"potential": 30,
+			"potential": 100* Global.enKey,
 			"idle": "小二idle",
 			"autoAttack":'小二autoAttack',
 			"magicAutoAttack": "",
@@ -1822,20 +1822,20 @@ var fightScenePlayerData = {
 			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
 			"magicAutoAttack":"金甲magicAutoAttack",
 			"playerMagic": [
-				{
-				"name": "虚沉冰封",
-				"attackType": "debuff",
-				"buffEffect": ["ice"], 
-				"cost": 400,
-				"chance": 1000,
-				"description": "百分百控制住一个人一个回合",	
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"effectingNum": 1,
-				"duration": 1,
-				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
-				"icon":"res://Icons/●图标 (119).png",
-			},
+#				{
+#				"name": "虚沉冰封",
+#				"attackType": "debuff",
+#				"buffEffect": ["ice"], 
+#				"cost": 400,
+#				"chance": 1000,
+#				"description": "百分百控制住一个人一个回合",	
+#				"effectArea": "single",
+#				"animationArea":"enemy",
+#				"effectingNum": 1,
+#				"duration": 1,
+#				"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
+#				"icon":"res://Icons/●图标 (119).png",
+#			},
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/女-呀.ogg",
@@ -1941,7 +1941,7 @@ var datas = {
 #	datas.bagArmorItem = bagArmorItem.duplicate()
 #	datas.seconds = seconds
 #	datas.golds = golds
-#	print(fightScenePlayerData.get("时追云").additionDmg)
+
 #	datas.fightScenePlayerData = fightScenePlayerData.duplicate()
 #
 #
@@ -1950,9 +1950,9 @@ var datas = {
 #	datas.consumeItem = consumeItem
 #	datas.petFoodBall = petFoodBall
 #	datas.petFood = petFood
-#	print(datas.fightScenePlayerData.get("时追云").additionDmg)
+
 #	fightScenePlayerData.get("时追云").additionDmg = fightScenePlayerData.get("时追云").additionDmg * Global.enKey
-#	print(datas.fightScenePlayerData.get("时追云").additionDmg)
+
 #
 func saveData():
 	# 对所有玩家的数据进行处理
@@ -2212,7 +2212,7 @@ func calculate_abilityPower_for_level(level, player = null):
 #		var baseAp = 1.0  # Base speed at level 1
 #		var apIncreasePerLevel = 10  # Speed increase per level
 #		var totalAp = baseAp + apIncreasePerLevel * (level - 1)
-#		print(totalAp)
+
 #		return totalAp		
 	
 func calculate_mp_for_level(level, player = null):
@@ -2318,7 +2318,7 @@ var unLearnMagic = {
 				"multiHitTimes": 3,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 1.6, 
+				"value": 1.1, 
 				"cost": 50,
 				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
 				"effectArea": "single",
@@ -2456,3 +2456,4 @@ func decrypt(value):
 func healAll():
 	for i in fightScenePlayerData:
 		fightScenePlayerData[i].currHp = fightScenePlayerData[i].addHp + fightScenePlayerData[i].hp
+		fightScenePlayerData[i].currMp = fightScenePlayerData[i].addMp + fightScenePlayerData[i].mp

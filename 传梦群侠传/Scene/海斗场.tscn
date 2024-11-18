@@ -13,12 +13,12 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="17_up0yc"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="18_o4770"]
 [ext_resource type="Texture2D" uid="uid://fruw6wvuq06n" path="res://Characters/_药店老板.png" id="19_18jwj"]
+[ext_resource type="Shader" path="res://shader/wave.gdshader" id="20_uctd3"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_uo6rm"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="21_45kpy"]
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="22_noxxx"]
 [ext_resource type="Texture2D" uid="uid://bch0sf2pfxu86" path="res://Characters/小白龙.png" id="23_pynd6"]
 [ext_resource type="Texture2D" uid="uid://d3ngnmel5y0cq" path="res://SeparateAnimation/敖雨/971-23.png" id="24_wrlin"]
-[ext_resource type="Shader" path="res://shader/东海龙宫.gdshader" id="25_rq8pu"]
 [ext_resource type="Texture2D" uid="uid://cwapfba4rhwx5" path="res://Characters/龙王.png" id="26_dn5n6"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="27_df3ga"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="28_6j4ig"]
@@ -423,12 +423,10 @@ animations = [{
 }]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mc1oo"]
-shader = ExtResource("25_rq8pu")
-shader_parameter/water_deep = Color(0, 0.647059, 1, 0.278431)
-shader_parameter/water_shallow = Color(0, 0.7, 1, 0.15)
-shader_parameter/time_scale = 0.05
-shader_parameter/wave_scale = 10.0
-shader_parameter/distortion_strength = 0.05
+shader = ExtResource("20_uctd3")
+shader_parameter/mouse_position = Vector2(0.5, 0.5)
+shader_parameter/wave_color = Color(1, 2, 4, 1)
+shader_parameter/wave_transparency = 0.129
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wi752"]
 atlas = ExtResource("26_dn5n6")
@@ -959,7 +957,6 @@ frame_progress = 0.417105
 npcName = "敖雨"
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_mc1oo")
 offset_left = -852.0

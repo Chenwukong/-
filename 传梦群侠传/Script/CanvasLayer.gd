@@ -13,7 +13,12 @@ var firstCheck = false
 var values
 var toSix = false
 var cost = 0
-
+var frames = []
+var deltas
+var time_since_last_frame_change = 0
+var current_frame = 0
+var player 
+var noMouse = false
 func get_all_audio_stream_player2D():
 	var audio_players = []
 	var all_nodes = get_tree().current_scene.get_children()
@@ -26,6 +31,12 @@ func get_all_audio_stream_player2D():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	
+	
+	
+	
+	player = get_tree().current_scene.get_node("player")
 	renderMsg()
 	all_nodes = get_all_audio_stream_player2D()
 	if sceneName == "方寸山迷境":
@@ -40,7 +51,6 @@ func _ready():
 	
 	if sceneName == "东海湾":
 		mapTexture = "res://panoramas2/东海湾全景.jpg"
-		print(mapTexture)
 	elif sceneName == "建邺城":
 		mapTexture ="res://Panoramas/建业左.jpg"
 	elif sceneName == "建邺城右":
@@ -55,6 +65,8 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	deltas = delta
+	$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
 	$violencePoint/TextureProgressBar/Label.text = str(Global.violencePoint) + "%"
 	$violencePoint/TextureProgressBar.value = Global.violencePoint
 	if sceneName == "方寸山迷境":
@@ -118,7 +130,6 @@ func _on_hint_button_mouse_entered():
 	$hintButton.play("mouseEnter")
 	$hintButton/Label.visible = true
 	Global.onButton = true
-
 func _on_hint_button_mouse_exited():
 	$hintButton.play("default")
 	$hintButton/Label.visible = false
@@ -159,20 +170,9 @@ func _on_button_mouse_exited():
 	$"宠物/Label".visible = false
 	Global.onButton = false
 
-func _on_button_button_down():
-	Global.onPet = true
-	$msgBox.visible = false
-	$map.visible = false
-	$position.visible = false
-	$menutButton.visible = false
-	$questHint.visible = false
+
 	
 	
-	$"宠物".play("click")
-	$"宠物列表".visible = true
-	get_tree().current_scene.get_node("player").canMove = false
-	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
-	$AudioStreamPlayer2D.play()
 func _on_button_button_up():
 	$"宠物".play("default")
 
@@ -194,21 +194,21 @@ func _on_伤害button_button_down():
 	if FightScenePlayers.petFoodBall == 0:
 		return
 	FightScenePlayers.petFoodBall -= 1
-	SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].str += 20
+	SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].str += 7
 	
 
 func _on_怒气button_button_down():
 	if FightScenePlayers.petFoodBall == 0:
 		return
 	FightScenePlayers.petFoodBall -= 1
-	SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].rage += 1
+	SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].rage += 0.5
 	
 
 func _on_灵力button_button_down():
 	if FightScenePlayers.petFoodBall == 0:
 		return
 	FightScenePlayers.petFoodBall -= 1
-	SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].abilityPower += 10
+	SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].abilityPower += 7
 	
 
 
@@ -216,12 +216,12 @@ func _on_灵力button_button_down():
 func _on_author_button_mouse_entered():
 	$"制作人/Label".visible = true
 	$"制作人".play("mouseEnter")
-
+	Global.onMouse = false
 
 func _on_author_button_mouse_exited():
 	$"制作人".play("default")	
 	$"制作人/Label".visible = false
-
+	Global.onMouse = true
 
 func _on_author_button_button_down():
 	$"制作人".play("click")
@@ -264,10 +264,14 @@ func _on_friend_button_mouse_entered():
 	$"好友/Label".visible = true
 	$"好友".play("mouseEnter")
 
+	if Global.noMouse:
+		noMouse = true
+		Global.noMouse = false
 func _on_friend_button_mouse_exited():
 	$"好友/Label".visible = false
 	$"好友".play("default")
-
+	if noMouse:
+		Global.noMouse = true
 
 func _on_梦单close_button_button_down():
 	$"其他梦单".visible = false
@@ -588,3 +592,269 @@ func _on_buy_button_button_down():
 	cost = 0
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/cost".text = str(cost)
+
+
+
+
+#func _on_右上_mouse_entered():
+#	Global.onPhoneButton = true
+#
+#
+#func _on_右上_mouse_exited():
+#	Global.onPhoneButton = false
+	
+
+func _on_右上_button_down():
+	player.onArrowButton = true
+	player.onUp = true
+	player.canMouseMove = false
+	player.onArrowButton = true
+	player.speed = 200
+	var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
+	xyPos.text = str("x: " + str(int(player.position.x /10)) + "   " + "y: " + str(int(player.position.y/10)))
+	
+	player.velocity = Vector2(0, 0)
+	player.velocity.y -= 0.00000000001
+	player.velocity.x += 0.00000000001
+
+	player.get_node("RayCast2D").rotation_degrees = 0
+	player.raycast.target_position = Vector2(player.velocity.x * 25, player.velocity.y * 25 )
+	
+	player.raycast2.rotation_degrees = 0
+	player.raycast2.target_position = Vector2(player.velocity.x * 35, player.velocity.y * 35 )			
+	
+	frames =  [
+			preload("res://main character/tile008.png"),
+			preload("res://main character/tile009.png"),
+			preload("res://main character/tile010.png"),
+			preload("res://main character/tile011.png"),
+		  ]	
+	if player.canMove and !player.collide and Global.menuOut == false:
+		update_animation(deltas)
+	player.velocity = player.velocity.normalized() * player.speed
+	
+
+	if player.canMove and !player.collide and Global.menuOut == false:
+		player.move_and_slide()
+
+
+
+
+
+
+
+
+
+func update_animation(delta):
+	if delta:
+		time_since_last_frame_change += delta
+	if time_since_last_frame_change >= 0.01:
+		time_since_last_frame_change = 0
+		# Change to the next frame
+		if player.velocity.length_squared() > 0:
+			current_frame = (current_frame + 1) % frames.size()
+		player.get_node("Sprite2D").texture = frames[current_frame]
+		
+
+
+func _on_右下_button_down():
+	player.onArrowButton = true
+	player.onRight = true
+	player.canMouseMove = false
+	player.onArrowButton = true
+	player.speed = 200
+	var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
+	xyPos.text = str("x: " + str(int(player.position.x /10)) + "   " + "y: " + str(int(player.position.y/10)))
+	
+	player.velocity = Vector2(0, 0)
+	player.velocity.y += 1
+	player.velocity.x += 1
+
+	player.get_node("RayCast2D").rotation_degrees = 0
+	player.raycast.target_position = Vector2(player.velocity.x * 25, player.velocity.y * 25 )
+	
+	player.raycast2.rotation_degrees = 0
+	player.raycast2.target_position = Vector2(player.velocity.x * 35, player.velocity.y * 35 )			
+	
+	frames =  [
+			preload("res://main character/tile000.png"),
+			preload("res://main character/tile001.png"),
+			preload("res://main character/tile002.png"),
+			preload("res://main character/tile003.png"),
+		  ]
+	if player.canMove and !player.collide and Global.menuOut == false:
+		update_animation(deltas)
+	player.velocity = player.velocity.normalized() * player.speed
+	
+
+	if player.canMove and !player.collide and Global.menuOut == false:
+		player.move_and_slide()
+
+
+
+func _on_左下_button_down():
+	player.onArrowButton = true
+	player.onDown = true
+	player.canMouseMove = false
+	player.onArrowButton = true
+	player.speed = 200
+	var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
+	xyPos.text = str("x: " + str(int(player.position.x /10)) + "   " + "y: " + str(int(player.position.y/10)))
+	
+	player.velocity = Vector2(0, 0)
+	player.velocity.y += 1
+	player.velocity.x -= 1
+
+	player.get_node("RayCast2D").rotation_degrees = 0
+	player.raycast.target_position = Vector2(player.velocity.x * 25, player.velocity.y * 25 )
+	
+	player.raycast2.rotation_degrees = 0
+	player.raycast2.target_position = Vector2(player.velocity.x * 35, player.velocity.y * 35 )			
+	frames =  [
+			preload("res://main character/tile004.png"),
+			preload("res://main character/tile005.png"),
+			preload("res://main character/tile006.png"),
+			preload("res://main character/tile007.png"),
+		  ]
+	if player.canMove and !player.collide and Global.menuOut == false:
+		update_animation(deltas)
+	player.velocity = player.velocity.normalized() * player.speed
+	
+
+	if player.canMove and !player.collide and Global.menuOut == false:
+		player.move_and_slide()
+		
+		
+		
+
+
+func _on_左上_button_down():
+	player.onArrowButton = true
+	player.onLeft = true
+	player.canMouseMove = false
+	player.onArrowButton = true
+	player.speed = 200
+	var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
+	xyPos.text = str("x: " + str(int(player.position.x /10)) + "   " + "y: " + str(int(player.position.y/10)))
+	
+	player.velocity = Vector2(0, 0)
+	player.velocity.y += 1
+	player.velocity.x -= 1
+
+	player.get_node("RayCast2D").rotation_degrees = 0
+	player.raycast.target_position = Vector2(player.velocity.x * 25, player.velocity.y * 25 )
+	
+	player.raycast2.rotation_degrees = 0
+	player.raycast2.target_position = Vector2(player.velocity.x * 35, player.velocity.y * 35 )			
+	frames =  [
+			preload("res://main character/tile012.png"),
+			preload("res://main character/tile013.png"),
+			preload("res://main character/tile014.png"),
+			preload("res://main character/tile015.png"),
+		  ]	
+	if player.canMove and !player.collide and Global.menuOut == false:
+		update_animation(deltas)
+	player.velocity = player.velocity.normalized() * player.speed
+	
+
+	if player.canMove and !player.collide and Global.menuOut == false:
+		player.move_and_slide()
+
+
+func _on_右上_mouse_entered():
+	player.onArrowButton = true
+	
+func _on_右上_mouse_exited():
+	player.onArrowButton = false
+	player.onUp = false
+	player.speed = 200
+
+
+func _on_右上_pressed():
+	player.onArrowButton = true
+	player.onUp = true
+	player.canMouseMove = false
+	player.onArrowButton = true
+	player.speed = 200
+	var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
+	xyPos.text = str("x: " + str(int(player.position.x /10)) + "   " + "y: " + str(int(player.position.y/10)))
+	
+	player.velocity = Vector2(0, 0)
+	player.velocity.y -= 0.00000000001
+	player.velocity.x += 0.00000000001
+
+	player.get_node("RayCast2D").rotation_degrees = 0
+	player.raycast.target_position = Vector2(player.velocity.x * 25, player.velocity.y * 25 )
+	
+	player.raycast2.rotation_degrees = 0
+	player.raycast2.target_position = Vector2(player.velocity.x * 35, player.velocity.y * 35 )			
+	
+	frames =  [
+			preload("res://main character/tile008.png"),
+			preload("res://main character/tile009.png"),
+			preload("res://main character/tile010.png"),
+			preload("res://main character/tile011.png"),
+		  ]	
+	if player.canMove and !player.collide and Global.menuOut == false:
+		update_animation(deltas)
+	player.velocity = player.velocity.normalized() * player.speed
+	
+
+	if player.canMove and !player.collide and Global.menuOut == false:
+		player.move_and_slide()
+
+
+func _on_坐标button_button_down():
+	get_tree().current_scene.get_node("player").position = get_tree().current_scene.playerPosition
+func _on_hash_timer_timeout():
+	pass
+	
+func _on_button_button_down():
+	if Global.onTeamSmallPet.size() == 0:
+		return
+	Global.onPet = true
+	$msgBox.visible = false
+	$map.visible = false
+	$position.visible = false
+	$menutButton.visible = false
+	$questHint.visible = false
+	
+	
+	$"宠物".play("click")
+	$"宠物列表".visible = true
+	get_tree().current_scene.get_node("player").canMove = false
+	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
+	$AudioStreamPlayer2D.play()
+	
+	$"宠物列表/petDescription".text = SmallPetData.oriSmallPetData.get(Global.onTeamSmallPet[0]).description
+	$"宠物列表/petAnimation".play(Global.onTeamSmallPet[0])
+	$"宠物列表/petName".text = Global.onTeamSmallPet[0]
+	$"宠物列表/技能名字".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.name
+	$"宠物列表/饱食度/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).hungry)
+	$"宠物列表/灵力/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).abilityPower)
+	$"宠物列表/怒气/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).rage)
+	$"宠物列表/伤害/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).str)
+	$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
+
+func _on_pet_right_button_button_down():
+	for i in Global.smallPets.size():
+		if Global.onTeamSmallPet[0] == Global.smallPets[i]:
+			# 找到当前宠物位置，将其替换为下一个宠物
+			Global.onTeamSmallPet.erase(Global.onTeamSmallPet[0])
+			
+			# 获取下一个宠物的位置，使用取余来循环回到开头
+			var next_index = (i + 1) % Global.smallPets.size()
+			Global.onTeamSmallPet.append(Global.smallPets[next_index])
+			$"宠物列表/petDescription".text = SmallPetData.oriSmallPetData.get(Global.onTeamSmallPet[0]).description
+			$"宠物列表/petAnimation".play(Global.onTeamSmallPet[0])
+			$"宠物列表/petName".text = Global.onTeamSmallPet[0]
+			$"宠物列表/技能名字".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.name
+			$"宠物列表/饱食度/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).hungry)
+			$"宠物列表/灵力/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).abilityPower)
+			$"宠物列表/怒气/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).rage)
+			$"宠物列表/伤害/Label".text = str(SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).str)
+			$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
+			$AnimationPlayer.play("changePet")
+			$AudioStreamPlayer2D2.play()
+			break  # 找到后立即退出循环
+

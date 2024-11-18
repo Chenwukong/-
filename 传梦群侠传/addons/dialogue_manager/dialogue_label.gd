@@ -96,7 +96,7 @@ func type_out() -> void:
 	#text = dialogue_line.text
 	var emoji_sprite = $"../../../emoji_sprite"
 	
-	emoji_sprite.position = Vector2(150,69)
+	emoji_sprite.position = Vector2(165, 197)
 	emoji_sprite.visible = false
 	var last_two_chars =dialogue_line.text.substr(dialogue_line.text.length() - 2, 2)
 	if last_two_chars in emoji:
@@ -170,12 +170,12 @@ func _type_next(delta: float, seconds_needed: float) -> void:
 			spoke.emit(get_parsed_text()[visible_characters - 1], visible_characters - 1, _get_speed(visible_characters))
 	
 	
-			emoji_sprite.position.x += 25
-			if visible_characters == 20:
-				emoji_sprite.position.x = 150
+			emoji_sprite.position.x += 28
+			if visible_characters == 22:
+				emoji_sprite.position.x = 165
 				emoji_sprite.position.y += 30 
-			if visible_characters == 40:
-				emoji_sprite.position.x = 150
+			if visible_characters == 33:
+				emoji_sprite.position.x = 165
 				emoji_sprite.position.y += 30 				
 		if visible_characters ==  get_total_character_count():
 			

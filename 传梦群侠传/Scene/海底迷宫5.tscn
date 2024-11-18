@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dhmiri8terrjx"]
+[gd_scene load_steps=45 format=3 uid="uid://dhmiri8terrjx"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_gch0p"]
 [ext_resource type="Texture2D" uid="uid://d2wqkaxaok4fk" path="res://panoramas2/龙宫_海底迷宫5.jpg" id="2_er8g6"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_6i1iv"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_ftn84"]
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_npcw4"]
-[ext_resource type="Texture2D" uid="uid://blmoj6yid6mys" path="res://SeparateAnimation/珍珠姐妹/472-4.png" id="21_2luaq"]
+[ext_resource type="Texture2D" uid="uid://cmqhrqg1wba00" path="res://梦魂Animation/155双生待机.png" id="21_agko5"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_ktwxi"]
 [ext_resource type="Texture2D" uid="uid://cr0urcbiw28kc" path="res://Characters/货商-大胖子.png" id="22_ik4ai"]
 
@@ -93,15 +93,99 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_khspf"]
-atlas = ExtResource("21_2luaq")
-region = Rect2(0, 0, 109, 98)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvtlh"]
+atlas = ExtResource("21_agko5")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_raweg"]
+atlas = ExtResource("21_agko5")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a4lhl"]
+atlas = ExtResource("21_agko5")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wl46"]
+atlas = ExtResource("21_agko5")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r08a"]
+atlas = ExtResource("21_agko5")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxwkq"]
+atlas = ExtResource("21_agko5")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5e8h"]
+atlas = ExtResource("21_agko5")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cl0im"]
+atlas = ExtResource("21_agko5")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37tun"]
+atlas = ExtResource("21_agko5")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghm1y"]
+atlas = ExtResource("21_agko5")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uivl4"]
+atlas = ExtResource("21_agko5")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkhxj"]
+atlas = ExtResource("21_agko5")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_131pf"]
+atlas = ExtResource("21_agko5")
+region = Rect2(384, 384, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gh3nf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_khspf")
+"texture": SubResource("AtlasTexture_uvtlh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_raweg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a4lhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wl46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r08a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxwkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5e8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cl0im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37tun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghm1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uivl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkhxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_131pf")
 }],
 "loop": true,
 "name": &"default",
@@ -333,8 +417,10 @@ toScene = "海底迷宫5"
 
 [node name="珍珠姐妹" parent="." instance=ExtResource("21_ktwxi")]
 position = Vector2(2337.38, 517.75)
-scale = Vector2(1.53571, 1.53571)
+scale = Vector2(-1.536, 1.536)
 sprite_frames = SubResource("SpriteFrames_gh3nf")
+autoplay = "default"
+frame_progress = 0.549318
 npcName = "珍珠姐妹"
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]

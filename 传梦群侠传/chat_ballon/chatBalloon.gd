@@ -67,6 +67,8 @@ var dialogue_line: DialogueLine:
 			portrait.visible = false
 			敖雨portrait.visible = false
 			小二portrait.visible = false
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(602, 101)
 		elif name == "小二":
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = false
@@ -74,13 +76,17 @@ var dialogue_line: DialogueLine:
 			小二portrait.texture = load(portraitPath)
 			portrait.visible = false			 
 			mainPortrait.visible = false
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(602, 101)
 		elif name == "敖雨":
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = true
 			敖雨portrait.texture = load(portraitPath)
 			小二portrait.visible = false
 			portrait.visible = false			 
-			mainPortrait.visible = false			
+			mainPortrait.visible = false	
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(602, 101)	
 		else:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
 			portrait.visible = true
@@ -88,6 +94,9 @@ var dialogue_line: DialogueLine:
 			敖雨portrait.visible = false
 			小二portrait.visible = false
 			mainPortrait.visible = false
+			%Balloon.texture = load("res://Pictures/对话框1.png")
+			
+			%CharacterLabel.position = Vector2(175, 101)
 
 		dialogue_label.hide()
 		dialogue_label.dialogue_line = dialogue_line

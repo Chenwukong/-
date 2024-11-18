@@ -27,6 +27,7 @@ var currHp = 0
 @export var onSleepDebuff = false
 @export var type = ""
 @export var luck = 0
+var posi = "middle"
 var digit_sprite
 var digit_image_path = "res://数字/"
 var healBuffAmount = 0
@@ -50,9 +51,10 @@ var canAttackTimerStarted = false
 
 var round = 1
 var magicInfo
-var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":5}, 
+var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3}, 
+						"奔霸":{"name":"水满金山","round":4}, 
 						"大鹏":{"name":"奔雷","round":3}, 
-						"鹰孽":{"name":"天火陨石","round":4}
+						"鹰孽大王":{"name":"天火陨石","round":4}
 						,"堕逝":{"name":"风雨雷电","round":4}
 						,"黑山":{"name":"硝爆","round":4}
 						
@@ -67,6 +69,26 @@ var bigMagics ={
 		"effectingNum":8,
 		"animationArea": "enemy",
 		"audio": "res://Audio/SE/法术12.ogg",
+	},
+	"水满金山":{
+		"name": "水满金山",
+		"damage": 400,
+		"attackType": "range",
+		"effectingNum":8,
+		"animationArea": "enemy",
+		"audio": "res://Audio/SE/法术12.ogg",
+	},	
+	
+	
+	"奔雷":{
+		"name": "奔雷",
+		"attackType": "range",
+		"damage": 50, 
+		"cost": 50,
+		"description": "群体法术",
+		"effectingNum": 3,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/法术3.ogg"
 	},
 	"天火陨石":{
 		"name": "天火陨石",
@@ -96,10 +118,18 @@ var bigMagics ={
 		"audio": "res://Audio/SE/049-Explosion02.ogg"
 	},	
 }
-func _ready():
+@export var shader_material: ShaderMaterial
+
+
+func _ready(): 
+
+
 	oriMonsterName = monsterName
 	monsterName = remove_numbers_from_string(monsterName)
 	
+	if monsterName == "怨蛛":
+		self.scale.x = -1
+		self.modulate = "red"
 	target = Global.target
 
 	if Global.atNight:
@@ -139,6 +169,10 @@ func _process(delta):
 	if self.name == "千年树0":
 		self.scale.x = 2
 		self.scale.y = 2
+	if self.name == "金翅大鹏0":
+		self.scale.x = 1.2
+		self.scale.y = 1.2		
+		
 	if Global.canBlock and self.hp > 0:
 		if Input.is_action_just_pressed("ui_accept"):
 			Global.blocked = true
@@ -172,7 +206,7 @@ func _process(delta):
 #	if onPhysicDefenseDebuff:
 #		$debuff.play("破甲")	
 #	if Global.monsterTarget:
-#		print(alivePlayers[Global.monsterTarget].get_node("getHitEffect").is_playing() == false)
+
 		
 
 	if speedBar >= 100:
@@ -795,7 +829,7 @@ func selectTarget(delta, randi, magicRandi):
 		#单体法术
 		else: 
 #			if monsterMagicList[magicRandi].magicType == "multiHit":
-##				print(Global.monsterTarget,3333)
+##		
 ##				if Global.monsterTarget:
 ##					Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").play(monsterMagicList[magicRandi])
 #				Global.onMultiHit = 2
@@ -808,7 +842,7 @@ func selectTarget(delta, randi, magicRandi):
 #
 #					if Global.alivePlayers.size()>0:			
 #						Global.monsterTarget = randi_range(0, Global.alivePlayers.size() - 1)
-#						print(monsterMagicList,magicRandi)
+#						
 #						for i in range(monsterMagicList[magicRandi].hitNum):			
 #							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
 #							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].name + "hurt")
@@ -848,32 +882,32 @@ func moveCharacter(delta):
 
 
 
-func _on_button_button_down():
-	Global.target = self
-	
-	if monsters.size() > 0 and Global.onAttackPicking and Global.currPlayer.canAttack == true:
-
-		#Global.currPlayer.targetPosition = self.position
-		attacks()
-	
-		if Global.currPlayer.name != "姜韵":
-			move()
-			
-	if monsters and Global.onMagicAttackPicking:
-		
-		if Global.currUsingMagic.attackType == "multi":
-	
-			Global.currPlayer.cast_magic_multiple_times(deltas, Global.currUsingMagic, Global.target, "keyboard", 3 )
-			
-		else:
-			Global.currPlayer.castMagic(deltas, Global.currPlayerMagic[Global.magicSelectIndex],self, "mouse",false) 	
-		Global.onMagicAttackPicking = false
-		
-	if monsters and Global.onItemUsePicking:
-		#Global.itemSelectIndex = 1
-		Global.currPlayer.useItem(Global.currUsingItem, self , "mouse") 
-		Global.currPlayer.target = self	
-		Global.onItemUsePicking= false
+#func _on_button_button_down():
+#	Global.target = self
+#
+#	if monsters.size() > 0 and Global.onAttackPicking and Global.currPlayer.canAttack == true:
+#
+#		#Global.currPlayer.targetPosition = self.position
+#		attacks()
+#
+#		if Global.currPlayer.name != "姜韵":
+#			move()
+#
+#	if monsters and Global.onMagicAttackPicking:
+#
+#		if Global.currUsingMagic.attackType == "multi":
+#
+#			Global.currPlayer.cast_magic_multiple_times(deltas, Global.currUsingMagic, Global.target, "keyboard", 3 )
+#
+#		else:
+#			Global.currPlayer.castMagic(deltas, Global.currPlayerMagic[Global.magicSelectIndex],self, "mouse",false) 	
+#		Global.onMagicAttackPicking = false
+#
+#	if monsters and Global.onItemUsePicking:
+#		#Global.itemSelectIndex = 1
+#		Global.currPlayer.useItem(Global.currUsingItem, self , "mouse") 
+#		Global.currPlayer.target = self	
+#		Global.onItemUsePicking= false
 func attacks():
 	Global.currPlayer.target = self
 	Global.currPlayer.attack(self, "mouse")
@@ -946,6 +980,7 @@ func _on_can_attack_timeout():
 
 
 func useBigMagic():
+
 	round = monsterAndMagic.get(monsterName).round
 	get_parent().get_node("roundCountDown").text = str(round)
 	get_parent().get_parent().get_node("bigMagicTimer").start()
@@ -983,3 +1018,6 @@ func useBigMagic():
 				onHitPlayer.get_node("getHitEffect").play(magicInfo.name)		
 			Global.onAttacking = true
 			Global.selectedTarget = true			
+
+
+

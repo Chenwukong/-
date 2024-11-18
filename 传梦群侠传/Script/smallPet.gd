@@ -49,8 +49,9 @@ func _process(delta):
 		if state == idle:
 			play(petName + idle)
 		elif state == "magic":
+			targets = []
 			magicInfo = SmallPetData.currSmallPetData[petName].petMagic
-			
+
 			if monsters.size() >magicInfo.hitNum:
 				while targets.size()<magicInfo.hitNum:
 					var randi = randi_range(0,aliveMonsters.size()-1)
@@ -61,9 +62,9 @@ func _process(delta):
 					targets.append(target)				
 						
 			for target in targets:
-				if is_instance_valid(target):
-					target.get_node("debuff").visible = true
-					target.get_node("debuff").play(magicInfo.name)
+				if is_instance_valid(target) and magicInfo.type != "healing":
+					#target.get_node("debuff").visible = true
+					#target.get_node("debuff").play(magicInfo.name)
 					target.get_node("getHitEffect").visible = true
 					target.get_node("getHitEffect").play(magicInfo.name)			
 			
@@ -108,6 +109,7 @@ func _on_animation_finished():
 	timerCalled = false
 
 func attack():
+
 	if is_instance_valid(target):
 		
 		target.get_node("Label").text = str(str)
@@ -117,23 +119,31 @@ func attack():
 func castMagic():
 	magicInfo = SmallPetData.currSmallPetData[petName].petMagic
 	if magicInfo.type == "healing":
+
 		var alivePlayer=[]
 		for i in players:
 			if i.currHp>=0:
 				alivePlayer.append(i)
 		if find_player_with_lowest_hp_percent(alivePlayer):
-			find_player_with_lowest_hp_percent(alivePlayer).currHp += magicInfo.value
+			find_player_with_lowest_hp_percent(alivePlayer).currHp += magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower
 	if magicInfo.type == "ice":
+		for target in targets:
+			if is_instance_valid(target):
+				if target.onIce:
+					return
+				target.onIce = magicInfo.duration
+				target.buffs.append({"onIceDebuff":  magicInfo.duration})
+				target.get_node("Label").text = str(magicInfo.value)
+				target.get_node("petHpAnimation").play("petHp")
+				target.currHp -= magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower	
+	if magicInfo.type == "aoe":
+		for target in targets:
+			if is_instance_valid(target):
+				target.get_node("Label").text = str(magicInfo.value)
+				target.get_node("petHpAnimation").play("petHp")
+				target.currHp -= magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower			
 		
-			for target in targets:
-				if is_instance_valid(target):
-					if target.onIce:
-						return
-					target.onIce = magicInfo.duration
-					target.buffs.append({"onIceDebuff":  magicInfo.duration})
-					target.get_node("Label").text = str(magicInfo.value)
-					target.get_node("petHpAnimation").play("petHp")
-					target.currHp -= magicInfo.value	
+		
 		
 func moveCharacter(delta):
 	

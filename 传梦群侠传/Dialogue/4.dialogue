@@ -129,7 +129,7 @@ set Global.onTalk = false
 
 ~ 傲来药店老板
 set Global.onTalk = true
-傲来药店老板: [speed=0.5]毒死你...
+傲来药店老板: [speed=0.5]毒不死你的...
 set get_tree().current_scene.popShop()
 set Global.onTalk = false
 => END 
@@ -151,7 +151,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 
 傲来布店老板:[speed=0.5] 给我钱，给我钱！！快点给我钱！！！！
-小二: [speed=0.5]怎么感觉这里的人都疯疯癫癫的
+小二: [speed=0.5]这里的人都疯疯癫癫的
 set get_tree().current_scene.popShop()
 
 set Global.onTalk = false
@@ -174,6 +174,7 @@ set Global.onTalk = true
 敖雨: [speed=0.5]哼
 set Global.onTalk = false
 => END 
+
 
 ~ 老李头感谢
 set Global.onTalk = true
@@ -321,10 +322,10 @@ set Global.onTalk = false
 ~ 还锦纹武器
 set Global.onTalk = true
 
-if Global.questItem.get("双头斧").number == 1:
+if Global.questItem.get("双头斧").number >= 1:
 	锦纹: [speed=0.5]谢谢你们，这是给你们的酬劳
 	set Global.addItem("飞蝗石", "battleConsume", "battleItem", 10)
-	小二: [speed=0.5]逆挥的动这武器吗。。。
+	小二: [speed=0.5]你挥的动这武器吗。。。
 	锦纹: [speed=0.5]那当然，我娘和我说女儿村独立出来就是为了做那傲来国做不到的事
 	锦纹: [speed=0.5]等我长大后也要去杀妖，不，我现在就要去
 	小二: [speed=0.5]你这么暴力小心以后找不到夫家
@@ -735,7 +736,7 @@ set Global.onTalk = false
 => END 
 
 ~ 蛤蟆精
-#set Global.onTalk = true
+set Global.onTalk = true
 
 时追云: [speed=0.5]这里还有一只，速度解决！
 set get_tree().current_scene.bossFight("蛤蟆精","res://Audio/BGM/仙劍奇俠傳-羅漢陣.mp3","蛤蟆精")
@@ -958,7 +959,7 @@ set Global.onTalk = false
 
 ~ 洞外碰面
 set Global.onTalk = true
-set get_tree().current_scene.baseChance = 800
+set Global.baseChance = 800
 set Global.countDownOn = true
 set get_tree().current_scene.get_node("AnimationPlayer").play("moveCamera")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false

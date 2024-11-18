@@ -1,6 +1,7 @@
-[gd_scene load_steps=183 format=3 uid="uid://b3dtk2snxdgij"]
+[gd_scene load_steps=185 format=3 uid="uid://b3dtk2snxdgij"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_b15sp"]
+[ext_resource type="Shader" path="res://shader/playerOutline.gdshader" id="2_jts12"]
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="2_yhwia"]
 [ext_resource type="Texture2D" uid="uid://ded8mxfqpkn8n" path="res://Battlers/0天麒攻击.png" id="3_y8pk5"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="4_622eh"]
@@ -13,6 +14,9 @@
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
 load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pbjet"]
+shader = ExtResource("2_jts12")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ioiv3"]
 atlas = ExtResource("2_yhwia")
@@ -1274,6 +1278,7 @@ visible = false
 texture = SubResource("CompressedTexture2D_1eey2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_pbjet")
 sprite_frames = SubResource("SpriteFrames_0lx1r")
 animation = &"left"
 
@@ -1324,10 +1329,10 @@ frame_progress = 1.0
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
-position = Vector2(-1.49999, -4.99999)
-scale = Vector2(11.3906, 10.1563)
-energy = 0.52
+position = Vector2(25.4361, 79.3604)
+scale = Vector2(20.4127, 14.6344)
 texture = SubResource("GradientTexture2D_lc6m3")
+texture_scale = 0.8
 
 [node name="readyMove" type="Timer" parent="."]
 wait_time = 0.6

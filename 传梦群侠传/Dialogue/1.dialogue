@@ -32,9 +32,9 @@ set Global.onTalk = false
 ~ 新手警告
 set Global.onTalk = true
 传梦: 这是传梦之路试玩版，目前还有许多的bug。
-传梦: 请您选择本次游戏使用键盘操作还是鼠标操作
-- 键盘操作
-- 鼠标操作
+
+传梦: 如果在游戏中被npc或者建筑卡住，可按r或者点击左上角的坐标图急救
+	
 传梦: 好了再多说一句就要惹人烦了，通过后面这个传送点开始游戏吧😎
 set Global.triggerPlace.get("新手警告").disable = true
 set Global.onTalk = false
@@ -124,7 +124,7 @@ set Global.onTalk = true
 大海龟: [speed=0.3]咕咕吐舌
 时追云: 。。。。。。。。。。。。。。。。。。。。。。。。。。
 大海龟: [speed=0.3]咕咕心碎
-时追云: 。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+时追云: 。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
 时追云: 算了，这些干粮给你行了吧，让开道！
 大海龟: 咕咕爱心
 大海龟: 咕咕开心
@@ -567,7 +567,7 @@ if Global.npcs.get("柳老").dialogues[0].trigger == false:
 	时追云: 柳老您别分析了
 	时追云: 嘶
 	时追云: 。。怎么办
-	柳老: 你且躺下吧，能医
+	柳老: 你且躺下吧，我看看
 	柳老: ................
 	set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 	set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark") 
@@ -727,7 +727,7 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云喜: 是啊，我们刚认识的时候你就说过了，你说过的话我都记得
 姜韵喜: 嘻嘻
 时追云喜: 那我走了娘子
-姜韵喜: 早点回来~ 互亲
+姜韵喜: 今日貌似会下雨，早点回来~ 互亲
 时追云喜: 嗯！互亲
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
 set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp
@@ -977,6 +977,7 @@ set Global.onTalk = false
 ~ 白龙救场
 set Global.onTalk = true
 set Global.canLose = false
+set get_tree().current_scene.get_node("rain").visible = true
 奔霸: 哼，果然也是个废物凡人
 时追云怒: 咳，咳
 奔霸: 让我送你下去陪你妻子吧哈哈哈哈哈哈哈 

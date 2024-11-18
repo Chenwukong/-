@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://wrsosx1im160"]
+[gd_scene load_steps=30 format=3 uid="uid://wrsosx1im160"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_a8ipr"]
 [ext_resource type="Texture2D" uid="uid://61kcev553iiy" path="res://panoramas2/北俱芦洲全景.jpg" id="2_v2m62"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://ba8m3d10lwijp" path="res://Audio/BGM/傲来.mp3" id="5_4oa7i"]
 [ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="6_duoee"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_qvcjf"]
-[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_8l614"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_nhs2u"]
 [ext_resource type="Texture2D" uid="uid://cw1l5lgiclirs" path="res://panoramas2/北俱芦洲全景_2.png" id="10_vl4mb"]
 [ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="11_pn41d"]
@@ -21,16 +20,17 @@
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_rqny4"]
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_eyiw7"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="21_hhvk4"]
+[ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="22_wpa1j"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-1029, -240, -1033, 909, -1033, 1372, -1039, 2773, 3439, 2794, 3439, -213)])
 
-[sub_resource type="Gradient" id="Gradient_hvuqf"]
+[sub_resource type="Gradient" id="Gradient_dfnkp"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
-gradient = SubResource("Gradient_hvuqf")
+gradient = SubResource("Gradient_dfnkp")
 fill = 1
 fill_from = Vector2(1, 0.612536)
 
@@ -110,6 +110,14 @@ _data = {
 "时追云move": SubResource("Animation_2adbs")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7brvw"]
+shader = ExtResource("22_wpa1j")
+shader_parameter/snow_speed = 0.7
+shader_parameter/snow_density = 1.0
+shader_parameter/wind_speed = 0.2
+shader_parameter/snow_color = Color(1, 1, 1, 1)
+shader_parameter/direction = -1.0
+
 [node name="北俱芦洲" type="Node2D"]
 script = ExtResource("1_a8ipr")
 
@@ -119,32 +127,38 @@ texture = ExtResource("2_v2m62")
 
 [node name="player" parent="." instance=ExtResource("3_l7hqn")]
 z_index = 2
-position = Vector2(1930, 2387)
+position = Vector2(-850, 1268)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("4_sx0i1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(3482, 910, 3038, 1225, 2529, 1309, 2263, 1236, 2297, 993, 2716, 834, 2936, 540, 3299, 540, 3457, 501, 3417, -3, 3261, -402, 3021, -478, 2733, -439, 2637, -241, 2224, -31, 2529, 127, 2648, 427, 2795, 551, 2722, 648, 2473, 625, 2235, 585, 2224, 461, 2405, 478, 2586, 467, 2529, 353, 2178, 127, 1822, -9, 1313, 59, 1341, -82, 1601, -65, 1799, -110, 1822, -184, 1511, -512, 1041, -484, -288, -416, -791, -263, -998, -366, -1052, -313, -955, -221, -1067, -137, -1055, 58, -1050, 174, -670, 274, -693, 457, -945, 609, -761, 842, -474, 1022, -396, 1099, -532, 1139, -707, 1026, -834, 1168, -879, 1035, -1033, 1066, -993, 1268, -1069, 1349, -1007, 1677, -636, 1492, -425, 1439, -367, 1278, -285, 1327, -137, 1350, -106, 1435, -690, 1740, -1058, 1844, -1062, 2351, -1035, 2571, -734, 2701, -74, 2822, 464, 2701, 797, 2522, 1241, 2531, 842, 2849, 1515, 2876, 2925, 2845, 3419, 2513, 3450, 2216, 2970, 1583, 3239, 1538, 3284, 1381, 3455, 1327)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(1125, 999, 1115, 869, 1404, 774, 1484, 926, 1861, 822, 1919, 577, 1871, 428, 1261, 492, 699, 711, 541, 701, 499, 507, 299, 523, 309, 806, 626, 974, 884, 1015)
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(2184, 2586, 2411, 2551, 2358, 2282, 2115, 2324, 1885, 2388)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(342, -499)
+build_mode = 1
 polygon = PackedVector2Array(2184, 2586, 2411, 2551, 2400, 2418, 2165, 2380, 1885, 2439, 1994, 2503)
 
 [node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(753, -50)
+build_mode = 1
 polygon = PackedVector2Array(2184, 2586, 2339, 2492, 2371, 2262, 2227, 2268, 1938, 2390)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -181,11 +195,6 @@ visible = false
 position = Vector2(5, -82)
 navigation_polygon = SubResource("NavigationPolygon_su7y6")
 constrain_avoidance = true
-
-[node name="Circle" type="Sprite2D" parent="."]
-position = Vector2(345.628, 1311.12)
-scale = Vector2(0.0856201, 0.0864686)
-texture = ExtResource("8_8l614")
 
 [node name="circleTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -252,7 +261,7 @@ position = Vector2(-5, 1858)
 toScene = "傲来药店"
 
 [node name="teleportCircle5" parent="." instance=ExtResource("12_oo4rj")]
-position = Vector2(-433, 1231)
+position = Vector2(-2051, 738)
 toScene = "傲来布店"
 
 [node name="teleportCircle6" parent="." instance=ExtResource("12_oo4rj")]
@@ -335,7 +344,7 @@ items = {
 
 [node name="teleportCircle8" parent="." instance=ExtResource("12_oo4rj")]
 position = Vector2(536, -208)
-toScene = "傲来杂货铺"
+toScene = "凤巢1"
 
 [node name="teleportCircle11" parent="." instance=ExtResource("12_oo4rj")]
 position = Vector2(2690, 1147)
@@ -368,6 +377,14 @@ stream = ExtResource("21_hhvk4")
 volume_db = 4.552
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_7brvw")
+offset_left = -1157.0
+offset_top = -672.0
+offset_right = 3501.0
+offset_bottom = 2910.0
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

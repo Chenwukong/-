@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bo0iytbwu882v"]
+[gd_scene load_steps=39 format=3 uid="uid://bo0iytbwu882v"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_g34im"]
 [ext_resource type="Texture2D" uid="uid://doba8qvvu0efv" path="res://Panoramas/长安酒楼1.jpg" id="2_gmxsk"]
@@ -23,6 +23,8 @@
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="33_sx528"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="34_2kbkt"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="35_j6uxv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4jgpg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
 vertices = PackedVector2Array(20, 95, 2390, 97, 2393, 2472, 11, 2472, 11, 1492, 9, 1337)
@@ -136,6 +138,7 @@ animations = [{
 script = ExtResource("1_g34im")
 
 [node name="建业左" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_4jgpg")
 position = Vector2(451, 313)
 rotation = 0.00202572
 texture = ExtResource("2_gmxsk")

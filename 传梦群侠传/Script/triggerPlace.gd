@@ -136,7 +136,8 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("花果山拦敌"))															
 			"到地府入口":
 				DialogueManager.show_chat(load("res://Dialogue/4.dialogue"),get_npc_dialogue("前往地府"))		
-		
+			"初见孟婆":
+				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("孟婆"))				
 
 
 func get_npc_dialogue(npc_id):

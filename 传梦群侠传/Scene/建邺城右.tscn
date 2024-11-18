@@ -1,4 +1,4 @@
-[gd_scene load_steps=162 format=3 uid="uid://b4ayp22fdycmj"]
+[gd_scene load_steps=164 format=3 uid="uid://b4ayp22fdycmj"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_31wdb"]
 [ext_resource type="Texture2D" uid="uid://cvqnevuj05gxq" path="res://Panoramas/建业右.jpg" id="2_i8757"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://cpapyrml1ack5" path="res://deadPng.png" id="46_soviw"]
 [ext_resource type="Texture2D" uid="uid://bch0sf2pfxu86" path="res://Characters/小白龙.png" id="48_wdac0"]
 [ext_resource type="Texture2D" uid="uid://cejkg1su7j72k" path="res://main character/down.png" id="49_bq6ye"]
+[ext_resource type="Shader" path="res://shader/rain.gdshader" id="49_ntt1y"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="49_wdipe"]
 [ext_resource type="Texture2D" uid="uid://ddba7lxsa6cqt" path="res://Battlers/☆野猪王★4.png" id="55_4tmup"]
 [ext_resource type="Texture2D" uid="uid://bftnf5cq4ohry" path="res://Battlers/☆鼠先锋◆★2.png" id="56_k2c3x"]
@@ -1212,6 +1213,15 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lqbr3"]
 size = Vector2(328.868, 26.7719)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxskx"]
+shader = ExtResource("49_ntt1y")
+shader_parameter/count = 300
+shader_parameter/slant = -0.01
+shader_parameter/speed = 15.0
+shader_parameter/blur = 0.002
+shader_parameter/colour = Color(1, 1, 1, 1)
+shader_parameter/size = Vector2(0.005, 0.2)
+
 [node name="建邺城右" type="Node2D"]
 script = ExtResource("1_31wdb")
 
@@ -1396,7 +1406,7 @@ audio = "\"res://Audio/SE/066-Animal01.ogg\""
 animal = true
 
 [node name="威迪2" parent="." instance=ExtResource("29_433ew")]
-position = Vector2(1052, 271)
+position = Vector2(1174, 319)
 scale = Vector2(0.707547, 0.767857)
 sprite_frames = SubResource("SpriteFrames_bbmyo")
 autoplay = "default"
@@ -1968,6 +1978,12 @@ triggerEvent = "重回建邺"
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="rain" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_dxskx")
+offset_right = 1769.0
+offset_bottom = 479.0
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

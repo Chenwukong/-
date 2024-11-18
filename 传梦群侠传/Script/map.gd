@@ -38,12 +38,16 @@ var canAdd = true
 var onBuy = false
 var onSale = false
 var confirmButtonIndex = 0
+@export var shader = load("res://shader/shake.tres")
 
 func update_cursor():
 	# Set the current frame as the cursor
 	Input.set_custom_mouse_cursor(cursor_frames[int(current_frame)], 0, cursor_scale)
+
 		
 func _ready():
+	
+	
 	playerPosition = get_node("player").position
 	if Global.onTalk:
 		Global.menuOut = false
@@ -81,6 +85,10 @@ func _ready():
 		DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 		
 func _process(delta):
+	
+
+
+		
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -164,7 +172,7 @@ func _process(delta):
 				shopButtons[0].modulate = "000000"
 				shopButtons[1].modulate = "ffffff"
 				shopButtons[1].modulate.a = 0.5
-				if Input.is_action_just_pressed("ui_accept") and !onItemPicking:
+				if Input.is_action_just_pressed("ui_accept") and !onItemPicking and !Global.noKeyboard:
 					onItemPicking = true
 					canPress = false
 					$canPress.start()
@@ -229,7 +237,7 @@ func _process(delta):
 				shopButtons[0].modulate.a = 0.5
 				shopButtons[1].modulate = "000000"
 #
-				if Input.is_action_just_pressed("ui_accept") and !onSellPicking:
+				if Input.is_action_just_pressed("ui_accept") and !onSellPicking and !Global.noKeyboard:
 #					for x in shopItems:
 #						x.queue_free()													
 					onSellPicking = true			
@@ -274,7 +282,7 @@ func _process(delta):
 					i.get_node("Label2").modulate = "0000002c"
 				else:
 					i.get_node("Label2").modulate = "ffffff2c"
-			if Input.is_action_just_pressed("ui_accept") and canPress:
+			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 				if decrypt(FightScenePlayers.golds) < shopItems[itemIndex].gold:
 					$subSound.stream = load("res://Audio/SE/002-System02.ogg")
 					$subSound.play()							
@@ -323,7 +331,7 @@ func _process(delta):
 					i.get_node("Label2").modulate = "ffffff2c"
 					
 					
-			if Input.is_action_just_pressed("ui_accept") and canPress and shopItems.size() > 0 :
+			if Input.is_action_just_pressed("ui_accept") and canPress and shopItems.size() > 0 and !Global.noKeyboard:
 				
 				shopItems[itemIndex].get_node("Control").visible = true
 				onSaleItemPicked = true
@@ -355,6 +363,7 @@ func _process(delta):
 					var canUseGold = decrypt(FightScenePlayers.golds) - shopItems[itemIndex].buyAmount * shopItems[itemIndex].gold
 					var canBuyAmount = canUseGold / shopItems[itemIndex].gold
 					shopItems[itemIndex].buyAmount += int(floor(canBuyAmount))
+					print(shopItems[itemIndex].buyAmount)
 				else:
 					shopItems[itemIndex].buyAmount += 10
 					
@@ -387,7 +396,7 @@ func _process(delta):
 				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
 				canAdd = false	
 				$addNumTimer.start()	
-			if Input.is_action_just_pressed("ui_accept") and canPress:
+			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 				onBuy = true
 				onItemPicked = false
 				$shop/Panel/buyButton.visible = true
@@ -444,7 +453,7 @@ func _process(delta):
 				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
 				canAdd = false	
 				$addNumTimer.start()	
-			if Input.is_action_pressed("ui_accept") and canPress:
+			if Input.is_action_pressed("ui_accept") and canPress and !Global.noKeyboard:
 				onSale = true
 				onSaleItemPicked = false
 				$shop/Panel/buyButton.visible = true
@@ -486,13 +495,13 @@ func _process(delta):
 					$shop/Panel/buyButton/cancel.modulate = "ffffff"
 					$shop/Panel/buyButton/buy.modulate = "000000"
 				#询问确认购买
-			if Input.is_action_pressed("ui_accept") and canPress:
+			if Input.is_action_pressed("ui_accept") and canPress and !Global.noKeyboard:
 				if confirmButtonIndex == 0:
 					onBuy = false
 					onItemPicked = false
 					onItemPicking = true	
 					$shop/Panel/buyButton.visible = false 	
-					shopItems[itemIndex].buyAmount = 1
+					
 					$subSound.stream = load("res://Audio/SE/003-System03.ogg")
 					$subSound.play()					
 				if confirmButtonIndex == 1:	
@@ -503,7 +512,7 @@ func _process(delta):
 					onItemPicking = true		
 					
 					$shop/Panel/buyButton.visible = false
-					FightScenePlayers.golds = decrypt(FightScenePlayers.golds) -int(shopItems[itemIndex].get_node("golds").text) 	
+					FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) -int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
 					shopItems[itemIndex].get_node("Control").visible = false
 					shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
 					if FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name):
@@ -581,7 +590,7 @@ func _process(delta):
 					$shop/Panel/buyButton/cancel.modulate = "ffffff"
 					$shop/Panel/buyButton/buy.modulate = "000000"
 				#询问确认售卖					
-			if Input.is_action_just_pressed("ui_accept") and canPress:
+			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 				if confirmButtonIndex == 1:
 					if shopItems.size() == 0:
 						return
@@ -593,7 +602,7 @@ func _process(delta):
 					canPress = false										
 					$canPress.start()
 					$shop/Panel/buyButton.visible = false
-					FightScenePlayers.golds = decrypt(FightScenePlayers.golds) + int(shopItems[itemIndex].get_node("golds").text)
+					FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) + int(shopItems[itemIndex].get_node("golds").text) )* Global.enKey
 					FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number -= shopItems[itemIndex].buyAmount				
 					shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
 					shopItems[itemIndex].buyAmount = 1
@@ -798,23 +807,16 @@ func _process(delta):
 #	if 	$nightBgm.is_playing() == false and Global.atNight:
 		#$nightBgm.play()
 	if Global.atNight:	
-		if !$nightBgm.is_playing():
 			for light in get_tree().get_nodes_in_group("nightLight"):
 				light.energy = 2
 			
 			if Global.currScene != "时追云家":
-				$nightBgm.play()
-				$AudioStreamPlayer2D.stop()
 				if is_instance_valid($DirectionalLight2D):
 					$DirectionalLight2D.energy = 4.7
 			else:
 				if !$AudioStreamPlayer2D.is_playing():
 					$AudioStreamPlayer2D.play()
 	else:
-		if !Global.onFight and is_instance_valid($AudioStreamPlayer2D) and !$AudioStreamPlayer2D.is_playing():
-			$AudioStreamPlayer2D.play()
-			if $nightBgm:
-				$nightBgm.stop()
 			if $DirectionalLight2D:
 				$DirectionalLight2D.energy = 0
 			for light in get_tree().get_nodes_in_group("nightLight"):
@@ -833,7 +835,7 @@ func _process(delta):
 	#$menuControl.global_position = Global.currPlayerPos
 	
 	if is_instance_valid($player):
-		#print( $player.velocity)
+
 #		if $player.velocity == Vector2(0, 0):
 #			$enterFightCd.paused = true
 #		else:
@@ -950,7 +952,7 @@ func _on_texture_button_mouse_exited():
 	get_node("CanvasLayer/position").scale = Vector2(1, 1)
 	$player.canMove = true
 func _on_texture_button_focus_entered():
-	#print(2)
+
 	pass
 func _on_texture_button_button_down():
 	if !onMap:
@@ -1073,7 +1075,7 @@ func _on_button_2_pressed():
 	shopButtons[1].modulate = "000000"
 		
 #	for x in shopItems:
-#		print(x)
+
 #		x.queue_free()	
 #	shopItems = []
 #	shopItems = get_tree().get_nodes_in_group("shopItem")
@@ -1150,7 +1152,7 @@ func complete_task(chapter_id, task_id):
 
 
 func _on_cancel_pressed():
-	#print(onSale, onSaleItemPicked,onSellPicking, onBuy, onItemPicked, onItemPicking)
+
 	if onBuy or onItemPicked or onItemPicking:
 		onBuy = false
 		onItemPicked = true		
@@ -1162,7 +1164,7 @@ func _on_cancel_pressed():
 
 
 #func _on_buy_pressed():
-#	print(12131273891273)
+
 #	if onBuy or onItemPicked or onItemPicking:
 #		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
 #		$subSound.play()						
@@ -1620,7 +1622,6 @@ func _on_button_2_button_down():
 	onItemPicked = false
 	onItemPicking = false
 #	for x in shopItems:
-#		print(x)
 #		x.queue_free()	
 #	shopItems = []
 #	shopItems = get_tree().get_nodes_in_group("shopItem")
@@ -1661,13 +1662,12 @@ func _on_cancel_button_down():
 
 func _on_buy_button_down():
 	if onBuy or onItemPicked or onItemPicking:
-		shopItems[itemIndex].buyAmount = 1
+
 		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
 		$subSound.play()						
 		onBuy = false
 		onItemPicking = true		
 		$shop/Panel/buyButton.visible = false
-
 		FightScenePlayers.golds =  (decrypt(FightScenePlayers.golds) - int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
 		shopItems[itemIndex].get_node("Control").visible = false
 		shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
@@ -1733,7 +1733,8 @@ func _on_buy_button_down():
 					FightScenePlayers.battleItem[shopItems[itemIndex].name] = {
 						"info": ItemData.battleConsume.get(shopItems[itemIndex].name),
 						"number": shopItems[itemIndex].buyAmount ,
-					}																		
+					}			
+		shopItems[itemIndex].buyAmount = 1																	
 	if onSale or onSaleItemPicked:
 		if shopItems.size() == 0:
 			return
@@ -1802,7 +1803,7 @@ func _on_cloud_timer_timeout():
 
 func getJinGuBang():
 	$"建业左".texture = load("res://panoramas2/龙宫无棒全景.png")
-	$AnimationPlayer.play("shake")
+	#$AnimationPlayer.play("shake")
 	$shadow.texture = load("res://panoramas2/龙宫无棒全景_2.png")
 
 
@@ -1821,7 +1822,14 @@ func healAll():
 	
 	
 	FightScenePlayers.fightScenePlayerData.get("凌若昭").currHp = FightScenePlayers.fightScenePlayerData.get("凌若昭").hp + decrypt(FightScenePlayers.fightScenePlayerData.get("凌若昭").addHp)
-	FightScenePlayers.fightScenePlayerData.get("凌若昭").currMp = FightScenePlayers.fightScenePlayerData.get("凌若昭").addMp + FightScenePlayers.fightScenePlayerData.get("凌若昭").mp		
+	FightScenePlayers.fightScenePlayerData.get("凌若昭").currMp = FightScenePlayers.fightScenePlayerData.get("凌若昭").addMp + FightScenePlayers.fightScenePlayerData.get("凌若昭").mp	
+	
+	FightScenePlayers.fightScenePlayerData.get("姜韵").currHp = FightScenePlayers.fightScenePlayerData.get("姜韵").hp + decrypt(FightScenePlayers.fightScenePlayerData.get("姜韵").addHp)
+	FightScenePlayers.fightScenePlayerData.get("姜韵").currMp = FightScenePlayers.fightScenePlayerData.get("姜韵").addMp + FightScenePlayers.fightScenePlayerData.get("姜韵").mp		
+	
+	
+	
+		
 func showMsg(value):
 	get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = value
 	get_node("CanvasLayer/importantMsg").visible = true
@@ -1829,3 +1837,14 @@ func playStep():
 	for i in $Node.get_children():
 		i.play()
 		
+func add_shader():
+	$"建业左".material = shader
+func remove_shader():
+	$"建业左".material = null  # Clears the shader, reverting to default appearance
+
+
+func _on_area_2d_area_entered(area):
+
+	if area.name == "playerTouch":
+		$CharacterBody2D.position = Vector2(-3281,5605)
+		bossFight("怨蛛","",null)

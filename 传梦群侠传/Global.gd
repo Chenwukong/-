@@ -6,7 +6,7 @@ var monsterIdx = -1
 var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
-var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "大唐国境": 8, "东海海道":5, "东海海道2":5,"东海海道3":5,"花果山":8,"海底迷宫1":8 
+var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
 ,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8  }
 var menuOut = false
 
@@ -15,7 +15,7 @@ var currAttacker = ""
 var wait
 var target = null
 var monsterTarget = null
-var onPhone = false
+var onPhone = true
 var onButton = false
 
 var battleButtonIndex = 0
@@ -66,6 +66,7 @@ var showBlack = true
 var itemPlayers = []
 var itemPlayerIndex
 var canAttack = false
+var prevScene = ""
 func connectAutoAttackSignal(enemy_instance):
 	enemy_instance.connect('autoAttackSignal', self, '_on_auto_attack')
 var noSounds = false
@@ -99,8 +100,8 @@ var onMultiHit = 0
 var fangCunState = 1
 var atDark = false
 var onBoss = false
-var isBoss = ["巨蛙","鹰孽","堕逝","黑山","奔霸",]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府"]
+var isBoss = ["巨蛙","鹰孽","堕逝","黑山","奔霸","大鹏"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府","森罗殿"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -133,20 +134,20 @@ var bgmList = [
 	"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——战斗一 - 1.《大侠立志传》游戏音乐BGM纯享版——战斗一(Av995118947,P1).mp3", 
 	"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——战斗三 - 1.《大侠立志传》游戏音乐BGM纯享版——战斗三(Av312602269,P1).mp3", 
 	"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——战斗二 - 1.《大侠立志传》游戏音乐BGM纯享版——战斗二(Av740045895,P1).mp3", 
-	"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——特殊事件二 - 1.《大侠立志传》游戏音乐BGM纯享版——特殊事件二(Av570749068,P1).mp3"
+	#"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——特殊事件二 - 1.《大侠立志传》游戏音乐BGM纯享版——特殊事件二(Av570749068,P1).mp3"
 	#"res://Audio/BGM/【战斗】神话降临.mp3",
 	#"res://Audio/BGM/【镜影命缘】.mp3",
 	]
 #保存的
 var questItem = {}
-var atNight = false
+var atNight = true
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云"]
+var onTeamPlayer = ["时追云","小二"]
 var onTeamPet = []
-var onTeamSmallPet = ["敖雨"]
-var smallPets = []
+var onTeamSmallPet = ["小鹿"]
+var smallPets = ["小鹿","敖雨"]
 var currPlayerPos
 var currNpc = null
 var saveIndex = 0
@@ -156,7 +157,7 @@ var systemMsg = [
 ]
 var onPet = false
 var onSkipFight = false
-var violencePoint = 30
+var violencePoint = 10
 var questHint = ""
 
 var damageReward1 = 1
@@ -169,7 +170,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 4
+var current_chapter_id = 1
 
 var mcVisible = true
 var npcVis = {
@@ -281,7 +282,7 @@ var npcVis = {
 		"乞丐": {"visible" : true},
 		"凌若昭": {"visible" : false},		
 		"提毗": {"visible" : false},
-		
+		"小二2": {"visible" : false},
 				
 	},
 	"长安北":{
@@ -444,7 +445,7 @@ var npcVis = {
 }
 var baseChance = 0
 var musicOn = true
-var enKey = randi_range(1, 3000)
+var enKey = 2#randi_range(1, 3000)
 
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
@@ -562,7 +563,7 @@ var npcs = {
 				{"chapter": 1, "dialogue": "王姨遇险", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "王姨得救", "unlocked": true, "bgm":null,"trigger":false},
 			],
-		"current_dialogue_index": 1,	
+		"current_dialogue_index": 0,	
 		"constNpc": false
 	},
 	"柳老":{
@@ -1259,6 +1260,28 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false
 	},		
+	"孟婆":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "初见孟婆", "unlocked": true, "bgm": null ,"trigger":false},
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},			
+	"钟馗":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "初见钟馗", "unlocked": true, "bgm": null ,"trigger":false},
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},			
+	
+	
+	
+	
 	
 } 
 var potentialBalls = {
@@ -1283,7 +1306,7 @@ var storyVars = {
 }
 var vis
 var mapPlayerPos = Vector2(0, 0)
-var haveLantern = false
+var haveLantern = true
 var saveData = {}
 var onHurry = false
 var default_trigger_places
@@ -1337,6 +1360,7 @@ var triggerPlace ={
 	"花果山拦敌3": {"trigger":false, "disable": false},
 	"再见奔霸": {"trigger":false, "disable": false},
 	"到地府入口": {"trigger":false, "disable": false},
+	"初见孟婆": {"trigger":false, "disable": false},
 }
 
 var isDead ={
@@ -1351,6 +1375,8 @@ func _ready():
 	
 var deltas
 
+var noMouse = true
+var noKeyboard = false
 
 func _process(delta):
 	
@@ -1369,6 +1395,8 @@ func _process(delta):
 
 func save():
 	saveData.baseChance = baseChance
+	saveData.noMouse = noMouse
+	saveData.noKeyboard = noKeyboard
 	saveData.currScene = currScene
 	saveData.currPlayer = currPlayer
 	saveData.onTeamPlayer = onTeamPlayer
@@ -1405,8 +1433,12 @@ func save():
 	saveData.uniqueId = uniqueId
 	saveData.cantShow = cantShow
 	saveData.onTeamSmallPet = onTeamSmallPet
+	saveData.smallPetData = SmallPetData.currSmallPetData
 func loadData():
+	SmallPetData.currSmallPetData = saveData.smallPetData
 	baseChance = saveData.baseChance
+	noKeyboard = saveData.noKeyboard
+	noMouse = saveData.noMouse
 	onTeamSmallPet = saveData.onTeamSmallPet 
 	currScene = saveData.currScene
 	currPlayer = saveData.currPlayer
@@ -1491,7 +1523,7 @@ func loadData():
 		"花果山拦敌3": {"trigger":false, "disable": false},
 		"再见奔霸": {"trigger":false, "disable": false},
 		"到地府入口": {"trigger":false, "disable": false},
-		
+		"初见孟婆": {"trigger":false, "disable": false},
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}

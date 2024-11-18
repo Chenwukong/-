@@ -55,9 +55,11 @@ func _process(delta):
 			Global.autoDialogue.chapter1.get("男主开头说话").trigger = true
 
 		if Global.atNight and Global.haveLantern:
-			$PointLight2D.energy = 0.52
+			$PointLight2D.energy = 2
+			$PointLight2D.visible = true
 		else:
 			$PointLight2D.energy = 0
+			$PointLight2D.visible = false
 
 
 		if raycast2.is_colliding():
@@ -320,7 +322,7 @@ func _on_animated_sprite_2d_frame_changed():
 	if loop_count >= 12:
 		$AnimatedSprite2D.stop()
 func _unhandled_input(event):
-	if Input.is_action_just_pressed("ui_accept") and !Global.onFight and !Global.menuOut and !get_parent().onShop:	
+	if Input.is_action_just_pressed("ui_accept") and !Global.onFight and !Global.menuOut and !get_parent().onShop and !Global.noKeyboard:	
 	
 		if raycast.is_colliding():	
 			if raycast.get_collider().get_parent().is_in_group("standNpc") and raycast.get_collider().get_parent().npcName != "":#and Global.npcs.has(raycast.get_collider().get_parent().npcName):
@@ -339,6 +341,7 @@ func _unhandled_input(event):
 				if dialogue_index != npc["dialogues"].size():
 					dialogue_entry = npc["dialogues"][dialogue_index]
 				
+					print(dialogue_entry.chapter)
 					DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(raycast.get_collider().get_parent().npcName))
 				else:
 					
@@ -347,7 +350,7 @@ func _unhandled_input(event):
 				var angle_deg = rad_to_deg(direction.angle())  # 获取角度并转换为度数
 				angle_deg = fmod(angle_deg + 360, 360)  # 标准化到0到360度
 				#raycast.get_collider().get_parent().rotation = deg_to_rad(angle_deg)  # 转换回弧度来设置旋转				
-				if Input.is_action_just_pressed("ui_accept"):
+				if Input.is_action_just_pressed("ui_accept") and !Global.noKeyboard:
 					if angle_deg >= 0 and angle_deg<= 90:
 						raycast.get_collider().get_parent().play("右下")
 					elif angle_deg > 90 and angle_deg <= 180:
@@ -371,7 +374,7 @@ func get_npc_dialogue(npc_id):
 	if npc["dialogues"].size() > dialogue_index:
 		var dialogue_entry = npc["dialogues"][dialogue_index]
 
-		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id:
+		if dialogue_entry["unlocked"]:
 			update_npc_dialogue_index(npc_id)
 			if npc["dialogues"][dialogue_index].bgm != null:
 			
@@ -559,3 +562,8 @@ func _on_右下_button_down():
 func _on_ready_move_timeout():
 	canMove = true
 
+
+
+func _on_ghost_timer_timeout():
+	$"../Ghost/TextureRect".visible = false
+	canMove = true

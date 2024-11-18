@@ -1,4 +1,4 @@
-[gd_scene load_steps=879 format=3 uid="uid://jvqq00koml8d"]
+[gd_scene load_steps=881 format=3 uid="uid://jvqq00koml8d"]
 
 [ext_resource type="Texture2D" uid="uid://b308rjoqo3odw" path="res://梦魂Animation/0燕子攻击.png" id="1_1urxn"]
 [ext_resource type="Texture2D" uid="uid://c5q3chqbs0c4j" path="res://Animations/0乌龟攻击.png" id="1_go0bl"]
@@ -113,27 +113,18 @@
 [ext_resource type="Texture2D" uid="uid://c77wbkljgnb25" path="res://Battlebacks/战斗法条.png" id="63_xsyie"]
 [ext_resource type="Texture2D" uid="uid://ytkiw4sxoyl" path="res://Battlebacks/战斗速度.png" id="64_5q518"]
 [ext_resource type="Texture2D" uid="uid://b71h8y5uboo7i" path="res://梦魂Animation/法术-水泡.png" id="65_pklin"]
-[ext_resource type="Texture2D" uid="uid://ceq7gqmtc3xie" path="res://攻击.png" id="66_r4la4"]
-[ext_resource type="Texture2D" uid="uid://kklv3srrbp3f" path="res://调息.png" id="67_xsk02"]
-[ext_resource type="Texture2D" uid="uid://bu1r7chs53uky" path="res://仙术.png" id="68_f1qeh"]
-[ext_resource type="Texture2D" uid="uid://cj0n8i750faks" path="res://道具.png" id="69_11ies"]
 [ext_resource type="Texture2D" uid="uid://dtgyvtvwqbtsw" path="res://梦魂Animation/烟花2.png" id="69_ibi63"]
-[ext_resource type="Texture2D" uid="uid://c630hjoidb5jf" path="res://SeparateAnimation/珍珠姐妹/471-8.png" id="71_m4dw6"]
 [ext_resource type="Texture2D" uid="uid://ccqw6bxwxdt04" path="res://梦魂Animation/【虚沉冰封】.png" id="71_s2jbw"]
-[ext_resource type="Texture2D" uid="uid://c7ssdirfh4pk4" path="res://SeparateAnimation/珍珠姐妹/471-9.png" id="72_0kwv3"]
 [ext_resource type="Texture2D" uid="uid://b8y5ugj1egnx1" path="res://梦魂Animation/!风雨雷电.png" id="72_c71ud"]
-[ext_resource type="Texture2D" uid="uid://byldktsyw5045" path="res://SeparateAnimation/珍珠姐妹/471-10.png" id="73_l0cqi"]
 [ext_resource type="Texture2D" uid="uid://cmuq5cf7t0w53" path="res://梦魂Animation/法术-双龙.png" id="73_n7y1r"]
 [ext_resource type="Texture2D" uid="uid://b6no7eecgddi" path="res://梦魂Animation/持续-方寸-封法.png" id="74_6ugx0"]
-[ext_resource type="Texture2D" uid="uid://b3lojlu4t3er6" path="res://SeparateAnimation/珍珠姐妹/471-11.png" id="74_c0nwb"]
-[ext_resource type="Texture2D" uid="uid://7lwnm3cv42sm" path="res://SeparateAnimation/珍珠姐妹/471-12.png" id="75_fnw4k"]
-[ext_resource type="Texture2D" uid="uid://dnkax1ehofimx" path="res://SeparateAnimation/珍珠姐妹/471-13.png" id="76_ecxvy"]
-[ext_resource type="Texture2D" uid="uid://ccd7fh8w1me5p" path="res://SeparateAnimation/珍珠姐妹/471-14.png" id="77_d7xrt"]
-[ext_resource type="Texture2D" uid="uid://cyvk8ms6gtw8o" path="res://SeparateAnimation/珍珠姐妹/471-15.png" id="78_2tkyt"]
-[ext_resource type="Texture2D" uid="uid://bsae1rdwm0es1" path="res://SeparateAnimation/珍珠姐妹/471-16.png" id="79_w28qc"]
 [ext_resource type="Texture2D" uid="uid://djm2to8biaceg" path="res://梦魂Animation/持续-冰封.png" id="80_ahgbq"]
-[ext_resource type="Texture2D" uid="uid://gs5j14268dbm" path="res://SeparateAnimation/珍珠姐妹/471-17.png" id="80_da1h4"]
 [ext_resource type="Texture2D" uid="uid://dckpkrucvpcj7" path="res://梦魂Animation/持续-横扫.png" id="81_52tkg"]
+[ext_resource type="Texture2D" uid="uid://ceq7gqmtc3xie" path="res://攻击.png" id="82_mq7nk"]
+[ext_resource type="FontFile" uid="uid://cicc876wmsuns" path="res://aajiuzhongxiao.ttf" id="83_15qwl"]
+[ext_resource type="Texture2D" uid="uid://ofaj4g855vtj" path="res://Pictures/调息.png" id="84_txs17"]
+[ext_resource type="Texture2D" uid="uid://bu1r7chs53uky" path="res://仙术.png" id="85_lsgfe"]
+[ext_resource type="Texture2D" uid="uid://ds43otfgrtqss" path="res://Pictures/道具.png" id="86_tohq0"]
 [ext_resource type="Texture2D" uid="uid://c7t0ygoai2rme" path="res://梦魂Animation/封-魔音.png" id="99_c0odg"]
 [ext_resource type="Texture2D" uid="uid://dlvsa57n7l3jf" path="res://梦魂Animation/法术-水满2.png" id="102_f1xmm"]
 
@@ -2437,6 +2428,9 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_pxb3f"]
 
+[sub_resource type="FontVariation" id="FontVariation_4hrjm"]
+base_font = ExtResource("83_15qwl")
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w2tti"]
 radius = 40.0
 height = 131.429
@@ -2469,44 +2463,74 @@ region = Rect2(50, 960, 151, 192)
 atlas = ExtResource("17_dla3l")
 region = Rect2(201, 960, 151, 192)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j3nrr"]
+load_path = "res://.godot/imported/471-8.png-cc66583a46f9bfd694f199f7e0a01d0a.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_x87pu"]
-atlas = ExtResource("71_m4dw6")
+atlas = SubResource("CompressedTexture2D_j3nrr")
 region = Rect2(0, 0, 108, 111)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_jxvd8"]
+load_path = "res://.godot/imported/471-9.png-c018e5555187b151f3dca77c7f344fbe.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_indol"]
-atlas = ExtResource("72_0kwv3")
+atlas = SubResource("CompressedTexture2D_jxvd8")
 region = Rect2(0, 0, 104, 106)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_odpsy"]
+load_path = "res://.godot/imported/471-10.png-5a96d4af30201d201afd58e6b6a76e45.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mf44"]
-atlas = ExtResource("73_l0cqi")
+atlas = SubResource("CompressedTexture2D_odpsy")
 region = Rect2(0, 0, 109, 109)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8upcs"]
+load_path = "res://.godot/imported/471-11.png-26188f3ac6e1bf4493b0fa533943dc45.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_u4ujk"]
-atlas = ExtResource("74_c0nwb")
+atlas = SubResource("CompressedTexture2D_8upcs")
 region = Rect2(0, 0, 115, 121)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1to7j"]
+load_path = "res://.godot/imported/471-12.png-468763bef2defec8f484222b13e072ca.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsyfj"]
-atlas = ExtResource("75_fnw4k")
+atlas = SubResource("CompressedTexture2D_1to7j")
 region = Rect2(0, 0, 120, 147)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rqnes"]
+load_path = "res://.godot/imported/471-13.png-efd4ca45f41b32956215cacf6ee2dcd7.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhyg3"]
-atlas = ExtResource("76_ecxvy")
+atlas = SubResource("CompressedTexture2D_rqnes")
 region = Rect2(0, 0, 123, 160)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_tamnf"]
+load_path = "res://.godot/imported/471-14.png-e0f5f3c655315f4e52461a5b586f064b.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ilaf"]
-atlas = ExtResource("77_d7xrt")
+atlas = SubResource("CompressedTexture2D_tamnf")
 region = Rect2(0, 0, 106, 171)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mfehc"]
+load_path = "res://.godot/imported/471-15.png-27a8291485e449b007c9b73ef9896795.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_huu68"]
-atlas = ExtResource("78_2tkyt")
+atlas = SubResource("CompressedTexture2D_mfehc")
 region = Rect2(0, 0, 107, 176)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x1jpv"]
+load_path = "res://.godot/imported/471-16.png-15b4725ea8b2f76c05ff807a4d33bba0.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jtsns"]
-atlas = ExtResource("79_w28qc")
+atlas = SubResource("CompressedTexture2D_x1jpv")
 region = Rect2(0, 0, 108, 180)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_esfb5"]
+load_path = "res://.godot/imported/471-17.png-a183a1accf8ee33589ba388a339877bb.ctex"
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjttg"]
-atlas = ExtResource("80_da1h4")
+atlas = SubResource("CompressedTexture2D_esfb5")
 region = Rect2(0, 0, 106, 184)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_guuj7"]
@@ -6141,13 +6165,13 @@ texture_progress = ExtResource("64_5q518")
 texture_progress_offset = Vector2(1, 1)
 
 [node name="battleCommends" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = -140.0
-offset_top = -111.0
-offset_right = -140.0
-offset_bottom = -111.0
+offset_left = -172.683
+offset_top = -111.429
+offset_right = -172.683
+offset_bottom = -111.429
+scale = Vector2(1.17523, 1.17523)
 script = ExtResource("20_idvfw")
 
 [node name="attackButton" type="TextureButton" parent="battleCommends" groups=["battleCommendButton"]]
@@ -6158,13 +6182,25 @@ anchor_left = 0.308
 anchor_top = 0.129
 anchor_right = 0.308
 anchor_bottom = 0.129
-offset_left = 95.2195
-offset_top = -89.0
-offset_right = 154.22
-offset_bottom = -59.0
-texture_normal = ExtResource("66_r4la4")
-texture_focused = ExtResource("66_r4la4")
+offset_left = 93.3912
+offset_top = -87.5205
+offset_right = 152.392
+offset_bottom = -57.5205
+scale = Vector2(1.12, 1.05)
+texture_normal = ExtResource("82_mq7nk")
 ignore_texture_size = true
+
+[node name="Label" type="Label" parent="battleCommends/attackButton"]
+visible = false
+layout_mode = 0
+offset_left = 87.2778
+offset_top = 3.69873
+offset_right = 1005.28
+offset_bottom = 871.699
+scale = Vector2(0.107068, 0.11401)
+theme_override_fonts/font = ExtResource("83_15qwl")
+theme_override_font_sizes/font_size = 400
+text = "攻 击"
 
 [node name="defenseButton" type="TextureButton" parent="battleCommends" groups=["battleCommendButton"]]
 z_index = 2
@@ -6174,11 +6210,24 @@ anchor_left = 0.321
 anchor_top = 0.454
 anchor_right = 0.658
 anchor_bottom = 0.631
-offset_left = 95.2195
-offset_top = -40.4286
-offset_right = 175.219
-offset_bottom = -14.4286
-texture_normal = ExtResource("67_xsk02")
+offset_left = 93.3912
+offset_top = -38.8978
+offset_right = 349.391
+offset_bottom = 17.1022
+scale = Vector2(1.12, 1.05)
+texture_normal = ExtResource("84_txs17")
+
+[node name="Label" type="Label" parent="battleCommends/defenseButton"]
+visible = false
+layout_mode = 0
+offset_left = 86.7842
+offset_top = 11.7866
+offset_right = 1004.78
+offset_bottom = 512.787
+scale = Vector2(0.105395, 0.0983147)
+theme_override_fonts/font = ExtResource("83_15qwl")
+theme_override_font_sizes/font_size = 400
+text = "调 息"
 
 [node name="magicButton" type="TextureButton" parent="battleCommends" groups=["battleCommendButton"]]
 z_index = 2
@@ -6188,11 +6237,24 @@ anchor_left = 0.32
 anchor_top = 0.3
 anchor_right = 0.658
 anchor_bottom = 0.462
-offset_left = 95.2195
-offset_top = -64.7143
-offset_right = 175.219
-offset_bottom = -38.7143
-texture_normal = ExtResource("68_f1qeh")
+offset_left = 93.3912
+offset_top = -63.2091
+offset_right = 173.391
+offset_bottom = -37.2091
+scale = Vector2(1.12511, 1.051)
+texture_normal = ExtResource("85_lsgfe")
+
+[node name="Label" type="Label" parent="battleCommends/magicButton"]
+visible = false
+layout_mode = 0
+offset_left = 87.5273
+offset_top = 8.21533
+offset_right = 1005.53
+offset_bottom = 509.215
+scale = Vector2(0.107068, 0.11401)
+theme_override_fonts/font = SubResource("FontVariation_4hrjm")
+theme_override_font_sizes/font_size = 400
+text = "仙 术"
 
 [node name="itemButton" type="TextureButton" parent="battleCommends" groups=["battleCommendButton"]]
 z_index = 2
@@ -6202,11 +6264,23 @@ anchor_left = 0.321
 anchor_top = 0.599
 anchor_right = 0.657
 anchor_bottom = 0.754
-offset_left = 95.2195
-offset_top = -16.1429
-offset_right = 175.219
-offset_bottom = 9.85714
-texture_normal = ExtResource("69_11ies")
+offset_left = 92.146
+offset_top = -14.5864
+offset_right = 348.146
+offset_bottom = 41.4136
+scale = Vector2(1.14, 1.05)
+texture_normal = ExtResource("86_tohq0")
+
+[node name="Label" type="Label" parent="battleCommends/itemButton"]
+visible = false
+layout_mode = 0
+offset_left = 91.7075
+offset_top = 11.7857
+offset_right = 346.708
+offset_bottom = 69.7857
+theme_override_fonts/font = ExtResource("83_15qwl")
+theme_override_font_sizes/font_size = 40
+text = "道 具"
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]
 light_mask = 3
@@ -6259,6 +6333,7 @@ offset_left = -28.683
 offset_top = -138.571
 offset_right = 31.317
 offset_bottom = -86.5714
+theme_override_fonts/font = ExtResource("83_15qwl")
 theme_override_font_sizes/font_size = 35
 horizontal_alignment = 1
 vertical_alignment = 1

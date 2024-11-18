@@ -25,8 +25,7 @@ var keyItem = {
 		"useAble":false,
 		"gold": 9999999		
 	},	
-	
-	
+
 	"传字牌":{
 		"name": "传字牌",
 		"effect": null,
