@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://ctdypih5s1hxq"]
+[gd_scene load_steps=56 format=3 uid="uid://ctdypih5s1hxq"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_y7ar8"]
 [ext_resource type="Texture2D" uid="uid://kb6yexw6316t" path="res://Panoramas/地府_地狱迷宫1.jpg" id="2_ut2q7"]
@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://bkikjxrcnr83s" path="res://Audio/SE/Laugh_spooky.mp3" id="26_sw1n1"]
 [ext_resource type="AudioStream" uid="uid://b2066uy2g21h8" path="res://Audio/SE/Laugh_spooky_2.mp3" id="28_5o3rp"]
 [ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="29_k6f4q"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_5oixh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -628,6 +629,11 @@ stream = ExtResource("29_k6f4q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ghostSounds/Area2D3"]
 position = Vector2(926, 1696)
 shape = SubResource("CircleShape2D_difox")
+
+[node name="第一次遇鬼" parent="." instance=ExtResource("30_5oixh")]
+visible = false
+position = Vector2(102, 1928)
+triggerEvent = "第一次遇鬼"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

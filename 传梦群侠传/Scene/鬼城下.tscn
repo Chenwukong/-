@@ -1,0 +1,605 @@
+[gd_scene load_steps=45 format=3 uid="uid://yye6dppjab7u"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_1cfks"]
+[ext_resource type="Texture2D" uid="uid://rtx0f3net67u" path="res://panoramas2/鬼城下.jpg" id="2_mesus"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_gffoc"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_ea4nq"]
+[ext_resource type="AudioStream" uid="uid://blkdub6dgyrb6" path="res://Audio/BGM/鬼城.mp3" id="5_3eqht"]
+[ext_resource type="Texture2D" uid="uid://7i5u8yex3hkb" path="res://panoramas2/鬼城下_2.png" id="6_fyi0m"]
+[ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="7_giac6"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_57vpa"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_i474t"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_5pi0g"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_a32ia"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="12_racop"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="13_he5ps"]
+[ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="14_hsoac"]
+[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="15_p2o4r"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_f68qd"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_enu61"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_4i6fb"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_x107b"]
+[ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_246eu"]
+[ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_huiae"]
+[ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="22_00onm"]
+[ext_resource type="Script" path="res://Script/ghostSound.gd" id="26_48k0a"]
+[ext_resource type="AudioStream" uid="uid://dxav8gf6y8ob0" path="res://Audio/SE/Laugh_spooky_4.mp3" id="27_ck8y5"]
+[ext_resource type="AudioStream" uid="uid://bijpybef1ldec" path="res://Audio/SE/Laugh_spooky_3.mp3" id="28_eh3rh"]
+[ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="28_hyrg1"]
+[ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="29_024ha"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="29_25e1d"]
+[ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="30_0b67d"]
+[ext_resource type="Texture2D" uid="uid://b1ngu8a173pqm" path="res://Characters/野鬼.png" id="30_34kt7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
+vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1029, -240, -1033, 909, -1033, 1372, -1039, 2773, 3439, 2794, 3439, -213)])
+
+[sub_resource type="Gradient" id="Gradient_3h53e"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
+gradient = SubResource("Gradient_3h53e")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_gs70c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_y5c4b"]
+resource_name = "守卫move"
+
+[sub_resource type="Animation" id="Animation_2adbs"]
+resource_name = "时追云move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1381, 655), Vector2(1639, 563)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"up"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("player/AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.3, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
+_data = {
+"RESET": SubResource("Animation_gs70c"),
+"守卫move": SubResource("Animation_y5c4b"),
+"时追云move": SubResource("Animation_2adbs")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7brvw"]
+shader = ExtResource("21_huiae")
+shader_parameter/snow_speed = 0.7
+shader_parameter/snow_density = 1.0
+shader_parameter/wind_speed = 0.2
+shader_parameter/snow_color = Color(1, 1, 1, 1)
+shader_parameter/direction = -1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_difox"]
+radius = 109.772
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irhed"]
+atlas = ExtResource("30_34kt7")
+region = Rect2(0, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtl6b"]
+atlas = ExtResource("30_34kt7")
+region = Rect2(106, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a83fr"]
+atlas = ExtResource("30_34kt7")
+region = Rect2(212, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v22u1"]
+atlas = ExtResource("30_34kt7")
+region = Rect2(318, 0, 106, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_guai7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irhed")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtl6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a83fr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v22u1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="鬼城下" type="Node2D"]
+script = ExtResource("1_1cfks")
+
+[node name="建业左" type="Sprite2D" parent="."]
+position = Vector2(1201, 1197.1)
+texture = ExtResource("2_mesus")
+
+[node name="player" parent="." instance=ExtResource("3_gffoc")]
+z_index = 2
+position = Vector2(1329.84, 1176.39)
+scale = Vector2(1.1, 1.144)
+metadata/_edit_group_ = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("4_ea4nq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(-348, 1765, -137, 1768, -53, 1671, 129, 1613, 221, 1561, 351, 1445, 505, 1310, 623, 1275, 737, 1207, 758, 1186, 836, 1181, 902, 1229, 1033, 1262, 1282, 1350, 1339, 1358, 1458, 1299, 1535, 1307, 1711, 1378, 1848, 1412, 1981, 1411, 2128, 1396, 2264, 1374, 2329, 1384, 2532, 1411, 2537, 1638, 2592, 1727, 2737, 1671, 2790, 1623, 2809, 1344, 2727, 1303, 2544, 1295, 2348, 1264, 2203, 1245, 2189, 1224, 2241, 1062, 2276, 967, 2229, 821, 2223, 745, 2237, 628, 2082, 631, 2106, 733, 2126, 856, 2150, 959, 2103, 1131, 1952, 1213, 1897, 1157, 1771, 979, 1633, 983, 1516, 1035, 1398, 1077, 1162, 1056, 1014, 1034, 849, 1007, 637, 939, 571, 844, 482, 687, 436, 622, 333, 633, 380, 724, 313, 801, 60, 860, -21, 996, 242, 1081, 244, 1139, 121, 1139, 100, 1316, -215, 1581, -378, 1748, -381, 1769)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(374, 1155, 364, 1245, 402, 1267, 520, 1185, 454, 1117, 376, 1150)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1301, 873)
+stream = ExtResource("5_3eqht")
+volume_db = 8.072
+autoplay = true
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(1200, 1197.1)
+texture = ExtResource("6_fyi0m")
+
+[node name="enterFightCd" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="enterFightCd2" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_giac6")
+volume_db = 7.0
+max_distance = 10000.0
+
+[node name="BattleReward" parent="." instance=ExtResource("8_57vpa")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(5, -82)
+navigation_polygon = SubResource("NavigationPolygon_su7y6")
+constrain_avoidance = true
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_i474t")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_4br6b")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("10_5pi0g")
+
+[node name="teleportCircle" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(-969, -162)
+toScene = "女儿村"
+
+[node name="teleportCircle2" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(124, 502)
+toScene = "地府迷宫3"
+
+[node name="teleportCircle3" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(-903, 1168)
+toScene = "傲来杂货铺"
+
+[node name="teleportCircle4" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(-598, 3041)
+toScene = "傲来药店"
+
+[node name="teleportCircle10" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(4137, 940)
+toScene = "傲来药店"
+
+[node name="teleportCircle5" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(5203, 70)
+toScene = "傲来布店"
+
+[node name="teleportCircle6" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(-1460, 556)
+toScene = "傲来民居"
+
+[node name="teleportCircle7" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(2159, 709)
+toScene = "鬼城上"
+
+[node name="AnimatedSprite2D2" parent="." instance=ExtResource("12_racop")]
+position = Vector2(1962, 455)
+scale = Vector2(0.559814, 0.696808)
+id = "地府迷宫2"
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_he5ps")
+volume_db = 2.432
+max_distance = 1e+06
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.168627, 0.168627, 0.168627, 1)
+energy = 0.0
+blend_mode = 1
+
+[node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_hsoac")
+max_distance = 1e+09
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(2870, 1768)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nm37n")
+}
+
+[node name="小二" parent="." instance=ExtResource("15_p2o4r")]
+position = Vector2(1828, 2495)
+
+[node name="小二" parent="小二" index="0"]
+animation = &"左上"
+
+[node name="effect" parent="小二/小二" index="2"]
+frame_progress = 0.0
+
+[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+frame = 4
+
+[node name="Node2D" parent="." instance=ExtResource("16_f68qd")]
+position = Vector2(3120, 1810)
+id = "神龙1"
+items = {
+"含沙射影": 3,
+"金疮药": 10
+}
+goldAmount = 10000
+gold = true
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-466, 633)
+
+[node name="menuControl" parent="." instance=ExtResource("17_enu61")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("18_4i6fb")]
+
+[node name="potentialBall" parent="." instance=ExtResource("12_racop")]
+position = Vector2(2629, 1652)
+id = "鬼城下"
+
+[node name="Node2D2" parent="." instance=ExtResource("16_f68qd")]
+position = Vector2(-223, 2632)
+id = "傲来国1"
+items = {
+"佛手": 10,
+"西瓜": 10
+}
+
+[node name="teleportCircle8" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(536, -208)
+toScene = "凤巢1"
+
+[node name="teleportCircle11" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(3765, 1126)
+toScene = "傲来杂货铺"
+
+[node name="teleportCircle9" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(3355, 1275)
+toScene = "傲来钱庄"
+
+[node name="petFoodBall" parent="." instance=ExtResource("19_x107b")]
+position = Vector2(405, 657)
+id = "鬼城下"
+
+[node name="Node2D3" parent="." instance=ExtResource("16_f68qd")]
+position = Vector2(-646, 743)
+id = "傲来国2"
+goldAmount = 3000
+gold = true
+
+[node name="potentialBall2" parent="." instance=ExtResource("12_racop")]
+position = Vector2(-863.73, 1800.04)
+id = "傲来国1"
+
+[node name="teleportCircle12" parent="." instance=ExtResource("11_a32ia")]
+position = Vector2(1404, 2417)
+toScene = "傲来武器铺"
+
+[node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_246eu")
+volume_db = 4.552
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_7brvw")
+offset_left = -1157.0
+offset_top = -672.0
+offset_right = 3501.0
+offset_bottom = 2910.0
+
+[node name="DirectionalLight2D3" type="DirectionalLight2D" parent="."]
+position = Vector2(-21, -6)
+color = Color(0.117647, 0.117647, 0.117647, 1)
+energy = 5.7
+blend_mode = 1
+
+[node name="lights" type="Node2D" parent="."]
+
+[node name="PointLight2D8" type="PointLight2D" parent="lights"]
+position = Vector2(3495, 699)
+scale = Vector2(0.99365, 1.04102)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D9" type="PointLight2D" parent="lights"]
+position = Vector2(1965, 1478)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D10" type="PointLight2D" parent="lights"]
+position = Vector2(2327, 1455)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D11" type="PointLight2D" parent="lights"]
+position = Vector2(1953, 1482)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D12" type="PointLight2D" parent="lights"]
+position = Vector2(567, 388)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D13" type="PointLight2D" parent="lights"]
+position = Vector2(284.466, 1177.81)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D14" type="PointLight2D" parent="lights"]
+position = Vector2(144, 1250)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D15" type="PointLight2D" parent="lights"]
+position = Vector2(2349, 891)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="PointLight2D16" type="PointLight2D" parent="lights"]
+position = Vector2(1486, 1184)
+scale = Vector2(0.236814, 0.217299)
+texture = ExtResource("22_00onm")
+
+[node name="ghostSounds" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="ghostSounds"]
+script = ExtResource("26_48k0a")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="ghostSounds/Area2D"]
+position = Vector2(1387, 1724)
+stream = ExtResource("27_ck8y5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ghostSounds/Area2D"]
+position = Vector2(1308, 1936)
+shape = SubResource("CircleShape2D_difox")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ghostSounds/Area2D"]
+position = Vector2(-517, 394)
+shape = SubResource("CircleShape2D_difox")
+
+[node name="Area2D2" type="Area2D" parent="ghostSounds"]
+position = Vector2(-847, -34)
+script = ExtResource("26_48k0a")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="ghostSounds/Area2D2"]
+position = Vector2(1788, 1020)
+stream = ExtResource("28_eh3rh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ghostSounds/Area2D2"]
+position = Vector2(1434, 405)
+shape = SubResource("CircleShape2D_difox")
+
+[node name="Area2D3" type="Area2D" parent="ghostSounds"]
+position = Vector2(862, -584)
+script = ExtResource("26_48k0a")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="ghostSounds/Area2D3"]
+position = Vector2(930, 1696)
+stream = ExtResource("29_024ha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ghostSounds/Area2D3"]
+position = Vector2(-1209, 906)
+shape = SubResource("CircleShape2D_difox")
+
+[node name="scaryFace" type="Sprite2D" parent="."]
+visible = false
+z_index = 150
+position = Vector2(1682, 959)
+scale = Vector2(1.61525, 1.61525)
+texture = ExtResource("30_0b67d")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(252, 1295)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(310, 954)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(698, 802)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(769, 1484)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(1182, 1160)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D14" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(1740, 1028)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(1451, 853)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D8" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(1807, 1369)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D9" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(2642, 1596)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D10" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(2636, 1022)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D11" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(2179, 1005)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D12" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(449, 750)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D13" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(652, 1061)
+monster_name = "鬼火"
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("28_hyrg1")]
+position = Vector2(769, 1099)
+monster_name = "鬼火"
+
+[node name="鬼医" parent="." instance=ExtResource("29_25e1d")]
+position = Vector2(91, 1369)
+sprite_frames = SubResource("SpriteFrames_guai7")
+autoplay = "default"
+frame_progress = 0.499548
+npcName = "鬼医"
+
+[connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="enterFightCd2" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="area_entered" from="ghostSounds/Area2D" to="ghostSounds/Area2D" method="_on_area_entered" flags=18]
+[connection signal="area_entered" from="ghostSounds/Area2D2" to="ghostSounds/Area2D2" method="_on_area_entered" flags=18]
+[connection signal="area_entered" from="ghostSounds/Area2D3" to="ghostSounds/Area2D3" method="_on_area_entered" flags=18]
+
+[editable path="player"]
+[editable path="teleportCircle"]
+[editable path="小二"]
+[editable path="小二/小二"]

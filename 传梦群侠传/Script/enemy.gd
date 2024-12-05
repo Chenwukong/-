@@ -48,7 +48,7 @@ var treeHealed = false
 var onMagicDefenseDebuff = false
 var onPhysicDefenseDebuff = false
 var canAttackTimerStarted = false
-
+var canSee = true
 var round = 1
 var magicInfo
 var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3}, 
@@ -123,6 +123,8 @@ var bigMagics ={
 
 func _ready(): 
 
+	if type == "鬼":
+		canSee = false
 
 	oriMonsterName = monsterName
 	monsterName = remove_numbers_from_string(monsterName)
@@ -160,7 +162,14 @@ var itemList = []
 
 
 func _process(delta):
-
+	
+	if canSee == false:
+		Global.dealtDmg = 0
+		self.modulate.a = 0.2
+	else:
+		self.modulate.a = 1
+		
+		
 	if onMagicDefenseDebuff:
 		magicDefense = magicDefense * 0.3
 	if onPhysicDefenseDebuff:
@@ -703,7 +712,7 @@ func _process(delta):
 	if Global.onHitEnemy.has(self):
 		self.play(monsterName + "hurt")
 	
-	
+
 	#有怪物之后，血量少于0就触发死亡动画
 	if monsterName:
 		if currHp <= 0 and gotHit == false:

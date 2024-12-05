@@ -1,5 +1,6 @@
 ~ 醒来
 set Global.onTalk = true
+set Global.cantShow.append("两界山")
 时追云: [speed=0.5]这里是...
 敖雨: [speed=0.5]这里是地府！
 时追云: [speed=0.5]你是...
@@ -95,6 +96,7 @@ set Global.onTalk = true
 时追云怒: [speed=0.5]不可能，我没看到结果前绝对不会放弃！怒喝
 阎罗王: [speed=0.5]好！那我就让你转世去陪你妻子！怒喝
 判官: [speed=0.5]不可啊，不可啊
+set get_tree().current_scene.get_node("钟馗").visible = true
 钟馗: [speed=0.5]唉
 钟馗: [speed=0.5]都叫你和他好好说话了，怎么没两句就聊成这样了
 阎罗王: [speed=0.5]钟馗，你来干什么！
@@ -110,6 +112,265 @@ set Global.onTalk = false
 => END
 
 
+~ 劝说离开
+set Global.onTalk = true
+set get_tree().get_node("player").position = Vector2(557,1218)
+钟馗: [speed=0.5]我已经给你打开通向地面的路了，你原路返回就是了
+时追云怒: [speed=0.5]不可能！在没得知我娘子的状况前我绝对不可能离开！
+钟馗: [speed=0.5]唉，生死轮回，天道难违
+钟馗: [speed=0.5]哪怕是你娘子还在地府，并且你见到了又能如何，你难道要对抗我们整个地府吗？你觉得你能把她带走吗？
+时追云: [speed=0.5]我说了，我绝对不会放弃！
+钟馗: ...
+钟馗: [speed=0.5]我一直没对你动手是因为你还并没有触犯地府的规矩
+钟馗: [speed=0.5]但如果我看到你把地府的鬼魂从轮回司带走，那我就不得不阻止你了
+时追云: [speed=0.5]...
+时追云: [speed=0.5]我明白了，多谢前辈！
+钟馗: [speed=0.5]我不知道你谢我做什么，赶紧走吧
+set Global.questHint = ""
+set Global.cantShow.erase("两界山")
+set Global.triggerPlace.get("真离开地府").disable = false
 
+set Global.onTalk = false
+=> END
+
+~ 真离开地府
+set Global.onTalk = true
+你确定要离开吗？
+- 走吧
+	set get_tree().change_scene_to_file("res://Scene/"+"结局1"+".tscn")
+	set Global.dial = "真离开地府"
+	啊？你还真走啊，那请看结局
+- 绝对不走！
+
+set Global.triggerPlace.get("真离开地府").disable = true
+set Global.onTalk = false
+=> END
+
+~ 结局1
+set Global.atNight = false
+set Global.onTalk = true
+[speed=0.5]时追云从地府中走出，那一刻，他的心仿佛被掏空。曾以为地府是答案，但冥河边的风声仿佛在嘲笑他的无能为力，而地府守卫冰冷的回应更让他心灰意冷。
+[speed=0.5]离开地府后，时追云行走在人间，眼里再也没有了光。他的内心充满愤怒与悲痛，认为正是这混乱的世间吞噬了他的幸福。
+[speed=0.5]他开始四处游荡，斩杀路上遇到的精怪，不问善恶、不分缘由。他的剑不再是为了保护，而是为了发泄。
+[speed=0.5]就如原本那样
+[speed=0.5]时追云的行为终究引来了妖族大军的围剿。他们将他视为威胁，派出了无数妖怪围堵他。
+[speed=0.5]在一个月黑风高的夜晚，时追云被困在一片荒野中。他身披残破的战甲，目光中透着疲惫，却没有一丝退缩。
+[speed=0.5]“来吧，让这悲剧彻底结束。”他举起剑，迎向扑面而来的妖潮。
+[speed=0.5]荒野被鲜血染成了红色。时追云的剑下倒下了无数妖怪，但最终，他也力竭倒地。他仰望着星空，嘴角浮现一丝解脱的微笑。
+[speed=0.5]“或许,我们来世能再相遇……”他的声音低如呢喃，眼中的光芒渐渐消散。
+[speed=0.5]人们发现了他的遗体，依旧紧握着那柄斩妖的剑
+[speed=0.5]而在地府深处，某处未曾被发现的角落里，一个孤单的灵魂始终在等待着她的爱人归来。
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=6]
+set get_tree().quit()
+set Global.onTalk = false
+=> END
+
+
+~ 找罐子
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player/effect").visible = false
+时追云: [speed=0.5]...
+set get_tree().current_scene.get_node("player/effect").visible = false
+时追云: [speed=0.5]这里就是轮回司吗
+时追云: [speed=0.5]这里怎么有怎么多瓶瓶罐罐...
+时追云: [speed=0.5]钟前辈说把鬼魂从轮回司带走，难道说...这里是关住鬼魂的地方
+时追云: [speed=0.5]那边那个瓶子写着人，或许....
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+[next=2]
+时追云怒: [speed=0.5]可恶
+时追云怒: [speed=0.5]这里都快被我翻遍了，怎么还是没有！
+时追云: [speed=0.5]难道娘子她真的已经离我而去了吗...
+时追云: [speed=0.5]如果到头来一切都是虚妄，为什么又要让我知道这里的存在...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]再到别处看看吧！
+set get_tree().current_scene.get_node("player").visible = false
+
+[next=3]
+set Global.npcVis.get("轮回司").get("地藏菩萨").visible = true
+[next=1]
+地藏菩萨: [speed=0.5]天命之人吗
+地藏菩萨: [speed=0.5]世道轮回，他们总归是会出现的...
+地藏菩萨: [speed=0.5]不知道这次，它会偏向哪一方？
+
+[next=2]
+set Global.npcVis.get("轮回司").get("地藏菩萨").visible = false
+set Global.changeScene("地府", Vector2(1705,1327))
+set Global.onTalk = false
+=> END
+
+~ 重遇上官
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").position = Vector2(1198, 1347)
+上官冕: [speed=0.5]结束了
+逆无邪: [speed=0.5]嗯
+上官冕: [speed=0.5]可怜...锦纹
+逆无邪: [speed=0.5]她，会，没事
+时追云惊: [speed=0.5]上官，无邪兄弟，你们！？？
+set get_tree().current_scene.get_node("上官冕").play("右下")
+set get_tree().current_scene.get_node("逆无邪").play("右下")
+上官冕: [speed=0.5]你。。。是？
+逆无邪: [speed=0.5]记得你...
+逆无邪: [speed=0.5]我们打赢了，妖怪
+上官冕: [speed=0.5]是。。。
+上官冕: [speed=0.5]帮忙照顾。。锦文
+时追云: [speed=0.5]可你们..
+逆无邪: [speed=0.5]你...是谁？
+上官冕: [speed=0.5]...
+时追云惊: [speed=0.5]你们这是！？
+set get_tree().current_scene.get_node("轮回").visible = true
+set get_tree().current_scene.get_node("轮回").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/HEAL 6.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+[next=2]
+时追云惊: [speed=0.5]他们人呢？！
+set get_tree().current_scene.get_node("阎罗王").visible = true
+set get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
+set get_tree().current_scene.get_node("player/Sprite2D").visible = false
+set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("rightStand")
+阎罗王: [speed=0.5]他们的时间到了，刚才是被送去轮回了
+时追云惊: [speed=0.5]是你
+阎罗王: [speed=0.5]看你的样子就不像是会乖乖听话的人，随便来这看看，果然逮住个耗子
+时追云: [speed=0.5]他们为什么看起来那么奇怪，是你做的？
+阎罗王: [speed=0.5]哼，我和他们无仇无怨的动他们作甚，他们是因为喝了孟婆汤，慢慢失去了这一世的记忆
+时追云: [speed=0.5](孟婆汤，还好我没喝...)
+阎罗王: [speed=0.5]倒是你，执意不走，看来我只好打断你的腿把你丢出去了！
+时追云: [speed=0.5]来吧！
+阎罗王: [speed=0.5]鬼寂...
+[next=1]
+阎罗王: [speed=0.5]等等...你身上这是！？
+时追云: [speed=0.5]什么？
+阎罗王: [speed=0.5]算了，你跟我来吧，我叫判官帮你看一下生死簿
+时追云: [speed=0.5](他怎么突然就这么好说话了)
+时追云: [speed=0.5]好，多谢
+[next=1]
+set Global.dial = "阎罗王"
+set Global.changeScene("森罗殿",Vector2(1155,1289))
+set Global.onTalk = false
+=> END
+
+~ 查看生死簿
+set Global.onTalk = true
+阎罗王: [speed=0.5]判官，你帮他查一下，那什么
+阎罗王: [speed=0.5]你娘子叫什么来着
+时追云: [speed=0.5]她叫姜韵
+阎罗王: [speed=0.5]嗯？姓姜?
+时追云: [speed=0.5]是啊，怎么了吗
+阎罗王: [speed=0.5]没什么
+阎罗王: [speed=0.5]判官，你帮他查一下这个叫姜韵的女子到底轮回了没
+判官: [speed=0.5]是
+时追云: [speed=0.5]等一下，你们怎么知道我说的是何名何性
+阎罗王: [speed=0.5]我们可不是按照你念的声音来听的
+阎罗王: [speed=0.5]人的名字自带一种力量，当出生后被确定姓名的那一刻，他们的名字就刻在他们灵魂之中了
+阎罗王: [speed=0.5]当被人提起之时，就会有些许牵连
+阎罗王: [speed=0.5]所以，当你说出你所想的那个名字之后，我们便能知道了
+时追云: [speed=0.5](感觉很厉害...)
+判官: ...
+判官: ...
+判官: ...
+时追云: [speed=0.5]怎么样了
+阎罗王: [speed=0.5]嗯？有这么难找吗，就算是轮回了也该记录了吧
+判官: [speed=0.5]这...这上边好像没有啊
+阎罗王: [speed=0.5]怎么可能！惊愕
+判官: [speed=0.5]这这这，这真没有
+阎罗王: [speed=0.5]嘶，难道说她真的是...
+判官: [speed=0.5]阎君，你还记不记得三年前有位奇怪的女子
+阎罗王: [speed=0.5]嗯？！惊愕
+时追云: [speed=0.5]你们在说什么？
+阎罗王: [speed=0.5]我问你，你妻子死的时候穿着是怎么样的？
+时追云: [speed=0.5]身着半袖白衣，脖颈戴圈饰，腰系橙飘带，穿粉色长裙
+时追云: [speed=0.5]对了，我娘子她头发异色，偏绿
+阎罗王: [speed=0.5]真的是她！惊愕
+时追云: [speed=0.5]？
+判官: [speed=0.5]三年前，有个我们意想不到的女子来到了地府
+判官: [speed=0.5]为什么说意想不到呢，因为以她的身份，她根本不可能来到地府
+判官: [speed=0.5]而因为她比较特殊，即便生死簿上有她的名字，我们也没法给她轮回
+时追云: [speed=0.5]什么意思？这世上还有你们地府无法掌管的人吗？
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——特殊事件二 - 1.《大侠立志传》游戏音乐BGM纯享版——特殊事件二(Av570749068,P1).mp3")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+时追云惊: [speed=0.5]等等，按照你们这么说，她真的还在地府！
+阎罗王: [speed=0.5]我们不能管的生物多了，比如那些妖怪，神仙，以及上古大神的后裔...
+阎罗王: [speed=0.5]而你娘子就是后者！
+时追云惊: [speed=0.5]上古大神的后裔？
+阎罗王: [speed=0.5]至于她是谁的后裔，我们就不清楚了
+时追云: [speed=0.5]这些都不重要，她的灵魂现在在哪
+判官: [speed=0.5]这...
+时追云: [speed=0.5]告诉我
+判官: [speed=0.5]三年前我们发现无法给你娘子转世，发现她身份特殊，留在这里也没意义，便想着要不干脆放她离开地府，自己去想办法得了
+判官: [speed=0.5]但这时地府突然发生暴乱，鬼王带领一堆恶鬼从地府深处来攻打地府，幸得地藏菩萨镇压
+判官: [speed=0.5]那时候他乘乱收走了一堆还待转世的鬼魂，你娘子应该就在其中。
+时追云怒: [speed=0.5]她被抓走了？！
+时追云怒: [speed=0.5]地府深处难道不是处于你们的管辖吗？为什么还会有什么鬼王占山为王
+阎罗王: [speed=0.5]这是我们地府的秘密，与你无关
+时追云: [speed=0.5]怎么去地府深处
+阎罗王: [speed=0.5]你疯了？那里可不像这里一样平和，到处都是魑魅恶鬼，你一个人去那里只是死路一条
+阎罗王: [speed=0.5]你也该死心了，去那里的鬼魂永远也出来了！
+时追云: [speed=0.5]如果我失败了，那也不过是多一个永远出不来的鬼魂罢了
+时追云: [speed=0.5]如果我知道了她的位置而不去救她，那便是违背了我的诺言，抛弃了糟糠之妻
+时追云: [speed=0.5]那这世上就等于多一个恶臭腐朽贪生怕死的灵魂！
+时追云: [speed=0.5]告诉我，怎么去地府深处！
+阎罗王: [speed=0.5]哼，好言难劝该死的鬼，地府背后的洞就通往地狱深处，你要死赶紧去死吧
+判官: [speed=0.5]唉，不可啊，你，唉
+时追云: [speed=0.5]多谢！
+
+set Global.onTalk = false
+=> END
 	
+
+~ 第一次遇鬼
+set Global.onTalk = true
+set Global.canLose = true
+时追云惊: ！
+set get_tree().current_scene.bossFight("初鬼","res://Audio/BGM/网易游戏 - 战斗2.mp3", "初鬼")
+set get_tree().current_scene.get_node("CanvasLayer2").visible = false
+set Global.onTalk = false
+=> END
+
+~ 退回地府
+set Global.onTalk = true
+set Global.canLose = false
+set get_tree().current_scene.get_node("player").position = Vector2(283, 232)
+时追云怒: [speed=0.5]可恶，这些怪物是怎么回事，怎么砍不到他们
+时追云: [speed=0.5]而且貌似会追着我，难道是因为我还是生灵吗
+时追云: [speed=0.5]如果我的剑能快点，说不定就能砍中了，再试试！
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+[next=5]
+时追云怒: [speed=0.5]为什么，为什么怎么就是砍不了他们！
+时追云怒: [speed=0.5]好不容易到这里了，怎么可以被这些东西拦住！！
+时追云怒: [speed=0.5]我不信这些东西没有弱点
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+[next=5]
+时追云怒: [speed=0.5]......
+
+
+
+set Global.onTalk = false
+=> END
+
+
+
+~ 鬼潇潇
+set Global.onTalk = true
+时追云惊: 娘子！？？
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/Ghost_scream.mp3")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set get_tree().current_scene.get_node("scaryFace").visible = true
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=2]
+set get_tree().current_scene.get_node("scaryFace").visible = false
+set Global.npcVis.get("地府迷宫2").get("鬼潇潇").visible = false	
+
+set Global.onTalk = false
+=> END
 	
+~ 鬼医
+set Global.onTalk = true
+鬼医: 你需要治疗吗，只需要2000两一次哦魔鬼
+- 治疗
+	set Global.lostGold(2000)
+	set FightScenePlayers.healAll()	
+- 算了
+set Global.onTalk = false
+=> END
+	
+		

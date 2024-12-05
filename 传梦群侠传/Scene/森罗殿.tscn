@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://blodpbo8mdboi"]
+[gd_scene load_steps=51 format=3 uid="uid://blodpbo8mdboi"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_odwne"]
 [ext_resource type="Texture2D" uid="uid://cbcnw2svkwpe2" path="res://Panoramas/门派_地府_森罗殿.jpg" id="2_apr6k"]
@@ -29,7 +29,6 @@
 [ext_resource type="AudioStream" uid="uid://bfnssmrhgfini" path="res://Audio/SE/scream-90747.mp3" id="27_t2mqb"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="28_f8j4n"]
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="29_41b5x"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_pftk1"]
 [ext_resource type="Texture2D" uid="uid://dm2e5cic2nwj8" path="res://Characters/钟馗.png" id="31_lriet"]
 [ext_resource type="Texture2D" uid="uid://l87gwp2sf5x8" path="res://Battlers/阎罗王.png" id="32_oksws"]
 [ext_resource type="Texture2D" uid="uid://bboru8arunoji" path="res://Characters/判官.png" id="33_5eohd"]
@@ -186,18 +185,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_casm8"]
-size = Vector2(274, 195)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b7od5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohvtl"]
 atlas = ExtResource("31_lriet")
-region = Rect2(0, 0, 136, 105)
+region = Rect2(0, 315, 136, 105)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_m87ll"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b7od5")
+"texture": SubResource("AtlasTexture_ohvtl")
 }],
 "loop": true,
 "name": &"default",
@@ -274,6 +270,7 @@ polygon = PackedVector2Array(1799, 1464, 1789, 1534, 1692, 1504, 1544, 1477, 149
 position = Vector2(1301, 873)
 stream = ExtResource("7_fs5e0")
 volume_db = 8.072
+autoplay = true
 max_distance = 1e+07
 metadata/_edit_group_ = true
 
@@ -434,7 +431,7 @@ position = Vector2(609, 759)
 
 [node name="teleportCircle3" parent="." instance=ExtResource("13_2tesp")]
 position = Vector2(1747, 1473)
-toScene = "轮回司"
+toScene = "地府"
 
 [node name="lights" type="Node2D" parent="."]
 
@@ -603,17 +600,9 @@ position = Vector2(1625, 1895)
 sprite_frames = SubResource("SpriteFrames_dggyu")
 npcName = "孟婆"
 
-[node name="初见孟婆" parent="." instance=ExtResource("30_pftk1")]
-visible = false
-position = Vector2(1573, 1865)
-triggerEvent = "初见孟婆"
-
-[node name="CollisionShape2D" parent="初见孟婆/Area2D" index="0"]
-position = Vector2(8, 6.5)
-shape = SubResource("RectangleShape2D_casm8")
-
 [node name="钟馗" parent="." instance=ExtResource("28_f8j4n")]
-position = Vector2(463, 1136)
+visible = false
+position = Vector2(1352, 1362)
 sprite_frames = SubResource("SpriteFrames_m87ll")
 npcName = "钟馗"
 
@@ -649,4 +638,3 @@ npcName = "判官"
 
 [editable path="player"]
 [editable path="teleportCircle2"]
-[editable path="初见孟婆"]

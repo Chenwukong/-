@@ -503,16 +503,23 @@ func _process(delta):
 		
 					Global.dealtDmg = ( self.currStr * 1.2  - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 
 				
+				if Global.target.canSee == false:
+					Global.dealtDmg = 0
 				if Global.target.currHp - round(Global.dealtDmg) <= 0:
 					Global.target.currHp = 0
 				else:
 					Global.target.currHp -= round(Global.dealtDmg)
+				
+					
 			else:
 				var damage_to_deduct = self.currStr * 1.2  * float(Global.target.physicDefense)/1000  + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)
 				if Global.target.onIce:
 					Global.dealtDmg = (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2 
 				else:
 					Global.dealtDmg =  (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1
+					
+				if Global.target.canSee == false:
+					Global.dealtDmg = 0					
 				if Global.target.currHp - round(Global.dealtDmg) <= 0:
 					Global.target.currHp = 0
 				else:
@@ -535,11 +542,15 @@ func _process(delta):
 		if Global.onMultiHit == 0:
 			Global.onAttackingList.pop_front()
 		get_node("Control/speedBar").value = speedBar	
-		Global.target = null
+		Global.target = null	
+				
+				
+				
+				
 		target = null
 		canAttack = false
 		$canAttack.start()
-		
+
 		
 		
 	elif self.is_playing() == false and self.animation == autoAttack and self.playerName == "姜韵":
@@ -648,7 +659,8 @@ func _process(delta):
 		
 		
 		for target in Global.onHitEnemy:
-			
+			if target.canSee == false:
+				Global.dealtDmg = 0			
 			if is_instance_valid(target):
 				if target.onIce:
 					target.currHp -= round(Global.dealtDmg * Global.damageReward1/2)
@@ -1644,6 +1656,34 @@ func castMagic(delta, magic, target, type, onLastMagic):
 						castMagic(delta, Global.lastMagic.magicInfo,Global.lastMagic.target, Global.lastMagic.type, false)
 				else:
 					pass
+			if magic.name == "开阳":
+				
+				get_parent().get_parent().get_node("DirectionalLight2D").visible = true
+				get_parent().get_parent().get_node("Sun").visible = true
+				Global.currUsingMagic = magic
+				if magicControlType == "keyboard":
+					Global.onHitEnemy.append(Global.target)
+				else:
+					Global.onHitEnemy.append(target)
+				if monsters.size() < magic.effectingNum:
+					for i in monsters:
+						i.modulate.a = 1
+						i.get_node("getHitEffect").visible = true
+						i.get_node("getHitEffect").play("开阳")
+						if monsters.size() >= magic.effectingNum:
+								break
+						Global.onHitEnemy.append(i)
+				else:		
+					while Global.onHitEnemy.size() < magic.effectingNum:
+						var ranTarget = monsters[randi_range(0, monsters.size() - 1)]
+						if !Global.onHitEnemy.has(ranTarget):
+							Global.onHitEnemy.append(ranTarget)
+				
+				self.play(playerName + "法术")
+
+				for targets in Global.onHitEnemy:
+					if targets:
+						targets.canSee = true
 			self.play(playerName + "法术")
 		Global.onMagicAttackPicking = false
 		Global.onMagicSelectPicking = false

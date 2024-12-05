@@ -1,4 +1,4 @@
-[gd_scene load_steps=208 format=3 uid="uid://0elhamjou8p7"]
+[gd_scene load_steps=221 format=3 uid="uid://0elhamjou8p7"]
 
 [ext_resource type="Script" path="res://Script/锁妖塔怪物脚本.gd" id="1_c80dp"]
 [ext_resource type="Texture2D" uid="uid://byjjguti3j8h1" path="res://Characters/狐狸精.png" id="2_1vdu8"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="10_w7p3o"]
 [ext_resource type="Texture2D" uid="uid://cei25ut2cuj56" path="res://Characters/蝙蝠 .png" id="10_x30sv"]
 [ext_resource type="Texture2D" uid="uid://cox76u442bx1f" path="res://Characters/蟹黄.png" id="12_qkcjx"]
+[ext_resource type="Texture2D" uid="uid://bl70chhni7bcg" path="res://Characters/4鬼火.png" id="13_dgytt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_878d3"]
 atlas = ExtResource("2_evk1g")
@@ -717,6 +718,54 @@ region = Rect2(216, 80, 108, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bitx"]
 atlas = ExtResource("12_qkcjx")
 region = Rect2(324, 80, 108, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s105u"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ickvd"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4vky"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ksup"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5ji"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(0, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sbek"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(280, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmdrb"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(560, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6q20j"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(840, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh4qw"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(0, 444, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gs4f"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(280, 444, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfv00"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(560, 444, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rawxv"]
+atlas = ExtResource("13_dgytt")
+region = Rect2(840, 444, 280, 222)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m6yxk"]
 atlas = ExtResource("7_u2usd")
@@ -1534,6 +1583,62 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_s105u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ickvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4vky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ksup")
+}],
+"loop": true,
+"name": &"鬼火右上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5ji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5sbek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmdrb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6q20j")
+}],
+"loop": true,
+"name": &"鬼火右下",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"鬼火左上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh4qw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gs4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfv00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rawxv")
+}],
+"loop": true,
+"name": &"鬼火左下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_m6yxk")
 }, {
 "duration": 1.0,
@@ -1611,7 +1716,7 @@ script = ExtResource("1_c80dp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_c4h1h")
-animation = &"蟹将右下"
+animation = &"鬼火右上"
 
 [node name="Area2D" type="Area2D" parent="."]
 

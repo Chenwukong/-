@@ -7,7 +7,7 @@ var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8  }
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4 }
 var menuOut = false
 
 var onAttackingList = []
@@ -101,7 +101,7 @@ var fangCunState = 1
 var atDark = false
 var onBoss = false
 var isBoss = ["巨蛙","鹰孽","堕逝","黑山","奔霸","大鹏"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府","森罗殿"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", ]#"地府","森罗殿"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -137,6 +137,7 @@ var bgmList = [
 	#"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——特殊事件二 - 1.《大侠立志传》游戏音乐BGM纯享版——特殊事件二(Av570749068,P1).mp3"
 	#"res://Audio/BGM/【战斗】神话降临.mp3",
 	#"res://Audio/BGM/【镜影命缘】.mp3",
+	
 	]
 #保存的
 var questItem = {}
@@ -170,7 +171,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 1
+var current_chapter_id = 5
 
 var mcVisible = true
 var npcVis = {
@@ -441,7 +442,15 @@ var npcVis = {
 		"凌若昭": {"visible":false},		
 		
 	},	
-										
+	"轮回司":{
+		"地藏菩萨": {"visible":false},
+		
+	},		
+
+	"地府迷宫2":{
+		"鬼潇潇": {"visible":true},
+		
+	},											
 }
 var baseChance = 0
 var musicOn = true
@@ -1277,9 +1286,68 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
+	},	
+	"阎罗王":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "初见阎罗王", "unlocked": true, "bgm": null ,"trigger":false},
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},				
+	"真离开地府":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "真离开地府", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 5, "dialogue": "结局1", "unlocked": true, "bgm": null ,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},				
+	"找罐子":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "找罐子", "unlocked": true, "bgm": null ,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},		
+	"重遇上官":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "重遇上官", "unlocked": true, "bgm": null ,"trigger":false},
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},		
+	"第一次遇鬼":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "第一次遇鬼", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 5, "dialogue": "退回地府", "unlocked": true, "bgm": null ,"trigger":false},					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},				
+	"鬼潇潇":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "鬼潇潇", "unlocked": true, "bgm": null ,"trigger":false},
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},		
+	"鬼医":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "鬼医", "unlocked": true, "bgm": null ,"trigger":false},
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true
 	},			
-	
-	
 	
 	
 	
@@ -1306,7 +1374,7 @@ var storyVars = {
 }
 var vis
 var mapPlayerPos = Vector2(0, 0)
-var haveLantern = true
+var haveLantern = false
 var saveData = {}
 var onHurry = false
 var default_trigger_places
@@ -1361,6 +1429,10 @@ var triggerPlace ={
 	"再见奔霸": {"trigger":false, "disable": false},
 	"到地府入口": {"trigger":false, "disable": false},
 	"初见孟婆": {"trigger":false, "disable": false},
+	"真离开地府": {"trigger":false, "disable": false},
+	"找罐子": {"trigger":false, "disable": false},
+	"重遇上官": {"trigger":false, "disable": false},
+	"第一次遇鬼": {"trigger":false, "disable": false},
 }
 
 var isDead ={
@@ -1524,6 +1596,10 @@ func loadData():
 		"再见奔霸": {"trigger":false, "disable": false},
 		"到地府入口": {"trigger":false, "disable": false},
 		"初见孟婆": {"trigger":false, "disable": false},
+		"真离开地府": {"trigger":false, "disable": true},
+		"找罐子": {"trigger":false, "disable": true},
+		"重遇上官": {"trigger":false, "disable": false},	
+		"第一次遇鬼": {"trigger":false, "disable": false},	
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
@@ -1690,3 +1766,9 @@ func showViolence(type,value):
 		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").modulate = "green"
 		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").text = "+" + str(value)
 	get_tree().current_scene.get_node("CanvasLayer/AnimationPlayer").play("showViolence")
+func changeScene(new_scene, position):
+	get_tree().change_scene_to_file("res://Scene/"+new_scene+".tscn")
+	if position == null:
+		return
+	Global.load = true
+	mapPlayerPos = position

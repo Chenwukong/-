@@ -313,6 +313,10 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1208,1533)
 		if toScene == "森罗殿":
 			return Vector2(1641, 1420)
+		if toScene == "轮回之门":
+			return Vector2(1641, 1420)			
+	if currScene == "轮回之门":
+		return Vector2(2448, 323)	
 	if currScene == "森罗殿":
 			return Vector2(241, 1081)			
 	if currScene == "轮回司":
@@ -321,11 +325,28 @@ func checkSetPos(currScene, toScene):
 		if toScene == "地府":
 			return Vector2(283, 232)
 		if toScene == "地府迷宫2":
-			return Vector2()
-			
-			
-			
-			
+			return Vector2(2253, 1958)
+	if currScene == "地府迷宫2":
+		if toScene == "地府迷宫1":
+			return Vector2(135,600)
+		if toScene == "地府迷宫3":
+			return Vector2(2021, 1821)			
+	if currScene == "地府迷宫3":
+		if toScene == "地府迷宫2":
+			return Vector2(190,785)
+		if toScene == "地府迷宫4":
+			return Vector2(2253, 1958)					
+	if currScene == "地府迷宫4":
+		if toScene == "地府迷宫3":
+			return Vector2(2241,495)
+		if toScene == "鬼城下":
+			return Vector2(-127,1613)					
+	if currScene == "鬼城下":
+		if toScene == "鬼城上":
+			return Vector2(2241,495)	
+	if currScene == "鬼城上":
+		if toScene == "地狱深处":
+			return Vector2(2241,495)				
 			
 			
 			

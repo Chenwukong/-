@@ -9,7 +9,7 @@ func _ready():
 
 # 每帧更新怪物位置
 func _process(delta: float):
-	if Global.onFight:
+	if Global.onFight or Global.onTalk:
 		return
 	# 获取到玩家位置
 	var player_position = $"../player".global_position

@@ -1,83 +1,84 @@
-[gd_scene load_steps=256 format=3 uid="uid://cx8g8mc8t586m"]
+[gd_scene load_steps=257 format=3 uid="uid://dsrepvbkaj3wk"]
 
-[ext_resource type="Script" path="res://Script/map.gd" id="1_1ostj"]
-[ext_resource type="Texture2D" uid="uid://ckdnsnufkwu1d" path="res://Panoramas/花果山.jpg" id="2_qse17"]
-[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_rq133"]
-[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_yr2tr"]
-[ext_resource type="AudioStream" uid="uid://br7alh0jixwu5" path="res://Audio/BGM/Really Slow Motion - Other Worlds.mp3" id="5_6n01v"]
-[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="5_unsor"]
-[ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="7_hpdul"]
-[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_t8jjl"]
-[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="9_b1ov8"]
-[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="10_34sif"]
-[ext_resource type="Texture2D" uid="uid://dvfvtxd7etxr0" path="res://Panoramas/花果山_2.png" id="10_ffagh"]
-[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="12_gxd6i"]
-[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="13_wu52b"]
-[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="14_oehbc"]
-[ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="15_5f2se"]
-[ext_resource type="AudioStream" uid="uid://dg48w2u34bmg6" path="res://Audio/SE/096-Attack08.ogg" id="16_bb7y8"]
-[ext_resource type="AudioStream" uid="uid://cfn12n35h25v7" path="res://Audio/SE/098-Attack10.ogg" id="16_j4kjv"]
-[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="16_ujgvr"]
-[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_nwscv"]
-[ext_resource type="AudioStream" uid="uid://cruk3iwhkad5o" path="res://Audio/SE/095-Attack07.ogg" id="17_vmjgy"]
-[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_vhhhx"]
-[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_bavut"]
-[ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="20_0rjkl"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_krxdd"]
-[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_3oul4"]
-[ext_resource type="Texture2D" uid="uid://dsyav2oerp3it" path="res://Characters/大鹏.png" id="22_3pk1e"]
-[ext_resource type="Texture2D" uid="uid://c4pbcvjtkvu0m" path="res://梦魂Animation/0雷鸟人法术.png" id="23_qv5gy"]
-[ext_resource type="Texture2D" uid="uid://ddsvn32obk0hw" path="res://Characters/牛妖.png" id="24_5hhg2"]
-[ext_resource type="Texture2D" uid="uid://cei25ut2cuj56" path="res://Characters/蝙蝠 .png" id="24_438m4"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="25_ylfyb"]
-[ext_resource type="Texture2D" uid="uid://da4jf2vvihvb5" path="res://Characters/兔子怪.png" id="26_rive1"]
-[ext_resource type="Texture2D" uid="uid://dq85jh5ravc8i" path="res://Characters/蛤蟆怪.png" id="27_y7d84"]
-[ext_resource type="AudioStream" uid="uid://bmd12bgmqillw" path="res://Audio/SE/013-Move01.ogg" id="28_pxb0c"]
-[ext_resource type="Texture2D" uid="uid://bp16kssv75fga" path="res://Characters/小兵.png" id="30_mnads"]
-[ext_resource type="Script" path="res://Script/npcs.gd" id="30_tkfb2"]
-[ext_resource type="Texture2D" uid="uid://cponeub3nl6l7" path="res://Characters/上官.png" id="32_r1co2"]
-[ext_resource type="Texture2D" uid="uid://8dhcfoig53hr" path="res://Characters/3血无命.png" id="33_bntn2"]
-[ext_resource type="Texture2D" uid="uid://bbspjfppgix0x" path="res://Characters/女侠.png" id="34_4iwbw"]
-[ext_resource type="Texture2D" uid="uid://ni25lglyuyip" path="res://Characters/2侠客3.png" id="35_gr4sq"]
-[ext_resource type="Texture2D" uid="uid://cvgkywg8uuu4g" path="res://梦魂Animation/0羊头怪法术.png" id="35_ysyoi"]
-[ext_resource type="Texture2D" uid="uid://doyyrcbsbqysk" path="res://Characters/8轩辕剑.png" id="36_ua4u1"]
-[ext_resource type="Texture2D" uid="uid://dp4g0yf5fyqkb" path="res://Characters/鹿.png" id="38_it7rh"]
-[ext_resource type="Texture2D" uid="uid://6lsqkncjry1g" path="res://Characters/秦祥林小.png" id="39_v10q5"]
-[ext_resource type="Texture2D" uid="uid://c7uq5a4bdj6wi" path="res://Characters/猪头工人.png" id="40_cls2b"]
-[ext_resource type="Texture2D" uid="uid://ktiu5pt2cg4f" path="res://Characters/大胡子.png" id="41_vofjy"]
-[ext_resource type="Texture2D" uid="uid://doro41gc2poy4" path="res://Characters/dead-老头.png" id="42_cmudf"]
-[ext_resource type="Texture2D" uid="uid://d4lr442ix3cuo" path="res://Characters/牛.png" id="43_7xesx"]
-[ext_resource type="Texture2D" uid="uid://yxjhbqh1tar" path="res://Characters/树怪.png" id="44_ewu2h"]
-[ext_resource type="Texture2D" uid="uid://dm3nbm31p6ho2" path="res://梦魂Animation/0强盗攻击.png" id="45_547cq"]
-[ext_resource type="Texture2D" uid="uid://cb7leb3rovgip" path="res://梦魂Animation/0狼法术.png" id="46_3a6jw"]
-[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="48_2gcen"]
-[ext_resource type="Texture2D" uid="uid://owh1rtossgwo" path="res://SeparateAnimation/奔波儿霸/140-2.png" id="49_41650"]
-[ext_resource type="Texture2D" uid="uid://dvemlvbqpyrox" path="res://SeparateAnimation/奔波儿霸/139-6.png" id="50_a52ni"]
-[ext_resource type="Texture2D" uid="uid://cjl4ba4s7ccl1" path="res://SeparateAnimation/奔波儿霸/139-7.png" id="51_ey1nf"]
-[ext_resource type="Texture2D" uid="uid://cjftxqax5lscg" path="res://Characters/狼.png" id="51_ih330"]
-[ext_resource type="Texture2D" uid="uid://dmu8tfl8ckh2b" path="res://SeparateAnimation/奔波儿霸/139-8.png" id="52_lj5jg"]
-[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="52_mudep"]
-[ext_resource type="Texture2D" uid="uid://b6yqds7gm3krd" path="res://3WEK[9FG52@4JMMUZC{T8SU.png" id="53_3lqer"]
-[ext_resource type="Texture2D" uid="uid://bgxdkkvironll" path="res://SeparateAnimation/奔波儿霸/139-9.png" id="53_6noni"]
-[ext_resource type="Texture2D" uid="uid://dynybveoskmaa" path="res://SeparateAnimation/奔波儿霸/139-10.png" id="54_rv0ix"]
-[ext_resource type="Texture2D" uid="uid://c4qr1mjlipjrk" path="res://9D~]]K8QBDHK_%R2THE[B_B.png" id="54_yvbtl"]
-[ext_resource type="Texture2D" uid="uid://dw85x407el75q" path="res://W(9AJSG68M~U(PJXYUU[T}K.png" id="55_24dlh"]
-[ext_resource type="Texture2D" uid="uid://ck10lyule8uvy" path="res://SeparateAnimation/奔波儿霸/139-11.png" id="55_lldi8"]
-[ext_resource type="Texture2D" uid="uid://d3ayycutd8an0" path="res://YR%~IU)ZM567J__XN8}A4_O.png" id="56_efy36"]
-[ext_resource type="Texture2D" uid="uid://cyg5tby1tn4yi" path="res://SeparateAnimation/奔波儿霸/139-12.png" id="56_i8h56"]
-[ext_resource type="Texture2D" uid="uid://0ncpo2bxt14d" path="res://~1`IH9PL]3}VNF)NY2}2IXR.png" id="57_cl637"]
-[ext_resource type="Texture2D" uid="uid://chb264uoecyeq" path="res://SeparateAnimation/奔波儿霸/148-3.png" id="58_th8w4"]
-[ext_resource type="Texture2D" uid="uid://bni6cspc5lrej" path="res://SeparateAnimation/奔波儿霸/142-7.png" id="59_u8105"]
-[ext_resource type="Texture2D" uid="uid://dd81vf5o1b5if" path="res://SeparateAnimation/奔波儿霸/142-8.png" id="60_iy36g"]
-[ext_resource type="Texture2D" uid="uid://i0npcfsot7sn" path="res://SeparateAnimation/奔波儿霸/142-9.png" id="61_fw8yj"]
-[ext_resource type="Texture2D" uid="uid://ddupcplfdxwqp" path="res://SeparateAnimation/奔波儿霸/142-15.png" id="62_m2iky"]
-[ext_resource type="Texture2D" uid="uid://b2f1wsdbmfllu" path="res://SeparateAnimation/奔波儿霸/142-16.png" id="63_grf3b"]
-[ext_resource type="Texture2D" uid="uid://c2gr7n6usiyt7" path="res://SeparateAnimation/敖雨/972-12.png" id="65_wyij0"]
-[ext_resource type="Texture2D" uid="uid://bf3yio7elv58h" path="res://Animations/法术-斩龙诀.png" id="67_1pfe7"]
-[ext_resource type="Texture2D" uid="uid://c0bu6cekgg8vq" path="res://SeparateAnimation/敖雨/974-23.png" id="67_hkatx"]
-[ext_resource type="Texture2D" uid="uid://ck8nk0w0u7hy5" path="res://SeparateAnimation/敖雨/974-24.png" id="68_wd83q"]
-[ext_resource type="Texture2D" uid="uid://cu0q3b5v21bsd" path="res://SeparateAnimation/敖雨/974-26.png" id="69_f5g42"]
-[ext_resource type="Texture2D" uid="uid://p3bq4vp53or1" path="res://SeparateAnimation/敖雨/974-27.png" id="70_n6faj"]
+[ext_resource type="Texture2D" uid="uid://sk727hgg7a2u" path="res://Pictures/幕末-凌天麒背影 拷贝.png" id="1_40t53"]
+[ext_resource type="Script" path="res://Script/map.gd" id="1_nd7g3"]
+[ext_resource type="Texture2D" uid="uid://ckdnsnufkwu1d" path="res://Panoramas/花果山.jpg" id="2_0kcns"]
+[ext_resource type="AudioStream" uid="uid://s328xcdrcje4" path="res://Audio/BGM/轩辕剑-幽愁.mp3" id="2_6ekbe"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_s663m"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_00454"]
+[ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="6_h2nvv"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_0yvgk"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_14ssc"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_mdwud"]
+[ext_resource type="Texture2D" uid="uid://dvfvtxd7etxr0" path="res://Panoramas/花果山_2.png" id="10_7htr1"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="11_tfl6s"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="12_0q06d"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="13_vbt0b"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="14_gawai"]
+[ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="15_ppf2l"]
+[ext_resource type="AudioStream" uid="uid://cfn12n35h25v7" path="res://Audio/SE/098-Attack10.ogg" id="16_86wwn"]
+[ext_resource type="AudioStream" uid="uid://cruk3iwhkad5o" path="res://Audio/SE/095-Attack07.ogg" id="17_npbrj"]
+[ext_resource type="AudioStream" uid="uid://dg48w2u34bmg6" path="res://Audio/SE/096-Attack08.ogg" id="18_pwu3d"]
+[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="19_72cb0"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="20_wouvd"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="21_4eob1"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="22_xndre"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="23_5mh6o"]
+[ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="24_nroxi"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="25_c201k"]
+[ext_resource type="Texture2D" uid="uid://c4pbcvjtkvu0m" path="res://梦魂Animation/0雷鸟人法术.png" id="26_2pbyl"]
+[ext_resource type="Texture2D" uid="uid://ddsvn32obk0hw" path="res://Characters/牛妖.png" id="27_tkho7"]
+[ext_resource type="Texture2D" uid="uid://dsyav2oerp3it" path="res://Characters/大鹏.png" id="28_e8fh5"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="29_fm2n1"]
+[ext_resource type="Texture2D" uid="uid://cei25ut2cuj56" path="res://Characters/蝙蝠 .png" id="30_nl54v"]
+[ext_resource type="Texture2D" uid="uid://da4jf2vvihvb5" path="res://Characters/兔子怪.png" id="31_gpmb2"]
+[ext_resource type="Texture2D" uid="uid://dq85jh5ravc8i" path="res://Characters/蛤蟆怪.png" id="32_rcwg7"]
+[ext_resource type="AudioStream" uid="uid://bmd12bgmqillw" path="res://Audio/SE/013-Move01.ogg" id="33_1r3db"]
+[ext_resource type="Script" path="res://Script/npcs.gd" id="34_nn288"]
+[ext_resource type="Texture2D" uid="uid://bp16kssv75fga" path="res://Characters/小兵.png" id="35_xwy7b"]
+[ext_resource type="Texture2D" uid="uid://cponeub3nl6l7" path="res://Characters/上官.png" id="36_lwepm"]
+[ext_resource type="Texture2D" uid="uid://8dhcfoig53hr" path="res://Characters/3血无命.png" id="37_rakd2"]
+[ext_resource type="Texture2D" uid="uid://bbspjfppgix0x" path="res://Characters/女侠.png" id="38_rocif"]
+[ext_resource type="Texture2D" uid="uid://cvgkywg8uuu4g" path="res://梦魂Animation/0羊头怪法术.png" id="39_6sjq6"]
+[ext_resource type="Texture2D" uid="uid://ni25lglyuyip" path="res://Characters/2侠客3.png" id="40_hqojh"]
+[ext_resource type="Texture2D" uid="uid://doyyrcbsbqysk" path="res://Characters/8轩辕剑.png" id="41_q6kou"]
+[ext_resource type="Texture2D" uid="uid://dp4g0yf5fyqkb" path="res://Characters/鹿.png" id="42_kwofw"]
+[ext_resource type="Texture2D" uid="uid://6lsqkncjry1g" path="res://Characters/秦祥林小.png" id="43_emb37"]
+[ext_resource type="Texture2D" uid="uid://c7uq5a4bdj6wi" path="res://Characters/猪头工人.png" id="44_ay1p4"]
+[ext_resource type="Texture2D" uid="uid://ktiu5pt2cg4f" path="res://Characters/大胡子.png" id="45_khudv"]
+[ext_resource type="Texture2D" uid="uid://doro41gc2poy4" path="res://Characters/dead-老头.png" id="46_jhm56"]
+[ext_resource type="Texture2D" uid="uid://d4lr442ix3cuo" path="res://Characters/牛.png" id="47_at6jx"]
+[ext_resource type="Texture2D" uid="uid://yxjhbqh1tar" path="res://Characters/树怪.png" id="48_osdeo"]
+[ext_resource type="Texture2D" uid="uid://dm3nbm31p6ho2" path="res://梦魂Animation/0强盗攻击.png" id="49_nvk8y"]
+[ext_resource type="Texture2D" uid="uid://cb7leb3rovgip" path="res://梦魂Animation/0狼法术.png" id="50_pi83d"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="51_whnf6"]
+[ext_resource type="Texture2D" uid="uid://dvemlvbqpyrox" path="res://SeparateAnimation/奔波儿霸/139-6.png" id="52_7kjeq"]
+[ext_resource type="Texture2D" uid="uid://cjl4ba4s7ccl1" path="res://SeparateAnimation/奔波儿霸/139-7.png" id="53_mmnov"]
+[ext_resource type="Texture2D" uid="uid://dmu8tfl8ckh2b" path="res://SeparateAnimation/奔波儿霸/139-8.png" id="54_aexgi"]
+[ext_resource type="Texture2D" uid="uid://bgxdkkvironll" path="res://SeparateAnimation/奔波儿霸/139-9.png" id="55_ak5n1"]
+[ext_resource type="Texture2D" uid="uid://dynybveoskmaa" path="res://SeparateAnimation/奔波儿霸/139-10.png" id="56_66le8"]
+[ext_resource type="Texture2D" uid="uid://ck10lyule8uvy" path="res://SeparateAnimation/奔波儿霸/139-11.png" id="57_7h8vs"]
+[ext_resource type="Texture2D" uid="uid://cyg5tby1tn4yi" path="res://SeparateAnimation/奔波儿霸/139-12.png" id="58_d1yse"]
+[ext_resource type="Texture2D" uid="uid://bni6cspc5lrej" path="res://SeparateAnimation/奔波儿霸/142-7.png" id="59_a7jun"]
+[ext_resource type="Texture2D" uid="uid://dd81vf5o1b5if" path="res://SeparateAnimation/奔波儿霸/142-8.png" id="60_t11xu"]
+[ext_resource type="Texture2D" uid="uid://i0npcfsot7sn" path="res://SeparateAnimation/奔波儿霸/142-9.png" id="61_yqi4w"]
+[ext_resource type="Texture2D" uid="uid://ddupcplfdxwqp" path="res://SeparateAnimation/奔波儿霸/142-15.png" id="62_jaug1"]
+[ext_resource type="Texture2D" uid="uid://b2f1wsdbmfllu" path="res://SeparateAnimation/奔波儿霸/142-16.png" id="63_io4ww"]
+[ext_resource type="Texture2D" uid="uid://owh1rtossgwo" path="res://SeparateAnimation/奔波儿霸/140-2.png" id="64_pphrw"]
+[ext_resource type="Texture2D" uid="uid://chb264uoecyeq" path="res://SeparateAnimation/奔波儿霸/148-3.png" id="65_vkxub"]
+[ext_resource type="Texture2D" uid="uid://cjftxqax5lscg" path="res://Characters/狼.png" id="66_c11jb"]
+[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="67_41dxl"]
+[ext_resource type="Texture2D" uid="uid://b6yqds7gm3krd" path="res://3WEK[9FG52@4JMMUZC{T8SU.png" id="68_b4y4g"]
+[ext_resource type="Texture2D" uid="uid://c4qr1mjlipjrk" path="res://9D~]]K8QBDHK_%R2THE[B_B.png" id="69_2le76"]
+[ext_resource type="Texture2D" uid="uid://dw85x407el75q" path="res://W(9AJSG68M~U(PJXYUU[T}K.png" id="70_ohyvj"]
+[ext_resource type="Texture2D" uid="uid://d3ayycutd8an0" path="res://YR%~IU)ZM567J__XN8}A4_O.png" id="71_6n8c1"]
+[ext_resource type="Texture2D" uid="uid://0ncpo2bxt14d" path="res://~1`IH9PL]3}VNF)NY2}2IXR.png" id="72_rt3c6"]
+[ext_resource type="Texture2D" uid="uid://c0bu6cekgg8vq" path="res://SeparateAnimation/敖雨/974-23.png" id="73_hshc8"]
+[ext_resource type="Texture2D" uid="uid://ck8nk0w0u7hy5" path="res://SeparateAnimation/敖雨/974-24.png" id="74_7pac0"]
+[ext_resource type="Texture2D" uid="uid://cu0q3b5v21bsd" path="res://SeparateAnimation/敖雨/974-26.png" id="75_cdme1"]
+[ext_resource type="Texture2D" uid="uid://p3bq4vp53or1" path="res://SeparateAnimation/敖雨/974-27.png" id="76_je2qm"]
+[ext_resource type="Texture2D" uid="uid://c2gr7n6usiyt7" path="res://SeparateAnimation/敖雨/972-12.png" id="77_cp2ka"]
+[ext_resource type="Texture2D" uid="uid://bf3yio7elv58h" path="res://Animations/法术-斩龙诀.png" id="78_jgu42"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_jobjm"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -390,7 +391,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("16_j4kjv")]
+"values": [ExtResource("16_86wwn")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -538,7 +539,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0.2, 1.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("17_vmjgy"), ExtResource("16_bb7y8")]
+"values": [ExtResource("17_npbrj"), ExtResource("18_pwu3d")]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -566,43 +567,43 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xvdt4"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(0, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_68rg5"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(192, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2roob"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(384, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_458i5"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(576, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_elmdb"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(768, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vnanb"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(0, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ide2o"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(192, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ip86v"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(384, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_03s7u"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(576, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rkxnf"]
-atlas = ExtResource("23_qv5gy")
+atlas = ExtResource("26_2pbyl")
 region = Rect2(768, 192, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8gcvi"]
@@ -644,19 +645,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pd3ji"]
-atlas = ExtResource("24_5hhg2")
+atlas = ExtResource("27_tkho7")
 region = Rect2(0, 0, 161, 130)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fxuqu"]
-atlas = ExtResource("24_5hhg2")
+atlas = ExtResource("27_tkho7")
 region = Rect2(161, 0, 161, 130)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2037"]
-atlas = ExtResource("24_5hhg2")
+atlas = ExtResource("27_tkho7")
 region = Rect2(322, 0, 161, 130)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6w35"]
-atlas = ExtResource("24_5hhg2")
+atlas = ExtResource("27_tkho7")
 region = Rect2(483, 0, 161, 130)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kemu3"]
@@ -680,23 +681,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d4ej"]
-atlas = ExtResource("22_3pk1e")
+atlas = ExtResource("28_e8fh5")
 region = Rect2(0, 94, 118, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p55b3"]
-atlas = ExtResource("22_3pk1e")
+atlas = ExtResource("28_e8fh5")
 region = Rect2(0, 94, 118, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqjon"]
-atlas = ExtResource("22_3pk1e")
+atlas = ExtResource("28_e8fh5")
 region = Rect2(118, 94, 118, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jmtjl"]
-atlas = ExtResource("22_3pk1e")
+atlas = ExtResource("28_e8fh5")
 region = Rect2(236, 94, 118, 94)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tc0ml"]
-atlas = ExtResource("22_3pk1e")
+atlas = ExtResource("28_e8fh5")
 region = Rect2(354, 94, 118, 94)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_06r5t"]
@@ -723,19 +724,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vvike"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(0, 72, 80, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_raa1k"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(80, 72, 80, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dsbfn"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(160, 72, 80, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v6dkl"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(240, 72, 80, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5xrlf"]
@@ -759,19 +760,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4pd7e"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(0, 0, 80, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ba062"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(80, 0, 80, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j5drg"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(160, 0, 80, 72)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gjypl"]
-atlas = ExtResource("24_438m4")
+atlas = ExtResource("30_nl54v")
 region = Rect2(240, 0, 80, 72)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_caa2u"]
@@ -795,7 +796,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ctnkw"]
-atlas = ExtResource("26_rive1")
+atlas = ExtResource("31_gpmb2")
 region = Rect2(136, 90, 68, 90)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u6og2"]
@@ -810,19 +811,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xaa1g"]
-atlas = ExtResource("27_y7d84")
+atlas = ExtResource("32_rcwg7")
 region = Rect2(0, 88, 72, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ij1i2"]
-atlas = ExtResource("27_y7d84")
+atlas = ExtResource("32_rcwg7")
 region = Rect2(72, 88, 72, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qrilu"]
-atlas = ExtResource("27_y7d84")
+atlas = ExtResource("32_rcwg7")
 region = Rect2(144, 88, 72, 88)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nmqv8"]
-atlas = ExtResource("27_y7d84")
+atlas = ExtResource("32_rcwg7")
 region = Rect2(216, 88, 72, 88)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2l65o"]
@@ -846,19 +847,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3foka"]
-atlas = ExtResource("30_mnads")
+atlas = ExtResource("35_xwy7b")
 region = Rect2(0, 111, 110, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3e0b3"]
-atlas = ExtResource("30_mnads")
+atlas = ExtResource("35_xwy7b")
 region = Rect2(110, 111, 110, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqbfr"]
-atlas = ExtResource("30_mnads")
+atlas = ExtResource("35_xwy7b")
 region = Rect2(220, 111, 110, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dotmv"]
-atlas = ExtResource("30_mnads")
+atlas = ExtResource("35_xwy7b")
 region = Rect2(330, 111, 110, 111)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_etfvh"]
@@ -882,7 +883,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8wbw2"]
-atlas = ExtResource("32_r1co2")
+atlas = ExtResource("36_lwepm")
 region = Rect2(0, 0, 72, 104)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ysj3v"]
@@ -897,7 +898,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ixj00"]
-atlas = ExtResource("33_bntn2")
+atlas = ExtResource("37_rakd2")
 region = Rect2(0, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_onc0d"]
@@ -912,19 +913,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpk8l"]
-atlas = ExtResource("34_4iwbw")
+atlas = ExtResource("38_rocif")
 region = Rect2(0, 212, 112, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mr3ca"]
-atlas = ExtResource("34_4iwbw")
+atlas = ExtResource("38_rocif")
 region = Rect2(112, 212, 112, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ag16w"]
-atlas = ExtResource("34_4iwbw")
+atlas = ExtResource("38_rocif")
 region = Rect2(224, 212, 112, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h4lp1"]
-atlas = ExtResource("34_4iwbw")
+atlas = ExtResource("38_rocif")
 region = Rect2(336, 212, 112, 106)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ckges"]
@@ -948,43 +949,43 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_biqsa"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(768, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vyb81"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(0, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4f2td"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(192, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pa5q3"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(384, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ih7we"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(576, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tdigk"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(768, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bybeh"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(0, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ej5bg"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(192, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qkst4"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(384, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ni3be"]
-atlas = ExtResource("35_ysyoi")
+atlas = ExtResource("39_6sjq6")
 region = Rect2(576, 384, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rckdf"]
@@ -1026,19 +1027,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0k5de"]
-atlas = ExtResource("35_gr4sq")
+atlas = ExtResource("40_hqojh")
 region = Rect2(0, 128, 64, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4a1r4"]
-atlas = ExtResource("35_gr4sq")
+atlas = ExtResource("40_hqojh")
 region = Rect2(64, 128, 64, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jki6c"]
-atlas = ExtResource("35_gr4sq")
+atlas = ExtResource("40_hqojh")
 region = Rect2(128, 128, 64, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mailg"]
-atlas = ExtResource("35_gr4sq")
+atlas = ExtResource("40_hqojh")
 region = Rect2(192, 128, 64, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2h2e8"]
@@ -1062,35 +1063,35 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmspj"]
-atlas = ExtResource("36_ua4u1")
+atlas = ExtResource("41_q6kou")
 region = Rect2(0, 360, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fooww"]
-atlas = ExtResource("36_ua4u1")
+atlas = ExtResource("41_q6kou")
 region = Rect2(120, 360, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uodpx"]
-atlas = ExtResource("36_ua4u1")
+atlas = ExtResource("41_q6kou")
 region = Rect2(240, 360, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a2lua"]
-atlas = ExtResource("36_ua4u1")
+atlas = ExtResource("41_q6kou")
 region = Rect2(360, 360, 120, 120)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_evtbh"]
-atlas = ExtResource("38_it7rh")
+atlas = ExtResource("42_kwofw")
 region = Rect2(0, 79, 52, 79)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_okgta"]
-atlas = ExtResource("38_it7rh")
+atlas = ExtResource("42_kwofw")
 region = Rect2(52, 79, 52, 79)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xlced"]
-atlas = ExtResource("38_it7rh")
+atlas = ExtResource("42_kwofw")
 region = Rect2(104, 79, 52, 79)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ruwi"]
-atlas = ExtResource("38_it7rh")
+atlas = ExtResource("42_kwofw")
 region = Rect2(156, 79, 52, 79)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wf13j"]
@@ -1146,7 +1147,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bs1uf"]
-atlas = ExtResource("39_v10q5")
+atlas = ExtResource("43_emb37")
 region = Rect2(0, 256, 64, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u5ckx"]
@@ -1161,19 +1162,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mst3r"]
-atlas = ExtResource("40_cls2b")
+atlas = ExtResource("44_ay1p4")
 region = Rect2(0, 164, 88, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ny8e8"]
-atlas = ExtResource("40_cls2b")
+atlas = ExtResource("44_ay1p4")
 region = Rect2(88, 164, 88, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvmgn"]
-atlas = ExtResource("40_cls2b")
+atlas = ExtResource("44_ay1p4")
 region = Rect2(176, 164, 88, 82)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gcom2"]
-atlas = ExtResource("40_cls2b")
+atlas = ExtResource("44_ay1p4")
 region = Rect2(264, 164, 88, 82)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wgaje"]
@@ -1197,19 +1198,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6afq"]
-atlas = ExtResource("41_vofjy")
+atlas = ExtResource("45_khudv")
 region = Rect2(0, 182, 92, 91)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ih5q5"]
-atlas = ExtResource("41_vofjy")
+atlas = ExtResource("45_khudv")
 region = Rect2(92, 182, 92, 91)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qe1xo"]
-atlas = ExtResource("41_vofjy")
+atlas = ExtResource("45_khudv")
 region = Rect2(184, 182, 92, 91)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0fxmj"]
-atlas = ExtResource("41_vofjy")
+atlas = ExtResource("45_khudv")
 region = Rect2(276, 182, 92, 91)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_q50vn"]
@@ -1233,19 +1234,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg0ri"]
-atlas = ExtResource("42_cmudf")
+atlas = ExtResource("46_jhm56")
 region = Rect2(0, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h6vbe"]
-atlas = ExtResource("42_cmudf")
+atlas = ExtResource("46_jhm56")
 region = Rect2(150, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2sqd7"]
-atlas = ExtResource("42_cmudf")
+atlas = ExtResource("46_jhm56")
 region = Rect2(300, 0, 150, 150)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_chba5"]
-atlas = ExtResource("42_cmudf")
+atlas = ExtResource("46_jhm56")
 region = Rect2(450, 0, 150, 150)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h7yto"]
@@ -1269,19 +1270,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i04o3"]
-atlas = ExtResource("26_rive1")
+atlas = ExtResource("31_gpmb2")
 region = Rect2(0, 180, 68, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3p5wq"]
-atlas = ExtResource("26_rive1")
+atlas = ExtResource("31_gpmb2")
 region = Rect2(68, 180, 68, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_es2ev"]
-atlas = ExtResource("26_rive1")
+atlas = ExtResource("31_gpmb2")
 region = Rect2(136, 180, 68, 90)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n74xn"]
-atlas = ExtResource("26_rive1")
+atlas = ExtResource("31_gpmb2")
 region = Rect2(204, 180, 68, 90)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_26t5b"]
@@ -1305,19 +1306,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nwb7t"]
-atlas = ExtResource("43_7xesx")
+atlas = ExtResource("47_at6jx")
 region = Rect2(0, 222, 175, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nqfok"]
-atlas = ExtResource("43_7xesx")
+atlas = ExtResource("47_at6jx")
 region = Rect2(175, 222, 175, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ovom4"]
-atlas = ExtResource("43_7xesx")
+atlas = ExtResource("47_at6jx")
 region = Rect2(350, 222, 175, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6ai3"]
-atlas = ExtResource("43_7xesx")
+atlas = ExtResource("47_at6jx")
 region = Rect2(525, 222, 175, 111)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qfvqe"]
@@ -1341,19 +1342,19 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y7yvh"]
-atlas = ExtResource("44_ewu2h")
+atlas = ExtResource("48_osdeo")
 region = Rect2(0, 0, 90, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bw0o5"]
-atlas = ExtResource("44_ewu2h")
+atlas = ExtResource("48_osdeo")
 region = Rect2(90, 0, 90, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3mbs"]
-atlas = ExtResource("44_ewu2h")
+atlas = ExtResource("48_osdeo")
 region = Rect2(180, 0, 90, 106)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jnq7u"]
-atlas = ExtResource("44_ewu2h")
+atlas = ExtResource("48_osdeo")
 region = Rect2(270, 0, 90, 106)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gxap4"]
@@ -1377,55 +1378,55 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_igwyl"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(192, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6u21x"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(384, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vxsua"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(576, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5wpo6"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(768, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwdfp"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(0, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vkyu2"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(192, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qacl5"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(384, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfs13"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(576, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tuuh1"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(768, 384, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ok186"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(0, 576, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qx2ov"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(192, 576, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dxdx4"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(384, 576, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iy0l2"]
-atlas = ExtResource("45_547cq")
+atlas = ExtResource("49_nvk8y")
 region = Rect2(576, 576, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wtdb6"]
@@ -1476,39 +1477,39 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qcu4m"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(0, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oqk4o"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(192, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ngbov"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(384, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eils6"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(576, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jh2vw"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(768, 0, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s8r1"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(0, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc1db"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(192, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s5eok"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(384, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thh3j"]
-atlas = ExtResource("46_3a6jw")
+atlas = ExtResource("50_pi83d")
 region = Rect2(576, 192, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yyhsf"]
@@ -1549,59 +1550,59 @@ animations = [{
 [sub_resource type="SpriteFrames" id="SpriteFrames_un7j3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yhv41"]
-atlas = ExtResource("50_a52ni")
+atlas = ExtResource("52_7kjeq")
 region = Rect2(0, 0, 90, 143)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dex7x"]
-atlas = ExtResource("51_ey1nf")
+atlas = ExtResource("53_mmnov")
 region = Rect2(0, 0, 103, 159)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0vovi"]
-atlas = ExtResource("52_lj5jg")
+atlas = ExtResource("54_aexgi")
 region = Rect2(0, 0, 117, 155)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwigt"]
-atlas = ExtResource("53_6noni")
+atlas = ExtResource("55_ak5n1")
 region = Rect2(0, 0, 119, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dul7n"]
-atlas = ExtResource("54_rv0ix")
+atlas = ExtResource("56_66le8")
 region = Rect2(0, 0, 127, 115)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wsose"]
-atlas = ExtResource("55_lldi8")
+atlas = ExtResource("57_7h8vs")
 region = Rect2(0, 0, 143, 249)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cuqy3"]
-atlas = ExtResource("56_i8h56")
+atlas = ExtResource("58_d1yse")
 region = Rect2(0, 0, 140, 252)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gknkw"]
-atlas = ExtResource("59_u8105")
+atlas = ExtResource("59_a7jun")
 region = Rect2(0, 0, 79, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rhjfe"]
-atlas = ExtResource("60_iy36g")
+atlas = ExtResource("60_t11xu")
 region = Rect2(0, 0, 91, 85)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7d786"]
-atlas = ExtResource("61_fw8yj")
+atlas = ExtResource("61_yqi4w")
 region = Rect2(0, 0, 75, 87)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f5viq"]
-atlas = ExtResource("62_m2iky")
+atlas = ExtResource("62_jaug1")
 region = Rect2(0, 0, 173, 141)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwkcu"]
-atlas = ExtResource("63_grf3b")
+atlas = ExtResource("63_io4ww")
 region = Rect2(0, 0, 173, 141)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxpk7"]
-atlas = ExtResource("49_41650")
+atlas = ExtResource("64_pphrw")
 region = Rect2(0, 0, 107, 109)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qvbfj"]
-atlas = ExtResource("58_th8w4")
+atlas = ExtResource("65_vkxub")
 region = Rect2(0, 0, 98, 98)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wtfy8"]
@@ -1673,19 +1674,19 @@ animations = [{
 size = Vector2(73.128, 378.305)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cit0u"]
-atlas = ExtResource("51_ih330")
+atlas = ExtResource("66_c11jb")
 region = Rect2(0, 0, 86, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwxha"]
-atlas = ExtResource("51_ih330")
+atlas = ExtResource("66_c11jb")
 region = Rect2(86, 0, 86, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kr44b"]
-atlas = ExtResource("51_ih330")
+atlas = ExtResource("66_c11jb")
 region = Rect2(172, 0, 86, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eko03"]
-atlas = ExtResource("51_ih330")
+atlas = ExtResource("66_c11jb")
 region = Rect2(258, 0, 86, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_odvqx"]
@@ -1709,23 +1710,23 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_718d4"]
-atlas = ExtResource("67_hkatx")
+atlas = ExtResource("73_hshc8")
 region = Rect2(0, 0, 85, 92)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gvche"]
-atlas = ExtResource("68_wd83q")
+atlas = ExtResource("74_7pac0")
 region = Rect2(0, 0, 98, 85)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3nyex"]
-atlas = ExtResource("69_f5g42")
+atlas = ExtResource("75_cdme1")
 region = Rect2(0, 0, 96, 84)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hq3tm"]
-atlas = ExtResource("70_n6faj")
+atlas = ExtResource("76_je2qm")
 region = Rect2(0, 0, 95, 70)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jl46h"]
-atlas = ExtResource("65_wyij0")
+atlas = ExtResource("77_cp2ka")
 region = Rect2(0, 0, 78, 106)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0cwyh"]
@@ -1757,7 +1758,7 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r05pe"]
-atlas = ExtResource("67_1pfe7")
+atlas = ExtResource("78_jgu42")
 region = Rect2(0, 0, 132, 368)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_74s2i"]
@@ -1772,13 +1773,14 @@ animations = [{
 }]
 
 [node name="花果山" type="Node2D"]
-script = ExtResource("1_1ostj")
+script = ExtResource("1_nd7g3")
 
 [node name="东海湾全景" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1201, 1197.1)
-texture = ExtResource("2_qse17")
+texture = ExtResource("2_0kcns")
 
-[node name="player" parent="." instance=ExtResource("3_rq133")]
+[node name="player" parent="." instance=ExtResource("3_s663m")]
 z_index = 2
 position = Vector2(-290, 2216)
 scale = Vector2(0.904, 0.94)
@@ -1791,13 +1793,14 @@ autoplay = "left"
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(-4.427, -9.57416)
+enabled = false
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 5
 visibility_layer = 5
-script = ExtResource("4_yr2tr")
+script = ExtResource("4_00454")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
@@ -1808,8 +1811,9 @@ polygon = PackedVector2Array(428, 961, 503, 880, 425, 890, 114, 924, 30, 961, 48
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("5_6n01v")
+stream = ExtResource("2_6ekbe")
 volume_db = 8.072
+autoplay = true
 max_distance = 1e+07
 metadata/_edit_group_ = true
 
@@ -1825,11 +1829,11 @@ one_shot = true
 wait_time = 0.5
 
 [node name="subSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_hpdul")
+stream = ExtResource("6_h2nvv")
 volume_db = 7.0
 max_distance = 10000.0
 
-[node name="BattleReward" parent="." instance=ExtResource("8_t8jjl")]
+[node name="BattleReward" parent="." instance=ExtResource("7_0yvgk")]
 
 [node name="battleRewardGone" type="Timer" parent="."]
 wait_time = 2.0
@@ -1845,21 +1849,22 @@ constrain_avoidance = true
 visible = false
 position = Vector2(332.128, 1271.12)
 scale = Vector2(0.0631201, 0.0198038)
-texture = ExtResource("9_b1ov8")
+texture = ExtResource("8_14ssc")
 
 [node name="circleTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_34sif")
+stream = ExtResource("9_mdwud")
 volume_db = 6.0
 max_distance = 100000.0
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(1200, 1197.1)
-texture = ExtResource("10_ffagh")
+texture = ExtResource("10_7htr1")
 
 [node name="position" type="Control" parent="."]
 layout_mode = 3
@@ -1889,29 +1894,29 @@ visible = false
 [node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
 offset_right = 1152.0
 offset_bottom = 804.0
-texture = ExtResource("12_gxd6i")
+texture = ExtResource("11_tfl6s")
 
-[node name="teleportCircle" parent="." instance=ExtResource("5_unsor")]
+[node name="teleportCircle" parent="." instance=ExtResource("12_0q06d")]
 position = Vector2(-969, -162)
 toScene = "女儿村"
 
-[node name="teleportCircle3" parent="." instance=ExtResource("5_unsor")]
+[node name="teleportCircle3" parent="." instance=ExtResource("12_0q06d")]
 position = Vector2(907, 2658)
 toScene = "傲来杂货铺"
 
-[node name="teleportCircle10" parent="." instance=ExtResource("5_unsor")]
+[node name="teleportCircle10" parent="." instance=ExtResource("12_0q06d")]
 position = Vector2(-331, 2325)
 toScene = "傲来国"
 
-[node name="teleportCircle6" parent="." instance=ExtResource("5_unsor")]
+[node name="teleportCircle6" parent="." instance=ExtResource("12_0q06d")]
 position = Vector2(960, 914)
 toScene = "水帘洞"
 
-[node name="teleportCircle7" parent="." instance=ExtResource("5_unsor")]
+[node name="teleportCircle7" parent="." instance=ExtResource("12_0q06d")]
 position = Vector2(3601, 1935)
 toScene = "海底迷宫1"
 
-[node name="AnimatedSprite2D2" parent="." instance=ExtResource("13_wu52b")]
+[node name="AnimatedSprite2D2" parent="." instance=ExtResource("13_vbt0b")]
 position = Vector2(253, -341)
 scale = Vector2(0.559814, 0.696808)
 id = "东海湾1"
@@ -1921,7 +1926,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_oehbc")
+stream = ExtResource("14_gawai")
 volume_db = 2.432
 max_distance = 1e+06
 
@@ -1931,7 +1936,7 @@ energy = 0.0
 blend_mode = 1
 
 [node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_5f2se")
+stream = ExtResource("15_ppf2l")
 max_distance = 1e+09
 
 [node name="MarkerRight" type="Marker2D" parent="."]
@@ -1942,12 +1947,12 @@ libraries = {
 "": SubResource("AnimationLibrary_sxfnt")
 }
 
-[node name="敖阳" parent="." instance=ExtResource("16_ujgvr")]
+[node name="敖阳" parent="." instance=ExtResource("19_72cb0")]
 modulate = Color(1, 1, 1, 1)
 position = Vector2(415, 595)
 animation = &"右上walk"
 
-[node name="Node2D" parent="." instance=ExtResource("17_nwscv")]
+[node name="Node2D" parent="." instance=ExtResource("20_wouvd")]
 position = Vector2(2323, 205)
 id = "江南野外1"
 items = {
@@ -1958,15 +1963,29 @@ items = {
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-392, 13)
 
-[node name="menuControl" parent="." instance=ExtResource("18_vhhhx")]
+[node name="menuControl" parent="." instance=ExtResource("21_4eob1")]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("19_bavut")]
+[node name="CanvasLayer" parent="." instance=ExtResource("22_xndre")]
+visible = false
+script = null
 
-[node name="potentialBall" parent="." instance=ExtResource("13_wu52b")]
+[node name="msgBox" parent="CanvasLayer" index="0"]
+visible = false
+
+[node name="VBoxContainer" parent="CanvasLayer" index="1"]
+visible = false
+
+[node name="Label" parent="CanvasLayer/gameTitle" index="0"]
+visible = false
+
+[node name="mapSmallButton" parent="CanvasLayer/map" index="1"]
+visible = false
+
+[node name="potentialBall" parent="." instance=ExtResource("13_vbt0b")]
 position = Vector2(2677, 1681)
 id = "花果山1"
 
-[node name="Node2D2" parent="." instance=ExtResource("17_nwscv")]
+[node name="Node2D2" parent="." instance=ExtResource("20_wouvd")]
 position = Vector2(-223, 2632)
 id = "傲来国1"
 items = {
@@ -1974,98 +1993,98 @@ items = {
 "西瓜": 10
 }
 
-[node name="teleportCircle8" parent="." instance=ExtResource("5_unsor")]
+[node name="teleportCircle8" parent="." instance=ExtResource("12_0q06d")]
 position = Vector2(3416, 916)
 toScene = "傲来杂货铺"
 
-[node name="petFoodBall" parent="." instance=ExtResource("20_krxdd")]
+[node name="petFoodBall" parent="." instance=ExtResource("23_5mh6o")]
 position = Vector2(1646, 1189)
 id = "花果山1"
 
-[node name="petFoodBall2" parent="." instance=ExtResource("20_krxdd")]
+[node name="petFoodBall2" parent="." instance=ExtResource("23_5mh6o")]
 position = Vector2(2660, 284)
 id = "花果山2 "
 
-[node name="Node2D3" parent="." instance=ExtResource("17_nwscv")]
+[node name="Node2D3" parent="." instance=ExtResource("20_wouvd")]
 position = Vector2(-75, 292)
 id = "花果山1"
 goldAmount = 8000
 gold = true
 
-[node name="potentialBall2" parent="." instance=ExtResource("13_wu52b")]
+[node name="potentialBall2" parent="." instance=ExtResource("13_vbt0b")]
 position = Vector2(587, 290)
 id = "花果山2"
 
 [node name="群妖" type="Node2D" parent="."]
 
-[node name="CharacterBody2D" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(204, 399)
 collision_layer = 1
 collision_mask = 1
 monster_name = "老虎精"
 
-[node name="CharacterBody2D7" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D7" parent="群妖" instance=ExtResource("24_nroxi")]
 visible = false
 position = Vector2(165, 318)
 monster_name = "老虎精"
 
-[node name="CharacterBody2D6" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D6" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(397, 367)
 monster_name = "蝙蝠"
 
-[node name="CharacterBody2D2" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D2" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(180, 1609)
 monster_name = "老虎精"
 
-[node name="CharacterBody2D8" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D8" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(270, 1491)
 monster_name = "老虎精"
 
-[node name="CharacterBody2D10" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D10" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(376, 1611)
 monster_name = "虾米"
 
-[node name="CharacterBody2D11" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D11" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(671, 980)
 monster_name = "蟹将"
 
-[node name="CharacterBody2D14" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D14" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(486, 1107)
 monster_name = "蟹将"
 
-[node name="CharacterBody2D12" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D12" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(-11, 998)
 monster_name = "蟹将"
 
-[node name="CharacterBody2D13" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D13" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(-150, 369)
 monster_name = "虾米"
 
-[node name="CharacterBody2D5" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D5" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(-121, 1555)
 monster_name = "蝙蝠"
 
-[node name="CharacterBody2D3" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D3" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(2, 344)
 monster_name = "老虎精"
 
-[node name="CharacterBody2D4" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D4" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(153, 2039)
 monster_name = "蝙蝠"
 
-[node name="CharacterBody2D9" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D9" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(-132, 2009)
 monster_name = "老虎精"
 
-[node name="CharacterBody2D15" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D15" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(78, 2076)
 monster_name = "老虎精"
 
-[node name="CharacterBody2D16" parent="群妖" instance=ExtResource("20_0rjkl")]
+[node name="CharacterBody2D16" parent="群妖" instance=ExtResource("24_nroxi")]
 position = Vector2(57, 1993)
 monster_name = "老虎精"
 
-[node name="npc" parent="群妖" instance=ExtResource("21_3oul4")]
+[node name="npc" parent="群妖" instance=ExtResource("25_c201k")]
 position = Vector2(1701, 1852)
 scale = Vector2(1.76042, 1.76042)
 sprite_frames = SubResource("SpriteFrames_8gcvi")
@@ -2073,7 +2092,7 @@ autoplay = "default"
 frame_progress = 0.769316
 script = null
 
-[node name="npc2" parent="群妖" instance=ExtResource("21_3oul4")]
+[node name="npc2" parent="群妖" instance=ExtResource("25_c201k")]
 position = Vector2(1843, 967)
 scale = Vector2(1.45962, 1.45962)
 sprite_frames = SubResource("SpriteFrames_kemu3")
@@ -2081,34 +2100,34 @@ autoplay = "default"
 frame_progress = 0.940654
 script = null
 
-[node name="petFoodBall3" parent="." instance=ExtResource("20_krxdd")]
+[node name="petFoodBall3" parent="." instance=ExtResource("23_5mh6o")]
 position = Vector2(-3.19305, 261.429)
 
-[node name="大鹏" parent="." instance=ExtResource("21_3oul4")]
+[node name="大鹏" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(-158, 2139)
 sprite_frames = SubResource("SpriteFrames_06r5t")
 autoplay = "default"
 frame_progress = 0.441462
 npcName = "大鹏"
 
-[node name="大鹏2" parent="." instance=ExtResource("21_3oul4")]
+[node name="大鹏2" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(-222, 2103)
 sprite_frames = SubResource("SpriteFrames_06r5t")
 autoplay = "default"
 frame_progress = 0.664254
 npcName = "大鹏"
 
-[node name="初到花果山" parent="." instance=ExtResource("25_ylfyb")]
+[node name="初到花果山" parent="." instance=ExtResource("29_fm2n1")]
 visible = false
 position = Vector2(-350, 2245)
 triggerEvent = "初到花果山"
 
-[node name="黑蝠3" parent="." instance=ExtResource("21_3oul4")]
+[node name="黑蝠3" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(463, 538)
 scale = Vector2(1.95694, 1.95694)
 sprite_frames = SubResource("SpriteFrames_5xrlf")
 
-[node name="黑蝠" parent="." instance=ExtResource("21_3oul4")]
+[node name="黑蝠" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(28, 1420)
 scale = Vector2(1.77778, 1.77778)
 sprite_frames = SubResource("SpriteFrames_caa2u")
@@ -2124,7 +2143,7 @@ frame_progress = 0.0
 [node name="飞剑诀" parent="黑蝠/effects" index="1"]
 frame = 4
 
-[node name="黑蝠2" parent="." instance=ExtResource("21_3oul4")]
+[node name="黑蝠2" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(12.6666, 1357.5)
 scale = Vector2(1.76389, 1.76389)
 sprite_frames = SubResource("SpriteFrames_caa2u")
@@ -2139,12 +2158,12 @@ frame_progress = 0.0
 [node name="飞剑诀" parent="黑蝠2/effects" index="1"]
 frame = 4
 
-[node name="兔子精" parent="." instance=ExtResource("21_3oul4")]
+[node name="兔子精" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(486, 808)
 scale = Vector2(1.27847, 1.27847)
 sprite_frames = SubResource("SpriteFrames_u6og2")
 
-[node name="兵分两路" parent="." instance=ExtResource("25_ylfyb")]
+[node name="兵分两路" parent="." instance=ExtResource("29_fm2n1")]
 visible = false
 position = Vector2(125, 831)
 triggerEvent = "兵分两路"
@@ -2152,7 +2171,7 @@ triggerEvent = "兵分两路"
 [node name="CollisionShape2D" parent="兵分两路/Area2D" index="0"]
 position = Vector2(96, 0)
 
-[node name="蛤蟆精" parent="." instance=ExtResource("21_3oul4")]
+[node name="蛤蟆精" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(864, 927)
 scale = Vector2(1.58333, 1.58333)
 sprite_frames = SubResource("SpriteFrames_2l65o")
@@ -2161,465 +2180,465 @@ npcName = "蛤蟆精"
 [node name="Node" type="Node2D" parent="."]
 
 [node name="AudioStreamPlayer2D9" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D10" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D11" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D12" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D13" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D14" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D15" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D16" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="AudioStreamPlayer2D17" type="AudioStreamPlayer2D" parent="Node"]
-stream = ExtResource("28_pxb0c")
+stream = ExtResource("33_1r3db")
 volume_db = 4.0
 max_distance = 99999.0
 
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_j4kjv")
+stream = ExtResource("16_86wwn")
 volume_db = 4.552
 
 [node name="npcs" type="Node2D" parent="."]
 position = Vector2(663.281, 1046.56)
-script = ExtResource("30_tkfb2")
+script = ExtResource("34_nn288")
 
-[node name="npc" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-43.2807, 58.4402)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc2" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc2" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-94.2807, 16.4402)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc6" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc6" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-256.281, -257.56)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc7" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc7" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-248.281, -204.56)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc3" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc3" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-170.281, -698.56)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc39" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc39" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-486.281, -819.56)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc8" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc8" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-215.281, -817.56)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc9" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc9" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-144.281, -753.56)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc4" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc4" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-405.281, -808.56)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="npc5" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc5" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-652.281, -828.56)
 sprite_frames = SubResource("SpriteFrames_etfvh")
 
-[node name="上官冕" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="上官冕" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-221.281, -12.5601)
 sprite_frames = SubResource("SpriteFrames_ysj3v")
 npcName = "上官冕"
 
-[node name="逆无邪" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="逆无邪" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-78.281, 103.44)
 rotation = 3.14159
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_onc0d")
 npcName = "逆无邪"
 
-[node name="黑蝠3" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="黑蝠3" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-172.281, 40.4399)
 scale = Vector2(-1.957, 1.957)
 sprite_frames = SubResource("SpriteFrames_5xrlf")
 
-[node name="黑蝠4" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="黑蝠4" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-678.281, 25.4399)
 scale = Vector2(-1.957, 1.957)
 sprite_frames = SubResource("SpriteFrames_5xrlf")
 autoplay = "default"
 
-[node name="黑蝠6" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="黑蝠6" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-350.281, -347.56)
 scale = Vector2(1.957, 1.957)
 sprite_frames = SubResource("SpriteFrames_5xrlf")
 autoplay = "default"
 
-[node name="黑蝠5" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="黑蝠5" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-582.281, 132.44)
 scale = Vector2(1.957, 1.957)
 sprite_frames = SubResource("SpriteFrames_5xrlf")
 autoplay = "default"
 frame_progress = 0.523638
 
-[node name="大鹏2" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="大鹏2" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-196.281, -250.56)
 sprite_frames = SubResource("SpriteFrames_06r5t")
 autoplay = "default"
 frame_progress = 0.664254
 npcName = "大鹏"
 
-[node name="大鹏3" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="大鹏3" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-223.281, 414.44)
 sprite_frames = SubResource("SpriteFrames_06r5t")
 autoplay = "default"
 frame_progress = 0.664254
 npcName = "大鹏"
 
-[node name="npc10" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc10" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-353.942, 490.267)
 sprite_frames = SubResource("SpriteFrames_ckges")
 autoplay = "default"
 frame_progress = 0.640864
 
-[node name="npc43" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc43" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-346.281, 658.44)
 sprite_frames = SubResource("SpriteFrames_rckdf")
 autoplay = "default"
 frame_progress = 0.287411
 
-[node name="npc44" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc44" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-217.281, 549.44)
 sprite_frames = SubResource("SpriteFrames_rckdf")
 autoplay = "default"
 frame_progress = 0.960142
 
-[node name="npc47" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc47" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-524.281, 590.44)
 sprite_frames = SubResource("SpriteFrames_rckdf")
 autoplay = "default"
 frame_progress = 0.960142
 
-[node name="npc45" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc45" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-477.281, 434.44)
 sprite_frames = SubResource("SpriteFrames_rckdf")
 autoplay = "default"
 frame_progress = 0.960142
 
-[node name="npc11" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc11" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-267.281, 489.44)
 sprite_frames = SubResource("SpriteFrames_ckges")
 autoplay = "default"
 frame_progress = 0.767294
 
-[node name="npc12" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc12" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-484.281, 381.44)
 sprite_frames = SubResource("SpriteFrames_2h2e8")
 autoplay = "default"
 frame_progress = 0.140093
 
-[node name="npc13" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc13" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-557.281, 470.44)
 sprite_frames = SubResource("SpriteFrames_2h2e8")
 autoplay = "default"
 frame_progress = 0.980728
 
-[node name="npc14" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc14" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-561.281, 538.44)
 sprite_frames = SubResource("SpriteFrames_2h2e8")
 autoplay = "default"
 frame_progress = 0.980728
 
-[node name="npc15" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc15" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-914.281, 1169.44)
 sprite_frames = SubResource("SpriteFrames_wf13j")
 
-[node name="npc16" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc16" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-820.281, 1178.44)
 sprite_frames = SubResource("SpriteFrames_wf13j")
 
-[node name="npc17" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc17" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-895.281, 1087.44)
 sprite_frames = SubResource("SpriteFrames_umrmi")
 autoplay = "default"
 frame_progress = 0.36166
 
-[node name="npc18" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc18" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-787.281, 1109.44)
 sprite_frames = SubResource("SpriteFrames_umrmi")
 autoplay = "default"
 frame_progress = 0.187755
 
-[node name="npc19" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc19" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-800.281, 1028.44)
 sprite_frames = SubResource("SpriteFrames_umrmi")
 autoplay = "default"
 frame_progress = 0.830546
 
-[node name="npc20" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc20" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-716.281, 1057.44)
 sprite_frames = SubResource("SpriteFrames_umrmi")
 autoplay = "default"
 frame_progress = 0.987708
 
-[node name="npc21" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc21" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-967.281, 1088.44)
 sprite_frames = SubResource("SpriteFrames_u5ckx")
 autoplay = "default"
 
-[node name="npc22" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc22" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-1046.28, 1342.44)
 sprite_frames = SubResource("SpriteFrames_wgaje")
 autoplay = "default"
 frame_progress = 0.51611
 
-[node name="npc23" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc23" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-988.281, 1282.44)
 sprite_frames = SubResource("SpriteFrames_q50vn")
 autoplay = "default"
 frame_progress = 0.813589
 
-[node name="npc24" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc24" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-1007.28, 1194.44)
 sprite_frames = SubResource("SpriteFrames_wgaje")
 autoplay = "default"
 frame_progress = 0.740455
 
-[node name="npc25" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc25" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-413.281, 636.44)
 sprite_frames = SubResource("SpriteFrames_h7yto")
 autoplay = "default"
 
-[node name="npc26" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc26" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-711.281, 448.44)
 sprite_frames = SubResource("SpriteFrames_h7yto")
 autoplay = "default"
 
-[node name="npc27" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc27" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-627.281, 581.44)
 sprite_frames = SubResource("SpriteFrames_26t5b")
 autoplay = "default"
 frame_progress = 0.0555038
 
-[node name="npc28" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc28" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-635.281, 489.44)
 sprite_frames = SubResource("SpriteFrames_26t5b")
 autoplay = "default"
 frame_progress = 0.410186
 
-[node name="npc29" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc29" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-448.281, 536.44)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc46" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc46" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-411.281, 581.44)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc30" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc30" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-318.281, -736.56)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc31" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc31" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-591.281, -760.56)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc59" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc59" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-553.281, -694.56)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc60" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc60" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-493.281, -253.56)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc61" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc61" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-642.281, -132.56)
 sprite_frames = SubResource("SpriteFrames_qfvqe")
 autoplay = "default"
 
-[node name="npc32" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc32" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-719.281, 94.4399)
 sprite_frames = SubResource("SpriteFrames_gxap4")
 autoplay = "default"
 
-[node name="npc33" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc33" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-643.281, 92.4399)
 sprite_frames = SubResource("SpriteFrames_gxap4")
 autoplay = "default"
 
-[node name="npc34" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc34" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-729.281, 146.44)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.395465
 
-[node name="npc35" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc35" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-640.281, 145.44)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc57" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc57" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-353.281, -309.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc58" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc58" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-417.281, -370.56)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.508062
 
-[node name="npc36" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc36" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-444.281, -612.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc37" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc37" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-606.281, -610.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc53" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc53" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-479.281, -694.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.168766
 
-[node name="npc54" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc54" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-421.281, -711.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc55" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc55" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-227.281, -1471.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc56" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc56" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-422.281, -1520.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc38" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc38" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-527.281, -628.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc40" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc40" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-378.281, -635.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc41" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc41" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-621.281, 665.44)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc42" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc42" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-687.281, 642.44)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc48" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc48" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-282.281, -643.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc49" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc49" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-214.281, -662.56)
 sprite_frames = SubResource("SpriteFrames_wtdb6")
 autoplay = "default"
 frame_progress = 0.214216
 
-[node name="npc50" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc50" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-674.281, 695.44)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_yyhsf")
 autoplay = "default"
 frame_progress = 0.143817
 
-[node name="npc51" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc51" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-741.281, 679.44)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_yyhsf")
 autoplay = "default"
 
-[node name="npc52" parent="npcs" instance=ExtResource("21_3oul4")]
+[node name="npc52" parent="npcs" instance=ExtResource("25_c201k")]
 position = Vector2(-594.281, 911.44)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_un7j3")
 autoplay = "default"
 
-[node name="花果山拦敌1" parent="." instance=ExtResource("25_ylfyb")]
+[node name="花果山拦敌1" parent="." instance=ExtResource("29_fm2n1")]
 visible = false
 position = Vector2(1381, 2080)
 triggerEvent = "花果山拦敌1"
 
-[node name="花果山拦敌2" parent="." instance=ExtResource("25_ylfyb")]
+[node name="花果山拦敌2" parent="." instance=ExtResource("29_fm2n1")]
 visible = false
 position = Vector2(2067, 1507)
 rotation = 1.07087
 triggerEvent = "花果山拦敌2"
 
-[node name="花果山拦敌3" parent="." instance=ExtResource("25_ylfyb")]
+[node name="花果山拦敌3" parent="." instance=ExtResource("29_fm2n1")]
 visible = false
 position = Vector2(1663, 1027)
 rotation = 1.07087
 triggerEvent = "花果山拦敌3"
 
-[node name="凌若昭" parent="." instance=ExtResource("48_2gcen")]
+[node name="凌若昭" parent="." instance=ExtResource("51_whnf6")]
 position = Vector2(1590, 2067)
 animation = &"右下"
 frame_progress = 0.0
 
-[node name="奔霸" parent="." instance=ExtResource("21_3oul4")]
+[node name="奔霸" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(1423, 283)
 sprite_frames = SubResource("SpriteFrames_wtfy8")
 animation = &"dead"
@@ -2627,7 +2646,7 @@ autoplay = "default"
 frame = 4
 frame_progress = 1.0
 
-[node name="再见奔霸" parent="." instance=ExtResource("25_ylfyb")]
+[node name="再见奔霸" parent="." instance=ExtResource("29_fm2n1")]
 visible = false
 position = Vector2(1477, 263)
 rotation = 0.99463
@@ -2637,13 +2656,13 @@ triggerEvent = "再见奔霸"
 position = Vector2(54.0001, 54.3206)
 shape = SubResource("RectangleShape2D_isuio")
 
-[node name="npc2" parent="." instance=ExtResource("21_3oul4")]
+[node name="npc2" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(1894, 1449)
 scale = Vector2(2.04575, 2.04575)
 sprite_frames = SubResource("SpriteFrames_odvqx")
 script = null
 
-[node name="小二" parent="." instance=ExtResource("52_mudep")]
+[node name="小二" parent="." instance=ExtResource("67_41dxl")]
 position = Vector2(1983, 1514)
 
 [node name="小二" parent="小二" index="0"]
@@ -2656,7 +2675,7 @@ frame_progress = 0.0
 [node name="飞剑诀" parent="小二/小二/effects" index="1"]
 frame = 4
 
-[node name="敖阳2" parent="." instance=ExtResource("16_ujgvr")]
+[node name="敖阳2" parent="." instance=ExtResource("19_72cb0")]
 modulate = Color(1, 1, 1, 1)
 position = Vector2(1893, 1045)
 scale = Vector2(-1, 1)
@@ -2670,7 +2689,7 @@ visible = false
 offset_right = 2956.0
 offset_bottom = 1429.0
 scale = Vector2(0.390112, 0.561605)
-texture = ExtResource("53_3lqer")
+texture = ExtResource("68_b4y4g")
 
 [node name="TextureRect2" type="TextureRect" parent="memory"]
 visible = false
@@ -2678,7 +2697,7 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 2956.0
 offset_bottom = 1429.0
 scale = Vector2(0.390112, 0.561605)
-texture = ExtResource("54_yvbtl")
+texture = ExtResource("69_2le76")
 
 [node name="TextureRect3" type="TextureRect" parent="memory"]
 visible = false
@@ -2686,7 +2705,7 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 2956.0
 offset_bottom = 1429.0
 scale = Vector2(0.390325, 0.564252)
-texture = ExtResource("55_24dlh")
+texture = ExtResource("70_ohyvj")
 
 [node name="TextureRect4" type="TextureRect" parent="memory"]
 visible = false
@@ -2694,7 +2713,7 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 2956.0
 offset_bottom = 1429.0
 scale = Vector2(0.390788, 0.393446)
-texture = ExtResource("56_efy36")
+texture = ExtResource("71_6n8c1")
 
 [node name="TextureRect5" type="TextureRect" parent="memory"]
 visible = false
@@ -2702,9 +2721,9 @@ self_modulate = Color(1, 1, 1, 0)
 offset_right = 2956.0
 offset_bottom = 1429.0
 scale = Vector2(0.390788, 0.393446)
-texture = ExtResource("57_cl637")
+texture = ExtResource("72_rt3c6")
 
-[node name="敖雨" parent="." instance=ExtResource("21_3oul4")]
+[node name="敖雨" parent="." instance=ExtResource("25_c201k")]
 position = Vector2(1636.5, 352)
 scale = Vector2(1.01282, 1)
 sprite_frames = SubResource("SpriteFrames_0cwyh")
@@ -2745,6 +2764,11 @@ sprite_frames = SubResource("SpriteFrames_74s2i")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
+[node name="幕末-凌天麒背影拷贝" type="Sprite2D" parent="."]
+position = Vector2(575, 357)
+scale = Vector2(1.80312, 1.4625)
+texture = ExtResource("1_40t53")
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -2758,6 +2782,8 @@ sprite_frames = SubResource("SpriteFrames_74s2i")
 
 [editable path="player"]
 [editable path="teleportCircle"]
+[editable path="CanvasLayer"]
+[editable path="CanvasLayer/importantMsg"]
 [editable path="群妖/npc"]
 [editable path="黑蝠"]
 [editable path="黑蝠2"]

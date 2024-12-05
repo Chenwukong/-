@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b7vjw68ghbycb"]
+[gd_scene load_steps=39 format=3 uid="uid://b7vjw68ghbycb"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_nx02p"]
 [ext_resource type="Texture2D" uid="uid://bonvu8f4qnujm" path="res://Panoramas/门派_地府_轮回司.jpg" id="2_cb1xw"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_8meor"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_lgtwm"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_bn1nh"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="22_tn2aq"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="23_jsels"]
+[ext_resource type="Texture2D" uid="uid://s82diejt7r51" path="res://Characters/地藏菩萨.png" id="24_7gepq"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ib848"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -47,6 +50,34 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yb4rq"]
+resource_name = "turnDark"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_y5c4b"]
@@ -106,6 +137,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
 _data = {
 "RESET": SubResource("Animation_gs70c"),
+"turnDark": SubResource("Animation_yb4rq"),
 "守卫move": SubResource("Animation_y5c4b"),
 "时追云move": SubResource("Animation_2adbs")
 }
@@ -117,6 +149,42 @@ shader_parameter/snow_density = 1.0
 shader_parameter/wind_speed = 0.2
 shader_parameter/snow_color = Color(1, 1, 1, 1)
 shader_parameter/direction = -1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy77i"]
+atlas = ExtResource("24_7gepq")
+region = Rect2(0, 351, 74, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_smrtm"]
+atlas = ExtResource("24_7gepq")
+region = Rect2(74, 351, 74, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcefu"]
+atlas = ExtResource("24_7gepq")
+region = Rect2(148, 351, 74, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irxvw"]
+atlas = ExtResource("24_7gepq")
+region = Rect2(222, 351, 74, 117)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oh06i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy77i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_smrtm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcefu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irxvw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="轮回司" type="Node2D"]
 script = ExtResource("1_nx02p")
@@ -278,6 +346,7 @@ volume_db = 2.432
 max_distance = 1e+06
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 color = Color(0.168627, 0.168627, 0.168627, 1)
 energy = 0.0
 blend_mode = 1
@@ -324,8 +393,8 @@ position = Vector2(293, 471)
 [node name="CanvasLayer" parent="." instance=ExtResource("18_n085c")]
 
 [node name="potentialBall" parent="." instance=ExtResource("12_jp8tk")]
-position = Vector2(2077, 524)
-id = "神龙1"
+position = Vector2(1420, 1018)
+id = "轮回司1"
 
 [node name="Node2D2" parent="." instance=ExtResource("16_acyp0")]
 position = Vector2(-223, 2632)
@@ -379,6 +448,23 @@ offset_top = -672.0
 offset_right = 3501.0
 offset_bottom = 2910.0
 
+[node name="找罐子" parent="." instance=ExtResource("22_tn2aq")]
+visible = false
+position = Vector2(1313, 999)
+triggerEvent = "找罐子"
+
+[node name="Area2D" parent="找罐子" index="0"]
+position = Vector2(-2.99988, -25.9999)
+
+[node name="CollisionShape2D" parent="找罐子/Area2D" index="0"]
+position = Vector2(65, 33.5)
+
+[node name="地藏菩萨" parent="." instance=ExtResource("23_jsels")]
+visible = false
+position = Vector2(1536, 1170)
+scale = Vector2(2.51804, 2.51804)
+sprite_frames = SubResource("SpriteFrames_oh06i")
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -394,3 +480,4 @@ offset_bottom = 2910.0
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="找罐子"]

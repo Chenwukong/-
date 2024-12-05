@@ -872,6 +872,7 @@ func instantiateMonster():
 		enemySceneInstance.speed = monsterData.speed
 		enemySceneInstance.magicDefense = monsterData.magicDefense
 		enemySceneInstance.type = monsterData.type
+		print(monsterData.type,333)
 		enemySceneInstance.physicDefense = monsterData.physicDefense
 		enemySceneInstance.attackDmg = monsterData.attackDmg
 		enemySceneInstance.magicDmg = monsterData.magicDmg 
@@ -942,6 +943,7 @@ func instantiateBoss():
 		enemySceneInstance.physicDefense = monsterData.physicDefense
 		enemySceneInstance.attackDmg = monsterData.attackDmg
 		enemySceneInstance.magicDmg = monsterData.magicDmg
+		enemySceneInstance.type = monsterData.type
 		enemySceneInstance.hp = monsterData.hp
 		enemySceneInstance.idle = monsterData.idle
 		enemySceneInstance.monsterName = monsterData.name
@@ -974,6 +976,9 @@ func instantiateBoss():
 			else:
 				posX = $bossPos.position.x
 				posY = $bossPos.position.y
+			
+			
+			
 			
 		# Set the position of the character instance
 		enemySceneInstance.position.x = posX

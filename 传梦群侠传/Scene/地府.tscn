@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://tdgd7otfsjtc"]
+[gd_scene load_steps=52 format=3 uid="uid://tdgd7otfsjtc"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_iufpr"]
 [ext_resource type="Texture2D" uid="uid://n261yfjq70l8" path="res://Panoramas/门派_地府全景.jpg" id="2_q7prr"]
@@ -238,6 +238,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bm2fk"]
+atlas = ExtResource("31_fx0lm")
+region = Rect2(0, 210, 136, 105)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_skt5d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bm2fk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="地府" type="Node2D"]
 script = ExtResource("1_iufpr")
 
@@ -284,6 +299,7 @@ polygon = PackedVector2Array(190, 384, 53, 585, 282, 716, 536, 753, 596, 756, 59
 position = Vector2(1301, 873)
 stream = ExtResource("7_w4f4x")
 volume_db = 8.072
+autoplay = true
 max_distance = 1e+07
 metadata/_edit_group_ = true
 
@@ -367,7 +383,7 @@ texture = ExtResource("12_0jcdx")
 
 [node name="teleportCircle" parent="." instance=ExtResource("13_4lqv8")]
 position = Vector2(311, 157)
-toScene = "建邺城"
+toScene = "地府迷宫1"
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("14_uskj5")]
 position = Vector2(-303, 1952)
@@ -532,7 +548,7 @@ energy = 2.0
 texture = ExtResource("23_5soxh")
 
 [node name="PointLight2D7" type="PointLight2D" parent="lights"]
-position = Vector2(311.5, 132.841)
+position = Vector2(305, 144)
 scale = Vector2(0.180664, 0.132503)
 texture = ExtResource("23_5soxh")
 
@@ -596,6 +612,24 @@ shape = SubResource("RectangleShape2D_casm8")
 position = Vector2(463, 1136)
 sprite_frames = SubResource("SpriteFrames_m87ll")
 npcName = "钟馗"
+
+[node name="钟馗2" parent="." instance=ExtResource("28_7gcq3")]
+position = Vector2(214, 288)
+sprite_frames = SubResource("SpriteFrames_skt5d")
+npcName = "钟馗"
+
+[node name="teleportCircle4" parent="." instance=ExtResource("13_4lqv8")]
+position = Vector2(2660, 2326)
+toScene = "两界山"
+
+[node name="真离开地府" parent="." instance=ExtResource("30_528nw")]
+visible = false
+position = Vector2(2577, 2281)
+triggerEvent = "真离开地府"
+
+[node name="teleportCircle5" parent="." instance=ExtResource("13_4lqv8")]
+position = Vector2(2533, 248)
+toScene = "轮回之门"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

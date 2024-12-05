@@ -17,7 +17,7 @@ func _on_area_2d_2_body_entered(body):
 			$AudioStreamPlayer2D.play()
 			$AnimationPlayer.play("闪屏")
 			get_tree().current_scene.get_node("player").canMove = false
-			$Timer.start()
+			$ghostTimer.start()
 			$Timer2.start()
 		visible = true
 	

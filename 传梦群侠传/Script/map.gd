@@ -47,7 +47,8 @@ func update_cursor():
 		
 func _ready():
 	
-	
+	#DisplayServer.window_set_title("传梦之路：第一章《浮生难安》")
+
 	playerPosition = get_node("player").position
 	if Global.onTalk:
 		Global.menuOut = false
@@ -68,8 +69,8 @@ func _ready():
 	cursor_frames.append(preload("res://Icons/5-7.png"))
 	cursor_frames.append(preload("res://Icons/5-8.png"))
 	cursor_frames.append(preload("res://Icons/5-9.png"))
-	cursor_frames.append(preload("res://Icons/5-10.png"))
-	cursor_frames.append(preload("res://Icons/5-11.png"))
+	#cursor_frames.append(preload("res://Icons/5-10.png"))
+	#cursor_frames.append(preload("res://Icons/5-11.png"))
 	npcs = get_tree().get_nodes_in_group("standNpc")
 	shopButtons = get_tree().get_nodes_in_group("shopButton")
 	shopItems = get_tree().get_nodes_in_group("shopItem")
@@ -657,6 +658,9 @@ func _process(delta):
 		$CanvasLayer.visible = false
 		$CanvasLayer2.visible = true
 	elif haveUi and !Global.onTalk and !Global.menuOut and !Global.onFight and !onShop:
+		print(get_tree().current_scene.name)
+		if get_tree().current_scene.name == "仙缘洞天":
+			return
 		$CanvasLayer.visible = true
 		$CanvasLayer2.visible = false
 	if Input.is_action_just_pressed("tab") and !onMap:
@@ -665,6 +669,8 @@ func _process(delta):
 			get_node("CanvasLayer").visible = false
 		else:
 			haveUi = true
+			if get_tree().current_scene.name == "仙缘洞天":
+				return			
 			get_node("CanvasLayer").visible = true
 	
 		

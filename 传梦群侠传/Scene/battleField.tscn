@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://b1uenf280qwkv"]
+[gd_scene load_steps=80 format=3 uid="uid://b1uenf280qwkv"]
 
 [ext_resource type="Script" path="res://Script/battleField.gd" id="1_lq0d5"]
 [ext_resource type="Texture2D" uid="uid://1dxnu5vbd5lj" path="res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png" id="2_tenfk"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://dwwdkb7hrqs35" path="res://Pictures/最后一击.png" id="31_q7ksy"]
 [ext_resource type="Texture2D" uid="uid://crpya3ugv6tfl" path="res://1.png" id="34_3p67s"]
 [ext_resource type="Texture2D" uid="uid://blmfianhw2hci" path="res://圈.png" id="35_81uef"]
+[ext_resource type="Texture2D" uid="uid://dj42t1vvb6uh7" path="res://梦魂Animation/法术-日光华.png" id="37_7gasw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m424q"]
 atlas = ExtResource("3_kin0l")
@@ -474,6 +475,34 @@ _data = {
 "lastHit": SubResource("Animation_sd2bj"),
 "shake": SubResource("Animation_p77kf")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l2rd"]
+atlas = ExtResource("37_7gasw")
+region = Rect2(0, 736, 244, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttp0k"]
+atlas = ExtResource("37_7gasw")
+region = Rect2(0, 1104, 244, 368)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1cnr0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l2rd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttp0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttp0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l2rd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [node name="battleField" type="Node2D"]
 position = Vector2(500, 0)
@@ -1331,6 +1360,19 @@ offset_bottom = 114.415
 scale = Vector2(0.550564, 0.554953)
 texture_normal = ExtResource("35_81uef")
 stretch_mode = 6
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+energy = 3.0
+
+[node name="Sun" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 101
+position = Vector2(548.515, 127.723)
+scale = Vector2(0.751583, 0.751583)
+sprite_frames = SubResource("SpriteFrames_1cnr0")
+autoplay = "default"
+frame_progress = 0.910736
 
 [connection signal="button_down" from="battleFieldPicture/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="battleFieldPicture/blockButton/blockButton" to="." method="_on_block_button_button_down"]

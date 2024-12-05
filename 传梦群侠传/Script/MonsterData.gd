@@ -300,7 +300,7 @@ var monsters = {
 	"东海湾": {
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
-			"type": "龙",
+
 			"speed": 30,
 			"level": 1,
 			"magicDefense": 5,
@@ -318,7 +318,6 @@ var monsters = {
 			}),
 		"大海龟": Monster.new({
 			"name": "大海龟",
-			"type": "龙",
 			"speed":20,
 			"level": 1,
 			"magicDefense":5,
@@ -2188,6 +2187,9 @@ var monsters = {
 			],
 			}),
 			},		
+			
+			
+			
 	"怨蛛":{
 		"怨蛛": Monster.new({
 			"name": "怨蛛",
@@ -2205,8 +2207,83 @@ var monsters = {
 			 "monsterMagicList": [
 			],
 			}),
-			},					
+			},		
 			
+						
+	"初鬼":{
+		"野鬼": Monster.new({
+			"name": "野鬼",
+			"speed": 210,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 600,
+			"posi": "middle",
+			"magicDmg": 3,
+			"hp": 2200,
+			"exp": 700,
+			"gold": 550,
+			"type": "鬼",
+			"idle": "野鬼idle",
+			 "monsterMagicList": [
+			],
+			}),
+		"野鬼1": Monster.new({
+			"name": "野鬼",
+			"speed": 210,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 600,
+			"posi": "middle",
+			"magicDmg": 3,
+			"hp": 2200,
+			"exp": 700,
+			"gold": 550,
+			"type": "鬼",
+			"idle": "野鬼idle",
+			 "monsterMagicList": [
+			],
+			}),	
+		"野鬼2": Monster.new({
+			"name": "野鬼",
+			"speed": 210,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 600,
+			"posi": "middle",
+			"magicDmg": 3,
+			"hp": 2200,
+			"exp": 700,
+			"gold": 550,
+			"type": "鬼",
+			"idle": "野鬼idle",
+			 "monsterMagicList": [
+			],
+			}),		
+		"骷髅": Monster.new({
+			"name": "骷髅",
+			"speed": 200,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 650,
+			"posi": "middle",
+			"magicDmg": 3,
+			"hp": 2300,
+			"exp": 700,
+			"gold": 600,
+			"type": "鬼",
+			"idle": "骷髅idle",
+			 "monsterMagicList": [
+			],
+			}),
+						
+			
+			
+			
+			},					
 			
 			
 			
