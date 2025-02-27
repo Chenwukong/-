@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cu5e0ky7bsdfl"]
+[gd_scene load_steps=58 format=3 uid="uid://cu5e0ky7bsdfl"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_tepr5"]
 [ext_resource type="Texture2D" uid="uid://df2blqvgv8p6l" path="res://Panoramas/地府_地狱迷宫4.jpg" id="2_y5cp5"]
@@ -28,6 +28,7 @@
 [ext_resource type="Script" path="res://Script/ghostSound.gd" id="28_jevjr"]
 [ext_resource type="AudioStream" uid="uid://dxav8gf6y8ob0" path="res://Audio/SE/Laugh_spooky_4.mp3" id="29_4pyhj"]
 [ext_resource type="AudioStream" uid="uid://bijpybef1ldec" path="res://Audio/SE/Laugh_spooky_3.mp3" id="30_aa0ml"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="31_3iqe6"]
 [ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="31_iuc1l"]
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="32_cg5q5"]
 
@@ -243,6 +244,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_difox"]
 radius = 109.772
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b24b5"]
+size = Vector2(102, 62)
+
 [node name="地府迷宫4" type="Node2D"]
 script = ExtResource("1_tepr5")
 
@@ -265,6 +269,7 @@ visibility_layer = 2
 script = ExtResource("4_rg1dl")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(45, 1885, 378, 1998, 452, 1930, 1544, 1935, 1596, 2058, 2356, 1655, 2398, 1496, 2228, 1512, 1991, 1455, 1880, 1421, 1677, 1525, 1493, 1625, 1380, 1532, 1417, 1356, 1349, 1244, 1090, 1228, 704, 1236, 597, 1135, 582, 1045, 684, 984, 1114, 907, 1346, 869, 1644, 696, 1410, 585, 1270, 627, 1117, 604, 849, 484, 708, 411, 636, 465, 537, 453, 430, 449, 358, 344, 237, 368, 168, 427, 220, 591, 169, 735, 97, 763, 96, 1025, 514, 1247, 466, 1401, 473, 1535, 600, 1652, 593, 1727, 378, 1737, 237, 1721, 25, 1576, 14, 1873)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -382,7 +387,7 @@ position = Vector2(-1460, 556)
 toScene = "傲来民居"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("11_hb2lt")]
-position = Vector2(2346, 2022)
+position = Vector2(2792, 1713)
 toScene = "地府迷宫1"
 
 [node name="AnimatedSprite2D2" parent="." instance=ExtResource("14_0o8xe")]
@@ -516,7 +521,7 @@ scale = Vector2(0.99365, 1.04102)
 texture = ExtResource("24_nbmwf")
 
 [node name="PointLight2D9" type="PointLight2D" parent="lights"]
-position = Vector2(1965, 1478)
+position = Vector2(1363, 1157)
 scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("24_nbmwf")
 
@@ -526,17 +531,17 @@ scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("24_nbmwf")
 
 [node name="PointLight2D11" type="PointLight2D" parent="lights"]
-position = Vector2(1953, 1482)
+position = Vector2(1063, 385)
 scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("24_nbmwf")
 
 [node name="PointLight2D12" type="PointLight2D" parent="lights"]
-position = Vector2(567, 388)
+position = Vector2(350, 1085)
 scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("24_nbmwf")
 
 [node name="PointLight2D13" type="PointLight2D" parent="lights"]
-position = Vector2(284.466, 1177.81)
+position = Vector2(780, 1153)
 scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("24_nbmwf")
 
@@ -627,7 +632,7 @@ position = Vector2(930, 1696)
 stream = ExtResource("31_iuc1l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ghostSounds/Area2D3"]
-position = Vector2(-293, 1720)
+position = Vector2(-362, 1813)
 shape = SubResource("CircleShape2D_difox")
 
 [node name="scaryFace" type="Sprite2D" parent="."]
@@ -636,6 +641,18 @@ z_index = 150
 position = Vector2(1682, 959)
 scale = Vector2(1.61525, 1.61525)
 texture = ExtResource("32_cg5q5")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
+[node name="进回忆" parent="." instance=ExtResource("31_3iqe6")]
+visible = false
+position = Vector2(241, 423)
+triggerEvent = "进回忆"
+
+[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
+position = Vector2(49, 31)
+shape = SubResource("RectangleShape2D_b24b5")
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -656,3 +673,4 @@ texture = ExtResource("32_cg5q5")
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="进回忆"]

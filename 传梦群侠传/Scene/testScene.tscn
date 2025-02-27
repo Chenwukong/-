@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Script/map.gd" id="1_mg8px"]
 [ext_resource type="Texture2D" uid="uid://4dph760fxo8y" path="res://panoramas2/方寸山.jpg" id="2_wnbac"]
 [ext_resource type="Texture2D" uid="uid://qkqy0pcgc7oy" path="res://panoramas2/方寸山_2.png" id="3_n3e2q"]
-[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_p0v01"]
 [ext_resource type="AudioStream" uid="uid://mcabho34v710" path="res://Audio/BGM/方寸山.mp3" id="5_nykmd"]
 [ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="6_d5bl5"]
 [ext_resource type="Texture2D" uid="uid://bdrr5ngfvt5tf" path="res://Icons/提醒背景2.png" id="7_4ih70"]
@@ -32,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dhubmnsv0syf1" path="res://Characters/鸡.png" id="39_3735j"]
 [ext_resource type="Texture2D" uid="uid://dxcl50ligqp1c" path="res://Characters/道童.png" id="40_fkkxv"]
 [ext_resource type="Texture2D" uid="uid://w8tq3i27u3sw" path="res://梦魂Animation/法术-地烈火.png" id="41_85wg6"]
+[ext_resource type="PackedScene" uid="uid://ctqgsxn2fl82l" path="res://Scene/小男主.tscn" id="41_aiikt"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="41_fo4w2"]
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="42_pshi1"]
 [ext_resource type="Texture2D" uid="uid://ddfxtttyd20i2" path="res://Characters/道长.png" id="43_emxcr"]
@@ -751,17 +751,6 @@ offset = Vector2(-2153, -82)
 z_index = 2
 position = Vector2(2162, 1125)
 texture = ExtResource("3_n3e2q")
-
-[node name="player" parent="." instance=ExtResource("4_p0v01")]
-z_index = 1
-position = Vector2(2942, 670)
-scale = Vector2(0.903555, 0.940031)
-metadata/_edit_group_ = true
-
-[node name="AnimatedSprite2D" parent="player" index="1"]
-animation = &"upStand"
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
@@ -1595,6 +1584,9 @@ npcName = "提毗"
 
 [node name="menuControl" parent="." instance=ExtResource("41_fo4w2")]
 
+[node name="player" parent="." instance=ExtResource("41_aiikt")]
+position = Vector2(1943, 605)
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="button_down" from="CanvasLayer/menutButton" to="." method="_on_menut_button_button_down" flags=18]
@@ -1604,19 +1596,13 @@ npcName = "提毗"
 [connection signal="button_down" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_button_down" flags=18]
 [connection signal="mouse_entered" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_mouse_entered" flags=18]
 [connection signal="mouse_exited" from="CanvasLayer/hintButton/hintButton" to="CanvasLayer" method="_on_hint_button_mouse_exited" flags=18]
-[connection signal="button_down" from="CanvasLayer/phoneButtons/右上" to="player" method="_on_右上_button_down" flags=18]
-[connection signal="button_down" from="CanvasLayer/phoneButtons/左上" to="player" method="_on_左上_button_down" flags=18]
-[connection signal="button_down" from="CanvasLayer/phoneButtons/左下" to="player" method="_on_左下_button_down" flags=18]
-[connection signal="button_down" from="CanvasLayer/phoneButtons/右下" to="player" method="_on_右下_button_down" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
-[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
 [connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
 [connection signal="timeout" from="cloudTimer" to="clouds/Cloud" method="_on_cloud_timer_timeout" flags=18]
 
-[editable path="player"]
 [editable path="CanvasLayer/importantMsg"]
 [editable path="黑山"]
 [editable path="火"]

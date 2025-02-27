@@ -134,6 +134,17 @@ func _ready() -> void:
 	Engine.get_singleton("DialogueManager").mutated.connect(_on_mutated)
 
 
+func _process(delta):
+	if Global.onBigPicture:
+		mainPortrait.visible = false
+		portrait.visible = false
+		敖雨portrait.visible = false
+		小二portrait.visible = false
+		%CharacterLabel.visible = false
+		%Balloon.self_modulate = "ffffff00"
+		$"黑边".visible = true
+		$Balloon/Dialogue.position = Vector2(75,424)
+		
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()

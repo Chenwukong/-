@@ -46,7 +46,7 @@ func update_cursor():
 
 		
 func _ready():
-	
+
 	#DisplayServer.window_set_title("传梦之路：第一章《浮生难安》")
 
 	playerPosition = get_node("player").position
@@ -81,13 +81,14 @@ func _ready():
 	$".".modulate.b = 0
 	if Global.npcs.get("姜韵").dialogues[1].trigger == true and get_tree().current_scene.name == "时追云家":
 		$nightBgm.stream = load("res://Audio/BGS/SWD5 音效-深夜.mp3")
-	if Global.dial: 
+	if Global.dial : 
+
 		var chapter = get_chapter()
 		DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
-		
+
 func _process(delta):
 	
-
+ 
 
 		
 	if Global.onTalk:
@@ -364,7 +365,7 @@ func _process(delta):
 					var canUseGold = decrypt(FightScenePlayers.golds) - shopItems[itemIndex].buyAmount * shopItems[itemIndex].gold
 					var canBuyAmount = canUseGold / shopItems[itemIndex].gold
 					shopItems[itemIndex].buyAmount += int(floor(canBuyAmount))
-					print(shopItems[itemIndex].buyAmount)
+			
 				else:
 					shopItems[itemIndex].buyAmount += 10
 					
@@ -658,7 +659,7 @@ func _process(delta):
 		$CanvasLayer.visible = false
 		$CanvasLayer2.visible = true
 	elif haveUi and !Global.onTalk and !Global.menuOut and !Global.onFight and !onShop:
-		print(get_tree().current_scene.name)
+	
 		if get_tree().current_scene.name == "仙缘洞天":
 			return
 		$CanvasLayer.visible = true
@@ -1114,11 +1115,11 @@ func _on_add_num_timer_timeout():
 	canAdd = true
 
 
-func _on_dialogue_timer_timeout():
-	
-	var chapter = get_chapter()
-	
-	DialogueManager.show_chat(load("res://Dialogue/"+str(chapter)+".dialogue"),get_npc_dialogue(Global.dial))	
+#func _on_dialogue_timer_timeout():
+#
+#	var chapter = get_chapter()
+#
+#	DialogueManager.show_chat(load("res://Dialogue/"+str(chapter)+".dialogue"),get_npc_dialogue(Global.dial))	
 	
 func get_chapter():
 	var npc = Global.npcs[Global.dial]
@@ -1135,12 +1136,13 @@ func get_npc_dialogue(npc_id):
 	if npc["dialogues"].size() > dialogue_index:
 		var dialogue_entry = npc["dialogues"][dialogue_index]
 
-		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id:
+		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id :
 			update_npc_dialogue_index(npc_id)
 			if npc["dialogues"][dialogue_index].bgm != null:
 			
 				get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load(npc["dialogues"][dialogue_index].bgm)
 				get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+			print(dialogue_entry["dialogue"],111)
 			return dialogue_entry["dialogue"]
 		
 	return "没有更多可说的了"

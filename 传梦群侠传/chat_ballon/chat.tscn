@@ -1,4 +1,4 @@
-[gd_scene load_steps=427 format=3 uid="uid://d1psa2w4drbnv"]
+[gd_scene load_steps=428 format=3 uid="uid://d1psa2w4drbnv"]
 
 [ext_resource type="Script" path="res://chat_ballon/chatBalloon.gd" id="1_l52tu"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_065px"]
@@ -61,6 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://dlgbwfoiayr1r" path="res://Animations/表情75.png" id="51_a0ved"]
 [ext_resource type="Texture2D" uid="uid://de3ke3qkiyku8" path="res://Animations/表情76.png" id="52_rpfqf"]
 [ext_resource type="Texture2D" uid="uid://cq7yctu3q6r3k" path="res://Animations/表情99.png" id="58_qcbwd"]
+[ext_resource type="Texture2D" uid="uid://dua2gw3ib70oo" path="res://Pictures/黑边.png" id="62_c42um"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spyqn"]
 bg_color = Color(0, 0, 0, 1)
@@ -2883,7 +2884,6 @@ script = ExtResource("1_l52tu")
 
 [node name="Balloon" type="TextureRect" parent="."]
 unique_name_in_owner = true
-self_modulate = Color(1, 1, 1, 0.854902)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -3182,6 +3182,12 @@ position = Vector2(150, 69)
 sprite_frames = SubResource("SpriteFrames_tw22l")
 animation = &"不听"
 autoplay = "大笑"
+
+[node name="黑边" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(531, 737)
+scale = Vector2(1.17812, 1.64103)
+texture = ExtResource("62_c42um")
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="response_selected" from="Balloon/Responses/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]

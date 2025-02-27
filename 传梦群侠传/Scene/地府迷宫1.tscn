@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://ctdypih5s1hxq"]
+[gd_scene load_steps=57 format=3 uid="uid://ctdypih5s1hxq"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_y7ar8"]
 [ext_resource type="Texture2D" uid="uid://kb6yexw6316t" path="res://Panoramas/地府_地狱迷宫1.jpg" id="2_ut2q7"]
@@ -243,6 +243,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_difox"]
 radius = 109.772
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkvuq"]
+size = Vector2(102, 62)
+
 [node name="地府迷宫1" type="Node2D"]
 script = ExtResource("1_y7ar8")
 
@@ -383,7 +386,7 @@ position = Vector2(-1460, 556)
 toScene = "傲来民居"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("11_2gjn3")]
-position = Vector2(61, 2015)
+position = Vector2(-263, 1962)
 toScene = "地府"
 
 [node name="AnimatedSprite2D2" parent="." instance=ExtResource("12_wph5a")]
@@ -511,7 +514,7 @@ blend_mode = 1
 [node name="lights" type="Node2D" parent="."]
 
 [node name="PointLight2D8" type="PointLight2D" parent="lights"]
-position = Vector2(559, 1527)
+position = Vector2(679, 1499)
 scale = Vector2(1.14941, 1.05469)
 texture = ExtResource("22_ihpg3")
 
@@ -635,6 +638,18 @@ visible = false
 position = Vector2(102, 1928)
 triggerEvent = "第一次遇鬼"
 
+[node name="进回忆" parent="." instance=ExtResource("30_5oixh")]
+visible = false
+position = Vector2(73, 471)
+triggerEvent = "进回忆"
+
+[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
+position = Vector2(49, 31)
+shape = SubResource("RectangleShape2D_wkvuq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -654,3 +669,4 @@ triggerEvent = "第一次遇鬼"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="进回忆"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://tdgd7otfsjtc"]
+[gd_scene load_steps=103 format=3 uid="uid://tdgd7otfsjtc"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_iufpr"]
 [ext_resource type="Texture2D" uid="uid://n261yfjq70l8" path="res://Panoramas/门派_地府全景.jpg" id="2_q7prr"]
@@ -31,6 +31,11 @@
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="29_ys3a6"]
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_528nw"]
 [ext_resource type="Texture2D" uid="uid://dm2e5cic2nwj8" path="res://Characters/钟馗.png" id="31_fx0lm"]
+[ext_resource type="Texture2D" uid="uid://bl70chhni7bcg" path="res://Characters/4鬼火.png" id="32_imgnq"]
+[ext_resource type="Texture2D" uid="uid://cp0m13nxtnadf" path="res://梦魂Animation/日照光华.png" id="33_tiyqd"]
+[ext_resource type="Texture2D" uid="uid://blivb825xu7f3" path="res://Characters/九头蛇.png" id="34_4an7v"]
+[ext_resource type="Texture2D" uid="uid://b1ngu8a173pqm" path="res://Characters/野鬼.png" id="35_u6ngf"]
+[ext_resource type="Script" path="res://Script/npcs.gd" id="36_fcg85"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-403, 85, 2802, 72, 2797, 2478, -398, 1229, -396, 2487, -403, 1493)
@@ -253,6 +258,333 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wfe3j"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(0, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3ijp"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(280, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhh7d"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(560, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dp1ms"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(840, 222, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8mb8b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wfe3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3ijp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhh7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp1ms")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nii1b"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 0, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oie6u"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 384, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecsi8"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 768, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_305bm"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 1152, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gskpy"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 1536, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k8bf"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 1920, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77s2o"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 2304, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8v1x"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 2688, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq52q"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 3072, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5u8d"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 3456, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ll8m"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 3840, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgd24"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 4224, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdlwd"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 4608, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wffpe"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 4992, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3ddw"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 5376, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbhga"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 5760, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ec4k"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 6144, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vhne"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 6528, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7nun"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 6912, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2c18"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 7296, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdm1d"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 7680, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxabc"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 8064, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lp3sr"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 8448, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w85he"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 8832, 396, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60lym"]
+atlas = ExtResource("33_tiyqd")
+region = Rect2(0, 9216, 396, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ryf6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nii1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oie6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecsi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_305bm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gskpy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3k8bf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77s2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8v1x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq52q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5u8d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ll8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgd24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdlwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wffpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3ddw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbhga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ec4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vhne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7nun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2c18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdm1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxabc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lp3sr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w85he")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60lym")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqkc7"]
+atlas = ExtResource("34_4an7v")
+region = Rect2(0, 145, 163, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vi63n"]
+atlas = ExtResource("34_4an7v")
+region = Rect2(163, 145, 163, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_amsyj"]
+atlas = ExtResource("34_4an7v")
+region = Rect2(326, 145, 163, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtrg0"]
+atlas = ExtResource("34_4an7v")
+region = Rect2(489, 145, 163, 145)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rlj4p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqkc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vi63n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amsyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtrg0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aesd"]
+atlas = ExtResource("35_u6ngf")
+region = Rect2(0, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sep5b"]
+atlas = ExtResource("35_u6ngf")
+region = Rect2(106, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j7ky0"]
+atlas = ExtResource("35_u6ngf")
+region = Rect2(212, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b30b5"]
+atlas = ExtResource("35_u6ngf")
+region = Rect2(318, 0, 106, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kuvv2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aesd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sep5b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j7ky0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b30b5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii3ee"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(0, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lob2e"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(280, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wf4y"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(560, 222, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wt714"]
+atlas = ExtResource("32_imgnq")
+region = Rect2(840, 222, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8shj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii3ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lob2e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wf4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wt714")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="地府" type="Node2D"]
 script = ExtResource("1_iufpr")
 
@@ -262,7 +594,7 @@ texture = ExtResource("2_q7prr")
 
 [node name="player" parent="." instance=ExtResource("4_oap2p")]
 z_index = 2
-position = Vector2(2548, 2268)
+position = Vector2(2438.16, 2252.22)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -405,7 +737,7 @@ max_distance = 1e+06
 [node name="DirectionalLight2D2" type="DirectionalLight2D" parent="."]
 position = Vector2(1204, 1235)
 color = Color(0, 0, 0, 1)
-energy = 3.05
+energy = 12.32
 blend_mode = 1
 height = 0.57
 
@@ -470,7 +802,7 @@ toScene = "轮回司"
 [node name="DirectionalLight2D3" type="DirectionalLight2D" parent="lights"]
 position = Vector2(-21, -6)
 color = Color(0.117647, 0.117647, 0.117647, 1)
-energy = 6.91
+energy = 8.18
 blend_mode = 1
 
 [node name="PointLight2D8" type="PointLight2D" parent="lights"]
@@ -614,7 +946,14 @@ sprite_frames = SubResource("SpriteFrames_m87ll")
 npcName = "钟馗"
 
 [node name="钟馗2" parent="." instance=ExtResource("28_7gcq3")]
+visible = false
 position = Vector2(214, 288)
+sprite_frames = SubResource("SpriteFrames_skt5d")
+npcName = "钟馗"
+
+[node name="钟馗3" parent="." instance=ExtResource("28_7gcq3")]
+visible = false
+position = Vector2(1445, 638)
 sprite_frames = SubResource("SpriteFrames_skt5d")
 npcName = "钟馗"
 
@@ -630,6 +969,105 @@ triggerEvent = "真离开地府"
 [node name="teleportCircle5" parent="." instance=ExtResource("13_4lqv8")]
 position = Vector2(2533, 248)
 toScene = "轮回之门"
+
+[node name="鬼火" parent="." instance=ExtResource("28_7gcq3")]
+visible = false
+position = Vector2(1577, 470)
+sprite_frames = SubResource("SpriteFrames_8mb8b")
+autoplay = "default"
+frame_progress = 0.212668
+
+[node name="CollisionPolygon2D" parent="鬼火/npcBody" index="1"]
+disabled = true
+
+[node name="吸魂" parent="鬼火/effects" index="0"]
+visible = false
+
+[node name="飞剑诀" parent="鬼火/effects" index="1"]
+visible = false
+
+[node name="持续冰封" parent="鬼火/effects" index="2"]
+visible = false
+
+[node name="开阳" type="AnimatedSprite2D" parent="鬼火/effects" index="3"]
+position = Vector2(13, -99)
+sprite_frames = SubResource("SpriteFrames_ryf6f")
+frame_progress = 0.016813
+
+[node name="堕逝鬼魂" parent="." instance=ExtResource("28_7gcq3")]
+visible = false
+position = Vector2(1582.79, 508.245)
+sprite_frames = SubResource("SpriteFrames_rlj4p")
+
+[node name="CollisionPolygon2D" parent="堕逝鬼魂/npcBody" index="1"]
+disabled = true
+
+[node name="ghosts" type="Node2D" parent="."]
+visible = false
+
+[node name="野鬼" parent="ghosts" instance=ExtResource("28_7gcq3")]
+position = Vector2(505.751, 1255.5)
+sprite_frames = SubResource("SpriteFrames_kuvv2")
+
+[node name="CollisionPolygon2D" parent="ghosts/野鬼/npcBody" index="1"]
+disabled = true
+
+[node name="野鬼2" parent="ghosts" instance=ExtResource("28_7gcq3")]
+position = Vector2(572, 1215)
+sprite_frames = SubResource("SpriteFrames_kuvv2")
+
+[node name="CollisionPolygon2D" parent="ghosts/野鬼2/npcBody" index="1"]
+disabled = true
+
+[node name="野鬼3" parent="ghosts" instance=ExtResource("28_7gcq3")]
+position = Vector2(635, 1175)
+sprite_frames = SubResource("SpriteFrames_kuvv2")
+
+[node name="CollisionPolygon2D" parent="ghosts/野鬼3/npcBody" index="1"]
+disabled = true
+
+[node name="野鬼" type="Node2D" parent="."]
+script = ExtResource("36_fcg85")
+
+[node name="野鬼1" parent="野鬼" instance=ExtResource("28_7gcq3")]
+position = Vector2(53.3813, 1766.09)
+sprite_frames = SubResource("SpriteFrames_e8shj")
+frame_progress = 0.451626
+
+[node name="CollisionPolygon2D" parent="野鬼/野鬼1/npcBody" index="1"]
+polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
+
+[node name="野鬼2" parent="野鬼" instance=ExtResource("28_7gcq3")]
+position = Vector2(1063, 2239)
+sprite_frames = SubResource("SpriteFrames_e8shj")
+frame_progress = 0.650342
+
+[node name="CollisionPolygon2D" parent="野鬼/野鬼2/npcBody" index="1"]
+polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
+
+[node name="野鬼3" parent="野鬼" instance=ExtResource("28_7gcq3")]
+position = Vector2(2055, 1119)
+sprite_frames = SubResource("SpriteFrames_e8shj")
+frame_progress = 0.650342
+
+[node name="CollisionPolygon2D" parent="野鬼/野鬼3/npcBody" index="1"]
+polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
+
+[node name="野鬼4" parent="野鬼" instance=ExtResource("28_7gcq3")]
+position = Vector2(462, 765)
+sprite_frames = SubResource("SpriteFrames_e8shj")
+frame_progress = 0.650342
+
+[node name="CollisionPolygon2D" parent="野鬼/野鬼4/npcBody" index="1"]
+polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
+
+[node name="野鬼5" parent="野鬼" instance=ExtResource("28_7gcq3")]
+position = Vector2(1901, 599)
+sprite_frames = SubResource("SpriteFrames_e8shj")
+frame_progress = 0.650342
+
+[node name="CollisionPolygon2D" parent="野鬼/野鬼5/npcBody" index="1"]
+polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -653,3 +1091,13 @@ toScene = "轮回之门"
 [editable path="player"]
 [editable path="teleportCircle2"]
 [editable path="初见孟婆"]
+[editable path="鬼火"]
+[editable path="堕逝鬼魂"]
+[editable path="ghosts/野鬼"]
+[editable path="ghosts/野鬼2"]
+[editable path="ghosts/野鬼3"]
+[editable path="野鬼/野鬼1"]
+[editable path="野鬼/野鬼2"]
+[editable path="野鬼/野鬼3"]
+[editable path="野鬼/野鬼4"]
+[editable path="野鬼/野鬼5"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://nrwlwnhl4kb6"]
+[gd_scene load_steps=68 format=3 uid="uid://nrwlwnhl4kb6"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_atr31"]
 [ext_resource type="Texture2D" uid="uid://cgtpd301syhid" path="res://Panoramas/地府_地狱迷宫2.jpg" id="2_r50x3"]
@@ -32,6 +32,8 @@
 [ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="29_qtxk3"]
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="32_lb8qx"]
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="32_rst71"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="33_mjon0"]
+[ext_resource type="Texture2D" uid="uid://b1ngu8a173pqm" path="res://Characters/野鬼.png" id="34_24cf7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -260,6 +262,45 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8cg"]
+size = Vector2(102, 62)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mtn2b"]
+atlas = ExtResource("34_24cf7")
+region = Rect2(0, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbi8m"]
+atlas = ExtResource("34_24cf7")
+region = Rect2(106, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3f1m"]
+atlas = ExtResource("34_24cf7")
+region = Rect2(212, 0, 106, 108)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73syw"]
+atlas = ExtResource("34_24cf7")
+region = Rect2(318, 0, 106, 108)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ycwva"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mtn2b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbi8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3f1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73syw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="地府迷宫2" type="Node2D"]
 script = ExtResource("1_atr31")
 
@@ -397,7 +438,7 @@ position = Vector2(-1460, 556)
 toScene = "傲来民居"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("11_jp4r4")]
-position = Vector2(2346, 2022)
+position = Vector2(2796, 1985)
 toScene = "地府迷宫1"
 
 [node name="AnimatedSprite2D2" parent="." instance=ExtResource("12_88j0q")]
@@ -517,7 +558,6 @@ offset_right = 3501.0
 offset_bottom = 2910.0
 
 [node name="DirectionalLight2D3" type="DirectionalLight2D" parent="."]
-visible = false
 position = Vector2(-21, -6)
 color = Color(0.117647, 0.117647, 0.117647, 1)
 energy = 5.7
@@ -526,7 +566,7 @@ blend_mode = 1
 [node name="lights" type="Node2D" parent="."]
 
 [node name="PointLight2D8" type="PointLight2D" parent="lights"]
-position = Vector2(638.749, 1520)
+position = Vector2(1048, 1688)
 scale = Vector2(0.99365, 1.04102)
 texture = ExtResource("22_3dwc4")
 
@@ -551,12 +591,12 @@ scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("22_3dwc4")
 
 [node name="PointLight2D13" type="PointLight2D" parent="lights"]
-position = Vector2(284.466, 1177.81)
+position = Vector2(105, 737)
 scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("22_3dwc4")
 
 [node name="PointLight2D14" type="PointLight2D" parent="lights"]
-position = Vector2(144, 1250)
+position = Vector2(80, 1132)
 scale = Vector2(0.236814, 0.217299)
 texture = ExtResource("22_3dwc4")
 
@@ -662,6 +702,24 @@ npcName = "鬼潇潇"
 [node name="CollisionPolygon2D" parent="鬼潇潇/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -307.47, -192.701, -272.119, -181.832, -253.404, -175.311, -235.728, -177.485, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
+[node name="进回忆" parent="." instance=ExtResource("33_mjon0")]
+visible = false
+position = Vector2(34, 699)
+triggerEvent = "进回忆"
+
+[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
+position = Vector2(49, 31)
+shape = SubResource("RectangleShape2D_qx8cg")
+
+[node name="鬼医" parent="." instance=ExtResource("12_60w4a")]
+position = Vector2(273, 1266)
+sprite_frames = SubResource("SpriteFrames_ycwva")
+frame_progress = 0.763954
+npcName = "鬼医"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -682,3 +740,4 @@ polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -307.47, -192.7
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="鬼潇潇"]
+[editable path="进回忆"]

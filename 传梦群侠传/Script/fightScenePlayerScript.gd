@@ -1658,7 +1658,6 @@ func castMagic(delta, magic, target, type, onLastMagic):
 					pass
 			if magic.name == "开阳":
 				
-				get_parent().get_parent().get_node("DirectionalLight2D").visible = true
 				get_parent().get_parent().get_node("Sun").visible = true
 				Global.currUsingMagic = magic
 				if magicControlType == "keyboard":
@@ -1911,17 +1910,18 @@ func _on_button_mouse_exited():
 	self.self_modulate = "ffffff"
 func checkIncreaseDmg(magic):
 	for i in Global.onHitEnemy:
+		print(i)
 		if is_instance_valid(i):
 			if i.name == "时追云" or i.name == "姜韵" or i.name == "敖雨" or i.name == "敖阳" or i.name == "大海龟" or i.name == "小二" or i.name == "金甲" or i.name == "凌若昭":
-			
 				return 1
-			if is_instance_valid(i.type):
-				if i.type == "龙" and magic.name == "飞剑决":
-					return 2
-				else:
-					return 1
+			elif i.type == "龙" and magic.name == "飞剑决":
+				return 2
+			elif i.type == "鬼" and magic.name == "破暗":
+				print(3)
+				return 5
 			else:
 				return 1
+
 				
 				
 				

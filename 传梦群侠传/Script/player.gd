@@ -332,6 +332,10 @@ func _unhandled_input(event):
 			
 				if raycast.get_collider().get_parent().name == "小师弟"  or raycast.get_collider().get_parent().name == "小师弟2" or raycast.get_collider().get_parent().name == "小师弟3":
 					raycast.get_collider().get_parent().talked = true
+				if raycast.get_collider().get_parent().name == "野鬼1"  or raycast.get_collider().get_parent().name == "野鬼2" or raycast.get_collider().get_parent().name == "野鬼3" or raycast.get_collider().get_parent().name == "野鬼4" or raycast.get_collider().get_parent().name == "野鬼5":
+					raycast.get_collider().get_parent().talked = true					
+					
+					
 				if raycast.get_collider().get_parent().audio != "":
 					get_parent().get_node("npcAudio").stream = load(raycast.get_collider().get_parent().newStream)
 					get_parent().get_node("npcAudio").play()

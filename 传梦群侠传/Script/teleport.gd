@@ -314,9 +314,9 @@ func checkSetPos(currScene, toScene):
 		if toScene == "森罗殿":
 			return Vector2(1641, 1420)
 		if toScene == "轮回之门":
-			return Vector2(1641, 1420)			
+			return Vector2(2034,1766)			
 	if currScene == "轮回之门":
-		return Vector2(2448, 323)	
+		return Vector2(2171,1815)	
 	if currScene == "森罗殿":
 			return Vector2(241, 1081)			
 	if currScene == "轮回司":

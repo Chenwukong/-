@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cyfu5vrud5s3a"]
+[gd_scene load_steps=38 format=3 uid="uid://cyfu5vrud5s3a"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_k5j4b"]
 [ext_resource type="Texture2D" uid="uid://btsk50ta8vr8f" path="res://panoramas2/建邺_民居（建邺城242.19）周猎户.jpg" id="2_x43aj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_l6g8e"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_oltm3"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="18_78752"]
+[ext_resource type="Shader" path="res://shader/仙缘洞天.gdshader" id="18_ckvvp"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="19_11bos"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="20_u0ej5"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="24_rksj3"]
@@ -170,6 +171,12 @@ _data = {
 "RESET": SubResource("Animation_a62bh"),
 "turnDark": SubResource("Animation_0yb2x")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xx0a6"]
+shader = ExtResource("18_ckvvp")
+shader_parameter/blur_amount = 0.804
+shader_parameter/memory_intensity = 1.0
+shader_parameter/memory_color = Color(0, 0, 0, 1)
 
 [node name="时追云家" type="Node2D"]
 script = ExtResource("1_k5j4b")
@@ -335,7 +342,6 @@ blend_mode = 1
 [node name="姜韵" parent="." instance=ExtResource("30_hop7m")]
 position = Vector2(452, 304)
 sprite_frames = SubResource("SpriteFrames_l0do3")
-animation = &"左下"
 autoplay = "default"
 npcName = "姜韵"
 
@@ -359,6 +365,15 @@ one_shot = true
 position = Vector2(221.604, 388.591)
 goldAmount = 200
 gold = true
+
+[node name="TextureRect" type="ColorRect" parent="."]
+visible = false
+z_index = 4096
+material = SubResource("ShaderMaterial_xx0a6")
+offset_left = -127.0
+offset_top = -378.0
+offset_right = 4424.0
+offset_bottom = 2584.0
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

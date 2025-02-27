@@ -191,8 +191,8 @@ func _process(delta):
 
 			
 			
-			
-	get_parent().get_parent().get_node("DirectionalLight2D").energy = 0	
+	if get_parent().get_parent().has_node("DirectionalLight2D"):
+		get_parent().get_parent().get_node("DirectionalLight2D").energy = 0	
 	if Global.atNight == true:
 		get_tree().current_scene.get_node("nightBgm").stop()
 	if get_tree().current_scene.name == "东海湾" or get_tree().current_scene.name == "建邺北":
@@ -546,7 +546,7 @@ func _process(delta):
 		Global.selectedTarget = false
 		Global.onHitPlayer = []
 		Global.killedAmount += selectedMonsters.size()
-		if Global.atNight:
+		if Global.atNight and get_parent().get_parent().has_node("DirectionalLight2D") :
 			get_parent().get_parent().get_node("nightBgm").play()
 			get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 		else:

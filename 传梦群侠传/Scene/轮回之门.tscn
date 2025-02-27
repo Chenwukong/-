@@ -1,10 +1,10 @@
-[gd_scene load_steps=94 format=3 uid="uid://vx5b2ic1xui5"]
+[gd_scene load_steps=96 format=3 uid="uid://vx5b2ic1xui5"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_f41jy"]
 [ext_resource type="Texture2D" uid="uid://c50n1uxmb2v8b" path="res://Panoramas/门派_地府_地藏王府.jpg" id="2_hj0u3"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_vueje"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_s4380"]
-[ext_resource type="AudioStream" uid="uid://c8lyx6lt612j7" path="res://Audio/BGM/地府.mp3" id="5_i7m4m"]
+[ext_resource type="AudioStream" uid="uid://c1qd5dmar4w71" path="res://Audio/BGM/【轮回之境】.mp3" id="5_ihado"]
 [ext_resource type="Texture2D" uid="uid://cfbq1575v1ih7" path="res://Panoramas/门派_地府_地藏王府_2.png" id="6_st1m4"]
 [ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="7_vrlyj"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_0wo6f"]
@@ -29,6 +29,8 @@
 [ext_resource type="Texture2D" uid="uid://d22l1ltln6bo4" path="res://梦魂Animation/回血-命之轮.png" id="27_c1r0t"]
 [ext_resource type="Texture2D" uid="uid://31jamgk6m3t2" path="res://梦魂Animation/0古代瑞兽法术.png" id="28_8gfi3"]
 [ext_resource type="Texture2D" uid="uid://c8ti6flnjkmwi" path="res://Characters/阎罗王.png" id="29_k0r00"]
+[ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="30_ijnrm"]
+[ext_resource type="Script" path="res://Script/flash.gd" id="31_g1n7d"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ib848"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -589,9 +591,14 @@ position = Vector2(1.73914, 1.30438)
 build_mode = 1
 polygon = PackedVector2Array(1674.78, 1425.65, 1546.96, 1373.48, 1491.3, 1332.17, 1611.74, 1278.7, 1639.13, 1255.65, 1509.57, 1195.22, 1455.65, 1174.35, 1424.78, 1162.61, 1390, 1183.48, 1342.61, 1194.35, 1286.09, 1161.74, 1290.87, 1131.3, 1291.74, 1113.04, 1246.09, 1093.48, 1192.17, 1095.22, 1164.35, 1117.83, 1189.57, 1177.39, 1046.09, 1260.87, 1026.09, 1268.26, 1012.17, 1229.13, 1042.17, 1200.87, 1046.09, 1190, 978.261, 1151.3, 896.087, 1176.96, 918.696, 1210.87, 893.044, 1277.83, 924.348, 1312.61, 1012.61, 1307.83, 1063.91, 1334.78, 1094.35, 1346.96, 1080, 1388.7, 1096.09, 1399.13, 1146.96, 1407.83, 1177.83, 1423.48, 1235.22, 1450, 1323.48, 1418.7, 1363.48, 1391.74, 1424.35, 1400.43, 1516.09, 1456.52, 1676.52, 1534.35)
 
+[node name="重遇上官1" parent="." instance=ExtResource("22_seqn3")]
+visible = false
+position = Vector2(2038.12, 1724.13)
+triggerEvent = "重遇上官1"
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("5_i7m4m")
+stream = ExtResource("5_ihado")
 volume_db = 8.072
 autoplay = true
 max_distance = 1e+07
@@ -675,7 +682,7 @@ position = Vector2(-969, -162)
 toScene = "女儿村"
 
 [node name="teleportCircle2" parent="." instance=ExtResource("11_5r35q")]
-position = Vector2(1211, 1692)
+position = Vector2(2171, 1815)
 toScene = "地府"
 
 [node name="teleportCircle3" parent="." instance=ExtResource("11_5r35q")]
@@ -726,13 +733,13 @@ blend_mode = 1
 stream = ExtResource("14_2h2jy")
 max_distance = 1e+09
 
-[node name="重遇上官" parent="." instance=ExtResource("22_seqn3")]
+[node name="重遇上官2" parent="." instance=ExtResource("22_seqn3")]
 visible = false
 position = Vector2(1053, 1440)
 rotation = -0.574552
-triggerEvent = "重遇上官"
+triggerEvent = "重遇上官2"
 
-[node name="CollisionShape2D" parent="重遇上官/Area2D" index="0"]
+[node name="CollisionShape2D" parent="重遇上官2/Area2D" index="0"]
 position = Vector2(177.221, -36.2378)
 
 [node name="MarkerRight" type="Marker2D" parent="."]
@@ -834,28 +841,26 @@ position = Vector2(1536, 1170)
 scale = Vector2(2.51804, 2.51804)
 sprite_frames = SubResource("SpriteFrames_oh06i")
 
-[node name="逆无邪" parent="." instance=ExtResource("23_qfajb")]
+[node name="逆无邪1" parent="." instance=ExtResource("23_qfajb")]
 position = Vector2(1059, 1264)
 sprite_frames = SubResource("SpriteFrames_40rl5")
 animation = &"右下"
 autoplay = "左上"
-npcName = "逆无邪"
 
-[node name="CollisionPolygon2D" parent="逆无邪/npcBody" index="1"]
+[node name="CollisionPolygon2D" parent="逆无邪1/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -293, -282, -324, -241, -303, -213, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -206, -261, -216, -283, -238, -280, -258, -282, -266, -280)
 
-[node name="effect" parent="逆无邪" index="2"]
+[node name="effect" parent="逆无邪1" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="逆无邪/effects" index="1"]
+[node name="飞剑诀" parent="逆无邪1/effects" index="1"]
 frame = 4
 
-[node name="上官冕" parent="." instance=ExtResource("23_qfajb")]
+[node name="上官冕1" parent="." instance=ExtResource("23_qfajb")]
 position = Vector2(1133, 1226)
 sprite_frames = SubResource("SpriteFrames_snpcl")
 animation = &"右下"
 autoplay = "左上"
-npcName = "上官冕"
 
 [node name="轮回" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -871,6 +876,24 @@ scale = Vector2(2.32143, 2.32143)
 sprite_frames = SubResource("SpriteFrames_6gu3h")
 frame_progress = 0.41081
 
+[node name="DirectionalLight2D3" type="DirectionalLight2D" parent="."]
+position = Vector2(-21, -6)
+color = Color(0.117647, 0.117647, 0.117647, 1)
+energy = 9.02
+blend_mode = 1
+
+[node name="PointLight2D4" type="PointLight2D" parent="DirectionalLight2D3"]
+position = Vector2(949, 1112)
+scale = Vector2(0.0776956, 0.0970367)
+texture = ExtResource("30_ijnrm")
+script = ExtResource("31_g1n7d")
+blink_speed = 0.01
+
+[node name="PointLight2D8" type="PointLight2D" parent="."]
+position = Vector2(1037, 1050)
+scale = Vector2(0.850647, 0.780547)
+texture = ExtResource("30_ijnrm")
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -884,7 +907,7 @@ frame_progress = 0.41081
 
 [editable path="player"]
 [editable path="teleportCircle"]
-[editable path="重遇上官"]
+[editable path="重遇上官2"]
 [editable path="小二"]
 [editable path="小二/小二"]
-[editable path="逆无邪"]
+[editable path="逆无邪1"]

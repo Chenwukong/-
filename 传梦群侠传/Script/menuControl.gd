@@ -1374,6 +1374,30 @@ func _process(delta):
 			else:
 				i.get_node("加点文本").modulate = "ffffff"
 		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") )and !Global.noKeyboard:
+			$"加点页面/属性区/最大气血/最大气血数字".modulate = "ffffff"
+			$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = false
+			$"加点页面/属性区/格挡概率/value/changedValue".modulate = "ffffff"
+			$"加点页面/属性区/格挡概率/value/changedValue/increaseValue"	.visible = false						
+			$"加点页面/属性区/力量/value/changedValue".modulate = "ffffff"		
+			$"加点页面/属性区/力量/value/changedValue/increaseValue".visible = false		
+			$"加点页面/属性区/暴击/value/changedValue".modulate = "ffffff"		
+			$"加点页面/属性区/暴击/value/changedValue/increaseValue".visible = false				
+			$"加点页面/属性区/敏捷/value/changedValue".modulate = "ffffff"			
+			$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = false				
+			$"加点页面/属性区/仙力/value/changedValue".modulate = "ffffff"		
+			$"加点页面/属性区/仙力/value/changedValue/increaseValue".visible = false	
+			$"加点页面/属性区/最大仙能/最大仙能数字".modulate = "ffffff"		
+			$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".visible = false				
+			
+			
+			currPlayer.potential += pointOnLuck + pointOnHp +pointOnSpeed + pointOnMagic + pointOnStr
+					
+			pointOnLuck= 0
+			pointOnHp= 0
+			pointOnSpeed= 0
+			pointOnMagic= 0
+			pointOnStr = 0	
+			
 			move_menuButton_to_top()
 			$"加点页面".visible = false
 			Global.onSkillPointPage = false

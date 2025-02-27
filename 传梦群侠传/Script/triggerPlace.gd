@@ -142,13 +142,18 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("真离开地府"))	
 			"找罐子":
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("找罐子"))	
-			"重遇上官":
+			"重遇上官1":
+				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("重遇上官"))					
+			"重遇上官2":
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("重遇上官"))	
 			"第一次遇鬼":
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("第一次遇鬼"))									
+			"进回忆":
+				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("进回忆"))			
+			"地府决战":
+				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("地府决战"))						
 				
-				
-				
+						
 				
 func get_npc_dialogue(npc_id):
 	

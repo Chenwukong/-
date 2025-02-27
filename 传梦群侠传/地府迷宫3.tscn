@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://frxncl1mjcfg"]
+[gd_scene load_steps=73 format=3 uid="uid://frxncl1mjcfg"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_1coat"]
 [ext_resource type="Texture2D" uid="uid://c4wra1axneov7" path="res://Panoramas/地府_地狱迷宫3.jpg" id="2_a8ovj"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://bijpybef1ldec" path="res://Audio/SE/Laugh_spooky_3.mp3" id="30_d7sey"]
 [ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="31_1l04q"]
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="32_wcvs3"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="33_iblw4"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -337,6 +338,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_difox"]
 radius = 109.772
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qh01q"]
+size = Vector2(102, 62)
+
 [node name="地府迷宫3" type="Node2D"]
 script = ExtResource("1_1coat")
 
@@ -473,7 +477,7 @@ position = Vector2(-1460, 556)
 toScene = "傲来民居"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("11_76p58")]
-position = Vector2(2187, 1889)
+position = Vector2(2809, 1846)
 toScene = "地府迷宫2"
 
 [node name="鬼潇潇" parent="." instance=ExtResource("12_51f30")]
@@ -612,7 +616,7 @@ blend_mode = 1
 [node name="lights" type="Node2D" parent="."]
 
 [node name="PointLight2D8" type="PointLight2D" parent="lights"]
-position = Vector2(1437, 599)
+position = Vector2(1443, 552)
 scale = Vector2(0.99365, 1.04102)
 texture = ExtResource("24_rtm6y")
 
@@ -738,6 +742,18 @@ position = Vector2(1682, 959)
 scale = Vector2(1.61525, 1.61525)
 texture = ExtResource("32_wcvs3")
 
+[node name="进回忆" parent="." instance=ExtResource("33_iblw4")]
+visible = false
+position = Vector2(2261, 405)
+triggerEvent = "进回忆"
+
+[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
+position = Vector2(49, 31)
+shape = SubResource("RectangleShape2D_qh01q")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -758,3 +774,4 @@ texture = ExtResource("32_wcvs3")
 [editable path="鬼潇潇"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="进回忆"]

@@ -42,7 +42,7 @@ func _process(delta):
 					$npcBody/CollisionPolygon2D.disabled = false
 
 func _on_button_pressed():
-	return
+
 	if Global.onTalk or Global.onFight:
 		return
 
@@ -93,7 +93,6 @@ func complete_task(chapter_id, task_id):
 
 
 func _on_button_mouse_entered():
-	return
 	player = get_tree().current_scene.get_node("player")
 	var distance = self.position.distance_to(player.position)
 	if !Global.onFight:
@@ -105,11 +104,14 @@ func _on_button_mouse_exited():
 	Global.onButton = false
 
 func _on_button_button_down():
-	return
 	if talked or Global.onPet:
 		return
-	if name == "小师弟" or name == "小师弟2" or name == "小师弟3":
+	if name == "小师弟" or name == "小师弟2" or name == "小师弟3" or name == "野鬼1"or name == "野鬼2"or name == "野鬼3"or name == "野鬼4"or name == "野鬼5":
 		talked = true
+		
+		
+		
+		
 	if Global.onTalk or Global.onFight :
 		return	
 	
