@@ -135,7 +135,6 @@ func useItem():
 		Global.onMenuItemUsing = false
 		Global.onItemSelect = true		
 		if Global.currMenuItem == "避祸香囊":
-			print(Global.onSkipFight)
 			if Global.onSkipFight == true:
 				Global.baseChance = 0
 				Global.onSkipFight = false
@@ -157,8 +156,8 @@ func useItem():
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addMp = 0
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addCritChance = 0
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addBlockChance = 0
-			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).potential = (FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).level - 1 + Global.totalPotentialBall) * 5 
-	
+			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).potential = (FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).level - 1 + Global.totalPotentialBall) * 5 * Global.enKey
+			print(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).level - 1)
 	for key in FightScenePlayers.consumeItem.keys():
 		if FightScenePlayers.consumeItem[key]["number"] == 0:
 			FightScenePlayers.consumeItem.erase(key)

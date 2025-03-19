@@ -37,6 +37,17 @@ set Global.onTalk = true
 	
 传梦: 好了再多说一句就要惹人烦了，通过后面这个传送点开始游戏吧😎
 set Global.triggerPlace.get("新手警告").disable = true
+传梦: 对了，你可以选择跳到最新章节哦
+
+- 不跳
+	传梦: 感谢您的支持！
+- 跳到第五章
+	set Global.skipChapter()
+
+
+
+
+
 set Global.onTalk = false
 => END	
 	
@@ -648,6 +659,7 @@ set Global.currNpc = null
 
 ~ 鱼叟告别
 set Global.onTalk = true
+set Global.addGold(200)
 鱼叟: ...
 鱼叟: [speed=0.4]今天怎么来这么晚？
 时追云: [speed=0.4]实不相瞒，我昨日被妖怪所伤，

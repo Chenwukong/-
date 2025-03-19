@@ -658,10 +658,11 @@ func _process(delta):
 				buffTarget.get_node("getHitEffect").modulate = "ffffff"	
 		
 		
-		for target in Global.onHitEnemy:
-			if target.canSee == false:
-				Global.dealtDmg = 0			
+		for target in Global.onHitEnemy:	
 			if is_instance_valid(target):
+				if target.canSee == false:
+					Global.dealtDmg = 0						
+				
 				if target.onIce:
 					target.currHp -= round(Global.dealtDmg * Global.damageReward1/2)
 					target.get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg/2))
@@ -1910,14 +1911,13 @@ func _on_button_mouse_exited():
 	self.self_modulate = "ffffff"
 func checkIncreaseDmg(magic):
 	for i in Global.onHitEnemy:
-		print(i)
+
 		if is_instance_valid(i):
 			if i.name == "时追云" or i.name == "姜韵" or i.name == "敖雨" or i.name == "敖阳" or i.name == "大海龟" or i.name == "小二" or i.name == "金甲" or i.name == "凌若昭":
 				return 1
 			elif i.type == "龙" and magic.name == "飞剑决":
 				return 2
 			elif i.type == "鬼" and magic.name == "破暗":
-				print(3)
 				return 5
 			else:
 				return 1

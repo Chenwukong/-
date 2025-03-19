@@ -57,7 +57,7 @@ var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3},
 						"鹰孽大王":{"name":"天火陨石","round":4}
 						,"堕逝":{"name":"风雨雷电","round":4}
 						,"黑山":{"name":"硝爆","round":4}
-						
+						,"鬼将军":{"name":"血傀","round":4}						
 						
 						
 						}
@@ -116,6 +116,17 @@ var bigMagics ={
 		"effectingNum": 1,
 		"animationArea":"enemy",
 		"audio": "res://Audio/SE/049-Explosion02.ogg"
+	},	
+	"血傀":{
+		"name": "血傀",
+		"attackType": "range",
+		"damage": 1000, 
+		"cost": 50,
+		"description": "群体法术",
+		"effectArea": "single",
+		"effectingNum": 2,
+		"animationArea":"enemy",
+		"audio": "res://Audio/SE/140-Darkness03.ogg"
 	},	
 }
 @export var shader_material: ShaderMaterial

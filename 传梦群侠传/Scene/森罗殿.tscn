@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://blodpbo8mdboi"]
+[gd_scene load_steps=54 format=3 uid="uid://blodpbo8mdboi"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_odwne"]
 [ext_resource type="Texture2D" uid="uid://cbcnw2svkwpe2" path="res://Panoramas/门派_地府_森罗殿.jpg" id="2_apr6k"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://dm2e5cic2nwj8" path="res://Characters/钟馗.png" id="31_lriet"]
 [ext_resource type="Texture2D" uid="uid://l87gwp2sf5x8" path="res://Battlers/阎罗王.png" id="32_oksws"]
 [ext_resource type="Texture2D" uid="uid://bboru8arunoji" path="res://Characters/判官.png" id="33_5eohd"]
+[ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="33_v4u0q"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-403, 85, 2802, 72, 2797, 2478, -398, 1229, -396, 2487, -403, 1493)
@@ -230,6 +231,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_cil7c"]
+atlas = ExtResource("33_v4u0q")
+region = Rect2(0, 288, 55, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_208yi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cil7c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="森罗殿" type="Node2D"]
 script = ExtResource("1_odwne")
 
@@ -239,7 +255,7 @@ texture = ExtResource("2_apr6k")
 
 [node name="player" parent="." instance=ExtResource("3_8dpx2")]
 z_index = 2
-position = Vector2(1641, 1420)
+position = Vector2(1617.45, 1431)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -603,7 +619,7 @@ npcName = "孟婆"
 
 [node name="钟馗" parent="." instance=ExtResource("28_f8j4n")]
 visible = false
-position = Vector2(1352, 1362)
+position = Vector2(1201.6, 1294.09)
 sprite_frames = SubResource("SpriteFrames_m87ll")
 npcName = "钟馗"
 
@@ -618,6 +634,12 @@ position = Vector2(953, 1272)
 sprite_frames = SubResource("SpriteFrames_a2yyq")
 frame_progress = 0.928033
 npcName = "判官"
+
+[node name="姜韵2" type="AnimatedSprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.501961)
+position = Vector2(1161.44, 1364.62)
+sprite_frames = SubResource("SpriteFrames_208yi")
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

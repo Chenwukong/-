@@ -1,10 +1,10 @@
-[gd_scene load_steps=73 format=3 uid="uid://frxncl1mjcfg"]
+[gd_scene load_steps=73 format=3 uid="uid://cfaw8vlqou6hh"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_1coat"]
 [ext_resource type="Texture2D" uid="uid://c4wra1axneov7" path="res://Panoramas/地府_地狱迷宫3.jpg" id="2_a8ovj"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_3mh1k"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_mv5ra"]
-[ext_resource type="AudioStream" uid="uid://d1uulbkvstjwq" path="res://Audio/BGM/神龙窟.mp3" id="5_caofd"]
+[ext_resource type="AudioStream" uid="uid://blkdub6dgyrb6" path="res://Audio/BGM/鬼城.mp3" id="5_37qcm"]
 [ext_resource type="Texture2D" uid="uid://cg3do1v80f43m" path="res://Panoramas/地府_地狱迷宫3_2.png" id="6_crdj7"]
 [ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="7_cnbc2"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_c0kqq"]
@@ -363,6 +363,7 @@ visibility_layer = 2
 script = ExtResource("4_mv5ra")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(2381, 1930, 1666, 1935, 1611, 1853, 1556, 1829, 1509, 1743, 960, 1840, 885, 1804, 743, 1862, 450, 1862, 209, 1896, 80, 1844, 10, 1789, 18, 1630, 66, 1610, 90, 1520, 125, 1463, 121, 1300, 38, 1210, 36, 1134, 255, 1123, 300, 1067, 272, 1013, 196, 889, 76, 887, 11, 879, 24, 704, 323, 657, 484, 653, 664, 627, 759, 616, 882, 606, 992, 587, 1195, 470, 1383, 393, 1456, 379, 1609, 428, 1754, 500, 1903, 510, 2021, 515, 2115, 507, 2153, 497, 2278, 372, 2339, 323, 2396, 309, 2395, 444, 2320, 573, 2196, 697, 1919, 786, 1777, 919, 1620, 964, 1366, 953, 1072, 955, 898, 933, 762, 867, 613, 829, 466, 856, 335, 896, 372, 985, 431, 1049, 488, 1081, 611, 1114, 759, 1187, 888, 1279, 969, 1331, 964, 1405, 996, 1439, 1163, 1451, 1341, 1438, 1492, 1446, 1625, 1437, 1681, 1405, 1795, 1402, 1978, 1292, 2114, 1273, 2199, 1244, 2298, 1250, 2313, 1299, 2388, 1363, 2395, 1506, 1815, 1533, 1773, 1652, 1690, 1703, 1722, 1780, 1775, 1795, 1875, 1756, 2009, 1746, 2070, 1751, 2115, 1767, 2267, 1832, 2339, 1869, 2388, 1913)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -370,7 +371,7 @@ polygon = PackedVector2Array(1241, 629, 1139, 698, 1217, 770, 1426, 794, 1568, 7
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("5_caofd")
+stream = ExtResource("5_37qcm")
 volume_db = 8.072
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -608,6 +609,7 @@ offset_right = 3501.0
 offset_bottom = 2910.0
 
 [node name="DirectionalLight2D3" type="DirectionalLight2D" parent="."]
+visible = false
 position = Vector2(-21, -6)
 color = Color(0.117647, 0.117647, 0.117647, 1)
 energy = 5.7
@@ -742,17 +744,17 @@ position = Vector2(1682, 959)
 scale = Vector2(1.61525, 1.61525)
 texture = ExtResource("32_wcvs3")
 
-[node name="进回忆" parent="." instance=ExtResource("33_iblw4")]
+[node name="进回忆3" parent="." instance=ExtResource("33_iblw4")]
 visible = false
 position = Vector2(2261, 405)
 triggerEvent = "进回忆"
 
-[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
+[node name="CollisionShape2D" parent="进回忆3/Area2D" index="0"]
 position = Vector2(49, 31)
 shape = SubResource("RectangleShape2D_qh01q")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0705882, 0.0705882, 0.0705882, 1)
+color = Color(0.309804, 0.309804, 0.309804, 1)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -774,4 +776,4 @@ color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 [editable path="鬼潇潇"]
 [editable path="小二"]
 [editable path="小二/小二"]
-[editable path="进回忆"]
+[editable path="进回忆3"]

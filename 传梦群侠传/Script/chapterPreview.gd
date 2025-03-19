@@ -13,8 +13,14 @@ func _ready():
 		3: 
 			$Panel/Label.text = "第三章:  灵台仙闻"
 		4:
-			$Panel/Label.text = "第四章:  祸影流殇"
+			$Panel/Label.text = "第四章:  无妄妖祸"
+		5:
+			$Panel/Label.text = "第五章:  鬼蜮迷途"
+		6:
+			$Panel/Label.text = "第六章:  魅情实切"
 	
+		
+		
 	
 	$Timer.start()
 
@@ -36,4 +42,8 @@ func _on_timer_timeout():
 			Global.mapPlayerPos = Vector2(-1046, 283)			
 		4:
 			get_tree().change_scene_to_file("res://Scene/"+"东海沉船"+".tscn")	
-		
+		5:
+			get_tree().change_scene_to_file("res://Scene/"+"阴阳洞"+".tscn")			
+		6:
+			Global.dial = "凌若昭回忆"
+			get_tree().change_scene_to_file("res://Scene/"+"两界山"+".tscn")	

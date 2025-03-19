@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bl43rcbwnejms"]
+[gd_scene load_steps=39 format=3 uid="uid://bl43rcbwnejms"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_o0vpu"]
 [ext_resource type="Texture2D" uid="uid://caq4xw5f7puj2" path="res://Panoramas/1.png" id="2_5xjk5"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://1qngqb40scr2" path="res://Characters/蛟龙.png" id="20_0fc12"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="21_4s6jd"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="22_bkmco"]
+[ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="23_4fqgx"]
+[ext_resource type="PackedScene" uid="uid://b26xijjbntyeb" path="res://Scene/鬼帝化身.tscn" id="24_s04wf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_qah27"]
 vertices = PackedVector2Array(4592, 82, 4563, 1943, 1132, 1966, -771, 1956, -780, 1306, -793, 91)
@@ -443,6 +445,17 @@ triggerEvent = "到地府入口"
 libraries = {
 "": SubResource("AnimationLibrary_d8vvd")
 }
+
+[node name="姜韵2" parent="." instance=ExtResource("23_4fqgx")]
+visible = false
+modulate = Color(1, 1, 1, 0.619608)
+position = Vector2(1001, 409)
+animation = &"default"
+
+[node name="鬼帝化身" parent="." instance=ExtResource("24_s04wf")]
+visible = false
+position = Vector2(1071, 326)
+autoplay = "面中"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

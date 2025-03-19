@@ -21,7 +21,8 @@ func _ready():
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	if talked:
+		visible = false
 		
 	if self.visible == false:
 		$npcBody/CollisionPolygon2D.disabled = true
@@ -54,7 +55,7 @@ func _on_button_pressed():
 		#DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
 		var dialogue_index = npc["current_dialogue_index"]	
 		var dialogue_entry = npc["dialogues"][dialogue_index]
-		print(dialogue_entry)
+	
 		DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(npcName))		
 		
 		get_tree().current_scene.get_node("player")

@@ -1,3 +1,36 @@
+~ 阴阳洞
+set Global.onTalk = true
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=5]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+set FightScenePlayers.healAll()
+时追云: [speed=0.5]永不见光明的黑暗...
+[next=1]
+时追云: [speed=0.5]已经过去了多久了...
+[next=1]
+时追云: [speed=0.5]旁边的恶鬼还在想把我拖入深渊
+[next=1]
+时追云: [speed=0.5]那个女鬼还在诉说她的悲惨经历吗...
+[next=1]
+时追云: [speed=0.5]她真的很惨，但在我听她说了上千次之后，也有点不耐烦了
+[next=1]
+时追云: [speed=0.5]我为什么在这里...
+[next=1]
+时追云: [speed=0.5]我...是谁？
+[next=1]
+时追云: [speed=0.5]...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]...
+神秘声音: [speed=0.5]时追云，快醒来！！！
+set get_tree().change_scene_to_file("res://Scene/"+"地府"+".tscn")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+
+
+set Global.atNight = true
+set Global.onTalk = false
+=> END
+
 ~ 醒来
 set Global.onTalk = true
 set Global.cantShow.append("两界山")
@@ -21,7 +54,7 @@ set Global.cantShow.append("两界山")
 敖雨: [speed=0.5]唉，知道你是头倔牛了，那我先休息了，打架的时候再叫我
 时追云: [speed=0.5]嗯
 时追云: [speed=0.5](嗯？怎么娘子给我的这盏灯到地府自动就发亮了，到了地府居然都能亮吗)
-
+set Global.dial = null
 set Global.onTalk = false
 => END
 
@@ -84,6 +117,7 @@ set Global.onTalk = false
 
 ~ 初见阎罗王
 set Global.onTalk = true
+set Global.cantShow.erase("地府")
 阎罗王: [speed=0.5]你是哪个鬼魂，迷路飘到这里来了吗
 判官: [speed=0.5]嘶，大人，此人似乎阳寿未尽
 时追云: [speed=0.5]在下确实还没死
@@ -133,6 +167,8 @@ set get_tree().current_scene.get_node("player").position = Vector2(557,1218)
 钟馗: [speed=0.5]我不知道你谢我做什么，赶紧走吧
 set Global.questHint = "四处看看"
 set Global.cantShow.erase("两界山")
+set Global.cantShow.erase("轮回司")
+
 set Global.triggerPlace.get("真离开地府").disable = false
 
 set Global.onTalk = false
@@ -140,13 +176,14 @@ set Global.onTalk = false
 
 ~ 真离开地府
 set Global.onTalk = true
+
 你确定要离开吗？
 - 走吧
 	set get_tree().change_scene_to_file("res://Scene/"+"结局1"+".tscn")
 	set Global.dial = "真离开地府"
 	啊？你还真走啊，那请看结局
 - 绝对不走！
-
+	set Global.cantShow.append("两界山")
 set Global.triggerPlace.get("真离开地府").disable = true
 set Global.onTalk = false
 => END
@@ -200,7 +237,9 @@ set Global.npcVis.get("轮回司").get("地藏菩萨").visible = true
 
 [next=2]
 set Global.npcVis.get("轮回司").get("地藏菩萨").visible = false
+set Global.cantShow.erase("轮回之门")
 set Global.changeScene("地府", Vector2(1705,1327))
+
 set Global.onTalk = false
 => END
 
@@ -287,9 +326,9 @@ set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("rightStan
 阎罗王: [speed=0.5]哼，我和他们无仇无怨的动他们作甚，他们是因为喝了孟婆汤，慢慢失去了这一世的记忆
 时追云: [speed=0.5](孟婆汤，还好我没喝...)
 
-set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/BGM/SWD5 临敌.mp3")
-set get_tree().current_scene.get_node("oneTimeSound").play()
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").playing = false
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/SWD5 临敌.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
 阎罗王: [speed=0.5]倒是你，执意不走，看来我只好打断你的腿把你丢出去了！
 时追云: [speed=0.5]来吧！
 阎罗王: [speed=0.5]鬼寂...
@@ -340,12 +379,11 @@ set Global.onTalk = true
 时追云: [speed=0.5]对了，我娘子她头发异色，偏绿
 阎罗王: [speed=0.5]真的是她！惊愕
 时追云: [speed=0.5]？
-判官: [speed=0.5]三年前，有个我们意想不到的女子来到了地府
-判官: [speed=0.5]为什么说意想不到呢，因为以她的身份，她根本不可能来到地府
-判官: [speed=0.5]而因为她比较特殊，即便生死簿上有她的名字，我们也没法给她轮回
+判官: [speed=0.5]三年前，有个我们很奇怪的女子来到了地府
+判官: [speed=0.5]即便生死簿上有她的名字，我们也没法给她轮回
 时追云: [speed=0.5]什么意思？这世上还有你们地府无法掌管的人吗？
-set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——特殊事件二 - 1.《大侠立志传》游戏音乐BGM纯享版——特殊事件二(Av570749068,P1).mp3")
-set get_tree().current_scene.get_node("oneTimeSound").play()
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——特殊事件二 - 1.《大侠立志传》游戏音乐BGM纯享版——特殊事件二(Av570749068,P1).mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云惊: [speed=0.5]等等，按照你们这么说，她真的还在地府！
 阎罗王: [speed=0.5]我们不能管的生物多了，比如那些妖怪，神仙，以及上古大神的后裔...
 阎罗王: [speed=0.5]至于她是什么情况，我们就不清楚了
@@ -359,7 +397,7 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 时追云怒: [speed=0.5]地府深处难道不是处于你们的管辖吗？为什么还会有什么鬼帝占山为王
 阎罗王: [speed=0.5]这是我们地府的秘密，与你无关
 时追云: [speed=0.5]怎么去地府深处
-阎罗王: [speed=0.5]你疯了？那里可不像这里一样平和，到处都是魑魅恶鬼，你一个人去那里只是死路一条
+阎罗王: [speed=0.5]你疯了？那里可不像这里一样平和，到处都是恶鬼，你一个人去那里只是死路一条
 阎罗王: [speed=0.5]你也该死心了，去那里的鬼魂永远也出来了！
 时追云: [speed=0.5]如果我失败了，那也不过是多一个永远出不来的鬼魂罢了
 时追云: [speed=0.5]如果我知道了她的位置而不去救她，那便是违背了我的诺言，抛弃了糟糠之妻
@@ -376,6 +414,9 @@ set Global.cantShow.erase("地府迷宫1")
 	
 
 ~ 第一次遇鬼
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onHurry = false
 set Global.onTalk = true
 set Global.canLose = true
 时追云惊: 什么东西过来了！
@@ -450,7 +491,7 @@ set Global.changeDirection("upStand")
 时追云: [speed=0.5]是何仙法？
 钟馗: [speed=0.5]开阳灼灼破阴邪，万象昭昭显本真。赤霄长明妖魅散，一念乾坤万鬼沉。
 钟馗: [speed=0.5]开阳！
-set get_tree().current_scene.get_node("鬼火/effects").visible = true
+set get_tree().current_scene.get_node("鬼火/effects/开阳").visible = true
 set get_tree().current_scene.get_node("鬼火/effects/开阳").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/HEAL13.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
@@ -481,13 +522,13 @@ set get_tree().current_scene.get_node("堕逝鬼魂").visible = true
 钟馗: [speed=0.5]事情没你想的那么简单。如果只是那些孤魂野鬼那我们自然可以冲进去超度他们，但地狱深处有的可不只是那群小鬼
 时追云: [speed=0.5]地狱深处。。。鬼帝吗，那东西很强吗？
 钟馗: [speed=0.5]那是我见过最邪门的东西，很强。我见过的鬼比我见过的人还多，但那东西，我只是远远瞥了一眼便已经心胆俱裂了。
-钟馗: [speed=0.5]据地藏菩萨说那玩意无法被消灭，只能关押
-钟馗: [speed=0.5]而那怪物自从三年前尝试过后也安静了许多，想必也是怕了。但如果是我，阎君，地藏菩萨其中一个进去，那么恐怕又会引发大战，索性放弃那一段区域
+钟馗: [speed=0.5]据地藏菩萨说那玩意无法被消灭，只能关押在那封眠
+钟馗: [speed=0.5]但如果是我，阎君，地藏菩萨其中一个进去，那他估计会感知到并且醒来，恐怕又会引发大战，所以我们索性放弃那一段区域
 钟馗: [speed=0.5]这是一种危险的制衡状态。
 时追云: [speed=0.5]那你们也联系不到天庭吗？
 钟馗: [speed=0.5]天庭，情况应该和我们相似，但是情况应该更糟糕，连一点消息都没有
 时追云惊: [speed=0.5]那群妖怪那么强吗？
-钟馗: [speed=0.5]说是妖怪，但其实我们也并不直到，天庭在对付着什么
+钟馗: [speed=0.5]说是妖怪，但其实我们也并不知到，天庭在对付着什么
 钟馗: [speed=0.5]只知道三年前天庭突然聚集各种仙家，并且封锁了前往天庭的路，只留下必须在人间的神职人员
 时追云: [speed=0.5]事情居然严重到这种地步了
 钟馗: [speed=0.5]索性事情还没有到最糟糕的底部，起码我们目前没有见到有东西从天上下来
@@ -505,13 +546,13 @@ set get_tree().current_scene.get_node("堕逝鬼魂").visible = true
 时追云: [speed=0.5]可你为什么会觉得我能做到这些
 钟馗: [speed=0.5]凭你那不撞南墙不回头的勇气，哈哈哈哈哈
 钟馗: [speed=0.5]你再仔细听我念一遍开阳的口诀....
-set get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "时追云学会开阳！"
-set get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true
+#set get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "时追云学会开阳！"
+#set get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
 [next=5]
 set Global.changeDirection("leftStand")
 set get_tree().current_scene.get_node("player").position = Vector2(666,1333)
-set get_tree().current_scene.get_node("ghosts").visible = true
+
 set get_tree().current_scene.get_node("钟馗3").visible = false
 set get_tree().current_scene.get_node("钟馗2").visible = false
 set get_tree().current_scene.get_node("鬼火").visible = false
@@ -523,9 +564,11 @@ set get_tree().current_scene.get_node("鬼火").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
 set FightScenePlayers.learnMagic("时追云","破暗")
 set FightScenePlayers.learnMagic("时追云","开阳")
-set get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "时追云学会破暗！"
-set get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true
-[next=5]
+set Global.questHint = "和钟馗谈话"
+#set get_tree().current_scene.showMsg("时追云学会破暗！")
+set Global.npcs.get("钟馗").dialogues[2].unlocked = true
+set Global.cantShow.append("地府迷宫1")
+[next=3]
 
 
 set Global.onTalk = false
@@ -536,9 +579,11 @@ set Global.onTalk = true
 钟馗: [speed=0.5]嗯，这些日子你招式练的不错了
 钟馗: [speed=0.5]这样吧，你去抓五只游魂来给我，试试看你现在的能耐如何
 时追云: [speed=0.5]好，我去去就来！
+
+set FightScenePlayers.healAll()
 set Global.npcVis.get("地府").get("野鬼").visible = true
-
-
+set Global.questHint = "抓五只鬼"
+set Global.npcs.get("钟馗").dialogues[3].unlocked = true
 set Global.onTalk = false
 => END
 
@@ -547,6 +592,8 @@ set Global.onTalk = false
 set Global.onTalk = true
 if Global.quests.get("抓鬼").get("野鬼") < 5:
 	钟馗: [speed=0.5]你还没抓够吧
+	钟馗: [speed=0.5]看你遍体鳞伤的，我来给你提提神
+	set FightScenePlayers.healAll()
 	set Global.npcs.get("钟馗").current_dialogue_index = 3
 else:
 	钟馗: [speed=0.5]我没看错你！你果然有天分！
@@ -625,15 +672,20 @@ set Global.onTalk = true
 时追云: [speed=0.5]神的范畴之外吗...
 阎罗王: [speed=0.5]你聊够了没有，赶紧出去，不要打扰我办事！
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
-[next=1]
-set Global.changeScene("地府", Vector2(293,218))
-[next=5]
+[next=3]
+set Global.npcs.get("钟馗").dialogues[4].unlocked = true
+
 set Global.dial = "钟馗"
+
+set Global.changeScene("森罗殿", Vector2(1182,1315))
 set Global.onTalk = false
 => END
 
 ~ 钟馗谈心
 set Global.onTalk = true
+#set Global.npcVis.get("森罗殿").get("钟馗").visible = true
+set get_tree().current_scene.get_node("钟馗").visible = true
+set get_tree().current_scene.get_node("player").visible = false
 阎罗王: [speed=0.5]你们和那凡人有什么仇，要送他去死
 钟馗: [speed=0.5]...
 钟馗: [speed=0.5]我并不想他死，相反的，我很看中他
@@ -657,14 +709,14 @@ set Global.onTalk = true
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
 [next=1]
 set Global.changeScene("地府", Vector2(293,218))
-[next=5]
-set Global.dial = "钟馗"
+
 
 set Global.onTalk = false
 => END
 
 ~ 钟馗送行
 set Global.onTalk = true
+set Global.cantShow.erase("地府迷宫1")
 set Global.changeDirection("downStand")
 set get_tree().current_scene.get_node("钟馗2").visible = true
 钟馗: [speed=0.5]你要记住,莫要在里面迷了心智，里面现在有着什么妖魔鬼怪，没人清楚
@@ -677,7 +729,7 @@ set get_tree().current_scene.get_node("钟馗2").visible = true
 钟馗: [speed=0.5]莫说这些丧气话，速去速回
 时追云: [speed=0.5]嗯
 set Global.changeDirection("upStand")
-set get_tree().change_scene_to_file("res://Scene/"+"仙缘洞天"+".tscn")
+set Global.changeScene("仙缘洞天", Vector2(1635,1053))
 set Global.dial = "回忆"
 set Global.onTalk = false
 => END
@@ -702,20 +754,9 @@ set Global.onTalk = true
 小男孩: [speed=0.5]好饿。。。
 小姜韵: [speed=0.5]你说什么？
 小男孩: [speed=0.5]肚子。。。好饿
-小姜韵: [speed=0.5]噫？怎么晕倒了
-set Global.onTalk = false
-=> END
-
-~ 回忆1回3
-set Global.onTalk = true
-小姜韵: [speed=0.5]你，你是谁啊
-小姜韵: [speed=0.5]为什么躺在地上？
-小男孩: [speed=0.5]好饿。。。
-小姜韵: [speed=0.5]你说什么？
-小男孩: [speed=0.5]肚子。。。好饿
 set get_tree().current_scene.get_node("小男主").play("倒地")
 [next=1]
-小姜韵: [speed=0.5]噫？怎么晕倒了
+小姜韵: [speed=0.5]噫？睡着了？
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
 [next=5]
 set Global.changeScene("姜韵家",Vector2(407,302))
@@ -723,7 +764,7 @@ set Global.onTalk = false
 => END
 
 
-~ 回忆1回4
+~ 回忆1回3
 set Global.onTalk = true
 小男孩: [speed=0.5]谢谢，我吃饱了
 小姜韵: [speed=0.5]嘻嘻，看你吃了那么多，一定是我煮的东西很好吃咯
@@ -786,7 +827,7 @@ set Global.onTalk = false
 
 ~ 进回忆2 
 set Global.onTalk = true
-set get_tree().change_scene_to_file("res://Scene/"+"仙缘洞天"+".tscn")
+set get_tree().change_scene_to_file("res://Scene/"+"姜韵家"+".tscn")
 set Global.dial = "回忆2"
 set Global.onTalk = false
 => END
@@ -868,7 +909,7 @@ set get_tree().current_scene.get_node("小女主").visible = true
 小姜韵: [speed=0.5]对了对了，我带你去看我们村里的芦苇，可好看啦
 小追云: [speed=0.5]好
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
-[next=5]
+[next=4]
 set get_tree().current_scene.get_node("小男主3").visible = true
 set get_tree().current_scene.get_node("小女主2").visible = true
 set get_tree().current_scene.get_node("player").position = Vector2(3348,1558)
@@ -884,7 +925,7 @@ set get_tree().current_scene.get_node("player").position = Vector2(3348,1558)
 小姜韵: [speed=0.5]呼~呼~呼，没什么没什么，走吧，带你去看别的地方
 小追云: [speed=0.5]哦
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
-[next=5]
+[next=3]
 set get_tree().current_scene.get_node("player").position = Vector2(3745,2338)
 set get_tree().current_scene.get_node("小男主4").visible = true
 set get_tree().current_scene.get_node("小女主3").visible = true
@@ -902,7 +943,7 @@ set get_tree().current_scene.get_node("小女主3").visible = true
 小姜韵: [speed=0.5]呼呼，不逛了，回家！
 小追云: [speed=0.5](她怎么又生气了)
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
-[next=5]
+[next=3]
 set Global.changeScene("姜韵家",Vector2(407,302))
 set Global.onTalk = false
 => END
@@ -921,7 +962,7 @@ set get_tree().current_scene.get_node("婆婆").visible = true
 小姜韵: [speed=0.5]好吧，我答应婆婆就是了
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
 [next=5]
-set get_tree().change_scene_to_file("res://Scene/"+"地府迷宫2"+".tscn")
+set Global.changeScene("地府迷宫2", Vector2(2253,1958))
 set Global.dial = "地府回忆"
 set Global.onTalk = false
 => END
@@ -940,13 +981,17 @@ set Global.onTalk = false
 ~ 进回忆3
 set Global.onTalk = true
 set Global.dial = "回忆3"
-set get_tree().change_scene_to_file("res://Scene/"+"仙缘洞天"+".tscn")
+set Global.changeScene("仙缘洞天",Vector2(4063, 26))
 
 set Global.onTalk = false
 => END
 
 ~ 回忆3回1
 set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
+set Global.onTeamPet.erase("大海龟")
+set Global.onTeamSmallPet.erase("小鹿")
+set Global.onTeamSmallPet.erase("敖雨")
 set Global.onTeamPlayer = []
 set Global.onTeamPlayer.append("小追云")
 set get_tree().current_scene.get_node("小男主5").visible = true
@@ -961,7 +1006,7 @@ set get_tree().current_scene.get_node("小女主4").visible = true
 小姜韵: [speed=0.5]哼嗯？？？
 小追云: [speed=0.5]但是我不能让你有危险，所以我也去吧
 小姜韵: [speed=0.5]嘻嘻，那走吧
-set get_tree().change_scene_to_file("res://Scene/"+"仙缘洞"+".tscn")
+set Global.changeScene("仙缘洞",Vector2(1332,705))
 
 	
 set Global.onTalk = false
@@ -996,6 +1041,7 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 小姜韵: [speed=0.5]啊啊啊啊
 小追云: [speed=0.5]糟糕！韵儿快躲我后面！
 set Global.canLose = true
+set Global.atNight = false
 set get_tree().current_scene.bossFight("机关兽","res://Audio/BGM/【战斗】传说开始的地方.mp3", "回忆3")
 set get_tree().current_scene.get_node("CanvasLayer2").visible = false
 
@@ -1015,6 +1061,8 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 小姜韵: [speed=0.5]不行！我不能丢下你逃跑！
 小追云: [speed=0.5]如果你出事了，我也没理由活着了
 小姜韵: [speed=0.5]追云，我也一样，我不会再让你一个人了！除非我死了！
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/女神2.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 小追云: [speed=0.5]韵儿，我怕再也没机会和你说了，我一直。。。我一直都很喜欢你！
 小姜韵: [speed=0.5]追云我...我也是。
 小姜韵: [speed=0.5]不知道从什么时候开始，我每天起来第一件事就是想见你
@@ -1026,6 +1074,8 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 机关兽: [speed=0.5]吼！！！！
 set get_tree().current_scene.get_node("婆婆").visible = true
 婆婆: [speed=0.5]停！
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = null
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 机关兽: [speed=0.5]牟
 婆婆: [speed=0.5]散！
 set get_tree().current_scene.get_node("机关兽").play("散开")
@@ -1041,24 +1091,34 @@ set get_tree().current_scene.get_node("机关兽").play("散开")
 婆婆: [speed=0.5]唉，也罢，既然你这么想知道我们在这里做什么，明天我便带你来这，告诉你一切
 小姜韵: [speed=0.5]真的吗
 婆婆: [speed=0.5]当知道了真相之后，希望你不要后悔
-set get_tree().change_scene_to_file("res://Scene/"+"地府迷宫3"+".tscn")
 set Global.dial = "地府回忆"
+set Global.atNight = true
+set Global.onTeamPlayer.erase("小追云")
+set Global.changeScene("地府迷宫3",Vector2(2021,1821))
 
-set Global.onTalk = false
+
+set Global.onTalk = false 
 => END
 
 ~ 地府回忆3
 set Global.onTalk = true
+set Global.onTeamPet.append("大海龟")
+set Global.onTeamSmallPet.append("小鹿")
+set Global.onTeamSmallPet.append("敖雨")
+set Global.onTeamPlayer.append("时追云")
 时追云: [speed=0.5]婆婆当年到底和你说了什么呢？
 时追云: [speed=0.5]而这和为什么我们离开村子有关吗？
 时追云: [speed=0.5]为什么你后来就性格大变，不再活泼了呢?
-set Global.dial = "回忆4"	
+set Global.dial = "回忆4"
 set Global.onTalk = false
 => END
 
 
 ~ 进回忆4
 set Global.onTalk = true
+set Global.atNight = true
+set Global.dial = "回忆4"
+
 set get_tree().change_scene_to_file("res://Scene/"+"成亲"+".tscn")
 
 set Global.onTalk = false
@@ -1100,7 +1160,9 @@ set Global.onTalk = false
 
 ~ 回忆4回2
 set Global.onTalk = true
+set Global.onBigPicture = false
 set get_tree().current_scene.get_node("TextureRect").visible = true
+set Global.npcVis.get("时追云家").get("姜韵").visible = true
 时追云: [speed=0.5]娘子，你还是不肯告诉我当初为什么要离开仙缘村吗
 时追云: [speed=0.5]为什么我醒来的时候，我们就已经离开仙缘村了
 姜韵: [speed=0.5]夫君，别再问了，我们现在这样就很好了不是吗
@@ -1109,7 +1171,7 @@ set get_tree().current_scene.get_node("TextureRect").visible = true
 时追云: [speed=0.5]但我会用一生抚平你眼角的忧伤
 姜韵: [speed=0.5]夫君~
 set Global.dial = "地府回忆"
-set get_tree().change_scene_to_file("res://Scene/"+"地府迷宫4"+".tscn")
+set Global.changeScene("地府迷宫4", Vector2(277,1832))
 
 set Global.onTalk = false
 => END
@@ -1118,12 +1180,13 @@ set Global.onTalk = false
 set Global.onTalk = true
 时追云怒: [speed=0.5]可恶！为什么到处都找不到
 时追云: [speed=0.5]只能往更深处去找找看了
+set Global.dial = null
 set Global.onTalk = false
 => END
 
 ~ 进回忆5
 set Global.onTalk = true
-set Global.changeScene("地府监狱",Vector2(-176, 305))
+set Global.changeScene("地府监狱",Vector2(-505, 2494))
 set Global.dial = "地府决战"
 set Global.onTalk = false
 => END
@@ -1131,12 +1194,13 @@ set Global.onTalk = false
 ~ 女主回归
 set Global.onTalk = true
 set get_tree().current_scene.get_node("player").visible = false
+set get_tree().current_scene.get_node("player/Camera2D").position = Vector2(303,-2060)
 姜韵哀: [speed=0.5]夫君...为什么我感觉到了你的气息
 姜韵哀: [speed=0.5]日日思念导致我已经出现了幻觉了吗
 姜韵哀: [speed=0.5]有我给他的避妖符，他应该不会出事...
 姜韵哀: [speed=0.5]不知道他有没有一个人好好的...
 set get_tree().change_scene_to_file("res://Scene/"+"地府监狱"+".tscn")
-set Global.dial = null
+
 set Global.onTalk = false
 => END
 
@@ -1245,17 +1309,339 @@ set get_tree().current_scene.bossFight("鬼将军","res://Audio/BGM/天地劫 �
 set Global.onTalk = false
 => END
 
-
-
 骷刹: [speed=0.5]
-
 
 ~ 打败鬼将军
 set Global.onTalk = true
-时追云怒: 破暗！开阳！
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/天地劫 幽城幻剑录 - 破暗 [TubeRipper.cc].ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 8
+
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=1]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+set get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
+set get_tree().current_scene.get_node("player/Sprite2D").visible = false
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(13.5)
+时追云怒: 破暗！
+时追云怒: 开阳！
+set Engine.time_scale = 0.7
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("AnimationPlayer").play("开阳")
+set get_tree().current_scene.get_node("鬼将/effects/破暗").visible = true
+set get_tree().current_scene.get_node("鬼将/effects/破暗").play()
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/HEAL13.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=0.7]
+set get_tree().current_scene.get_node("怨蛛群").visible = false
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/081-Monster03.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+[next=1]
+set Engine.time_scale = 1
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+姜韵恐: [speed=0.5]居然照亮了整个监牢！
+
+时追云: [speed=0.5](刚才太暗没仔细看，那边居然还有个人，隐藏在那群鬼怪之间了吗？)
+时追云: [speed=0.5]你是谁？
+
+set get_tree().current_scene.get_node("AnimationPlayer").play("姜韵move")
+时追云: [speed=0.5]你不会就是鬼帝吧
+骷刹: [speed=0.5]鬼帝怎么会亲自出来对付一只蝼蚁，我乃骷刹，是鬼帝名下的鬼王之一
+时追云: [speed=0.5]刚才为何不出手？
+骷刹: [speed=0.5]你是问我为什么要看着鬼将军和怨蛛们死？
+骷刹: [speed=0.5]他们本来就死过了
+骷刹: [speed=0.5]我何必要急着出手？生死辗转，你灭杀了一群鬼，将来还会有无数的鬼,他们是杀不尽的
+时追云: [speed=0.5]怨蛛？他们看着不像是一般鬼魂
+骷刹: [speed=0.5]他们是我的作品，我把一些没用的人的灵魂挤压蹂躏，抛出一切杂质，只剩下怨恨，他们会吞噬所看到的一切生灵
+时追云: [speed=0.5]我游历江湖，目前为止，你是我见过最恶心的东西之一了
+骷刹: [speed=0.5]呵呵呵呵，多谢谬赞，你很不错，如果做成怨蛛的话一定很不错
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0妖族阴谋.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+骷刹: [speed=0.5]以为自己单枪匹马杀进这里来能做点什么，以为还能救走鬼帝的祭品，以为还能离开这里
+骷刹: [speed=0.5]还以为已经杀死鬼将军的话，再灭杀我也不是什么难事
+骷刹: [speed=0.5]虽然不知道你哪来的勇气，但是，你得死了
+
+
+set get_tree().current_scene.get_node("AnimationPlayer").play("鬼王变大")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=0.5]
+set get_tree().current_scene.get_node("骷刹").play("施法")
+
+set get_tree().current_scene.get_node("ColorRect").visible = true
+set get_tree().current_scene.get_node("CanvasModulate").color = "ff0000"
+[next=1]
+set get_tree().current_scene.get_node("骷刹").play("default")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+
+时追云惊: [speed=0.5]在地府里面怎么会下雨！！？？
+姜韵恐: [speed=0.5]这恐怕不是雨...这是鬼气
+姜韵恐: [speed=0.5]如此恐怖的气息...和刚才完全不一样
+时追云: [speed=0.5](糟糕，刚才对付鬼将军已经很吃力了，而这鬼王的实力更是深不可测)
+骷刹: [speed=0.5]你们不过来的话，我可要过去了
+时追云怒: [speed=0.5](怎么办，只能拼死了吗，但是实力相差过于悬殊了，这还不是我能够对付的级别)
+时追云惊: [speed=0.5]对了！
+set Engine.time_scale = 0.4
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/血肉果汁機 藝級玩家 - 打開太陽 打鬼PAGUI遊戲原聲帶 高音質動態歌詞Lyrics [TubeRipper.cc].ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(5)
+
+set get_tree().current_scene.get_node("AnimationPlayer").play("鬼王move")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=3]
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 12
+set get_tree().current_scene.get_node("player/effects/道具").visible = true
+set get_tree().current_scene.get_node("player/effects/道具").play()
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/HEAL11.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=1]
+set get_tree().current_scene.get_node("钟馗").visible = true
+[next=1]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+set Engine.time_scale = 1
+时追云惊: [speed=0.5]钟前辈！莫非这锦囊
+
+钟馗: [speed=0.5]哈哈哈哈，很有趣的法术吧，传闻是一名叫逆天魔的人所创的
+钟馗: [speed=0.5]贸然进来肯定会在中途被鬼帝发现，所以我一直藏匿身形与保命锦囊跟随你进来
+骷刹: [speed=0.5]钟馗，是你！
+钟馗: [speed=0.5]欺负小辈，你也堕落了啊
+骷刹: [speed=0.5]我的眼里只有鬼帝的敌人
+骷刹: [speed=0.5]你觉得你出来就能打得过我了吗，那老家伙没来，你只是来寻死
+钟馗: [speed=0.5]这话也送给你，鬼帝没醒，你算什么东西！
+钟馗: [speed=0.5]追云你做得很好，帮我扫平了一切障碍，接下来就交给我吧！
+钟馗: [speed=0.5]神打术！请神！
+set get_tree().current_scene.get_node("钟馗").play("请神")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=3]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+时追云惊: [speed=0.5]神打术，用这招不是会有副作用吗
+钟馗: [speed=0.5]肉体凡胎使用神打术自然有伤身体，而神明之躯就不一样了！
+姜韵喜: [speed=0.5]以神明之躯请神！
+骷刹: [speed=0.5]雕虫小技！
+钟馗: [speed=0.5]是吗
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("钟馗").play("攻击")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/049-Explosion02.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=2]
+set get_tree().current_scene.get_node("AnimationPlayer").play("鬼王被击退")
+[next=1]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+时追云惊: [speed=0.5]好惊人的力量
+姜韵喜: [speed=0.5]鬼王被击退了！
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("钟馗").play("施法")
+
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+钟馗: 雨停！
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+
+
+
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/法术16.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=1]
+set get_tree().current_scene.get_node("CanvasModulate").visible = false
+set get_tree().current_scene.get_node("ColorRect").visible = false
+[next=1]
+set get_tree().current_scene.get_node("player/Camera2D").position = Vector2(701,46)
+set get_tree().current_scene.get_node("骷刹").position = Vector2(1365,682)
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/017-Jump03.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=0.4]
+set get_tree().current_scene.get_node("钟馗").position = Vector2(966,563)
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/017-Jump03.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=1]
+set get_tree().current_scene.get_node("钟馗").play("施法")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/法术16.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("骷刹/effects/阎罗令").visible = true
+set get_tree().current_scene.get_node("骷刹/effects/阎罗令").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/妖怪-哈~.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+[next=5]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+时追云惊: [speed=0.5]那座塔！
+姜韵: [speed=0.5]怎么？
+时追云: [speed=0.5]不知道是不是我的错觉，我感觉钟馗前辈请神之后手中的那座塔很像我在长安见到的锁妖塔
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set get_tree().current_scene.get_node("骷刹").play("攻击")
+[next=2]
+set get_tree().current_scene.get_node("骷刹").play("施法")
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/法术9.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set get_tree().current_scene.get_node("钟馗/effects/毒瘴").visible = true
+set get_tree().current_scene.get_node("钟馗/effects/毒瘴").play()
+
+set get_tree().current_scene.get_node("钟馗").play("施法")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/法术16.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("钟馗/buff/护体").visible = true
+set get_tree().current_scene.get_node("钟馗/buff/护体").play()
+[next=2]
+set get_tree().current_scene.get_node("骷刹").play("施法")
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/法术9.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set get_tree().current_scene.get_node("钟馗/effects/毒瘴").visible = true
+set get_tree().current_scene.get_node("钟馗/effects/毒瘴").play()
+[next=1]
+set get_tree().current_scene.get_node("钟馗").play("施法")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/法术16.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("骷刹/effects/阎罗令").visible = true
+set get_tree().current_scene.get_node("骷刹/effects/阎罗令").play()
+
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/妖怪-哈~.ogg")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+[next=2]
+set get_tree().current_scene.get_node("骷刹").play("default")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+钟馗: [speed=0.5]践踏生命，玩弄灵魂
+钟馗: [speed=0.5]骷刹，你可有想过今日！
+钟馗: [speed=0.5]我以地府的名义，判你灰飞烟灭。
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+
+set get_tree().current_scene.get_node("宝塔").visible = true
+set get_tree().current_scene.get_node("宝塔").play("default")
+[next=1.7]
+set get_tree().current_scene.get_node("宝塔").visible = false
+[next=0.5]
+set Engine.time_scale = 0.5
+
+set get_tree().current_scene.get_node("钟馗").position = Vector2(1300,700)
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/017-Jump03.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set get_tree().current_scene.get_node("钟馗").play("攻击")
+[next=1]
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/049-Explosion02.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+[next=1]
+set get_tree().current_scene.get_node("AnimationPlayer").play("鬼王die")
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/Ghost_scream_2.mp3")
+set get_tree().current_scene.get_node("oneTimeSound").play()
+set Engine.time_scale = 1
+[next=5]
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
+钟馗: [speed=0.5]人为恶，天诛之，鬼为恶，吾诛之！
+时追云惊: [speed=0.5]钟前辈一直深藏不露啊
+姜韵喜: [speed=0.5]灭杀的太快了，骷刹到灰飞烟灭之前都没反应过来到底怎么回事吧
+set get_tree().current_scene.get_node("player/Camera2D").position = Vector2(0,0)
+set get_tree().current_scene.get_node("钟馗").position = Vector2(48,400)
+set get_tree().current_scene.get_node("钟馗").play("李靖")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/017-Jump03.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+钟馗: [speed=0.5]没你们想的那么轻松，再多打一会我也就坚持不住了
+[next=1]
+set get_tree().current_scene.get_node("钟馗").play("变回")
+[next=2]
+钟馗: [speed=0.5]我们得赶紧走了，它的气息正在苏醒
+时追云: [speed=0.5]可是这里有结界
+钟馗: [speed=0.5]困不住我，闭上眼睛，我带你们出去。
+时追云: [speed=0.5]好
+[next=3]
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/017-Jump03.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+
+set get_tree().current_scene.get_node("钟馗").visible = false
+set get_tree().current_scene.get_node("player").visible = false
+set get_tree().current_scene.get_node("姜韵2").visible = false
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=5]
+set get_tree().current_scene.get_node("AnimationPlayer").play("鬼帝移动")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = null
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+
+[next=2]
+
+set Global.changeScene("森罗殿",Vector2(1137,1309))
+set Global.dial = "地府决战"
+set Global.onTalk = false
+=> END
+
+~ 回森罗殿
+set Global.onTalk = true
+
+set get_tree().current_scene.get_node("姜韵2").visible = true
+set get_tree().current_scene.get_node("钟馗").visible = true
+阎罗王: [speed=0.5]什么！！？？骷刹被干掉了？？
+阎罗王: [speed=0.5]鬼帝醒了？？？！！！？？？
+阎罗王: [speed=0.5]......
+姜韵: [speed=0.5]他这是怎么了？
+判官: [speed=0.5]唉，大人是一下子惊吓太多，暂时缓不过来
+钟馗: [speed=0.5]至于吗
+阎罗王: [speed=0.5]你说至于吗！！！
+阎罗王: [speed=0.5]杀掉骷刹也就罢了，好歹是减少了敌方战力，你还把鬼帝给惊醒了！！
+钟馗: [speed=0.5]意料之外的事情
+阎罗王: [speed=0.5]你骗鬼呢！你早就预谋好了要这么做吧！
+钟馗: [speed=0.5]对
+阎罗王: [speed=0.5]你！
+钟馗: [speed=0.5]但我不相信我这么做的话地藏菩萨会不知道
+阎罗王: [speed=0.5]...
+钟馗: [speed=0.5]他都默许了你还有什么好说
+阎罗王: [speed=0.5]地府也不是他一个人说了算，如果开战死的都是我们的好将领
+钟馗: [speed=0.5]天庭的情况已经不容乐观了，我们不能再耗下去了！什么都不牺牲只会失去更多！
+时追云: [speed=0.5]...
+钟馗: [speed=0.5]这次我们好歹是主动出击让他们元气大伤，要是等他们配合妖怪攻打我们，你觉得我们还能有胜算吗？
+阎罗王: [speed=0.5]...
+阎罗王: [speed=0.5]哼，判官，去清点兵数
+判官: [speed=0.5]是！
+钟馗: [speed=0.5]哈哈哈哈哈哈哈
+阎罗王: [speed=0.5]无关人等可以离开地府了
+时追云: [speed=0.5]我可以帮你们
+钟馗: [speed=0.5]这是我们地府的事，你还有自己的事要做，不要忘记你的承诺
+时追云: [speed=0.5]那我娘子该如何还阳？
+阎罗王: [speed=0.5]我会在阴阳洞那边给你们打开一个特殊洞口，穿过去就算还阳，不会再被地府限制，但她肉身已消，你要自己想办法
+时追云: [speed=0.5]...
+钟馗: [speed=0.5]人间尚存能生死人肉白骨的仙家，你走之后不妨去找找
+时追云: [speed=0.5]多谢告知！
+姜韵喜: [speed=0.5]小女多谢几位仙家！
+阎罗王: [speed=0.5]好了，赶紧走吧
+
+[next=1]
+set get_tree().current_scene.get_node("player").visible = false
+set get_tree().current_scene.get_node("姜韵2").visible = false
+
+
+
+[next=1]
+钟馗: [speed=0.5]打开能让鬼魂还阳的通道，不那么容易的吧
+阎罗王: [speed=0.5]我只是感谢他帮了我们这么大忙而已
+钟馗: [speed=0.5]你确定不是因为在他行囊里闻到了孙大圣的味道？哈哈哈哈哈
+阎罗王: [speed=0.5]。。。你闭嘴！！	
+set Global.questHint = "回人间"
+set Global.changeScene("两界山", Vector2(1062,444))
+set Global.onTalk = false
+=> END
+
+~ 回人间
+set Global.onTalk = true
+set Global.npcVis.get("两界山").get("凌若昭").visible = false
+set get_tree().current_scene.get_node("小二").visible = false
+set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("rightStandd")
+set get_tree().current_scene.get_node("姜韵2").visible = true
+时追云: [speed=0.5]阳光照射到你身上不会对你灵魂造成损伤吗？
+姜韵喜: [speed=0.5]好像没什么事，应该是阎罗王他们暗自帮的忙
+时追云: [speed=0.5]不曾想到头来倒是欠了他的情
+姜韵喜: [speed=0.5]好久没见到这人世间的花草树木了
+时追云喜: [speed=0.5]这里不算好看，我之后带你去长安逛逛
+姜韵喜: [speed=0.5]好，那我们快走吧
+set get_tree().current_scene.get_node("姜韵2").visible = false
+set get_tree().current_scene.get_node("player").visible = false
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = null
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+set get_tree().current_scene.get_node("鬼帝化身").visible = true
+[next=2]
+set Global.current_chapter_id = 6
+
+set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
+
+
 
 set Global.onTalk = false
 => END
+
 
 
 
@@ -1268,6 +1654,7 @@ set get_tree().current_scene.get_node("scaryFace").visible = true
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=2]
 set get_tree().current_scene.get_node("scaryFace").visible = false
+set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 set Global.npcVis.get("地府迷宫2").get("鬼潇潇").visible = false	
 时追云: [speed=0.5]。。。
 时追云: [speed=0.5]这些鬼魅的变化之法真是令人防不胜防

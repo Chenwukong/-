@@ -31,10 +31,10 @@ func callFightScenePlayerData():
 			
 	return playerDataList
 var keyItem = {
-	"洗髓丹":{
-		"info": ItemData.keyItem.get("洗髓丹"),
-		"number": 5
-	},
+#	"洗髓丹":{
+#		"info": ItemData.keyItem.get("洗髓丹"),
+#		"number": 5
+#	},
 }
 var consumeItem = {
 	"佛手":{
@@ -43,7 +43,7 @@ var consumeItem = {
 	},
 	"佛跳墙":{
 		"info": ItemData.consume.get("佛跳墙"),
-		"number": 5
+		"number": 100
 	},
 	"西瓜":{
 		"info": ItemData.consume.get("西瓜"),
@@ -75,19 +75,19 @@ var bagArmorItem = {
 		"number": 1,
 		"added": false
 	},
-	"黄金剑":{
-		"info": ItemData.weapon.get("黄金剑"),
-		"type": "weapon",
-		"number": 2,
-		"added": false
-	},
-	"碧玉剑":{
-		"info": ItemData.weapon.get("碧玉剑"),
-		"type": "weapon",
-		"number": 1,
-		"added": false
-	},
-
+#	"黄金剑":{
+#		"info": ItemData.weapon.get("黄金剑"),
+#		"type": "weapon",
+#		"number": 2,
+#		"added": false
+#	},
+#	"碧玉剑":{
+#		"info": ItemData.weapon.get("碧玉剑"),
+#		"type": "weapon",
+#		"number": 1,
+#		"added": false
+#	},
+#
 	"布衣":{
 		"info": ItemData.cloth.get("布衣"),
 		"type": "cloth",
@@ -107,48 +107,48 @@ var bagArmorItem = {
 		"number": 1,	
 		"added": false	
 	},
-	"护身符":{
-		"info": ItemData.accessories.get("护身符"),
-		"type": "accessories",
-		"number": 1,	
-		"added": false	
-	},	
-	"江湖夜雨":{
-		"info": ItemData.accessories.get("江湖夜雨"),
-		"type": "accessories",
-		"number": 2,	
-		"added": false	
-	},
-	"精钢剑":{
-		"info": ItemData.weapon.get("精钢剑"),
-		"type": "weapon",
-		"number": 1,	
-		"added": false	
-	},
-	"赤铁双剑":{
-		"info": ItemData.weapon.get("赤铁双剑"),
-		"type": "weapon",
-		"number": 1,	
-		"added": false	
-	},
-	"面具":{
-		"info": ItemData.hat.get("面具"),
-		"type": "hat",
-		"number": 1,
-		"added": false
-	},
-	"珍珠头带":{
-		"info": ItemData.hat.get("珍珠头带"),
-		"type": "hat",
-		"number": 1,
-		"added": false
-	},	
-	"皮鞋":{
-		"info": ItemData.shoes.get("皮鞋"),
-		"type": "shoes",
-		"number": 2,	
-		"added": false	
-	},	
+#	"护身符":{
+#		"info": ItemData.accessories.get("护身符"),
+#		"type": "accessories",
+#		"number": 1,	
+#		"added": false	
+#	},	
+#	"江湖夜雨":{
+#		"info": ItemData.accessories.get("江湖夜雨"),
+#		"type": "accessories",
+#		"number": 2,	
+#		"added": false	
+#	},
+#	"精钢剑":{
+#		"info": ItemData.weapon.get("精钢剑"),
+#		"type": "weapon",
+#		"number": 1,	
+#		"added": false	
+#	},
+#	"赤铁双剑":{
+#		"info": ItemData.weapon.get("赤铁双剑"),
+#		"type": "weapon",
+#		"number": 1,	
+#		"added": false	
+#	},
+#	"面具":{
+#		"info": ItemData.hat.get("面具"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},
+#	"珍珠头带":{
+#		"info": ItemData.hat.get("珍珠头带"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},	
+#	"皮鞋":{
+#		"info": ItemData.shoes.get("皮鞋"),
+#		"type": "shoes",
+#		"number": 2,	
+#		"added": false	
+#	},	
 
 
 
@@ -839,23 +839,74 @@ var fightScenePlayerData2= {
 		"autoAttack": "姜韵autoAttack",
 		"magicAutoAttack": "",
 		"playerMagic": [
-			{
+				{
 				"name": "回春术",
 				"level": 1,
 				"currExp": 49,
 				"needExp": 50,
 				"attackType": "buff",
-				"buffEffect": ["currHp"],
-				"value": 400,
-				"cost": 10,
-				"description": "回复血量并提升攻击",
+				"buffEffect": ["currHp",], 
+				"value": 1000,
+				"cost": 30,
+				"description": "回复血量",	
 				"effectArea": "single",
 				"effectingNum": 1,
-				"animationArea": "allie",
+				"animationArea":"allie",
 				"audio": "res://Audio/SE/108-Heal04.ogg",
 				"duration": 3,
-				"icon": "res://Icons/●图标 (16).png"
-			}
+				"icon":"res://Icons/●图标 (16).png",
+			},
+				{
+				"name": "凝气",
+				"level": 1,
+				"currExp": 49,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currStr",], 
+				"value": 80,
+				"cost": 10,
+				"description": "提高伤害",	
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea":"allie",
+				"audio": "res://Audio/SE/108-Heal04.ogg",
+				"duration": 3,
+				"icon":"res://Icons/●图标 (16).png",
+			},			
+			
+			
+			{
+				"name": "一苇渡江",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currPlayerSpeed"], 
+				"value": 130,
+				"cost": 100,
+				"description": "提升速度",	
+				"effectArea": "aoe",
+				"animationArea":"allie",
+				"effectingNum": 2,
+				"duration": 4,
+				"audio": "res://Audio/SE/133-Wind02.ogg",
+				"icon":"res://Icons/●图标 (77).png",
+			},
+			
+			
+			{
+				"name": "回魂术",
+				"attackType": "buff",
+				"buffEffect": ["alive"], 
+				"cost": 10,
+				"description": "复活一个友军",	
+				"effectArea": "single",
+				"animationArea":"allie",
+				"effectingNum": 1,
+				"duration": 2,
+				"audio": "res://Audio/SE/法术5.ogg",
+				"icon":"res://Icons/●图标 (84).png"
+			},
 		],
 		"autoAttackSound": "res://Audio/SE/女-中性-出手.ogg",
 		"attackOnEnemySound": "res://Audio/SE/法术1.ogg",
@@ -972,7 +1023,7 @@ var fightScenePlayerData2= {
 		"addMp": 0 * Global.enKey,
 		"currHp": 2000,
 		"currMp": 300,
-		"potential": 30 * Global.enKey,
+		"potential": 35 * Global.enKey,
 		"idle": "小二idle",
 		"autoAttack": "小二autoAttack",
 		"magicAutoAttack": "",
@@ -1036,7 +1087,7 @@ var fightScenePlayerData2= {
 		"addMp": 0 * Global.enKey,
 		"currHp": 160,
 		"currMp": 100,
-		"potential": 60 * Global.enKey,
+		"potential": 70 * Global.enKey,
 		"idle": "凌若昭idle",
 		"autoAttack": "凌若昭autoAttack",
 		"magicAutoAttack": "凌若昭magicAutoAttack",
@@ -1045,7 +1096,7 @@ var fightScenePlayerData2= {
 				"name": "五雷咒",
 				"attackType": "range",
 				"damageSource": "AP",
-				"value": 2.8,
+				"value": 5,
 				"cost": 100,
 				"description": "引来天雷轰杀单体敌人",
 				"effectArea": "single",
@@ -1284,7 +1335,73 @@ var fightScenePlayerData2= {
 			"accessories": null
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
-	}
+	},
+	"小追云":{
+			"name": "小追云",
+			"sex": "male",
+			"icon": "res://portrait/小追云.png",
+			"smallIcon":"res://portrait/小追云.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 0,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 1,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 0,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 500,
+			"addHp": 0,
+			"addMp":0,
+			"mp": 100,
+			"currHp": 200,
+			"currMp": 200,
+			"potential": 0,
+			"idle": "小追云idle",
+			"autoAttack":'小追云autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"小追云magicAutoAttack",
+			"playerMagic": [
+			{
+				"name": "小试牛刀",
+				"attackType": "melee",
+				"damageSource": "AD",
+				"value": 1,
+				"cost": 10,
+				"description": "江湖伎俩",
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea": "enemy",
+				"audio": "res://Audio/SE/暗雷.ogg",
+				"icon": "res://Icons/龙卷雨击.png"
+			},				
+			
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/虎锤.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},	
+			
+	
 }
 
 
@@ -1304,7 +1421,7 @@ var fightScenePlayerData = {
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 50,
+			"level": 1,
 			"exp": 0,
 			"needExp":100 ,
 			"magicDeense": 5,
@@ -1322,7 +1439,7 @@ var fightScenePlayerData = {
 			"mp": 100,
 			"currHp": 20000,
 			"currMp": 100,
-			"potential": 100,
+			"potential": 0,
 			"idle": "时追云idle",
 			"autoAttack":'时追云autoAttack',
 			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
@@ -1345,71 +1462,7 @@ var fightScenePlayerData = {
 				"duration": 3,
 				"icon":"res://Icons/●图标 (64).png",
 			},
-				{
-				"name": "横扫千军",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "multi",
-				"multiHitTimes": 3,
-				"damageSource": "AD",
-				"duration": 1,
-				"value": 1.6, 
-				"cost": 50,
-				"description": "全力攻击三次，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"audio": "res://Audio/SE/男-剑.ogg",
-				"icon": "res://Icons/●图标 (11).png",
-			},
-			{
-				"name": "破暗",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "melee",
-				"value": 2,
-				"cost": 30,
-				"description": "对鬼怪敌人造成额外伤害",	
-				"effectArea": "single",
-				"animationArea":"screen",
-				"audio": "res://Audio/SE/男-剑.ogg",
-				"icon": "res://Icons/●图标 (23).png"
-			},
-				{
-				"name": "开阳",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "special",
-				"multiHitTimes": 8,
-				"effectingNum": 8,
-				"damageSource": "AD",
-				"duration": 1,
-				"value": 1.6, 
-				"cost": 50,
-				"description": "让所有鬼怪无所遁形",
-				"effectArea": "single",
-				"animationArea":"enemy",
-				"audio": "res://Audio/SE/HEAL13.ogg",
-				"icon": "res://Icons/●图标 (8).png",
-			},
-			{
-					"name": "高等炼体术",
-					"currExp": 0,
-					"needExp": 50,
-					"attackType": "passive",
-					"buffEffect": ["currPhysicDefense", "currMagicDefense","currPlayerSpeed","currStr"], 
-					"value": 100,
-					"cost": 10,
-					"description": "被动提高双抗，伤害，速度，血量，仙能。不可使用",	
-					"effectArea": "aoe",
-					"animationArea":"allie",
-					"effectingNum": 4,
-					"duration": 3,
-					"audio": "res://Icons/●图标 (89).png",
-					"icon":"res://Icons/●图标 (85).png"
-				},
+
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
@@ -1482,7 +1535,7 @@ var fightScenePlayerData = {
 				"needExp": 50,
 				"attackType": "buff",
 				"buffEffect": ["currPlayerSpeed"], 
-				"value": 100,
+				"value": 130,
 				"cost": 10,
 				"description": "提升速度",	
 				"effectArea": "aoe",
@@ -1605,7 +1658,7 @@ var fightScenePlayerData = {
 			"addCritChance":0,
 			"blockChance":0,
 			"addBlockChance": 0,
-			"level": 90,
+			"level": 10,
 			"exp": 0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1623,7 +1676,7 @@ var fightScenePlayerData = {
 			"addMp":0,
 			"currHp": 2000,
 			"currMp": 300,
-			"potential": 100* Global.enKey,
+			"potential": 45 ,
 			"idle": "小二idle",
 			"autoAttack":'小二autoAttack',
 			"magicAutoAttack": "",
@@ -1643,15 +1696,7 @@ var fightScenePlayerData = {
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/鸟语花香.ogg",
 				"icon": "res://Icons/●图标 (14).png"
-			},{
-				"name": "千机变",
-				"attackType": "special",
-				"value": 2,				
-				"animationArea": "enemy",
-				"cost": 10,
-				"description": "小二模仿并释放上一次队友使用的技能",	
-				"icon": "res://Icons/●图标 (91).png",
-			},				
+			},			
 
 			# Add more magic spells as needed
 			],
@@ -2182,7 +2227,7 @@ func update_status():
 							"needExp": 50,
 							"attackType": "range",
 							"damageSource": "AD",
-							"value": 2.2,
+							"value": 1.8,
 							"cost": 30,
 							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
 							"effectArea": "single",
@@ -2559,5 +2604,5 @@ func decrypt(value):
 
 func healAll():
 	for i in fightScenePlayerData:
-		fightScenePlayerData[i].currHp = fightScenePlayerData[i].addHp + fightScenePlayerData[i].hp
-		fightScenePlayerData[i].currMp = fightScenePlayerData[i].addMp + fightScenePlayerData[i].mp
+		fightScenePlayerData[i].currHp = decrypt(fightScenePlayerData[i].addHp) + fightScenePlayerData[i].hp
+		fightScenePlayerData[i].currMp = decrypt(fightScenePlayerData[i].addMp) + fightScenePlayerData[i].mp

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://52y84m40yd20"]
+[gd_scene load_steps=50 format=3 uid="uid://52y84m40yd20"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_10c2g"]
 [ext_resource type="Texture2D" uid="uid://dog7ecwhqyf8i" path="res://panoramas2/长寿民居.jpg" id="2_nq0oh"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://drhx7wtbu5lfa" path="res://Characters/无痕小-倒地2.png" id="17_y5pwp"]
 [ext_resource type="Texture2D" uid="uid://bm4n05ag6u7he" path="res://Characters/绣红-小.png" id="18_i6yyn"]
 [ext_resource type="Texture2D" uid="uid://co7au51jyu3vo" path="res://Characters/孙婆婆.png" id="20_27exd"]
+[ext_resource type="Shader" path="res://shader/仙缘洞天.gdshader" id="21_aav67"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="21_aijqv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
@@ -235,6 +236,12 @@ _data = {
 "追逐": SubResource("Animation_j5xp8"),
 "黑山送剑": SubResource("Animation_u2csc")
 }
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ev0ia"]
+shader = ExtResource("21_aav67")
+shader_parameter/blur_amount = 0.804
+shader_parameter/memory_intensity = 1.0
+shader_parameter/memory_color = Color(0, 0, 0, 1)
 
 [node name="姜韵家" type="Node2D"]
 script = ExtResource("1_10c2g")
@@ -520,6 +527,14 @@ npcName = "婆婆"
 libraries = {
 "": SubResource("AnimationLibrary_ofbxr")
 }
+
+[node name="TextureRect" type="ColorRect" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_ev0ia")
+offset_left = -983.0
+offset_top = -646.0
+offset_right = 3568.0
+offset_bottom = 2316.0
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

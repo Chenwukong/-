@@ -1,0 +1,255 @@
+~ this_is_a_node_title
+
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => this_is_a_node_title
+- End the conversation => END
+Nathan: For more information see the online documentation.
+
+=> END
+
+~ 凌若昭回忆1
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
+set Global.npcVis.get("两界山").get("小二").visible = true
+set Global.npcVis.get("两界山").get("凌若昭").visible = true
+凌若昭哭: [speed=0.5]他自己一个人去了
+小二: [speed=0.5]老大他是怕我们会出事，他为什么总是这样！
+凌若昭哀: [speed=0.5]那现在怎么办？
+小二: [speed=0.5]你还能再打开这个结界吗？
+凌若昭哀: [speed=0.5]近期内是不可能的了
+小二: [speed=0.5]...
+小二: [speed=0.5]如果我们的实力能再强一点的话，说不定老大就不会一直想着要保护我们了
+凌若昭哭: [speed=0.5]都怪我以前没好好练习法术
+小二: [speed=0.5]你已经很厉害了，我才是一直在拖后腿...
+小二: [speed=0.5]老大说过，直面战斗，就能变得更强。
+凌若昭: [speed=0.5]你的意思是
+小二: [speed=0.5]在这干等也没什么意义，等老大出来我们还是帮不上忙
+小二: [speed=0.5]大唐官府每天都要镇压全国的妖怪侵袭，我们去他们那帮忙的话，不仅可以提升实战经验，还能救人！
+凌若昭喜: [speed=0.5]小二你真聪明，那我们走吧
+小二: [speed=0.5]嗯！
+set Global.changeScene("大唐官府大厅", Vector2(515,387))
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆2
+set Global.onTalk = true
+set Global.npcVis.get("大唐官府大厅").get("程咬金").visible = true
+set Global.npcVis.get("大唐官府大厅").get("小二").visible = true
+set Global.npcVis.get("大唐官府大厅").get("凌若昭").visible = true
+set get_tree().current_scene.get_node("player").visible = false
+程咬金: [speed=0.5]什么？你们要加入我们的猎妖队？但又不想入我大唐编制？
+师爷: [speed=0.5]不是不行，如果只是想帮忙的话，以江湖人员的身份加入就好了
+程咬金: [speed=0.5]你们干脆直接加入大唐军队得了！
+小二: [speed=0.5]程将军，猎妖护城固然重要，但我总觉得，跟随老大的话，能做到更深一点的事情
+小二: [speed=0.5]但他现在不在，我们总要做点实事
+凌若昭: [speed=0.5]我也不想有人死
+程咬金: [speed=0.5]嗯，其实你们的豪杰气概并不比那小子差哈哈哈哈
+程咬金: [speed=0.5]正好收到消息，有一城出了个大妖怪，你们跟我去！
+小二: [speed=0.5]好！
+凌若昭喜: [speed=0.5]走走走
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐官府内室",null)
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆3
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
+程咬金: [speed=0.5]哈哈哈哈哈，爽，又宰了一堆妖怪。
+程咬金: [speed=0.5]看来用不了多久就能把境内的妖怪全杀干净了！
+小二: [speed=0.5]老程你的三板斧还是那么猛啊
+程咬金: [speed=0.5]哼哼，那可不
+凌若昭喜: [speed=0.5]那开宴会吗
+程咬金: [speed=0.5]你这妮子还真是一直想着吃啊，哈哈哈哈，走我带你们去吃饭
+凌若昭喜: [speed=0.5]老程威武！
+
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("长安酒店二楼", null)
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆4
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
+小二: [speed=0.5]若昭你睡了吗
+凌若昭: [speed=0.5]没呢
+小二: [speed=0.5]你说老大什么时候能回来啊，这都已经过去半年多了吧
+凌若昭: [speed=0.5]我不知道啊，但我相信他回来之后一定会来找我们的！
+小二: [speed=0.5]那你这次下山这么久，你师傅那边没有说什么吗？
+凌若昭: [speed=0.5]没说什么啊，一般来说，他没给我传达消息，那就是默许我干的事了
+小二: [speed=0.5]这样啊...
+凌若昭: [speed=0.5]怎么了小二？
+小二: [speed=0.5]也不算怎么了吧，最近我心里总感觉不安，总感觉要有什么事情发生
+凌若昭: [speed=0.5]是不是最近一直打仗的原因啊
+小二: [speed=0.5]应该不是，这应该是我特有的一种感应吧
+凌若昭: [speed=0.5]嗯？什么意思啊？
+小二: [speed=0.5]若昭，如果有一天我走了，你会怎么样
+凌若昭: [speed=0.5]走？去哪？
+小二: [speed=0.5]可能会到一个所有人都找不到的地方吧
+凌若昭: [speed=0.5]为什么呀？
+小二: [speed=0.5]其实我一直有一件事情不敢和你们说，如果被人知道了的话，我可能会没有立足之地
+小二: [speed=0.5]而最近，我发现我越来越控制不住了
+凌若昭: [speed=0.5]小二，我听不懂你在说什么啦
+小二: [speed=0.5]也是，你就当我在胡说吧
+凌若昭: [speed=0.5]不过，如果有一天你藏起来了，我会去找你的
+凌若昭: [speed=0.5]不管怎么样，我都想要你陪我好好玩
+小二: [speed=0.5]若昭...我
+凌若昭哀: [speed=0.5]怎么了？
+小二: [speed=0.5]没。。。没什么
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐官府大厅", null)
+
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆5
+set Global.onTalk = true
+set get_tree().current_scene.get_node("小兵").visible =true
+set get_tree().current_scene.get_node("player").visible = false
+卫兵: [speed=0.5]大事不好了将军，守关士兵来报，四面八方都有妖怪大军的行径，他们的数量。。。起码有一万
+程咬金: [speed=0.5]你说什么？？一万只！？？
+小二: [speed=0.5]这也太多了，难道是妖盟？
+程咬金: [speed=0.5]切，果然没那么简单就灭了他们。想必是我们最近的动作太大了，那群妖怪来报复了
+师爷: [speed=0.5]这也是不得不做的拾取
+师爷: [speed=0.5]是否要从别的城池调来兵力？
+程咬金: [speed=0.5]不行，妖怪围攻，长安尚且可靠兵力抵挡，但他们要是转去攻打其他城市又当如何？
+程咬金: [speed=0.5]本来他们的兵力就不多，再调用他们的，他们可就没法挡了
+程咬金: [speed=0.5]吩咐下去，全城戒严，将士们轮班倒，时刻注意周围风吹草动。
+卫兵: 是！
+程咬金: [speed=0.5]你们
+小二: [speed=0.5]老程不要说什么废话了，我们不会走，告诉我们要做什么！
+凌若昭: [speed=0.5]嗯！
+程咬金: [speed=0.5]好，有种
+程咬金: [speed=0.5]长安分四门，任何一边出事的话后果都会很严重，所以，我要你们一人看守一门
+程咬金: [speed=0.5]除此之外，我希望你们去把金山寺的那群和尚拽下来帮忙
+小二: [speed=0.5]金山寺的和尚？他们有什么特殊的地方吗？
+师爷: [speed=0.5]他们身怀佛法，但从来不管世俗之间的事
+凌若昭: [speed=0.5]佛法？？
+师爷: [speed=0.5]嗯，我说的佛法，可不只是指的念经诵佛的能力。他们是有真的法力能够对抗妖魔的
+小二: [speed=0.5]好，我们这就去，你们一定要撑住！
+set Global.changeScene("大唐国境边缘", null)
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆6
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible =true
+小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
+凌若昭: [speed=0.5]那个金山寺应该就在这附近了
+小二: [speed=0.5]那我们快四处看看吧，长安不容乐观了
+凌若昭: [speed=0.5]嗯
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆7
+set Global.onTalk = true
+
+小二: [speed=0.5]这里就是金山寺了！
+凌若昭: [speed=0.5]好气派的寺庙啊
+小二: [speed=0.5]找是找到了，但我们要怎么才能把他们叫去帮忙呢？？
+凌若昭: [speed=0.5]得先去找他们的掌柜吧
+小二: [speed=0.5]应该是方丈吧...
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 凌若昭回忆8
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible =true
+小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
+凌若昭: [speed=0.5]那个金山寺应该就在这附近了
+小二: [speed=0.5]那我们快四处看看吧，长安不容乐观了
+凌若昭: [speed=0.5]嗯
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐国境边缘", Vector2(579, 630))
+
+
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆9
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible =true
+小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
+凌若昭: [speed=0.5]那个金山寺应该就在这附近了
+小二: [speed=0.5]那我们快四处看看吧，长安不容乐观了
+凌若昭: [speed=0.5]嗯
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐国境边缘", Vector2(579, 630))
+
+
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆10
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible =true
+小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
+凌若昭: [speed=0.5]那个金山寺应该就在这附近了
+小二: [speed=0.5]那我们快四处看看吧，长安不容乐观了
+凌若昭: [speed=0.5]嗯
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐国境边缘", Vector2(579, 630))
+
+
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆11
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible =true
+小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
+凌若昭: [speed=0.5]那个金山寺应该就在这附近了
+小二: [speed=0.5]那我们快四处看看吧，长安不容乐观了
+凌若昭: [speed=0.5]嗯
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐国境边缘", Vector2(579, 630))
+
+
+set Global.onTalk = false
+=> END
+
+~ 凌若昭回忆12
+set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible =true
+小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
+凌若昭: [speed=0.5]那个金山寺应该就在这附近了
+小二: [speed=0.5]那我们快四处看看吧，长安不容乐观了
+凌若昭: [speed=0.5]嗯
+set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
+set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+[next=4]
+set Global.changeScene("大唐国境边缘", Vector2(579, 630))
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 没有更多可说的了
+set Global.onTalk = true
+{{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END

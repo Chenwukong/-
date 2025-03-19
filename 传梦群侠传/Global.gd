@@ -7,7 +7,7 @@ var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4 }
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5  }
 var menuOut = false
 
 var onAttackingList = []
@@ -100,8 +100,8 @@ var onMultiHit = 0
 var fangCunState = 1
 var atDark = false
 var onBoss = false
-var isBoss = ["巨蛙","鹰孽","堕逝","黑山","奔霸","大鹏"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫", "森罗殿"]#"地府",]
+var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门"]#"地府",]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -115,7 +115,7 @@ var bgmList = [
 	"res://Audio/BGM/战斗-仙剑.mp3",
 	"res://Audio/BGM/战斗-任务.mp3",
 	"res://Audio/BGM/金庸-战斗.mp3",
-	"res://Audio/BGM/黄鹤遗址.ogg",
+	#"res://Audio/BGM/黄鹤遗址.ogg",
 	"res://Audio/BGM/战斗草原.mp3",
 	"res://Audio/BGM/轩辕-战斗.mp3",
 	"res://Audio/BGM/轩辕-战斗2.mp3",
@@ -141,14 +141,14 @@ var bgmList = [
 	]
 #保存的
 var questItem = {}
-var atNight = true
+var atNight = false
 var currentCamera
 var currPlayer
 var currScene
 var onTeamPlayer = ["时追云",]
 var onTeamPet = []
-var onTeamSmallPet = ["小鹿"]
-var smallPets = ["小鹿","敖雨"]
+var onTeamSmallPet = []
+var smallPets = []
 var currPlayerPos
 var currNpc = null
 var saveIndex = 0
@@ -171,7 +171,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 5
+var current_chapter_id = 1
 
 var mcVisible = true
 var npcVis = {
@@ -277,6 +277,13 @@ var npcVis = {
 	"大唐官府大厅":{
 		"程咬金": {"visible" : false},
 		"金甲": {"visible" : false},
+		"小二": {"visible" : false},		
+		"凌若昭": {"visible" : false},		
+	},	
+	"大唐官府内室":{
+		"程咬金": {"visible" : true},
+		"小二": {"visible" : true},		
+		"凌若昭": {"visible" : true},		
 	},	
 	"长安城":{
 		"警戒士兵": {"visible" : false},
@@ -458,7 +465,7 @@ var npcVis = {
 }
 var baseChance = 0
 var musicOn = true
-var enKey = 2#randi_range(1, 3000)
+var enKey = 3#randi_range(1, 3000)
 
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
@@ -1269,8 +1276,8 @@ var npcs = {
 					{"chapter": 4, "dialogue": "回方寸第二天", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 4, "dialogue": "两界山", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 4, "dialogue": "到地府入口", "unlocked": true, "bgm": null ,"trigger":false},
-					{"chapter": 4, "dialogue": "阴阳洞", "unlocked": true, "bgm": null ,"trigger":false},
-					
+					{"chapter": 5, "dialogue": "阴阳洞", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 5, "dialogue": "醒来", "unlocked": true, "bgm": null ,"trigger":false},					
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
@@ -1279,7 +1286,7 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 5, "dialogue": "初见孟婆", "unlocked": true, "bgm": null ,"trigger":false},
-					
+
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
@@ -1309,7 +1316,9 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
-	},				
+	},		
+	
+			
 	"真离开地府":{
 		"dialogues": [
 				#0
@@ -1345,14 +1354,14 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
-	},					
+	},	
+							
 	"回忆":{
 		"dialogues": [
 				#0
 					{"chapter": 5, "dialogue": "回忆1回1", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 5, "dialogue": "回忆1回2", "unlocked": true, "bgm": null ,"trigger":false},	
 					{"chapter": 5, "dialogue": "回忆1回3", "unlocked": true, "bgm": null ,"trigger":false},
-					{"chapter": 5, "dialogue": "回忆1回4", "unlocked": true, "bgm": null ,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
@@ -1423,6 +1432,7 @@ var npcs = {
 					{"chapter": 5, "dialogue": "地府回忆1", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 5, "dialogue": "地府回忆2", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 5, "dialogue": "地府回忆3", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 5, "dialogue": "地府回忆4", "unlocked": true, "bgm": null ,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
@@ -1444,13 +1454,29 @@ var npcs = {
 					{"chapter": 5, "dialogue": "女主回归", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 5, "dialogue": "到地府监狱", "unlocked": true, "bgm": null ,"trigger":false},
 					{"chapter": 5, "dialogue": "再见娘子", "unlocked": true, "bgm": "res://Audio/BGM/四个人的幸福时光.mp3" ,"trigger":false},
-					{"chapter": 5, "dialogue": "打败鬼将军", "unlocked": true, "bgm": "res://Audio/BGM/【时光流逝】.ogg" ,"trigger":false},
+					{"chapter": 5, "dialogue": "打败鬼将军", "unlocked": true, "bgm": "res://Audio/BGM/天地劫 幽城幻剑录 - 破暗 [TubeRipper.cc].ogg" ,"trigger":false},
+					{"chapter": 5, "dialogue": "回森罗殿", "unlocked": true, "bgm": "res://Audio/BGM/幽默 - 01.mp3" ,"trigger":false},					
+					{"chapter": 5, "dialogue": "回人间", "unlocked": true, "bgm": "res://Audio/BGM/欢乐家园.mp3" ,"trigger":false},					
+										
 					
 				],
-		"current_dialogue_index": 1,	
+		"current_dialogue_index": 0,	
 		"constNpc": false	
-	}		
-	
+	},
+	"凌若昭回忆":{
+		"dialogues": [
+				#0
+					{"chapter": 6, "dialogue": "凌若昭回忆1", "unlocked": true, "bgm": "res://Audio/BGM/轩辕剑-幽愁.mp3" ,"trigger":false},				
+					{"chapter": 6, "dialogue": "凌若昭回忆2", "unlocked": true, "bgm": null ,"trigger":false},											
+					{"chapter": 6, "dialogue": "凌若昭回忆3", "unlocked": true, "bgm": null ,"trigger":false},				
+					{"chapter": 6, "dialogue": "凌若昭回忆4", "unlocked": true, "bgm": "res://Audio/BGM/聂薇 - 墨家村-夜晚.mp3","trigger":false},				
+					{"chapter": 6, "dialogue": "凌若昭回忆5", "unlocked": true, "bgm": "res://Audio/BGM/轩辕-危机.mp3" ,"trigger":false},		
+					{"chapter": 6, "dialogue": "凌若昭回忆6", "unlocked": true, "bgm": null, "trigger":false},		
+					{"chapter": 6, "dialogue": "凌若昭回忆7", "unlocked": true, "bgm": null, "trigger":false},									
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	}			
 	
 	
 	
@@ -1534,8 +1560,14 @@ var triggerPlace ={
 	"初见孟婆": {"trigger":false, "disable": false},
 	"真离开地府": {"trigger":false, "disable": false},
 	"找罐子": {"trigger":false, "disable": false},
-	"重遇上官": {"trigger":false, "disable": false},
+	"重遇上官1": {"trigger":false, "disable": false},
+	"重遇上官2": {"trigger":false, "disable": false},	
 	"第一次遇鬼": {"trigger":false, "disable": false},
+	"进回忆": {"trigger":false, "disable": false},	
+	"进回忆2": {"trigger":false, "disable": false},			
+	"进回忆3": {"trigger":false, "disable": false},	
+	"进回忆4": {"trigger":false, "disable": false},	
+	"回忆3": {"trigger":false, "disable": false},	
 	"地府决战": {"trigger":false, "disable": false},	
 }
 
@@ -1701,9 +1733,15 @@ func loadData():
 		"到地府入口": {"trigger":false, "disable": false},
 		"初见孟婆": {"trigger":false, "disable": false},
 		"真离开地府": {"trigger":false, "disable": true},
-		"找罐子": {"trigger":false, "disable": true},
-		"重遇上官": {"trigger":false, "disable": false},	
-		"第一次遇鬼": {"trigger":false, "disable": false},	
+		"找罐子": {"trigger":false, "disable": false},
+		"重遇上官1": {"trigger":false, "disable": false},
+		"重遇上官2": {"trigger":false, "disable": false},	
+		"第一次遇鬼": {"trigger":false, "disable": false},
+		"进回忆": {"trigger":false, "disable": false},	
+		"进回忆2": {"trigger":false, "disable": false},			
+		"进回忆3": {"trigger":false, "disable": false},	
+		"进回忆4": {"trigger":false, "disable": false},			
+		"回忆3": {"trigger":false, "disable": false},			
 		"地府决战": {"trigger":false, "disable": false},	
 	}
 	# Ensure saved data has all default places, add if missing
@@ -1798,7 +1836,7 @@ func playSound(sound):
 	get_tree().current_scene.get_node("subSound").stream = load(sound)
 	get_tree().current_scene.get_node("subSound").play()
 	#get_tree().current_scene.get_node("AudioStreamPlayer2D").stop()	
-var dial =  "地府决战"
+var dial = null
 #func dialogue(dia):
 #	get_tree().current_scene.get_node("dialogueTimer").start()
 #	dial = dia
@@ -1881,3 +1919,23 @@ func changeDirection(direction):
 	get_tree().current_scene.get_node("player/Sprite2D").visible = false
 	get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
 	get_tree().current_scene.get_node("player/AnimatedSprite2D").play(direction)
+func skipChapter():
+	
+	FightScenePlayers.fightScenePlayerData["时追云"].level = 45
+	FightScenePlayers.fightScenePlayerData["时追云"].potential = 290 * Global.enKey
+	FightScenePlayers.fightScenePlayerData["时追云"].exp = 200000 * Global.enKey
+	FightScenePlayers.fightScenePlayerData["大海龟"].level = 45
+	FightScenePlayers.fightScenePlayerData["时追云"].item.weapon = ItemData.weapon.get("碧玉剑")
+	FightScenePlayers.fightScenePlayerData["时追云"].item.accessories = ItemData.accessories.get("护身符")
+	FightScenePlayers.fightScenePlayerData["时追云"].item.cloth = ItemData.cloth.get("金刚甲")	
+	FightScenePlayers.fightScenePlayerData["时追云"].item.shoes = ItemData.shoes.get("无暇靴")	
+	FightScenePlayers.fightScenePlayerData["时追云"].item.hat = ItemData.hat.get("乾坤帽")	
+	onTeamPet.append("大海龟")
+	onTeamSmallPet.append("敖雨")
+	current_chapter_id = 5
+	dial = "前往地府"
+	npcs.get("前往地府").current_dialogue_index = 4
+	changeScene("阴阳洞",null)
+	FightScenePlayers.learnMagic("时追云","高等炼体术")
+	FightScenePlayers.learnMagic("时追云","破甲术")
+	FightScenePlayers.learnMagic("时追云","横扫千军")

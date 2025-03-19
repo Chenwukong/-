@@ -22,7 +22,7 @@ set Global.dial = null
 敖雨: [speed=0.5]该死，要是让我知道有谁在下面捣乱，我非得揍他一顿
 时追云: [speed=0.5]小心点四处看看吧
 凌若昭: [speed=0.5]嗯
-
+set Global.questHint = "四处看看"
 set Global.onTalk = false
 => END
 
@@ -47,7 +47,7 @@ set Global.dial = "敖雨"
 敖雨: [speed=0.5]可恶，他们到底想干什么
 时追云: [speed=0.5]你还有什么事情没说吗
 近海恶蛟: [speed=0.5]没有了啊
-set get_tree().current_scene.get_node("近海恶蛟/effects").visible = true
+set get_tree().current_scene.get_node("近海恶蛟/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("近海恶蛟/effects/飞剑诀").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/096-Attack08.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
@@ -533,15 +533,15 @@ set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("up")
 龟丞相: [speed=0.5]你们是谁，居然敢闯进这里，不要命了是吗
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=0.5]
-set get_tree().current_scene.get_node("众妖/npc/effects").visible = true
+set get_tree().current_scene.get_node("众妖/npc/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("众妖/npc/effects/飞剑诀").play()
-set get_tree().current_scene.get_node("众妖/npc2/effects").visible = true
+set get_tree().current_scene.get_node("众妖/npc2/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("众妖/npc2/effects/飞剑诀").play()
-set get_tree().current_scene.get_node("众妖/npc3/effects").visible = true
+set get_tree().current_scene.get_node("众妖/npc3/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("众妖/npc3/effects/飞剑诀").play()
-set get_tree().current_scene.get_node("众妖/npc4/effects").visible = true
+set get_tree().current_scene.get_node("众妖/npc4/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("众妖/npc4/effects/飞剑诀").play()
-set get_tree().current_scene.get_node("众妖/npc5/effects").visible = true
+set get_tree().current_scene.get_node("众妖/npc5/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("众妖/npc5/effects/飞剑诀").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/096-Attack08.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
@@ -952,7 +952,7 @@ set Global.npcVis.get("水帘洞").get("敖雨").visible = false
 set Global.npcVis.get("水帘洞").get("小二").visible = false
 set Global.npcVis.get("水帘洞").get("凌若昭").visible = false
 set Global.cantShow.erase("花果山")
-
+set get_tree().current_scene.get_node("老猴子").visible = false
 
 set Global.onTalk = false
 => END 
@@ -1273,13 +1273,13 @@ set get_tree().current_scene.get_node("奔霸").play("default")
 奔霸: [speed=0.5]给。。。给我个痛快
 时追云红眼怒: [speed=0.5]闭嘴！
 set get_tree().current_scene.get_node("奔霸").play("hurt")
-set get_tree().current_scene.get_node("奔霸/effects").visible = true
+set get_tree().current_scene.get_node("奔霸/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("奔霸/effects/飞剑诀").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/096-Attack08.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
 [next=0.4]
 时追云红眼怒: [speed=0.5]闭嘴！
-set get_tree().current_scene.get_node("奔霸/effects").visible = true
+set get_tree().current_scene.get_node("奔霸/effects/飞剑诀").visible = true
 set get_tree().current_scene.get_node("奔霸/effects/飞剑诀").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/096-Attack08.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
@@ -1620,41 +1620,14 @@ set get_tree().current_scene.get_node("player").visible = false
 set Global.cantShow.append("地府")
 小二: 老大！！！！！！！！！
 set Global.dial = "前往地府"
+set Global.current_chapter_id = 5
 
+set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
 
-set get_tree().change_scene_to_file("res://Scene/"+"阴阳洞"+".tscn")
 set Global.onTalk = false
 => END
 
-~ 阴阳洞
-set Global.onTalk = true
 
-set get_tree().current_scene.get_node("ExampleBalloon").visible = false
-[next=5]
-set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-时追云: [speed=0.5]永不见光明的黑暗...
-[next=1]
-时追云: [speed=0.5]已经过去了多久了...
-[next=1]
-时追云: [speed=0.5]旁边的恶鬼还在想把我拖入深渊
-[next=1]
-时追云: [speed=0.5]那个女鬼还在诉说她的悲惨经历吗...
-[next=1]
-时追云: [speed=0.5]她真的很惨，但在我听她说了上千次之后，也有点不耐烦了
-[next=1]
-时追云: [speed=0.5]我为什么在这里...
-[next=1]
-时追云: [speed=0.5]我...是谁？
-[next=1]
-时追云: [speed=0.5]...
-时追云: [speed=0.5]...
-时追云: [speed=0.5]...
-神秘声音: [speed=0.5]时追云，快醒来！！！
-
-
-set get_tree().change_scene_to_file("res://Scene/"+"thank"+".tscn")
-set Global.onTalk = false
-=> END
 
 
 
@@ -1699,3 +1672,8 @@ set Global.onTalk = false
 
 
 
+~ 没有更多可说的了
+set Global.onTalk = true
+{{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END

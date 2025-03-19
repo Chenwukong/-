@@ -136,7 +136,7 @@ func skip_typing() -> void:
 
 func _play_emoji_animation(emoji: String) -> void:
 	emoji_sprite = $"../../../emoji_sprite"  # 假设场景中的 AnimatedSprite2D 节点叫做 "emoji_sprite"
-	emoji_sprite.visible = true
+	emoji_sprite.visible = false
 	emoji_sprite.play(currEmoji)
 
 

@@ -198,7 +198,7 @@ resource_name = "shake"
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -239,10 +239,10 @@ tracks/3/path = NodePath("金箍棒2:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false]
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_fa28m"]
@@ -336,7 +336,6 @@ script = ExtResource("1_a530w")
 shader = ExtResource("2_r0uvb")
 
 [node name="建业左" type="Sprite2D" parent="."]
-material = ExtResource("2_r0uvb")
 position = Vector2(4315, 1207)
 texture = ExtResource("2_a3je7")
 offset = Vector2(-2153, -82)

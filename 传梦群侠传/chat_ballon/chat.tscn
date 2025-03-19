@@ -2884,14 +2884,15 @@ script = ExtResource("1_l52tu")
 
 [node name="Balloon" type="TextureRect" parent="."]
 unique_name_in_owner = true
+self_modulate = Color(1, 1, 1, 0.619608)
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 38.0
-offset_top = -521.0
-offset_right = -225.0
-offset_bottom = 31.0
+offset_left = 31.0
+offset_top = -317.0
+offset_right = -252.0
+offset_bottom = 141.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.25055, 0.936228)
@@ -2909,6 +2910,7 @@ scale = Vector2(0.902289, 1.10824)
 texture = ExtResource("3_kxjc0")
 
 [node name="TextureRect" type="TextureRect" parent="Balloon"]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_left = 63.1721
@@ -2919,12 +2921,13 @@ scale = Vector2(0.630088, 0.584083)
 texture = ExtResource("3_iuf66")
 
 [node name="TextureRect2" type="TextureRect" parent="Balloon"]
+visible = false
 z_index = -1
 layout_mode = 0
-offset_left = 494.982
-offset_top = -162.354
-offset_right = 959.982
-offset_bottom = 411.646
+offset_left = 516.573
+offset_top = -208.283
+offset_right = 981.573
+offset_bottom = 365.717
 scale = Vector2(0.630088, 0.584083)
 texture = ExtResource("5_vlhgy")
 
@@ -2932,32 +2935,31 @@ texture = ExtResource("5_vlhgy")
 visible = false
 z_index = -1
 layout_mode = 0
-offset_left = 550.957
-offset_top = -126.038
-offset_right = 870.957
-offset_bottom = 375.962
+offset_left = 571.748
+offset_top = -177.307
+offset_right = 891.748
+offset_bottom = 324.693
 scale = Vector2(0.630088, 0.584083)
 texture = ExtResource("5_vlhgy")
 
 [node name="敖雨rect" type="TextureRect" parent="Balloon"]
-visible = false
 modulate = Color(0.784314, 0.784314, 0.784314, 1)
 z_index = -1
 layout_mode = 0
-offset_left = 379.033
-offset_top = -196.533
-offset_right = 2379.03
-offset_bottom = 1803.47
-scale = Vector2(0.276292, 0.240079)
+offset_left = 414.218
+offset_top = -248.871
+offset_right = 3970.22
+offset_bottom = 3307.13
+scale = Vector2(0.15, 0.13)
 texture = ExtResource("7_byoll")
 
 [node name="CharacterLabel" type="RichTextLabel" parent="Balloon"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 175.123
-offset_top = 90.7899
-offset_right = 778.123
-offset_bottom = 569.79
+offset_left = 150.0
+offset_top = 80.0
+offset_right = 753.0
+offset_bottom = 559.0
 mouse_filter = 1
 theme_override_fonts/normal_font = ExtResource("7_f5hwo")
 theme_override_font_sizes/normal_font_size = 30
@@ -2972,10 +2974,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 122.0
-offset_top = 175.0
-offset_right = -75.0
-offset_bottom = -46.0
+offset_left = 120.747
+offset_top = 139.923
+offset_right = -76.2531
+offset_bottom = -81.0768
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.950246, 0.751089)
@@ -3000,10 +3002,10 @@ anchor_left = 0.226
 anchor_top = 0.166
 anchor_right = 0.961
 anchor_bottom = 0.168
-offset_left = -91.3622
-offset_top = -110.858
-offset_right = -88.6823
-offset_bottom = 292.814
+offset_left = -84.4433
+offset_top = -2.32805
+offset_right = -68.1583
+offset_bottom = 239.756
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -3185,7 +3187,7 @@ autoplay = "大笑"
 
 [node name="黑边" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(531, 737)
+position = Vector2(558, 746)
 scale = Vector2(1.17812, 1.64103)
 texture = ExtResource("62_c42um")
 

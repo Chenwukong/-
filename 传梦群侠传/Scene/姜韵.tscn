@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://dd1lhpctw2jww"]
+
+[ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="1_qxql0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2msb"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(0, 0, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24pqo"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(0, 96, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0qbdm"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(0, 288, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pq6c"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(0, 0, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8abi"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(0, 192, 55, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o4ccp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2msb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24pqo")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0qbdm")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pq6c")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8abi")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="姜韵" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_o4ccp")
+animation = &"up"
+autoplay = "default"

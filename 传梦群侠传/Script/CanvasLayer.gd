@@ -66,7 +66,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	deltas = delta
-	$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
+	if Global.onSkipFight:
+		$"避".visible = true
+	else:
+		$"避".visible = false
 	$violencePoint/TextureProgressBar/Label.text = str(Global.violencePoint) + "%"
 	$violencePoint/TextureProgressBar.value = Global.violencePoint
 	if sceneName == "方寸山迷境":
@@ -87,6 +90,7 @@ func _process(delta):
 		get_tree().current_scene.get_node("player").canMove = true
 
 	if Global.onTeamSmallPet.size()>0:	
+		$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
 		$"宠物列表/饱食度/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].hungry)
 		$"宠物列表/伤害/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].str)
 		$"宠物列表/怒气/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].rage)

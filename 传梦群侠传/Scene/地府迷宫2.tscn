@@ -263,7 +263,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qx8cg"]
-size = Vector2(102, 62)
+size = Vector2(145, 102)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mtn2b"]
 atlas = ExtResource("34_24cf7")
@@ -314,6 +314,9 @@ z_index = 2
 position = Vector2(2253, 1958)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
+
+[node name="PointLight2D" parent="player" index="11"]
+energy = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -558,6 +561,7 @@ offset_right = 3501.0
 offset_bottom = 2910.0
 
 [node name="DirectionalLight2D3" type="DirectionalLight2D" parent="."]
+visible = false
 position = Vector2(-21, -6)
 color = Color(0.117647, 0.117647, 0.117647, 1)
 energy = 5.7
@@ -702,14 +706,16 @@ npcName = "鬼潇潇"
 [node name="CollisionPolygon2D" parent="鬼潇潇/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -307.47, -192.701, -272.119, -181.832, -253.404, -175.311, -235.728, -177.485, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
-[node name="进回忆" parent="." instance=ExtResource("33_mjon0")]
-visible = false
+[node name="进回忆2" parent="." instance=ExtResource("33_mjon0")]
 position = Vector2(34, 699)
-triggerEvent = "进回忆"
+triggerEvent = "进回忆2"
 
-[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
-position = Vector2(49, 31)
+[node name="CollisionShape2D" parent="进回忆2/Area2D" index="0"]
+position = Vector2(70.5, 51)
 shape = SubResource("RectangleShape2D_qx8cg")
+
+[node name="Panel" parent="进回忆2/Area2D" index="1"]
+metadata/_edit_use_anchors_ = true
 
 [node name="鬼医" parent="." instance=ExtResource("12_60w4a")]
 position = Vector2(273, 1266)
@@ -740,4 +746,4 @@ color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="鬼潇潇"]
-[editable path="进回忆"]
+[editable path="进回忆2"]

@@ -493,7 +493,7 @@ set Global.onTalk = true
 set Global.atNight = true
 
 set get_tree().current_scene.get_node("DirectionalLight2D").visible = true
-set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
+set get_tree().current_scene.get_node("player/Camera2D").enabled = false
 set get_tree().current_scene.get_node("Camera2D3").make_current()
 
 set get_tree().current_scene.get_node("小二2").visible = true
@@ -501,7 +501,6 @@ set get_tree().current_scene.get_node("警戒士兵").visible = true
 set Global.npcVis.get("长安城").get("警戒士兵").visible = true
 set Global.npcVis.get("长安城").get("小二2").visible = true
 set get_tree().current_scene.get_node("警戒士兵/金甲2").visible =true 
-set get_tree().current_scene.get_node("警戒士兵/小二2/小二").visible =true 
 金甲: [speed=0.4]你们。。。怎么看？
 小二: [speed=0.4]残忍啊，全身只剩颗头了
 时追云: [speed=0.4]应该是妖怪所为
@@ -758,6 +757,7 @@ set Global.onTalk = false
 
 ~ 交钱
 set Global.onTalk = true
+
 擂台管理: 请问这位爷是要打擂吗？
 擂台管理: 只要打赢了就会获得奖金哦
 擂台管理: 只要500两即可报名！自信
@@ -780,6 +780,7 @@ set Global.onTalk = false
 
 ~ 打赢牛冠军
 set Global.onTalk = true
+
 set get_tree().current_scene.get_node("battleBgm").stop()
 if Global.lost == false:
 	牛冠军: 啊嘞嘞，你也太强了，佩服佩服

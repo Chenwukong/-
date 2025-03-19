@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 200
+var speed = 800
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
@@ -55,7 +55,7 @@ func _process(delta):
 			Global.autoDialogue.chapter1.get("男主开头说话").trigger = true
 
 		if Global.atNight and Global.haveLantern:
-			$PointLight2D.energy = 2
+			$PointLight2D.energy = 1.5
 			$PointLight2D.visible = true
 		else:
 			$PointLight2D.energy = 0
@@ -334,7 +334,7 @@ func _unhandled_input(event):
 					raycast.get_collider().get_parent().talked = true
 				if raycast.get_collider().get_parent().name == "野鬼1"  or raycast.get_collider().get_parent().name == "野鬼2" or raycast.get_collider().get_parent().name == "野鬼3" or raycast.get_collider().get_parent().name == "野鬼4" or raycast.get_collider().get_parent().name == "野鬼5":
 					raycast.get_collider().get_parent().talked = true					
-					
+					raycast.get_collider().get_parent().visible = false
 					
 				if raycast.get_collider().get_parent().audio != "":
 					get_parent().get_node("npcAudio").stream = load(raycast.get_collider().get_parent().newStream)

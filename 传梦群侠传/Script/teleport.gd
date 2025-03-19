@@ -248,7 +248,7 @@ func checkSetPos(currScene, toScene):
 	if currScene == "傲来酒店":
 		return Vector2(2618, 2134)
 	if currScene == "傲来杂货铺":
-		return Vector2(2744, 1192)
+		return Vector2(975,2343)
 	if currScene == "傲来布店":
 		return Vector2(-371, 1299)
 	if currScene == "傲来钱庄":

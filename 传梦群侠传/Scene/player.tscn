@@ -1,4 +1,4 @@
-[gd_scene load_steps=185 format=3 uid="uid://b3dtk2snxdgij"]
+[gd_scene load_steps=202 format=3 uid="uid://b3dtk2snxdgij"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_b15sp"]
 [ext_resource type="Shader" path="res://shader/playerOutline.gdshader" id="2_jts12"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxyeth1d533k" path="res://梦魂Animation/辅助-全提升.png" id="8_hup2c"]
 [ext_resource type="Texture2D" uid="uid://bk5txr60ooe4u" path="res://梦魂Animation/#-回蓝回血.png" id="9_ahpbg"]
 [ext_resource type="Shader" path="res://shader/player.gdshader" id="10_63olt"]
+[ext_resource type="Texture2D" uid="uid://lhsyt8b3p5og" path="res://梦魂Animation/回复-命疗.png" id="11_jobqh"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
 load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
@@ -152,6 +153,11 @@ animations = [{
 }],
 "loop": true,
 "name": &"leftStand",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
 "speed": 5.0
 }, {
 "frames": [{
@@ -1259,6 +1265,119 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_prgel"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c20r6"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6ktk"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prkj1"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqkgb"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2t575"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0uoy"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqdg7"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejicr"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mlegv"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilmfi"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yei1d"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1pue"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0oj8a"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6vny"]
+atlas = ExtResource("11_jobqh")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s8pap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prgel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c20r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6ktk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prkj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqkgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2t575")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0uoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqdg7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejicr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mlegv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilmfi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yei1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1pue")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0oj8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6vny")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7ubii"]
 shader = ExtResource("10_63olt")
 shader_parameter/blood_color = Color(0.5, 0, 0, 0.21)
@@ -1364,7 +1483,12 @@ frame_progress = 1.0
 visible = false
 position = Vector2(28, -15)
 sprite_frames = SubResource("SpriteFrames_015ou")
-frame = 16
+
+[node name="道具" type="AnimatedSprite2D" parent="effects"]
+visible = false
+position = Vector2(-10, -11)
+sprite_frames = SubResource("SpriteFrames_s8pap")
+frame = 14
 frame_progress = 1.0
 
 [node name="ColorRect" type="ColorRect" parent="."]

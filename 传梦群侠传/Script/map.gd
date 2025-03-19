@@ -46,7 +46,7 @@ func update_cursor():
 
 		
 func _ready():
-
+	$AudioStreamPlayer2D.autoplay = true
 	#DisplayServer.window_set_title("传梦之路：第一章《浮生难安》")
 
 	playerPosition = get_node("player").position
@@ -84,13 +84,18 @@ func _ready():
 	if Global.dial : 
 
 		var chapter = get_chapter()
-		DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
+		var npc = Global.npcs[Global.dial]
+		var dialogue_index = npc.current_dialogue_index
+		var dialogue_entry = npc["dialogues"][dialogue_index]
+		
+		DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(Global.dial))		
+		
+		#DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 
 func _process(delta):
 	
  
 
-		
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -107,7 +112,7 @@ func _process(delta):
 			$battleBgm.stop()
 	else:
 		if !Global.onHurry:
-			$AudioStreamPlayer2D.stop()
+			$AudioStreamPlayer2D.play()
 		
 		
 	if Global.mcVisible == false:
@@ -809,26 +814,24 @@ func _process(delta):
 #	if is_instance_valid(get_node("player")):
 #		Global.currPlayerPos = get_node("player/Camera2D").get_screen_center_position()
 	
-#	if $AudioStreamPlayer2D.is_playing() == false:
-#		$AudioStreamPlayer2D.play()
+	if $AudioStreamPlayer2D.is_playing() == false:
+		$AudioStreamPlayer2D.play()
 #	if 	$nightBgm.is_playing() == false and Global.atNight:
 		#$nightBgm.play()
 	if Global.atNight:	
 			for light in get_tree().get_nodes_in_group("nightLight"):
-				light.energy = 2
+				light.energy = 1.1
 			
 			if Global.currScene != "时追云家":
-				if is_instance_valid($DirectionalLight2D):
+				if has_node("DirectionalLight2D"):
 					$DirectionalLight2D.energy = 4.7
-			else:
-				if !$AudioStreamPlayer2D.is_playing():
-					$AudioStreamPlayer2D.play()
+
 	else:
 			if $DirectionalLight2D:
 				$DirectionalLight2D.energy = 0
 			for light in get_tree().get_nodes_in_group("nightLight"):
 				light.energy = 0				
-				
+		
 #	if has_node("battleField"):
 #		var battleField = get_node("battleField/battleFieldPicture")
 #		battleField.global_position = Global.currPlayerPos
@@ -971,7 +974,7 @@ func _on_texture_button_button_down():
 
 		
 func _on_texture_button_pressed():
-	print(321)
+	pass
 
 
 
@@ -1132,19 +1135,20 @@ func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]
 	var dialogue_index = npc["current_dialogue_index"]
-
+	
 	if npc["dialogues"].size() > dialogue_index:
+		
 		var dialogue_entry = npc["dialogues"][dialogue_index]
 
-		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id :
+		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] :
 			update_npc_dialogue_index(npc_id)
+		
 			if npc["dialogues"][dialogue_index].bgm != null:
 			
 				get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load(npc["dialogues"][dialogue_index].bgm)
 				get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
-			print(dialogue_entry["dialogue"],111)
 			return dialogue_entry["dialogue"]
-		
+	
 	return "没有更多可说的了"
 
 
@@ -1811,7 +1815,7 @@ func _on_cloud_timer_timeout():
 
 func getJinGuBang():
 	$"建业左".texture = load("res://panoramas2/龙宫无棒全景.png")
-	#$AnimationPlayer.play("shake")
+	$AnimationPlayer.play("shake")
 	$shadow.texture = load("res://panoramas2/龙宫无棒全景_2.png")
 
 
@@ -1844,7 +1848,7 @@ func showMsg(value):
 func playStep():
 	for i in $Node.get_children():
 		i.play()
-		
+	
 func add_shader():
 	$"建业左".material = shader
 func remove_shader():
@@ -1855,4 +1859,5 @@ func _on_area_2d_area_entered(area):
 
 	if area.name == "playerTouch":
 		$CharacterBody2D.position = Vector2(-3281,5605)
-		bossFight("怨蛛","",null)
+		bossFight("怨蛛","res://Audio/BGM/战斗-生肖2.ogg",null)
+

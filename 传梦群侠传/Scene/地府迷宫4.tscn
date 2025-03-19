@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://df2blqvgv8p6l" path="res://Panoramas/地府_地狱迷宫4.jpg" id="2_y5cp5"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_o8jgx"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_rg1dl"]
-[ext_resource type="AudioStream" uid="uid://d1uulbkvstjwq" path="res://Audio/BGM/神龙窟.mp3" id="5_m7rf0"]
+[ext_resource type="AudioStream" uid="uid://blkdub6dgyrb6" path="res://Audio/BGM/鬼城.mp3" id="5_gmml8"]
 [ext_resource type="Texture2D" uid="uid://cyg6gmaajceoq" path="res://Panoramas/地府_地狱迷宫4_2.png" id="6_5mqgs"]
 [ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="7_2tf52"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_mdxy8"]
@@ -280,7 +280,7 @@ polygon = PackedVector2Array(524, 739, 687, 815, 802, 788, 864, 729, 782, 659, 6
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("5_m7rf0")
+stream = ExtResource("5_gmml8")
 volume_db = 8.072
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -645,12 +645,12 @@ texture = ExtResource("32_cg5q5")
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0705882, 0.0705882, 0.0705882, 1)
 
-[node name="进回忆" parent="." instance=ExtResource("31_3iqe6")]
+[node name="进回忆4" parent="." instance=ExtResource("31_3iqe6")]
 visible = false
 position = Vector2(241, 423)
 triggerEvent = "进回忆"
 
-[node name="CollisionShape2D" parent="进回忆/Area2D" index="0"]
+[node name="CollisionShape2D" parent="进回忆4/Area2D" index="0"]
 position = Vector2(49, 31)
 shape = SubResource("RectangleShape2D_b24b5")
 
@@ -673,4 +673,4 @@ shape = SubResource("RectangleShape2D_b24b5")
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
-[editable path="进回忆"]
+[editable path="进回忆4"]

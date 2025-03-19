@@ -60,7 +60,7 @@ var dialogue_line: DialogueLine:
 		var name = dialogue_line.character.to_lower()
 	
 	
-		if name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕"                                                           :
+		if name == "小姜韵" or name == "小追云"or name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕"                                                           :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			mainPortrait.visible = true
 			mainPortrait.texture = load(portraitPath)
@@ -68,8 +68,8 @@ var dialogue_line: DialogueLine:
 			敖雨portrait.visible = false
 			小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
-			%CharacterLabel.position = Vector2(602, 101)
-		elif name == "小二":
+			%CharacterLabel.position = Vector2(598,80)
+		elif name == "小二" :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = false
 			小二portrait.visible = true
@@ -77,7 +77,7 @@ var dialogue_line: DialogueLine:
 			portrait.visible = false			 
 			mainPortrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
-			%CharacterLabel.position = Vector2(602, 101)
+			%CharacterLabel.position = Vector2(598, 80)
 		elif name == "敖雨":
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = true
@@ -86,7 +86,19 @@ var dialogue_line: DialogueLine:
 			portrait.visible = false			 
 			mainPortrait.visible = false	
 			%Balloon.texture = load("res://Pictures/对话框2.png")
-			%CharacterLabel.position = Vector2(602, 101)	
+			%CharacterLabel.position = Vector2(598, 80)			
+		elif name == "小男孩"or name == "小追云":
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			敖雨portrait.visible = true
+			敖雨portrait.texture = load(portraitPath)
+			敖雨portrait.scale.x = 0.15
+			敖雨portrait.scale.y = 0.13
+			小二portrait.visible = false
+			portrait.visible = false			 
+			mainPortrait.visible = false	
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(598, 80)
+			敖雨portrait.position = Vector2(493,-139)
 		else:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
 			portrait.visible = true
@@ -96,7 +108,7 @@ var dialogue_line: DialogueLine:
 			mainPortrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框1.png")
 			
-			%CharacterLabel.position = Vector2(175, 101)
+			%CharacterLabel.position = Vector2(150,80)
 
 		dialogue_label.hide()
 		dialogue_label.dialogue_line = dialogue_line
@@ -143,8 +155,8 @@ func _process(delta):
 		%CharacterLabel.visible = false
 		%Balloon.self_modulate = "ffffff00"
 		$"黑边".visible = true
-		$Balloon/Dialogue.position = Vector2(75,424)
-		
+		$Balloon/Dialogue.position = Vector2(100,237)
+
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
 	get_viewport().set_input_as_handled()

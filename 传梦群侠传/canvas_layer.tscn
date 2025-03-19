@@ -2151,6 +2151,17 @@ offset_top = 1.0
 offset_right = 4083.0
 offset_bottom = 2342.0
 
+[node name="避" type="Label" parent="."]
+offset_left = 206.0
+offset_top = -3.0
+offset_right = 706.0
+offset_bottom = 622.0
+scale = Vector2(0.121141, 0.120696)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 500
+text = "避"
+
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
 [connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]

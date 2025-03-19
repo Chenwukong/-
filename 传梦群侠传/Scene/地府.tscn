@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://tdgd7otfsjtc"]
+[gd_scene load_steps=97 format=3 uid="uid://tdgd7otfsjtc"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_iufpr"]
 [ext_resource type="Texture2D" uid="uid://n261yfjq70l8" path="res://Panoramas/门派_地府全景.jpg" id="2_q7prr"]
@@ -34,7 +34,6 @@
 [ext_resource type="Texture2D" uid="uid://bl70chhni7bcg" path="res://Characters/4鬼火.png" id="32_imgnq"]
 [ext_resource type="Texture2D" uid="uid://cp0m13nxtnadf" path="res://梦魂Animation/日照光华.png" id="33_tiyqd"]
 [ext_resource type="Texture2D" uid="uid://blivb825xu7f3" path="res://Characters/九头蛇.png" id="34_4an7v"]
-[ext_resource type="Texture2D" uid="uid://b1ngu8a173pqm" path="res://Characters/野鬼.png" id="35_u6ngf"]
 [ext_resource type="Script" path="res://Script/npcs.gd" id="36_fcg85"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
@@ -513,42 +512,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6aesd"]
-atlas = ExtResource("35_u6ngf")
-region = Rect2(0, 0, 106, 108)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sep5b"]
-atlas = ExtResource("35_u6ngf")
-region = Rect2(106, 0, 106, 108)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_j7ky0"]
-atlas = ExtResource("35_u6ngf")
-region = Rect2(212, 0, 106, 108)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b30b5"]
-atlas = ExtResource("35_u6ngf")
-region = Rect2(318, 0, 106, 108)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_kuvv2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6aesd")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sep5b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j7ky0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b30b5")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ii3ee"]
 atlas = ExtResource("32_imgnq")
 region = Rect2(0, 222, 280, 222)
@@ -594,7 +557,7 @@ texture = ExtResource("2_q7prr")
 
 [node name="player" parent="." instance=ExtResource("4_oap2p")]
 z_index = 2
-position = Vector2(2438.16, 2252.22)
+position = Vector2(2550, 2274)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -806,8 +769,13 @@ energy = 8.18
 blend_mode = 1
 
 [node name="PointLight2D8" type="PointLight2D" parent="lights"]
-position = Vector2(117, 920)
-scale = Vector2(1.14941, 1.05469)
+position = Vector2(2381, 2065)
+scale = Vector2(0.779783, 0.715523)
+texture = ExtResource("23_5soxh")
+
+[node name="PointLight2D18" type="PointLight2D" parent="lights"]
+position = Vector2(313, 1000)
+scale = Vector2(0.867431, 0.795948)
 texture = ExtResource("23_5soxh")
 
 [node name="PointLight2D3" type="PointLight2D" parent="lights"]
@@ -880,8 +848,8 @@ energy = 2.0
 texture = ExtResource("23_5soxh")
 
 [node name="PointLight2D7" type="PointLight2D" parent="lights"]
-position = Vector2(305, 144)
-scale = Vector2(0.180664, 0.132503)
+position = Vector2(285, 174)
+scale = Vector2(0.303223, 0.22239)
 texture = ExtResource("23_5soxh")
 
 [node name="Ghost" type="Sprite2D" parent="."]
@@ -980,15 +948,6 @@ frame_progress = 0.212668
 [node name="CollisionPolygon2D" parent="鬼火/npcBody" index="1"]
 disabled = true
 
-[node name="吸魂" parent="鬼火/effects" index="0"]
-visible = false
-
-[node name="飞剑诀" parent="鬼火/effects" index="1"]
-visible = false
-
-[node name="持续冰封" parent="鬼火/effects" index="2"]
-visible = false
-
 [node name="开阳" type="AnimatedSprite2D" parent="鬼火/effects" index="3"]
 position = Vector2(13, -99)
 sprite_frames = SubResource("SpriteFrames_ryf6f")
@@ -1002,30 +961,6 @@ sprite_frames = SubResource("SpriteFrames_rlj4p")
 [node name="CollisionPolygon2D" parent="堕逝鬼魂/npcBody" index="1"]
 disabled = true
 
-[node name="ghosts" type="Node2D" parent="."]
-visible = false
-
-[node name="野鬼" parent="ghosts" instance=ExtResource("28_7gcq3")]
-position = Vector2(505.751, 1255.5)
-sprite_frames = SubResource("SpriteFrames_kuvv2")
-
-[node name="CollisionPolygon2D" parent="ghosts/野鬼/npcBody" index="1"]
-disabled = true
-
-[node name="野鬼2" parent="ghosts" instance=ExtResource("28_7gcq3")]
-position = Vector2(572, 1215)
-sprite_frames = SubResource("SpriteFrames_kuvv2")
-
-[node name="CollisionPolygon2D" parent="ghosts/野鬼2/npcBody" index="1"]
-disabled = true
-
-[node name="野鬼3" parent="ghosts" instance=ExtResource("28_7gcq3")]
-position = Vector2(635, 1175)
-sprite_frames = SubResource("SpriteFrames_kuvv2")
-
-[node name="CollisionPolygon2D" parent="ghosts/野鬼3/npcBody" index="1"]
-disabled = true
-
 [node name="野鬼" type="Node2D" parent="."]
 script = ExtResource("36_fcg85")
 
@@ -1033,6 +968,7 @@ script = ExtResource("36_fcg85")
 position = Vector2(53.3813, 1766.09)
 sprite_frames = SubResource("SpriteFrames_e8shj")
 frame_progress = 0.451626
+npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼/野鬼1/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
@@ -1041,6 +977,7 @@ polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -22
 position = Vector2(1063, 2239)
 sprite_frames = SubResource("SpriteFrames_e8shj")
 frame_progress = 0.650342
+npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼/野鬼2/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
@@ -1049,6 +986,7 @@ polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -22
 position = Vector2(2055, 1119)
 sprite_frames = SubResource("SpriteFrames_e8shj")
 frame_progress = 0.650342
+npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼/野鬼3/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
@@ -1057,6 +995,7 @@ polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -22
 position = Vector2(462, 765)
 sprite_frames = SubResource("SpriteFrames_e8shj")
 frame_progress = 0.650342
+npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼/野鬼4/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
@@ -1065,6 +1004,7 @@ polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -22
 position = Vector2(1901, 599)
 sprite_frames = SubResource("SpriteFrames_e8shj")
 frame_progress = 0.650342
+npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼/野鬼5/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
@@ -1093,9 +1033,6 @@ polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -22
 [editable path="初见孟婆"]
 [editable path="鬼火"]
 [editable path="堕逝鬼魂"]
-[editable path="ghosts/野鬼"]
-[editable path="ghosts/野鬼2"]
-[editable path="ghosts/野鬼3"]
 [editable path="野鬼/野鬼1"]
 [editable path="野鬼/野鬼2"]
 [editable path="野鬼/野鬼3"]

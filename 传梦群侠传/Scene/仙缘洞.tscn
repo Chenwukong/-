@@ -13,7 +13,6 @@
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="11_xabri"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="12_pbul8"]
 [ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="13_u2okd"]
-[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="14_xtn3s"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="15_4ma5v"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="16_i5yyu"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="17_4xbjt"]
@@ -658,6 +657,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n62c5"]
+shader = ExtResource("1_iqs5h")
+shader_parameter/blur_amount = 0.804
+shader_parameter/memory_intensity = 1.0
+shader_parameter/memory_color = Color(0, 0, 0, 1)
+
 [node name="仙缘洞天" type="Node2D"]
 material = SubResource("ShaderMaterial_uyxbx")
 script = ExtResource("2_xqv5x")
@@ -668,7 +673,7 @@ texture = ExtResource("3_3dx8s")
 offset = Vector2(-2153, -82)
 
 [node name="player" parent="." instance=ExtResource("4_odyqd")]
-position = Vector2(1332.9, 705.086)
+position = Vector2(2600, 1456)
 
 [node name="Sprite2D" parent="player" index="0"]
 visible = true
@@ -778,12 +783,6 @@ position = Vector2(1215, 428)
 [node name="MarkerRight" type="Marker2D" parent="."]
 position = Vector2(3097, 1839)
 
-[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(1922, 1097)
-stream = ExtResource("14_xtn3s")
-volume_db = 2.432
-max_distance = 1e+06
-
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
 color = Color(0.168627, 0.168627, 0.168627, 1)
@@ -880,13 +879,20 @@ offset_right = 4424.0
 offset_bottom = 2584.0
 
 [node name="小男主" parent="." instance=ExtResource("18_vpbof")]
-position = Vector2(2599, 1514)
+visible = false
+position = Vector2(2656, 1551)
 sprite_frames = SubResource("SpriteFrames_6xxub")
 
-[node name="回忆1回3" parent="." instance=ExtResource("26_kbc85")]
+[node name="CollisionPolygon2D" parent="小男主/npcBody" index="1"]
+disabled = true
+
+[node name="回忆3" parent="." instance=ExtResource("26_kbc85")]
 visible = false
-position = Vector2(1437, -126)
-triggerEvent = "回忆1回3"
+position = Vector2(2632, 1524)
+triggerEvent = "回忆3"
+
+[node name="CollisionShape2D" parent="回忆3/Area2D" index="0"]
+position = Vector2(73.6411, 61.0001)
 
 [node name="小女主" parent="." instance=ExtResource("18_vpbof")]
 visible = false
@@ -929,9 +935,18 @@ autoplay = "default"
 frame_progress = 0.909123
 
 [node name="婆婆" parent="." instance=ExtResource("18_vpbof")]
+visible = false
 position = Vector2(2838.38, 1675.63)
 sprite_frames = SubResource("SpriteFrames_plrtj")
 npcName = "婆婆"
+
+[node name="TextureRect2" type="ColorRect" parent="."]
+z_index = 4096
+material = SubResource("ShaderMaterial_n62c5")
+offset_left = -127.0
+offset_top = -378.0
+offset_right = 4424.0
+offset_bottom = 2584.0
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
@@ -945,3 +960,5 @@ npcName = "婆婆"
 [editable path="player"]
 [editable path="CanvasLayer"]
 [editable path="CanvasLayer/importantMsg"]
+[editable path="小男主"]
+[editable path="回忆3"]

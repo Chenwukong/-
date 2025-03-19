@@ -74,8 +74,7 @@ func _ready():
 	Global.target = null
 	Global.onAttacking = false
 	Global.monsterTarget = null
-	if Global.atNight == true:
-		get_tree().current_scene.get_node("nightBgm").stop()
+
 	
 	randiTrans = randi_range(0,9)
 	
@@ -193,8 +192,7 @@ func _process(delta):
 			
 	if get_parent().get_parent().has_node("DirectionalLight2D"):
 		get_parent().get_parent().get_node("DirectionalLight2D").energy = 0	
-	if Global.atNight == true:
-		get_tree().current_scene.get_node("nightBgm").stop()
+
 	if get_tree().current_scene.name == "东海湾" or get_tree().current_scene.name == "建邺北":
 		$battleFieldPicture/trans.texture_progress = load("res://Trans/0623C906.jpg")
 	if get_tree().current_scene.name == "方寸山":
@@ -446,7 +444,6 @@ func _process(delta):
 			Global.onHitPlayer = []
 			Global.killedAmount += selectedMonsters.size()
 			if Global.atNight:
-				get_parent().get_parent().get_node("nightBgm").play()
 				get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			else:
 				if !Global.onHurry:
@@ -547,7 +544,6 @@ func _process(delta):
 		Global.onHitPlayer = []
 		Global.killedAmount += selectedMonsters.size()
 		if Global.atNight and get_parent().get_parent().has_node("DirectionalLight2D") :
-			get_parent().get_parent().get_node("nightBgm").play()
 			get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 		else:
 			if !Global.onHurry:
@@ -872,7 +868,6 @@ func instantiateMonster():
 		enemySceneInstance.speed = monsterData.speed
 		enemySceneInstance.magicDefense = monsterData.magicDefense
 		enemySceneInstance.type = monsterData.type
-		print(monsterData.type,333)
 		enemySceneInstance.physicDefense = monsterData.physicDefense
 		enemySceneInstance.attackDmg = monsterData.attackDmg
 		enemySceneInstance.magicDmg = monsterData.magicDmg 
