@@ -31,10 +31,20 @@ set Global.onTalk = false
 
 ~ 新手警告
 set Global.onTalk = true
-传梦: 这是传梦之路试玩版，目前还有许多的bug。
 
+传梦: 这是传梦之路试玩版，目前还有许多的bug。
 传梦: 如果在游戏中被npc或者建筑卡住，可按r或者点击左上角的坐标图急救
-	
+传梦: 你的包内有装备记得穿上
+传梦: 十里坡剑神并不存在，玩家无法高于当前剧情等级，具体请看ui左上角
+
+
+
+if !Global.onPhone:
+	传梦: 鼠标和键盘大部分时候不可共用，请选择游玩方式
+	- 键盘
+
+	- 鼠标
+		set Global.noKeyboard = true
 传梦: 好了再多说一句就要惹人烦了，通过后面这个传送点开始游戏吧😎
 set Global.triggerPlace.get("新手警告").disable = true
 传梦: 对了，你可以选择跳到最新章节哦
@@ -659,7 +669,7 @@ set Global.currNpc = null
 
 ~ 鱼叟告别
 set Global.onTalk = true
-set Global.addGold(200)
+
 鱼叟: ...
 鱼叟: [speed=0.4]今天怎么来这么晚？
 时追云: [speed=0.4]实不相瞒，我昨日被妖怪所伤，
@@ -674,7 +684,7 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark") 
 [next=7]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-
+set Global.addGold(200)
 鱼叟: [speed=0.4]追云啊，这可能是我最后一次收你的鱼了
 时追云: [speed=0.4]大爷怎么了吗？
 鱼叟: [speed=0.4]我要走了，去一个很远的地方
@@ -889,8 +899,8 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 set get_tree().current_scene.get_node("player").visible = false
 set get_tree().current_scene.get_node("player").canMove = false
 set get_tree().current_scene.get_node("player").get_node("Camera2D").enabled = false
-奔霸: 老东西，快把东西交出来，不然我就把这人也杀了
-城主: 我说了我不知道你们在说什么东西
+奔霸: 老东西，快把人交出来，不然我就把这人也杀了
+城主: 我说了我不知道你们在说什么
 奔霸: 哼，那就都杀了吧，一样的。
 
 set get_tree().current_scene.get_node("小兵8").get_node("effect").visible = true

@@ -1,0 +1,33 @@
+[gd_scene load_steps=2 format=3 uid="uid://v3nyfkftjict"]
+
+[ext_resource type="Texture2D" uid="uid://dsy5nvhyod6dq" path="res://panoramas2/凤巢一层.jpg" id="1_1vblv"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_1vblv")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 883.0
+offset_right = 61.0
+offset_bottom = 923.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer/SubViewport"]
+enabled = false
+
+[node name="SubViewportContainer3" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 1464.0
+offset_top = 181.0
+offset_right = 1976.0
+offset_bottom = 693.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer3"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainer3/SubViewport"]

@@ -32,6 +32,7 @@ var dialogue = null
 var canPress = true
 var sceneName 
 var rewardAdded = false
+var dialogued = false
 func areAllPlayersDead() -> bool:
 	for player in players:
 		if player.alive:
@@ -48,7 +49,7 @@ func _ready():
 	shader_material = $battleFieldPicture/lastHit.material as ShaderMaterial
 	shader_material.set("play_once", false)
 	
-	
+	dialogued = false
 	
 	
 	totalExp = 0
@@ -96,7 +97,7 @@ func _ready():
 		totalExp += i.exp
 		totalGold += i.gold
 		totalHp += i.hp
-	
+
 	$battleFieldPicture/Panel/ProgressBar.max_value = totalHp
 	
 	#FightScenePlayers.update_players_with_item_stats()
@@ -121,7 +122,7 @@ func _process(delta):
 			$AnimationPlayer.play("shake")
 	
 	if Global.onHurry:
-	
+
 		get_parent().get_parent().get_node("battleBgm").volume_db = -80
 	else:
 		get_parent().get_parent().get_node("battleBgm").volume_db = 5
@@ -456,6 +457,12 @@ func _process(delta):
 			Global.monsterTarget = null
 			Global.currAttacker = ""
 			queue_free()
+			Global.onXiaoErZhenShen = false
+			
+			if Global.onXiaoErZhenShen:
+				Global.onTeamPlayer.erase("小二真身")
+				Global.onTeamPlayer.append("小二")
+			
 			totalExp = 0
 			FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
 			if dialogue:
@@ -530,9 +537,12 @@ func _process(delta):
 
 		Global.finishingBattle = true
 		Global.alivePlayers = []
-
 		
-			
+		if Global.onXiaoErZhenShen:
+			Global.onXiaoErZhenShen = false
+			Global.onTeamPlayer.erase("小二真身")
+			Global.onTeamPlayer.append("小二")
+		
 		
 		Global.onAttackPicking = false
 		Global.onMagicAttackPicking = false
@@ -545,16 +555,18 @@ func _process(delta):
 		Global.killedAmount += selectedMonsters.size()
 		if Global.atNight and get_parent().get_parent().has_node("DirectionalLight2D") :
 			get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
+			get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5	
 		else:
 			if !Global.onHurry:
-				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 8
+				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 3
 			elif Global.onHurry:
 				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
 		Global.onMultiHit = 0
 		Global.currAttacker = ""
 		
 		
-		if dialogue:
+		if dialogue and !dialogued:
+			dialogued = true
 			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))
 
 	
@@ -573,12 +585,12 @@ func _process(delta):
 		
 		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 		if !rewardAdded:
-			rewardAdded = true
+			rewardAdded = true	
 			for player_name in FightScenePlayers.fightScenePlayerData:
 				if player_name in Global.onTeamPlayer or player_name in Global.onTeamPet:
 					var player = FightScenePlayers.fightScenePlayerData[player_name]
-				
-				
+					if player['level'] >= Global.maxLevel:
+						return
 					player["exp"] += totalExp * Global.enKey
 			FightScenePlayers.golds += totalGold * Global.enKey
 		get_parent().get_parent().get_node("battleBgm").stop()
@@ -591,11 +603,12 @@ func _process(delta):
 					player.currMp = FightScenePlayers.fightScenePlayerData.get(i).mp
 			
 			FightScenePlayers.fightScenePlayerData.get(i).currHp = 	FightScenePlayers.fightScenePlayerData.get(i).hp
-			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp				
+			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp	
+
 		if Global.onBoss:
 			queue_free()
 			totalExp = 0
-			Global.onBoss = false
+			Global.onBoss = false		
 			return
 		if !triggerQueueFree and !Global.onBoss:
 			play_effect_once()
@@ -1114,7 +1127,7 @@ func _on_bgm_timer_timeout():
 	get_parent().get_parent().get_node("battleBgm").volume_db = 5
 	if Global.onHurry:
 		get_parent().get_parent().get_node("battleBgm").volume_db = -80
-		
+#
 		
 	if boss == false:
 		get_parent().get_parent().get_node("battleBgm").stream = load(Global.bgmList[randomBgmIndex])
@@ -1178,7 +1191,12 @@ func complete_task(chapter_id, task_id):
 
 
 func _on_button_button_down():
+	
+	if !Global.noKeyboard:
+		return
+
 	if Global.onAttackPicking:
+		
 		canPress = false
 		$canPressTimer.start()
 		Global.onAttackPicking = false
@@ -1253,6 +1271,8 @@ func _on_can_press_timer_timeout():
 
 
 func _on_block_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if Global.canBlock:
 		Global.blocked = true
 		Global.canBlock = false
@@ -1317,6 +1337,7 @@ func _on_queue_free_timeout():
 	queue_free()
 	totalExp = 0
 
+			
 
 func play_effect_once():
 	if shader_material == null:
@@ -1328,11 +1349,13 @@ func play_effect_once():
 
 
 func _on_up_button_button_down():
+	if !Global.noKeyboard:
+		return
 	var onBattleCommend = false
 	for i in players:
 		if i.get_node("battleCommends").visible:
 			onBattleCommend = true
-			print(players)
+			
 	if onBattleCommend:
 		if Global.battleButtonIndex == 0:
 			Global.battleButtonIndex = 4
@@ -1353,6 +1376,8 @@ func _on_up_button_button_down():
 
 
 func _on_down_button_button_down():
+	if !Global.noKeyboard:
+		return
 	var onBattleCommend = false
 	for i in players:
 		if i.get_node("battleCommends").visible:
@@ -1390,6 +1415,8 @@ func _on_down_button_button_down():
 
 
 func _on_right_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false:
 		magicPanel = get_tree().get_nodes_in_group("magic")
 		if Global.magicSelectIndex == Global.currPlayerMagic.size() - 1:
@@ -1458,6 +1485,8 @@ func _on_right_button_button_down():
 
 
 func _on_left_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false:
 		magicPanel = get_tree().get_nodes_in_group("magic")
 		if Global.magicSelectIndex == 0:
@@ -1512,6 +1541,8 @@ func _on_left_button_button_down():
 			
 
 func _on_accept_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if Global.onAttackingList:
 		if Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false :
 			magicPanel = get_tree().get_nodes_in_group("magic")

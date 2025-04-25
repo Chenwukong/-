@@ -95,10 +95,11 @@ func _process(delta):
 func _on_animation_finished():
 	targetFound = false
 	if state == autoAttack:
-		if SmallPetData.currSmallPetData[petName].hungry >= SmallPetData.currSmallPetData[petName].hungryValue:
-			rageBar += rageFreq
-			attack()
-			SmallPetData.currSmallPetData[petName].hungry -= SmallPetData.currSmallPetData[petName].hungryValue
+		if targets.canSee:
+			if SmallPetData.currSmallPetData[petName].hungry >= SmallPetData.currSmallPetData[petName].hungryValue:
+				rageBar += rageFreq
+				attack()
+				SmallPetData.currSmallPetData[petName].hungry -= SmallPetData.currSmallPetData[petName].hungryValue
 	if state == magic:
 		castMagic()
 		if is_instance_valid(target):
@@ -111,10 +112,10 @@ func _on_animation_finished():
 func attack():
 
 	if is_instance_valid(target):
-		
-		target.get_node("Label").text = str(str)
-		target.get_node("petHpAnimation").play("petHp")
-		target.currHp -= str 
+		if targets.canSee:
+			target.get_node("Label").text = str(str)
+			target.get_node("petHpAnimation").play("petHp")
+			target.currHp -= str 
 	
 func castMagic():
 	magicInfo = SmallPetData.currSmallPetData[petName].petMagic

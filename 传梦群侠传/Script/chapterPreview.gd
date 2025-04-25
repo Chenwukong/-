@@ -18,7 +18,9 @@ func _ready():
 			$Panel/Label.text = "第五章:  鬼蜮迷途"
 		6:
 			$Panel/Label.text = "第六章:  魅情实切"
-	
+		7:
+			$Panel/Label.text = "第七章:  四圣之威"
+		
 		
 		
 	
@@ -46,4 +48,6 @@ func _on_timer_timeout():
 			get_tree().change_scene_to_file("res://Scene/"+"阴阳洞"+".tscn")			
 		6:
 			Global.dial = "凌若昭回忆"
+			get_tree().change_scene_to_file("res://Scene/"+"两界山"+".tscn")	
+		7:
 			get_tree().change_scene_to_file("res://Scene/"+"两界山"+".tscn")	

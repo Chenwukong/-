@@ -109,7 +109,7 @@ func _on_button_button_down():
 		return
 	if name == "小师弟" or name == "小师弟2" or name == "小师弟3" or name == "野鬼1"or name == "野鬼2"or name == "野鬼3"or name == "野鬼4"or name == "野鬼5":
 		talked = true
-		
+	
 		
 		
 		

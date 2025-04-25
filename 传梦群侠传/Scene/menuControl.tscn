@@ -1,16 +1,16 @@
 [gd_scene load_steps=54 format=3 uid="uid://d1lnkr6sh0urh"]
 
-[ext_resource type="Script" path="res://Script/menuControl.gd" id="1_cavjv"]
-[ext_resource type="Texture2D" uid="uid://ba0gbvspfp4nd" path="res://菜单.jpg" id="2_l5fpv"]
-[ext_resource type="StyleBox" uid="uid://di4oug8y2x4" path="res://Scene/flat.tres" id="3_yhqah"]
-[ext_resource type="StyleBox" uid="uid://diiqem3l2xshe" path="res://Scene/armorItem.tres" id="4_h2hq1"]
-[ext_resource type="Texture2D" uid="uid://bikpk7pife7yx" path="res://Icons/〓大刀 副本.png" id="5_7drpe"]
-[ext_resource type="Texture2D" uid="uid://c78jd8m03iyx0" path="res://Icons/GM鞋子.png" id="6_35xkl"]
-[ext_resource type="Texture2D" uid="uid://qstb1lobi7fi" path="res://Icons/方巾.png" id="7_uu85l"]
-[ext_resource type="Texture2D" uid="uid://csoexmadvmd6i" path="res://Icons/GM男衣.png" id="8_fop1u"]
-[ext_resource type="Texture2D" uid="uid://degsqccwdb0hx" path="res://Icons/项链-佛珠.png" id="9_wlgt5"]
-[ext_resource type="Texture2D" uid="uid://cr58gutfo5l2q" path="res://Icons/扇子 (1).png" id="10_4lw4o"]
-[ext_resource type="Texture2D" uid="uid://dv4bcj0qgcow3" path="res://main character/jiangYuntile000.png" id="11_v46dh"]
+[ext_resource type="Script" path="res://Script/menuControl.gd" id="1_bui08"]
+[ext_resource type="Texture2D" uid="uid://ba0gbvspfp4nd" path="res://菜单.jpg" id="2_3org2"]
+[ext_resource type="StyleBox" uid="uid://di4oug8y2x4" path="res://Scene/flat.tres" id="3_m7c0l"]
+[ext_resource type="StyleBox" uid="uid://diiqem3l2xshe" path="res://Scene/armorItem.tres" id="4_r2tmq"]
+[ext_resource type="Texture2D" uid="uid://bikpk7pife7yx" path="res://Icons/〓大刀 副本.png" id="5_w762t"]
+[ext_resource type="Texture2D" uid="uid://c78jd8m03iyx0" path="res://Icons/GM鞋子.png" id="6_idpxe"]
+[ext_resource type="Texture2D" uid="uid://qstb1lobi7fi" path="res://Icons/方巾.png" id="7_a6xfh"]
+[ext_resource type="Texture2D" uid="uid://csoexmadvmd6i" path="res://Icons/GM男衣.png" id="8_ggs6w"]
+[ext_resource type="Texture2D" uid="uid://degsqccwdb0hx" path="res://Icons/项链-佛珠.png" id="9_fsyk1"]
+[ext_resource type="Texture2D" uid="uid://cr58gutfo5l2q" path="res://Icons/扇子 (1).png" id="10_2e5mq"]
+[ext_resource type="Texture2D" uid="uid://dv4bcj0qgcow3" path="res://main character/jiangYuntile000.png" id="11_x517m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8dtfs"]
 bg_color = Color(0, 0, 0, 0.584314)
@@ -457,7 +457,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.67, 0.619)
-script = ExtResource("1_cavjv")
+script = ExtResource("1_bui08")
 
 [node name="menuButton" type="TextureRect" parent="."]
 layout_mode = 2
@@ -467,7 +467,7 @@ offset_left = -816.761
 offset_top = -594.806
 offset_right = -16.761
 offset_bottom = 5.19397
-texture = ExtResource("2_l5fpv")
+texture = ExtResource("2_3org2")
 
 [node name="道具" type="Button" parent="menuButton" groups=["menuButton"]]
 layout_mode = 0
@@ -1014,7 +1014,7 @@ layout_mode = 2
 offset_top = -100.0
 offset_right = 800.0
 offset_bottom = 400.0
-theme_override_styles/panel = ExtResource("3_yhqah")
+theme_override_styles/panel = ExtResource("3_m7c0l")
 
 [node name="name" type="Label" parent="装备页面/装备栏/status"]
 layout_mode = 0
@@ -1206,7 +1206,7 @@ offset_left = 770.0
 offset_top = -100.0
 offset_right = 1590.0
 offset_bottom = 400.0
-theme_override_styles/panel = ExtResource("3_yhqah")
+theme_override_styles/panel = ExtResource("3_m7c0l")
 
 [node name="button1" type="Panel" parent="装备页面/装备栏/items" groups=["armorItemButton"]]
 self_modulate = Color(1, 1, 1, 0)
@@ -1223,7 +1223,7 @@ offset_right = 770.0
 offset_bottom = 117.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("4_h2hq1")
+theme_override_styles/normal = ExtResource("4_r2tmq")
 text = "武器"
 
 [node name="icon" type="TextureRect" parent="装备页面/装备栏/items/button1/itemType"]
@@ -1231,7 +1231,7 @@ layout_mode = 0
 offset_left = 200.0
 offset_right = 260.0
 offset_bottom = 60.0
-texture = ExtResource("5_7drpe")
+texture = ExtResource("5_w762t")
 
 [node name="itemName" type="Label" parent="装备页面/装备栏/items/button1/itemType/icon"]
 layout_mode = 0
@@ -1256,7 +1256,7 @@ offset_right = 770.0
 offset_bottom = 197.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("4_h2hq1")
+theme_override_styles/normal = ExtResource("4_r2tmq")
 text = "足护"
 
 [node name="icon" type="TextureRect" parent="装备页面/装备栏/items/button2/itemType"]
@@ -1264,7 +1264,7 @@ layout_mode = 0
 offset_left = 200.0
 offset_right = 260.0
 offset_bottom = 60.0
-texture = ExtResource("6_35xkl")
+texture = ExtResource("6_idpxe")
 
 [node name="itemName" type="Label" parent="装备页面/装备栏/items/button2/itemType/icon"]
 layout_mode = 0
@@ -1289,7 +1289,7 @@ offset_right = 770.0
 offset_bottom = 277.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("4_h2hq1")
+theme_override_styles/normal = ExtResource("4_r2tmq")
 text = "头饰"
 
 [node name="icon" type="TextureRect" parent="装备页面/装备栏/items/button3/itemType"]
@@ -1297,7 +1297,7 @@ layout_mode = 0
 offset_left = 200.0
 offset_right = 260.0
 offset_bottom = 60.0
-texture = ExtResource("7_uu85l")
+texture = ExtResource("7_a6xfh")
 
 [node name="itemName" type="Label" parent="装备页面/装备栏/items/button3/itemType/icon"]
 layout_mode = 0
@@ -1322,7 +1322,7 @@ offset_right = 770.0
 offset_bottom = 357.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("4_h2hq1")
+theme_override_styles/normal = ExtResource("4_r2tmq")
 text = "衣甲"
 
 [node name="icon" type="TextureRect" parent="装备页面/装备栏/items/button4/itemType"]
@@ -1330,7 +1330,7 @@ layout_mode = 0
 offset_left = 200.0
 offset_right = 260.0
 offset_bottom = 60.0
-texture = ExtResource("8_fop1u")
+texture = ExtResource("8_ggs6w")
 
 [node name="itemName" type="Label" parent="装备页面/装备栏/items/button4/itemType/icon"]
 layout_mode = 0
@@ -1355,7 +1355,7 @@ offset_right = 770.0
 offset_bottom = 437.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("4_h2hq1")
+theme_override_styles/normal = ExtResource("4_r2tmq")
 text = "饰品"
 
 [node name="icon" type="TextureRect" parent="装备页面/装备栏/items/button5/itemType"]
@@ -1376,7 +1376,7 @@ layout_mode = 0
 offset_top = 700.0
 offset_right = 1590.0
 offset_bottom = 1170.0
-theme_override_styles/panel = ExtResource("3_yhqah")
+theme_override_styles/panel = ExtResource("3_m7c0l")
 
 [node name="itemPanel1" type="Panel" parent="装备页面/背包装备" groups=["bagArmorItem"]]
 self_modulate = Color(0, 1, 1, 1)
@@ -1418,7 +1418,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel2/itemImage"]
 layout_mode = 2
@@ -1448,7 +1448,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel3/itemImage"]
 layout_mode = 2
@@ -1478,7 +1478,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel4/itemImage"]
 layout_mode = 2
@@ -1508,7 +1508,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel5/itemImage"]
 layout_mode = 2
@@ -1538,7 +1538,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel6/itemImage"]
 layout_mode = 2
@@ -1568,7 +1568,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel7/itemImage"]
 layout_mode = 2
@@ -1598,7 +1598,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel8/itemImage"]
 layout_mode = 2
@@ -1628,7 +1628,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel9/itemImage"]
 layout_mode = 2
@@ -1658,7 +1658,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel10/itemImage"]
 layout_mode = 2
@@ -1688,7 +1688,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel11/itemImage"]
 layout_mode = 2
@@ -1718,7 +1718,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_vq5l4")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("9_wlgt5")
+texture = ExtResource("9_fsyk1")
 
 [node name="item" type="Label" parent="装备页面/背包装备/itemPanel12/itemImage"]
 layout_mode = 2
@@ -1755,7 +1755,7 @@ offset_left = -800.0
 offset_top = -600.0
 offset_right = 800.0
 offset_bottom = 600.0
-theme_override_styles/panel = ExtResource("3_yhqah")
+theme_override_styles/panel = ExtResource("3_m7c0l")
 
 [node name="name" type="Label" parent="状态页面/Panel"]
 layout_mode = 0
@@ -2054,7 +2054,7 @@ offset_left = 800.0
 offset_top = 815.0
 offset_right = 860.0
 offset_bottom = 875.0
-texture = ExtResource("10_4lw4o")
+texture = ExtResource("10_2e5mq")
 
 [node name="Label" type="Label" parent="状态页面/Panel/hat"]
 layout_mode = 0
@@ -2101,7 +2101,7 @@ offset_top = 30.0
 offset_right = 505.0
 offset_bottom = 126.0
 scale = Vector2(2, 2)
-texture = ExtResource("11_v46dh")
+texture = ExtResource("11_x517m")
 
 [node name="系统信息" type="Control" parent="."]
 anchors_preset = 0

@@ -107,7 +107,7 @@ var critChance
 var haveGao = false
 var commanButtonIndex = 0
 func _ready():
-
+	
 	if self.playerName == "时追云":
 		$".".z_index = 1
 	totalHp = decrypt(addHp) + hp
@@ -147,7 +147,7 @@ func _ready():
 
 	currStr = str + decrypt(addStr)
 	
-	currMagicDmg = abilityPower + decrypt(addAbilityPower/4)
+	currMagicDmg = abilityPower + decrypt(addAbilityPower)
 	
 	
 	currPlayerSpeed = decrypt(addPlayerSpeed) + playerSpeed
@@ -181,7 +181,10 @@ func _ready():
 		FightScenePlayers.fightScenePlayerData.get(playerName).currHp = FightScenePlayers.fightScenePlayerData.get(playerName).hp
 	get_node("hpControl").visible = false
 func _process(delta):
-	
+	if Global.onAttackingList.size()>0 and Global.onAttackingList[0] == "小二真身":
+		$ColorRect.visible = true
+	else:
+		$ColorRect.visible = false
 	if Global.currUsingMagic and Global.currUsingMagic.animationArea == "screen":
 		for i in monsters:
 			i.get_node("getHitEffect").visible = false
@@ -385,6 +388,10 @@ func _process(delta):
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()						
 			if Input.is_action_pressed("alt") and Input.is_action_pressed("q"):
+				if castLastMagic.magicInfo == null:
+					return
+				if castLastMagic.magicInfo.name == "真身现世":
+					return
 				if castLastMagic.magicInfo:
 					if castLastMagic.magicInfo.attackType == "multi":
 						if currMp < castLastMagic.magicInfo.cost:
@@ -393,7 +400,7 @@ func _process(delta):
 					else:
 						if currMp < castLastMagic.magicInfo.cost:
 							return
-						print(currMp, "//", castLastMagic.magicInfo.cost)
+
 						castMagic(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, true)
 					
 					
@@ -422,11 +429,11 @@ func _process(delta):
 					return
 
 					
-	if Global.onMagicAttacking and Global.currUsingMagic and Global.currUsingMagic.attackType =="melee"  and Global.onAttackingList[0] == playerName:
+	if Global.onMagicAttacking and Global.currUsingMagic and Global.currUsingMagic.attackType =="melee"  and  Global.onAttackingList[0] == playerName:
 
 			get_parent().get_node("Panel").visible = true
 			moveCharacter(delta)	
-	if Global.onMagicAttacking and Global.currUsingMagic and Global.currUsingMagic.attackType =="multi"  and Global.onAttackingList[0] == playerName:
+	if Global.onMagicAttacking and Global.currUsingMagic and Global.currUsingMagic.attackType =="multi" and Global.onAttackingList[0] == playerName:
 			get_parent().get_node("Panel").visible = true
 			moveMulti(delta)				
 
@@ -640,6 +647,13 @@ func _process(delta):
 		
 	#法术施展完毕后
 	if self.is_playing() == false and self.animation != (playerName + "idle") and self.animation!=(playerName + "hurt")  and self.animation!=(playerName + "defend")  and Global.onAttackingList and self.playerName == Global.onAttackingList[0]:
+		
+		if Global.currUsingMagic.name == "真身现世":	
+			get_parent().get_node("小二脸").visible = false
+			get_parent().get_parent().get_node("黑边").visible = false
+			playerMagic = FightScenePlayers.fightScenePlayerData['小二真身'].playerMagic
+
+		
 		multiCanCulate = true
 		Global.battleButtonIndex = 0
 		get_parent().get_node("screenMagic").visible = false
@@ -1289,6 +1303,9 @@ func castMagic(delta, magic, target, type, onLastMagic):
 				if magicControlType == "keyboard":
 					if Global.target:
 						Global.target.get_node("getHitEffect").visible = true
+						if magic.name == "真身现世":
+							Global.target.get_node("getHitEffect").visible = false
+						
 						Global.target.get_node("getHitEffect").play(magic.name)
 				else:
 					target.get_node("getHitEffect").visible = true
@@ -1386,6 +1403,8 @@ func castMagic(delta, magic, target, type, onLastMagic):
 				Global.onHitEnemy.append(Global.target)
 				
 				if Global.target != null:
+					if magic.name == "小二真身":
+						return 
 					targetPosition = Global.target.position
 					
 					Global.target.get_node("getHitEffect").visible = true
@@ -1647,7 +1666,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 		elif magic.attackType == "special":
 			if magic.name == "千机变":
 				if Global.lastMagic.magicInfo != null:
-					if Global.lastMagic.magicInfo.name == "千机变":
+					if Global.lastMagic.magicInfo.name == "千机变" or Global.lastMagic.magicInfo.name == "万符归元"  or Global.lastMagic.magicInfo.name == "真身现世":
 						pass
 					elif Global.lastMagic.magicInfo.name == "横扫千军":
 						Global.lastMagic.magicInfo.value * 0.7
@@ -1678,12 +1697,79 @@ func castMagic(delta, magic, target, type, onLastMagic):
 						var ranTarget = monsters[randi_range(0, monsters.size() - 1)]
 						if !Global.onHitEnemy.has(ranTarget):
 							Global.onHitEnemy.append(ranTarget)
-				
-				self.play(playerName + "法术")
-
 				for targets in Global.onHitEnemy:
 					if targets:
 						targets.canSee = true
+			if magic.name == "真身现世":
+				Global.onAttackingList[0] = "小二真身"
+				
+				self.name = "小二真身"
+				self.playerName = "小二真身"
+				self.idle = "小二真身idle"
+				self.autoAttack = "小二真身autoAttack"		
+				Global.onTeamPlayer.erase("小二")
+				Global.onTeamPlayer.append("小二真身")			
+				Global.onXiaoErZhenShen = true
+				# 将此脚本附加到主场景的根节点
+				var power = 60
+				var is_shaking := false
+				var original_offset := Vector2.ZERO
+			
+				if is_shaking:
+					return  # 防止重复震动
+				
+				var viewport = get_viewport()
+				original_offset = viewport.canvas_transform.origin
+				is_shaking = true
+				
+				var tween = create_tween()
+				tween.set_loops(roundi(2 / 0.1))  # 每 0.1 秒震动一次
+				
+				# 定义震动动画
+				tween.tween_callback(func():
+					var offset = Vector2(
+						randf_range(-power, power),
+						randf_range(-power, power))
+					viewport.canvas_transform.origin = original_offset + offset
+				).set_delay(0.0)
+				
+				tween.tween_callback(func():
+					viewport.canvas_transform.origin = original_offset
+				).set_delay(0.05)  # 0.05 秒后复位
+				
+				# 震动结束后恢复状态
+				tween.tween_callback(func():
+					viewport.canvas_transform.origin = original_offset
+					is_shaking = false
+				)
+				
+				tween.play()
+
+				# 调用方式
+
+				viewport.canvas_transform.origin = original_offset  # 恢复.
+				$AudioStreamPlayer2D.stream = load("res://Audio/SE/猛兽2.ogg")
+				$AudioStreamPlayer2D.play()						
+					
+				get_parent().get_node("小二脸").visible = true		
+				get_parent().get_node("AnimationPlayer").play("moveFace")
+				self.get_node("changeEffect").visible = true
+				self.get_node("changeEffect").play()
+				get_tree().current_scene.get_node("battleBgm").stream = load("res://Audio/BGM/BGM  修羅界  天地劫手遊 X 軒轅劍 天之痕.mp3")
+				get_tree().current_scene.get_node("battleBgm").play()
+				get_parent().get_parent().get_node("黑边").visible = true
+				currPlayerSpeed = FightScenePlayers.真身数据.playerSpeed	
+				currPhysicDefense = FightScenePlayers.真身数据.physicDefense
+				currMagicDefense = FightScenePlayers.真身数据.magicDefense
+				currStr = FightScenePlayers.真身数据.str
+				currMagicDmg = FightScenePlayers.真身数据.abilityPower
+				totalHp = FightScenePlayers.真身数据.hp
+				totalMp = FightScenePlayers.真身数据.mp
+				self.autoAttackSound = FightScenePlayers.真身数据.autoAttackSound
+
+			
+						
+						
 			self.play(playerName + "法术")
 		Global.onMagicAttackPicking = false
 		Global.onMagicSelectPicking = false

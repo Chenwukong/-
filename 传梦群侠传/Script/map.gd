@@ -46,6 +46,8 @@ func update_cursor():
 
 		
 func _ready():
+
+ 
 	$AudioStreamPlayer2D.autoplay = true
 	#DisplayServer.window_set_title("传梦之路：第一章《浮生难安》")
 
@@ -94,7 +96,6 @@ func _ready():
 
 func _process(delta):
 	
- 
 
 	if Global.onTalk:
 		Global.menuOut = false
@@ -658,8 +659,8 @@ func _process(delta):
 		current_frame = 0 # Loop back to the first frame
 	update_cursor()	
 	
-	
-	var dialogue = get_parent().get_node("DialogueManager")
+	if get_tree().current_scene.name != "北俱战场":
+		var dialogue = get_parent().get_node("DialogueManager")
 	if Global.onTalk and Global.showBlack:
 		$CanvasLayer.visible = false
 		$CanvasLayer2.visible = true
@@ -859,7 +860,7 @@ func check_enter_fight_scene():
 	if Global.onTalk:
 		return
 	var randomNum = randi_range(Global.baseChance,FIGHT_SCENE_TRIGGER_PROBABILITY)
-
+	
 	if is_instance_valid($player):
 		if randomNum == 1:
 			var instance = preload("res://Scene/battleField.tscn").instantiate()	

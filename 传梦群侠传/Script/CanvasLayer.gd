@@ -57,6 +57,10 @@ func _ready():
 		mapTexture = "res://Panoramas/建业右.jpg"	
 	elif sceneName == "江南野外":
 		mapTexture  = "res://panoramas2/江南野外.jpg"
+	elif sceneName == "大唐国境边缘":
+		mapTexture  = 	"res://Panoramas/大唐国境全景.jpg"
+		
+		
 	else:
 		mapTexture = ""	
 
@@ -66,6 +70,11 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	deltas = delta
+	if get_tree().current_scene.name != "方寸山迷阵":
+		$questHint.visible = false
+	else:
+		$questHint.visible = true
+	$"position/限制".text = "限制:" + str(Global.maxLevel)
 	if Global.onSkipFight:
 		$"避".visible = true
 	else:

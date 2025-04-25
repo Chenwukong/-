@@ -347,8 +347,12 @@ func checkSetPos(currScene, toScene):
 	if currScene == "鬼城上":
 		if toScene == "地狱深处":
 			return Vector2(2241,495)				
-			
-			
+	if currScene == "大唐国境边缘":
+		if toScene == "大唐境外":
+			return Vector2(1509, -108)				
+	if currScene == "大唐境外":
+		if toScene == "大唐国境边缘":
+			return Vector2(-1132, 1226)				
 			
 			
 			

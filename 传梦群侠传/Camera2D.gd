@@ -4,6 +4,8 @@ var currScene
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	currScene = get_tree().current_scene.name
+	if currScene == "北俱战场" and get_parent().name != "朱雀":
+		return
 	if currScene == "东海湾":
 		$".".limit_left = 0
 		$".".limit_top = 0

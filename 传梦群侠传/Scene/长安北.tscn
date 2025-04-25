@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b83lx2a81mq3m"]
+[gd_scene load_steps=53 format=3 uid="uid://b83lx2a81mq3m"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ofsx0"]
 [ext_resource type="Texture2D" uid="uid://wqqnlmkq6n8p" path="res://panoramas2/长安北.png" id="2_go5qu"]
@@ -49,11 +49,26 @@ _data = {
 "城主走开": SubResource("Animation_5d8hn")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsb7q"]
+atlas = ExtResource("42_8eklw")
+region = Rect2(0, 350, 229, 175)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_at1r2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsb7q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_vrd11"]
 atlas = ExtResource("42_8eklw")
 region = Rect2(0, 175, 229, 175)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_at1r2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_c6t0h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -163,15 +178,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8t41o"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkonf"]
 atlas = ExtResource("36_q7hbi")
-region = Rect2(76, 249, 38, 83)
+region = Rect2(0, 83, 38, 83)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_him8c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8tg1b"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8t41o")
+"texture": SubResource("AtlasTexture_lkonf")
 }],
 "loop": true,
 "name": &"default",
@@ -366,15 +381,14 @@ position = Vector2(2879, 327)
 toScene = "江南野外"
 
 [node name="金甲" parent="." instance=ExtResource("31_duein")]
-visible = false
-position = Vector2(2494, 515)
+position = Vector2(2567, 461)
 sprite_frames = SubResource("SpriteFrames_at1r2")
 npcName = "金甲"
 
 [node name="金甲3" parent="." instance=ExtResource("31_duein")]
 visible = false
-position = Vector2(3191, 924)
-sprite_frames = SubResource("SpriteFrames_at1r2")
+position = Vector2(3192, 921)
+sprite_frames = SubResource("SpriteFrames_c6t0h")
 npcName = "金甲"
 
 [node name="CollisionPolygon2D" parent="金甲3/npcBody" index="1"]
@@ -458,7 +472,7 @@ triggerEvent = "解围金甲"
 
 [node name="小二" parent="." instance=ExtResource("31_duein")]
 position = Vector2(2692, 337)
-sprite_frames = SubResource("SpriteFrames_him8c")
+sprite_frames = SubResource("SpriteFrames_8tg1b")
 npcName = "小二 "
 
 [node name="battleBgm" type="AudioStreamPlayer" parent="."]

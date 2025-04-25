@@ -64,7 +64,7 @@ var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3},
 var bigMagics ={
 	"水漫金山":{
 		"name": "水漫金山",
-		"damage": 120,
+		"damage": 1.2,
 		"attackType": "range",
 		"effectingNum":8,
 		"animationArea": "enemy",
@@ -72,7 +72,7 @@ var bigMagics ={
 	},
 	"水满金山":{
 		"name": "水满金山",
-		"damage": 400,
+		"damage": 2,
 		"attackType": "range",
 		"effectingNum":8,
 		"animationArea": "enemy",
@@ -83,7 +83,7 @@ var bigMagics ={
 	"奔雷":{
 		"name": "奔雷",
 		"attackType": "range",
-		"damage": 50, 
+		"damage": 1.6, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectingNum": 3,
@@ -93,7 +93,7 @@ var bigMagics ={
 	"天火陨石":{
 		"name": "天火陨石",
 		"attackType": "range",
-		"damage": 350, 
+		"damage": 1.8, 
 		"effectingNum": 8,
 		"animationArea":"enemy",
 		"audio": "res://Audio/SE/142-Burst02.ogg"
@@ -101,7 +101,7 @@ var bigMagics ={
 	"风雨雷电":{
 		"name": "风雨雷电",
 		"attackType": "range",
-		"damage": 320, 
+		"damage": 1.6, 
 		"effectingNum": 8,
 		"animationArea":"enemy",
 		"audio": "res://Audio/SE/风 (2).wav"
@@ -109,7 +109,7 @@ var bigMagics ={
 	"硝爆":{
 		"name": "硝爆",
 		"attackType": "range",
-		"damage": 800, 
+		"damage": 3.5, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -144,11 +144,6 @@ func _ready():
 		self.scale.x = -1
 		self.modulate = "red"
 	target = Global.target
-
-	if Global.atNight:
-		hp *= 2
-		exp *= 2
-		gold *= 2
 	currHp = hp
 	
 	if monsterAndMagic.get(monsterName) != null:
@@ -596,8 +591,8 @@ func _process(delta):
 							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
 							Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").modulate = "c80038"
 							Global.alivePlayers[Global.monsterTarget].get_node("AnimationPlayer").play("hpControl")
-							var damage_to_deduct =  magicInfo.damage * float(Global.alivePlayers[Global.monsterTarget].currMagicDefense)/ float(1000)
-							Global.dealtDmg =   magicInfo.damage - damage_to_deduct
+							var damage_to_deduct =  magicInfo.damage * self.magicDmg * float(Global.alivePlayers[Global.monsterTarget].currMagicDefense)/ float(1000)
+							Global.dealtDmg =   magicInfo.damage * self.magicDmg - damage_to_deduct
 							
 							Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)		
 
@@ -641,8 +636,8 @@ func _process(delta):
 							i.get_node("hpControl/hpLabel").modulate = "c80038"
 							i.get_node("AnimationPlayer").play("hpControl")
 					
-							var damage_to_deduct = magicInfo.damage * float(i.currMagicDefense)/ float(1000)
-							Global.dealtDmg =  magicInfo.damage - damage_to_deduct
+							var damage_to_deduct = magicInfo.damage * self.magicDmg * float(i.currMagicDefense)/ float(1000)
+							Global.dealtDmg =  magicInfo.damage * self.magicDmg - damage_to_deduct
 							
 							i.currHp -= round(Global.dealtDmg)	
 							i.play(i.playerName + "idle")
@@ -684,8 +679,8 @@ func _process(delta):
 						Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
 						Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").modulate = "c80038"
 						Global.alivePlayers[Global.monsterTarget].get_node("AnimationPlayer").play("hpControl")
-						var damage_to_deduct =  magicInfo.damage * float(Global.alivePlayers[Global.monsterTarget].currMagicDefense)/ float(1000)
-						Global.dealtDmg =   magicInfo.damage - damage_to_deduct
+						var damage_to_deduct =  magicInfo.damage  * self.magicDmg * float(Global.alivePlayers[Global.monsterTarget].currMagicDefense)/ float(1000)
+						Global.dealtDmg =   magicInfo.damage  * self.magicDmg - damage_to_deduct
 						
 						Global.alivePlayers[Global.monsterTarget].currHp -= round(Global.dealtDmg)	
 						FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)	
@@ -902,32 +897,34 @@ func moveCharacter(delta):
 
 
 
-#func _on_button_button_down():
-#	Global.target = self
-#
-#	if monsters.size() > 0 and Global.onAttackPicking and Global.currPlayer.canAttack == true:
-#
-#		#Global.currPlayer.targetPosition = self.position
-#		attacks()
-#
-#		if Global.currPlayer.name != "姜韵":
-#			move()
-#
-#	if monsters and Global.onMagicAttackPicking:
-#
-#		if Global.currUsingMagic.attackType == "multi":
-#
-#			Global.currPlayer.cast_magic_multiple_times(deltas, Global.currUsingMagic, Global.target, "keyboard", 3 )
-#
-#		else:
-#			Global.currPlayer.castMagic(deltas, Global.currPlayerMagic[Global.magicSelectIndex],self, "mouse",false) 	
-#		Global.onMagicAttackPicking = false
-#
-#	if monsters and Global.onItemUsePicking:
-#		#Global.itemSelectIndex = 1
-#		Global.currPlayer.useItem(Global.currUsingItem, self , "mouse") 
-#		Global.currPlayer.target = self	
-#		Global.onItemUsePicking= false
+func _on_button_button_down():
+	if !Global.noKeyboard:
+		return
+	Global.target = self
+
+	if monsters.size() > 0 and Global.onAttackPicking and Global.currPlayer.canAttack == true:
+
+		#Global.currPlayer.targetPosition = self.position
+		attacks()
+
+		if Global.currPlayer.name != "姜韵":
+			move()
+
+	if monsters and Global.onMagicAttackPicking:
+
+		if Global.currUsingMagic.attackType == "multi":
+
+			Global.currPlayer.cast_magic_multiple_times(deltas, Global.currUsingMagic, Global.target, "keyboard", 3 )
+
+		else:
+			Global.currPlayer.castMagic(deltas, Global.currPlayerMagic[Global.magicSelectIndex],self, "mouse",false) 	
+		Global.onMagicAttackPicking = false
+
+	if monsters and Global.onItemUsePicking:
+		#Global.itemSelectIndex = 1
+		Global.currPlayer.useItem(Global.currUsingItem, self , "mouse") 
+		Global.currPlayer.target = self	
+		Global.onItemUsePicking= false
 func attacks():
 	Global.currPlayer.target = self
 	Global.currPlayer.attack(self, "mouse")

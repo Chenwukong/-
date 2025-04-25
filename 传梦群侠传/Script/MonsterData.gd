@@ -33,11 +33,51 @@ class Monster:
 		monsterMagicList = params.monsterMagicList if "monsterMagicList" in params else []
 # Define monsters organized by levels using dictionaries
 
+func calculate_monster_hp(level):
+	var baseHp = 100  # Base HP at level 1
+	var finalHp = 5000  # Desired HP at level 100
+	
+	var hpIncreasePerLevel = (finalHp - baseHp) / 99  # Linear increase per level
+
+	var totalHp = baseHp + hpIncreasePerLevel * (level - 1)
+	return totalHp
+	
+	
+func calculate_monster_exp(hp):
+	var exp = hp/3
+	
+	return exp
+func calculate_monster_gold(hp):
+	var gold = hp/5
+	
+	return gold
+func calculate_monster_str(level):
+	var baseStr = 50  # Base defense at level 1
+	var finalStr = 1000  # Desired defense at level 100
+	var strIncreasePerLevel = (finalStr - baseStr) / 99  # Linear increase per level
+	
+	var totalStr = baseStr + strIncreasePerLevel * (level - 1)
+	return totalStr
+func calculate_monster_ap(level):
+	var baseStr = 5  # Base defense at level 1
+	var finalStr = 800  # Desired defense at level 100
+	var strIncreasePerLevel = (finalStr - baseStr) / 99  # Linear increase per level
+	
+	var totalStr = baseStr + strIncreasePerLevel * (level - 1)
+	return totalStr
+func calculate_speed_for_level(level):
+	var baseSpeed = 30.0  # Base speed at level 1
+	var speedIncreasePerLevel = 4  # Speed increase per level
+	var totalSpeed = baseSpeed + speedIncreasePerLevel * (level - 1)
+
+	return totalSpeed
+
+
 var magics = {
 	"水漫金山":{
 		"name": "水漫金山",
 		"attackType": "range",
-		"damage": 20, 
+		"damage": 1, 
 		"cost": 50,
 		"description": "群攻法术",
 		"effectArea": "aoe",
@@ -48,7 +88,7 @@ var magics = {
 	"水攻":{
 		"name": "水攻",
 		"attackType": "range",
-		"damage": 30, 
+		"damage": 1.3, 
 		"cost": 10,
 		"description": "群攻法术",
 		"effectArea": "single",
@@ -59,7 +99,7 @@ var magics = {
 	"水炮":{
 		"name": "水炮",
 		"attackType": "range",
-		"damage": 200, 
+		"damage": 1.5, 
 		"cost": 10,
 		"description": "群攻法术",
 		"effectArea": "single",
@@ -70,7 +110,7 @@ var magics = {
 	"落岩":{
 		"name": "落岩",
 		"attackType": "range",
-		"damage": 40, 
+		"damage": 1.3, 
 		"cost": 30,
 		"description": "群攻法术",
 		"effectArea": "single",
@@ -81,7 +121,7 @@ var magics = {
 	"地裂火":{
 		"name": "地裂火",
 		"attackType": "range",
-		"damage": 100, 
+		"damage": 1.6, 
 		"cost": 30,
 		"description": "单体法术",
 		"effectArea": "single",
@@ -92,7 +132,7 @@ var magics = {
 	"泰山压顶":{
 		"name": "泰山压顶",
 		"attackType": "range",
-		"damage": 50, 
+		"damage": 1.2, 
 		"cost": 30,
 		"description": "单体法术",
 		"effectArea": "aoe",
@@ -103,7 +143,7 @@ var magics = {
 	"狐魅术":{
 		"name": "狐魅术",
 		"attackType": "range",
-		"damage": 40, 
+		"damage": 1.3, 
 		"cost": 30,
 		"description": "单体法术",
 		"effectArea": "single",
@@ -114,7 +154,7 @@ var magics = {
 	"漫天花雨":{
 		"name": "漫天花雨",
 		"attackType": "range",
-		"damage": 25, 
+		"damage": 1.1, 
 		"cost": 30,
 		"hitNum":3,
 		"description": "群体法术",
@@ -126,7 +166,7 @@ var magics = {
 	"静电":{
 		"name": "静电",
 		"attackType": "range",
-		"damage": 60, 
+		"damage": 1.7, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -137,7 +177,7 @@ var magics = {
 	"奔雷":{
 		"name": "奔雷",
 		"attackType": "range",
-		"damage": 50, 
+		"damage": 1.4, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "aoe",
@@ -148,7 +188,7 @@ var magics = {
 	"烈火":{
 		"name": "烈火",
 		"attackType": "range",
-		"damage": 50, 
+		"damage": 1.4, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -159,7 +199,7 @@ var magics = {
 	"天火陨石":{
 		"name": "天火陨石",
 		"attackType": "range",
-		"damage": 100, 
+		"damage": 1.5, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "aoe",
@@ -181,7 +221,7 @@ var magics = {
 	"风雨雷电":{
 		"name": "风雨雷电",
 		"attackType": "range",
-		"damage": 120, 
+		"damage": 1.7, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "aoe",
@@ -192,7 +232,7 @@ var magics = {
 	"开天辟地":{
 		"name": "开天辟地",
 		"attackType": "melee",
-		"damage": 300, 
+		"damage": 3, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -203,7 +243,7 @@ var magics = {
 	"硝爆":{
 		"name": "硝爆",
 		"attackType": "range",
-		"damage": 300, 
+		"damage": 3, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -215,7 +255,7 @@ var magics = {
 		"name": "虚沉冰封",
 		"attackType": "debuff",
 		"debuffType": "ice",
-		"damage": 300, 
+		"damage": 1.9, 
 		"cost": 500,
 		"duration": 2,
 		"description": "群体法术",
@@ -228,7 +268,7 @@ var magics = {
 		"name": "双龙戏珠",
 		"attackType": "range",
 		"debuffType": "ice",
-		"damage": 300, 
+		"damage": 2, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -241,7 +281,7 @@ var magics = {
 		"name": "魔音侵袭",
 		"attackType": "range",
 		"debuffType": "ice",
-		"damage": 130, 
+		"damage": 1.4, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -254,7 +294,7 @@ var magics = {
 		"name": "双生碧击",
 		"attackType": "range",
 		"debuffType": "ice",
-		"damage": 800, 
+		"damage": 2.5, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -267,7 +307,7 @@ var magics = {
 		"name": "雷击",
 		"attackType": "range",
 		"debuffType": "ice",
-		"damage": 270, 
+		"damage": 1.7, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -280,7 +320,7 @@ var magics = {
 		"name": "水满金山",
 		"attackType": "range",
 		"debuffType": "ice",
-		"damage": 150, 
+		"damage": 1.5, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -292,7 +332,7 @@ var magics = {
 	"立墓":{
 		"name": "立墓",
 		"attackType": "range",
-		"damage": 220, 
+		"damage": 2, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -304,7 +344,7 @@ var magics = {
 	"死亡召唤":{
 		"name": "死亡召唤",
 		"attackType": "range",
-		"damage": 180, 
+		"damage": 2, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -318,7 +358,7 @@ var magics = {
 	"血傀":{
 		"name": "血傀",
 		"attackType": "range",
-		"damage": 400, 
+		"damage": 3, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
@@ -337,16 +377,15 @@ var monsters = {
 	"东海湾": {
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
-
-			"speed": 30,
+			"speed": calculate_speed_for_level(1),
 			"level": 1,
-			"magicDefense": 5,
-			"physicDefense": 20,
+			"magicDefense": 0,
+			"physicDefense": 0,
 			"attackDmg": 50,
-			"magicDmg": 1,
-			"hp": 100,
-			"exp": 50,
-			"gold": 10,
+			"magicDmg": calculate_monster_ap(1),
+			"hp": calculate_monster_hp(1),
+			"exp": calculate_monster_exp(calculate_monster_hp(1)),
+			"gold": calculate_monster_gold(calculate_monster_hp(1)),
 			"luck": 10,
 			"idle": "海毛虫idle",
 			 "monsterMagicList": [
@@ -355,16 +394,16 @@ var monsters = {
 			}),
 		"大海龟": Monster.new({
 			"name": "大海龟",
-			"speed":20,
-			"level": 1,
-			"magicDefense":5,
-			"physicDefense": 20,
+			"speed":calculate_speed_for_level(3),
+			"level": 3,
+			"magicDefense":0,
+			"physicDefense": 0,
 			"attackDmg": 50,
-			"magicDmg": 1,
+			"magicDmg": calculate_monster_ap(3),
 			"luck": 10,
-			"hp": 200,
-			"exp": 50,
-			"gold":10,
+			"hp": calculate_monster_hp(3),
+			"exp": calculate_monster_exp(calculate_monster_hp(3)),
+			"gold": calculate_monster_gold(calculate_monster_hp(3)),
 			"idle": "大海龟idle",
 			 "monsterMagicList": [
 				magics.get("水攻"),
@@ -374,16 +413,16 @@ var monsters = {
 	"巨蛙":{
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
-			"speed": 30,
-			"level": 1,
+			"speed": calculate_speed_for_level(3),
+			"level": 3,
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 50,
-			"magicDmg": 1,
+			"magicDmg": calculate_monster_ap(3),
 			"posi": "middle",
-			"hp": 200,
-			"exp": 50,
-			"gold": 10,
+			"hp": calculate_monster_hp(3),
+			"exp": calculate_monster_exp(calculate_monster_hp(3)),
+			"gold": calculate_monster_gold(calculate_monster_hp(3)),
 			"luck": 10,
 			"idle": "海毛虫idle",
 			 "monsterMagicList": [
@@ -392,13 +431,13 @@ var monsters = {
 			}),
 		"巨蛙": Monster.new({
 			"name": "巨蛙",
-			"speed": 40,
+			"speed": calculate_speed_for_level(6),
 			"level": 1,
 			"magicDefense": 0,
 			"physicDefense": 0,
 			"attackDmg": 100,
-			"magicDmg": 3,
-			"hp": 1600,
+			"magicDmg": calculate_monster_ap(5),
+			"hp": 2000,
 			"exp": 1000,
 			"gold": 1000,
 			"luck": 10,
@@ -409,15 +448,15 @@ var monsters = {
 			}),		
 		"大海龟": Monster.new({
 			"name": "大海龟",
-			"speed":20,
+			"speed":calculate_speed_for_level(4),
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 20,
 			"attackDmg": 50,
-			"magicDmg": 1,
-			"hp": 300,
-			"exp": 50,
-			"gold":10,
+			"magicDmg": calculate_monster_ap(5),
+			"hp": calculate_monster_hp(5),
+			"exp": calculate_monster_exp(calculate_monster_hp(5)),
+			"gold": calculate_monster_gold(calculate_monster_hp(5)),
 			"luck": 10,
 			"idle": "大海龟idle",
 			 "monsterMagicList": [
@@ -547,7 +586,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(2),
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -563,7 +602,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(2),
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -579,7 +618,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(2),
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -595,7 +634,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(2),
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -611,7 +650,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(2),
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -627,7 +666,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(2),
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -645,10 +684,10 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 100,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(8),
 			"hp": 2000,
-			"exp": 300,
-			"gold": 300,
+			"exp": calculate_monster_exp(2000),
+			"gold": calculate_monster_gold(2000),
 			"idle": "牛妖idle",
 			 "monsterMagicList": [
 				magics.get("地裂火"),
@@ -657,14 +696,14 @@ var monsters = {
 		"羊妖":Monster.new({
 			"name": "羊妖",
 			"speed": 50,
-			"level": 1,
+			"level": 8,
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 100,
-			"magicDmg": 2,
+			"magicDmg": calculate_monster_ap(8),
 			"hp": 2000,
-			"exp": 300,
-			"gold": 300,
+			"exp": calculate_monster_exp(2000),
+			"gold": calculate_monster_gold(2000),
 			"idle": "羊妖idle",
 			 "monsterMagicList": [
 				magics.get("泰山压顶"),
@@ -674,17 +713,17 @@ var monsters = {
 	"蓝羽妖女":{
 		"蓝羽妖女":Monster.new({
 			"name": "蓝羽妖女",
-			"speed": 100,
+			"speed": 120,
 			"level": 1,
 			"magicDefense": 50,
 			"physicDefense": 50,
-			"attackDmg": 170,
+			"attackDmg": 250,
 			"type": "",
 			"posi": "middle",
-			"magicDmg": 4,
-			"hp": 3500,
-			"exp": 1200,
-			"gold": 500,
+			"magicDmg": 200,
+			"hp": 4000,
+			"exp": calculate_monster_exp(3500),
+			"gold": calculate_monster_gold(3500),
 			"idle": "蓝羽妖女idle",
 			 "monsterMagicList": [
 				magics.get("静电"),
@@ -693,17 +732,17 @@ var monsters = {
 	"江南野外": {
 		"狐狸精": Monster.new({
 			"name": "狐狸精",
-			"speed": 60,
-			"level": 1,
+			"speed": calculate_speed_for_level(8),
+			"level": 8,
 			"magicDefense": 5,
 			"physicDefense": 30,
-			"attackDmg": 55,
-			"magicDmg": 1.5,
-			"hp": 300,
-			"exp": 60,
+			"attackDmg": calculate_monster_str(8),
+			"magicDmg": calculate_monster_ap(8),
+			"hp": calculate_monster_hp(8),
+			"exp": calculate_monster_exp(calculate_monster_hp(8)),
+			"gold": calculate_monster_gold(calculate_monster_hp(8)),
 			"luck": 10,
 			"type": "",
-			"gold": 50,
 			"idle": "狐狸精idle",
 			 "monsterMagicList": [
 				magics.get("狐魅术"),
@@ -711,16 +750,16 @@ var monsters = {
 			}),
 		"花妖": Monster.new({
 			"name": "花妖",
-			"speed":65,
-			"level": 1,
+			"speed":calculate_speed_for_level(9),
+			"level": 9,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": 55,
-			"magicDmg": 3,
+			"attackDmg": calculate_monster_str(9),
+			"magicDmg": calculate_monster_ap(9),
 			"luck": 10,
-			"hp": 300,
-			"exp": 60,
-			"gold":50,
+			"hp": calculate_monster_hp(9),
+			"exp": calculate_monster_exp(calculate_monster_hp(9)),
+			"gold": calculate_monster_gold(calculate_monster_hp(9)),
 			"type": "",
 			"idle": "花妖idle",
 			 "monsterMagicList": [
@@ -729,17 +768,17 @@ var monsters = {
 		}),
 		"牛妖":Monster.new({
 			"name": "牛妖",
-			"speed": 50,
-			"level": 1,
+			"speed": calculate_speed_for_level(10),
+			"level": 10,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 50,
-			"magicDmg": 2,
+			"attackDmg": calculate_monster_str(10),
+			"magicDmg": calculate_monster_ap(10),
 			"luck": 10,
-			"hp": 400,
-			"exp": 60,
+			"hp": calculate_monster_hp(10),
+			"exp": calculate_monster_exp(calculate_monster_hp(10)),
+			"gold": calculate_monster_gold(calculate_monster_hp(10)),
 			"type": "",
-			"gold": 60,
 			"idle": "牛妖idle",
 			 "monsterMagicList": [
 				magics.get("地裂火"),
@@ -747,17 +786,17 @@ var monsters = {
 			}),
 		"羊妖":Monster.new({
 			"name": "羊妖",
-			"speed": 70,
+			"speed": calculate_speed_for_level(10),
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 50,
-			"magicDmg": 1.5,
+			"attackDmg": calculate_monster_str(10),
+			"magicDmg": calculate_monster_ap(10),
 			"luck": 10,
-			"hp": 400,
-			"exp": 65,
+			"hp": calculate_monster_hp(10),
+			"exp": calculate_monster_exp(calculate_monster_hp(10)),
+			"gold": calculate_monster_gold(calculate_monster_hp(10)),
 			"type": "",
-			"gold": 60,
 			"idle": "羊妖idle",
 			 "monsterMagicList": [
 				magics.get("泰山压顶"),
@@ -773,7 +812,7 @@ var monsters = {
 			"magicDefense": 0,
 			"physicDefense": 0,
 			"attackDmg": 130,
-			"magicDmg": 1.5,
+			"magicDmg": 150,
 			"hp": 3000,
 			"posi": "middle",
 			"exp": 400,
@@ -808,16 +847,16 @@ var monsters = {
 	"鼠先锋": {
 		"鼠先锋": Monster.new({
 			"name": "鼠先锋",
-			"speed": 60,
+			"speed": 90,
 			"level": 1,
 			"magicDefense": 20,
 			"physicDefense": 20,
-			"attackDmg": 120,
-			"magicDmg": 2,
+			"attackDmg": 200,
+			"magicDmg": 150,
 			"posi": "middle",
-			"exp": 300,
-			"gold": 1200,
-			"hp": 1500,
+			"exp": calculate_monster_exp(1800),
+			"gold": calculate_monster_gold(1800),
+			"hp": 1800,
 			"idle": "鼠先锋idle",
 			 "monsterMagicList": [
 				magics.get("奔雷"),
@@ -850,16 +889,16 @@ var monsters = {
 	"锁妖塔2"	:{
 		"狐狸精": Monster.new({
 			"name": "狐狸精",
-			"speed": 65,
+			"speed": calculate_speed_for_level(15),
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 30,
-			"attackDmg": 55,
-			"magicDmg": 1.5,
-			"hp": 430,
-			"exp": 40,
+			"attackDmg": calculate_monster_str(15),
+			"magicDmg": calculate_monster_ap(15),
+			"hp": calculate_monster_hp(15),
+			"exp": calculate_monster_exp(calculate_monster_hp(15)),
 			"luck": 10,
-			"gold": 50,
+			"gold": calculate_monster_gold(calculate_monster_hp(15)),
 			"idle": "狐狸精idle",
 			 "monsterMagicList": [
 				magics.get("狐魅术"),
@@ -868,16 +907,16 @@ var monsters = {
 			}),
 		"花妖": Monster.new({
 			"name": "花妖",
-			"speed": 70,
-			"level": 1,
+			"speed": calculate_speed_for_level(16),
+			"level": 16,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": 55,
-			"magicDmg": 3.2,
-			"hp": 400,
-			"exp": 60,
+			"attackDmg": calculate_monster_str(16),
+			"magicDmg": calculate_monster_ap(16),
+			"hp": calculate_monster_hp(16),
+			"exp": calculate_monster_exp(calculate_monster_hp(16)),
 			"luck": 10,
-			"gold":50,
+			"gold": calculate_monster_gold(calculate_monster_hp(16)),
 			"idle": "花妖idle",
 			 "monsterMagicList": [
 				magics.get("漫天花雨"),
@@ -889,17 +928,17 @@ var monsters = {
 	"鳄额呃":{
 		"鳄额呃": Monster.new({
 			"name": "鳄额呃",
-			"speed": 120,
+			"speed": 160,
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": 200,
+			"attackDmg": 400,
 			"magicDmg": 1,
 			"posi": "middle",
 			"hp": 4500,
-			"exp": 600,
+			"exp": calculate_monster_exp(4500),
 			"luck": 50,
-			"gold":1200,
+			"gold":calculate_monster_gold(4500),
 			"type":"",
 			"idle": "鳄额呃idle",
 			 "monsterMagicList": [
@@ -909,16 +948,16 @@ var monsters = {
 	"锁妖塔3":{
 		"牛妖":Monster.new({
 			"name": "牛妖",
-			"speed": 30,
+			"speed": calculate_speed_for_level(17),
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 85,
-			"magicDmg": 2,
+			"attackDmg": calculate_monster_str(17),
+			"magicDmg": calculate_monster_ap(17),
 			"luck": 10,
-			"hp": 600,
-			"exp": 75,
-			"gold": 60,
+			"hp": calculate_monster_hp(17),
+			"exp": calculate_monster_exp(calculate_monster_hp(17)),
+			"gold": calculate_monster_gold(calculate_monster_hp(17)),
 			"idle": "牛妖idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -927,16 +966,16 @@ var monsters = {
 			}),
 		"羊妖":Monster.new({
 			"name": "羊妖",
-			"speed": 35,
+			"speed": calculate_speed_for_level(18),
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 80,
-			"magicDmg": 1.5,
-			"hp": 550,
+			"attackDmg": calculate_monster_str(18),
+			"magicDmg": calculate_monster_ap(18),
 			"luck": 10,
-			"exp": 75,
-			"gold": 60,
+			"hp": calculate_monster_hp(18),
+			"exp": calculate_monster_exp(calculate_monster_hp(18)),
+			"gold": calculate_monster_gold(calculate_monster_hp(18)),
 			"idle": "羊妖idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -947,17 +986,17 @@ var monsters = {
 	"鼠老大":{
 		"鼠老大": Monster.new({
 			"name": "鼠先锋",
-			"speed": 120,
+			"speed": 170,
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": 260,
+			"attackDmg": 380,
 			"posi": "middle",
 			"luck": 50,
 			"magicDmg": 1.5,
 			"hp": 5000,
-			"exp": 600,
-			"gold":1200,
+			"exp": calculate_monster_exp(5000),
+			"gold":calculate_monster_gold(5000),
 			"type":"",
 			"idle": "鼠先锋idle",
 			 "monsterMagicList": [
@@ -967,16 +1006,16 @@ var monsters = {
 	"锁妖塔4":{
 		"兔子精":Monster.new({
 			"name": "兔子精",
-			"speed": 120,
+			"speed": 170,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 130,
-			"magicDmg": 2,
-			"hp": 620,
+			"attackDmg": calculate_monster_str(19),
+			"magicDmg": calculate_monster_ap(19),
 			"luck": 10,
-			"exp": 85,
-			"gold": 60,
+			"hp": calculate_monster_hp(19),
+			"exp": calculate_monster_exp(calculate_monster_hp(19)),
+			"gold": calculate_monster_gold(calculate_monster_hp(19)),
 			"idle": "兔子精idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -985,15 +1024,16 @@ var monsters = {
 			}),
 		"黑熊精":Monster.new({
 			"name": "黑熊精",
-			"speed": 80,
+			"speed": calculate_speed_for_level(20),
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 200,
-			"magicDmg": 1.5,
-			"hp": 700,
-			"exp": 80,
-			"gold": 60,
+			"attackDmg": calculate_monster_str(20),
+			"magicDmg": calculate_monster_ap(20),
+			"luck": 10,
+			"hp": calculate_monster_hp(20),
+			"exp": calculate_monster_exp(calculate_monster_hp(20)),
+			"gold": calculate_monster_gold(calculate_monster_hp(20)),
 			"idle": "黑熊精idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -1009,12 +1049,12 @@ var monsters = {
 			"magicDefense":5,
 			"physicDefense": 30,
 			"posi": "middle",
-			"attackDmg": 300,
+			"attackDmg": 470,
 			"magicDmg": 1.5,
 			"luck": 50,
 			"hp": 5500,
-			"exp": 700,
-			"gold":1200,
+			"exp": calculate_monster_exp(5500),
+			"gold": calculate_monster_gold(5500),
 			"type":"",
 			"idle": "黑熊王idle",
 			 "monsterMagicList": [
@@ -1043,17 +1083,16 @@ var monsters = {
 	"锁妖塔6":{
 		"树怪":Monster.new({
 			"name": "树怪",
-			"speed": 80,
+			"speed": calculate_speed_for_level(21),
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 230,
-			"magicDmg": 2,
+			"attackDmg": calculate_monster_str(21),
+			"magicDmg": calculate_monster_ap(21),
 			"luck": 10,
-			"hp": 800,
-			"exp": 90,
-			
-			"gold": 100,
+			"hp": calculate_monster_hp(21),
+			"exp": calculate_monster_exp(calculate_monster_hp(21)),
+			"gold": calculate_monster_gold(calculate_monster_hp(21)),
 			"idle": "树怪idle",
 			"type": "",
 			 "monsterMagicList": [
@@ -1063,17 +1102,17 @@ var monsters = {
 	"千年树":{
 		"千年树": Monster.new({
 			"name": "千年树",
-			"speed": 100,
+			"speed": 140,
 			"level": 1,
 			"magicDefense":5,
 			"posi": "middle",
 			"physicDefense": 30,
-			"attackDmg": 400,
+			"attackDmg": 530,
 			"magicDmg": 1.5,
-			"hp": 6000,
+			"hp": 8000,
 			"luck": 50,
-			"exp": 900,
-			"gold": 1000,
+			"exp": calculate_monster_exp(8000),
+			"gold": calculate_monster_gold(8000),
 			"type":"",
 			"idle": "千年树idle",
 			 "monsterMagicList": [
@@ -1083,16 +1122,16 @@ var monsters = {
 	"鹰孽大王":{
 		"鹰孽大王": Monster.new({
 			"name": "鹰孽大王",
-			"speed": 120,
+			"speed": 160,
 			"level": 1,
 			"magicDefense":0,
 			"physicDefense": 0,
-			"attackDmg": 500,
-			"magicDmg": 2.3,
+			"attackDmg": 600,
+			"magicDmg": 190,
 			"posi": "middle",
-			"hp": 8000,
-			"exp": 1500,
-			"gold": 2000,
+			"hp": 9000,
+			"exp": calculate_monster_exp(9000),
+			"gold": calculate_monster_gold(9000),
 			"luck": 65,
 			"type":"",
 			"idle": "鹰孽大王idle",
@@ -1187,12 +1226,12 @@ var monsters = {
 	"堕逝":{
 		"堕逝": Monster.new({
 			"name": "堕逝",
-			"speed": 125,
+			"speed": 165,
 			"level": 1,
 			"magicDefense":0,
 			"physicDefense": 0,
 			"attackDmg": 320,
-			"magicDmg": 2,
+			"magicDmg": 175,
 			"posi": "middle",
 			"hp": 8000,
 			"exp": 1000,
@@ -1212,7 +1251,7 @@ var monsters = {
 			"magicDefense":0,
 			"physicDefense": 0,
 			"attackDmg": 1200,
-			"magicDmg": 3 ,
+			"magicDmg": 250,
 			"luck": 50,
 			"hp": 15000,
 			"posi": "middle",
@@ -1234,7 +1273,7 @@ var monsters = {
 			"luck": 10,
 			"physicDefense": 700,
 			"attackDmg": 500,
-			"magicDmg": 3 ,
+			"magicDmg": 200 ,
 			"hp":  7000,
 			"posi": "middle",
 			"exp": 4000,
@@ -2238,8 +2277,8 @@ var monsters = {
 			"posi": "middle",
 			"magicDmg": 3,
 			"hp": 7000,
-			"exp": 500,
-			"gold": 0,
+			"exp": 1250,
+			"gold": 750,
 			"idle": "怨蛛idle",
 			 "monsterMagicList": [
 			],
@@ -2749,9 +2788,189 @@ var monsters = {
 			}),
 			},					
 			
-			
-					
+	"噬天虎":{
+		"噬天虎": Monster.new({
+			"name": "噬天虎",
+			"speed": 180,
+			"level": 1,
+			"magicDefense":300,
+			"physicDefense": 300,
+			"attackDmg": 650,
+			"magicDmg": 40,
+			"posi": "middle",
+			"hp": 17000,
+			"exp": 000,
+			"gold": 000,
+			"type": "",
+			"idle": "噬天虎idle",
+			 "monsterMagicList": [
 				
+			],
+			}),
+			},					
+	"大唐国境边缘":{
+		"野猪": Monster.new({
+			"name": "野猪",
+			"speed": 120,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 205,
+			"luck": 10,
+			"magicDmg": 8,
+			"hp": 1800,
+			"exp": 150,
+			"gold": 100,
+			"idle": "野猪idle",
+			 "monsterMagicList": [
+				magics.get("落岩"),
+			],
+			}),
+		"蝶妖": Monster.new({
+			"name": "蝶妖",
+			"speed": 130,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"luck": 10,
+			"attackDmg": 255,
+			"magicDmg": 8,
+			"hp": 2000,
+			"exp": 180,
+			"gold": 100,
+			"idle": "蝶妖idle",
+			 "monsterMagicList": [
+				magics.get("水攻"),
+			],
+			}),
+			},						
+	"大唐境外":{
+		"野猪": Monster.new({
+			"name": "野猪",
+			"speed": 120,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 205,
+			"luck": 10,
+			"magicDmg": 8,
+			"hp": 1800,
+			"exp": 150,
+			"gold": 100,
+			"idle": "野猪idle",
+			 "monsterMagicList": [
+				magics.get("落岩"),
+			],
+			}),
+		"蝶妖": Monster.new({
+			"name": "蝶妖",
+			"speed": 130,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"luck": 10,
+			"attackDmg": 255,
+			"magicDmg": 8,
+			"hp": 2000,
+			"exp": 180,
+			"gold": 100,
+			"idle": "蝶妖idle",
+			 "monsterMagicList": [
+				magics.get("水攻"),
+			],
+			}),
+		"巨石怪": Monster.new({
+			"name": "巨石怪",
+			"speed": 130,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"luck": 10,
+			"attackDmg": 255,
+			"magicDmg": 8,
+			"hp": 2000,
+			"exp": 180,
+			"gold": 100,
+			"idle": "巨石怪idle",
+			 "monsterMagicList": [
+				magics.get("水攻"),
+			],
+			}),			
+			},						
+	"大唐境外南":{
+		"野猪": Monster.new({
+			"name": "野猪",
+			"speed": 120,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 205,
+			"luck": 10,
+			"magicDmg": 8,
+			"hp": 1800,
+			"exp": 150,
+			"gold": 100,
+			"idle": "野猪idle",
+			 "monsterMagicList": [
+				magics.get("落岩"),
+			],
+			}),
+		"蝶妖": Monster.new({
+			"name": "蝶妖",
+			"speed": 130,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"luck": 10,
+			"attackDmg": 255,
+			"magicDmg": 8,
+			"hp": 2000,
+			"exp": 180,
+			"gold": 100,
+			"idle": "蝶妖idle",
+			 "monsterMagicList": [
+				magics.get("水攻"),
+			],
+			}),
+		"巨石怪": Monster.new({
+			"name": "蝶妖",
+			"speed": 130,
+			"level": 1,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"luck": 10,
+			"attackDmg": 255,
+			"magicDmg": 8,
+			"hp": 2000,
+			"exp": 180,
+			"gold": 100,
+			"idle": "蝶妖idle",
+			 "monsterMagicList": [
+				magics.get("水攻"),
+			],
+			}),			
+			},	
+	"青面兽":{
+		"青面兽": Monster.new({
+			"name": "青面兽",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 40000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "青面兽idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+			},			
+								
 	"金翅大鹏":{
 		"金翅大鹏": Monster.new({
 			"name": "金翅大鹏",
@@ -2838,3 +3057,6 @@ func getBoss(bossName) -> Dictionary:
 #    # Add more levels as needed
 #}
 #}
+func _process(delta):
+	pass
+

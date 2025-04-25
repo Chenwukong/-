@@ -164,7 +164,8 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("地府决战"))						
 			"凌若昭回忆":
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("凌若昭回忆"))							
-						
+			"再见小二":
+				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("再见小二"))							
 				
 func get_npc_dialogue(npc_id):
 	

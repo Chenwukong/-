@@ -312,8 +312,10 @@ animation = &"右上"
 
 [node name="Node2D" parent="." instance=ExtResource("23_u60dt")]
 position = Vector2(956.398, 259.108)
-goldAmount = 300
+id = "长安酒店1"
+goldAmount = 3000
 gold = true
+violencePointTreasure = true
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

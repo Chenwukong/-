@@ -1,20 +1,20 @@
 [gd_scene load_steps=63 format=3 uid="uid://5rdlt34b6d4g"]
 
-[ext_resource type="Script" path="res://Script/menuControl.gd" id="1_wcoq5"]
-[ext_resource type="StyleBox" uid="uid://dkvtj1qfivlob" path="res://Scene/menuHpBack.tres" id="2_lscjf"]
-[ext_resource type="Texture2D" uid="uid://ba0gbvspfp4nd" path="res://菜单.jpg" id="2_q2sea"]
-[ext_resource type="StyleBox" uid="uid://d2gjo8tiqtbat" path="res://Scene/menuHp.tres" id="3_kit7w"]
-[ext_resource type="StyleBox" uid="uid://di4oug8y2x4" path="res://Scene/flat.tres" id="3_wiouq"]
-[ext_resource type="Script" path="res://Script/menu_character.gd" id="4_aibye"]
-[ext_resource type="Texture2D" uid="uid://b3da5qpqi63d2" path="res://Pictures/时追云.png" id="5_napxa"]
-[ext_resource type="Texture2D" uid="uid://clsl8s4fnu3rt" path="res://Icons/312.png" id="6_28wi0"]
-[ext_resource type="StyleBox" uid="uid://diiqem3l2xshe" path="res://Scene/armorItem.tres" id="7_xhdek"]
-[ext_resource type="Texture2D" uid="uid://degsqccwdb0hx" path="res://Icons/项链-佛珠.png" id="8_ygku8"]
-[ext_resource type="Texture2D" uid="uid://biubkf1irk4a8" path="res://_US@8H~G[YOXT1%BR`3%(R1.png" id="9_2874n"]
-[ext_resource type="Texture2D" uid="uid://dv4bcj0qgcow3" path="res://main character/jiangYuntile000.png" id="9_opgk1"]
-[ext_resource type="AudioStream" uid="uid://lld2y0qxwvqb" path="res://Audio/SE/002-System02.ogg" id="10_f2eqa"]
-[ext_resource type="Texture2D" uid="uid://crpya3ugv6tfl" path="res://1.png" id="13_f3xtk"]
-[ext_resource type="Texture2D" uid="uid://blmfianhw2hci" path="res://圈.png" id="14_s4onr"]
+[ext_resource type="Script" path="res://Script/menuControl.gd" id="1_kehm5"]
+[ext_resource type="StyleBox" uid="uid://dkvtj1qfivlob" path="res://Scene/menuHpBack.tres" id="2_wugjd"]
+[ext_resource type="StyleBox" uid="uid://d2gjo8tiqtbat" path="res://Scene/menuHp.tres" id="3_2jniq"]
+[ext_resource type="Texture2D" uid="uid://ba0gbvspfp4nd" path="res://菜单.jpg" id="4_fy5uq"]
+[ext_resource type="Texture2D" uid="uid://biubkf1irk4a8" path="res://_US@8H~G[YOXT1%BR`3%(R1.png" id="5_jxs76"]
+[ext_resource type="StyleBox" uid="uid://di4oug8y2x4" path="res://Scene/flat.tres" id="6_1osqn"]
+[ext_resource type="Script" path="res://Script/menu_character.gd" id="7_q7sat"]
+[ext_resource type="Texture2D" uid="uid://b3da5qpqi63d2" path="res://Pictures/时追云.png" id="8_kre0l"]
+[ext_resource type="Texture2D" uid="uid://clsl8s4fnu3rt" path="res://Icons/312.png" id="9_hmeev"]
+[ext_resource type="StyleBox" uid="uid://diiqem3l2xshe" path="res://Scene/armorItem.tres" id="10_1pj8h"]
+[ext_resource type="Texture2D" uid="uid://degsqccwdb0hx" path="res://Icons/项链-佛珠.png" id="11_pn08h"]
+[ext_resource type="Texture2D" uid="uid://dv4bcj0qgcow3" path="res://main character/jiangYuntile000.png" id="12_mjfj5"]
+[ext_resource type="Texture2D" uid="uid://crpya3ugv6tfl" path="res://1.png" id="13_trnbg"]
+[ext_resource type="Texture2D" uid="uid://blmfianhw2hci" path="res://圈.png" id="14_o24h5"]
+[ext_resource type="AudioStream" uid="uid://lld2y0qxwvqb" path="res://Audio/SE/002-System02.ogg" id="15_xs4jh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyw1c"]
 bg_color = Color(0.443137, 0.443137, 0.443137, 0.313726)
@@ -654,7 +654,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.67, 0.619)
-script = ExtResource("1_wcoq5")
+script = ExtResource("1_kehm5")
 
 [node name="status" type="Control" parent="menuControl"]
 z_index = 1
@@ -744,8 +744,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 80.0
 show_percentage = false
 
@@ -870,8 +870,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 50.0
 show_percentage = false
 
@@ -996,8 +996,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 50.0
 show_percentage = false
 
@@ -1124,8 +1124,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 50.0
 show_percentage = false
 
@@ -1187,7 +1187,7 @@ offset_bottom = 488.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_q2sea")
+texture = ExtResource("4_fy5uq")
 
 [node name="道具" type="Button" parent="menuControl/menuButton" groups=["menuButton"]]
 layout_mode = 0
@@ -1302,7 +1302,7 @@ offset_left = -846.0
 offset_top = -601.0
 offset_right = 868.0
 offset_bottom = 609.0
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="道具分类" type="Panel" parent="menuControl/道具页面"]
 layout_mode = 0
@@ -1472,7 +1472,7 @@ offset_left = -352.0
 offset_top = 405.0
 offset_right = 777.0
 offset_bottom = 609.0
-theme_override_styles/panel = ExtResource("3_wiouq")
+theme_override_styles/panel = ExtResource("6_1osqn")
 
 [node name="Label" type="Label" parent="menuControl/道具页面/介绍"]
 layout_mode = 0
@@ -1493,7 +1493,7 @@ offset_right = 736.0
 offset_bottom = 391.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_lkjls")
-script = ExtResource("4_aibye")
+script = ExtResource("7_q7sat")
 
 [node name="itemPlayer1" type="Panel" parent="menuControl/道具页面/角色表" groups=["itemPlayer"]]
 layout_mode = 1
@@ -1512,7 +1512,7 @@ layout_mode = 0
 offset_left = -5.0
 offset_right = 188.0
 offset_bottom = 197.0
-texture = ExtResource("5_napxa")
+texture = ExtResource("8_kre0l")
 expand_mode = 1
 
 [node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer1"]
@@ -1530,8 +1530,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 80.0
 show_percentage = false
 
@@ -1583,7 +1583,7 @@ offset_left = 177.0
 offset_top = 28.0
 offset_right = 243.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
 layout_mode = 0
@@ -1591,7 +1591,7 @@ offset_left = 270.0
 offset_top = 28.0
 offset_right = 336.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
 layout_mode = 0
@@ -1599,7 +1599,7 @@ offset_left = 270.0
 offset_top = 120.0
 offset_right = 336.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer1"]
 layout_mode = 0
@@ -1607,7 +1607,7 @@ offset_left = 177.0
 offset_top = 120.0
 offset_right = 243.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="menuPlayerBut1" type="Button" parent="menuControl/道具页面/角色表/itemPlayer1"]
 modulate = Color(1, 1, 1, 0)
@@ -1633,7 +1633,7 @@ layout_mode = 0
 offset_left = -5.0
 offset_right = 188.0
 offset_bottom = 197.0
-texture = ExtResource("5_napxa")
+texture = ExtResource("8_kre0l")
 expand_mode = 1
 
 [node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer2"]
@@ -1651,8 +1651,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 80.0
 show_percentage = false
 
@@ -1704,7 +1704,7 @@ offset_left = 177.0
 offset_top = 28.0
 offset_right = 243.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
 layout_mode = 0
@@ -1712,7 +1712,7 @@ offset_left = 270.0
 offset_top = 28.0
 offset_right = 336.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
 layout_mode = 0
@@ -1720,7 +1720,7 @@ offset_left = 270.0
 offset_top = 120.0
 offset_right = 336.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer2"]
 layout_mode = 0
@@ -1728,7 +1728,7 @@ offset_left = 177.0
 offset_top = 120.0
 offset_right = 243.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="menuPlayerBut2" type="Button" parent="menuControl/道具页面/角色表/itemPlayer2"]
 modulate = Color(1, 1, 1, 0)
@@ -1754,7 +1754,7 @@ layout_mode = 0
 offset_left = -5.0
 offset_right = 188.0
 offset_bottom = 197.0
-texture = ExtResource("5_napxa")
+texture = ExtResource("8_kre0l")
 expand_mode = 1
 
 [node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer3"]
@@ -1772,8 +1772,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 80.0
 show_percentage = false
 
@@ -1825,7 +1825,7 @@ offset_left = 177.0
 offset_top = 28.0
 offset_right = 243.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
 layout_mode = 0
@@ -1833,7 +1833,7 @@ offset_left = 270.0
 offset_top = 28.0
 offset_right = 336.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
 layout_mode = 0
@@ -1841,7 +1841,7 @@ offset_left = 270.0
 offset_top = 120.0
 offset_right = 336.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer3"]
 layout_mode = 0
@@ -1849,7 +1849,7 @@ offset_left = 177.0
 offset_top = 120.0
 offset_right = 243.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="menuPlayerBut3" type="Button" parent="menuControl/道具页面/角色表/itemPlayer3"]
 modulate = Color(1, 1, 1, 0)
@@ -1875,7 +1875,7 @@ layout_mode = 0
 offset_left = -5.0
 offset_right = 188.0
 offset_bottom = 197.0
-texture = ExtResource("5_napxa")
+texture = ExtResource("8_kre0l")
 expand_mode = 1
 
 [node name="hpText" type="Label" parent="menuControl/道具页面/角色表/itemPlayer4"]
@@ -1893,8 +1893,8 @@ offset_left = 100.0
 offset_top = 20.0
 offset_right = 280.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
-theme_override_styles/fill = ExtResource("3_kit7w")
+theme_override_styles/background = ExtResource("2_wugjd")
+theme_override_styles/fill = ExtResource("3_2jniq")
 value = 80.0
 show_percentage = false
 
@@ -1946,7 +1946,7 @@ offset_left = 177.0
 offset_top = 28.0
 offset_right = 243.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff2" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
 layout_mode = 0
@@ -1954,7 +1954,7 @@ offset_left = 270.0
 offset_top = 28.0
 offset_right = 336.0
 offset_bottom = 97.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff3" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
 layout_mode = 0
@@ -1962,7 +1962,7 @@ offset_left = 270.0
 offset_top = 120.0
 offset_right = 336.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="buff4" type="TextureRect" parent="menuControl/道具页面/角色表/itemPlayer4"]
 layout_mode = 0
@@ -1970,7 +1970,7 @@ offset_left = 177.0
 offset_top = 120.0
 offset_right = 243.0
 offset_bottom = 189.0
-texture = ExtResource("6_28wi0")
+texture = ExtResource("9_hmeev")
 
 [node name="menuPlayerBut4" type="Button" parent="menuControl/道具页面/角色表/itemPlayer4"]
 modulate = Color(1, 1, 1, 0)
@@ -1995,7 +1995,7 @@ offset_left = -846.0
 offset_top = -601.0
 offset_right = 868.0
 offset_bottom = 588.0
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="技能介绍" type="Panel" parent="menuControl/法术页面"]
 layout_mode = 0
@@ -2054,7 +2054,7 @@ scale = Vector2(1.08366, 1.10511)
 layout_mode = 0
 offset_right = 1651.0
 offset_bottom = 1178.0
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="装备介绍" type="Panel" parent="menuControl/装备页面"]
 layout_mode = 0
@@ -2084,7 +2084,7 @@ layout_mode = 2
 offset_top = -100.0
 offset_right = 800.0
 offset_bottom = 400.0
-theme_override_styles/panel = ExtResource("3_wiouq")
+theme_override_styles/panel = ExtResource("6_1osqn")
 
 [node name="name" type="Label" parent="menuControl/装备页面/装备栏/status"]
 layout_mode = 0
@@ -2276,7 +2276,7 @@ offset_left = 770.0
 offset_top = -100.0
 offset_right = 1590.0
 offset_bottom = 400.0
-theme_override_styles/panel = ExtResource("3_wiouq")
+theme_override_styles/panel = ExtResource("6_1osqn")
 
 [node name="button1" type="Panel" parent="menuControl/装备页面/装备栏/items" groups=["armorItemButton"]]
 self_modulate = Color(1, 1, 1, 0)
@@ -2293,7 +2293,7 @@ offset_right = 770.0
 offset_bottom = 117.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("7_xhdek")
+theme_override_styles/normal = ExtResource("10_1pj8h")
 text = "武器"
 
 [node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button1/itemType"]
@@ -2330,7 +2330,7 @@ offset_right = 770.0
 offset_bottom = 197.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("7_xhdek")
+theme_override_styles/normal = ExtResource("10_1pj8h")
 text = "足护"
 
 [node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button2/itemType"]
@@ -2367,7 +2367,7 @@ offset_right = 770.0
 offset_bottom = 277.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("7_xhdek")
+theme_override_styles/normal = ExtResource("10_1pj8h")
 text = "头饰"
 
 [node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button3/itemType"]
@@ -2404,7 +2404,7 @@ offset_right = 770.0
 offset_bottom = 357.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("7_xhdek")
+theme_override_styles/normal = ExtResource("10_1pj8h")
 text = "衣甲"
 
 [node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button4/itemType"]
@@ -2441,7 +2441,7 @@ offset_right = 770.0
 offset_bottom = 437.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("7_xhdek")
+theme_override_styles/normal = ExtResource("10_1pj8h")
 text = "饰品"
 
 [node name="icon" type="TextureRect" parent="menuControl/装备页面/装备栏/items/button5/itemType"]
@@ -2468,7 +2468,7 @@ layout_mode = 0
 offset_top = 700.0
 offset_right = 1590.0
 offset_bottom = 1170.0
-theme_override_styles/panel = ExtResource("3_wiouq")
+theme_override_styles/panel = ExtResource("6_1osqn")
 
 [node name="itemPanel1" type="Panel" parent="menuControl/装备页面/背包装备" groups=["bagArmorItem"]]
 self_modulate = Color(0, 1, 1, 1)
@@ -2516,7 +2516,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel2/itemImage"]
 layout_mode = 2
@@ -2553,7 +2553,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel3/itemImage"]
 layout_mode = 2
@@ -2589,7 +2589,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel4/itemImage"]
 layout_mode = 2
@@ -2625,7 +2625,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel5/itemImage"]
 layout_mode = 2
@@ -2661,7 +2661,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel6/itemImage"]
 layout_mode = 2
@@ -2697,7 +2697,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel7/itemImage"]
 layout_mode = 2
@@ -2733,7 +2733,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel8/itemImage"]
 layout_mode = 2
@@ -2769,7 +2769,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel9/itemImage"]
 layout_mode = 2
@@ -2805,7 +2805,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel10/itemImage"]
 layout_mode = 2
@@ -2841,7 +2841,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel11/itemImage"]
 layout_mode = 2
@@ -2877,7 +2877,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_f4p6s")
 layout_mode = 0
 offset_right = 60.0
 offset_bottom = 60.0
-texture = ExtResource("8_ygku8")
+texture = ExtResource("11_pn08h")
 
 [node name="item" type="Label" parent="menuControl/装备页面/背包装备/itemPanel12/itemImage"]
 layout_mode = 2
@@ -2927,7 +2927,7 @@ offset_left = -801.492
 offset_top = -600.969
 offset_right = 983.508
 offset_bottom = 694.031
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="name" type="Label" parent="menuControl/状态页面/Panel"]
 modulate = Color(0.0431373, 0, 0.0431373, 1)
@@ -3012,7 +3012,7 @@ offset_left = 100.0
 offset_top = 10.0
 offset_right = 400.0
 offset_bottom = 40.0
-theme_override_styles/background = ExtResource("2_lscjf")
+theme_override_styles/background = ExtResource("2_wugjd")
 theme_override_styles/fill = SubResource("StyleBoxFlat_37h0f")
 value = 80.0
 show_percentage = false
@@ -3290,7 +3290,7 @@ offset_top = 30.0
 offset_right = 505.0
 offset_bottom = 126.0
 scale = Vector2(2, 2)
-texture = ExtResource("9_opgk1")
+texture = ExtResource("12_mjfj5")
 
 [node name="系统信息" type="Control" parent="menuControl"]
 z_index = 1
@@ -3433,7 +3433,7 @@ offset_left = -766.223
 offset_top = -583.91
 offset_right = 947.777
 offset_bottom = 626.09
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="加点区" type="Panel" parent="menuControl/加点页面"]
 layout_mode = 0
@@ -3931,7 +3931,7 @@ offset_left = -863.0
 offset_top = -601.0
 offset_right = 934.0
 offset_bottom = 703.0
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="description" type="Panel" parent="menuControl/保存页面"]
 layout_mode = 0
@@ -4158,7 +4158,7 @@ offset_left = -755.0
 offset_top = -617.0
 offset_right = 1173.0
 offset_bottom = 693.0
-texture = ExtResource("9_2874n")
+texture = ExtResource("5_jxs76")
 
 [node name="description" type="Panel" parent="menuControl/读取页面"]
 layout_mode = 0
@@ -4390,7 +4390,7 @@ scale = Vector2(1.59912, 1.65708)
 [node name="upButton" type="TextureButton" parent="menuControl/phoneControl"]
 offset_right = 40.0
 offset_bottom = 40.0
-texture_normal = ExtResource("13_f3xtk")
+texture_normal = ExtResource("13_trnbg")
 stretch_mode = 6
 metadata/_edit_use_anchors_ = true
 
@@ -4399,7 +4399,7 @@ offset_top = 120.0
 offset_right = 59.0
 offset_bottom = 160.0
 scale = Vector2(1, -1)
-texture_normal = ExtResource("13_f3xtk")
+texture_normal = ExtResource("13_trnbg")
 stretch_mode = 6
 
 [node name="rightButton" type="TextureButton" parent="menuControl/phoneControl"]
@@ -4408,7 +4408,7 @@ offset_top = 29.0505
 offset_right = 153.059
 offset_bottom = 69.0505
 rotation = 1.5708
-texture_normal = ExtResource("13_f3xtk")
+texture_normal = ExtResource("13_trnbg")
 stretch_mode = 6
 
 [node name="leftButton" type="TextureButton" parent="menuControl/phoneControl"]
@@ -4417,7 +4417,7 @@ offset_top = 87.8156
 offset_right = 25.165
 offset_bottom = 127.816
 rotation = -1.5708
-texture_normal = ExtResource("13_f3xtk")
+texture_normal = ExtResource("13_trnbg")
 stretch_mode = 6
 
 [node name="acceptButton" type="TextureButton" parent="menuControl/phoneControl"]
@@ -4426,7 +4426,7 @@ offset_top = 121.848
 offset_right = 1050.79
 offset_bottom = 203.848
 rotation = -1.5708
-texture_normal = ExtResource("14_s4onr")
+texture_normal = ExtResource("14_o24h5")
 stretch_mode = 6
 
 [node name="acceptButton2" type="TextureButton" parent="menuControl/phoneControl"]
@@ -4435,7 +4435,7 @@ offset_top = 32.4153
 offset_right = 116.402
 offset_bottom = 114.415
 scale = Vector2(0.550564, 0.554953)
-texture_normal = ExtResource("14_s4onr")
+texture_normal = ExtResource("14_o24h5")
 stretch_mode = 6
 
 [node name="canPress" type="Timer" parent="."]
@@ -4444,7 +4444,7 @@ one_shot = true
 
 [node name="subSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(165, 118)
-stream = ExtResource("10_f2eqa")
+stream = ExtResource("15_xs4jh")
 max_distance = 900000.0
 
 [node name="addChild" type="Timer" parent="."]

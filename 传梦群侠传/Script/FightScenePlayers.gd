@@ -816,7 +816,7 @@ var fightScenePlayerData2= {
 		"addCritChance": 0 * Global.enKey,
 		"blockChance": 1,
 		"addBlockChance": 0 * Global.enKey,
-		"level": 50,
+		"level": 55,
 		"exp": 0 * Global.enKey,
 		"needExp": 100 * Global.enKey,
 		"magicDefense": 5,
@@ -917,7 +917,7 @@ var fightScenePlayerData2= {
 			"shoes": null,
 			"accessories": null
 		},
-		"buff": ["speed", "strength", "accuracy", "defense"]
+		"buff": ["speed", "strength", "accuracy", "defense","ghost"]
 	},
 	"大海龟": {
 		"name": "大海龟",
@@ -1005,7 +1005,7 @@ var fightScenePlayerData2= {
 		"addCritChance": 0 * Global.enKey,
 		"blockChance": 0,
 		"addBlockChance": 0 * Global.enKey,
-		"level": 8,
+		"level": 80,
 		"exp": 0 * Global.enKey,
 		"needExp": 100 * Global.enKey,
 		"magicDefense": 5,
@@ -1056,6 +1056,7 @@ var fightScenePlayerData2= {
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
 	},
+	
 	"凌若昭": {
 		"name": "凌若昭",
 		"sex": "female",
@@ -1069,7 +1070,7 @@ var fightScenePlayerData2= {
 		"addCritChance": 0 * Global.enKey,
 		"blockChance": 1,
 		"addBlockChance": 0 * Global.enKey,
-		"level": 15,
+		"level": 20,
 		"exp": 0 * Global.enKey,
 		"needExp": 100 * Global.enKey,
 		"magicDefense": 5,
@@ -1130,7 +1131,7 @@ var fightScenePlayerData2= {
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 13,
+			"level": 20,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1160,7 +1161,7 @@ var fightScenePlayerData2= {
 					"damageSource": "AD",
 			
 					"cost": 10,
-					"value": 3,
+					"value": 5,
 					"description": "金甲日日夜夜练习的扎实一剑",	
 					"effectArea": "single",
 					"animationArea":"enemy",
@@ -1404,10 +1405,101 @@ var fightScenePlayerData2= {
 	
 }
 
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	
 	
 var fightScenePlayerData = {
+	"小二真身": {
+		"name": "小二真身",
+		"sex": "male",
+		"icon": "res://Pictures/Pictures/小二毗急了.png",
+		"smallIcon": "res://main character/小二右下.png",
+		"playerAttackType": "melee",
+		"playerSpeed": 20,
+		"addPlayerSpeed": 300 * Global.enKey,
+		"critChance": 1,
+		"addCritChance": 0 * Global.enKey,
+		"blockChance": 0,
+		"addBlockChance": 0 * Global.enKey,
+		"level": 100,
+		"exp": 0 * Global.enKey,
+		"needExp": 100 * Global.enKey,
+		"magicDefense": 5,
+		"addMagicDefense": 0 * Global.enKey,
+		"physicDefense": 5,
+		"addPhysicDefense": 0 * Global.enKey,
+		"str": 80,
+		"addStr": 600 * Global.enKey,
+		"abilityPower": 100 * Global.enKey,
+		"addAbilityPower": 600 * Global.enKey,
+		"additionDmg": 0 * Global.enKey,
+		"hp": 200,
+		"addHp": 1000 * Global.enKey,
+		"mp": 30000,
+		"addMp": 30000 * Global.enKey,
+		"currHp": 3497,
+		"currMp": 31090,
+		"potential": 35 * Global.enKey,
+		"idle": "小二真身idle",
+		"autoAttack": "小二真身autoAttack",
+		"magicAutoAttack": "",
+		"playerMagic": [
+			{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"animationArea": "enemy",
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},
+			{
+				"name": "黑炎焱燚",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "range",
+				"multiHitTimes": 8,
+				"effectingNum": 8,
+				"damageSource": "AP",
+				"duration": 1,
+				"value": 4, 
+				"cost": 30,
+				"description": "黑色的火焰！！！(仙术加成)",
+				"effectArea": "aoe",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/火4.ogg",
+				"icon": "res://Icons/●图标 (15).png",
+			},
+			{
+				"name": "兽爪",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "melee",
+				"value": 5,
+				"cost": 30,
+				"description": "野兽般的野蛮一击！（物理加成）",	
+				"damageSource": "AD",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/093-Attack05.ogg",
+				"icon": "res://Icons/●图标 (23).png"
+			},
+		],
+		"autoAttackSound": "res://Audio/SE/090-Attack02.ogg",
+		"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
+		"item": {
+			"weapon": null,
+			"cloth": null,
+			"hat": null,
+			"shoes": null,
+			"accessories": null
+		},
+		"buff": ["speed", "strength", "accuracy", "defense"]
+	},	
+	
 	"时追云":{
 			"name": "时追云",
 			"sex": "male",
@@ -1437,7 +1529,7 @@ var fightScenePlayerData = {
 			"addHp": 0 ,
 			"addMp": 0 ,
 			"mp": 100,
-			"currHp": 20000,
+			"currHp": 200,
 			"currMp": 100,
 			"potential": 0,
 			"idle": "时追云idle",
@@ -1488,7 +1580,7 @@ var fightScenePlayerData = {
 			"addCritChance":0,			
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 40,
+			"level": 55,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1653,7 +1745,7 @@ var fightScenePlayerData = {
 			"smallIcon": "res://main character/小二右下.png",
 			"playerAttackType": "melee",
 			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
+			"addPlayerSpeed": 200,
 			"critChance": 1,
 			"addCritChance":0,
 			"blockChance":0,
@@ -1697,7 +1789,22 @@ var fightScenePlayerData = {
 				"audio": "res://Audio/SE/鸟语花香.ogg",
 				"icon": "res://Icons/●图标 (14).png"
 			},			
-
+		{
+				"name": "真身现世",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"damageSource": "AP",
+				"attackType": "special",
+				"value": 1,
+				"cost": 30,
+				"description": "小二化作真身",	
+				"effectArea": "aoe",
+				"effectingNum": 5,
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/风 (2).wav",
+				"icon": "res://Icons/●图标 (14).png"
+			},	
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/怪-法术.ogg",
@@ -1724,7 +1831,7 @@ var fightScenePlayerData = {
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 15,
+			"level": 20,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1773,6 +1880,42 @@ var fightScenePlayerData = {
 #					"audio": "res://Audio/SE/crack-and-crunch-14891.mp3",
 #					"icon":"res://Icons/●图标 (119).png",
 #				},
+				{
+					"name": "万符归元",
+					"level": 1,
+					"currExp": 500000,
+					"needExp": 1,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 1,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 4.5, 
+					"cost": 0,
+					"description": "菩提教给若昭的终极单体技能，可无限锻炼！",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/119-Fire03.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},			
+				{
+					"name": "神风燎火",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 2,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 3, 
+					"cost": 30,
+					"description": "攻击两名敌人",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/119-Fire03.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},		
 				{
 					"name": "五雷咒",
 					"attackType": "range",
@@ -2059,6 +2202,22 @@ var fightScenePlayerData = {
 	
 }
 
+var 真身数据 = {
+	"name": "小二真身",
+	"icon": "res://Pictures/Pictures/小二毗-怒.png",
+	"playerAttackType": "melee",	
+	"playerSpeed": fightScenePlayerData['小二'].playerSpeed +  fightScenePlayerData['小二'].addPlayerSpeed + 200,
+	"magicDefense": fightScenePlayerData['小二'].magicDefense +  fightScenePlayerData['小二'].addMagicDefense + 300,		
+	"physicDefense": fightScenePlayerData['小二'].magicDefense +  fightScenePlayerData['小二'].addPhysicDefense + 300,		
+	"str": fightScenePlayerData['小二'].str +  fightScenePlayerData['小二'].addStr + 500,		
+	"abilityPower": fightScenePlayerData['小二'].abilityPower +  fightScenePlayerData['小二'].addAbilityPower + 500,		
+	"hp": fightScenePlayerData['小二'].hp +  fightScenePlayerData['小二'].addHp + 1000,		
+	"mp": fightScenePlayerData['小二'].mp +  fightScenePlayerData['小二'].addMp + 1000,		
+	"autoAttackSound": "res://Audio/SE/090-Attack02.ogg",
+		
+}
+
+
 var datas = {
 	
 }
@@ -2199,27 +2358,12 @@ func update_status():
 			#player["exp"] -= player["needExp"]  # Subtract the needed exp for current level
 			player["level"] += 1
 			player.potential +=  5 * Global.enKey
+			player["exp"] -= player["needExp"]
 			player["needExp"] = calculate_exp_for_player_level(player["level"]) * Global.enKey
+			
+			
 			if player.name == "时追云":
 				if player["level"] == 3:
-					player.get("playerMagic").append(	
-						{"name": "聚力",
-						"level": 1,
-						"currExp": 0,
-						"needExp": 50,
-						"attackType": "buff",				
-						"value": 30, 
-						"cost": 30,
-						"description": "增加自身攻击力",
-						"effectArea": "single",
-						"effectingNum":1,
-						"animationArea":"self",
-						"buffEffect":["currStr"],
-						"duration": 4,
-						"audio":"res://Audio/SE/男-法术-嗯.ogg",
-						"icon":"res://Icons/●图标 (38).png"
-						})
-				if player["level"] == 5:
 					player.get("playerMagic").append(
 						{"name": "飞剑决",
 							"level": 1,
@@ -2227,7 +2371,7 @@ func update_status():
 							"needExp": 50,
 							"attackType": "range",
 							"damageSource": "AD",
-							"value": 1.8,
+							"value": 2,
 							"cost": 30,
 							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
 							"effectArea": "single",
@@ -2243,13 +2387,22 @@ func update_status():
 			if magic.has("level"):
 				magic["needExp"] = calculate_exp_for_magic_level(magic["level"])
 				if magic.currExp >= magic.needExp:
-					if magic.level < 5:
-						magic.currExp = 0
-						magic.level += 1
-						magic.value = magic.value + 0.2 * magic.value
-				if magic.level >= 5:
-						magic.currExp = 250
-						magic.level = 5	
+					if player.name == "凌若昭":		
+						if magic.level < 20:
+							magic.currExp = 0
+							magic.level += 1
+							magic.value = magic.value + 0.2 * magic.value					
+						if magic.level >= 19:
+							magic.currExp = 0
+							magic.level	= 20									
+					else:
+						if magic.level < 5:
+							magic.currExp = 0
+							magic.level += 1
+							magic.value = magic.value + 0.2 * magic.value
+						if magic.level >= 5:
+								magic.currExp = 250
+								magic.level = 5	
 						
 						
 						
@@ -2281,12 +2434,12 @@ func update_status():
 			
 			
 func calculate_exp_for_magic_level(level):
-	# You can adjust this formula as per your requirement
+	# You can adjust this formula as per your requirement	
 	return 20 * level
 
 func calculate_exp_for_player_level(level):
 	var baseExp = 60
-	var linearComponent = 500 * (level - 1)  # Linear growth
+	var linearComponent = 100 * (level - 1)  # Linear growth
 	var exponentialComponent = baseExp * pow(1.2, level - 1)  # Exponential growth
 
 	# Combine linear and exponential components
@@ -2298,13 +2451,16 @@ func calculate_exp_for_player_level(level):
 func calculate_defense_for_level(level, player =null):
 	var baseDefense = 50  # Base defense at level 1
 	var finalDefense = 300  # Desired defense at level 100
+	if player == "姜韵" and !Global.onGhost:
+		finalDefense = 600
 	var defenseIncreasePerLevel = (finalDefense - baseDefense) / 99  # Linear increase per level
-
+	
 	var totalDefense = baseDefense + defenseIncreasePerLevel * (level - 1)
 	return totalDefense
 func calculate_hp_for_level(level):
 	var baseHp = 220  # Base HP at level 1
 	var finalHp = 2500  # Desired HP at level 100
+	
 	var hpIncreasePerLevel = (finalHp - baseHp) / 99  # Linear increase per level
 
 	var totalHp = baseHp + hpIncreasePerLevel * (level - 1)
@@ -2434,6 +2590,7 @@ var unLearnMagic = {
 				"value": 3, 
 				"cost": 30,
 				"description": "全力攻击，休息一回合",
+				"damageSource": "AD",
 				"effectArea": "single",
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/男-剑.ogg",
@@ -2462,6 +2619,7 @@ var unLearnMagic = {
 				"currExp": 0,
 				"needExp": 50,
 				"attackType": "melee",
+				"damageSource": "AD",
 				"value": 2,
 				"cost": 30,
 				"description": "对鬼怪敌人造成额外伤害",	
@@ -2563,7 +2721,62 @@ var unLearnMagic = {
 				"audio": "res://Audio/SE/HEAL13.ogg",
 				"icon": "res://Icons/●图标 (8).png",
 			},			
-			
+			"神风燎火":{
+				"name": "神风燎火",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "range",
+				"multiHitTimes": 8,
+				"effectingNum": 2,
+				"damageSource": "AP",
+				"duration": 1,
+				"value": 3, 
+				"cost": 200,
+				"description": "攻击两名敌人",
+				"effectArea": "aoe",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/119-Fire03.ogg",
+				"icon": "res://Icons/●图标 (15).png",
+			},			
+			"万符归元":{
+					"name": "万符归元",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 1,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 3, 
+					"cost": 300,
+					"description": "菩提教给若昭的终极单体技能，勤学苦练方可领悟法术真谛！",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/114-Remedy02.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},		
+			"黑炎焱燚":{
+					"name": "黑炎焱燚",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 8,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 3, 
+					"cost": 30,
+					"description": "菩提教给若昭的终极单体技能，勤学苦练方可领悟法术真谛！",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/114-Remedy02.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},	
+		
+				
 }
 func learnMagic(character, magicName):
 	var magicList = fightScenePlayerData.get(character).playerMagic
@@ -2606,3 +2819,10 @@ func healAll():
 	for i in fightScenePlayerData:
 		fightScenePlayerData[i].currHp = decrypt(fightScenePlayerData[i].addHp) + fightScenePlayerData[i].hp
 		fightScenePlayerData[i].currMp = decrypt(fightScenePlayerData[i].addMp) + fightScenePlayerData[i].mp
+var tempMagic = []
+func removeMagic(character):
+	var magicList = fightScenePlayerData.get(character).playerMagic
+	for i in magicList:
+		tempMagic.append(i)
+	fightScenePlayerData.get(character).playerMagic = []
+

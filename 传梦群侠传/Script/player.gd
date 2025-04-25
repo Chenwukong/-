@@ -92,7 +92,8 @@ func _process(delta):
 			var direction = (agent.get_next_path_position() - global_position).normalized()
 			velocity = direction * speed
 			move_and_slide()
-			if get_parent().onFight == false and get_parent().canEnterFight == true and !Global.menuOut and Global.dangerScene.get(get_tree().current_scene.name):
+			
+			if  !get_tree().current_scene.name == "北俱战场" and get_parent().onFight == false and get_parent().canEnterFight == true and !Global.menuOut and Global.dangerScene.get(get_tree().current_scene.name) :
 				get_parent().check_enter_fight_scene()
 				Global.onFight = get_parent().onFight
 		if target and global_position.distance_to(target) == arrival_threshold:
@@ -111,6 +112,8 @@ func _process(delta):
 
 		
 		if Input.is_action_pressed("leftClick")  and !Global.onTalk and !Global.onButton and !onArrowButton :
+			if Global.menuOut:
+				return
 			var mouse_pos = get_global_mouse_position()  # Get the global mouse position
 			var char_pos = position  # Get the character's position
 			var vector_to_mouse = mouse_pos - char_pos
@@ -174,6 +177,8 @@ func _process(delta):
 					
 					directions = "right"
 		if Input.is_action_just_pressed("leftClick"):
+			if !Global.noKeyboard:
+				return
 			if !onDown and !onUp and !onLeft and !onRight:
 				onArrowButton = false
 				speed = 200
@@ -188,7 +193,8 @@ func _physics_process(delta):
 	# Reset velocity to zero before processing new input
 	if !Global.onTalk:
 		var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
-		xyPos.text = str("x: " + str(int(self.position.x /10)) + "   " + "y: " + str(int(self.position.y/10)))
+		if get_tree().current_scene.name != "北俱战场":
+			xyPos.text = str("x: " + str(int(self.position.x /10)) + "   " + "y: " + str(int(self.position.y/10)))
 		
 		velocity = Vector2(0, 0)
 		if onUp:
@@ -344,8 +350,7 @@ func _unhandled_input(event):
 				var dialogue_entry
 				if dialogue_index != npc["dialogues"].size():
 					dialogue_entry = npc["dialogues"][dialogue_index]
-				
-					print(dialogue_entry.chapter)
+		
 					DialogueManager.show_chat(load("res://Dialogue/"+str(dialogue_entry.chapter)+".dialogue"),get_npc_dialogue(raycast.get_collider().get_parent().npcName))
 				else:
 					
@@ -422,6 +427,7 @@ func _on_area_2d_body_entered(body):
 			
 
 func _on_右上_button_down():
+	
 	onArrowButton = true
 	onUp = true
 	canMouseMove = false

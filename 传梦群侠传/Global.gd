@@ -7,7 +7,7 @@ var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5  }
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":6, }
 var menuOut = false
 
 var onAttackingList = []
@@ -15,11 +15,11 @@ var currAttacker = ""
 var wait
 var target = null
 var monsterTarget = null
-var onPhone = true
+var onPhone = false
 var onButton = false
 
 var battleButtonIndex = 0
-
+var maxLevel = 25
 var onAttackPicking = false #是否在选择攻击对象
 var onMagicAttackPicking = false
 var playersAppended = false
@@ -101,7 +101,7 @@ var fangCunState = 1
 var atDark = false
 var onBoss = false
 var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门"]#"地府",]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观",]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -156,6 +156,7 @@ var petTarget
 var systemMsg = [
 	
 ]
+var onXiaoErZhenShen = false
 var onPet = false
 var onSkipFight = false
 var violencePoint = 10
@@ -171,7 +172,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 1
+var current_chapter_id = 6
 
 var mcVisible = true
 var npcVis = {
@@ -279,6 +280,7 @@ var npcVis = {
 		"金甲": {"visible" : false},
 		"小二": {"visible" : false},		
 		"凌若昭": {"visible" : false},		
+		"梧桐": {"visible" : false},	
 	},	
 	"大唐官府内室":{
 		"程咬金": {"visible" : true},
@@ -290,13 +292,19 @@ var npcVis = {
 		"乞丐": {"visible" : true},
 		"凌若昭": {"visible" : false},		
 		"提毗": {"visible" : false},
+		
+		
 		"小二2": {"visible" : false},
 				
 	},
+	"长安酒店":{
+		"凌若昭": {"visible" : false},
+	},	
 	"长安北":{
 		"看守": {"visible" : true},
 		"金甲3": {"visible" : false},
-		"小二2": {"visible" : true},
+		"小二2": {"visible" : false},
+		"凌若昭": {"visible" : false},
 	},
 	"锁妖塔1":{
 		"凌若昭":{"visible": true}
@@ -361,6 +369,7 @@ var npcVis = {
 	"灵台宫":{
 		"小二": {"visible":false},
 		"凌若昭": {"visible":false},
+		"姜韵": {"visible":false},	
 		"菩提老祖": {"visible":true},
 	},
 	"水晶宫":{
@@ -450,7 +459,11 @@ var npcVis = {
 		
 	},	
 	"地府":{
-		"野鬼": {"visible":false},
+		"野鬼1": {"visible":false},
+		"野鬼2": {"visible":false},
+		"野鬼3": {"visible":false},
+		"野鬼4": {"visible":false},
+		"野鬼5": {"visible":false},
 	},		
 	
 	"轮回司":{
@@ -461,11 +474,50 @@ var npcVis = {
 	"地府迷宫2":{
 		"鬼潇潇": {"visible":true},
 		
-	},											
+	},		
+	"金山室内":{
+		"小二": {"visible":false},
+		"凌若昭": {"visible":false},		
+	},			
+	"大唐国境边缘":{
+		"小二": {"visible":false},
+		"凌若昭": {"visible":false},		
+		"梧桐": {"visible":true},					
+	},
+	"长安南":{
+		"小二": {"visible":true},
+		"凌若昭": {"visible":true},		
+					
+	},
+	"枯骨山":{
+		"小二": {"visible":true},
+		"凌若昭": {"visible":false},
+		"梧桐": {"visible":false},
+					
+	},
+	"枯骨洞":{
+		"小二": {"visible":false},
+		"凌若昭": {"visible":false},
+		"梧桐": {"visible":false},			
+	},	
+	"婚房":{
+		"小二": {"visible":true},
+		"凌若昭": {"visible":true},
+		"梧桐": {"visible":true},
+					
+	},		
+	"枯骨山夜晚":{
+		"小二": {"visible":true},
+		"凌若昭": {"visible":true},
+					
+	}		
+	
+	
+											
 }
 var baseChance = 0
 var musicOn = true
-var enKey = 3#randi_range(1, 3000)
+var enKey = 2 #randi_range(1, 3000)
 
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
@@ -817,7 +869,7 @@ var npcs = {
 					{"chapter": 2, "dialogue": "打赢鼠先锋", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 3, "dialogue": "方寸夜晚小二谈恋爱", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 3, "dialogue": "方寸夜晚小二谈恋爱2", "unlocked": true, "bgm":"res://Audio/BGM/聂薇 - 墨家村-夜晚.mp3","trigger":false},
-					
+					{"chapter": 6, "dialogue": "再见小二", "unlocked": true, "bgm":"res://Audio/BGM/桃花岛.mp3","trigger":false},					
 				],
 			"current_dialogue_index": 0,	
 			"constNpc": false			
@@ -1370,8 +1422,8 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 5, "dialogue": "回忆2回1", "unlocked": true, "bgm": null ,"trigger":false},
-					{"chapter": 5, "dialogue": "回忆2回2", "unlocked": true, "bgm": null ,"trigger":false},	
-					{"chapter": 5, "dialogue": "回忆2回3", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 5, "dialogue": "回忆2回2", "unlocked": true, "bgm": "res://Audio/BGM/大话-俩小无猜.ogg","trigger":false},	
+					{"chapter": 5, "dialogue": "回忆2回3", "unlocked": true, "bgm": "res://Audio/BGM/大话-俩小无猜.ogg" ,"trigger":false},
 					{"chapter": 5, "dialogue": "回忆2回4", "unlocked": true, "bgm": null ,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
@@ -1470,15 +1522,55 @@ var npcs = {
 					{"chapter": 6, "dialogue": "凌若昭回忆2", "unlocked": true, "bgm": null ,"trigger":false},											
 					{"chapter": 6, "dialogue": "凌若昭回忆3", "unlocked": true, "bgm": null ,"trigger":false},				
 					{"chapter": 6, "dialogue": "凌若昭回忆4", "unlocked": true, "bgm": "res://Audio/BGM/聂薇 - 墨家村-夜晚.mp3","trigger":false},				
-					{"chapter": 6, "dialogue": "凌若昭回忆5", "unlocked": true, "bgm": "res://Audio/BGM/轩辕-危机.mp3" ,"trigger":false},		
-					{"chapter": 6, "dialogue": "凌若昭回忆6", "unlocked": true, "bgm": null, "trigger":false},		
-					{"chapter": 6, "dialogue": "凌若昭回忆7", "unlocked": true, "bgm": null, "trigger":false},									
+					{"chapter": 6, "dialogue": "凌若昭回忆5", "unlocked": true, "bgm":  "res://Audio/BGM/SWD5 临敌.mp3","trigger":false},		
+					{"chapter": 6, "dialogue": "凌若昭回忆6", "unlocked": true, "bgm": "res://Audio/BGM/轩辕-危机.mp3" ,"trigger":false},		
+					{"chapter": 6, "dialogue": "凌若昭回忆7", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆8", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆9", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆10", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆11", "unlocked": true, "bgm": null, "trigger":false},									
+					{"chapter": 6, "dialogue": "凌若昭回忆12", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆13", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆14", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆15", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆16", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆17", "unlocked": true, "bgm": null, "trigger":false},	
+					{"chapter": 6, "dialogue": "凌若昭回忆18", "unlocked": true, "bgm": null, "trigger":false},	
+				],
+		"current_dialogue_index": 14,	
+		"constNpc": false	
+	},
+	"寻找小二":{
+		"dialogues": [
+				#0
+					{"chapter": 6, "dialogue": "寻找小二1", "unlocked": true, "bgm": null ,"trigger":false},				
+					{"chapter": 6, "dialogue": "寻找小二2", "unlocked": true, "bgm": null ,"trigger":false},	
+					{"chapter": 6, "dialogue": "寻找小二3", "unlocked": true, "bgm": null ,"trigger":false},	
+					{"chapter": 6, "dialogue": "寻找小二4", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 6, "dialogue": "寻找小二5", "unlocked": true, "bgm": null ,"trigger":false},						
+					
+					
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
+	},
+	"再见小二":{
+		"dialogues": [
+				#0
+					{"chapter": 6, "dialogue": "再见小二1", "unlocked": true, "bgm": "res://Audio/BGM/桃花岛.mp3" ,"trigger":false},									
+					{"chapter": 6, "dialogue": "再见小二2", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 6, "dialogue": "再见小二3", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "再见小二4", "unlocked": true, "bgm": null ,"trigger":false},	
+					{"chapter": 6, "dialogue": "再见小二5", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 6, "dialogue": "再见小二6", "unlocked": true, "bgm": "res://Audio/BGM/0盛典.mp3" ,"trigger":false},				
+					{"chapter": 6, "dialogue": "再见小二7", "unlocked": true, "bgm": null ,"trigger":false},						
+					
+					
+								
+				],
+		"current_dialogue_index": 5,	
+		"constNpc": false	
 	}			
-	
-	
 	
 } 
 var potentialBalls = {
@@ -1602,6 +1694,7 @@ func _process(delta):
 
 
 func save():
+	saveData.maxLevel = maxLevel
 	saveData.baseChance = baseChance
 	saveData.noMouse = noMouse
 	saveData.noKeyboard = noKeyboard
@@ -1642,7 +1735,11 @@ func save():
 	saveData.cantShow = cantShow
 	saveData.onTeamSmallPet = onTeamSmallPet
 	saveData.smallPetData = SmallPetData.currSmallPetData
+	saveData.onGhost = onGhost
 func loadData():
+	if saveData.has(maxLevel):
+		maxLevel = saveData.maxLevel
+	onGhost = saveData.onGhost
 	SmallPetData.currSmallPetData = saveData.smallPetData
 	baseChance = saveData.baseChance
 	noKeyboard = saveData.noKeyboard
@@ -1833,10 +1930,12 @@ func addItem(item,type,bagPlace,num):
 	get_tree().current_scene.get_node("CanvasLayer").renderMsg()	
 
 func playSound(sound):
+	get_tree().current_scene.get_node("subSound").stop()
 	get_tree().current_scene.get_node("subSound").stream = load(sound)
 	get_tree().current_scene.get_node("subSound").play()
 	#get_tree().current_scene.get_node("AudioStreamPlayer2D").stop()	
-var dial = null
+var dial = "再见小二"
+var onGhost = true
 #func dialogue(dia):
 #	get_tree().current_scene.get_node("dialogueTimer").start()
 #	dial = dia
@@ -1848,7 +1947,7 @@ func get_npc_dialogue(npc_id):
 
 	if npc["dialogues"].size() > dialogue_index:
 		var dialogue_entry = npc["dialogues"][dialogue_index]
-
+	
 		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id:
 			update_npc_dialogue_index(npc_id)
 			if npc["dialogues"][dialogue_index].bgm != null:
@@ -1910,6 +2009,7 @@ func showViolence(type,value):
 		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").text = "+" + str(value)
 	get_tree().current_scene.get_node("CanvasLayer/AnimationPlayer").play("showViolence")
 func changeScene(new_scene, position):
+
 	get_tree().change_scene_to_file("res://Scene/"+new_scene+".tscn")
 	if position == null:
 		return
@@ -1920,7 +2020,7 @@ func changeDirection(direction):
 	get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
 	get_tree().current_scene.get_node("player/AnimatedSprite2D").play(direction)
 func skipChapter():
-	
+	atNight = false
 	FightScenePlayers.fightScenePlayerData["时追云"].level = 45
 	FightScenePlayers.fightScenePlayerData["时追云"].potential = 290 * Global.enKey
 	FightScenePlayers.fightScenePlayerData["时追云"].exp = 200000 * Global.enKey
@@ -1932,10 +2032,35 @@ func skipChapter():
 	FightScenePlayers.fightScenePlayerData["时追云"].item.hat = ItemData.hat.get("乾坤帽")	
 	onTeamPet.append("大海龟")
 	onTeamSmallPet.append("敖雨")
-	current_chapter_id = 5
-	dial = "前往地府"
-	npcs.get("前往地府").current_dialogue_index = 4
-	changeScene("阴阳洞",null)
+	current_chapter_id = 6
+	#dial = "前往地府"
+	#npcs.get("前往地府").current_dialogue_index = 4
+	changeScene("大唐国境边缘",null)
 	FightScenePlayers.learnMagic("时追云","高等炼体术")
 	FightScenePlayers.learnMagic("时追云","破甲术")
 	FightScenePlayers.learnMagic("时追云","横扫千军")
+func getnode(nodePath):
+	return get_tree().current_scene.get_node(nodePath)
+func changevis(place, name):
+	if npcVis.get(place).get(name).visible:
+		npcVis.get(place).get(name).visible = false
+	else:
+		npcVis.get(place).get(name).visible = true
+func changebgm(bgm):
+	get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load(bgm)
+	get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+func playsound(sound):
+	get_tree().current_scene.get_node("oneTimeSound").stream = load(sound)
+	get_tree().current_scene.get_node("oneTimeSound").play()		
+func toggleballon():
+	if get_tree().current_scene.get_node("ExampleBalloon").visible:
+		get_tree().current_scene.get_node("ExampleBalloon").visible = false
+	else:
+		get_tree().current_scene.get_node("ExampleBalloon").visible = true
+func addshader(place, shader):
+	var shader_material = ShaderMaterial.new()
+	shader_material.shader = load(shader)
+	# 应用到当前 2D 节点，比如 Sprite2D
+	get_tree().current_scene.get_node(place).material = shader_material
+func removeshader(place):
+	get_tree().current_scene.get_node(place).material = null

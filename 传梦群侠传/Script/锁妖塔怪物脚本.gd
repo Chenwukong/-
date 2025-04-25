@@ -23,7 +23,6 @@ func changeDir():
 	if dir == 0:
 		velocity = Vector2(-1, 1) * speed
 		$AnimatedSprite2D.play(monster_name + "左下")
-		print(monster_name,111)
 		print($AnimatedSprite2D.animation)
 	elif dir == 1:
 		velocity = Vector2(1, 1) * speed

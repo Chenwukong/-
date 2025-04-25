@@ -1,24 +1,24 @@
 [gd_scene load_steps=28 format=3 uid="uid://bwga4qqppguvn"]
 
-[ext_resource type="Script" path="res://Script/map.gd" id="1_rnqp6"]
-[ext_resource type="Texture2D" uid="uid://b0w1nv4y0kbqd" path="res://Panoramas/长安酒楼2.jpg" id="2_fo1h4"]
-[ext_resource type="Texture2D" uid="uid://ckjqc4spu48f0" path="res://Panoramas/长安酒楼2_2.png" id="3_nlguy"]
-[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_yflla"]
-[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_dqpk0"]
-[ext_resource type="AudioStream" uid="uid://dec1sgswbyrjt" path="res://Audio/BGM/大唐官府.mp3" id="6_hwdtt"]
-[ext_resource type="AudioStream" uid="uid://cxq4pujw4l7j2" path="res://Audio/SE/surrsound031.ogg" id="7_7wbpd"]
-[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_ea3ew"]
-[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="9_hxydt"]
-[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="10_le3kc"]
-[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="11_g4pfi"]
-[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="12_8m6rs"]
-[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="13_y4qmq"]
-[ext_resource type="Texture2D" uid="uid://yddrmtw5hsgt" path="res://Characters/鬼将.png" id="14_qfjb7"]
-[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="15_4wtm4"]
-[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="16_t0ynf"]
-[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="17_kyqii"]
-[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="18_k8guk"]
-[ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="19_rvpbl"]
+[ext_resource type="Script" path="res://Script/map.gd" id="1_tap6v"]
+[ext_resource type="Texture2D" uid="uid://b0w1nv4y0kbqd" path="res://Panoramas/长安酒楼2.jpg" id="2_agm7i"]
+[ext_resource type="Texture2D" uid="uid://ckjqc4spu48f0" path="res://Panoramas/长安酒楼2_2.png" id="3_lhe1j"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_x8myl"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_pvn7j"]
+[ext_resource type="AudioStream" uid="uid://dec1sgswbyrjt" path="res://Audio/BGM/大唐官府.mp3" id="6_gyxxd"]
+[ext_resource type="AudioStream" uid="uid://cxq4pujw4l7j2" path="res://Audio/SE/surrsound031.ogg" id="7_sxppd"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_u102b"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="9_s5jhy"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="10_h1xnc"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="11_m41i6"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="12_8c8sd"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="13_iq3vy"]
+[ext_resource type="Texture2D" uid="uid://yddrmtw5hsgt" path="res://Characters/鬼将.png" id="14_povqj"]
+[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="15_yd2jr"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="16_jsbe8"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="17_mt2uv"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="18_3iyl5"]
+[ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="19_8mep7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
 vertices = PackedVector2Array(3594, 92, 3621, 3089, 32, 3080, 11, 1492, 9, 1337, 20, 95)
@@ -31,6 +31,57 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 14
 gradient = SubResource("Gradient_h5dxg")
 fill = 1
 fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_ale5n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("半年后:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("subSound:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_sxppd")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("subSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1cdy7"]
 resource_name = "turnDark"
@@ -69,7 +120,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(1.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_7wbpd")]
+"values": [ExtResource("7_sxppd")]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -84,57 +135,6 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_ale5n"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("半年后:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("subSound:stream")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("7_7wbpd")]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("subSound:playing")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_edmax"]
 _data = {
 "RESET": SubResource("Animation_ale5n"),
@@ -142,7 +142,7 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fuper"]
-atlas = ExtResource("14_qfjb7")
+atlas = ExtResource("14_povqj")
 region = Rect2(0, 350, 229, 175)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6stqk"]
@@ -157,30 +157,30 @@ animations = [{
 }]
 
 [node name="长安酒店二楼" type="Node2D"]
-script = ExtResource("1_rnqp6")
+script = ExtResource("1_tap6v")
 
 [node name="建业左" type="Sprite2D" parent="."]
 position = Vector2(451, 313)
 rotation = 0.00202572
-texture = ExtResource("2_fo1h4")
+texture = ExtResource("2_agm7i")
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = 2
 position = Vector2(449, 313)
 scale = Vector2(0.942708, 1.10417)
-texture = ExtResource("3_nlguy")
+texture = ExtResource("3_lhe1j")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 2
 visibility_layer = 2
-script = ExtResource("4_yflla")
+script = ExtResource("4_x8myl")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(-1657, -761)
 build_mode = 1
 polygon = PackedVector2Array(710, 514, 785, 475, 808, 467, 875, 430, 714, 355, 731, 315, 661, 271, 673, 248, 675, 181, 668, 178, 610, 146, 594, 232, 501, 209, 479, 219, 465, 231, 566, 303, 562, 310, 472, 271, 411, 247, 286, 309, 275, 315, 313, 342, 371, 377, 347, 406, 332, 417, 232, 356, 189, 285, 185, 277, 167, 274, 13, 353, 47, 397, 182, 462, 364, 551, 433, 488, 448, 462, 502, 439, 546, 468, 571, 583, 701, 516)
 
-[node name="player" parent="." instance=ExtResource("5_dqpk0")]
+[node name="player" parent="." instance=ExtResource("5_pvn7j")]
 visible = false
 z_index = 1
 position = Vector2(127, 308)
@@ -190,14 +190,11 @@ metadata/_edit_group_ = true
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.6, 1.6)
 
-[node name="effects" parent="player" index="16"]
-visible = true
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("6_hwdtt")
+stream = ExtResource("6_gyxxd")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -209,11 +206,11 @@ one_shot = true
 wait_time = 0.5
 
 [node name="subSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_7wbpd")
+stream = ExtResource("7_sxppd")
 volume_db = 7.0
 max_distance = 10000.0
 
-[node name="BattleReward" parent="." instance=ExtResource("8_ea3ew")]
+[node name="BattleReward" parent="." instance=ExtResource("8_u102b")]
 
 [node name="battleRewardGone" type="Timer" parent="."]
 wait_time = 2.0
@@ -229,14 +226,14 @@ constrain_avoidance = true
 visible = false
 position = Vector2(332.128, 1271.12)
 scale = Vector2(0.0631201, 0.0198038)
-texture = ExtResource("9_hxydt")
+texture = ExtResource("9_s5jhy")
 
 [node name="circleTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_le3kc")
+stream = ExtResource("10_h1xnc")
 volume_db = 6.0
 max_distance = 100000.0
 
@@ -268,9 +265,9 @@ visible = false
 [node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
 offset_right = 1152.0
 offset_bottom = 804.0
-texture = ExtResource("11_g4pfi")
+texture = ExtResource("11_m41i6")
 
-[node name="teleportCircle" parent="." instance=ExtResource("12_8m6rs")]
+[node name="teleportCircle" parent="." instance=ExtResource("12_8c8sd")]
 position = Vector2(1284, 601)
 toScene = "大唐官府"
 
@@ -290,24 +287,24 @@ libraries = {
 "": SubResource("AnimationLibrary_edmax")
 }
 
-[node name="金甲" parent="." instance=ExtResource("13_y4qmq")]
+[node name="金甲" parent="." instance=ExtResource("13_iq3vy")]
 visible = false
 position = Vector2(390, 376)
 sprite_frames = SubResource("SpriteFrames_6stqk")
 npcName = "金甲"
 
-[node name="小二" parent="." instance=ExtResource("15_4wtm4")]
+[node name="小二" parent="." instance=ExtResource("15_yd2jr")]
 position = Vector2(-131, 12)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(482, 362)
 animation = &"左上"
 
-[node name="menuControl" parent="." instance=ExtResource("16_t0ynf")]
+[node name="menuControl" parent="." instance=ExtResource("16_jsbe8")]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("17_kyqii")]
+[node name="CanvasLayer" parent="." instance=ExtResource("17_mt2uv")]
 
-[node name="凌若昭" parent="." instance=ExtResource("18_k8guk")]
+[node name="凌若昭" parent="." instance=ExtResource("18_3iyl5")]
 position = Vector2(192.843, 280.416)
 animation = &"左下"
 frame_progress = 0.0
@@ -320,7 +317,7 @@ offset_left = 309.0
 offset_top = 261.0
 offset_right = 609.0
 offset_bottom = 382.0
-theme_override_fonts/font = ExtResource("19_rvpbl")
+theme_override_fonts/font = ExtResource("19_8mep7")
 theme_override_font_sizes/font_size = 100
 text = "半年后"
 

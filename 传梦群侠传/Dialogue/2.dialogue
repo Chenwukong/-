@@ -1,4 +1,5 @@
 ~ 初见小二
+set Global.maxLevel = 25
 set Global.onTalk = true
 set Global.onHurry = false
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
@@ -985,6 +986,8 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res:
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 set Global.npcVis.get("大唐官府大厅").get("金甲").visible = false
 set get_tree().current_scene.get_node("凌若昭").visible = true
+set Global.changevis("长安酒店","凌若昭")
+
 set get_tree().current_scene.get_node("小二").visible = true
 set get_tree().current_scene.get_node("凌若昭").play("右上哭")
 set Global.onTalk = true
@@ -2271,6 +2274,8 @@ set Global.onTalk = true
 
 set get_tree().current_scene.get_node("player").position = Vector2(2582,1332)
 set get_tree().current_scene.get_node("凌若昭").visible = true
+set Global.changevis("长安北","凌若昭")
+set get_tree().current_scene.get_node("小二2").visible = true
 set get_tree().current_scene.get_node("小二2/小二").visible = true
 set get_tree().current_scene.get_node("师爷").visible= true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0地狱少女.mp3")

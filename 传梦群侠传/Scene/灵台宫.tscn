@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://df6umnh8u6sip"]
+[gd_scene load_steps=33 format=3 uid="uid://df6umnh8u6sip"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_4avo3"]
 [ext_resource type="Texture2D" uid="uid://bb4jl7f2ubwy2" path="res://panoramas2/方寸山_灵台宫.jpg" id="2_v2m25"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="14_ustjl"]
 [ext_resource type="AudioStream" uid="uid://mcabho34v710" path="res://Audio/BGM/方寸山.mp3" id="15_k4ipr"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_tlsmh"]
+[ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="21_sq2u0"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="22_y157k"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="23_1dtoh"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="24_s2a1m"]
@@ -399,6 +400,10 @@ position = Vector2(11.5, 33.5)
 [node name="menuControl" parent="." instance=ExtResource("28_nj2hx")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("20_tlsmh")]
+
+[node name="姜韵" parent="." instance=ExtResource("21_sq2u0")]
+modulate = Color(1, 1, 1, 0.513726)
+position = Vector2(318, 325)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

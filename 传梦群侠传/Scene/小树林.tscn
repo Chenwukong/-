@@ -1,4 +1,4 @@
-[gd_scene load_steps=102 format=3 uid="uid://cc25jx45p3ndd"]
+[gd_scene load_steps=103 format=3 uid="uid://cc25jx45p3ndd"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_074hn"]
 [ext_resource type="Texture2D" uid="uid://o876hlnrtnxc" path="res://Panoramas/1小树林.jpg" id="2_8gtc5"]
@@ -672,26 +672,29 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("金甲:position")
+tracks/0/path = NodePath("叶魅儿:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1352, 1224)]
+"values": [Vector2(1699, 1227)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("金甲:animation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"default"]
+
+[sub_resource type="Animation" id="Animation_120ll"]
+resource_name = "move叶"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("叶魅儿:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1699, 1227), Vector2(1458, 1028)]
 }
 
 [sub_resource type="Animation" id="Animation_f5v4f"]
@@ -725,6 +728,7 @@ tracks/1/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7osp4"]
 _data = {
 "RESET": SubResource("Animation_wjprv"),
+"move叶": SubResource("Animation_120ll"),
 "new_animation": SubResource("Animation_f5v4f")
 }
 

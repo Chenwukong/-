@@ -327,6 +327,7 @@ func _process(delta):
 			else:
 				menuItems[i].modulate =  "ffffff"
 		if Input.is_action_just_pressed("ui_accept") and !Global.onItemSelect and !Global.onMenuItemUsing and canPress and !Global.noKeyboard:	
+		
 			var itemScene = load("res://Scene/menuItem.tscn")
 			itemSelectIndex = 0
 			if itemTypeIndex == 0:
@@ -1101,7 +1102,7 @@ func _process(delta):
 			
 				#把装备换到空背包
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
-					print(111)
+
 					$"装备页面/装备栏/status/物理防御/value/arrow".visible = false
 					$"装备页面/装备栏/status/魔法抗性/value/arrow".visible = false
 					$"装备页面/装备栏/status/伤害/value/arrow".visible = false
@@ -1728,6 +1729,8 @@ func _on_video_stream_player_2_finished():
 	$"读取页面/VideoStreamPlayer2".play()
 
 func _on_道具_button_down():	
+	if !Global.noKeyboard:
+		return
 	if !Global.onSavePage and !Global.onLoadPage and !Global.onArmorItemPage:
 		buttonIndex = 0
 		move_道具页面_to_top()
@@ -1741,6 +1744,8 @@ func _on_道具_button_down():
 			$"道具页面".visible = true
 
 func _on_法术_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onSavePage and !Global.onLoadPage:
 		buttonIndex = 1
 		if !Global.onMenuSelectCharacter and !Global.onMagicPage:
@@ -1752,6 +1757,8 @@ func _on_法术_button_down():
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 			get_parent().get_node("subSound").play()		
 func _on_装备_button_down():
+	if !Global.noKeyboard:
+		return
 	buttonIndex = 2
 	if !Global.onMenuSelectCharacter and !Global.onArmorItemPage:
 		canPress = false
@@ -1762,6 +1769,8 @@ func _on_装备_button_down():
 		get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 		get_parent().get_node("subSound").play()		
 func _on_状态_button_down():
+	if !Global.noKeyboard:
+		return
 	buttonIndex = 3
 	if !Global.onMenuSelectCharacter and !Global.onStatusPage:
 		canPress = false
@@ -1774,6 +1783,8 @@ func _on_状态_button_down():
 
 
 func _on_保存冒险_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter and !Global.onSavePage:
 		buttonIndex = 4
 		move()
@@ -1798,6 +1809,8 @@ func _on_保存冒险_button_down():
 
 
 func _on_读取进度_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter and !Global.onLoadPage:
 		buttonIndex = 5
 		move()
@@ -1820,6 +1833,8 @@ func _on_读取进度_button_down():
 				loadSlots[i].get_node("chapter").text = "章节" + str(data.Global.current_chapter_id)
 
 func _on_升级加点_button_down():
+	if !Global.noKeyboard:
+		return
 	buttonIndex = 6
 	move()
 	if !Global.onMenuSelectCharacter and !Global.onSkillPointPage:
@@ -1832,6 +1847,8 @@ func _on_升级加点_button_down():
 		get_parent().get_node("subSound").play()		
 
 func _on_返回现实_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter and !Global.onQuitMenu:
 		buttonIndex = 7
 		move()
@@ -1859,6 +1876,8 @@ func move():
 	
 		
 func _on_player_1_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter:
 		return
 	move_menuButton_to_top()
@@ -1911,6 +1930,8 @@ func _on_player_1_button_button_down():
 
 
 func _on_player_2_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter:
 		return	
 	move_menuButton_to_top()
@@ -1962,6 +1983,8 @@ func _on_player_2_button_button_down():
 
 
 func _on_player_3_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter:
 		return	
 	move_menuButton_to_top()
@@ -2014,6 +2037,8 @@ func _on_player_3_button_button_down():
 
 
 func _on_player_4_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if !Global.onMenuSelectCharacter:
 		return	
 	move_menuButton_to_top()
@@ -2066,6 +2091,8 @@ func _on_player_4_button_button_down():
 
 
 func _on_体力加点_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 0
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
@@ -2079,6 +2106,8 @@ func _on_体力加点_button_down():
 	
 	
 func _on_力量加点_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 1
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
@@ -2091,6 +2120,8 @@ func _on_力量加点_button_down():
 		$"加点页面/属性区/力量/value/changedValue/increaseValue".visible = true
 
 func _on_气运加点_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 2
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
@@ -2108,6 +2139,8 @@ func _on_气运加点_button_down():
 		$"加点页面/属性区/暴击/value/changedValue/increaseValue".text = "(+ " + str(pointOnLuck * 0.25) + ")"	
 
 func _on_敏捷加点_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 3
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
@@ -2120,6 +2153,8 @@ func _on_敏捷加点_button_down():
 		$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = true
 
 func _on_仙力加点_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 4
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if currPlayer.potential > 0:
@@ -2138,6 +2173,8 @@ func _on_仙力加点_button_down():
 				
 
 func _on_确认按钮_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 5
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if pointOnHp > 0:
@@ -2177,6 +2214,8 @@ func _on_确认按钮_button_down():
 	pointOnStr = 0
 
 func _on_重置按钮_button_down():
+	if !Global.noKeyboard:
+		return
 	skillIndex = 6
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	$"加点页面/属性区/最大气血/最大气血数字".modulate = "ffffff"
@@ -2205,6 +2244,8 @@ func _on_重置按钮_button_down():
 
 
 func _on_save_0_button_button_down():
+	if !Global.noKeyboard:
+		return
 
 	Global.saveIndex = 0
 	saveGame()
@@ -2222,6 +2263,8 @@ func _on_save_0_button_button_down():
 
 
 func _on_save_1_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 1
 	saveGame()
 
@@ -2239,6 +2282,8 @@ func _on_save_1_button_button_down():
 
 
 func _on_save_2_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 2
 	saveGame()
 
@@ -2256,6 +2301,8 @@ func _on_save_2_button_button_down():
 
 
 func _on_save_3_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 3
 	saveGame()
 
@@ -2273,6 +2320,8 @@ func _on_save_3_button_button_down():
 
 
 func _on_load_0_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 0
 	var savePath = "user://saveFile"+str(Global.saveIndex)
 	var file = FileAccess.open(savePath, FileAccess.READ)	
@@ -2296,6 +2345,8 @@ func _on_load_0_button_button_down():
 
 
 func _on_load_1_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 1
 	var savePath = "user://saveFile"+str(Global.saveIndex)
 	var file = FileAccess.open(savePath, FileAccess.READ)	
@@ -2319,6 +2370,8 @@ func _on_load_1_button_button_down():
 
 
 func _on_load_2_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 2
 	var savePath = "user://saveFile"+str(Global.saveIndex)
 	var file = FileAccess.open(savePath, FileAccess.READ)	
@@ -2342,6 +2395,8 @@ func _on_load_2_button_button_down():
 
 
 func _on_load_3_button_button_down():
+	if !Global.noKeyboard:
+		return
 	Global.saveIndex = 3
 	var savePath = "user://saveFile"+str(Global.saveIndex)
 	var file = FileAccess.open(savePath, FileAccess.READ)	
@@ -2365,6 +2420,8 @@ func _on_load_3_button_button_down():
 
 
 func _on_weapon_but_button_down():
+	if !Global.noKeyboard:
+		return
 
 	armorItemSelectIndex = 0
 	if armorItemSelectIndex != 0:
@@ -2395,6 +2452,8 @@ func _on_weapon_but_button_down():
 		
 		
 func _on_shoes_but_button_down():
+	if !Global.noKeyboard:
+		return
 	armorItemSelectIndex = 0
 	if armorItemSelectIndex != 0:
 		onBagArmorItemSelect = false
@@ -2414,6 +2473,8 @@ func _on_shoes_but_button_down():
 		bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
 
 func _on_hat_but_button_down():
+	if !Global.noKeyboard:
+		return
 	armorItemSelectIndex = 0
 	if armorItemSelectIndex != 2:
 		onBagArmorItemSelect = false
@@ -2433,6 +2494,8 @@ func _on_hat_but_button_down():
 		bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
 
 func _on_cloth_but_button_down():
+	if !Global.noKeyboard:
+		return
 	armorItemSelectIndex = 3
 	if armorItemSelectIndex != 3:
 		onBagArmorItemSelect = false
@@ -2451,6 +2514,8 @@ func _on_cloth_but_button_down():
 		bagArmorItems[i].get_node("itemImage/item/itemNumber").text = ""
 
 func _on_acc_but_button_down():
+	if !Global.noKeyboard:
+		return
 	armorItemSelectIndex = 4
 	armorItemSelectIndex = 4
 	if armorItemSelectIndex != 4:
@@ -2471,24 +2536,34 @@ func _on_acc_but_button_down():
 
 
 func _on_bag_button_1_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 0
 	bagButton()
 
 
 func _on_bag_button_2_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 1
 	bagButton()
 
 func _on_bag_button_3_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 2
 	bagButton()
 
 func _on_bag_button_4_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 3
 	bagButton()
 
 
 func _on_bag_button_5_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 4
 	bagButton()
 
@@ -2496,6 +2571,8 @@ func _on_bag_button_5_button_down():
 
 
 func _on_bag_button_6_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 5
 	bagButton()
 
@@ -2503,23 +2580,31 @@ func _on_bag_button_6_button_down():
 
 
 func _on_bag_button_7_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 6
 	bagButton()
 
 
 func _on_bag_button_8_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 7
 	bagButton()
 
 
 
 func _on_bag_button_9_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 8
 	bagButton()
 
 
 
 func _on_bag_button_10_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 9
 	bagButton()
 
@@ -2527,10 +2612,14 @@ func _on_bag_button_10_button_down():
 
 
 func _on_bag_button_11_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 10
 	bagButton()
 
 func _on_bag_button_12_button_down():
+	if !Global.noKeyboard:
+		return
 	BagArmorItemIndex = 11
 	bagButton()
 
@@ -2561,6 +2650,10 @@ func move_读取页面_to_top():
 
 
 func _on_常规物品_button_down():
+	
+	if Global.noKeyboard:
+		return
+	
 #	if FightScenePlayers.consumeItem.size() ==0:
 #		return
 	canPress = false
@@ -2589,6 +2682,8 @@ func _on_常规物品_button_down():
 
 	
 func _on_战斗物品_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()	
 	itemSelectIndex = 0
@@ -2614,6 +2709,8 @@ func _on_战斗物品_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_武器_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2639,6 +2736,8 @@ func _on_武器_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_足护_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()		
 	itemSelectIndex = 0
@@ -2664,6 +2763,8 @@ func _on_足护_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_头饰_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2689,6 +2790,8 @@ func _on_头饰_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_衣甲_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2714,6 +2817,8 @@ func _on_衣甲_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_饰品_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2739,6 +2844,8 @@ func _on_饰品_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_特殊道具_button_down():
+	if Global.noKeyboard:
+		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2772,6 +2879,8 @@ func _on_退出游戏按钮_button_down():
 	pass # Replace with function body.
 
 func bagButton():
+	if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name == "姜韵" and Global.onGhost:
+		return
 	if armorItemSelectIndex == 0:
 		weapons = []
 		for i in bagArmorItemsData:
@@ -3378,6 +3487,7 @@ func decrypt(value):
 
 
 func _on_close_button_button_down():
+	
 	Global.menuOut = false
 	$".".visible = false
 
@@ -3490,6 +3600,8 @@ func _on_back_button_button_down():
 
 
 func _on_down_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:	
 			if buttonIndex == buttons.size() - 1:
 				buttonIndex = 0
@@ -3503,6 +3615,8 @@ func _on_down_button_button_down():
 
 
 func _on_up_button_button_down():
+	if !Global.noKeyboard:
+		return
 	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:
 		if buttonIndex == 0:
 			buttonIndex = buttons.size() - 1

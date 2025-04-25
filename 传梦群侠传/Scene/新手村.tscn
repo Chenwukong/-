@@ -1,21 +1,21 @@
 [gd_scene load_steps=25 format=3 uid="uid://vja1i88n76g5"]
 
-[ext_resource type="Script" path="res://Script/map.gd" id="1_8foxd"]
-[ext_resource type="Texture2D" uid="uid://bwhebula2aifg" path="res://Panoramas/颠倒幻境.png" id="2_m2rkp"]
-[ext_resource type="Texture2D" uid="uid://mh7cmt4bm0i2" path="res://Panoramas/建业药店_2.png" id="3_5ubk2"]
-[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_70lb4"]
-[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_lly5u"]
-[ext_resource type="AudioStream" uid="uid://sggaagef7nsu" path="res://Audio/BGM/0细细品味-04- kumomi.mp3" id="6_6whl3"]
-[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_s6pqt"]
-[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="18_htesg"]
-[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="19_ybluk"]
-[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="20_oxw13"]
-[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="24_8ttuo"]
-[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="27_1ip0g"]
-[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="28_j02vu"]
-[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="29_d5u63"]
-[ext_resource type="Texture2D" uid="uid://bb1u05mbryp5a" path="res://Characters/2侠客1.png" id="30_i62tv"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="31_d32sn"]
+[ext_resource type="Script" path="res://Script/map.gd" id="1_pteas"]
+[ext_resource type="Texture2D" uid="uid://bwhebula2aifg" path="res://Panoramas/颠倒幻境.png" id="2_edm3l"]
+[ext_resource type="Texture2D" uid="uid://mh7cmt4bm0i2" path="res://Panoramas/建业药店_2.png" id="3_nsfxh"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_3x53n"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_ptfjq"]
+[ext_resource type="AudioStream" uid="uid://sggaagef7nsu" path="res://Audio/BGM/0细细品味-04- kumomi.mp3" id="6_us0eu"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_iw7hj"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_xxgin"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_1l677"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_jcwws"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_75y4j"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="12_valin"]
+[ext_resource type="Texture2D" uid="uid://bb1u05mbryp5a" path="res://Characters/2侠客1.png" id="13_38hvy"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="14_74q2n"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="15_kafu7"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_1jein"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
 vertices = PackedVector2Array(20, 95, 2390, 97, 2393, 2472, 11, 2472, 11, 1492, 9, 1337)
@@ -67,7 +67,7 @@ _data = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uw548"]
-atlas = ExtResource("30_i62tv")
+atlas = ExtResource("13_38hvy")
 region = Rect2(127, 0, 127, 127)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w26ab"]
@@ -83,28 +83,28 @@ animations = [{
 
 [node name="新手村" type="Node2D"]
 position = Vector2(-2, -3)
-script = ExtResource("1_8foxd")
+script = ExtResource("1_pteas")
 
 [node name="建业左" type="Sprite2D" parent="."]
 position = Vector2(330, 255)
-texture = ExtResource("2_m2rkp")
+texture = ExtResource("2_edm3l")
 
 [node name="shadow" type="Sprite2D" parent="."]
 z_index = 2
 position = Vector2(382, 258)
-texture = ExtResource("3_5ubk2")
+texture = ExtResource("3_nsfxh")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-56, 6)
-script = ExtResource("4_70lb4")
+script = ExtResource("4_3x53n")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
 polygon = PackedVector2Array(535, 509, 674, 508, 706, 505, 717, 358, 711, 339, 707, 1, 331, 5, 326, 5, 301, 5, 286, 5, 60, 8, 62, 332, 69, 419, 61, 503, 127, 505, 240, 512, 349, 514, 423, 514, 494, 510)
 
-[node name="player" parent="." instance=ExtResource("5_lly5u")]
+[node name="player" parent="." instance=ExtResource("5_ptfjq")]
 z_index = 1
 position = Vector2(484, 410)
 scale = Vector2(0.903555, 0.940031)
@@ -117,7 +117,7 @@ zoom = Vector2(1.8, 1.8)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("6_6whl3")
+stream = ExtResource("6_us0eu")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -132,7 +132,7 @@ wait_time = 0.5
 volume_db = 7.0
 max_distance = 10000.0
 
-[node name="BattleReward" parent="." instance=ExtResource("18_htesg")]
+[node name="BattleReward" parent="." instance=ExtResource("7_iw7hj")]
 
 [node name="battleRewardGone" type="Timer" parent="."]
 wait_time = 2.0
@@ -148,14 +148,14 @@ constrain_avoidance = true
 visible = false
 position = Vector2(332.128, 1271.12)
 scale = Vector2(0.0631201, 0.0198038)
-texture = ExtResource("19_ybluk")
+texture = ExtResource("8_xxgin")
 
 [node name="circleTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("20_oxw13")
+stream = ExtResource("9_1l677")
 volume_db = 6.0
 max_distance = 100000.0
 
@@ -187,9 +187,9 @@ visible = false
 [node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
 offset_right = 1152.0
 offset_bottom = 804.0
-texture = ExtResource("27_1ip0g")
+texture = ExtResource("10_jcwws")
 
-[node name="teleportCircle" parent="." instance=ExtResource("28_j02vu")]
+[node name="teleportCircle" parent="." instance=ExtResource("11_75y4j")]
 position = Vector2(232, 190)
 toScene = "chapterPreview"
 
@@ -208,7 +208,7 @@ libraries = {
 "": SubResource("AnimationLibrary_kqvt8")
 }
 
-[node name="传梦" parent="." instance=ExtResource("29_d5u63")]
+[node name="传梦" parent="." instance=ExtResource("12_valin")]
 position = Vector2(339, 309)
 sprite_frames = SubResource("SpriteFrames_w26ab")
 npcName = "传梦"
@@ -220,14 +220,14 @@ polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -298, -216, -29
 offset_right = 55.0
 offset_bottom = 56.0
 
-[node name="新手警告" parent="." instance=ExtResource("31_d32sn")]
+[node name="新手警告" parent="." instance=ExtResource("14_74q2n")]
 visible = false
 position = Vector2(441, 388)
 triggerEvent = "新手警告"
 
-[node name="menuControl" parent="." instance=ExtResource("24_8ttuo")]
+[node name="menuControl" parent="." instance=ExtResource("15_kafu7")]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("16_s6pqt")]
+[node name="CanvasLayer" parent="." instance=ExtResource("16_1jein")]
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

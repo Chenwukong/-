@@ -1,0 +1,604 @@
+[gd_scene load_steps=96 format=3 uid="uid://ccmjxaqy5ffv5"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_5wvsl"]
+[ext_resource type="Texture2D" uid="uid://22lwjp0yyjj3" path="res://panoramas2/大唐境外北.jpg" id="2_5yst4"]
+[ext_resource type="Texture2D" uid="uid://c1cp32ghiwity" path="res://panoramas2/大唐境外南.jpg" id="3_27mup"]
+[ext_resource type="Shader" path="res://shader/炎热.gdshader" id="3_jax7x"]
+[ext_resource type="Texture2D" uid="uid://ballih7nsysap" path="res://panoramas2/大唐境外北_2.png" id="4_c3taw"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="5_i1bq2"]
+[ext_resource type="AudioStream" uid="uid://diar5m2jce4l" path="res://Audio/BGM/大唐境外.mp3" id="6_42r6d"]
+[ext_resource type="Texture2D" uid="uid://c7a6hejae5ueo" path="res://panoramas2/大唐境外南_2.png" id="6_vcxpn"]
+[ext_resource type="AudioStream" uid="uid://cxq4pujw4l7j2" path="res://Audio/SE/surrsound031.ogg" id="7_6ywmw"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="8_lhwi8"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="9_u8tom"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="10_2xx5h"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="11_d48bg"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="12_n3qna"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="13_hhqk2"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="14_o80w1"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="15_61uhq"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="16_x4xof"]
+[ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="17_x0xh1"]
+[ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="18_uxjs8"]
+[ext_resource type="Texture2D" uid="uid://bvpd3ng8fggmm" path="res://SeparateAnimation/李逍遥/480-11.png" id="19_uvf7m"]
+[ext_resource type="Texture2D" uid="uid://2est3fhr4ji8" path="res://SeparateAnimation/李逍遥/480-12.png" id="20_ga85t"]
+[ext_resource type="Texture2D" uid="uid://dahxcpbol6v4j" path="res://SeparateAnimation/李逍遥/480-13.png" id="21_tbe62"]
+[ext_resource type="Texture2D" uid="uid://duqkynh4wdfgp" path="res://SeparateAnimation/李逍遥/480-14.png" id="22_ls6ox"]
+[ext_resource type="Texture2D" uid="uid://diaow2fnk68ap" path="res://SeparateAnimation/李逍遥/480-15.png" id="23_8tqah"]
+[ext_resource type="Texture2D" uid="uid://dkt3vlt0l46jx" path="res://SeparateAnimation/李逍遥/480-16.png" id="24_asppl"]
+[ext_resource type="Texture2D" uid="uid://drxjknawubeih" path="res://SeparateAnimation/李逍遥/481-1.png" id="25_bivfk"]
+[ext_resource type="Texture2D" uid="uid://dppjoryyyyp47" path="res://SeparateAnimation/李逍遥/481-2.png" id="26_xsmof"]
+[ext_resource type="Texture2D" uid="uid://tvykvgx320ca" path="res://SeparateAnimation/李逍遥/481-3.png" id="27_fsokp"]
+[ext_resource type="Texture2D" uid="uid://cunh3hc51c2cl" path="res://SeparateAnimation/李逍遥/481-4.png" id="28_534hn"]
+[ext_resource type="Texture2D" uid="uid://101nkyqsjnek" path="res://SeparateAnimation/李逍遥/481-5.png" id="29_jqsf8"]
+[ext_resource type="Texture2D" uid="uid://b8ksnyiyknrb7" path="res://SeparateAnimation/李逍遥/481-6.png" id="30_pcpxu"]
+[ext_resource type="Texture2D" uid="uid://ckvkvp0uncijr" path="res://SeparateAnimation/李逍遥/481-7.png" id="31_td2su"]
+[ext_resource type="Texture2D" uid="uid://bqwrv06j4mc25" path="res://SeparateAnimation/李逍遥/481-8.png" id="32_as74t"]
+[ext_resource type="Texture2D" uid="uid://dowy3tfsbxs4a" path="res://SeparateAnimation/李逍遥/480-1.png" id="33_6tcu0"]
+[ext_resource type="Texture2D" uid="uid://bhfahr4x740ku" path="res://SeparateAnimation/李逍遥/480-2.png" id="34_24vaj"]
+[ext_resource type="Texture2D" uid="uid://cjs2psgsmdodq" path="res://SeparateAnimation/李逍遥/480-3.png" id="35_dec3e"]
+[ext_resource type="Texture2D" uid="uid://b6trnn1x72d1o" path="res://SeparateAnimation/李逍遥/480-4.png" id="36_nugfr"]
+[ext_resource type="Texture2D" uid="uid://egqqmtbdj7b" path="res://SeparateAnimation/李逍遥/480-5.png" id="37_eiq0b"]
+[ext_resource type="Texture2D" uid="uid://h2rmsobps8rj" path="res://SeparateAnimation/李逍遥/480-6.png" id="38_gwmia"]
+[ext_resource type="Texture2D" uid="uid://byfgo4jdboww1" path="res://SeparateAnimation/李逍遥/480-7.png" id="39_s1y1s"]
+[ext_resource type="Texture2D" uid="uid://bybv3fysbpgaw" path="res://SeparateAnimation/李逍遥/480-8.png" id="40_04scf"]
+[ext_resource type="Texture2D" uid="uid://cbey4ogdgbort" path="res://SeparateAnimation/李逍遥/480-25.png" id="41_yyx50"]
+[ext_resource type="Texture2D" uid="uid://did76twim75rf" path="res://SeparateAnimation/李逍遥/480-26.png" id="42_km8c1"]
+[ext_resource type="Texture2D" uid="uid://cxdajdoy7vj4u" path="res://SeparateAnimation/李逍遥/480-27.png" id="43_072h7"]
+[ext_resource type="Texture2D" uid="uid://bo2iqjfk74gds" path="res://SeparateAnimation/李逍遥/480-28.png" id="44_3o20y"]
+[ext_resource type="Texture2D" uid="uid://mhmf2g5q8pxj" path="res://SeparateAnimation/李逍遥/480-29.png" id="45_py8xc"]
+[ext_resource type="Texture2D" uid="uid://cg4u6k5oig4ma" path="res://SeparateAnimation/李逍遥/480-30.png" id="46_fgo53"]
+[ext_resource type="Texture2D" uid="uid://bwr8ff7thmpw1" path="res://SeparateAnimation/李逍遥/480-31.png" id="47_wixml"]
+[ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="48_17n1c"]
+[ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="49_4ds6f"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="50_nm3mc"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="51_jpjh2"]
+[ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="52_k7lbp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_paxsi"]
+shader = ExtResource("3_jax7x")
+shader_parameter/heat_intensity = 0.5
+shader_parameter/heat_wave_speed = 0.5
+shader_parameter/heat_wave_scale = 0.001
+shader_parameter/heat_color = Color(1, 0.6, 0.2, 0.745098)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
+vertices = PackedVector2Array(-15, 80, 8002, 54, 8000, 7712, -20, 7716, -19, 1499, -22, 1340)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-15, 80, -22, 1340, -19, 1499, -20, 7716, 8000, 7712, 8002, 54)])
+
+[sub_resource type="Gradient" id="Gradient_h5dxg"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s2iao"]
+gradient = SubResource("Gradient_h5dxg")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_ale5n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("subSound:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_6ywmw")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("subSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_1cdy7"]
+resource_name = "turnDark"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("subSound:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_6ywmw")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("subSound:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_edmax"]
+_data = {
+"RESET": SubResource("Animation_ale5n"),
+"turnDark": SubResource("Animation_1cdy7")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg73m"]
+atlas = ExtResource("17_x0xh1")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0q63"]
+atlas = ExtResource("18_uxjs8")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol8fk"]
+atlas = ExtResource("19_uvf7m")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p448"]
+atlas = ExtResource("20_ga85t")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jabmg"]
+atlas = ExtResource("21_tbe62")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ng6i"]
+atlas = ExtResource("22_ls6ox")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtuir"]
+atlas = ExtResource("23_8tqah")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3fpr"]
+atlas = ExtResource("24_asppl")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ienqo"]
+atlas = ExtResource("25_bivfk")
+region = Rect2(0, 0, 48, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exg82"]
+atlas = ExtResource("26_xsmof")
+region = Rect2(0, 0, 45, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gf3"]
+atlas = ExtResource("27_fsokp")
+region = Rect2(0, 0, 46, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxi6i"]
+atlas = ExtResource("28_534hn")
+region = Rect2(0, 0, 45, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gda0c"]
+atlas = ExtResource("29_jqsf8")
+region = Rect2(0, 0, 44, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mtbq"]
+atlas = ExtResource("30_pcpxu")
+region = Rect2(0, 0, 43, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf1qk"]
+atlas = ExtResource("31_td2su")
+region = Rect2(0, 0, 43, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42hdg"]
+atlas = ExtResource("32_as74t")
+region = Rect2(0, 0, 43, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr5qo"]
+atlas = ExtResource("33_6tcu0")
+region = Rect2(0, 0, 39, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk8vx"]
+atlas = ExtResource("34_24vaj")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwvab"]
+atlas = ExtResource("35_dec3e")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6og1"]
+atlas = ExtResource("36_nugfr")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rndft"]
+atlas = ExtResource("37_eiq0b")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isgu0"]
+atlas = ExtResource("38_gwmia")
+region = Rect2(0, 0, 38, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grwra"]
+atlas = ExtResource("39_s1y1s")
+region = Rect2(0, 0, 38, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcb66"]
+atlas = ExtResource("40_04scf")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y874"]
+atlas = ExtResource("41_yyx50")
+region = Rect2(0, 0, 34, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc225"]
+atlas = ExtResource("42_km8c1")
+region = Rect2(0, 0, 34, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd1t1"]
+atlas = ExtResource("43_072h7")
+region = Rect2(0, 0, 33, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xmds"]
+atlas = ExtResource("44_3o20y")
+region = Rect2(0, 0, 33, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdim0"]
+atlas = ExtResource("45_py8xc")
+region = Rect2(0, 0, 33, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3ujv"]
+atlas = ExtResource("46_fgo53")
+region = Rect2(0, 0, 33, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf5qr"]
+atlas = ExtResource("47_wixml")
+region = Rect2(0, 0, 33, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg5cs"]
+atlas = ExtResource("48_17n1c")
+region = Rect2(0, 0, 34, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxnb1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg73m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0q63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol8fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p448")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jabmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ng6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtuir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3fpr")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ienqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exg82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6gf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxi6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gda0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mtbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf1qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42hdg")
+}],
+"loop": true,
+"name": &"downDrink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr5qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk8vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwvab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6og1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rndft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isgu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grwra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcb66")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y874")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc225")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd1t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xmds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdim0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3ujv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf5qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg5cs")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="大唐境外" type="Node2D"]
+script = ExtResource("1_5wvsl")
+
+[node name="建业左" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3kems")
+position = Vector2(451, 313)
+rotation = 0.00202572
+texture = ExtResource("2_5yst4")
+
+[node name="大唐境外南" type="Sprite2D" parent="."]
+position = Vector2(446, 1424)
+texture = ExtResource("3_27mup")
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_paxsi")
+position = Vector2(451, 313)
+texture = ExtResource("4_c3taw")
+
+[node name="shadow2" type="Sprite2D" parent="."]
+z_index = 2
+material = SubResource("ShaderMaterial_paxsi")
+position = Vector2(446, 1424)
+texture = ExtResource("6_vcxpn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(223, 153)
+script = ExtResource("5_i1bq2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(1362, -402, 1210, -262, 1091, -198, 839, -192, 683, -225, 538, -462, 388, -403, 430, -212, 494, -127, 663, -81, 798, -34, 919, -68, 1030, -1, 1067, 82, 991, 163, 972, 223, 827, 231, 664, 199, 601, 356, 642, 475, 630, 569, 603, 570, 581, 519, 578, 403, 439, 305, 453, 264, 523, 271, 527, 153, 477, 81, 430, -136, 343, -241, 290, -237, 258, -310, 146, -269, 138, -45, 117, 176, 89, 262, 31, 221, -65, 120, -117, 72, -158, 21, -244, -179, -254, -272, -275, -303, -435, -345, -556, -330, -625, -326, -731, -505, -921, -498, -863, -369, -759, -218, -790, -123, -876, 53, -932, 59, -935, 396, -938, 663, -762, 659, -706, 739, -659, 728, -688, 825, -770, 854, -934, 1027, -927, 1158, -583, 1284, -458, 1213, -326, 1097, 111, 1431, -19, 1705, -259, 1687, -507, 1547, -938, 1645, -937, 1741, -552, 1776, -250, 1847, -54, 1837, 50, 1768, 99, 1652, 164, 1605, 1036, 1820, 1356, 1824, 1329, 1662, 999, 1684, 1049, 1400, 975, 1387, 517, 1446, 385, 1238, -239, 831, -568, 843, -561, 715, -490, 761, -364, 717, -254, 494, -246, 321, -270, 245, -462, 253, -501, 423, -662, 474, -673, 524, -760, 522, -838, 437, -689, 330, -514, 289, -544, 208, -708, 162, -794, 86, -805, 75, -748, -62, -455, -113, -422, -153, -317, -18, -219, 91, -72, 237, -8, 305, 65, 341, -103, 396, -183, 439, -203, 550, -202, 718, -88, 820, 67, 990, 449, 1247, 831, 1263, 1081, 1228, 1161, 877, 1239, 767, 1381, 694, 1220, 644, 1198, 531, 1220, 408, 1391, 317, 1390, 210, 1041, 302, 1048, 368, 1111, 437, 1128, 656, 1100, 688, 1005, 1103, 639, 1112, 406, 1044, 106, 761, 129, 655, -51, 692, -111, 665, -106, 523, 18, 471, 114, 470, 309, 502, 456, 523, 533, 574, 533, 605, 362, 658, 194, 663, 162, 750, 220, 797, 246, 820, 399, 930, 786, 1048, 940, 698, 937, 529, 995, 422, 1024, 295, 1138, 239, 1305, 125, 1368, 11, 1355, -117, 1364, -225, 1390, -267, 1391, -414)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(428.45, 356.423)
+stream = ExtResource("6_42r6d")
+volume_db = 4.414
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="enterFightCd" type="Timer" parent="."]
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_6ywmw")
+volume_db = 7.0
+max_distance = 10000.0
+
+[node name="BattleReward" parent="." instance=ExtResource("8_lhwi8")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(-1541, -1631)
+scale = Vector2(0.5, 0.5)
+navigation_polygon = SubResource("NavigationPolygon_kwa23")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("9_u8tom")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_2xx5h")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_s2iao")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("11_d48bg")
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-704, -342)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(1605, 2001)
+rotation = 3.12272
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_edmax")
+}
+
+[node name="menuControl" parent="." instance=ExtResource("12_n3qna")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("13_hhqk2")]
+
+[node name="potentialBall" parent="." instance=ExtResource("14_o80w1")]
+position = Vector2(744, -261)
+id = "大唐境外北1"
+
+[node name="potentialBall2" parent="." instance=ExtResource("14_o80w1")]
+position = Vector2(-2818, 3043)
+id = "大唐国境边缘2"
+
+[node name="petFoodBall" parent="." instance=ExtResource("15_61uhq")]
+position = Vector2(-2948.11, -1161.27)
+id = "大唐国境边缘"
+
+[node name="petFoodBall2" parent="." instance=ExtResource("15_61uhq")]
+position = Vector2(435, -96.9999)
+id = "大唐境外北1"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+
+[node name="梧桐" parent="." instance=ExtResource("16_x4xof")]
+position = Vector2(17, -976)
+sprite_frames = SubResource("SpriteFrames_jxnb1")
+animation = &"up"
+frame_progress = 0.282536
+
+[node name="姜韵" parent="." instance=ExtResource("49_4ds6f")]
+modulate = Color(1, 1, 1, 0.423529)
+position = Vector2(98, -899)
+autoplay = ""
+
+[node name="player" parent="." instance=ExtResource("50_nm3mc")]
+position = Vector2(1494, -77)
+
+[node name="teleportCircle" parent="." instance=ExtResource("51_jpjh2")]
+position = Vector2(1566.97, -167.653)
+toScene = "大唐国境边缘"
+
+[node name="teleportCircle2" parent="." instance=ExtResource("51_jpjh2")]
+position = Vector2(-591, -307)
+toScene = "普陀山"
+
+[node name="teleportCircle3" parent="." instance=ExtResource("51_jpjh2")]
+position = Vector2(-607, 1831)
+toScene = "大唐境外南"
+
+[node name="teleportCircle4" parent="." instance=ExtResource("51_jpjh2")]
+position = Vector2(1559, 440)
+toScene = "五庄观"
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="battleBgm" type="AudioStreamPlayer" parent="."]
+
+[node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("52_k7lbp")
+volume_db = 4.552
+
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
