@@ -1295,9 +1295,9 @@ set Global.getnode("player").visible = true
 小二: [speed=0.5]呵呵呵呵呵呵
 小二: [speed=0.5]哈哈哈哈哈哈哈哈哈哈
 凌若昭哀: [speed=0.5]小二...
-小二: [speed=0.5]我明白了，上天赐给我这种力量就意味着有我必须去做的事，我若放任你等活着，就是对不起所有被你们残害之人！
+小二: [speed=0.5]我知道了，上天赐给我这种力量就意味着有我必须去做的事，我若放任你等活着，就是对不起所有被你们残害之人！
 小二: [speed=0.5]人归人，妖归妖，而我是我，任何人都不能决定我的命运！
-青面兽: [speed=0.5]这妖力。。。原来你就是那个天命人！
+
 set Global.onHurry = true
 
 set Global.getnode("小二/小二/effects/真身特效").visible = true
@@ -1309,7 +1309,7 @@ set Global.toggleballon()
 set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
 [next=1]
 set Global.toggleballon()
-
+青面兽: [speed=0.5]这妖力。。。原来你就是那个天命人！
 
 小二真身: 老大若昭，随我杀了他！
 时追云: 好！
@@ -1361,9 +1361,10 @@ set Global.playsound("res://Audio/SE/回复-仙术.ogg")
 小二真身: [speed=0.5]他叫什么，他在哪里？
 梧桐: [speed=0.5]她的名字叫，朱雀！
 set Global.toggleballon()
-[next=1]
-set Global.toggleballon()
-set Global.dial = null
+set Global.getnode("AnimationPlayer").play("turnDark")
+[next=2]
+
+set Global.dial = "寻四圣"
 set Global.current_chapter_id = 7
 set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
 

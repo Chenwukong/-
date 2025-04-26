@@ -1,4 +1,4 @@
-[gd_scene load_steps=182 format=3 uid="uid://bsrnhwrntdxqm"]
+[gd_scene load_steps=183 format=3 uid="uid://bsrnhwrntdxqm"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2qfia"]
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="2_hwuyh"]
@@ -139,9 +139,26 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_kak8o"]
+resource_name = "turnDark"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
 _data = {
 "RESET": SubResource("Animation_o8nmx"),
+"turnDark": SubResource("Animation_kak8o"),
 "城主走开": SubResource("Animation_5d8hn"),
 "魅儿回忆": SubResource("Animation_ko0di")
 }
@@ -1154,8 +1171,12 @@ scale = Vector2(1.408, 1.408)
 sprite_frames = SubResource("SpriteFrames_k5fi6")
 
 [node name="叶魅儿" parent="." instance=ExtResource("16_qpjj5")]
-position = Vector2(2307, 592)
+position = Vector2(2339, 598)
 sprite_frames = SubResource("SpriteFrames_t8k8x")
+
+[node name="Button" parent="叶魅儿" index="1"]
+offset_top = -45.0
+offset_bottom = 57.0
 
 [node name="叶魅儿2" parent="." instance=ExtResource("16_qpjj5")]
 position = Vector2(2075, 669)
