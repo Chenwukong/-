@@ -95,7 +95,7 @@ func _process(delta):
 func _on_animation_finished():
 	targetFound = false
 	if state == autoAttack:
-		if targets.canSee:
+		if target.canSee:
 			if SmallPetData.currSmallPetData[petName].hungry >= SmallPetData.currSmallPetData[petName].hungryValue:
 				rageBar += rageFreq
 				attack()
@@ -112,7 +112,7 @@ func _on_animation_finished():
 func attack():
 
 	if is_instance_valid(target):
-		if targets.canSee:
+		if target.canSee:
 			target.get_node("Label").text = str(str)
 			target.get_node("petHpAnimation").play("petHp")
 			target.currHp -= str 

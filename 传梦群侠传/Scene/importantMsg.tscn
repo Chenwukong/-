@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" path="res://Script/importantMsg.gd" id="1_8jmci"]
 [ext_resource type="AudioStream" uid="uid://c0vdcioyxgepi" path="res://Audio/SE/056-Right02.ogg" id="1_bvpo1"]
-[ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="2_7fgc8"]
+[ext_resource type="Texture2D" uid="uid://cwx0di0j6jv1v" path="res://道具消息提示框.png" id="2_y6bhd"]
 
 [node name="importantMsg" type="Node2D"]
+visible = false
 script = ExtResource("1_8jmci")
 
 [node name="Panel" type="TextureRect" parent="."]
@@ -12,7 +13,7 @@ offset_left = 3.0
 offset_top = 3.0
 offset_right = 446.0
 offset_bottom = 166.0
-texture = ExtResource("2_7fgc8")
+texture = ExtResource("2_y6bhd")
 expand_mode = 1
 
 [node name="ImportantMsg" type="Label" parent="Panel"]

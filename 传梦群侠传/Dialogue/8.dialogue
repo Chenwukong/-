@@ -192,6 +192,7 @@ set Global.getnode("水云仙/effects/斩击").play()
 关重七: [speed=0.5]...
 水云仙死: [speed=0.5]不管怎么样，我一直都在你身边
 关重七: [speed=0.5]仙。。。。仙儿？
+set Global.getnode("关重七").scale = Vector2(1,1)
 set Global.getnode("关重七").play("右下")
 水云仙死: [speed=0.5]相公，你清醒了
 关重七: [speed=0.5]我。。我又伤害了你吗？你为什么不让我直接死了！
@@ -205,6 +206,127 @@ set Global.getnode("AnimationPlayer").play("时追云移动")
 姜韵: [speed=0.5]嗯
 set get_tree().current_scene.bossFight("关重七伤势","res://Audio/BGM/网易游戏 - 战斗2.mp3", "关重七伤势")
 
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 关重七3
+set Global.onTalk = true
+关重七: [speed=0.5]姑娘竟有如此神奇之医术，你莫非真的是神农后人
+姜韵喜: [speed=0.5]如假包换
+水云仙: [speed=0.5]相公，你感觉怎么样了
+关重七: [speed=0.5]我已经没那么疼了，倒是你，刚才被我伤的很重吧
+水云仙: [speed=0.5]我没事了，刚才姜姑娘已经顺便帮我的伤治好了
+关重七: [speed=0.5]真是太感谢你们了
+时追云: [speed=0.5]希望你们能好好的过之后的日子
+set Global.changeScene("未知岛屿",null)
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 关重七4
+set Global.onTalk = true
+关重七: [speed=0.5]这里还是那么宁静祥和
+关重七: [speed=0.5]如果我当初没有那么做，会不会现在能过上幸福的生活呢
+关重七: [speed=0.5]但有些事，是不得不去做的...
+水云仙: [speed=0.5]相公，那些事都不重要了，以后我们一起好好的过日子吧
+关重七: [speed=0.5]嗯...
+关重七: [speed=0.5]对了，以后孩子不要和我姓
+水云仙: [speed=0.5]为什么？
+关重七: [speed=0.5]我的姓不好听，就让他跟着你姓吧
+水云仙: [speed=0.5]以水为姓吗
+关重七: [speed=0.5]嗯，如果是男的就叫他无痕吧，希望我的事情不要给他留下伤痕
+关重七: [speed=0.5]如果是女孩就叫他莫悔吧
+水云仙: [speed=0.5]水无痕，水莫悔，不错的名字
+水云仙: [speed=0.5]相公得亲自教导他们武艺，我来教他们书写和礼仪
+关重七: [speed=0.5]好，就这么决定了，由你来教我们的孩子，他或许就不会像我今天这样了
+水云仙: [speed=0.5]相公，都已经过去了
+水云仙: [speed=0.5]我现在只想一直这么抱着你
+关重七: [speed=0.5]仙儿...
+[next=1]
+set Global.turnDark()
+set Global.dial = "水云仙"
+set Global.changeScene("未知岛屿",null)
+
+set Global.onTalk = false
+=> END
+
+
+~ 关重七5
+set Global.onTalk = true
+set Global.getnode("player").visible = true
+set Global.getnode("player").position = Vector2(4274, 2713)
+set Global.getnode("关重七").position = Vector2(4181,2651)
+关重七: [speed=0.5]我娘子已经睡着了
+姜韵: [speed=0.5]怎么了吗
+关重七: [speed=0.5]我娘子她不懂天谴的威力，姜姑娘虽然有起死回生之能，但也该知道，我是没救了的吧
+姜韵: [speed=0.5]确实...天谴的伤害，已经和医术的范畴无关了
+凌若昭哀: [speed=0.5]怎么会这样，我还以为都好了
+时追云: [speed=0.5]那你叫我们可是有事相托
+关重七: [speed=0.5]嗯，从今天起，世界上将不会有关重七出现，我娘子他也再不会见到我
+小二: [speed=0.5]为什么要这样...
+关重七: [speed=0.5]我不想她眼睁睁的看着我越来越虚弱，直到死去
+关重七: [speed=0.5]她没有亲人，我算是她唯一的家人了，如果她知道我死了，恐怕会万念俱灰
+关重七: [speed=0.5]所以我恳请各位，不要告诉她真相，让她觉得我还活着，只要有这念想，她就会带着我们的孩子好好活着的
+时追云惊: [speed=0.5]...
+姜韵哀: [speed=0.5]...
+关重七: [speed=0.5]拜托你们了，如果可以的话，我希望你们能帮我照顾他们一二
+时追云: [speed=0.5]好，我答应你，这是我们的承诺
+关重七: [speed=0.5]有此承诺，我也可安心离去了
+关重七: [speed=0.5]重七多谢各位义士！
+时追云: [speed=0.5]保重！
+[next=1]
+set Global.turnDark()
+set Global.changeScene("未知岛屿",null)
+
+set Global.onTalk = false
+=> END
+
+
+~ 关重七6
+set Global.onTalk = true
+set Global.getnode("关重七").visible = false
+set Global.getnode("player").visible = true
+set Global.getnode("水云仙").play("右下")
+水云仙: [speed=0.5]我相公呢，他人呢？？
+时追云: [speed=0.5]...
+姜韵哀: [speed=0.5]...
+水云仙哀: [speed=0.5]他是不是，又走了？
+时追云: [speed=0.5]嗯
+水云仙哀: [speed=0.5]他又走了。。。再一次走了吗
+时追云: [speed=0.5](我不知道向她撒谎是对是错，我也不清楚这件事到底谁对谁错)
+时追云: [speed=0.5](我只知道这乱世，真不令人安宁)
+时追云: [speed=0.5](而我要做的，就是尽量给每一个人带来希望)
+时追云: [speed=0.5]他还会回来的
+水云仙: [speed=0.5]什么？
+时追云: [speed=0.5]他一定还会回来的，虽然我认识你相公不久，但他不会是那这抛妻弃子的人
+时追云: [speed=0.5]他一定是有急事，所以才匆匆离去
+水云仙: [speed=0.5]是这样吗
+姜韵喜: [speed=0.5]你想啊，他可是为了你和孩子都不寻短见了
+水云仙: [speed=0.5]也对。。。他或许真的有什么事吧
+姜韵喜: [speed=0.5]那你之后有什么打算吗
+水云仙: [speed=0.5]我想去我相公小时候的村子居住，如果在那里的话，他一定能找到我的
+水云仙: [speed=0.5]只要我一直在那里，我就一定能再见到他！
+姜韵喜: [speed=0.5]那里叫什么啊？
+水云仙: [speed=0.5]丰渔村
+set Global.showMsg("获得之字牌!")
+set Global.addItem("之字牌", "keyItem", "keyItem", 1)
+set Global.changeQuest("传梦之路","之","boolean", true)
+[next=3]
+set Global.dial = null
+set Global.changeScene("普陀山",null)
+
+set Global.onTalk = false
+=> END
+
+~ 初见观音2
+set Global.onTalk = true
+观音菩萨: [speed=0.5]你们是？
+时追云: 
 
 
 set Global.onTalk = false

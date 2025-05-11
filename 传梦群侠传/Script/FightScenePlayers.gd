@@ -1580,7 +1580,7 @@ var fightScenePlayerData = {
 			"addCritChance":0,			
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 55,
+			"level": 95,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1653,16 +1653,15 @@ var fightScenePlayerData = {
 			{
 				"name": "抽丝断魂",
 				"attackType": "range",
-				"buffEffect": ["alive"], 
+				"damageSource": "AP",
+				"value": 2,				
 				"cost": 10,
-				"description": "单体攻击",	
+				"description": "在地府学会的法术，单体伤害",	
 				"effectArea": "single",
-				"value:": 2,
 				"animationArea":"enemy",
 				"effectingNum": 1,
-				"duration": 2,
-				"audio": "res://Audio/SE/法术5.ogg",
-				"icon":"res://Icons/●图标 (84).png"
+				"audio":"res://Audio/SE/法术12.ogg",
+				"icon": "res://Icons/水攻.png",
 			},
 
 			

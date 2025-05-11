@@ -145,7 +145,7 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云","小二","凌若昭"]
+var onTeamPlayer = ["时追云","小二","凌若昭","姜韵"]
 var onTeamPet = ["敖阳","朱雀","玄武","青龙"]
 var onTeamSmallPet = ["小鹿"]
 var smallPets = ["小鹿"]
@@ -538,7 +538,7 @@ var enKey = 2 #randi_range(1, 3000)
 
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
-	"传梦之路":{"传":false,"梦":false,"之":false,"路":false,      "complete":false},
+	"传梦之路":{"传":false,"梦":false,"之":false,"路":false,"complete":false},
 	"抓鬼":{"野鬼":0, "complete":false},
 	
 }
@@ -1642,9 +1642,11 @@ var npcs = {
 					{"chapter": 8, "dialogue": "关重七1", "unlocked": true, "bgm": null ,"trigger":false},														
 					{"chapter": 8, "dialogue": "关重七2", "unlocked": true, "bgm": "res://Audio/BGM/你在哪里.mp3" ,"trigger":false},		
 					{"chapter": 8, "dialogue": "关重七3", "unlocked": true, "bgm": null ,"trigger":false},						
-									
+					{"chapter": 8, "dialogue": "关重七4", "unlocked": true, "bgm": null ,"trigger":false},									
+					{"chapter": 8, "dialogue": "关重七5", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 8, "dialogue": "关重七6", "unlocked": true, "bgm": null ,"trigger":false},
 				],
-		"current_dialogue_index": 1,	
+		"current_dialogue_index": 5,	
 		"constNpc": false	
 	},	
 			
@@ -2198,3 +2200,6 @@ func moveTiger():
 	
 	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/AnimationPlayer").play("move白虎")
 	
+func showMsg(text):
+	getnode("messageLayer/importantMsg").visible = true
+	getnode("messageLayer/importantMsg/Panel/ImportantMsg").text = text

@@ -246,8 +246,7 @@ set Global.onTalk = true
 						set get_tree().current_scene.get_node("oneTimeSound").play()
 						set Global.npcVis.get("傲来民居").get("大生").visible = false
 						set Global.changeQuest("传梦之路","传","boolean", true)
-						set get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "您以获得传字牌！"
-						set get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true						
+						set Global.showMsg("您以获得传字牌！")						
 					- 钱财
 						大生: [speed=0.5]呵呵呵呵呵呵呵呵
 						set Global.npcs.get("大生").current_dialogue_index = 0

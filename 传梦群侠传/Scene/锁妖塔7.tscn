@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bm4hmox6fevr1" path="res://panoramas2/大雁塔7_2.png" id="3_g2t4b"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_lrd7n"]
 [ext_resource type="AudioStream" uid="uid://lg6xtg85hjxd" path="res://Audio/BGM/#诡异之地.ogg" id="5_4nh75"]
-[ext_resource type="Texture2D" uid="uid://ct2pab5o08nlj" path="res://Animations/鬼将-法术.png" id="15_57xbo"]
+[ext_resource type="Texture2D" uid="uid://mxdi4nt4xhhg" path="res://Animations/鬼将-法术.png" id="15_57xbo"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_h0e2m"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="25_8qs8a"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="26_s8lk3"]
@@ -397,6 +397,10 @@ position = Vector2(1954, 1183)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame_progress = 0.0
 
 [node name="menuControl" parent="." instance=ExtResource("28_b3u52")]
 

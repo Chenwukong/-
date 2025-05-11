@@ -174,6 +174,7 @@ scale = Vector2(0.903555, 0.940031)
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"up"
+frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.7, 1.7)
@@ -413,6 +414,10 @@ position = Vector2(706, 371)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左下"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame_progress = 0.0
 
 [node name="金甲吃饭" parent="." instance=ExtResource("31_yj36y")]
 position = Vector2(430, 101)

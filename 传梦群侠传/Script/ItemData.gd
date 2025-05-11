@@ -47,6 +47,43 @@ var keyItem = {
 		"useAble":false,
 		"gold":99999999	
 	},
+	"梦字牌":{
+		"name": "梦字牌",
+		"effect": null,
+		"value": 100,
+		"icon": "res://Pictures/梦.png",
+		"picture":"res://Pictures/梦.png",
+		"description": "写着梦字",
+		"audio": "res://Audio/SE/056-Right02.ogg",
+		"key":true,
+		"useAble":false,
+		"gold":99999999	
+	},
+	"之字牌":{
+		"name": "之字牌",
+		"effect": null,
+		"value": 100,
+		"icon": "res://Pictures/之.png",
+		"picture":"res://Pictures/之.png",
+		"description": "写着之字",
+		"audio": "res://Audio/SE/056-Right02.ogg",
+		"key":true,
+		"useAble":false,
+		"gold":99999999	
+	},	
+	"路字牌":{
+		"name": "路字牌",
+		"effect": null,
+		"value": 100,
+		"icon": "res://Pictures/路.png",
+		"picture":"res://Pictures/路.png",
+		"description": "写着路字",
+		"audio": "res://Audio/SE/056-Right02.ogg",
+		"key":true,
+		"useAble":false,
+		"gold":99999999	
+	},	
+	
 	"桃木棒":{
 		"name": "桃木棒",
 		"effect": null,
