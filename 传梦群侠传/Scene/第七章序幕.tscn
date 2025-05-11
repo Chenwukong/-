@@ -1,0 +1,1910 @@
+[gd_scene load_steps=176 format=3 uid="uid://qbsqt4jriawb"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_sewf8"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="2_a0sot"]
+[ext_resource type="Texture2D" uid="uid://clyg24nlj6syh" path="res://panoramas2/妖界领地_2.PNG" id="4_lvmn1"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_ubvh5"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_frue8"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_13rld"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_g6v5r"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_s2ywi"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="11_cuwvy"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="12_cv1ul"]
+[ext_resource type="PackedScene" uid="uid://dw2xa4a3g20j6" path="res://Scene/importantMsg.tscn" id="13_ku27w"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="14_x1n48"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="15_jc8eu"]
+[ext_resource type="Texture2D" uid="uid://4dph760fxo8y" path="res://panoramas2/方寸山.jpg" id="16_30xah"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="17_0vj2d"]
+[ext_resource type="Texture2D" uid="uid://dyxv1eqxj5uxr" path="res://37115811-ab93-4eee-9c58-2d7e71122458.png" id="17_mgpyd"]
+[ext_resource type="Texture2D" uid="uid://dcmb4hkgqiunr" path="res://Characters/赤脚大仙.png" id="18_gbpny"]
+[ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="19_1qqj2"]
+[ext_resource type="Shader" path="res://窥视.gdshader" id="20_qb6en"]
+[ext_resource type="Texture2D" uid="uid://8rddxi7fs4h8" path="res://75abea41559b27f152dc17c5cfa1e6b28074c1912d227-Xiwvkv.png" id="22_5ei7q"]
+[ext_resource type="Texture2D" uid="uid://dmaqgqyaga51x" path="res://Panoramas/国境口.jpg" id="22_mhtw1"]
+[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="23_76quq"]
+[ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="25_5drqo"]
+[ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="26_6vmtq"]
+[ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="26_rdmmg"]
+[ext_resource type="Texture2D" uid="uid://dh6iropnenrlc" path="res://SeparateAnimation/童子/死亡我.PNG" id="27_08l0t"]
+[ext_resource type="Texture2D" uid="uid://bvpd3ng8fggmm" path="res://SeparateAnimation/李逍遥/480-11.png" id="27_dcxwk"]
+[ext_resource type="Texture2D" uid="uid://w8tjhm4b5tjf" path="res://SeparateAnimation/童子/站立/4.png" id="28_4hrfk"]
+[ext_resource type="Texture2D" uid="uid://2est3fhr4ji8" path="res://SeparateAnimation/李逍遥/480-12.png" id="28_fb3nc"]
+[ext_resource type="Texture2D" uid="uid://dahxcpbol6v4j" path="res://SeparateAnimation/李逍遥/480-13.png" id="29_30wyu"]
+[ext_resource type="Texture2D" uid="uid://dyp4tgcbwqb1e" path="res://SeparateAnimation/童子/站立/2.png" id="29_j3je6"]
+[ext_resource type="Texture2D" uid="uid://duqkynh4wdfgp" path="res://SeparateAnimation/李逍遥/480-14.png" id="30_iir46"]
+[ext_resource type="Texture2D" uid="uid://diaow2fnk68ap" path="res://SeparateAnimation/李逍遥/480-15.png" id="31_042o5"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="31_bshqd"]
+[ext_resource type="Texture2D" uid="uid://dkt3vlt0l46jx" path="res://SeparateAnimation/李逍遥/480-16.png" id="32_inq30"]
+[ext_resource type="Texture2D" uid="uid://drxjknawubeih" path="res://SeparateAnimation/李逍遥/481-1.png" id="33_hks7q"]
+[ext_resource type="Texture2D" uid="uid://dppjoryyyyp47" path="res://SeparateAnimation/李逍遥/481-2.png" id="34_tgw12"]
+[ext_resource type="Texture2D" uid="uid://tvykvgx320ca" path="res://SeparateAnimation/李逍遥/481-3.png" id="35_n5ea1"]
+[ext_resource type="Texture2D" uid="uid://cunh3hc51c2cl" path="res://SeparateAnimation/李逍遥/481-4.png" id="36_1twe6"]
+[ext_resource type="Texture2D" uid="uid://101nkyqsjnek" path="res://SeparateAnimation/李逍遥/481-5.png" id="37_i8rog"]
+[ext_resource type="Texture2D" uid="uid://b8ksnyiyknrb7" path="res://SeparateAnimation/李逍遥/481-6.png" id="38_ikmce"]
+[ext_resource type="Texture2D" uid="uid://ckvkvp0uncijr" path="res://SeparateAnimation/李逍遥/481-7.png" id="39_axbbj"]
+[ext_resource type="Texture2D" uid="uid://bqwrv06j4mc25" path="res://SeparateAnimation/李逍遥/481-8.png" id="40_ksme0"]
+[ext_resource type="Texture2D" uid="uid://dowy3tfsbxs4a" path="res://SeparateAnimation/李逍遥/480-1.png" id="41_j0x3c"]
+[ext_resource type="Texture2D" uid="uid://bhfahr4x740ku" path="res://SeparateAnimation/李逍遥/480-2.png" id="42_gjql8"]
+[ext_resource type="Texture2D" uid="uid://cjs2psgsmdodq" path="res://SeparateAnimation/李逍遥/480-3.png" id="43_dujui"]
+[ext_resource type="Texture2D" uid="uid://b6trnn1x72d1o" path="res://SeparateAnimation/李逍遥/480-4.png" id="44_iea4q"]
+[ext_resource type="Texture2D" uid="uid://egqqmtbdj7b" path="res://SeparateAnimation/李逍遥/480-5.png" id="45_xrpgw"]
+[ext_resource type="Texture2D" uid="uid://h2rmsobps8rj" path="res://SeparateAnimation/李逍遥/480-6.png" id="46_uqcon"]
+[ext_resource type="Texture2D" uid="uid://byfgo4jdboww1" path="res://SeparateAnimation/李逍遥/480-7.png" id="47_i15rm"]
+[ext_resource type="Texture2D" uid="uid://bybv3fysbpgaw" path="res://SeparateAnimation/李逍遥/480-8.png" id="48_7mmfv"]
+[ext_resource type="Texture2D" uid="uid://cbey4ogdgbort" path="res://SeparateAnimation/李逍遥/480-25.png" id="49_vknfe"]
+[ext_resource type="Texture2D" uid="uid://did76twim75rf" path="res://SeparateAnimation/李逍遥/480-26.png" id="50_unnf5"]
+[ext_resource type="Texture2D" uid="uid://cxdajdoy7vj4u" path="res://SeparateAnimation/李逍遥/480-27.png" id="51_4qbtg"]
+[ext_resource type="Texture2D" uid="uid://bo2iqjfk74gds" path="res://SeparateAnimation/李逍遥/480-28.png" id="52_3qtem"]
+[ext_resource type="Texture2D" uid="uid://mhmf2g5q8pxj" path="res://SeparateAnimation/李逍遥/480-29.png" id="53_e4hj5"]
+[ext_resource type="Texture2D" uid="uid://cg4u6k5oig4ma" path="res://SeparateAnimation/李逍遥/480-30.png" id="54_wns8n"]
+[ext_resource type="Texture2D" uid="uid://bwr8ff7thmpw1" path="res://SeparateAnimation/李逍遥/480-31.png" id="55_dmwxe"]
+[ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="56_odatf"]
+[ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="57_wjmih"]
+[ext_resource type="Texture2D" uid="uid://dqnrcqu5j3en8" path="res://main character/tile007.png" id="58_lgdkt"]
+[ext_resource type="Texture2D" uid="uid://2d0cof6f1dxr" path="res://aaa.png" id="58_r2jlf"]
+[ext_resource type="Texture2D" uid="uid://ddgb2vis1giqk" path="res://Panoramas/国境.jpg" id="59_goe01"]
+[ext_resource type="Texture2D" uid="uid://f7jy8jtpwhbt" path="res://main character/tile000.png" id="60_174di"]
+[ext_resource type="Texture2D" uid="uid://cdu5kr2eacm8f" path="res://smallPets/小鹿/idle/419-17.png" id="60_cvdkg"]
+[ext_resource type="Texture2D" uid="uid://22lwjp0yyjj3" path="res://panoramas2/大唐境外北.jpg" id="61_jkemj"]
+[ext_resource type="Texture2D" uid="uid://vugb8trfawko" path="res://梦魂Animation/法术-烈火.png" id="62_16e4c"]
+[ext_resource type="Texture2D" uid="uid://bgl0wvh4easqw" path="res://Battlers/大海龟.png" id="62_xdi58"]
+[ext_resource type="Texture2D" uid="uid://bfr6qemnnp0el" path="res://main character/tile001.png" id="64_tsghr"]
+[ext_resource type="AudioStream" uid="uid://cjqrfec6401yp" path="res://Audio/BGM/纸嫁衣4红丝缠 主题曲 道不得经 MV [TubeRipper.cc].ogg" id="66_7kgxb"]
+[ext_resource type="Texture2D" uid="uid://b5ogefkcxjjos" path="res://5ffb82f5-0fa1-4008-9c78-d2f12128e939.png" id="69_ctsui"]
+[ext_resource type="Texture2D" uid="uid://qblh41aiuk14" path="res://111fc0eb-b021-4169-968d-cfb2e982ef02.png" id="69_x0bud"]
+[ext_resource type="Texture2D" uid="uid://dyckav74uhdah" path="res://main character/tile013.png" id="70_rqsc7"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
+vertices = PackedVector2Array(518, 1334, 511, 172, 3802, 175, 3811, 2247, 525, 1514, 527, 2240)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(4, 3, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(511, 172, 518, 1334, 525, 1514, 527, 2240, 3811, 2247, 3802, 175)])
+
+[sub_resource type="Gradient" id="Gradient_cuie8"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
+gradient = SubResource("Gradient_cuie8")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_o8nmx"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_kak8o"]
+resource_name = "turnDark"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k68q8"]
+resource_name = "变换"
+length = 120.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("回忆/东海湾全景2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(32.5, 32.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1597, 450), Vector2(576, 450)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("回忆/东海湾全景:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(32.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("回忆/东海湾全景2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(32.3, 47.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("回忆/东海湾全景3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(47, 47.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1787, 428), Vector2(555, 428)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("回忆/东海湾全景3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(47, 62.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("回忆/东海湾全景4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(61.8, 62.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1866, 431), Vector2(557, 427)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("回忆/东海湾全景4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(61.8, 76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("回忆/东海湾全景5:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(75.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("回忆/东海湾全景5:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(75.8, 76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1843, 380), Vector2(576, 397)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("回忆/东海湾全景6:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(101.9, 102),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1686, 393), Vector2(578, 393)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("回忆/东海湾全景6:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(101.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("回忆/东海湾全景:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 16.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5d8hn"]
+resource_name = "城主走开"
+length = 5.0
+
+[sub_resource type="Animation" id="Animation_ko0di"]
+resource_name = "魅儿回忆"
+length = 70.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("回忆/东海湾全景:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("回忆/东海湾全景2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(12, 21.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("回忆/东海湾全景3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(21.1, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("回忆/东海湾全景4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(40, 65.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
+_data = {
+"RESET": SubResource("Animation_o8nmx"),
+"turnDark": SubResource("Animation_kak8o"),
+"变换": SubResource("Animation_k68q8"),
+"城主走开": SubResource("Animation_5d8hn"),
+"魅儿回忆": SubResource("Animation_ko0di")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqx6i"]
+atlas = ExtResource("18_gbpny")
+region = Rect2(0, 97, 114, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sij0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqx6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvrf7"]
+shader = ExtResource("20_qb6en")
+shader_parameter/focus_point = Vector2(0.5, 0.5)
+shader_parameter/radius = 0.5
+shader_parameter/edge_softness = -0.8
+shader_parameter/distortion_strength = 0.02
+shader_parameter/glow_strength = 0.4
+shader_parameter/glow_color = Color(0.4, 0.8, 1, 0.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wktlb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg73m"]
+atlas = ExtResource("25_5drqo")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0q63"]
+atlas = ExtResource("26_6vmtq")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol8fk"]
+atlas = ExtResource("27_dcxwk")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1p448"]
+atlas = ExtResource("28_fb3nc")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jabmg"]
+atlas = ExtResource("29_30wyu")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ng6i"]
+atlas = ExtResource("30_iir46")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dtuir"]
+atlas = ExtResource("31_042o5")
+region = Rect2(0, 0, 33, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3fpr"]
+atlas = ExtResource("32_inq30")
+region = Rect2(0, 0, 34, 82)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ienqo"]
+atlas = ExtResource("33_hks7q")
+region = Rect2(0, 0, 48, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exg82"]
+atlas = ExtResource("34_tgw12")
+region = Rect2(0, 0, 45, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6gf3"]
+atlas = ExtResource("35_n5ea1")
+region = Rect2(0, 0, 46, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxi6i"]
+atlas = ExtResource("36_1twe6")
+region = Rect2(0, 0, 45, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gda0c"]
+atlas = ExtResource("37_i8rog")
+region = Rect2(0, 0, 44, 81)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mtbq"]
+atlas = ExtResource("38_ikmce")
+region = Rect2(0, 0, 43, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf1qk"]
+atlas = ExtResource("39_axbbj")
+region = Rect2(0, 0, 43, 74)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42hdg"]
+atlas = ExtResource("40_ksme0")
+region = Rect2(0, 0, 43, 73)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr5qo"]
+atlas = ExtResource("41_j0x3c")
+region = Rect2(0, 0, 39, 79)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk8vx"]
+atlas = ExtResource("42_gjql8")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwvab"]
+atlas = ExtResource("43_dujui")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u6og1"]
+atlas = ExtResource("44_iea4q")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rndft"]
+atlas = ExtResource("45_xrpgw")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isgu0"]
+atlas = ExtResource("46_uqcon")
+region = Rect2(0, 0, 38, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grwra"]
+atlas = ExtResource("47_i15rm")
+region = Rect2(0, 0, 38, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lcb66"]
+atlas = ExtResource("48_7mmfv")
+region = Rect2(0, 0, 39, 78)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y874"]
+atlas = ExtResource("49_vknfe")
+region = Rect2(0, 0, 34, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oc225"]
+atlas = ExtResource("50_unnf5")
+region = Rect2(0, 0, 34, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hd1t1"]
+atlas = ExtResource("51_4qbtg")
+region = Rect2(0, 0, 33, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xmds"]
+atlas = ExtResource("52_3qtem")
+region = Rect2(0, 0, 33, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdim0"]
+atlas = ExtResource("53_e4hj5")
+region = Rect2(0, 0, 33, 77)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3ujv"]
+atlas = ExtResource("54_wns8n")
+region = Rect2(0, 0, 33, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf5qr"]
+atlas = ExtResource("55_dmwxe")
+region = Rect2(0, 0, 33, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg5cs"]
+atlas = ExtResource("56_odatf")
+region = Rect2(0, 0, 34, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e152b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg73m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0q63")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol8fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1p448")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jabmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ng6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dtuir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3fpr")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ienqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exg82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6gf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxi6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gda0c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mtbq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf1qk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42hdg")
+}],
+"loop": true,
+"name": &"downDrink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr5qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk8vx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwvab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u6og1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rndft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isgu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grwra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lcb66")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y874")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oc225")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hd1t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xmds")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdim0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3ujv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf5qr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg5cs")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5lhq"]
+atlas = ExtResource("62_xdi58")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5i0n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5lhq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_011vp"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 83, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fbov"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 166, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ye2y"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 166, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdeg5"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(38, 166, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptvks"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(76, 166, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uw1j"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(114, 166, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rh68l"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 0, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_abust"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 0, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wol3f"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(38, 0, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qosci"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(76, 0, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8jjc"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(114, 0, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n74wp"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(76, 249, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxwea"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 249, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jf8k"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(38, 249, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2hih"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(76, 249, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6clwy"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(114, 249, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8w1pa"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 83, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw28x"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(0, 83, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onn3p"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(38, 83, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luigg"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(76, 83, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2b43"]
+atlas = ExtResource("26_rdmmg")
+region = Rect2(114, 83, 38, 83)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lb0r"]
+atlas = ExtResource("27_08l0t")
+region = Rect2(0, 0, 102, 145)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_liuyo"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(0, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6k6y"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(91, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yiqs"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(182, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl140"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(273, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wk4pl"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(364, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqoq2"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(455, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urj5e"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(637, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8ojk"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(819, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10xip"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(910, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pa2ce"]
+atlas = ExtResource("28_4hrfk")
+region = Rect2(1001, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bx2h1"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(0, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbpbu"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(91, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5308s"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(182, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hi57u"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(273, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgx6b"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(364, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i5iwt"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(455, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xmg7n"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(546, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5e2y"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(637, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xujit"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(728, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sumst"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(819, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcish"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(910, 0, 91, 117)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jng1"]
+atlas = ExtResource("29_j3je6")
+region = Rect2(1001, 0, 91, 117)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pwye8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_011vp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fbov")
+}],
+"loop": true,
+"name": &"右上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ye2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdeg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptvks")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uw1j")
+}],
+"loop": true,
+"name": &"右上walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rh68l")
+}],
+"loop": true,
+"name": &"右下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_abust")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wol3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qosci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8jjc")
+}],
+"loop": true,
+"name": &"右下walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n74wp")
+}],
+"loop": true,
+"name": &"左上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxwea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jf8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2hih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6clwy")
+}],
+"loop": true,
+"name": &"左上walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8w1pa")
+}],
+"loop": true,
+"name": &"左下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw28x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onn3p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luigg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2b43")
+}],
+"loop": true,
+"name": &"左下walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lb0r")
+}],
+"loop": true,
+"name": &"死亡我",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_liuyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6k6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yiqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl140")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wk4pl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqoq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urj5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8ojk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10xip")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pa2ce")
+}],
+"loop": true,
+"name": &"真身右上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bx2h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbpbu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5308s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hi57u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgx6b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i5iwt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xmg7n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5e2y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xujit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sumst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcish")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jng1")
+}],
+"loop": true,
+"name": &"真身左下",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px16e"]
+atlas = ExtResource("62_xdi58")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jcxoe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px16e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr01v"]
+atlas = ExtResource("62_16e4c")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73jwq"]
+atlas = ExtResource("62_16e4c")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp1rv"]
+atlas = ExtResource("62_16e4c")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmvfr"]
+atlas = ExtResource("62_16e4c")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87uyc"]
+atlas = ExtResource("62_16e4c")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q3vh"]
+atlas = ExtResource("62_16e4c")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5a3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr01v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73jwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp1rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmvfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87uyc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q3vh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="第七章序幕" type="Node2D"]
+script = ExtResource("1_sewf8")
+
+[node name="petFoodBall" parent="." instance=ExtResource("2_a0sot")]
+position = Vector2(2547, 750)
+scale = Vector2(0.396458, 0.550018)
+script = null
+
+[node name="建业左" type="Sprite2D" parent="."]
+position = Vector2(4151, 1016)
+offset = Vector2(-2153, -82)
+
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(2162, 1125)
+texture = ExtResource("4_lvmn1")
+
+[node name="player" parent="." instance=ExtResource("5_ubvh5")]
+visible = false
+z_index = 1
+position = Vector2(2193, 467)
+scale = Vector2(0.903555, 0.940031)
+
+[node name="AnimatedSprite2D" parent="player" index="1"]
+position = Vector2(12.1741, 0)
+animation = &"rightStand"
+frame_progress = 0.0
+
+[node name="CollisionShape2D" parent="player/playerTouch" index="0"]
+position = Vector2(-2.2135, 0)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1301, 873)
+volume_db = 4.414
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="enterFightCd" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 8.0
+max_distance = 1e+07
+
+[node name="BattleReward" parent="." instance=ExtResource("7_frue8")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(5, -82)
+navigation_polygon = SubResource("NavigationPolygon_su7y6")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("8_13rld")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_g6v5r")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="position" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_4br6b")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("10_s2ywi")
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(1533, 177)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(2792, 2075)
+
+[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1922, 1097)
+stream = ExtResource("11_cuwvy")
+volume_db = 2.432
+max_distance = 1e+06
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+color = Color(0.168627, 0.168627, 0.168627, 1)
+energy = 5.0
+blend_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "变换"
+libraries = {
+"": SubResource("AnimationLibrary_tex1a")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(603, 488)
+
+[node name="addNumTimer" type="Timer" parent="."]
+wait_time = 0.1
+
+[node name="npcs" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="battleBgm" type="AudioStreamPlayer" parent="."]
+
+[node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
+volume_db = 4.552
+
+[node name="teleportCircle" parent="." instance=ExtResource("12_cv1ul")]
+position = Vector2(1070, 1139)
+toScene = "锁妖塔5"
+
+[node name="importantMsg" parent="." instance=ExtResource("13_ku27w")]
+
+[node name="menuControl" parent="." instance=ExtResource("14_x1n48")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("15_jc8eu")]
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="回忆" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="回忆"]
+modulate = Color(0.00784314, 0.00784314, 0.00784314, 1)
+offset_right = 1177.0
+offset_bottom = 820.0
+
+[node name="东海湾全景" type="Sprite2D" parent="回忆"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(636, 635)
+scale = Vector2(0.369058, 0.373214)
+texture = ExtResource("16_30xah")
+
+[node name="37115811-ab93-4Eee-9c58-2d7e71122458" type="Sprite2D" parent="回忆/东海湾全景"]
+position = Vector2(75.8689, -773.182)
+scale = Vector2(0.308201, 0.381935)
+texture = ExtResource("17_mgpyd")
+
+[node name="菩提" parent="回忆/东海湾全景" instance=ExtResource("17_0vj2d")]
+position = Vector2(235.735, -793.11)
+sprite_frames = SubResource("SpriteFrames_sij0j")
+
+[node name="ColorRect" type="ColorRect" parent="回忆/东海湾全景"]
+self_modulate = Color(0, 0, 0, 0.639216)
+offset_left = 311.604
+offset_top = -1146.79
+offset_right = 378.604
+offset_bottom = -584.794
+
+[node name="Label" type="Label" parent="回忆/东海湾全景/ColorRect"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 29.0
+offset_right = 75.0
+offset_bottom = 675.0
+theme_override_fonts/font = ExtResource("19_1qqj2")
+theme_override_font_sizes/font_size = 70
+text = "看来一切顺利"
+autowrap_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景"]
+material = SubResource("ShaderMaterial_yvrf7")
+offset_left = -24.0
+offset_top = -873.0
+offset_right = 173.0
+offset_bottom = -675.0
+
+[node name="75Abea41559b27f152Dc17c5Cfa1e6b28074c1912d227-xiwvkv" type="Sprite2D" parent="回忆/东海湾全景"]
+self_modulate = Color(0, 0, 0, 0.87451)
+material = SubResource("ShaderMaterial_wktlb")
+position = Vector2(74.5141, -774.354)
+scale = Vector2(0.418083, 0.429127)
+texture = ExtResource("22_5ei7q")
+
+[node name="东海湾全景2" type="Sprite2D" parent="回忆"]
+visible = false
+position = Vector2(1597, 450)
+scale = Vector2(1.05357, 0.817857)
+texture = ExtResource("22_mhtw1")
+
+[node name="小二" parent="回忆/东海湾全景2" instance=ExtResource("23_76quq")]
+position = Vector2(-121.303, 18.2325)
+
+[node name="小二" parent="回忆/东海湾全景2/小二" index="0"]
+position = Vector2(79.3485, -5.20929)
+scale = Vector2(1.53807, 1.53807)
+animation = &"左下"
+frame_progress = 0.0
+
+[node name="斩击" parent="回忆/东海湾全景2/小二/小二/effects" index="3"]
+frame = 0
+
+[node name="凌若昭" parent="回忆/东海湾全景2" instance=ExtResource("31_bshqd")]
+position = Vector2(115.831, 114.084)
+scale = Vector2(1.64658, 1.64658)
+animation = &"左下"
+frame_progress = 0.0
+
+[node name="梧桐" parent="回忆/东海湾全景2" instance=ExtResource("17_0vj2d")]
+position = Vector2(137.72, -42.1953)
+scale = Vector2(1.57575, 1.57575)
+sprite_frames = SubResource("SpriteFrames_e152b")
+animation = &"downDrink"
+
+[node name="姜韵" parent="回忆/东海湾全景2" instance=ExtResource("57_wjmih")]
+self_modulate = Color(1, 1, 1, 0.6)
+position = Vector2(35.5701, 60.9488)
+scale = Vector2(1.44749, 1.53523)
+animation = &"down"
+autoplay = ""
+
+[node name="Tile007" type="Sprite2D" parent="回忆/东海湾全景2"]
+position = Vector2(-31.0097, 143.256)
+scale = Vector2(1.31178, 1.49848)
+texture = ExtResource("58_lgdkt")
+
+[node name="ColorRect" type="TextureRect" parent="回忆/东海湾全景2"]
+offset_left = -410.0
+offset_top = 192.0
+offset_right = 69.0
+offset_bottom = 322.0
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景2/ColorRect"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 11.0
+offset_right = 378.0
+offset_bottom = 212.0
+theme_override_font_sizes/font_size = 30
+text = "我们加快点脚步，天黑之前应该能到达国境口"
+autowrap_mode = 2
+
+[node name="ColorRect2" type="TextureRect" parent="回忆/东海湾全景2"]
+offset_left = 43.661
+offset_top = -235.983
+offset_right = 522.661
+offset_bottom = -112.983
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景2/ColorRect2"]
+layout_mode = 0
+offset_left = 81.6272
+offset_top = 45.2402
+offset_right = 410.627
+offset_bottom = 179.24
+theme_override_font_sizes/font_size = 30
+text = "(我应该和他们说清楚吗)"
+autowrap_mode = 2
+
+[node name="ColorRect3" type="TextureRect" parent="回忆/东海湾全景2"]
+offset_left = -448.0
+offset_top = -202.0
+offset_right = 31.0
+offset_bottom = -75.0
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景2/ColorRect3"]
+layout_mode = 0
+offset_left = 99.661
+offset_top = 12.2271
+offset_right = 402.661
+offset_bottom = 144.227
+theme_override_font_sizes/font_size = 30
+text = "(怎么办，之前莫名其妙就和若昭表白了，现在好尴尬)"
+autowrap_mode = 2
+
+[node name="ColorRect4" type="TextureRect" parent="回忆/东海湾全景2"]
+offset_left = 65.4915
+offset_top = 152.838
+offset_right = 544.491
+offset_bottom = 279.838
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景2/ColorRect4"]
+layout_mode = 0
+offset_left = 99.661
+offset_top = 12.2271
+offset_right = 402.661
+offset_bottom = 144.227
+theme_override_font_sizes/font_size = 30
+text = "(怎么办，之前莫名其妙就和小二表白了，现在好尴尬呀)"
+autowrap_mode = 2
+
+[node name="东海湾全景3" type="Sprite2D" parent="回忆"]
+visible = false
+position = Vector2(1787, 428)
+scale = Vector2(0.944531, 0.766379)
+texture = ExtResource("59_goe01")
+
+[node name="419-17" type="Sprite2D" parent="回忆/东海湾全景3"]
+position = Vector2(-102.167, 133.746)
+scale = Vector2(0.766664, 0.944882)
+texture = ExtResource("60_cvdkg")
+
+[node name="Tile000" type="Sprite2D" parent="回忆/东海湾全景3"]
+position = Vector2(171.514, -228.347)
+scale = Vector2(0.870262, 1.13256)
+texture = ExtResource("60_174di")
+
+[node name="凌若昭" parent="回忆/东海湾全景3" instance=ExtResource("31_bshqd")]
+position = Vector2(-259.489, 104.666)
+animation = &"左上"
+frame_progress = 0.0
+
+[node name="小二" parent="回忆/东海湾全景3" instance=ExtResource("23_76quq")]
+position = Vector2(-295.468, 108.923)
+
+[node name="ColorRect4" type="TextureRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -431.96
+offset_top = -75.6806
+offset_right = 47.0397
+offset_bottom = 46.3194
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect4"]
+layout_mode = 0
+offset_left = 119.636
+offset_top = 41.7548
+offset_right = 528.636
+offset_bottom = 175.755
+theme_override_font_sizes/font_size = 30
+text = "这边的水好清凉啊"
+autowrap_mode = 2
+
+[node name="ColorRect5" type="TextureRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -640.529
+offset_top = 160.495
+offset_right = -161.529
+offset_bottom = 282.495
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect5"]
+layout_mode = 0
+offset_left = 97.403
+offset_top = 44.3645
+offset_right = 435.403
+offset_bottom = 178.365
+theme_override_font_sizes/font_size = 30
+text = "你脸上脏了，我帮你擦擦"
+autowrap_mode = 2
+
+[node name="ColorRect6" type="TextureRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 47.6427
+offset_top = 106.997
+offset_right = 526.643
+offset_bottom = 236.997
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect6"]
+layout_mode = 0
+offset_left = 86.2861
+offset_top = 52.8459
+offset_right = 460.286
+offset_bottom = 115.846
+theme_override_font_sizes/font_size = 30
+text = "这水确实不错,您要来点吗？"
+autowrap_mode = 2
+
+[node name="ColorRect7" type="TextureRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -93.168
+offset_top = -523.24
+offset_right = 385.832
+offset_bottom = -397.24
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect7"]
+layout_mode = 0
+offset_left = 85.7567
+offset_top = 24.7919
+offset_right = 400.757
+offset_bottom = 292.792
+theme_override_font_sizes/font_size = 30
+text = "等一切都结束之后，我们一起去长安看烟花"
+autowrap_mode = 2
+
+[node name="ColorRect8" type="TextureRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 186.336
+offset_top = -378.403
+offset_right = 665.336
+offset_bottom = -283.403
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect8"]
+layout_mode = 0
+offset_left = 104.313
+offset_top = 12.9504
+offset_right = 386.313
+offset_bottom = 280.95
+theme_override_font_sizes/font_size = 30
+text = "嘻嘻，这次可不要食言了哦~"
+autowrap_mode = 2
+
+[node name="梧桐" parent="回忆/东海湾全景3" instance=ExtResource("17_0vj2d")]
+position = Vector2(73.0493, 190.133)
+scale = Vector2(1.12859, 1.23595)
+sprite_frames = SubResource("SpriteFrames_e152b")
+animation = &"downDrink"
+
+[node name="姜韵" parent="回忆/东海湾全景3" instance=ExtResource("57_wjmih")]
+modulate = Color(1, 1, 1, 0.717647)
+position = Vector2(292.208, -204.859)
+scale = Vector2(1.1817, 1.1817)
+animation = &"left"
+autoplay = ""
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="回忆/东海湾全景3"]
+position = Vector2(-0.529419, 228.999)
+sprite_frames = SubResource("SpriteFrames_n5i0n")
+
+[node name="东海湾全景4" type="Sprite2D" parent="回忆"]
+visible = false
+position = Vector2(1866, 431)
+scale = Vector2(0.574432, 0.685199)
+texture = ExtResource("61_jkemj")
+
+[node name="Tile001" type="Sprite2D" parent="回忆/东海湾全景4"]
+position = Vector2(681.543, 150.321)
+scale = Vector2(1.11687, 0.936321)
+texture = ExtResource("64_tsghr")
+
+[node name="小二" parent="回忆/东海湾全景4" instance=ExtResource("23_76quq")]
+position = Vector2(77.4678, -951.548)
+
+[node name="小二" parent="回忆/东海湾全景4/小二" index="0"]
+position = Vector2(-90.5243, 666.959)
+scale = Vector2(1.04391, 1.04391)
+sprite_frames = SubResource("SpriteFrames_pwye8")
+animation = &"左下"
+frame_progress = 0.0
+
+[node name="斩击" parent="回忆/东海湾全景4/小二/小二/effects" index="3"]
+frame = 0
+
+[node name="ColorRect5" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 630.188
+offset_top = -37.9451
+offset_right = 1109.19
+offset_bottom = 20.0549
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect5"]
+layout_mode = 0
+offset_left = 72.3831
+offset_top = 11.8125
+offset_right = 391.383
+offset_bottom = 145.813
+theme_override_font_sizes/font_size = 30
+text = "那边隐约传来一股仙气"
+autowrap_mode = 2
+
+[node name="ColorRect6" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -100.969
+offset_top = -375.073
+offset_right = 378.031
+offset_bottom = -317.073
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect6"]
+layout_mode = 0
+offset_left = 121.305
+offset_top = 7.22482
+offset_right = 429.305
+offset_bottom = 141.225
+theme_override_font_sizes/font_size = 30
+text = "我那天是认真的"
+autowrap_mode = 2
+
+[node name="ColorRect7" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -346.429
+offset_top = -163.456
+offset_right = 132.571
+offset_bottom = -105.456
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect7"]
+layout_mode = 0
+offset_left = 136.653
+offset_top = 10.7072
+offset_right = 439.653
+offset_bottom = 129.707
+theme_override_font_sizes/font_size = 30
+text = "我，我也是！"
+autowrap_mode = 2
+
+[node name="ColorRect8" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 279.0
+offset_top = 22.0
+offset_right = 773.0
+offset_bottom = 146.0
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect8"]
+layout_mode = 0
+offset_left = 94.9905
+offset_top = 10.1086
+offset_right = 397.99
+offset_bottom = 129.109
+theme_override_font_sizes/font_size = 30
+text = "看来这阵子没白练，夫君你总算对气息敏感了点了"
+autowrap_mode = 2
+
+[node name="ColorRect9" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 645.856
+offset_top = 148.862
+offset_right = 1124.86
+offset_bottom = 206.862
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect9"]
+layout_mode = 0
+offset_left = 110.164
+offset_top = 9.88928
+offset_right = 417.164
+offset_bottom = 144.889
+theme_override_font_sizes/font_size = 30
+text = "我之前有那么糟糕吗"
+autowrap_mode = 2
+
+[node name="ColorRect10" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 282.018
+offset_top = 242.265
+offset_right = 761.018
+offset_bottom = 308.265
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect10"]
+layout_mode = 0
+offset_left = 74.2129
+offset_top = 14.5615
+offset_right = 479.213
+offset_bottom = 149.561
+theme_override_font_sizes/font_size = 30
+text = "你说呢，只凭直觉的傻瓜"
+autowrap_mode = 2
+
+[node name="ColorRect11" type="TextureRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -454.362
+offset_top = 213.077
+offset_right = 24.6379
+offset_bottom = 407.077
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect11"]
+layout_mode = 0
+offset_left = 104.4
+offset_top = 36.4036
+offset_right = 443.4
+offset_bottom = 170.404
+theme_override_fonts/font = ExtResource("19_1qqj2")
+theme_override_font_sizes/font_size = 50
+text = "越来越近了,这次一定可以！"
+autowrap_mode = 2
+
+[node name="凌若昭" parent="回忆/东海湾全景4" instance=ExtResource("31_bshqd")]
+position = Vector2(-33.9466, -211.617)
+animation = &"左上"
+frame_progress = 0.0
+
+[node name="姜韵" parent="回忆/东海湾全景4" instance=ExtResource("57_wjmih")]
+modulate = Color(1, 1, 1, 0.572549)
+position = Vector2(656.543, 210.663)
+animation = &"default"
+
+[node name="梧桐" parent="回忆/东海湾全景4" instance=ExtResource("17_0vj2d")]
+position = Vector2(-105.322, 160.537)
+scale = Vector2(1.12859, 1.23595)
+sprite_frames = SubResource("SpriteFrames_e152b")
+animation = &"down"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="回忆/东海湾全景4"]
+position = Vector2(-157.547, 156.159)
+sprite_frames = SubResource("SpriteFrames_jcxoe")
+
+[node name="东海湾全景5" type="Sprite2D" parent="回忆"]
+visible = false
+position = Vector2(1843, 380)
+scale = Vector2(0.622174, 0.757263)
+texture = ExtResource("69_x0bud")
+
+[node name="Tile001" type="Sprite2D" parent="回忆/东海湾全景5"]
+position = Vector2(-3.27692, 12.2754)
+scale = Vector2(1.11687, 0.936321)
+texture = ExtResource("64_tsghr")
+
+[node name="小二" parent="回忆/东海湾全景5" instance=ExtResource("23_76quq")]
+position = Vector2(188.662, -632.148)
+
+[node name="小二" parent="回忆/东海湾全景5/小二" index="0"]
+position = Vector2(-90.5243, 666.959)
+scale = Vector2(1.04391, 1.04391)
+sprite_frames = SubResource("SpriteFrames_pwye8")
+animation = &"左下"
+frame_progress = 0.0
+
+[node name="Button" parent="回忆/东海湾全景5/小二/小二" index="1"]
+offset_left = -24.53
+offset_top = -55.3076
+offset_right = 61.47
+offset_bottom = 46.6924
+
+[node name="斩击" parent="回忆/东海湾全景5/小二/小二/effects" index="3"]
+frame = 0
+
+[node name="ColorRect8" type="TextureRect" parent="回忆/东海湾全景5"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 48.2178
+offset_top = -357.868
+offset_right = 593.218
+offset_bottom = -299.868
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景5/ColorRect8"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 40.5415
+offset_top = 12.8229
+offset_right = 542.542
+offset_bottom = 146.823
+theme_override_font_sizes/font_size = 30
+text = "姜姐姐，我和小二成为终生伴侣啦"
+autowrap_mode = 2
+
+[node name="ColorRect9" type="TextureRect" parent="回忆/东海湾全景5"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -252.341
+offset_top = -245.621
+offset_right = 226.659
+offset_bottom = -187.621
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景5/ColorRect9"]
+layout_mode = 0
+offset_left = 145.178
+offset_top = 14.9677
+offset_right = 399.178
+offset_bottom = 102.968
+theme_override_font_sizes/font_size = 30
+text = "这么突然？"
+autowrap_mode = 2
+
+[node name="ColorRect10" type="TextureRect" parent="回忆/东海湾全景5"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -544.864
+offset_top = -125.452
+offset_right = -65.8635
+offset_bottom = -42.4518
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景5/ColorRect10"]
+self_modulate = Color(1, 0.223529, 1, 1)
+layout_mode = 0
+offset_left = 84.7976
+offset_top = 9.03333
+offset_right = 467.798
+offset_bottom = 97.0333
+theme_override_font_sizes/font_size = 30
+text = "爱情本来就是没有缘由规矩的啊夫君"
+autowrap_mode = 2
+
+[node name="ColorRect11" type="TextureRect" parent="回忆/东海湾全景5"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = 49.8252
+offset_top = -64.7068
+offset_right = 528.825
+offset_bottom = -6.70682
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景5/ColorRect11"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 86.5156
+offset_top = 12.1509
+offset_right = 404.516
+offset_bottom = 146.151
+theme_override_font_sizes/font_size = 30
+text = "这块肉最大，给你若昭"
+autowrap_mode = 2
+
+[node name="ColorRect12" type="TextureRect" parent="回忆/东海湾全景5"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -490.216
+offset_top = 184.876
+offset_right = -11.2163
+offset_bottom = 242.876
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景5/ColorRect12"]
+modulate = Color(1, 1, 0, 1)
+layout_mode = 0
+offset_left = 65.6194
+offset_top = 10.2734
+offset_right = 383.619
+offset_bottom = 144.273
+theme_override_font_sizes/font_size = 30
+text = "哟，还挺会疼人的小二"
+autowrap_mode = 2
+
+[node name="ColorRect13" type="TextureRect" parent="回忆/东海湾全景5"]
+self_modulate = Color(0, 0, 0, 0.745098)
+offset_left = -36.967
+offset_top = 253.545
+offset_right = 442.033
+offset_bottom = 311.545
+texture = ExtResource("58_r2jlf")
+
+[node name="Label" type="Label" parent="回忆/东海湾全景5/ColorRect13"]
+modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 100.938
+offset_top = 14.1226
+offset_right = 418.938
+offset_bottom = 148.123
+theme_override_font_sizes/font_size = 30
+text = "别取笑我了梧桐叔"
+autowrap_mode = 2
+
+[node name="凌若昭" parent="回忆/东海湾全景5" instance=ExtResource("31_bshqd")]
+position = Vector2(108.016, 101.628)
+animation = &"左上"
+frame_progress = 0.0
+
+[node name="姜韵" parent="回忆/东海湾全景5" instance=ExtResource("57_wjmih")]
+modulate = Color(1, 1, 1, 0.572549)
+position = Vector2(-69.4073, 51.5365)
+animation = &"default"
+
+[node name="梧桐" parent="回忆/东海湾全景5" instance=ExtResource("17_0vj2d")]
+position = Vector2(-54.8909, 134.12)
+scale = Vector2(1.12859, 1.23595)
+sprite_frames = SubResource("SpriteFrames_e152b")
+animation = &"up"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="回忆/东海湾全景5"]
+position = Vector2(11.2395, 47.475)
+sprite_frames = SubResource("SpriteFrames_o5a3d")
+autoplay = "default"
+frame_progress = 0.272733
+
+[node name="东海湾全景6" type="Sprite2D" parent="回忆"]
+visible = false
+position = Vector2(1686, 393)
+scale = Vector2(1.24999, 1.34105)
+texture = ExtResource("69_ctsui")
+
+[node name="Tile013" type="Sprite2D" parent="回忆/东海湾全景6"]
+position = Vector2(320.099, -34.7778)
+scale = Vector2(1.27711, 1.1904)
+texture = ExtResource("70_rqsc7")
+
+[node name="小二" parent="回忆/东海湾全景6" instance=ExtResource("23_76quq")]
+position = Vector2(915.302, -696.2)
+
+[node name="小二" parent="回忆/东海湾全景6/小二" index="0"]
+position = Vector2(-90.5243, 666.959)
+scale = Vector2(1.04391, 1.04391)
+sprite_frames = SubResource("SpriteFrames_pwye8")
+animation = &"左下"
+frame_progress = 0.0
+
+[node name="Button" parent="回忆/东海湾全景6/小二/小二" index="1"]
+offset_left = -24.53
+offset_top = -55.3076
+offset_right = 61.47
+offset_bottom = 46.6924
+
+[node name="斩击" parent="回忆/东海湾全景6/小二/小二/effects" index="3"]
+frame = 0
+
+[node name="凌若昭" parent="回忆/东海湾全景6" instance=ExtResource("31_bshqd")]
+position = Vector2(469.7, 25.6227)
+scale = Vector2(1.41765, 1.41765)
+animation = &"左上"
+frame_progress = 0.0
+
+[node name="姜韵" parent="回忆/东海湾全景6" instance=ExtResource("57_wjmih")]
+modulate = Color(1, 1, 1, 0.572549)
+position = Vector2(411.3, -42.2346)
+scale = Vector2(1.3991, 1.3991)
+animation = &"left"
+autoplay = ""
+
+[node name="梧桐" parent="回忆/东海湾全景6" instance=ExtResource("17_0vj2d")]
+position = Vector2(654.501, 58.4328)
+scale = Vector2(1.12859, 1.23595)
+sprite_frames = SubResource("SpriteFrames_e152b")
+animation = &"up"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("66_7kgxb")
+autoplay = true
+
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
+
+[editable path="player"]
+[editable path="回忆/东海湾全景2/小二"]
+[editable path="回忆/东海湾全景2/小二/小二"]
+[editable path="回忆/东海湾全景4/小二"]
+[editable path="回忆/东海湾全景4/小二/小二"]
+[editable path="回忆/东海湾全景5/小二"]
+[editable path="回忆/东海湾全景5/小二/小二"]
+[editable path="回忆/东海湾全景6/小二"]
+[editable path="回忆/东海湾全景6/小二/小二"]

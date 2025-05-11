@@ -1,4 +1,4 @@
-[gd_scene load_steps=183 format=3 uid="uid://bsrnhwrntdxqm"]
+[gd_scene load_steps=185 format=3 uid="uid://bsrnhwrntdxqm"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2qfia"]
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="2_hwuyh"]
@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="25_2nvj8"]
 [ext_resource type="Texture2D" uid="uid://biiif880xl50x" path="res://Panoramas/爱的洞窟.jpg" id="26_a8hx1"]
 [ext_resource type="Texture2D" uid="uid://psctdyby1di" path="res://panoramas2/28.jpg" id="27_p2wsx"]
+[ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="27_qqlfn"]
 [ext_resource type="Texture2D" uid="uid://ddccmatmriu6p" path="res://panoramas2/大唐境外_高小姐闺房.jpg" id="28_f2tyn"]
 [ext_resource type="Texture2D" uid="uid://0me7nwkbngnl" path="res://panoramas2/兽界.jpg" id="29_6wdj3"]
 [ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="30_2xsyj"]
@@ -82,6 +83,170 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_o8nmx"]
 length = 0.001
+
+[sub_resource type="Animation" id="Animation_kak8o"]
+resource_name = "turnDark"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_k68q8"]
+resource_name = "变换"
+length = 120.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("回忆/东海湾全景2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(32.5, 32.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1597, 450), Vector2(576, 450)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("回忆/东海湾全景:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(32.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("回忆/东海湾全景2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(32.3, 47.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("回忆/东海湾全景3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(47, 47.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1787, 428), Vector2(555, 428)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("回忆/东海湾全景3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(47, 62.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("回忆/东海湾全景4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(61.8, 62.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1866, 431), Vector2(557, 427)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("回忆/东海湾全景4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(61.8, 76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("回忆/东海湾全景5:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(75.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("回忆/东海湾全景5:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(75.8, 76),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1843, 380), Vector2(576, 397)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("回忆/东海湾全景6:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(101.9, 102),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1686, 393), Vector2(578, 393)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("回忆/东海湾全景6:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(101.9),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("回忆/东海湾全景:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 16.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_5d8hn"]
 resource_name = "城主走开"
@@ -139,26 +304,11 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_kak8o"]
-resource_name = "turnDark"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
 _data = {
 "RESET": SubResource("Animation_o8nmx"),
 "turnDark": SubResource("Animation_kak8o"),
+"变换": SubResource("Animation_k68q8"),
 "城主走开": SubResource("Animation_5d8hn"),
 "魅儿回忆": SubResource("Animation_ko0di")
 }
@@ -1027,6 +1177,7 @@ scale = Vector2(0.903555, 0.940031)
 [node name="AnimatedSprite2D" parent="player" index="1"]
 position = Vector2(12.1741, 0)
 animation = &"rightStand"
+frame_progress = 0.0
 
 [node name="CollisionShape2D" parent="player/playerTouch" index="0"]
 position = Vector2(-2.2135, 0)
@@ -1178,6 +1329,9 @@ sprite_frames = SubResource("SpriteFrames_t8k8x")
 offset_top = -45.0
 offset_bottom = 57.0
 
+[node name="斩击" parent="叶魅儿/effects" index="3"]
+frame = 0
+
 [node name="叶魅儿2" parent="." instance=ExtResource("16_qpjj5")]
 position = Vector2(2075, 669)
 sprite_frames = SubResource("SpriteFrames_macsk")
@@ -1254,11 +1408,13 @@ position = Vector2(2266, 568)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-8.99976, 1.00006)
 
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
+
 [node name="回忆" type="CanvasLayer" parent="."]
 visible = false
 
 [node name="东海湾全景" type="Sprite2D" parent="回忆"]
-visible = false
 position = Vector2(595.704, 436.5)
 scale = Vector2(1.8603, 1.88125)
 texture = ExtResource("26_a8hx1")
@@ -1272,10 +1428,49 @@ scale = Vector2(0.647678, 0.647678)
 animation = &"真身左下"
 frame_progress = 0.0
 
+[node name="斩击" parent="回忆/东海湾全景/小二/小二/effects" index="3"]
+frame = 0
+
 [node name="叶魅儿" parent="回忆/东海湾全景" instance=ExtResource("16_qpjj5")]
 position = Vector2(-15.6038, 82.6175)
 scale = Vector2(0.537548, 0.531561)
 sprite_frames = SubResource("SpriteFrames_t8k8x")
+
+[node name="ColorRect" type="ColorRect" parent="回忆/东海湾全景"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -103.05
+offset_top = -173.023
+offset_right = 55.9499
+offset_bottom = -140.023
+
+[node name="Label" type="Label" parent="回忆/东海湾全景/ColorRect"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = -1.0
+offset_right = 162.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "你快点走！"
+autowrap_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -102.513
+offset_top = -119.867
+offset_right = 194.487
+offset_bottom = -44.8671
+
+[node name="Label" type="Label" parent="回忆/东海湾全景/ColorRect2"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "你看起来 好像很痛苦,我来帮你吧"
+autowrap_mode = 2
 
 [node name="东海湾全景2" type="Sprite2D" parent="回忆"]
 visible = false
@@ -1297,6 +1492,45 @@ scale = Vector2(1.53807, 1.53807)
 animation = &"右下"
 frame_progress = 0.0
 
+[node name="斩击" parent="回忆/东海湾全景2/小二/小二/effects" index="3"]
+frame = 0
+
+[node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景2"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = 259.454
+offset_top = -455.675
+offset_right = 581.454
+offset_bottom = -316.675
+
+[node name="Label" type="Label" parent="回忆/东海湾全景2/ColorRect2"]
+layout_mode = 0
+offset_left = 7.30725
+offset_top = 9.09186
+offset_right = 321.307
+offset_bottom = 210.092
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "就是这样,我已经回不去了"
+autowrap_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="回忆/东海湾全景2"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -234.507
+offset_top = -216.757
+offset_right = 74.4932
+offset_bottom = -15.7568
+
+[node name="Label" type="Label" parent="回忆/东海湾全景2/ColorRect3"]
+layout_mode = 0
+offset_left = 7.30725
+offset_top = 9.09186
+offset_right = 321.307
+offset_bottom = 210.092
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "既然如此那你便把这里当家吧"
+autowrap_mode = 2
+
 [node name="东海湾全景3" type="Sprite2D" parent="回忆"]
 visible = false
 position = Vector2(589.445, 446.724)
@@ -1308,10 +1542,120 @@ position = Vector2(-152.251, -24.3956)
 scale = Vector2(1.40548, 1.38983)
 sprite_frames = SubResource("SpriteFrames_a4ay5")
 
+[node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -362.441
+offset_top = -305.793
+offset_right = -65.4406
+offset_bottom = -230.793
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect2"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "小二今天怎么样了，还会难受吗"
+autowrap_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -148.0
+offset_top = -248.0
+offset_right = 100.0
+offset_bottom = -201.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect3"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 300.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "我要去见他，嘻嘻"
+autowrap_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -244.0
+offset_top = -184.0
+offset_right = 18.0
+offset_bottom = -142.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect4"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 300.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "咦，怎么又长痘痘了"
+autowrap_mode = 2
+
+[node name="ColorRect5" type="ColorRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -6.0
+offset_top = -131.0
+offset_right = 201.0
+offset_bottom = -89.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect5"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 300.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "他也喜欢我吗？"
+autowrap_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = 82.0
+offset_top = -71.0
+offset_right = 359.0
+offset_bottom = 4.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect6"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 300.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 30
+text = "爹爹不会阻止我们吧，毕竟小二是人"
+autowrap_mode = 2
+
+[node name="ColorRect7" type="ColorRect" parent="回忆/东海湾全景3"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -393.0
+offset_top = 81.0
+offset_right = 375.0
+offset_bottom = 179.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景3/ColorRect7"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -2.0
+offset_right = 765.0
+offset_bottom = 99.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "但我不在乎！我喜欢他！"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
 [node name="东海湾全景4" type="Sprite2D" parent="回忆"]
 visible = false
-position = Vector2(593.756, 442)
-scale = Vector2(0.311122, 0.316084)
+position = Vector2(1032, 1120)
+scale = Vector2(0.800407, 0.794056)
 texture = ExtResource("29_6wdj3")
 
 [node name="叶魅儿" parent="回忆/东海湾全景4" instance=ExtResource("16_qpjj5")]
@@ -1327,6 +1671,117 @@ position = Vector2(-145.637, 698.862)
 scale = Vector2(1.53807, 1.53807)
 sprite_frames = SubResource("SpriteFrames_pwye8")
 frame_progress = 0.0
+
+[node name="斩击" parent="回忆/东海湾全景4/小二/小二/effects" index="3"]
+frame = 0
+
+[node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -554.718
+offset_top = -1394.11
+offset_right = -253.718
+offset_bottom = -1213.11
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect2"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "小二，你为什么总是看向那边呢？"
+autowrap_mode = 2
+
+[node name="ColorRect3" type="ColorRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -843.321
+offset_top = -1211.5
+offset_right = -548.321
+offset_bottom = -1091.5
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect3"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "那是我回不去的故乡"
+autowrap_mode = 2
+
+[node name="ColorRect4" type="ColorRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -560.965
+offset_top = -1083.05
+offset_right = -265.965
+offset_bottom = -963.047
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect4"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "不要难过了，以后有我陪你"
+autowrap_mode = 2
+
+[node name="ColorRect5" type="ColorRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -858.0
+offset_top = -963.0
+offset_right = -557.0
+offset_bottom = -899.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect5"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "谢谢你，可我"
+autowrap_mode = 2
+
+[node name="ColorRect6" type="ColorRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -557.0
+offset_top = -890.0
+offset_right = -355.0
+offset_bottom = -835.0
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect6"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "怎么了？"
+autowrap_mode = 2
+
+[node name="ColorRect7" type="ColorRect" parent="回忆/东海湾全景4"]
+self_modulate = Color(0, 0, 0, 0.521569)
+offset_left = -689.649
+offset_top = -824.879
+offset_right = -580.649
+offset_bottom = -769.879
+
+[node name="Label" type="Label" parent="回忆/东海湾全景4/ColorRect7"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 311.0
+offset_bottom = 137.0
+theme_override_fonts/font = ExtResource("27_qqlfn")
+theme_override_font_sizes/font_size = 50
+text = "没事"
+autowrap_mode = 2
 
 [node name="凌若昭" parent="." instance=ExtResource("34_v0kag")]
 position = Vector2(2261, 459)

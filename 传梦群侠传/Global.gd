@@ -7,7 +7,7 @@ var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":6, }
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":5,  }
 var menuOut = false
 
 var onAttackingList = []
@@ -101,7 +101,7 @@ var fangCunState = 1
 var atDark = false
 var onBoss = false
 var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观",]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -118,7 +118,7 @@ var bgmList = [
 	#"res://Audio/BGM/黄鹤遗址.ogg",
 	"res://Audio/BGM/战斗草原.mp3",
 	"res://Audio/BGM/轩辕-战斗.mp3",
-	"res://Audio/BGM/轩辕-战斗2.mp3",
+	#"res://Audio/BGM/轩辕-战斗2.mp3",
 	#"res://Audio/BGM/P39.mp3",
 	"res://Audio/BGM/大话三国 (1).ogg", 
 	"res://Audio/BGM/战斗-生肖.ogg",
@@ -145,10 +145,10 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云",]
-var onTeamPet = []
-var onTeamSmallPet = []
-var smallPets = []
+var onTeamPlayer = ["时追云","小二","凌若昭"]
+var onTeamPet = ["敖阳","朱雀","玄武","青龙"]
+var onTeamSmallPet = ["小鹿"]
+var smallPets = ["小鹿"]
 var currPlayerPos
 var currNpc = null
 var saveIndex = 0
@@ -172,7 +172,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 6
+var current_chapter_id = 7
 
 var mcVisible = true
 var npcVis = {
@@ -510,10 +510,27 @@ var npcVis = {
 		"小二": {"visible":true},
 		"凌若昭": {"visible":true},
 					
-	}		
+	},
+	"第七章序幕":{
+		"小二": {"visible":true},
+		"凌若昭": {"visible":true},
+		"梧桐": {"visible":true},					
+	},
+	"北俱芦洲":{
+		"小二": {"visible":true},
+		"凌若昭": {"visible":true},
+		"梧桐": {"visible":true},					
+	},	
+	"凤巢7":{
+		"小二": {"visible":false},
+		"梧桐": {"visible":false},					
+	},	
+	"普陀山":{
+		"水云仙": {"visible":true},			
+	}
 	
 	
-											
+															
 }
 var baseChance = 0
 var musicOn = true
@@ -1570,8 +1587,67 @@ var npcs = {
 				],
 		"current_dialogue_index": 5,	
 		"constNpc": false	
-	}			
-	
+	},	
+	"寻四圣":{
+		"dialogues": [
+				#0
+					{"chapter": 7, "dialogue": "寻四圣1", "unlocked": true, "bgm": null ,"trigger":false},									
+					{"chapter": 7, "dialogue": "寻四圣2", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣3", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣4", "unlocked": true, "bgm": null ,"trigger":false},									
+					{"chapter": 7, "dialogue": "寻四圣5", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣6", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 7, "dialogue": "寻四圣7", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣8", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 7, "dialogue": "寻四圣9", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣10", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 7, "dialogue": "寻四圣11", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 7, "dialogue": "寻四圣12", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣13", "unlocked": true, "bgm": null ,"trigger":false},										
+					{"chapter": 7, "dialogue": "寻四圣14", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣15", "unlocked": true, "bgm": null ,"trigger":false},										
+					{"chapter": 7, "dialogue": "寻四圣16", "unlocked": true, "bgm":  "res://Audio/BGM/神威千重.ogg","trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣17", "unlocked": true, "bgm": null ,"trigger":false},																	
+					{"chapter": 7, "dialogue": "寻四圣18", "unlocked": true, "bgm":  null,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣19", "unlocked": true, "bgm": null ,"trigger":false},										
+					{"chapter": 7, "dialogue": "寻四圣20", "unlocked": true, "bgm":  null,"trigger":false},		
+					{"chapter": 7, "dialogue": "寻四圣21", "unlocked": true, "bgm": null ,"trigger":false},								
+								
+				],
+		"current_dialogue_index": 15,	
+		"constNpc": false	
+	},
+	"寻四方":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "寻四方1", "unlocked": true, "bgm": null ,"trigger":false},									
+					{"chapter": 8, "dialogue": "寻四方2", "unlocked": true, "bgm": null ,"trigger":false},						
+				
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"初见观音":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "初见观音", "unlocked": true, "bgm": null ,"trigger":false},														
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},			
+	"水云仙":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "关重七1", "unlocked": true, "bgm": null ,"trigger":false},														
+					{"chapter": 8, "dialogue": "关重七2", "unlocked": true, "bgm": "res://Audio/BGM/你在哪里.mp3" ,"trigger":false},		
+					{"chapter": 8, "dialogue": "关重七3", "unlocked": true, "bgm": null ,"trigger":false},						
+									
+				],
+		"current_dialogue_index": 1,	
+		"constNpc": false	
+	},	
+			
 } 
 var potentialBalls = {
 
@@ -1661,6 +1737,12 @@ var triggerPlace ={
 	"进回忆4": {"trigger":false, "disable": false},	
 	"回忆3": {"trigger":false, "disable": false},	
 	"地府决战": {"trigger":false, "disable": false},	
+	"凌若昭回忆": {"trigger":false, "disable": false},							
+	"再见小二": {"trigger":false, "disable": false},	
+	"寻四圣2": {"trigger":false, "disable": false},	
+	"寻四圣3": {"trigger":false, "disable": false},	
+	"方寸山之魔": {"trigger":false, "disable": false},		
+	"初见观音": {"trigger":false, "disable": false},			
 }
 
 var isDead ={
@@ -1840,6 +1922,12 @@ func loadData():
 		"进回忆4": {"trigger":false, "disable": false},			
 		"回忆3": {"trigger":false, "disable": false},			
 		"地府决战": {"trigger":false, "disable": false},	
+		"凌若昭回忆": {"trigger":false, "disable": false},							
+		"再见小二": {"trigger":false, "disable": false},	
+		"寻四圣2": {"trigger":false, "disable": false},	
+		"寻四圣3": {"trigger":false, "disable": false},	
+		"方寸山之魔": {"trigger":false, "disable": false},
+		"初见观音": {"trigger":false, "disable": false},						
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
@@ -1934,7 +2022,7 @@ func playSound(sound):
 	get_tree().current_scene.get_node("subSound").stream = load(sound)
 	get_tree().current_scene.get_node("subSound").play()
 	#get_tree().current_scene.get_node("AudioStreamPlayer2D").stop()	
-var dial = "再见小二"
+var dial = "水云仙"
 var onGhost = true
 #func dialogue(dia):
 #	get_tree().current_scene.get_node("dialogueTimer").start()
@@ -2047,6 +2135,9 @@ func changevis(place, name):
 	else:
 		npcVis.get(place).get(name).visible = true
 func changebgm(bgm):
+	if bgm == null:
+		get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = null
+		return
 	get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load(bgm)
 	get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 func playsound(sound):
@@ -2061,6 +2152,49 @@ func addshader(place, shader):
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = load(shader)
 	# 应用到当前 2D 节点，比如 Sprite2D
+	
+	
+	
 	get_tree().current_scene.get_node(place).material = shader_material
 func removeshader(place):
 	get_tree().current_scene.get_node(place).material = null
+
+func move():
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/白虎").visible = false
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/白虎2").visible = false
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/shadow").visible = false
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/shadow").visible = false	
+	get_tree().current_scene.get_node("SubViewportContainer3/SubViewport/北俱芦洲/shadow").visible = false	
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/player").visible = false
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/player").visible = false	
+	get_tree().current_scene.get_node("SubViewportContainer3/SubViewport/北俱芦洲/player").visible = false		
+	
+	
+	
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/朱雀").visible = true
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/姜韵3").visible = true	
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/青龙3").visible = true
+	
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/姜韵3").visible = true			
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/青龙3").visible = true
+
+	get_tree().current_scene.get_node("SubViewportContainer3/SubViewport/北俱芦洲/姜韵3").visible = true		
+	get_tree().current_scene.get_node("SubViewportContainer3/SubViewport/北俱芦洲/青龙3").visible = true
+
+	
+	
+	get_tree().current_scene.get_node("SubViewportContainer/SubViewport/北俱芦洲/AnimationPlayer").play("move_凤凰")
+	
+func moveTiger():
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/白虎").visible = true
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/白虎2").visible = true
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/白虎").play("run")
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/白虎2").play("run")
+	
+	
+	get_tree().current_scene.get_node("SubViewportContainer3/SubViewport/北俱芦洲/白虎3").visible = true
+	get_tree().current_scene.get_node("SubViewportContainer3/SubViewport/北俱芦洲/白虎4").visible = true	
+	
+	
+	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/AnimationPlayer").play("move白虎")
+	

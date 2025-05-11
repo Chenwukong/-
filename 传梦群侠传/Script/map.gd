@@ -96,7 +96,7 @@ func _ready():
 
 func _process(delta):
 	
-
+	
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -661,9 +661,15 @@ func _process(delta):
 	
 	if get_tree().current_scene.name != "北俱战场":
 		var dialogue = get_parent().get_node("DialogueManager")
+	if Global.onTalk and !Global.showBlack:
+		$CanvasLayer2.visible = false
+	
 	if Global.onTalk and Global.showBlack:
 		$CanvasLayer.visible = false
 		$CanvasLayer2.visible = true
+		
+		
+		
 	elif haveUi and !Global.onTalk and !Global.menuOut and !Global.onFight and !onShop:
 	
 		if get_tree().current_scene.name == "仙缘洞天":
@@ -828,7 +834,7 @@ func _process(delta):
 					$DirectionalLight2D.energy = 4.7
 
 	else:
-			if $DirectionalLight2D:
+			if has_node("DirectionalLight2D"):
 				$DirectionalLight2D.energy = 0
 			for light in get_tree().get_nodes_in_group("nightLight"):
 				light.energy = 0				
@@ -1849,7 +1855,7 @@ func showMsg(value):
 func playStep():
 	for i in $Node.get_children():
 		i.play()
-	
+
 func add_shader():
 	$"建业左".material = shader
 func remove_shader():
@@ -1862,3 +1868,7 @@ func _on_area_2d_area_entered(area):
 		$CharacterBody2D.position = Vector2(-3281,5605)
 		bossFight("怨蛛","res://Audio/BGM/战斗-生肖2.ogg",null)
 
+func snowStorm():
+	$ColorRect.material.set_shader_parameter("wind_speed", 40)
+	$ColorRect.material.set_shader_parameter("snow_speed", 20)
+	$ColorRect.material.set_shader_parameter("direction", 1)

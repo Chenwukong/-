@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://chfeccb6b4016"]
+[gd_scene load_steps=6 format=3 uid="uid://chfeccb6b4016"]
 
 [ext_resource type="PackedScene" uid="uid://wrsosx1im160" path="res://Scene/北俱芦洲.tscn" id="1_jlbev"]
 [ext_resource type="Script" path="res://Script/北俱战场.gd" id="1_yau08"]
 [ext_resource type="AudioStream" uid="uid://bb8jnnyujksge" path="res://Audio/BGM/【战斗】神话降临.mp3" id="3_r1ukb"]
 [ext_resource type="Texture2D" uid="uid://b1y2c2xc0w3la" path="res://4d89cdd1.png" id="4_aybfa"]
+[ext_resource type="Texture2D" uid="uid://b6rv33sy85g7j" path="res://Pictures/四圣change.jpg" id="5_608qk"]
 
 [node name="北俱战场" type="Node2D"]
 script = ExtResource("1_yau08")
@@ -11,8 +12,8 @@ script = ExtResource("1_yau08")
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
 offset_left = 571.0
 offset_top = 2.0
-offset_right = 1814.0
-offset_bottom = 869.0
+offset_right = 1151.0
+offset_bottom = 802.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer2"]
 handle_input_locally = false
@@ -21,10 +22,26 @@ render_target_update_mode = 4
 
 [node name="北俱芦洲" parent="SubViewportContainer2/SubViewport" instance=ExtResource("1_jlbev")]
 
+[node name="Camera2D" parent="SubViewportContainer2/SubViewport/北俱芦洲/player" index="3"]
+enabled = false
+zoom = Vector2(0.4, 0.4)
+
+[node name="AnimationPlayer" parent="SubViewportContainer2/SubViewport/北俱芦洲" index="31"]
+autoplay = ""
+
+[node name="Camera2D" parent="SubViewportContainer2/SubViewport/北俱芦洲/青龙2" index="7"]
+enabled = false
+
+[node name="Camera2D" parent="SubViewportContainer2/SubViewport/北俱芦洲/朱雀" index="7"]
+enabled = false
+
+[node name="Camera2D" parent="SubViewportContainer2/SubViewport/北俱芦洲/白虎" index="7"]
+enabled = true
+
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_left = 3.0
 offset_top = 3.0
-offset_right = 1151.0
+offset_right = 1153.0
 offset_bottom = 803.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -39,18 +56,21 @@ render_target_update_mode = 4
 [node name="player" parent="SubViewportContainer/SubViewport/北俱芦洲" index="1"]
 position = Vector2(475.044, 1045.49)
 
-[node name="CanvasLayer" parent="SubViewportContainer/SubViewport/北俱芦洲" index="38"]
+[node name="Camera2D" parent="SubViewportContainer/SubViewport/北俱芦洲/player" index="3"]
+enabled = false
+
+[node name="CanvasLayer" parent="SubViewportContainer/SubViewport/北俱芦洲" index="36"]
 visible = false
 
-[node name="Camera2D" parent="SubViewportContainer/SubViewport/北俱芦洲/青龙" index="7"]
+[node name="Camera2D" parent="SubViewportContainer/SubViewport/北俱芦洲/青龙2" index="7"]
 enabled = false
 
 [node name="SubViewportContainer3" type="SubViewportContainer" parent="."]
 visible = false
-offset_left = 3.0
-offset_top = 7.0
-offset_right = 1151.0
-offset_bottom = 807.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 1180.0
+offset_bottom = 815.0
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer3"]
 disable_3d = true
@@ -62,13 +82,13 @@ render_target_update_mode = 0
 [node name="北俱芦洲" parent="SubViewportContainer3/SubViewport" instance=ExtResource("1_jlbev")]
 
 [node name="player" parent="SubViewportContainer3/SubViewport/北俱芦洲" index="1"]
-position = Vector2(475.044, 1045.49)
+position = Vector2(2499, 2543)
 
-[node name="CanvasLayer" parent="SubViewportContainer3/SubViewport/北俱芦洲" index="38"]
+[node name="Camera2D" parent="SubViewportContainer3/SubViewport/北俱芦洲/player" index="3"]
+zoom = Vector2(0.4, 0.4)
+
+[node name="CanvasLayer" parent="SubViewportContainer3/SubViewport/北俱芦洲" index="36"]
 visible = false
-
-[node name="Camera2D" parent="SubViewportContainer3/SubViewport/北俱芦洲/青龙" index="7"]
-enabled = false
 
 [node name="Camera2D" parent="SubViewportContainer3/SubViewport/北俱芦洲/朱雀" index="7"]
 position = Vector2(-81, -1.00001)
@@ -78,12 +98,17 @@ stream = ExtResource("3_r1ukb")
 autoplay = true
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 6.0
 one_shot = true
 autostart = true
 
 [node name="Timer2" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[node name="Timer4" type="Timer" parent="."]
+wait_time = 3.8
 one_shot = true
 autostart = true
 
@@ -92,21 +117,64 @@ position = Vector2(578, 398)
 rotation = 1.56378
 texture = ExtResource("4_aybfa")
 
+[node name="Timer3" type="Timer" parent="."]
+wait_time = 4.5
+one_shot = true
+autostart = true
+
+[node name="四圣change" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(574, 403.75)
+scale = Vector2(2.34, 2.172)
+texture = ExtResource("5_608qk")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="timeout" from="Timer4" to="." method="_on_timer_4_timeout"]
+[connection signal="timeout" from="Timer3" to="." method="_on_timer_3_timeout"]
 
 [editable path="SubViewportContainer2/SubViewport/北俱芦洲"]
 [editable path="SubViewportContainer2/SubViewport/北俱芦洲/player"]
 [editable path="SubViewportContainer2/SubViewport/北俱芦洲/teleportCircle"]
 [editable path="SubViewportContainer2/SubViewport/北俱芦洲/小二"]
 [editable path="SubViewportContainer2/SubViewport/北俱芦洲/小二/小二"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/CanvasLayer"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/CanvasLayer/importantMsg"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/白虎"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/白虎2"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/白虎3"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/白虎4"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/寻四圣2"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/青龙"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/青龙3"]
+[editable path="SubViewportContainer2/SubViewport/北俱芦洲/青龙4"]
 [editable path="SubViewportContainer/SubViewport/北俱芦洲"]
 [editable path="SubViewportContainer/SubViewport/北俱芦洲/player"]
 [editable path="SubViewportContainer/SubViewport/北俱芦洲/teleportCircle"]
 [editable path="SubViewportContainer/SubViewport/北俱芦洲/小二"]
 [editable path="SubViewportContainer/SubViewport/北俱芦洲/小二/小二"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/CanvasLayer"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/CanvasLayer/importantMsg"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/白虎"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/白虎2"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/白虎3"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/白虎4"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/寻四圣2"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/青龙"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/青龙3"]
+[editable path="SubViewportContainer/SubViewport/北俱芦洲/青龙4"]
 [editable path="SubViewportContainer3/SubViewport/北俱芦洲"]
 [editable path="SubViewportContainer3/SubViewport/北俱芦洲/player"]
 [editable path="SubViewportContainer3/SubViewport/北俱芦洲/teleportCircle"]
 [editable path="SubViewportContainer3/SubViewport/北俱芦洲/小二"]
 [editable path="SubViewportContainer3/SubViewport/北俱芦洲/小二/小二"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/CanvasLayer"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/CanvasLayer/importantMsg"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/白虎"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/白虎2"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/白虎3"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/白虎4"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/寻四圣2"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/青龙"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/青龙3"]
+[editable path="SubViewportContainer3/SubViewport/北俱芦洲/青龙4"]

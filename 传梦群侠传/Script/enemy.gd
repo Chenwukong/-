@@ -27,6 +27,7 @@ var currHp = 0
 @export var onSleepDebuff = false
 @export var type = ""
 @export var luck = 0
+@export var autoAttackSound = ""
 var posi = "middle"
 var digit_sprite
 var digit_image_path = "res://数字/"
@@ -51,6 +52,7 @@ var canAttackTimerStarted = false
 var canSee = true
 var round = 1
 var magicInfo
+var autoPlayed
 var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3}, 
 						"奔霸":{"name":"水满金山","round":4}, 
 						"大鹏":{"name":"奔雷","round":3}, 
@@ -350,6 +352,7 @@ func _process(delta):
 				$canAttack.start()
 			
 			if Global.canAttack:
+
 				magicRandi = randi_range(0, monsterMagicList.size()-1)
 				selectTarget(delta, randi, magicRandi)
 				get_tree().current_scene.get_node("subSound").stream = load("")
@@ -359,7 +362,7 @@ func _process(delta):
 
 	#结束攻击后恢复原状,计算伤害
 		if Global.monsterTarget != null and Global.onAttackingList[0] == name and randi == 0:
-			
+			playAutoSound()		
 			if self.name == "千年树0" and treeHealed == false:
 			
 				treeHealed = true
@@ -370,7 +373,7 @@ func _process(delta):
 				get_node("hpControl/hpLabel").modulate= "88ff00"
 				get_node("hpAnimation").play("hpDrop")
 			moveCharacter(delta)
-			
+
 			if self.animation == monsterName + "autoAttack" and self.is_playing() == false:
 				
 				if Global.monsterTarget >= 0 and Global.monsterTarget < Global.alivePlayers.size():
@@ -382,7 +385,7 @@ func _process(delta):
 				Global.onAttackingList.pop_front()
 				Global.onAttacking = false
 
-				
+				autoPlayed = false
 				var damage_to_deduct = self.attackDmg  * float(Global.alivePlayers[Global.monsterTarget].currPhysicDefense)/ float(1000)
 				Global.dealtDmg =  self.attackDmg - damage_to_deduct
 		
@@ -670,6 +673,7 @@ func _process(delta):
 						
 			elif monsterMagicList.size()> 0 and magicInfo.attackType == "melee":
 				moveCharacter(delta)			
+
 				if Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").animation == "monsterAutoAttack" and Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").is_playing() == false:
 				
 					if magicInfo.effectingNum == 1 and Global.monsterTarget >= 0 and Global.monsterTarget < Global.alivePlayers.size():
@@ -889,6 +893,8 @@ func selectTarget(delta, randi, magicRandi):
 
 
 func moveCharacter(delta):
+	if self.name == "青龙0":
+		return
 	var moveSpeed = 15 
 	var newPosition = position.lerp(Vector2(Global.alivePlayers[Global.monsterTarget].position.x-60, Global.alivePlayers[Global.monsterTarget].position.y-60)  , moveSpeed * delta)
 	position.x = newPosition.x 
@@ -903,6 +909,8 @@ func _on_button_button_down():
 	Global.target = self
 
 	if monsters.size() > 0 and Global.onAttackPicking and Global.currPlayer.canAttack == true:
+		if Global.currPlayer.name == "朱雀":
+			return
 
 		#Global.currPlayer.targetPosition = self.position
 		attacks()
@@ -1037,4 +1045,8 @@ func useBigMagic():
 			Global.selectedTarget = true			
 
 
-
+func playAutoSound():
+	if !autoPlayed:
+		$autoAttackSound.stream = load(autoAttackSound)
+		$autoAttackSound.play()	
+		autoPlayed = true

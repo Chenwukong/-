@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dd1lhpctw2jww"]
+[gd_scene load_steps=13 format=3 uid="uid://dd1lhpctw2jww"]
 
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="1_qxql0"]
+[ext_resource type="Texture2D" uid="uid://bq17hiloi6g58" path="res://Battlers/烟儿dead.png" id="2_n24ec"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2msb"]
 atlas = ExtResource("1_qxql0")
@@ -21,6 +22,22 @@ region = Rect2(0, 0, 55, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_y8abi"]
 atlas = ExtResource("1_qxql0")
 region = Rect2(0, 192, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px1im"]
+atlas = ExtResource("2_n24ec")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3jgp"]
+atlas = ExtResource("2_n24ec")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fyn23"]
+atlas = ExtResource("2_n24ec")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phv8r"]
+atlas = ExtResource("2_n24ec")
+region = Rect2(840, 0, 280, 222)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o4ccp"]
 animations = [{
@@ -63,9 +80,26 @@ animations = [{
 "loop": true,
 "name": &"up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px1im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3jgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fyn23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phv8r")
+}],
+"loop": true,
+"name": &"左上dead",
+"speed": 5.0
 }]
 
 [node name="姜韵" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_o4ccp")
-animation = &"up"
+animation = &"左上dead"
 autoplay = "default"

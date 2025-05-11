@@ -353,8 +353,10 @@ func checkSetPos(currScene, toScene):
 	if currScene == "大唐境外":
 		if toScene == "大唐国境边缘":
 			return Vector2(-1132, 1226)				
-			
-			
+		if toScene == "普陀山":
+			return Vector2(1930,1755)					
+		if toScene == "五庄观":
+			return Vector2(1930,1755)				
 			
 			
 			
@@ -435,3 +437,8 @@ func checkSetPos(currScene, toScene):
 	if currScene == "龙窟7":
 		if toScene == "龙窟6":
 			return Vector2(2114,719)
+	if currScene == "普陀山":
+		if toScene == "潮音洞":
+			return Vector2(1648, 1509)
+	if currScene == "普陀山":
+		return Vector2(536,794)

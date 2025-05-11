@@ -900,6 +900,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
+frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 enabled = false
@@ -4690,6 +4691,9 @@ position = Vector2(1196, 880)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(135, 28)
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="鼠先锋" parent="." instance=ExtResource("25_n83w5")]
 visible = false

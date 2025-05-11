@@ -3,6 +3,7 @@ var players = []
 var playerIndex = 0
 var menuItems
 var appended = false
+var updated = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -11,30 +12,34 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	menuItems = get_tree().get_nodes_in_group("bagMenuItem")
-	FightScenePlayers.fightScenePlayerData.get("时追云").currHp
+	
 	if Global.onMenuItemUsing:
-		if !appended:
+		updateStatus()
+		if !updated:
+			updated = true
 			for i in Global.onTeamPlayer.size():
-				Global.itemPlayers.append(get_node("itemPlayer"+str(i+1)))	
-				get_node("itemPlayer"+str(i+1)).visible = true
+			
 				get_node("itemPlayer"+str(i+1)+"/mpText/mpBar/mpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currMp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).mp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).addMp))
 				get_node("itemPlayer"+str(i+1)+"/hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currHp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).addHp))		
 				
 				get_node("itemPlayer"+str(i+1)+"/hpText/hpBar").max_value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).addHp)
 				get_node("itemPlayer"+str(i+1)+"/hpText/hpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currHp 
-				
 				get_node("itemPlayer"+str(i+1)+"/mpText/mpBar").max_value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).mp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).addMp)
-				get_node("itemPlayer"+str(i+1)+"/mpText/mpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currMp 
+				get_node("itemPlayer"+str(i+1)+"/mpText/mpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currMp 				
+				
+				
+		if !appended:
+			for i in Global.onTeamPlayer.size():
+				Global.itemPlayers.append(get_node("itemPlayer"+str(i+1)))	
+				get_node("itemPlayer"+str(i+1)).visible = true
+
 				
 			for i in range(len(Global.onTeamPlayer)):
 				var player = Global.onTeamPlayer[i]
 				var player_icon = load(FightScenePlayers.fightScenePlayerData[player].icon)
 				get_node("itemPlayer" + str(i + 1) + "/menuPlayerPic").texture = player_icon
 			appended = true
-		for i in Global.onTeamPlayer.size():
-
-			get_node("itemPlayer"+str(i+1)+"/mpText/mpBar/mpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currMp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).mp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).addMp))
-			get_node("itemPlayer"+str(i+1)+"/hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currHp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).addHp))			
+		
 		if Input.is_action_just_pressed("ui_down"):
 			
 			if Global.itemPlayerIndex == Global.itemPlayers.size() -1 :
@@ -47,6 +52,7 @@ func _process(delta):
 			else:
 				Global.itemPlayerIndex -= 1
 		if Input.is_action_just_released("esc"):
+			updated = false
 			Global.itemPlayers = []			
 #			for i in Global.onTeamPlayer.size():
 #				@get_node("itemPlayer"+str(i+1)).queue_free()
@@ -81,15 +87,17 @@ func _on_menu_player_but_3_button_down():
 func _on_menu_player_but_4_button_down():
 	Global.itemPlayerIndex = 3
 	useItem()
+	
 func useItem():
 	if Global.currMenuItem in ItemData.consume:
 		var item = FightScenePlayers.consumeItem.get(Global.currMenuItem)
 		if item == null:
 			return
 		if item.number > 0:
+			
 			$"../../../subSound".stream = load("res://Audio/SE/002-System02.ogg")
 			$"../../../subSound".play()
-		
+			
 			if item.info.effect == "mp":
 				if FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currMp == FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).mp +decrypt( FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addMp):
 					return
@@ -105,8 +113,7 @@ func useItem():
 						i.get_node("itemNum").text = str(int(i.get_node("itemNum").text) - 1)
 					if i.get_node("itemNum").text == "0":
 						i.visible = false	
-				for i in Global.onTeamPlayer.size():
-					get_node("itemPlayer"+str(i+1)+"/mpText/mpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currMp									
+								
 			if item.info.effect == "hp": 
 				
 				if FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currHp == FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp):
@@ -121,8 +128,7 @@ func useItem():
 						i.get_node("itemNum").text = str(int(i.get_node("itemNum").text) - 1)
 					if i.get_node("itemNum").text == "0":
 						i.visible = false				
-				for i in Global.onTeamPlayer.size():
-					get_node("itemPlayer"+str(i+1)+"/hpText/hpBar").value =FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currHp							
+						
 		else:
 			$"../../../subSound".stream = load("res://Audio/SE/057-Wrong01.ogg")
 			$"../../../subSound".play()
@@ -163,3 +169,12 @@ func useItem():
 			FightScenePlayers.consumeItem.erase(key)
 func decrypt(value):
 	return value / Global.enKey
+func updateStatus():
+	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/mpText/mpBar/mpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currMp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).mp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addMp))
+	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currHp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp))		
+	
+	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/hpText/hpBar").max_value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp)
+	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/hpText/hpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currHp 
+	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/mpText/mpBar").max_value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).mp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addMp)
+	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/mpText/mpBar").value = FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currMp 	
+

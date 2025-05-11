@@ -134,15 +134,16 @@ metadata/_edit_group_ = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("4_dwcfo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(2471, 538, 2150, 685, 1937, 732, 1868, 711, 1780, 643, 1521, 713, 1427, 697, 1187, 727, 983, 699, 808, 634, 596, 658, 456, 669, 264, 685, 62, 742, 57, 850, 105, 1025, 152, 1150, 221, 1296, 223, 1421, 187, 1535, -49, 1679, -161, 1733, -52, 1838, 155, 1822, 207, 1733, 287, 1670, 510, 1739, 713, 1766, 872, 1784, 1005, 1787, 1004, 1683, 926, 1653, 757, 1612, 566, 1585, 432, 1509, 441, 1327, 647, 1342, 968, 1440, 1197, 1520, 1378, 1607, 1445, 1674, 1562, 1729, 1782, 1752, 2020, 1756, 2254, 1827, 2341, 1819, 2352, 1677, 2449, 1570, 2534, 1396, 2492, 1342, 2366, 1353, 2206, 1327, 1874, 1212, 1655, 1085, 1585, 997, 1614, 899, 1618, 831, 1696, 802, 1779, 807, 1859, 892, 1999, 929, 2125, 879, 2262, 795, 2419, 719, 2565, 663, 2559, 532)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
 polygon = PackedVector2Array(1393, 790, 1407, 1041, 1449, 1202, 1408, 1327, 1265, 1352, 1107, 1340, 948, 1279, 706, 1195, 576, 1193, 447, 1157, 350, 1149, 313, 1014, 284, 877, 291, 824, 375, 845, 452, 836, 472, 876, 506, 909, 679, 924, 732, 906, 761, 848, 846, 863, 947, 805, 903, 1081, 1055, 1027, 1236, 799)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -268,11 +269,15 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
+frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("16_ipurv")]

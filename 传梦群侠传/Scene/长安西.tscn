@@ -378,6 +378,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -520,6 +521,10 @@ position = Vector2(2089, 1554)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(402, -169)
 animation = &"左下"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="王婆" parent="." instance=ExtResource("17_jclbl")]
 position = Vector2(1353, 267)
@@ -571,6 +576,9 @@ visible = false
 visible = false
 position = Vector2(1205, 293)
 sprite_frames = SubResource("SpriteFrames_csyg1")
+
+[node name="斩击" parent="小二2/effects" index="3"]
+frame = 0
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(411, 690)

@@ -784,6 +784,7 @@ texture = ExtResource("4_5mbey")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
 autoplay = "leftStand"
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -886,7 +887,10 @@ polygon = PackedVector2Array(-270, -284, -293, -282, -320, -256, -293, -217, -27
 [node name="effect" parent="鱼叟" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="鱼叟/effects" index="1"]
+[node name="斩击" parent="鱼叟/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="鱼叟/effects" index="4"]
 frame = 4
 
 [node name="大海龟" parent="." instance=ExtResource("15_w7f0s")]
@@ -910,7 +914,10 @@ offset_right = 56.0
 [node name="effect" parent="大海龟" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="大海龟/effects" index="1"]
+[node name="斩击" parent="大海龟/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="大海龟/effects" index="4"]
 frame = 4
 
 [node name="丁真" parent="." instance=ExtResource("15_w7f0s")]
@@ -926,7 +933,10 @@ position = Vector2(-266.417, -253.214)
 [node name="effect" parent="丁真" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="丁真/effects" index="1"]
+[node name="斩击" parent="丁真/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="丁真/effects" index="4"]
 frame = 4
 
 [node name="丁真2" parent="." instance=ExtResource("15_w7f0s")]
@@ -942,7 +952,10 @@ position = Vector2(-266.417, -253.214)
 [node name="effect" parent="丁真2" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="丁真2/effects" index="1"]
+[node name="斩击" parent="丁真2/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="丁真2/effects" index="4"]
 frame = 4
 
 [node name="丙假" parent="." instance=ExtResource("15_w7f0s")]
@@ -962,7 +975,10 @@ polygon = PackedVector2Array(-270, -284, -310, -277, -296, -248, -293, -217, -27
 [node name="effect" parent="丙假" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="丙假/effects" index="1"]
+[node name="斩击" parent="丙假/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="丙假/effects" index="4"]
 frame = 4
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

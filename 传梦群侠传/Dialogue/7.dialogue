@@ -1,0 +1,641 @@
+~ this_is_a_node_title
+
+Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
+Nathan: Here are some choices.
+- First one
+	Nathan: You picked the first one.
+- Second one
+	Nathan: You picked the second one.
+- Start again => this_is_a_node_title
+- End the conversation => END
+Nathan: For more information see the online documentation.
+
+=> END
+
+~ 寻四圣1
+set Global.onTalk = true
+set Global.toggleballon()
+[next=109]
+set Global.changeScene("北俱芦洲",null)
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣2
+set Global.onTalk = true
+时追云: [speed=0.5]这里应该就是北俱芦洲了吧
+姜韵: [speed=0.5]这气候好不寻常
+凌若昭: [speed=0.5]真的耶，感觉一半是冬天一半是夏天
+梧桐: [speed=0.5]这就是四季失常的一种现象。。。如果不唤醒他们，再过不久整个人间都会像这里这么混乱
+时追云: [speed=0.5]如果是这样的话，就算不是为了救叶魅儿也该来找他们
+小二: [speed=0.5]我记得你说过，他们三年前就陨落了，那朱雀还活着吗？
+梧桐: [speed=0.5]他们毕竟是上古生物，没那么容易真的死掉，但他们现在的状况也都非常的不好，需要有人去帮忙
+梧桐: [speed=0.5]青龙被毒气入体，需要有人打通他的经脉，而朱雀则需要烈火重生
+小二: [speed=0.5]那我们要怎么找到他们
+梧桐: [speed=0.5]我知道他们在哪，但入口被封住了
+梧桐: [speed=0.5]我们需要通过现在唯一一只尚在的圣兽白虎来打开入口封印
+梧桐: [speed=0.5]白虎应该就在这附近，找找看吧
+set Global.changevis("北俱芦洲","小二")
+set Global.changevis("北俱芦洲","凌若昭")
+set Global.changevis("北俱芦洲","梧桐")
+set Global.onTalk = false
+=> END
+
+
+
+~ 寻四圣3
+set Global.onTalk = true
+set Global.playsound("res://Audio/SE/猛兽5.ogg")
+set Global.changebgm("res://Audio/BGM/谛听.ogg")
+时追云惊: [speed=0.5]这就是圣兽白虎吗！！？
+凌若昭: [speed=0.5]感觉他的速度不快，但又快出残影了！
+小二: [speed=0.5]这也太大了，那我们要怎么让他帮我们
+梧桐: [speed=0.5]很简单，只要实力得到他的认可就可以了
+set Global.playsound("res://Audio/SE/猛兽5.ogg")
+白虎: [speed=0.5]吼！
+小二: [speed=0.5]梧桐大叔记得给我们治疗啊
+梧桐: [speed=0.5]很抱歉，我不能帮你们
+小二: [speed=0.5]啊？
+梧桐: [speed=0.5]既然是让他认可你们，我自然不能出手
+小二: [speed=0.5]好吧，来吧圣虎！
+set get_tree().current_scene.bossFight("白虎","res://Audio/BGM/战斗-Y.mp3", "寻四圣")
+set Global.onTalk = false
+=> END
+
+~ 寻四圣4
+set Global.onTalk = true
+set Global.changebgm("res://Audio/BGM/北济芦洲.mp3")
+梧桐: [speed=0.5]干得漂亮！我就知道你们能做到的！
+梧桐: [speed=0.5]对不起，我，我有点太激动了！做的好啊！
+小二: [speed=0.5]冷静点大叔
+白虎: [speed=0.5]你们足够有资格了，进去吧,我已经替你们打开了通往龙窟凤巢的结界
+小二: [speed=0.5]原来你会说话啊！
+白虎: [speed=0.5]当年我们被妖皇部落围攻陨落至此，疯的疯死的死。为了自身安危，他们各自的栖息地龙窟凤巢也都设置了结界
+白虎: [speed=0.5]我要打开结界需要耗费我所剩不多的灵力，所以连这种状态的我都打不过的人也没有必要进去送死
+姜韵: [speed=0.5]可我看你身上并无大碍，怎会如此虚弱
+白虎: [speed=0.5]四圣合则生，分则死，他们的状态会很大程度影响到我
+时追云: [speed=0.5]那你怎么信任我们进去是为了救他们呢
+白虎: [speed=0.5]因为指引你们前来之人
+梧桐: [speed=0.5]白虎大人信任我，而我信任你们罢了。我相信你们都是匡扶天下的大英雄，并非因为你们身上的天运，而是这些日子里你们做的善举
+白虎: [speed=0.5]你们且记住龙窟凤巢一次最多前往三人，超过三人则会被结界弹出，这也是他们当初为了保护自己留下的手段
+白虎: [speed=0.5]而里面则有他们的守卫重重把手，如若遇到了尽管斩杀便是，他们并不是真正的生命
+白虎: [speed=0.5]但我得提醒你们一句，他们绝对不是好惹的，朱雀还好说，可青龙现在是属于疯魔的状态，哪怕我现在还有全力，也敌不过他
+白虎: [speed=0.5]所以你们如果遇到青龙，不要想着单独解决他，最好能想办法引他出来，这样或许才有一战之力，将他制服之后，我自有方法令他清醒
+时追云: [speed=0.5]虽然危险，但却只能分头行动了
+小二: [speed=0.5]老大，我去找朱雀
+时追云: [speed=0.5]理所应当，你来这就是为了这个。那若昭你也随小二去吧。
+凌若昭: [speed=0.5]嗯！
+梧桐: [speed=0.5]小二，我来给你带路
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+时追云: [speed=0.5]龙窟的位置刚才已经已经看到了，我们先走一步，你们注意安全
+小二: [speed=0.5]嗯！老大你也小心
+set Global.cantShow.erase("龙窟1")
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣5
+set Global.onTalk = true
+set Global.getnode("player").position = Vector2(756,1355)
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player").visible = false
+时追云: [speed=0.5]这壁画上貌似写有字
+时追云: 生死由来一念间，孤身独断万龙巢。纵使此去身成土，也要人间无恶蛟！
+姜韵: [speed=0.5]莫不是前人斩杀恶龙的决志
+时追云: [speed=0.5]他可能知道自己会死，但还是毅然决然的前去了
+时追云: [speed=0.5]娘子，你等我一下
+姜韵: [speed=0.5]怎么了？
+时追云: [speed=0.5]我要给他祭一坛酒
+时追云: [speed=0.5]...
+时追云: [speed=0.5]好了
+set Global.playsound("res://Audio/SE/ice-collecting-01.wav")
+姜韵恐: [speed=0.5]这是怎么了？
+时追云惊: [speed=0.5]我也不知道
+姜韵喜: [speed=0.5]这上面的字变了，似乎是一种剑法
+时追云: [speed=0.5]怕自己死后恶龙无法被杀，所以把自己的绝学留在这里给后人吗，令人敬佩！
+姜韵喜: [speed=0.5]那夫君你便将它学了去吧，也算不枉费前人的心血
+时追云: [speed=0.5]也好，待我仔细观摩片刻
+set Global.changeScene("凤巢1", null)
+set Global.onTalk = false
+=> END
+
+~ 寻四圣6
+set Global.onTalk = true
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
+小二: [speed=0.5]我们明明是进入了地下，却感觉来到了一片天空之上？？
+凌若昭: [speed=0.5]这应该是朱雀法力体现的的小天地吧
+梧桐: [speed=0.5]正是如此，不过虽然是拟化的世界，但受到的伤害是真实的
+小二: [speed=0.5]那我们要在哪里复活朱雀？
+梧桐: [speed=0.5]必须前往第七层，那里是她力量的本源
+小二: [speed=0.5]那我们快走吧，我怕魅儿撑不住了
+set Global.onTalk = false
+=> END
+
+~ 寻四圣7
+set Global.onTalk = true
+小二: [speed=0.5]话说梧桐大叔你应该不是天庭的官吧，你怎么对四圣这么熟悉？
+梧桐: [speed=0.5]我确实未曾位列仙班，但承蒙朱雀大人赏识，之前跟在她身边做事，所以和四圣都很了解
+小二: [speed=0.5]原来如此，想必你们之前关系很好
+梧桐: [speed=0.5]朱雀大人是我永远崇拜的对象，不管让我做什么，我都会让她复苏的！
+set Global.changeScene("龙窟2",null)
+set Global.onTalk = false
+=> END
+
+~ 寻四圣8
+set Global.onTalk = true
+
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPlayer.append("时追云")
+set Global.onTeamPlayer.append("姜韵")
+
+set Global.getnode("player").position = Vector2(756,1355)
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player").visible = false
+set get_tree().current_scene.showMsg("飞剑决升级为斩龙决！")
+set FightScenePlayers.learnMagic("时追云","斩龙决")
+set FightScenePlayers.eraseMagic("时追云","飞剑决")
+时追云: [speed=0.5]此法字字精妙，直指斩龙关键
+姜韵喜: [speed=0.5]那夫君可曾习得了
+时追云: [speed=0.5]已领悟十之七八，应该足够我们对付这里的敌人了
+姜韵喜: [speed=0.5]那太好了，此地不宜久留，我们快走吧
+时追云: [speed=0.5]嗯，我去前面探路
+set Global.onTalk = false
+=> END
+
+
+~ 寻四圣9
+set Global.onTalk = true
+set Global.getnode("姜韵").visible = true
+set Global.toggleballon()
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+[next=0.5]
+
+set Global.playsound("res://Audio/SE/3994.wav")
+set Global.getnode("AnimationPlayer").play("现身")
+[next=1]
+set Global.changebgm("res://Audio/BGM/0妖族阴谋.mp3")
+
+[next=3]
+set Global.toggleballon()
+时追云惊: [speed=0.5]世间竟存有如此庞然大物，居然比刚才的白虎还大许多！
+姜韵恐: [speed=0.5]想必他就是春之神青龙了
+时追云: [speed=0.5]虽然来之前已经有了心理准备，但还是没想到他竟然如此恐怖
+姜韵: [speed=0.5]夫君，接下来的一举一动必须万分小心，哪怕他的随意一击，估计也能马上令我们粉身碎骨
+set Global.toggleballon()
+set Global.playsound("res://Audio/SE/3994.wav")
+[next=3]
+set Global.toggleballon()
+时追云怒: [speed=0.5]他透露着杀意！他果然已经疯了！
+时追云怒: [speed=0.5]没办法了，只能上了！
+set get_tree().current_scene.bossFight("青龙","res://Audio/BGM/P39.mp3", "寻四圣")
+set Global.getnode("青龙").visible = false
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣10
+set Global.onTalk = true
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.dial = "寻四圣"
+set Global.changeScene("凤巢3",null)
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣11
+set Global.onTalk = true
+set Global.dial = null
+小二: [speed=0.5]这里简直和迷宫一样，要不是梧桐大叔你带路，我们怕是要晕死在这
+梧桐: [speed=0.5]哈哈哈哈，其实只要心不带杂念，这里就很容易走
+凌若昭: [speed=0.5]随心而定的小天地吗，朱雀一定很善良
+梧桐: [speed=0.5]是啊，这也是为什么我会一直侍奉她，她有着桀骜不屈之心，同时又怀有悲天悯人之情
+小二: [speed=0.5]他们当时是怎么陨落的呢
+梧桐: [speed=0.5]不清楚，三年前的那场战斗我并不在场，当我知道消息的时候，他们就已经陨落了
+小二: [speed=0.5]这么强的他们都齐齐陨落了，真不知道天庭的对手到底有多可怕...
+set Global.onTalk = false
+=> END
+
+~ 寻四圣12
+set Global.onTalk = true
+set Global.changevis("凤巢7", "梧桐")
+set Global.getnode("player").position = Vector2(824,877)
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("left")
+
+小二: [speed=0.5]这家伙....我想起来了，你是当初在锁妖塔的蒙面人！
+凌若昭怒: [speed=0.5]他怎么会在这里！ 
+镰魔: [speed=0.5]呵呵呵呵，这不是原本属于妖怪的天命人吗
+小二: [speed=0.5]!！！
+小二: [speed=0.5]这件事就连我自己都才刚知道的，你是怎么知道的！
+镰魔: [speed=0.5]很显而易见吧，可别把我们当成那群愚蠢的妖怪啊，呵呵呵呵
+小二: [speed=0.5]你不是妖怪吗？？
+梧桐: [speed=0.5]不。。。他，他不是妖怪，他是魔！
+小二: [speed=0.5]魔？
+梧桐: [speed=0.5]天地伊始，并没有魔这种东西，他们是后来才出现的
+梧桐: [speed=0.5]传闻，他们是由所有生物内心的阴暗所生，他们是世界的厌恶者，他们是破坏的使者，毁灭的预兆
+梧桐: [speed=0.5]但最可怕的一点就是，他们之中的佼佼者，甚至能不死不灭
+梧桐： [speed=0.5]不对，你是怎么在朱雀大人的内心天地的！白虎大人之前根本就没打开过结界！
+镰魔: [speed=0.5]呵呵呵呵，见到我很意外吗。我知道朱雀没那么容易死，只有夺得了她的内心本源，她才能够真正的死去，所以我们当时围杀她的时候就进来了，现在已经夺取的七七八八了
+梧桐: [speed=0.5]原来是你！
+梧桐: [speed=0.5]我明白了，天庭真正的敌人，不是妖怪，是你们这些魔！
+镰魔: [speed=0.5]呵呵呵，现在才发现，已经太晚了。可惜，本来还想放你们和那群傻妖怪多斗一斗，多帮我们耗点他们的人数的
+梧桐: [speed=0.5]你骗了他们是吗
+镰魔: [speed=0.5]是啊，不过现在还不能和他们撕破脸皮，所以你们可要好好替我们保守秘密啊
+镰魔: [speed=0.5]用死亡的方式
+set get_tree().current_scene.bossFight("镰魔",null, "寻四圣")
+set Global.canLose = true
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣13
+set Global.onTalk = true
+set Global.getnode("player").position = Vector2(824,877)
+小二: [speed=0.5]他怎么会这么强！
+凌若昭怒: [speed=0.5]他肯定是用了什么方法！
+梧桐: [speed=0.5]这里是朱雀大人的内心世界，而他窃取了朱雀大人大量的力量本源，所以在这里他现在几乎是无敌的
+小二: [speed=0.5]那怎么办！
+梧桐: [speed=0.5]当务之急当然是唤醒朱雀大人，只要朱雀大人醒了，她的力量本源就能瞬间夺回来
+小二: [speed=0.5]那要怎么唤醒她！
+镰魔: [speed=0.5]当我傻吗，我可不会放任你们复活他的
+梧桐: [speed=0.5]...
+set Global.changebgm("res://Audio/BGM/庄严3.mp3")
+set Global.getnode("梧桐/effects/火焰").visible = true
+set Global.getnode("梧桐/effects/火焰").play()
+set Global.playsound("res://Audio/SE/火1.ogg")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+梧桐: [speed=0.5]哈哈哈哈哈，你可以阻止我们复活，但你没法阻止我死
+镰魔: [speed=0.5]你！？？？
+小二: [speed=0.5]梧桐大叔！你这是干什么！
+凌若昭哭: [speed=0.5]为什么！
+梧桐: [speed=0.5]小二若昭，朱雀大人的遗体其实一直是藏在我体内的
+小二: [speed=0.5]什么？？
+梧桐: [speed=0.5]我当年见到她时，她已经是一句冰冷的尸体了，我用秘法将她藏于身内，以免被人发现，同时也在想办法回到这里来复活她
+梧桐: [speed=0.5]无奈朱雀大人的内心世界实在是太强大，光凭我一个人根本不可能来到最深处
+小二: [speed=0.5]可你，为什么要自焚啊！
+梧桐: [speed=0.5]这是唯一的办法，复活朱雀大人的方法就是，将梧桐树的灵魂焚烧在她的内心本源深处
+梧桐: [speed=0.5]朱雀大人非良木不栖。我本是一颗没有生命的梧桐树，也是她栖息的第一颗树
+梧桐: [speed=0.5]自那之后我便诞生了灵智，一直追随在大人身边
+凌若昭哭: [speed=0.5]可你要死了啊！
+梧桐: [speed=0.5]士为知己者死，我愿用我微薄的生命换取朱雀大人的复苏
+梧桐: [speed=0.5]小二，对不起，其实我骗了你，叶姑娘的伤早就没有大碍了，只需几日便可醒来，我怕你们不和我来，所以才出此下策
+小二: [speed=0.5]现在这些都不重要，你快停下，我们或许还有别的办法！
+镰魔: [speed=0.5]你！！！住手！！！
+set Global.changebgm("res://Audio/BGM/#逐渐觉醒.mp3")
+梧桐: [speed=0.5]你已经来不及了
+梧桐: [speed=0.5]呵呵呵呵呵，小仙梧桐恭迎朱雀大人回归！！！
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.getnode("AnimationPlayer").play("朱雀复活")
+set Global.getnode("火焰").visible = true
+set Global.changevis("凤巢7", "梧桐")
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+朱雀: ！！！！！！！！！！！！
+小二: [speed=0.5]梧桐大叔！！！
+镰魔: [speed=0.5]这不可能，我做了这么久，就差一步了！！
+凌若昭哭: [speed=0.5]朱雀大仙，就是他害死的梧桐大叔！
+set Global.getnode("树苗").visible = true
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+朱雀: ！！！！！！！！！！！！
+set Global.getnode("朱雀").play("法术")
+set Global.getnode("镰魔/effects/火焰").visible = true
+set Global.getnode("镰魔/effects/火焰").play()
+set Global.playsound("res://Audio/SE/火4.ogg")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+
+set Global.getnode("镰魔").visible = false
+set Global.getnode("朱雀").play("default")
+小二: [speed=0.5]一击秒杀。。。
+凌若昭: [speed=0.5]看来是夺回了本源力量,这里毕竟是她自己的世界,朱雀大人在这里是无敌的，那个人是自作自受了
+小二: [speed=0.5]梧桐大叔...
+凌若昭哀: [speed=0.5]朱雀大人能救他吗？
+朱雀: [speed=0.5]...
+小二: [speed=0.5]连你也不能吗
+凌若昭: [speed=0.5]等等，小二你看！刚才梧桐大叔站的地方！
+小二: [speed=0.5]什么，这。。。这是？树苗！！？？
+小二: [speed=0.5]难道这是梧桐大叔吗
+凌若昭: [speed=0.5]可浴火重生不是朱雀大人的能力吗？好像也不是朱雀大人施的法
+小二: [speed=0.5]我明白了，哈哈哈哈哈哈哈
+凌若昭: [speed=0.5]怎么了
+小二: [speed=0.5]没什么，具体是怎么回事就交给后人去评定吧，我们还是先出去吧
+set Global.changeScene("龙窟7",Vector2(1667,998))
+set Global.dial = "寻四圣"
+set Global.onTalk = false
+=> END
+
+~ 寻四圣14
+set Global.onTalk = true
+set Global.canLose = true
+set get_tree().current_scene.bossFight("青龙","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "寻四圣")
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣15
+set Global.onTalk = true
+set Global.canLose = false
+set Global.changebgm("res://Audio/BGM/庄严1.mp3")
+set Global.toggleballon()
+set Global.playsound("res://Audio/SE/3994.wav")
+[next=1]
+set Global.toggleballon()
+set get_tree().current_scene.add_shader()
+时追云惊: [speed=0.5]糟糕，打的太激烈，这里要塌了,娘子我们先走
+姜韵恐: [speed=0.5]嗯！
+set Global.changeScene("北俱芦洲",Vector2(838, 1574))	
+	
+	
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣16
+set Global.onTalk = true
+set Global.getnode("shadow").visible = false
+set Global.getnode("player/Camera2D").zoom = Vector2(0.6, 0.6)
+set Global.getnode("姜韵2").visible = true
+set Global.getnode("青龙2").visible = true
+set Global.getnode("player").position = Vector2(838, 1574)
+时追云惊: 他追出来了！
+set Global.getnode("青龙2").play("hit")
+set Global.playsound("res://Audio/SE/132-Wind01.ogg")
+set Global.toggleballon()
+[next=2]
+set Global.playsound("res://Audio/SE/053-Cannon02.ogg")
+set Global.getnode("AnimationPlayer").play("被打飞")
+set Global.getnode("姜韵2").play("左上dead")
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("左上dead")
+set Global.getnode("player/Camera2D").zoom = Vector2(1.1,1.1)
+[next=1]
+
+set Global.toggleballon()
+
+set Global.getnode("青龙2").visible = false
+时追云惊: 他刚才还没用全力吗！
+姜韵恐: 我已经动弹不得了
+
+
+set Global.toggleballon()
+[next=3]
+
+
+set Global.playsound("res://Audio/SE/134-Wind03.ogg")
+set get_tree().current_scene.snowStorm()
+
+[next=1.5]
+
+set get_tree().current_scene.add_shader()
+set Global.getnode("青龙").visible = true
+set Global.playsound("res://Audio/SE/3994.wav")
+[next=1]
+
+
+set Global.changebgm("res://Audio/BGM/卢小旭 - 憾天威.mp3")
+
+
+set Global.getnode("AnimationPlayer").play("真身降落")
+[next=6]
+
+
+
+set Global.toggleballon()
+时追云惊: ！！！！！！
+姜韵恐: ！！！！！！
+set get_tree().current_scene.remove_shader()
+set Global.showBlack = false
+时追云怒: [speed=0.5]小乌！你还不出来帮忙吗！
+set Global.getnode("小乌").visible = true
+姜韵: [speed=0.5]当初我只就觉得他体内有一股灵力，原以为是他的天赋，如今看来，确实很奇怪
+大海龟: [speed=0.5]...
+大海龟: [speed=0.5]你是什么时候知道的
+时追云: [speed=0.5]梧桐仙人见到你后那些反常的举动，还有之前白虎和他一直都没说最后一位圣兽该怎么唤醒
+时追云: [speed=0.5]我一开始还不理解，但我后面明白了，因为他一直在我身边！
+时追云怒: 小乌，你就是四圣最后一位，玄武吧！
+set Global.getnode("AnimationPlayer").play("玄武变身")
+set Global.getnode("青龙").play("施法")
+set Global.toggleballon()
+[next=1]
+set Global.getnode("玄武").visible = true
+set Global.getnode("小乌").visible = false
+set Global.getnode("护体").visible = true
+set Global.getnode("护体").play()
+set Global.getnode("雷暴").visible = true
+set Global.getnode("雷暴").play()
+set Global.playsound("res://Audio/SE/法术 爆炸.ogg")
+set Global.addshader("建业左","res://shader/白虎.gdshader")
+
+[next=1.5]
+
+set Global.getnode("建业左").texture = load("res://panoramas2/北俱芦洲全景改改.png")
+
+set Global.getnode("青龙").play("default")
+set Global.removeshader("建业左")
+set Global.toggleballon()
+玄武: [speed=0.5]对！
+
+
+姜韵恐: [speed=0.5]那么恐怖的攻击，把周遭的屋子树木都给化为灰烬了，居然能护我们安然无恙
+时追云: [speed=0.5]你藏的真够深的小乌
+玄武: [speed=0.5]当初我被魔物袭击，身上灵力所剩不多,只能化作海龟模样逃生到东海湾，直到现在，我才恢复大半的灵力
+玄武: [speed=0.5]不要怪我一直装傻，如果我之前开口说话，你估计一剑就劈死我了
+时追云: [speed=0.5]。。。
+姜韵喜: [speed=0.5]噗！
+玄武: [speed=0.5]青龙的状态很不对劲，虽然他之前就是我们之中最强的，但他的实力没这么夸张，而且体型也变大了数倍
+玄武: [speed=0.5]白虎！朱雀！
+set Global.getnode("CanvasLayer3").visible = true
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+set Global.changeScene("北俱芦洲双屏",null)
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣17
+set Global.onTalk = true
+
+set Global.move()
+set Global.moveTiger()
+[next=6]
+
+set Global.onTalk = false
+=> END
+
+
+~ 寻四圣18
+set Global.onTalk = true
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣19
+set Global.onTalk = true
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣20
+set Global.onTalk = true
+set Global.showBlack = true
+set Global.getnode("shadow").visible = false
+set Global.getnode("建业左").texture = load("res://panoramas2/北俱芦洲全景改改.png")
+
+
+set Global.getnode("姜韵3").visible = true
+set Global.getnode("青龙3").visible = true
+set Global.getnode("白虎3").visible = true
+set Global.getnode("白虎4").visible = true
+set Global.getnode("朱雀2").visible = true
+set Global.getnode("player/Camera2D").zoom = Vector2(0.45, 0.45)
+set Global.changebgm("res://Audio/BGM/【战斗】神话降临.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(4.6)
+
+小二: 老大，我们来了！
+时追云: 小二！
+set Global.playsound("res://Audio/SE/猛兽5.ogg")
+白虎: 他怎么变得如此巨大？
+玄武: 他的身上隐约有股魔气，很不对劲！
+玄武: 看来情况比想的还糟糕！
+白虎: 他现在太危险了，我们试着打醒他！
+
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPet.append("玄武")
+set Global.onTeamPet.append("朱雀")
+set Global.onTeamPet.append("白虎")
+set Global.getnode("青龙3").visible = false
+set Global.canLose = true
+set get_tree().current_scene.bossFight("青龙","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "寻四圣")
+
+
+set Global.onTalk = false
+=> END
+
+~ 寻四圣21
+set Global.onTalk = true
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+set Global.getnode("玄武").visible = true
+set Global.getnode("青龙3").visible = true
+白虎: 不行，他的体力源源不断，真像是那群...
+玄武: 魔,他现在和那群魔物一模一样！
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+朱雀: ...
+玄武: 不行，这样你就太危险了
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+朱雀: ...
+白虎: 照做吧，只能这样了
+时追云: 你们要做什么?
+白虎: 我们现在没办法解决青龙身上的问题，既然如此，只能将他封印在湖中心，而朱雀也将留在那里面牵制他
+小二: 那她怎么办？？
+白虎: 不要优柔寡断的了！朱雀的生命力是无穷无尽的！
+set Global.getnode("AnimationPlayer").play("turnDark")
+[next=1.1]
+
+set Global.getnode("朱雀3").visible = true
+set Global.getnode("青龙4").visible = true
+set Global.getnode("朱雀2").visible = false
+set Global.getnode("青龙3").visible = false
+
+set Global.getnode("玄武").position = Vector2(1707,2021)
+set Global.getnode("白虎3").position = Vector2(449,1398)
+set Global.getnode("白虎4").position = Vector2(449,1398)
+set Global.getnode("姜韵3").position = Vector2(1824, 1888)
+set Global.getnode("player").position = Vector2(1796, 1947)
+set Global.getnode("小二").position = Vector2(2056, 2060)
+set Global.changevis("北俱芦洲","小二")
+set Global.changevis("北俱芦洲","凌若昭")
+白虎: 动手！
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+set Global.getnode("朱雀3").play("magic")
+set Global.toggleballon()
+[next=3]
+set Global.playsound("res://Audio/SE/3994.wav")
+set Global.getnode("建业左").texture = load("res://panoramas2/北俱芦洲全景.jpg")
+set Global.toggleballon()
+set Global.getnode("朱雀3").visible = false
+set Global.getnode("青龙4").visible = false
+
+
+时追云: [speed=0.5]他们这就算被封印住了吗
+白虎: [speed=0.5]不全算，他们还有一定的行动能力，所以朱雀还得在下面和他鏖战
+凌若昭: [speed=0.5]那朱雀大人不会有事吧
+白虎: [speed=0.5]朱雀最强大的能力就是无限的活力，当初要不是被那些魔物阴了...
+时追云: [speed=0.5]你们当初到底发生了什么，天庭又是怎么回事
+玄武: [speed=0.5]简单来说，那群魔物带领着不知道哪里来的大军，突袭了天庭
+玄武: [speed=0.5]而我们四个在前往天庭救援的途中就分别遭大量魔物围攻，至此陨落，而天下节气也因没人管理而紊乱
+玄武: [speed=0.5]至于天庭的情况，我们现在也不了解，毕竟我们当初是在去的路上就被袭击了，但很明显了，我们的敌人，就是那群魔物！
+时追云: [speed=0.5]不止是他们，妖盟也一直在配合他们的行动
+玄武: [speed=0.5]对！魔物军团绝对是和妖盟勾结了的！
+玄武: [speed=0.5]至于消声觅迹了几千年理应不可能再出现的魔物突然重返人间，这我一直想不明白
+小二: [speed=0.5]不是说他们是由生物的阴暗面所生的吗，那当初怎么会有办法灭绝他们呢？理论上不是该一直出现的吗？
+玄武: [speed=0.5]这，我们也不清楚
+时追云: [speed=0.5]不管怎么样，我们势必要解决他们
+玄武: [speed=0.5]我需要再和你们确认一下，你们真的要摊这份浑水吗？
+时追云: [speed=0.5]我曾经答应过地府的钟馗，要帮助天庭。但就算没有答应他，我也会帮助天庭，如果这场争斗中是魔物和妖怪获胜了，那么受苦的将是全天下的百姓
+时追云: [speed=0.5]我只是站在人类这一边！
+小二: [speed=0.5]我只希望能好好的利用这份力量
+凌若昭: [speed=0.5]我肯定要帮师傅的
+玄武: [speed=0.5]这些年我一直在暗中看着你们的成长，你们确实和寻常人不太一样
+白虎: [speed=0.5]别废话了，快行动吧
+时追云: [speed=0.5]我们需要怎么做
+玄武: [speed=0.5]想要拯救天庭，青龙和朱雀的力量不可或缺，既然天庭和魔物处于平衡状态，那我们越强就越能掀翻棋盘
+玄武: [speed=0.5]凡间应该还留有许多如菩提祖师之类的大能，我们只能求助于他们
+小二: [speed=0.5]真是遇事不决找祖师啊
+凌若昭: [speed=0.5]那走咯？你们要一起来吗？
+白虎: [speed=0.5]接下来我会和你们一起行动
+玄武: [speed=0.5]我也自然会继续跟随你们
+凌若昭喜: [speed=0.5]那太好了，走吧！
+
+set Global.getnode("玄武").visible = false
+set Global.getnode("青龙3").visible = false
+set Global.getnode("姜韵3").visible = false
+set Global.getnode("player").visible = false
+set Global.changevis("北俱芦洲","小二")
+set Global.changevis("北俱芦洲","凌若昭")
+set Global.toggleballon()
+[next=1]
+set Global.getnode("鬼帝化身").visible = true
+[next=3]
+
+
+set Global.current_chapter_id = 8
+set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
+
+
+
+
+set Global.dial = null
+set Global.onTalk = false
+=> END
+
+
+
+
+
+~ 没有更多可说的了
+set Global.onTalk = true
+{{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END

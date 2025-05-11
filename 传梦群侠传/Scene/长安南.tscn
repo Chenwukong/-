@@ -682,6 +682,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
+frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.8, 0.8)
@@ -829,6 +830,10 @@ position = Vector2(2319, 1688)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(402, -169)
 animation = &"左下"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="王婆" parent="." instance=ExtResource("17_55pkt")]
 position = Vector2(1353, 267)
@@ -880,6 +885,9 @@ visible = false
 visible = false
 position = Vector2(1205, 293)
 sprite_frames = SubResource("SpriteFrames_oxwlf")
+
+[node name="斩击" parent="小二2/effects" index="3"]
+frame = 0
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-2540, -376)

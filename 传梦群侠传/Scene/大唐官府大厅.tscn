@@ -401,6 +401,9 @@ npcName = "师爷"
 [node name="CollisionPolygon2D" parent="师爷/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -280, -301, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
+[node name="斩击" parent="师爷/effects" index="3"]
+frame = 0
+
 [node name="金甲" parent="." instance=ExtResource("13_wrpg0")]
 visible = false
 position = Vector2(390, 376)
@@ -413,6 +416,10 @@ position = Vector2(0, -7)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(482, 362)
 animation = &"左上"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="menuControl" parent="." instance=ExtResource("18_0fnvh")]
 

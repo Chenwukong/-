@@ -366,10 +366,7 @@ func _process(delta):
 	for i in monsters:
 		if i.alive == false:
 			monsters.erase(i)
-				
-	
-	
-	
+
 	#切换战斗按钮
 	if Global.onAttackingList.size() > 0:
 		if self.playerName == Global.onAttackingList[0] and $battleCommends.visible == true and canAttack and Global.onMultiHit == 0:	
@@ -410,8 +407,8 @@ func _process(delta):
 		if Global.onAttackPicking and Global.onAttackingList[0] == playerName:
 			
 			if monsters:
-		
-				Global.target = monsters[Global.targetMonsterIdx]
+				if self.playerName != "朱雀":
+					Global.target = monsters[Global.targetMonsterIdx]
 			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0") or Input.is_action_just_pressed("rightClick") ) or Input.is_action_pressed("rightClick"):
 				get_parent().get_node("Panel").visible = true
 				Global.onAttackPicking = false
@@ -420,6 +417,17 @@ func _process(delta):
 			
 			
 			if Input.is_action_pressed("ui_accept")  and !Global.noKeyboard:
+				if playerName == "朱雀":
+					self.play(self.autoAttack)
+					Global.onAttacking = true
+					canAttack = false
+					Global.onAttackPicking = false
+					canSelect = false
+					$canAttack.start()					
+					
+					
+					
+					return
 				if Global.target or target and canAttack == true:
 					attack(Global.target, "keyboard")
 					if playerName != '姜韵':
@@ -444,8 +452,8 @@ func _process(delta):
 
 
 	##查看是否在播放攻击动画,就是结束攻击动画没
-	if self.is_playing() == false  and self.animation == autoAttack and self.playerName != "姜韵":
-	
+	if self.is_playing() == false  and self.animation == autoAttack and (self.playerName != "姜韵" and self.playerName != "朱雀"):
+
 		$Control.visible = true
 		position = playerPosition
 		self.play(playerName+"idle")
@@ -569,6 +577,11 @@ func _process(delta):
 		Global.onHitEnemy = []
 		get_node("buff").visible = true
 		Global.target.get_node("getHitEffect").visible = false
+		
+		
+		
+		
+		
 		var crit = "normal"
 		var disDamage 
 		if randi_range(0,100) < FightScenePlayers.fightScenePlayerData.get(playerName).critChance + FightScenePlayers.fightScenePlayerData.get(playerName).addCritChance:
@@ -644,6 +657,44 @@ func _process(delta):
 		target = null
 		canAttack = false
 		$canAttack.start()
+	
+	
+	
+	if self.is_playing() == false and self.animation == autoAttack and self.playerName == "朱雀":
+		
+		Global.allieTarget = players[Global.allieSelectIndex]
+		Global.buffTarget.append(players[Global.allieSelectIndex])		
+		get_parent().get_node("enemyInfo").visible = false
+		get_parent().get_node("allyInfo").visible = true
+		
+		Global.target = players[Global.allieSelectIndex]
+		target = Global.target		
+		
+		var healAmount = currMagicDmg * 3
+		
+		var disDamage = display_damage(round(healAmount),"heal")
+		Global.target.get_node("hpControl").add_child(disDamage)	
+		#buffTarget.get_node("hpControl/hpLabel").text = str(magic.value)
+		Global.target.get_node("hpControl/hpLabel").modulate= "88ff00"
+		Global.target.get_node("AnimationPlayer").play("hpControl")
+		Global.target.currHp += healAmount
+
+		$Control.visible = true
+		self.play(playerName+"idle")
+		Global.onAttackPicking = false
+		Global.onAttacking = false
+		Global.onHitEnemy = []
+		get_node("buff").visible = true
+		Global.target.get_node("getHitEffect").visible = false
+		Global.playsound("res://Audio/SE/107-Heal03.ogg")
+		Global.onAttackingList.pop_front()
+		get_node("Control/speedBar").value = speedBar
+		Global.target = null
+		target = null
+		canAttack = false
+		$canAttack.start()
+		
+		
 		
 	#法术施展完毕后
 	if self.is_playing() == false and self.animation != (playerName + "idle") and self.animation!=(playerName + "hurt")  and self.animation!=(playerName + "defend")  and Global.onAttackingList and self.playerName == Global.onAttackingList[0]:
@@ -1984,8 +2035,24 @@ func _on_button_mouse_entered():
 	if Global.onMultiHit >0:
 		return
 	Global.target = self
+	for i in players:
+		i.get_node("selectIndic").visible = false	
+	
 	self.get_node("selectIndic").visible = true
 	self.get_node("AnimationPlayer").play("selectIndic")
+	get_parent().get_node("allyInfo/allyName").text = players[Global.allieSelectIndex].name
+	get_parent().get_node("allyInfo/hpBar").max_value = players[Global.allieSelectIndex].totalHp
+	
+	get_parent().get_node("allyInfo/hpBar").value = players[Global.allieSelectIndex].currHp
+	
+	get_parent().get_node("allyInfo/hpBar/Label2").text = str(players[Global.allieSelectIndex].currHp) + "/" + str(players[Global.allieSelectIndex].totalHp)
+	
+	get_parent().get_node("allyInfo/manaBar").max_value = players[Global.allieSelectIndex].totalMp
+	get_parent().get_node("allyInfo/manaBar").value = players[Global.allieSelectIndex].currMp
+	get_parent().get_node("allyInfo/manaBar/Label2").text = str(players[Global.allieSelectIndex].currMp) + "/" + str(players[Global.allieSelectIndex].totalMp)	
+	
+	
+	
 	for i in players.size():
 		if players[i] == self:
 			Global.allieSelectIndex = i
@@ -2001,10 +2068,10 @@ func checkIncreaseDmg(magic):
 		if is_instance_valid(i):
 			if i.name == "时追云" or i.name == "姜韵" or i.name == "敖雨" or i.name == "敖阳" or i.name == "大海龟" or i.name == "小二" or i.name == "金甲" or i.name == "凌若昭":
 				return 1
-			elif i.type == "龙" and magic.name == "飞剑决":
-				return 2
+			elif i.type == "龙" and magic.name == "斩龙决":
+				return 3
 			elif i.type == "鬼" and magic.name == "破暗":
-				return 5
+				return 4
 			else:
 				return 1
 
@@ -2030,3 +2097,10 @@ func _on_can_calculate_after_multi_timeout():
 	Global.canCalculateAfterMulti = true
 func decrypt(value):
 	return value / Global.enKey
+func 朱雀auto():
+	self.play(self.autoAttack)
+	Global.onAttacking = true
+	canAttack = false
+	Global.onAttackPicking = false
+	canSelect = false
+	$canAttack.start()		

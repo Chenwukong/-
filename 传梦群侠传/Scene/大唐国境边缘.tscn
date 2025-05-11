@@ -663,6 +663,7 @@ scale = Vector2(0.50554, 0.500781)
 texture = ExtResource("3_7dees")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 light_mask = 2
 visibility_layer = 2
 position = Vector2(223, 153)
@@ -717,6 +718,7 @@ texture = ExtResource("8_38ax3")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 sprite_frames = SubResource("SpriteFrames_f8nln")
 animation = &"rightStand"
+frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.6, 1.6)
@@ -821,6 +823,10 @@ position = Vector2(1921.36, 640.103)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(25.9795, 35.0808)
 animation = &"左下"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="menuControl" parent="." instance=ExtResource("17_hcs4u")]
 
@@ -955,6 +961,24 @@ volume_db = 4.552
 
 [node name="battleBgm" type="AudioStreamPlayer" parent="."]
 
+[node name="凌若昭2" parent="." instance=ExtResource("19_ws3se")]
+visible = false
+position = Vector2(93, 1381)
+animation = &"左下"
+frame_progress = 0.0
+
+[node name="npcBody" parent="凌若昭2" index="0"]
+visible = false
+
+[node name="effects" parent="凌若昭2" index="5"]
+visible = false
+
+[node name="斩击" parent="凌若昭2/effects" index="3"]
+frame = 0
+
+[node name="buff" parent="凌若昭2" index="6"]
+visible = false
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -969,3 +993,4 @@ volume_db = 4.552
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="凌若昭回忆"]
+[editable path="凌若昭2"]

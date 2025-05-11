@@ -301,7 +301,10 @@ func _process(delta):
 					
 					
 										
-					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)			
+					get_node("battleFieldPicture/enemyInfo/buffs/buff"+str(index+1)).texture = load(icon)		
+					
+					
+						
 		$battleFieldPicture/allyInfo/allyName.text = players[Global.allieSelectIndex].name
 		$battleFieldPicture/allyInfo/hpBar.max_value = players[Global.allieSelectIndex].totalHp
 		
@@ -665,7 +668,38 @@ func _process(delta):
 				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
 				get_parent().get_parent().get_node("subSound").play()					
 	elif Global.onAttackPicking:
-			#Global.target = monsters[Global.targetMonsterIdx]  
+			#Global.target = monsters[Global.targetMonsterIdx] 
+			if Global.onAttackingList[0] == "朱雀":
+				
+				
+				
+				Global.target = players[Global.allieSelectIndex] 
+				for i in players:
+					i.get_node("selectIndic").visible = false
+				Global.target.get_node("selectIndic").visible = true
+				Global.target.get_node("AnimationPlayer").play("selectIndic")					
+				
+				
+				
+				currPlayer.get_parent().get_node("enemyInfo").visible = false
+				currPlayer.get_parent().get_node("allyInfo").visible = true
+				
+				if Input.is_action_just_pressed("ui_right"):
+					if Global.allieSelectIndex == players.size() - 1:
+						Global.allieSelectIndex = 0
+					else:
+						Global.allieSelectIndex += 1
+					Global.target = players[Global.allieSelectIndex]
+					get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+					get_parent().get_parent().get_node("subSound").play()	
+				if Input.is_action_just_pressed("ui_left"):
+					if Global.allieSelectIndex == 0:
+						return
+					Global.allieSelectIndex -= 1
+					get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+					get_parent().get_parent().get_node("subSound").play()
+					
+				return
 			if Input.is_action_just_pressed("ui_left"):
 				if Global.targetMonsterIdx == monsters.size() - 1:
 					Global.targetMonsterIdx = 0
@@ -682,6 +716,7 @@ func _process(delta):
 					Global.targetMonsterIdx -= 1
 				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
 				get_parent().get_parent().get_node("subSound").play()						
+	
 	#道具用在谁身上				
 	if Global.onItemUsePicking:
 		#if Global.currPlayerMagic.size()>0:
@@ -803,18 +838,7 @@ func _process(delta):
 			
 			#magicPanel[2].get_node("Button").grab_focus()
 			
-			
-#	if Global.onMagicSelectPicking:
-#		magicPanel = get_tree().get_nodes_in_group("magic")
-#		#magicPanel[Global.magicSelectIndex].get_node("Button").grab_focus()	
-#		for i in magicPanel:
-#			if i == magicPanel[Global.magicSelectIndex]:
-#				i.get_node("Button").modulate = "ff0000"
-#			else:
-#				i.get_node("Button").modulate = "ffffff"
-		#magicPanel[Global.magicSelectIndex].get_node("Button").modulate = "ff0000"
-			
-
+		
 	#让全部场景中的怪物被定位攻击目标时显示指针
 	for i in monsters:
 			if !Global.onAttacking and	Global.target == i and Global.onAttackPicking and i.animation != remove_numbers_from_string(i.name + "hurt"):
@@ -833,7 +857,7 @@ func _process(delta):
 	for i in players:
 		if Global.target == i and Global.onMagicAttackPicking and Global.currPlayerMagic[Global.magicSelectIndex].attackType == "buff":
 			i.get_node("selectIndic").visible = true
-			i.get_node("AnimationPlayer").play("selectIndic")
+			i.get_node("AnimationPlayer").play("selectIndic")			 
 		elif Global.target == i and Global.onItemUsePicking:
 			i.get_node("selectIndic").visible = true
 			i.get_node("AnimationPlayer").play("selectIndic")			
@@ -908,10 +932,14 @@ func instantiateMonster():
 			# Back row positions with a slight slant
 			posX = (monsterIdx - 3) * -50 + 25
 			posY = (monsterIdx - 3) * 倾斜度 - 200
+
 		if selectedMonsters.size() == 1: 
 			posX = $bossPos.position.x
 			posY = $bossPos.position.y		
 
+			if selectedMonsters[0].name == "青龙0":
+				posX = -200
+				posY = -200
 		# Set the position of the character instance
 		enemySceneInstance.position.x = posX
 		enemySceneInstance.position.y = posY
@@ -958,7 +986,8 @@ func instantiateBoss():
 		enemySceneInstance.monsterMagicList = monsterData.monsterMagicList
 		enemySceneInstance.exp = monsterData.exp
 		enemySceneInstance.gold = monsterData.gold
-
+		enemySceneInstance.autoAttackSound = monsterData.autoAttackSound
+		
 		enemySceneInstance.monsterIndex = monsterIdx + 1
 		enemySceneInstance.set_name(enemySceneInstance.monsterName + str(monsterIdx + 1))
 		
@@ -978,9 +1007,9 @@ func instantiateBoss():
 			posY = (monsterIdx - 3) * 倾斜度 - 200
 
 		if selectedMonsters.size() == 1: 
-			if monsterData.name == "青龙真身":
-				posX = $bossPos.position.x - 100
-				posY = $bossPos.position.y - 100
+			if monsterData.name == "青龙":
+				posX = -200
+				posY = -200
 			else:
 				posX = $bossPos.position.x
 				posY = $bossPos.position.y
@@ -1417,6 +1446,11 @@ func _on_down_button_button_down():
 func _on_right_button_button_down():
 	if !Global.noKeyboard:
 		return
+	for i in players:
+		i.get_node("selectIndic").visible = false
+	players[Global.allieSelectIndex].get_node("selectIndic").visible = false		
+		
+		
 	if Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false:
 		magicPanel = get_tree().get_nodes_in_group("magic")
 		if Global.magicSelectIndex == Global.currPlayerMagic.size() - 1:
@@ -1433,9 +1467,7 @@ func _on_right_button_button_down():
 			if Global.targetMonsterIdx == 0:
 				Global.targetMonsterIdx = monsters.size() - 1
 			else:
-				Global.targetMonsterIdx -= 1
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-			get_parent().get_parent().get_node("subSound").play()					
+				Global.targetMonsterIdx -= 1				
 		else:
 			Global.target = players[Global.allieSelectIndex]  
 
@@ -1444,17 +1476,28 @@ func _on_right_button_button_down():
 			else:
 				Global.allieSelectIndex += 1
 			Global.target = players[Global.allieSelectIndex]
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-			get_parent().get_parent().get_node("subSound").play()	
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+		get_parent().get_parent().get_node("subSound").play()	
 				
 	elif Global.onAttackPicking:				
-			
+		if currPlayer.name != "朱雀":	
 			if Global.targetMonsterIdx == 0:
 				Global.targetMonsterIdx = monsters.size() - 1
 			else:
 				Global.targetMonsterIdx -= 1
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-			get_parent().get_parent().get_node("subSound").play()						
+		else:
+			Global.target = players[Global.allieSelectIndex]  
+			if Global.allieSelectIndex == players.size() - 1:
+				Global.allieSelectIndex = 0
+			else:
+				Global.allieSelectIndex += 1
+			Global.target = players[Global.allieSelectIndex]
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+		get_parent().get_parent().get_node("subSound").play()
+			
+			
+			
+								
 	#道具用在谁身上				
 	if Global.onItemUsePicking:
 		if Global.currUsingItem.info.effect == "damage":
@@ -1487,6 +1530,9 @@ func _on_right_button_button_down():
 func _on_left_button_button_down():
 	if !Global.noKeyboard:
 		return
+	for i in players:
+		i.get_node("selectIndic").visible = false
+	players[Global.allieSelectIndex].get_node("selectIndic").visible = false
 	if Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false:
 		magicPanel = get_tree().get_nodes_in_group("magic")
 		if Global.magicSelectIndex == 0:
@@ -1503,26 +1549,31 @@ func _on_left_button_button_down():
 				Global.targetMonsterIdx = 0
 			else:
 				Global.targetMonsterIdx += 1
-			Global.target = monsters[Global.targetMonsterIdx]
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-			get_parent().get_parent().get_node("subSound").play()									
+			Global.target = monsters[Global.targetMonsterIdx]								
 		else:
 			Global.target = players[Global.allieSelectIndex]  
 			if Global.allieSelectIndex == 0:
 				return
 			Global.allieSelectIndex -= 1
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-			get_parent().get_parent().get_node("subSound").play()					
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+		get_parent().get_parent().get_node("subSound").play()					
 	elif Global.onAttackPicking:
 			#Global.target = monsters[Global.targetMonsterIdx]  
-
+		if currPlayer.name != "朱雀":
 			if Global.targetMonsterIdx == monsters.size() - 1:
 				Global.targetMonsterIdx = 0
 			else:
 				Global.targetMonsterIdx += 1
-			Global.target = monsters[Global.targetMonsterIdx]
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
-			get_parent().get_parent().get_node("subSound").play()									
+			Global.target = monsters[Global.targetMonsterIdx]				
+		else:
+			Global.target = players[Global.allieSelectIndex]  
+			if Global.allieSelectIndex == 0:
+				return
+			else:
+				Global.allieSelectIndex -= 1						
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
+		get_parent().get_parent().get_node("subSound").play()		
+	
 	#道具用在谁身上				
 	if Global.onItemUsePicking:
 		#if Global.currPlayerMagic.size()>0:
@@ -1537,7 +1588,8 @@ func _on_left_button_button_down():
 			Global.target = players[Global.allieSelectIndex]  
 			if Global.allieSelectIndex == 0:
 				return
-			Global.allieSelectIndex -= 1
+			else:
+				Global.allieSelectIndex -= 1	
 			
 
 func _on_accept_button_button_down():
@@ -1578,7 +1630,7 @@ func _on_accept_button_button_down():
 				
 				Global.target = players[Global.allieSelectIndex]
 				currPlayer.target = Global.target
-
+				
 
 			if currPlayer.playerMagic[Global.magicSelectIndex].attackType == "multi":
 				currPlayer.multiPosition = currPlayer.targetPosition
@@ -1597,8 +1649,15 @@ func _on_accept_button_button_down():
 			if monsters:
 		
 				Global.target = monsters[Global.targetMonsterIdx]
-
+			
+			
+			
 			if Global.target or currPlayer.target and currPlayer.canAttack == true:
+				if currPlayer.playerName == "朱雀":
+					currPlayer.canSelect = false
+					Global.target = players[Global.allieSelectIndex]					
+					currPlayer.朱雀auto()
+					return
 				currPlayer.attack(Global.target, "keyboard")
 				if currPlayer.playerName != '姜韵':
 					currPlayer.moveCharacter(deltas)    #重点，把移动和攻击分开，这样就算onAttacking = true 不能重复按之后也能移动
@@ -1612,7 +1671,7 @@ func _on_accept_button_button_down():
 		Global.target = players[Global.allieSelectIndex]
 		currPlayer.useItem(Global.currUsingItem, Global.target, "keyboard") 	
 		Global.onItemUsePicking = false
-
+	
 	if currPlayer.commanButtonIndex == 1 and Global.onMultiHit == 0:
 		currPlayer.attackButton.modulate = "#00f2e9"
 		currPlayer.magicButton.modulate = "#ffffff"

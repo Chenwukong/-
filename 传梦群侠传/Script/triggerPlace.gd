@@ -20,9 +20,11 @@ func _process(delta):
 			i.get_node("Area2D/CollisionShape2D").disabled = false
 
 func _on_area_2d_area_entered(area):
+	print(11111)
 	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(triggerEvent).disable == false:
 		var player = area.get_parent()
 		Global.triggerPlace.get(triggerEvent).disable = true
+		print(triggerEvent)
 		match triggerEvent:
 			"二娃请求":
 				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("二娃"))
@@ -165,7 +167,15 @@ func _on_area_2d_area_entered(area):
 			"凌若昭回忆":
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("凌若昭回忆"))							
 			"再见小二":
-				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("再见小二"))							
+				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("再见小二"))		
+			"寻四圣2":
+				DialogueManager.show_chat(load("res://Dialogue/7.dialogue"),get_npc_dialogue("寻四圣"))		
+			"寻四圣3":
+				DialogueManager.show_chat(load("res://Dialogue/7.dialogue"),get_npc_dialogue("寻四圣"))									
+			"方寸山之魔":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("寻四方"))						
+			"初见观音":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("初见观音"))											
 				
 func get_npc_dialogue(npc_id):
 	

@@ -566,6 +566,7 @@ texture = ExtResource("4_cycxu")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
 autoplay = "leftStand"
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -952,6 +953,9 @@ position = Vector2(13, -99)
 sprite_frames = SubResource("SpriteFrames_ryf6f")
 frame_progress = 0.016813
 
+[node name="斩击" parent="鬼火/effects" index="4"]
+frame = 0
+
 [node name="堕逝鬼魂" parent="." instance=ExtResource("28_srbmk")]
 visible = false
 position = Vector2(1582.79, 508.245)
@@ -959,6 +963,9 @@ sprite_frames = SubResource("SpriteFrames_rlj4p")
 
 [node name="CollisionPolygon2D" parent="堕逝鬼魂/npcBody" index="1"]
 disabled = true
+
+[node name="斩击" parent="堕逝鬼魂/effects" index="3"]
+frame = 0
 
 [node name="野鬼1" parent="." instance=ExtResource("28_srbmk")]
 position = Vector2(53.3813, 1766.09)
@@ -969,6 +976,9 @@ npcName = "野鬼"
 [node name="CollisionPolygon2D" parent="野鬼1/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
 
+[node name="斩击" parent="野鬼1/effects" index="3"]
+frame = 0
+
 [node name="野鬼2" parent="." instance=ExtResource("28_srbmk")]
 position = Vector2(1063, 2239)
 sprite_frames = SubResource("SpriteFrames_e8shj")
@@ -977,6 +987,9 @@ npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼2/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
+
+[node name="斩击" parent="野鬼2/effects" index="3"]
+frame = 0
 
 [node name="野鬼3" parent="." instance=ExtResource("28_srbmk")]
 position = Vector2(2055, 1119)
@@ -987,6 +1000,9 @@ npcName = "野鬼"
 [node name="CollisionPolygon2D" parent="野鬼3/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
 
+[node name="斩击" parent="野鬼3/effects" index="3"]
+frame = 0
+
 [node name="野鬼4" parent="." instance=ExtResource("28_srbmk")]
 position = Vector2(462, 765)
 sprite_frames = SubResource("SpriteFrames_e8shj")
@@ -996,6 +1012,9 @@ npcName = "野鬼"
 [node name="CollisionPolygon2D" parent="野鬼4/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
 
+[node name="斩击" parent="野鬼4/effects" index="3"]
+frame = 0
+
 [node name="野鬼5" parent="." instance=ExtResource("28_srbmk")]
 position = Vector2(1901, 599)
 sprite_frames = SubResource("SpriteFrames_e8shj")
@@ -1004,6 +1023,9 @@ npcName = "野鬼"
 
 [node name="CollisionPolygon2D" parent="野鬼5/npcBody" index="1"]
 polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -226.09, -281.381, -207.09, -283.381, -186.09, -264.381, -183.09, -245.381, -182.09, -230.381, -185.09, -233.381, -218.09, -232.381, -223.09, -234.381, -227.09, -236.381, -229.09, -241.381, -232.09, -248.381, -235.09)
+
+[node name="斩击" parent="野鬼5/effects" index="3"]
+frame = 0
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

@@ -1,5 +1,14 @@
 extends Node
 
+
+#1初始
+#2建业
+#3长安
+#4傲来
+#5地府
+#6北俱芦洲
+	
+
 var keyItem = {
 	"避祸香囊":{
 		"name": "避祸香囊",
@@ -188,6 +197,17 @@ var weapon = {
 		"added": false,
 		"gold": 3000
 	},
+	"碧玉剑":{
+		"name": "碧玉剑",
+		"user": "时追云",
+		"icon": "res://Icons/〓碧玉剑 副本.png",
+		"picture": "res://Pictures/〓碧玉剑.png",
+		"value": {"additionDmg": 300* Global.enKey},
+		"description": "时追云专属武器，伤害+300，带着黑山的灵气",
+		"key":true,
+		"added": false,
+		"gold": 10000
+	},	
 	"竹节双剑":{
 		"name": "竹节双剑",
 		"user": "凌若昭",
@@ -255,17 +275,7 @@ var weapon = {
 		"gold": 20
 	},		
 			
-	"碧玉剑":{
-		"name": "碧玉剑",
-		"user": "时追云",
-		"icon": "res://Icons/〓碧玉剑 副本.png",
-		"picture": "res://Pictures/〓碧玉剑.png",
-		"value": {"additionDmg": 300* Global.enKey},
-		"description": "时追云专属武器，伤害+300，带着黑山的灵气",
-		"key":true,
-		"added": false,
-		"gold": 10000
-	},	
+
 	
 }
 
@@ -348,7 +358,7 @@ var shoes = {
 		"icon": "res://Icons/0283-30225bdd-00004 副本.png",
 		"picture": "res://Pictures/Pictures/xz (8).png",
 		"value": {"addPlayerSpeed": 15 * Global.enKey},
-		"description": "速度+15，可是刘皇叔之作？",
+		"description": "速度+15，布缝制的鞋子，可以起到防御的作用",
 		"key":false,
 		"added":false,
 		"gold": 100,
@@ -359,33 +369,79 @@ var shoes = {
 		"icon": "res://Icons/0283-30225bdd-00003 副本.png",
 		"picture": "res://Pictures/Pictures/xz (7).png",
 		"value": {"addPlayerSpeed": 20 * Global.enKey},
-		"description": "速度+20，人造革",
+		"description": "速度+20，牛皮缝制的靴子，速度和防御作用都比较强",
 		"key":false,
 		"added":false,
 		"gold": 300
 	},
+	"马靴":{
+		"name": "马靴",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/xz (9).png",
+		"picture": "res://Pictures/Pictures/xz (9).png",
+		"value": {"addPlayerSpeed": 30 * Global.enKey},
+		"description": "速度+30，皮制的马靴，可以起到防御的作用",
+		"key":false,
+		"added":false,
+		"gold": 6000
+	},		
 	"神行靴":{
 		"name": "神行靴",
 		"user": "all",
 		"icon": "res://Pictures/Pictures/xz (6).png",
 		"picture": "res://Pictures/Pictures/xz (6).png",
-		"value": {"addPlayerSpeed": 30 * Global.enKey},
-		"description": "速度+30，飞起",
+		"value": {"addPlayerSpeed": 40 * Global.enKey},
+		"description": "速度+40，非常轻便的靴子，可以起到防御的作用",
 		"key":false,
 		"added":false,
 		"gold": 800
 	},	
-	"无暇靴":{
-		"name": "无暇靴",
+	"绿靴":{
+		"name": "绿靴",
 		"user": "all",
-		"icon": "res://Pictures/Pictures/xz (9).png",
-		"picture": "res://Pictures/Pictures/xz (9).png",
-		"value": {"addPlayerSpeed": 40 * Global.enKey},
-		"description": "速度+40，天鞋无暇之作",
+		"icon": "res://Pictures/Pictures/xz (2).png",
+		"picture": "res://Pictures/Pictures/xz (2).png",
+		"value": {"addPlayerSpeed": 50 * Global.enKey},
+		"description": "速度+50，绿水晶制成的鞋子，防御作用非常的强",
 		"key":false,
 		"added":false,
-		"gold": 6000
+		"gold": 800
+	},	
+	"追星踏月":{
+		"name": "追星踏月",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/xz (2).png",
+		"picture": "res://Pictures/Pictures/xz (2).png",
+		"value": {"addPlayerSpeed": 60 * Global.enKey},
+		"description": "速度+60，由于鞋上有云月图案而得名，有不错的防御力",
+		"key":false,
+		"added":false,
+		"gold": 800
 	},		
+	"万里追云":{
+		"name": "万里追云",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/xz.png",
+		"picture": "res://Pictures/Pictures/xz.png",
+		"value": {"addPlayerSpeed": 70 * Global.enKey},
+		"description": "速度+70，可在任何地形疾走的神履，有不错的防御力",
+		"key":false,
+		"added":false,
+		"gold": 800
+	},			
+	"踏雪无痕":{
+		"name": "踏雪无痕",
+		"user": "all",
+		"icon": "res://Pictures/Pictures/xz (3).png",
+		"picture":"res://Pictures/Pictures/xz (3).png",
+		"value": {"addPlayerSpeed": 80 * Global.enKey},
+		"description": "速度+80，包蓄地之灵气，穿之幻影如风，踏雪无痕",
+		"key":false,
+		"added":false,
+		"gold": 800
+	},			
+	
+	
 	
 }
 
@@ -401,22 +457,23 @@ var accessories = {
 		"added":false,
 		"gold":9999999999999999999,
 	},
-	"江湖夜雨":{
-		"name": "江湖夜雨",
+	
+	"五色飞石":{
+		"name": "五色飞石",
 		"user": "all",
-		"icon": "res://Pictures/Pictures/■江湖夜雨.png",
-		"picture": "res://Pictures/Pictures/■江湖夜雨.png",
+		"icon": "res://Pictures/Pictures/SP.png",
+		"picture": "res://Pictures/Pictures/SP.png",
 		"value": {"addPlayerSpeed": 10* Global.enKey, "addPhysicDefense": 20* Global.enKey, "addMagicDefense": 20* Global.enKey, "additionDmg":20* Global.enKey, "addHp":50* Global.enKey},
 		"description": "速度+10, 物理防御+20，灵力防御+20，伤害+20，血量+50",
 		"key":false,
 		"added":false,
 		"gold": 1200,
 	},	
-	"五色飞石":{
-		"name": "五色飞石",
+	"江湖夜雨":{
+		"name": "江湖夜雨",
 		"user": "all",
-		"icon": "res://Pictures/Pictures/SP.png",
-		"picture": "res://Pictures/Pictures/SP.png",
+		"icon": "res://Pictures/Pictures/■江湖夜雨.png",
+		"picture": "res://Pictures/Pictures/■江湖夜雨.png",
 		"value": {"addPlayerSpeed": 20* Global.enKey, "addPhysicDefense": 180* Global.enKey, "addMagicDefense": 180* Global.enKey, "additionDmg":50* Global.enKey, "addHp": 150* Global.enKey},
 		"description": "速度+20, 物理防御+180，灵力防御+180，伤害+50，血量+150",
 		"key":false,

@@ -271,6 +271,9 @@ npcName = "酒店老板"
 [node name="CollisionPolygon2D" parent="酒店老板/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -291, -283, -296, -248, -289, -233, -273, -225, -259, -224, -250, -227, -241, -233, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
+[node name="斩击" parent="酒店老板/effects" index="3"]
+frame = 0
+
 [node name="npc" parent="." instance=ExtResource("27_yyfj7")]
 position = Vector2(354, 677)
 sprite_frames = SubResource("SpriteFrames_3esa4")
@@ -302,7 +305,9 @@ position = Vector2(214, 485)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-15, 10)
-animation = &"右上"
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
 

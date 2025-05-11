@@ -19,6 +19,7 @@ var time_since_last_frame_change = 0
 var current_frame = 0
 var player 
 var noMouse = false
+var friendIndex = 0
 func get_all_audio_stream_player2D():
 	var audio_players = []
 	var all_nodes = get_tree().current_scene.get_children()
@@ -91,12 +92,23 @@ func _process(delta):
 			toSix = true
 			for i in all_nodes:
 				i.volume_db = 6
-	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")):
+	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and get_tree().current_scene.name != "北俱战场":
 		$"宠物列表".visible = false
 		$"制作人列表".visible = false
 		$"其他梦单".visible = false
 		$map.visible = false
 		get_tree().current_scene.get_node("player").canMove = true
+
+
+
+
+	if Global.onTeamPet.size()>0:
+		$"盟友列表/petAnimation"
+
+
+
+
+
 
 	if Global.onTeamSmallPet.size()>0:	
 		$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
@@ -829,7 +841,6 @@ func _on_button_button_down():
 	$msgBox.visible = false
 	$map.visible = false
 	$position.visible = false
-	$menutButton.visible = false
 	$questHint.visible = false
 	
 	
@@ -871,3 +882,98 @@ func _on_pet_right_button_button_down():
 			$AudioStreamPlayer2D2.play()
 			break  # 找到后立即退出循环
 
+
+
+func _on_team_button_button_down():
+	if Global.onTeamPet.size() == 0:
+		return
+	#Global.onFriendPet = true
+	$msgBox.visible = false
+	$map.visible = false
+	$position.visible = false
+	$questHint.visible = false		
+	$"队伍".play("click")
+	$"盟友列表".visible = true
+	get_tree().current_scene.get_node("player").canMove = false
+	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
+	$AudioStreamPlayer2D.play()		
+	swapFriend()
+	
+
+func _on_friend_close_button_button_down():
+	friendIndex = 0
+	$盟友列表.visible = false
+	$msgBox.visible = true
+	$position.visible = true
+	$menutButton.visible = true			
+	get_tree().current_scene.get_node("player").canMove = true
+	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
+	$AudioStreamPlayer2D.play()
+
+
+func _on_friend_right_button_button_down():
+	if friendIndex < Global.onTeamPet.size() - 1:
+		friendIndex += 1	
+		$AudioStreamPlayer2D2.play()
+	swapFriend()
+
+func _on_friend_left_button_button_down():
+	if friendIndex != 0:
+		friendIndex -= 1		
+		$AudioStreamPlayer2D2.play()
+	swapFriend()
+func swapFriend():
+	
+	$"盟友列表/petAnimation".play(Global.onTeamPet[friendIndex])
+	$"盟友列表/petName".text = Global.onTeamPet[friendIndex]
+	$"盟友列表/伤害/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].str + FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addStr    )
+	$"盟友列表/怒气/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].hp + FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addHp    )
+	$"盟友列表/灵力/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].abilityPower + FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower    )
+	$"盟友列表/饱食度/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].playerSpeed + FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addPlayerSpeed    )
+	$"盟友列表/等级/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].level)
+	$"盟友列表/经验/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].exp) + " / " + str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].needExp)
+	$"盟友列表/技能名字".text = FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].playerMagic[0].name
+	$"盟友列表/技能名字/Label".text = FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].playerMagic[0].description	
+	$"盟友列表/潜力/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential)
+
+func _on_team_button_mouse_entered():
+	$"队伍/Label".visible = true
+
+
+func _on_team_button_mouse_exited():
+	$"队伍/Label".visible = false
+
+
+func _on_力量加点_button_down():
+	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
+		return	
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addStr += 1
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	swapFriend()
+
+func _on_血量加点_button_down():
+	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
+		return	
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addHp += 10
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	swapFriend()
+func _on_气运加点_button_down():
+	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
+		return
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addCritChance += 0.25
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addBlockChance += 0.25
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	swapFriend()
+func _on_灵力加点_button_down():
+	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
+		return
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 10
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	swapFriend()
+
+func _on_敏捷加点_button_down():
+	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
+		return
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addPlayerSpeed += 0.6
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	swapFriend()

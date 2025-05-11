@@ -353,12 +353,14 @@ position = Vector2(307, 231)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-1, 1)
-animation = &"右上"
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="时追云" parent="." instance=ExtResource("29_remir")]
@@ -372,7 +374,10 @@ disabled = true
 [node name="effect" parent="时追云" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="时追云/effects" index="1"]
+[node name="斩击" parent="时追云/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="时追云/effects" index="4"]
 frame = 4
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -402,8 +407,11 @@ position = Vector2(11.5, 33.5)
 [node name="CanvasLayer" parent="." instance=ExtResource("20_tlsmh")]
 
 [node name="姜韵" parent="." instance=ExtResource("21_sq2u0")]
+visible = false
 modulate = Color(1, 1, 1, 0.513726)
 position = Vector2(318, 325)
+animation = &"up"
+autoplay = "up"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

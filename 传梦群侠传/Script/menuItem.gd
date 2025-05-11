@@ -24,7 +24,6 @@ func _on_button_button_down():
 		return 
 	Global.itemPlayerIndex = 0
 	Global.itemPlayers = []
-	print(9999999999)
 	for i in $"../../../../..".bagMenuItems.size():
 		if $"../../../../..".bagMenuItems[i] == self:
 			$"../../../../..".itemSelectIndex = i

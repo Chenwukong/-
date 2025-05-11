@@ -81,7 +81,7 @@ func _process(delta):
 			velocity = Vector2(0,0)
 
 		if velocity == Vector2(0,0):
-			if is_instance_valid($"../AnimationPlayer"):
+			if has_node("../AnimationPlayer"):
 				if !$"../AnimationPlayer".is_playing():
 					current_frame = 0
 					if frames.size() != 0:

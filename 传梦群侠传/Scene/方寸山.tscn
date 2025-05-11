@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://b6m3yto826tlp"]
+[gd_scene load_steps=132 format=3 uid="uid://b6m3yto826tlp"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_518gt"]
 [ext_resource type="Texture2D" uid="uid://4dph760fxo8y" path="res://panoramas2/方寸山.jpg" id="2_23nmh"]
@@ -812,6 +812,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rbjb"]
 size = Vector2(651, 394)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ovmns"]
+size = Vector2(446.644, 248)
+
 [node name="方寸山" type="Node2D"]
 script = ExtResource("1_518gt")
 
@@ -832,7 +835,9 @@ scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
+animation = &"rightStand"
 autoplay = "upStand"
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -1028,7 +1033,10 @@ disabled = true
 [node name="effect" parent="黑山" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="黑山/effects" index="1"]
+[node name="斩击" parent="黑山/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="黑山/effects" index="4"]
 frame = 4
 
 [node name="clouds" type="Node2D" parent="."]
@@ -1323,7 +1331,10 @@ offset_bottom = 54.0
 [node name="effect" parent="火" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="火/effects" index="1"]
+[node name="斩击" parent="火/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="火/effects" index="4"]
 frame = 4
 
 [node name="火2" parent="." instance=ExtResource("31_qltgs")]
@@ -1342,7 +1353,10 @@ offset_bottom = 54.0
 [node name="effect" parent="火2" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="火2/effects" index="1"]
+[node name="斩击" parent="火2/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="火2/effects" index="4"]
 frame = 4
 
 [node name="登顶" parent="." instance=ExtResource("41_yvotq")]
@@ -1366,7 +1380,10 @@ polygon = PackedVector2Array(-284, -312, -293, -282, -296, -248, -293, -217, -27
 [node name="effect" parent="罗师兄" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="罗师兄/effects" index="1"]
+[node name="斩击" parent="罗师兄/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="罗师兄/effects" index="4"]
 frame = 4
 
 [node name="菩提老祖" parent="." instance=ExtResource("31_qltgs")]
@@ -1386,13 +1403,13 @@ one_shot = true
 [node name="小二" parent="." instance=ExtResource("45_rtf2n")]
 position = Vector2(2274, 300)
 
-[node name="小二" parent="小二" index="0"]
-animation = &"右上"
-
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="篝火" type="AnimatedSprite2D" parent="."]
@@ -1424,7 +1441,10 @@ npcName = "机关人"
 [node name="effect" parent="机关人" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="机关人/effects" index="1"]
+[node name="斩击" parent="机关人/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="机关人/effects" index="4"]
 frame = 4
 
 [node name="提毗2" parent="." instance=ExtResource("31_qltgs")]
@@ -1494,7 +1514,10 @@ polygon = PackedVector2Array(-318.091, -328.091, -330.818, -317.182, -285.364, -
 [node name="effect" parent="碧玉剑" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="碧玉剑/effects" index="1"]
+[node name="斩击" parent="碧玉剑/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="碧玉剑/effects" index="4"]
 frame = 4
 
 [node name="听见异响" parent="." instance=ExtResource("41_yvotq")]
@@ -1524,6 +1547,14 @@ triggerEvent = "真方寸山"
 position = Vector2(133.787, 44.5588)
 shape = SubResource("RectangleShape2D_2rbjb")
 
+[node name="方寸山之魔" parent="." instance=ExtResource("41_yvotq")]
+visible = false
+position = Vector2(1467.72, 149.269)
+
+[node name="CollisionShape2D" parent="方寸山之魔/Area2D" index="0"]
+position = Vector2(-27.0455, 36.7314)
+shape = SubResource("RectangleShape2D_ovmns")
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
@@ -1548,3 +1579,4 @@ shape = SubResource("RectangleShape2D_2rbjb")
 [editable path="CanvasLayer/importantMsg"]
 [editable path="碧玉剑"]
 [editable path="真方寸山"]
+[editable path="方寸山之魔"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d0ba0or6sgmcr"]
+[gd_scene load_steps=32 format=3 uid="uid://d0ba0or6sgmcr"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2q0o2"]
 [ext_resource type="Texture2D" uid="uid://cfl7jeyt1xwix" path="res://panoramas2/神龙窟一层.jpg" id="2_mqftu"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_xufre"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="21_x8v2p"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="22_op26d"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="22_x6fd3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -118,6 +119,9 @@ shader_parameter/wind_speed = 0.2
 shader_parameter/snow_color = Color(1, 1, 1, 1)
 shader_parameter/direction = -1.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ap7g"]
+size = Vector2(285, 145)
+
 [node name="龙窟1" type="Node2D"]
 script = ExtResource("1_2q0o2")
 
@@ -127,9 +131,13 @@ texture = ExtResource("2_mqftu")
 
 [node name="player" parent="." instance=ExtResource("3_6ek0m")]
 z_index = 2
-position = Vector2(2543, 1952)
+position = Vector2(756.382, 1355.69)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="player" index="1"]
+animation = &"up"
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -292,11 +300,15 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
+frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
+
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("17_4ecrp")]
@@ -372,6 +384,13 @@ offset_top = -672.0
 offset_right = 3501.0
 offset_bottom = 2910.0
 
+[node name="TriggerPlace" parent="." instance=ExtResource("22_x6fd3")]
+position = Vector2(790.188, 1315.89)
+
+[node name="CollisionShape2D" parent="TriggerPlace/Area2D" index="0"]
+position = Vector2(-25.6877, 14.611)
+shape = SubResource("RectangleShape2D_3ap7g")
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -387,3 +406,4 @@ offset_bottom = 2910.0
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="TriggerPlace"]

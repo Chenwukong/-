@@ -239,6 +239,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -387,6 +388,10 @@ position = Vector2(2255, 1413)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
+frame_progress = 0.0
+
+[node name="斩击" parent="小二/小二/effects" index="3"]
+frame = 0
 
 [node name="牛妖" parent="." instance=ExtResource("34_lmxbt")]
 position = Vector2(2164, 1305)
@@ -425,6 +430,9 @@ visible = false
 [node name="CollisionPolygon2D" parent="蓝羽妖女头/npcBody" index="1"]
 visible = false
 disabled = true
+
+[node name="斩击" parent="蓝羽妖女头/effects" index="3"]
+frame = 0
 
 [node name="王婆" parent="." instance=ExtResource("34_lmxbt")]
 position = Vector2(1353, 267)
@@ -476,6 +484,9 @@ visible = false
 visible = false
 position = Vector2(1205, 293)
 sprite_frames = SubResource("SpriteFrames_oxwlf")
+
+[node name="斩击" parent="小二2/effects" index="3"]
+frame = 0
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-393, 11)

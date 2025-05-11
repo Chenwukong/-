@@ -665,9 +665,9 @@ set Global.changevis("大唐官府大厅","梧桐")
 set Global.getnode("姜韵").visible = true
 set Global.getnode("姜韵").play("left")
 set Global.changevis("大唐官府大厅","凌若昭")
-程咬金: [speed=0.5]总算是解决掉一部分了，等我休息会再去干他们
+程咬金: [speed=0.5]总算是解决他们了
 时追云: [speed=0.5]得把他们杀到怕
-梧桐: [speed=0.5]战争可不是一两个人能左右的事啊
+梧桐: [speed=0.5]战争可不是一两个人能左右的事啊，如果他们下次还来该怎么办
 师爷: [speed=0.5]梧桐仙人说的是啊，哪怕你们再强，力量也会有用尽的时候
 时追云: [speed=0.5]这位是？
 梧桐: [speed=0.5]嘶，你！
@@ -723,7 +723,9 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 程咬金: [speed=0.5]这么拼？不行，按老程可不能给他比下去了，拿我斧来！
 时追云: [speed=0.5]我们会尽快回来
 师爷: [speed=0.5]不用担心我们，实在不行，我们还有锁妖塔！
-凌若昭: [speed=0.5]闭上眼，飞咯！
+小二: [speed=0.5]话说戒色呢
+师爷: [speed=0.5]他貌似已经回寺了
+凌若昭: [speed=0.5]那闭上眼，准备飞咯！
 
 set Global.changeScene("方寸山", null)
 set Global.onTalk = false
@@ -1287,15 +1289,18 @@ set Global.changevis("枯骨洞","凌若昭")
 set Global.getnode("姜韵").visible = true
 set Global.changevis("枯骨洞","梧桐")
 set Global.getnode("player").visible = true
-时追云惊: [speed=0.5]发生了什么 
-小二: [speed=0.5]她明明什么都不想争，什么都不想抢，她明明那么善良
-小二: [speed=0.5]为什么这种事要发生在她身上！
+时追云惊: [speed=0.5]发生了什么
+梧桐: [speed=0.5]叶姑娘貌似要重伤不治了
+小二: [speed=0.5]她明明什么都不想争，什么都不想抢
+小二: [speed=0.5]她明明那么善良,为什么这种事要发生在她身上！
 小二: [speed=0.5]那些小妖可能会为了自己的性命而不得不做恶，可你们，明明什么都不缺！
 青面兽: [speed=0.5]哼，事已至此你说什么都没用了，把你们全杀了得了
 小二: [speed=0.5]呵呵呵呵呵呵
 小二: [speed=0.5]哈哈哈哈哈哈哈哈哈哈
 凌若昭哀: [speed=0.5]小二...
-小二: [speed=0.5]我知道了，上天赐给我这种力量就意味着有我必须去做的事，我若放任你等活着，就是对不起所有被你们残害之人！
+青面兽: [speed=0.5]已经怕疯了吗
+小二: [speed=0.5]我明白了，明白我为什么会有这种力量
+小二: [speed=0.5]上天赐给我这种力量就意味着有我必须去做的事，我若放任你等活着，就是对不起所有被你们残害之人！
 小二: [speed=0.5]人归人，妖归妖，而我是我，任何人都不能决定我的命运！
 
 set Global.onHurry = true
@@ -1307,12 +1312,12 @@ set Global.playsound("res://Audio/SE/猛兽2.ogg")
 set Global.toggleballon()
 [next=1]
 set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
-[next=1]
+[next=2]
 set Global.toggleballon()
 青面兽: [speed=0.5]这妖力。。。原来你就是那个天命人！
 
 小二真身: 老大若昭，随我杀了他！
-时追云: 好！
+时追云怒: 好！
 凌若昭怒: 嗯！
 set Global.onTeamPlayer.append("小二真身")
 set get_tree().current_scene.bossFight("青面兽","res://Audio/BGM/Hollow Knight OST - False Knight.mp3", "再见小二")
@@ -1326,6 +1331,11 @@ set Global.onTalk = false
 ~ 再见小二7
 set Global.onTalk = true
 set Global.onHurry = false
+set Global.playsound("res://Audio/SE/049-Explosion02.ogg")
+set Global.getnode("青面兽/effects/爆炸").visible = true
+set Global.getnode("青面兽/effects/爆炸").play()
+[next=2]
+
 set Global.getnode("青面兽").visible = false
 set Global.changebgm("res://Audio/BGM/SWD5 无奈.mp3")
 
@@ -1352,6 +1362,8 @@ set Global.playsound("res://Audio/SE/回复-仙术.ogg")
 梧桐: [speed=0.5]先别急着谢我，我只能续她一条命，但她估计会保持昏迷
 虎范: [speed=0.5]啊，那该怎么办啊，求求你救救她啊大仙，我愿意用我的命换她好好的！
 虎范: [speed=0.5]他们都在说天命天命，可难道我们族群的天命就是灭门绝户吗！我只想她好好的活着啊！
+虎范: [speed=0.5]女婿，你知道她每次压抑你妖化的法术要损耗她多少生命力吗
+小二真身: 什么！？她
 时追云: [speed=0.5]...
 姜韵哀: [speed=0.5]...
 时追云: [speed=0.5]有什么我们能做的吗梧桐仙人？
