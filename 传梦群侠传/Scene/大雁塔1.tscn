@@ -4781,9 +4781,6 @@ position = Vector2(2297, 737)
 animation = &"左上"
 frame_progress = 0.0
 
-[node name="斩击" parent="小二/小二/effects" index="3"]
-frame_progress = 0.0
-
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="button_down" from="CanvasLayer/menutButton" to="." method="_on_menut_button_button_down" flags=18]

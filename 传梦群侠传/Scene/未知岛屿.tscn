@@ -525,9 +525,6 @@ frame_progress = 0.0
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="斩击" parent="小二/小二/effects" index="3"]
-frame_progress = 0.0
-
 [node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
@@ -626,9 +623,6 @@ position = Vector2(-1909.97, -1040.47)
 color = Color(0.847474, 0.847474, 0.847474, 1)
 
 [node name="messageLayer" parent="." instance=ExtResource("29_703ra")]
-
-[node name="importantMsg" parent="messageLayer" index="0"]
-visible = false
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

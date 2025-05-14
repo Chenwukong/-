@@ -182,7 +182,6 @@ func _process(delta):
 							icon = 	"res://Icons/305.png"											
 						elif i.buffs[index].keys()[0] == "onTireDebuff":
 							icon = 	"res://Icons/629.png"													
-									
 						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).texture = load(icon)	
 					
 		else:
@@ -380,7 +379,7 @@ func _process(delta):
 			for index in players[Global.allieSelectIndex].buffs.size():	
 				var i = players[Global.allieSelectIndex]
 				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).visible = true	
-				
+				print(i.buffs[index].keys())
 				var icon
 				if i.buffs[index].keys()[0] == "onAttackBuff":
 					icon = "res://Icons/317.png"

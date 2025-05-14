@@ -125,6 +125,7 @@ func _ready():
 	hp = FightScenePlayers.fightScenePlayerData.get(playerName).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(playerName).addHp)
 	critChance =  FightScenePlayers.fightScenePlayerData.get(playerName).critChance
 	players = get_tree().get_nodes_in_group("fightScenePlayers")
+	
 	currHp = FightScenePlayers.fightScenePlayerData.get(playerName).currHp
 	currMp = FightScenePlayers.fightScenePlayerData.get(playerName).currMp
 
@@ -241,6 +242,7 @@ func _process(delta):
 			get_node("Control/speedBar").value = speedBar
 
 	if speedBar >= 100:
+		print(onHealBuff)
 		speedBar = 0
 		if onTireDebuff:
 			pass
@@ -1564,6 +1566,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 			
 			if magicControlType == "keyboard":
 				Global.allieTarget = players[Global.allieSelectIndex]
+				print(Global.allieTarget)
 				Global.buffTarget.append(players[Global.allieSelectIndex])
 			else:
 				Global.allieTarget = self
@@ -1630,7 +1633,8 @@ func castMagic(delta, magic, target, type, onLastMagic):
 								buffTarget.onHealBuff = magic.duration	
 								for x in buffTarget.buffs:
 									pass
-								buffTarget.buffs.append({"onHpBuff": buffTarget.onHealBuff})
+								healBuffAmount = magic.value
+								buffTarget.buffs.append({"onHealBuff": buffTarget.onHealBuff})
 								buffTarget.set(i, buffTarget.get(i) + magic.value)
 								
 								buffTarget.get_node("buffArea").visible = true
