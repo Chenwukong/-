@@ -20,7 +20,7 @@ func _process(delta):
 			i.get_node("Area2D/CollisionShape2D").disabled = false
 
 func _on_area_2d_area_entered(area):
-	print(11111)
+
 	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(triggerEvent).disable == false:
 		var player = area.get_parent()
 		Global.triggerPlace.get(triggerEvent).disable = true
@@ -175,7 +175,15 @@ func _on_area_2d_area_entered(area):
 			"方寸山之魔":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("寻四方"))						
 			"初见观音":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("初见观音"))											
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("初见观音"))				
+			"五庄观":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("五庄观"))						
+			"五庄观2":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("五庄观"))													
+			"除虫":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("除虫"))						
+			"再见观音":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("再见观音"))					
 				
 func get_npc_dialogue(npc_id):
 	

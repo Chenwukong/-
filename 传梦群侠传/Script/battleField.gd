@@ -181,7 +181,8 @@ func _process(delta):
 						elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
 							icon = 	"res://Icons/305.png"											
 						elif i.buffs[index].keys()[0] == "onTireDebuff":
-							icon = 	"res://Icons/629.png"																
+							icon = 	"res://Icons/629.png"													
+									
 						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).texture = load(icon)	
 					
 		else:

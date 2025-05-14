@@ -195,7 +195,7 @@ func _process(delta):
 		$buff.visible = true
 		$buff.play("力竭")		
 	else:
-		$buff.visible = false	
+		$buff.visible = false 	
 	currDelta = delta
 	itemList = []
 	for i in FightScenePlayers.battleItem.keys():
@@ -1618,7 +1618,25 @@ func castMagic(delta, magic, target, type, onLastMagic):
 								buffTarget.get_node("buffArea").play("currPlayerSpeed")
 								buffTarget.get_node("buff").visible = true
 								buffTarget.get_node("buff").play("speed")
+					if i == "contHp":
+						i = "hp"
+						if buffTarget.onHealBuff:
+							buffTarget.get_node("buffArea").visible = true
+							buffTarget.get_node("buffArea").play("contHp")
+						
+						else:
+							if buffTarget.alive == true:
 								
+								buffTarget.onHealBuff = magic.duration	
+								for x in buffTarget.buffs:
+									pass
+								buffTarget.buffs.append({"onHpBuff": buffTarget.onHealBuff})
+								buffTarget.set(i, buffTarget.get(i) + magic.value)
+								
+								buffTarget.get_node("buffArea").visible = true
+								buffTarget.get_node("buffArea").play("contHp")
+								buffTarget.get_node("buff").visible = true
+								buffTarget.get_node("buff").play("contHp")								
 				
 					if i == "currStr":
 						if buffTarget.onAttackBuff:

@@ -49,6 +49,11 @@ var consumeItem = {
 		"info": ItemData.consume.get("西瓜"),
 		"number": 100
 	},	
+	"人参果":{
+		"info": ItemData.consume.get("人参果"),
+		"number": 1
+	},		
+	
 }
 
 var battleItem = {
@@ -1663,7 +1668,23 @@ var fightScenePlayerData = {
 				"audio":"res://Audio/SE/法术12.ogg",
 				"icon": "res://Icons/水攻.png",
 			},
-
+			{
+				"name": "净瓶仙露",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["contHp"], 
+				"value": 600,
+				"cost": 10,
+				"description": "杨柳仙露的功效，持续恢复血量",	
+				"effectArea": "aoe",
+				"animationArea":"allie",
+				"effectingNum": 2,
+				"duration": 5,
+				"audio": "res://Audio/SE/回复-观音.ogg",
+				"icon":"res://Icons/●图标 (77).png",
+			},
 			
 			# Add more magic spells as needed
 			],
@@ -2760,11 +2781,10 @@ func calculate_speed_for_level(level, player = null):
 	var speedIncreasePerLevel = 2  # Speed increase per level
 	if player == "大海龟":
 		baseSpeed = 35.0
+		speedIncreasePerLevel = 3	
 	if player == "敖阳" or player == "敖雨" or player == "金甲":
 		speedIncreasePerLevel = 4
-	if player == "大海龟":
-		speedIncreasePerLevel = 3		
-		
+
 		
 	var totalSpeed = baseSpeed + speedIncreasePerLevel * (level - 1)
 

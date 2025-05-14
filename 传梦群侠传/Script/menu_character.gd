@@ -128,7 +128,17 @@ func useItem():
 						i.get_node("itemNum").text = str(int(i.get_node("itemNum").text) - 1)
 					if i.get_node("itemNum").text == "0":
 						i.visible = false				
-						
+			if item.info.effect == "special":
+				
+				if item.info.name == "人参果":
+					FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp += 500 * Global.enKey	
+				updateStatus()	
+				item.number -= 1
+				for i in menuItems:
+					if i.get_node("itemName").text == Global.currMenuItem:
+						i.get_node("itemNum").text = str(int(i.get_node("itemNum").text) - 1)
+					if i.get_node("itemNum").text == "0":
+						i.visible = false			
 		else:
 			$"../../../subSound".stream = load("res://Audio/SE/057-Wrong01.ogg")
 			$"../../../subSound".play()
@@ -163,13 +173,15 @@ func useItem():
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addCritChance = 0
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addBlockChance = 0
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).potential = (FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).level - 1 + Global.totalPotentialBall) * 5 * Global.enKey
-			print(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).level - 1)
+
+	
 	for key in FightScenePlayers.consumeItem.keys():
 		if FightScenePlayers.consumeItem[key]["number"] == 0:
 			FightScenePlayers.consumeItem.erase(key)
 func decrypt(value):
 	return value / Global.enKey
 func updateStatus():
+	
 	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/mpText/mpBar/mpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currMp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).mp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addMp))
 	get_node("itemPlayer"+str(Global.itemPlayerIndex+1)+"/hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).currHp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp))		
 	

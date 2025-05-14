@@ -3941,7 +3941,28 @@ var monsters = {
 			],
 			}),
 			},				
+	"瑞兽":{
+		"瑞兽": Monster.new({
+			"name": "瑞兽",
+			"speed": 280,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 1600,
+			"magicDmg": 300,
+			"posi": "middle",
+			"hp": 300,
+			"exp": 100,
+			"gold": 100,
+			"type": "龙",
+			"idle": "瑞兽idle",
+			"autoAttackSound":"res://Audio/SE/085-Monster07.ogg",
+			 "monsterMagicList": [
+				magics.get("龙怒"),
 			
+			],
+			}),
+			},			
 			
 					
 	"金翅大鹏":{

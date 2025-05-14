@@ -129,6 +129,8 @@ var bgmList = [
 	"res://Audio/BGM/战斗2.ogg",
 	"res://Audio/BGM/战斗1.ogg",
 	"res://Audio/BGM/战斗0.ogg",
+	"res://Audio/BGM/战斗-急凑.mp3",
+	
 	#"res://Audio/BGM/战斗-梦想3.ogg",
 	"res://Audio/BGM/【战斗】传说开始的地方.mp3",
 	"res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——战斗一 - 1.《大侠立志传》游戏音乐BGM纯享版——战斗一(Av995118947,P1).mp3", 
@@ -172,7 +174,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 7
+var current_chapter_id = 8
 
 var mcVisible = true
 var npcVis = {
@@ -527,9 +529,13 @@ var npcVis = {
 	},	
 	"普陀山":{
 		"水云仙": {"visible":true},			
-	}
-	
-	
+	},
+	"潮音洞":{
+		"姜韵": {"visible":false},			
+	},
+	"大唐境外":{
+		"瑞兽": {"visible":false},			
+	}		
 															
 }
 var baseChance = 0
@@ -1649,6 +1655,53 @@ var npcs = {
 		"current_dialogue_index": 5,	
 		"constNpc": false	
 	},	
+	"瑞兽":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "瑞兽1", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 8, "dialogue": "瑞兽2", "unlocked": true, "bgm": null ,"trigger":false},																
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"清风":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "清风", "unlocked": true, "bgm": null ,"trigger":false},														
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true		
+	},			
+	"明月":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "明月", "unlocked": true, "bgm": null ,"trigger":false},														
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true
+	},			
+	"五庄观":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "五庄观1", "unlocked": true, "bgm": null ,"trigger":false},														
+					{"chapter": 8, "dialogue": "五庄观2", "unlocked": true, "bgm": null ,"trigger":false},	
+					{"chapter": 8, "dialogue": "五庄观3", "unlocked": true, "bgm": null ,"trigger":false},								
+					{"chapter": 8, "dialogue": "五庄观4", "unlocked": true, "bgm": null ,"trigger":false},							
+							
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"除虫":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "除虫1", "unlocked": true, "bgm": null ,"trigger":false},														
+					{"chapter": 8, "dialogue": "除虫2", "unlocked": true, "bgm": null ,"trigger":false},	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+		
 			
 } 
 var potentialBalls = {
@@ -1744,7 +1797,10 @@ var triggerPlace ={
 	"寻四圣2": {"trigger":false, "disable": false},	
 	"寻四圣3": {"trigger":false, "disable": false},	
 	"方寸山之魔": {"trigger":false, "disable": false},		
-	"初见观音": {"trigger":false, "disable": false},			
+	"初见观音": {"trigger":false, "disable": false},		
+	"五庄观": {"trigger":false, "disable": false},	
+	"五庄观2": {"trigger":false, "disable": false},	
+	"再见观音": {"trigger":false, "disable": true},									
 }
 
 var isDead ={
@@ -1929,7 +1985,11 @@ func loadData():
 		"寻四圣2": {"trigger":false, "disable": false},	
 		"寻四圣3": {"trigger":false, "disable": false},	
 		"方寸山之魔": {"trigger":false, "disable": false},
-		"初见观音": {"trigger":false, "disable": false},						
+		"初见观音": {"trigger":false, "disable": false},			
+		"五庄观": {"trigger":false, "disable": false},		
+		"五庄观2": {"trigger":false, "disable": false},	
+		"除虫": {"trigger":false, "disable": false},		
+		"再见观音": {"trigger":false, "disable": true},														
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
@@ -2018,13 +2078,28 @@ func addItem(item,type,bagPlace,num):
 
 	Global.systemMsg.append("获得了"+item + "x" + str(num))
 	get_tree().current_scene.get_node("CanvasLayer").renderMsg()	
+func removeItem(item,type,bagPlace,num):
+	var bag = FightScenePlayers[bagPlace]
+	bag[item].number -= num
+	if bag[item].number == 0:
+		bag.erase(bag[item])
+
+
+	Global.systemMsg.append("失去了"+item + "x" + str(num))
+	get_tree().current_scene.get_node("CanvasLayer").renderMsg()	
+
+
+
+
+
+
 
 func playSound(sound):
 	get_tree().current_scene.get_node("subSound").stop()
 	get_tree().current_scene.get_node("subSound").stream = load(sound)
 	get_tree().current_scene.get_node("subSound").play()
 	#get_tree().current_scene.get_node("AudioStreamPlayer2D").stop()	
-var dial = "水云仙"
+var dial = null
 var onGhost = true
 #func dialogue(dia):
 #	get_tree().current_scene.get_node("dialogueTimer").start()
@@ -2089,7 +2164,6 @@ func countDown(value):
 	get_tree().current_scene.get_node("CanvasLayer").countDown(value)
 
 func showViolence(type,value):
-	pass
 	get_tree().current_scene.get_node("CanvasLayer/violencePoint").visible = true
 	if type == "negative":
 		get_tree().current_scene.get_node("CanvasLayer/violencePoint/Label").modulate = "red"

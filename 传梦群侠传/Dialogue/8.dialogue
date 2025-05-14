@@ -18,17 +18,16 @@ set Global.getnode("菩提老祖"),position = Vector2(1557, 154)
 凌若昭: [speed=0.5]师傅...
 菩提老祖: [speed=0.5]不用担心我，我如果驾鹤而去，对大局无益，所以我会斟酌的
 时追云: [speed=0.5]...
-菩提老祖: [speed=0.5]你们这次虽然获得了玄武和和白虎的帮助，实力已然壮大，但还不够
+菩提老祖: [speed=0.5]你们这次虽然获得了玄武和和白虎的帮助，实力已然壮大，但还不够，你们现在绝对不可以去和魔物正面对抗！
 时追云: [speed=0.5]请祖师明讲
 菩提老祖: [speed=0.5]首先就是你娘子的血肉之躯至今都没恢复吧，虽有初始之力但一直没办法用出来，如果她能运用初始之力，那么我们对魔的胜算便又多了几分
 姜韵喜: [speed=0.5]祖师这么说，想必是有办法帮我恢复了？
 菩提老祖: [speed=0.5]嗯，聪明。办法自然是有的，术业有专攻，我没有这方面的法力，但别的仙人有
 时追云惊: [speed=0.5]敢问谁有能力生死人而肉白骨
-菩提老祖: [speed=0.5]你们此去或许需要找到三人
+菩提老祖: [speed=0.5]你们此行可去寻二人
 菩提老祖: [speed=0.5]南海观世音菩萨，她手中的杨柳仙露可治万物疾病伤痕，甚至复原躯壳
-菩提老祖: [speed=0.5]五庄观镇元大仙，他栽培的人参果可令任何生物吃了永生不病，延寿万年
 白虎: [speed=0.5]那...
-菩提老祖: [speed=0.5]而西天的未来之佛-弥勒佛祖能灭魔，想必也能除魔气
+菩提老祖: [speed=0.5]而西天的未来之佛-弥勒佛祖，他有特殊法术能灭魔，想必也能除魔气
 玄武: [speed=0.5]那如来佛祖呢？他也在天庭吗？
 菩提老祖: [speed=0.5]如来，已经陨落了
 白虎: [speed=0.5]什么！竟有这等事，连他也
@@ -204,6 +203,12 @@ set Global.getnode("AnimationPlayer").play("时追云移动")
 姜韵: [speed=0.5]让我来帮你吧，虽然我不能去除你身上的天谴，但能让你恢复正常行动
 关重七: [speed=0.5]好，那麻烦你了
 姜韵: [speed=0.5]嗯
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPet.erase("白虎")
+set Global.onTeamPet.erase("玄武")
+
 set get_tree().current_scene.bossFight("关重七伤势","res://Audio/BGM/网易游戏 - 战斗2.mp3", "关重七伤势")
 
 
@@ -214,6 +219,14 @@ set Global.onTalk = false
 
 ~ 关重七3
 set Global.onTalk = true
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.append("时追云")
+set Global.onTeamPlayer.append("姜韵")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPet.append("白虎")
+set Global.onTeamPet.append("玄武")
+
 关重七: [speed=0.5]姑娘竟有如此神奇之医术，你莫非真的是神农后人
 姜韵喜: [speed=0.5]如假包换
 水云仙: [speed=0.5]相公，你感觉怎么样了
@@ -242,7 +255,7 @@ set Global.onTalk = true
 关重七: [speed=0.5]嗯，如果是男的就叫他无痕吧，希望我的事情不要给他留下伤痕
 关重七: [speed=0.5]如果是女孩就叫他莫悔吧
 水云仙: [speed=0.5]水无痕，水莫悔，不错的名字
-水云仙: [speed=0.5]相公得亲自教导他们武艺，我来教他们书写和礼仪
+水云仙: [speed=0.5]以后相公亲自教导他们武艺，我来教他们书写和礼仪
 关重七: [speed=0.5]好，就这么决定了，由你来教我们的孩子，他或许就不会像我今天这样了
 水云仙: [speed=0.5]相公，都已经过去了
 水云仙: [speed=0.5]我现在只想一直这么抱着你
@@ -267,7 +280,7 @@ set Global.getnode("关重七").position = Vector2(4181,2651)
 姜韵: [speed=0.5]确实...天谴的伤害，已经和医术的范畴无关了
 凌若昭哀: [speed=0.5]怎么会这样，我还以为都好了
 时追云: [speed=0.5]那你叫我们可是有事相托
-关重七: [speed=0.5]嗯，从今天起，世界上将不会有关重七出现，我娘子他也再不会见到我
+关重七: [speed=0.5]嗯，从今天起，世界上将不会有关重七出现，我娘子她也再不会见到我
 小二: [speed=0.5]为什么要这样...
 关重七: [speed=0.5]我不想她眼睁睁的看着我越来越虚弱，直到死去
 关重七: [speed=0.5]她没有亲人，我算是她唯一的家人了，如果她知道我死了，恐怕会万念俱灰
@@ -282,6 +295,8 @@ set Global.getnode("关重七").position = Vector2(4181,2651)
 [next=1]
 set Global.turnDark()
 set Global.changeScene("未知岛屿",null)
+
+
 
 set Global.onTalk = false
 => END
@@ -313,10 +328,13 @@ set Global.getnode("水云仙").play("右下")
 水云仙: [speed=0.5]只要我一直在那里，我就一定能再见到他！
 姜韵喜: [speed=0.5]那里叫什么啊？
 水云仙: [speed=0.5]丰渔村
+set Global.violencePoint += 10
+set Global.showViolence("positive",10)
 set Global.showMsg("获得之字牌!")
 set Global.addItem("之字牌", "keyItem", "keyItem", 1)
 set Global.changeQuest("传梦之路","之","boolean", true)
 [next=3]
+set Global.changevis("普陀山","水云仙")
 set Global.dial = null
 set Global.changeScene("普陀山",null)
 
@@ -325,8 +343,326 @@ set Global.onTalk = false
 
 ~ 初见观音2
 set Global.onTalk = true
+set Global.changevis("潮音洞","姜韵")
 观音菩萨: [speed=0.5]你们是？
-时追云: 
+姜韵: [speed=0.5]观音菩萨，我们是准备对抗魔怪的凡间修行者，是来向你求助的
+观音菩萨: [speed=0.5]嗯，你们身上的气息，很友善
+观音菩萨: [speed=0.5]这位女施主，可是需要我帮你恢复肉身？
+姜韵喜: [speed=0.5]如能做到，小女甚是感激！
+观音菩萨: [speed=0.5]嗯，小事一桩，何需言谢
+set Global.onGhost = false
+set Global.getnode("heal").visible = true
+set Global.getnode("heal").play()
+set Global.playsound("res://Audio/SE/回复-观音.ogg")
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+set Global.changeBgm("res://Audio/BGM/四个人的幸福时光.mp3")
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("rightStand")
+时追云惊: [speed=0.5]娘子，你，你的身体这就恢复了？
+姜韵喜: [speed=0.5]是啊，你看看我有什么不一样吗
+时追云喜: [speed=0.5]没什么不一样，和以前一样美
+姜韵喜: [speed=0.5]嘻嘻
+凌若昭喜: [speed=0.5]恭喜姜姐姐
+小二: [speed=0.5]恭喜大嫂！
+观音菩萨: [speed=0.5]还好你的魂魄保存的很完整，不然也不会这么顺利
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+姜韵喜: [speed=0.5]多谢观音菩萨！！
+时追云: [speed=0.5]多谢观音大士相助！
+观音菩萨: [speed=0.5]我们佛门中人以慈悲为怀，你们又是为了天庭，我自当助你
+时追云: [speed=0.5]话虽如此，您帮了我们夫妻这么大忙，我们理应回报
+姜韵喜: [speed=0.5]是啊，如果有什么可以帮得上忙的话请一定要和我们讲，不然岂不是显得我们不知耻
+观音菩萨: [speed=0.5]这...
+观音菩萨: [speed=0.5]我确实有一件难事，但苦于我无法离开这里，一直没法去做，但此事有点危险
+时追云: [speed=0.5]您没法离开是因为要镇压魔君吗？
+观音菩萨: [speed=0.5]什么！？你们是如何得知此事的？
+时追云: [speed=0.5]我们算是..菩提祖师的弟子吧
+观音菩萨: [speed=0.5]原来如此，那便说得通了，那你们应该能帮到我
+姜韵喜: [speed=0.5]菩萨请说
+观音菩萨: [speed=0.5]我治病救人其实依靠的是我凝练的杨柳仙露，此露取之不尽，用之不竭，可治世上万物
+姜韵: [speed=0.5]杨柳仙露，刚才菩萨助我回复肉身就是用的这个吧
+观音菩萨: [speed=0.5]嗯，但刚才那是我剩的最后一点了
+凌若昭: [speed=0.5]咦，不是说取之不尽，用之不竭吗？
+观音菩萨: [speed=0.5]原本是这样的，但三年前与魔军交战之时被污染了，只剩下了刚才那一点能用
+时追云: [speed=0.5]那观音大士要我们怎么帮您呢
+观音菩萨: [speed=0.5]我听闻五庄观的镇元大仙所栽培的人参果灵力极为旺盛，我想如果有人参果一颗的话，那我这仙露或许能崇焕生机
+时追云: [speed=0.5]既是大仙，为何观音大士说有危险呢
+观音菩萨: [speed=0.5]因为那里，有一只异兽守着，不让人靠近。只要有人想进五庄观，就会被那只异兽攻击
+时追云: [speed=0.5]原来如此，那只要解决那头异兽就是了
+凌若昭: [speed=0.5]交给我们吧
+姜韵喜: [speed=0.5]菩萨放心，我们一定会把人参果带回来的
+观音菩萨: [speed=0.5]好，那就拜托你们了
+set Global.showMsg("姜韵可以穿装备了！")
+
+
+set Global.dial = "初见观音3"
+set Global.onTalk = false
+=> END
+
+
+~ 初见观音3
+set Global.onTalk = true
+时追云: [speed=0.5]你们知道五庄观在何处吗
+凌若昭: [speed=0.5]我知道，应该在大唐境外的东边！
+小二: [speed=0.5]那走吧
+set Global.changevis("大唐境外","瑞兽")
+set Global.cantShow.erase("五庄观")
+set Global.dial = null
+set Global.onTalk = false
+=> END
+
+
+
+~ 瑞兽1
+set Global.onTalk = true
+时追云: [speed=0.5]这应该就是观音大士说的异兽了吧
+小二: [speed=0.5]感觉长得不是很凶恶的样子
+凌若昭: [speed=0.5]但是气息确实好邪恶啊
+姜韵怒: [speed=0.5]又是魔气 
+时追云: [speed=0.5]那就没错了！
+set get_tree().current_scene.bossFight("瑞兽","res://Audio/BGM/网易游戏 - 战斗2.mp3", "瑞兽")
+
+
+set Global.onTalk = false
+=> END
+
+~ 瑞兽2
+set Global.onTalk = true
+小二: [speed=0.5]总算把他打趴了
+瑞兽: [speed=0.5]懿！！！！
+小二: [speed=0.5]喂。。。都被我们打成这样了怎么还
+时追云: [speed=0.5]感觉他比起杀人，更多的是想阻止人进去
+姜韵: [speed=0.5]我也是这么想的，他似乎在守护这里
+凌若昭: [speed=0.5]真的耶，打了这么久，他都没挪动一步，一直守在道路上
+小二: [speed=0.5]那怎么办？
+时追云: [speed=0.5]....
+听闻瑞兽之血可增强人功力，你决定
+- 杀了他，获得功力加成
+	set Global.violencePoint -= 20
+	set Global.showViolence("negative",20)
+	set Global.damageReward1 += 0.1
+	set Global.showMsg("全队伤害永久提升一成！")
+- 不像是恶兽,行事诡异，制服他即可
+	set Global.violencePoint += 10
+	set Global.showViolence("positive",10)
+set Global.getnode("瑞兽").visible = false
+set Global.changevis("大唐境外","瑞兽")
+
+set Global.onTalk = false
+=> END
+
+~ 清风
+set Global.onTalk = true
+清风: [speed=0.5]见到我们门前的那只瑞兽了吧？他原是我师傅的坐骑，在三年前的战斗中被魔气给感染了，现在变得傻傻的，但是好像还一直想着守护五庄观
+清风: [speed=0.5]你们没拿他怎么样吧？
+
+set Global.onTalk = false
+=> END
+
+~ 明月
+set Global.onTalk = true
+明月: [speed=0.5]现在每天都好可怕
+set Global.onTalk = false
+=> END
+
+
+
+~ 五庄观1
+set Global.onTalk = true
+
+凌若昭: [speed=0.5]到了到了，这里就是五庄观了
+小二: [speed=0.5]气派！
+时追云: [speed=0.5]之前察觉到的仙气就是从这里来的吧
+姜韵喜: [speed=0.5]我们快去拜访这里的主人吧
+时追云: [speed=0.5]理应如此
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 五庄观2
+set Global.onTalk = true
+清风: [speed=0.5]你们是谁？！
+明月: [speed=0.5]报上名来！
+时追云: [speed=0.5]时追云
+小二: [speed=0.5]小二
+凌若昭: [speed=0.5]凌若昭
+清风: [speed=0.5]谁谁谁啊，不认识！
+姜韵喜: [speed=0.5]噗
+姜韵喜: [speed=0.5]我们是受观音大士所托前来恳求一颗人参果的修士，烦请通融一下
+清风: [speed=0.5]原来是受观音大士所托吗，那倒是可以给点面子
+明月: [speed=0.5](好，好漂亮的姐姐)
+清风: [speed=0.5]你们等着，我进去问一下我师傅
+姜韵喜: [speed=0.5]好，劳烦你了
+[next=1]
+set Global.getnode("清风").visible = false
+小二: [speed=0.5]大嫂出面交涉比我们轻松好多啊
+凌若昭: [speed=0.5]是啊，以前我们总是碰壁
+时追云: [speed=0.5]...应该不是我的问题吧
+姜韵喜: [speed=0.5]傻瓜，你不擅长这种事，以后就让我来吧
+时追云: [speed=0.5]哦，哦。好吧
+set Global.getnode("AnimationPlayer").play("移动熊")
+set Global.changebgm("res://Audio/BGM/0情况危机.ogg")
+[next=1]
+傻熊: [speed=0.5]嘿，那只疯兽也不知道被谁搞定了，进来轻轻松松啊
+傻熊: [speed=0.5]喂，你们快把人参果交出来！我要拿去献给我们妖盟老大！
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("downStand")
+时追云: [speed=0.5]？
+小二: [speed=0.5]好像是来捣乱的
+时追云: [speed=0.5]来自妖盟，看来是敌人
+小二: [speed=0.5]嗯，是个坏种
+set Global.dial = "五庄观"
+set Global.changeScene("五庄观",null)
+set Global.onTalk = false
+=> END
+
+
+~ 五庄观3
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+镇元大仙: [speed=0.5]嗯？观音大士托人来要人参果？
+镇元大仙: [speed=0.5]我知道了，你去让他们进来吧
+set Global.changeScene("五庄观",Vector2(489,338))
+
+
+set Global.onTalk = false
+=> END
+
+~ 五庄观4
+set Global.onTalk = true
+set Global.getnode("清风").visble = false
+set Global.getnode("清风2").visble = true
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("downStand")
+清风: [speed=0.5]我怎么听到外面有声响？
+姜韵: [speed=0.5]刚才有只妖怪乘机袭来了，我们除掉了他
+清风: [speed=0.5]妖怪居然敢来这里了，真是不知死活，哦，师傅叫你们进去
+时追云: [speed=0.5]好，多谢
+set Global.changeScene("乾坤殿",Vector2(509,315))
+set Global.onTalk = false
+=> END
+
+
+~ 五庄观5
+set Global.onTalk = true
+众人: [speed=0.5]拜见镇元大仙
+镇元大仙: [speed=0.5]嗯，诸位是为了人参果而来？
+姜韵: [speed=0.5]回大仙，我们是受观音大士所托来求一颗人参果
+镇元大仙: [speed=0.5]可让我知是为何事?
+姜韵: [speed=0.5]观音大士的傍身法宝净瓶被魔气所污染，需要人参果来恢复生机
+镇元大仙: [speed=0.5]原来是这样，那我给你们便是了
+小二: [speed=0.5]啊？就这么给我们了吗？不需要我们再帮你做点事，找点东西什么的吗？
+镇元大仙: [speed=0.5]哈哈哈哈哈，小友好生有趣
+镇元大仙: [speed=0.5]此乃观音大士所托，我自然要给她几分薄面，如若我有事求与她，那也是我和她的事，与你们何干呐
+镇元大仙: [speed=0.5]况且魔道复苏，我们本就是一根绳上的蚂蚱，帮她也是帮我自己
+小二: [speed=0.5]额，原来如此
+镇元大仙: [speed=0.5]反倒是你们，敢在这乱世上行走，着实胆大
+时追云: [speed=0.5]只是为了苍生尽自己的一份力罢了
+镇元大仙: [speed=0.5]嗯，既然如此，我们也算是一条道路上的人了
+镇元大仙: [speed=0.5]方才见着了你们的打斗？
+姜韵: [speed=0.5]是我们的过错，因为我们的关系，才导致没人守着山门
+镇元大仙: [speed=0.5]既然你们和那只妖怪都进来了，说明瑞兽已经凶多吉少了
+小二: [speed=0.5]这。。我们
+镇元大仙: [speed=0.5]唉，你们不用担心，我并没有要怪罪与你们的意思
+镇元大仙: [speed=0.5]他早就已经没救了，连人参果也救他不得，每日只有护我的执念，活着也是种痛苦，但我又不忍得将他...
+镇元大仙: [speed=0.5]罢了，这也是他的命数
+镇元大仙: [speed=0.5]方才观你们战斗，老道觉得你们还需要点东西
+时追云: [speed=0.5]大仙何意？
+镇元大仙: [speed=0.5]这是本灵力附着武器之法诀，对你们或许有用
+时追云惊: [speed=0.5]这
+姜韵喜: [speed=0.5]大仙仁德，令人钦佩！
+镇元大仙: [speed=0.5]哈哈哈哈，说什么仁德，这本法诀在我这已无用，赠与你们也好过空置于此啊
+姜韵喜: [speed=0.5]我们可传阅与其他人否？
+时追云: [speed=0.5]娘子，唐突了啊
+镇元大仙: [speed=0.5]不曾唐突，既以赠与你们，如何处置已与我无关，只望你们能物尽其用
+时追云惊: [speed=0.5]成仙者当如此！
+时追云: [speed=0.5]小辈受教了！
+镇元大仙: [speed=0.5]回观音菩萨那去吧
+镇元大仙: [speed=0.5]如果有闲心，也可帮老道除一下人参果树上的虫子，没空也无妨
+时追云: [speed=0.5]好
+set Global.damageReward1 += 0.1
+set Global.showMsg("因兵器附着灵力，全队伤害永久提升一成！")
+set Global.addItem("人参果", "keyItem", "keyItem", 1)
+set Global.dial = null
+set Global.triggerPlace.get("再见观音").disable = false
+set Global.onTalk = false
+=> END
+
+
+~ 除虫
+set Global.onTalk = true
+时追云: [speed=0.5]好大的果树
+小二: [speed=0.5]这应该就是人参果树了吧
+凌若昭: [speed=0.5]那我们要给它除虫吗？
+- 除虫
+	set get_tree().current_scene.bossFight("人参果虫","res://Audio/BGM/新手上路.ogg", "人参果虫")	
+	凌若昭: 小虫子受死！
+- 不除虫
+	set Global.npcs.get("罗师兄").current_dialogue_index = 0
+ 
+
+set Global.onTalk = false
+=> END
+
+~ 除虫2
+set Global.onTalk = true
+小二: [speed=0.5]怎么战斗的声音这么休闲啊！！！！
+小二: [speed=0.5]还有他怎么能这么肉啊！！！！！！！！！！
+时追云惊: [speed=0.5]刀都快断了...
+姜韵哀: [speed=0.5]吃人参果长大的虫子，着实不一般
+凌若昭: [speed=0.5]怪不得人参果这么珍贵
+set Global.showMsg("获得可食用人参果！")
+set Global.addItem("人参果", "consume", "consumeItem", 1)
+时追云: [speed=0.5]打斗的过程中貌似又掉了颗人参果
+凌若昭: [speed=0.5]那我们岂不是多了一颗吗
+时追云: [speed=0.5]应该要还回去的吧
+姜韵喜: [speed=0.5]夫君还没明白吗，这是镇元大仙赠与我们的
+时追云: [speed=0.5]为何这么说
+姜韵喜: [speed=0.5]镇元大仙慷慨大度，并不奢求回报，怎会突然叫我等帮他除虫呢？
+小二: [speed=0.5]那直接和我们说不就好了吗
+姜韵喜: [speed=0.5]这种事情讲究机缘，如果我们直接走了，没有来这，那就错过了，反之亦然
+时追云: [speed=0.5]原来如此，真是位大仙
+
+set Global.onTalk = false
+=> END
+
+~ 再见观音
+set Global.onTalk = true
+时追云: [speed=0.5]观音大士，我们不负所托，把人参果带回来了
+set Global.removeItem("人参果", "keyItem", "keyItem", 1)
+观音菩萨: [speed=0.5]正是此物！
+观音菩萨: [speed=0.5]我真的得谢谢你们，我很需要这个
+姜韵喜: [speed=0.5]如以此来，观音菩萨的杨柳仙露是否已经是无穷无尽的了
+观音菩萨: [speed=0.5]是啊，怎么了吗？
+姜韵喜: [speed=0.5]那能否将它赠与我些许呢
+时追云: [speed=0.5]娘子，这不好吧，怎可贪图大士宝物
+观音菩萨: [speed=0.5]这倒无妨，只是我这仙露离了净瓶，要不多久就会失去功效，你该怎么用呢
+姜韵喜: [speed=0.5]我是神农的后人，有一种秘法可长久保存和增量草药仙露之灵气与药效
+观音菩萨: [speed=0.5]你居然是神农后人...
+观音菩萨: [speed=0.5]可否令我知道你要这仙露的原因？
+姜韵: [speed=0.5]菩萨，我要这些并不是为了自己，我是为了百姓索求
+观音菩萨: [speed=0.5]你的意思是？
+set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
+姜韵: [speed=0.5]当今天下妖魔横行，邪佞当道，众百姓苦不堪言
+姜韵: [speed=0.5]虽有人间强力之人创立的大唐官府在竭力抵抗，但妖数众多，他们也难以继续抵挡
+姜韵: [speed=0.5]况且他们因不懂得修炼灵力，每每战斗都是凭借着血肉之躯与妖对抗，因此死伤不计其数
+姜韵: [speed=0.5]既然神无法救人，那何不令他们有能力自救呢
+时追云惊: [speed=0.5]原来如此，我只想过让他们自救，但从来没想过这一点
+小二: [speed=0.5]还是大嫂想得周到！
+凌若昭喜: [speed=0.5]如果能做到的话，那真的会救很多人的！
+姜韵: [speed=0.5]菩萨，如果能将您的杨柳仙露送到每一位战士手上，那他们不管受到什么样的伤都会被治愈
+观音菩萨: [speed=0.5]言之有理，既然你是用来帮助世人的，那我没有理由拒绝你
+姜韵喜: [speed=0.5]我替天下的百姓感谢您！
+观音菩萨: [speed=0.5]惭愧，我们神佛并没有拯救到世人，如今却要靠你们这些小辈来替我们履行责任
+姜韵: [speed=0.5]菩萨尽力了，您在此坐镇魔君，也是为了天下的百姓
+观音菩萨: [speed=0.5]希望，你们能做到我们所没做到的事
+姜韵: 
 
 
 set Global.onTalk = false

@@ -113,20 +113,34 @@ tracks/3/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_3dbbv"]
-resource_name = "现身"
-length = 3.0
+[sub_resource type="Animation" id="Animation_8l52q"]
+resource_name = "时追云移动"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
+tracks/0/path = NodePath("player:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-112, 0), Vector2(136, 5), Vector2(0, 0), Vector2(130, 0), Vector2(0, 0), Vector2(-130, 0), Vector2(0, 0)]
+"values": [Vector2(1459, 1578), Vector2(1034, 1230)]
+}
+
+[sub_resource type="Animation" id="Animation_tp3ek"]
+resource_name = "时追云移动111"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1459, 1578), Vector2(632, 1521)]
 }
 
 [sub_resource type="Animation" id="Animation_5bc14"]
@@ -189,34 +203,20 @@ tracks/0/keys = {
 "values": [Vector2(1174, 1219), Vector2(1062, 1140)]
 }
 
-[sub_resource type="Animation" id="Animation_8l52q"]
-resource_name = "时追云移动"
+[sub_resource type="Animation" id="Animation_3dbbv"]
+resource_name = "现身"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1459, 1578), Vector2(1034, 1230)]
-}
-
-[sub_resource type="Animation" id="Animation_tp3ek"]
-resource_name = "时追云移动111"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1459, 1578), Vector2(632, 1521)]
+"values": [Vector2(0, 0), Vector2(-112, 0), Vector2(136, 5), Vector2(0, 0), Vector2(130, 0), Vector2(0, 0), Vector2(-130, 0), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
@@ -836,7 +836,7 @@ frame_progress = 0.0
 frame_progress = 0.0
 
 [node name="斩击" parent="小二/小二/effects" index="3"]
-frame = 0
+frame_progress = 0.0
 
 [node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
@@ -909,6 +909,7 @@ npcName = "青龙"
 
 [node name="斩击" parent="青龙/effects" index="3"]
 frame = 0
+frame_progress = 0.0
 
 [node name="持续冰封" parent="青龙/effects" index="5"]
 position = Vector2(-29.0653, -17.3637)

@@ -147,6 +147,19 @@ var consume = {
 		"key":false,
 		"gold": 100		
 	},	
+	"人参果":{
+		"name": "人参果",
+		"effect": "special",
+		"value": 100,
+		"icon": "res://Icons/人参果.png",
+		"picture":"res://Icons/人参果.png",
+		"description": "增加500体力上限！！！",
+		"audio": "res://Audio/SE/HEAL11.ogg",
+		"key":false,
+		"gold": 30000		
+	},		
+	
+	
 }
 
 var battleConsume ={

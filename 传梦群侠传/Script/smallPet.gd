@@ -94,7 +94,7 @@ func _process(delta):
 
 func _on_animation_finished():
 	targetFound = false
-	if state == autoAttack:
+	if state == autoAttack and is_instance_valid(target):
 		if target.canSee:
 			if SmallPetData.currSmallPetData[petName].hungry >= SmallPetData.currSmallPetData[petName].hungryValue:
 				rageBar += rageFreq
