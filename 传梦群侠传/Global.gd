@@ -9,7 +9,7 @@ var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
 ,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":5,  }
 var menuOut = false
-
+var healBuffAmount = 0
 var onAttackingList = []
 var currAttacker = ""
 var wait

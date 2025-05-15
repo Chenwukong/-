@@ -182,6 +182,7 @@ func _ready():
 		FightScenePlayers.fightScenePlayerData.get(playerName).currHp = FightScenePlayers.fightScenePlayerData.get(playerName).hp
 	get_node("hpControl").visible = false
 func _process(delta):
+
 	if Global.onAttackingList.size()>0 and Global.onAttackingList[0] == "小二真身":
 		$ColorRect.visible = true
 	else:
@@ -190,13 +191,16 @@ func _process(delta):
 		for i in monsters:
 			i.get_node("getHitEffect").visible = false
 	if onIceDebuff:
-		$buff.visible = true
-		$buff.play("冰封")
+		$contBuff.visible = true
+		$contBuff.play("冰封")
 	elif onTireDebuff:
-		$buff.visible = true
-		$buff.play("力竭")		
+		$contBuff.visible = true
+		$contBuff.play("力竭")	
+	elif onHealBuff:
+		$contBuff.visible = true
+		$contBuff.play("contHp")				
 	else:
-		$buff.visible = false 	
+		$contBuff.visible = false
 	currDelta = delta
 	itemList = []
 	for i in FightScenePlayers.battleItem.keys():
@@ -209,7 +213,7 @@ func _process(delta):
 #			get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/011-System11.ogg")
 #			get_tree().current_scene.get_node("oneTimeSound").play()
 	if alive == false:
-		$buff.visible = false
+		$contBuff.visible = false
 	
 	Global.itemList = itemList
 	
@@ -242,13 +246,14 @@ func _process(delta):
 			get_node("Control/speedBar").value = speedBar
 
 	if speedBar >= 100:
-		print(onHealBuff)
+		
 		speedBar = 0
 		if onTireDebuff:
 			pass
 		else:
 			Global.onAttackingList.append(playerName)
 		for buff in buffs:
+			get_node("contBuff").visible = true
 			if "onHealBuff" in buff:
 				buff["onHealBuff"] -= 1
 				if buff["onHealBuff"] <= 0:
@@ -297,7 +302,7 @@ func _process(delta):
 																														
 		if onHealBuff:
 			onHealBuff -= 1
-			currHp += healBuffAmount
+			currHp += Global.healBuffAmount
 			if onHealBuff <= 0:
 				onHealBuff = false
 		if onAttackBuff:
@@ -315,10 +320,10 @@ func _process(delta):
 			if onSpeedBuff <= 0 :
 				onSpeedBuff = false
 				currPlayerSpeed = playerSpeed
-				if $buff.animation != "speed":
+				if $contBuff.animation != "speed":
 					pass
 				else:
-					$buff.visible = false
+					$contBuff.visible = false
 		if onPhysicDefenseBuff:
 			onPhysicDefenseBuff -= 1
 			if onPhysicDefenseBuff <= 0 : 
@@ -352,10 +357,10 @@ func _process(delta):
 			currHp -= poisonDebuffAmount
 			if onMagicDisableDebuff <= 0:
 				onMagicDisableDebuff = false				
-				if $buff.animation != "magicDisable":
+				if $contBuff.animation != "magicDisable":
 					pass
 				else:
-					$buff.visible = false			
+					$contBuff.visible = false			
 		if onTireDebuff:
 			onTireDebuff -= 1
 			if onTireDebuff <= 0:
@@ -462,7 +467,7 @@ func _process(delta):
 		Global.onAttackPicking = false
 		Global.onAttacking = false
 		Global.onHitEnemy = []
-		get_node("buff").visible = true
+		get_node("contBuff").visible = true
 		$canMove.start()
 		var crit = "normal"
 		var disDamage 
@@ -577,7 +582,7 @@ func _process(delta):
 		Global.onAttackPicking = false
 		Global.onAttacking = false
 		Global.onHitEnemy = []
-		get_node("buff").visible = true
+		get_node("contBuff").visible = true
 		Global.target.get_node("getHitEffect").visible = false
 		
 		
@@ -686,7 +691,7 @@ func _process(delta):
 		Global.onAttackPicking = false
 		Global.onAttacking = false
 		Global.onHitEnemy = []
-		get_node("buff").visible = true
+		get_node("contBuff").visible = true
 		Global.target.get_node("getHitEffect").visible = false
 		Global.playsound("res://Audio/SE/107-Heal03.ogg")
 		Global.onAttackingList.pop_front()
@@ -710,7 +715,7 @@ func _process(delta):
 		multiCanCulate = true
 		Global.battleButtonIndex = 0
 		get_parent().get_node("screenMagic").visible = false
-		get_node("buff").visible = true
+		get_node("contBuff").visible = true
 		$Control.visible = true
 		position = playerPosition
 		self.play(playerName+"idle")
@@ -1259,7 +1264,7 @@ func attack(target, type):
 
 	if Global.onAttacking == false and canAttack:
 		
-		get_node("buff").visible = false		
+		get_node("contBuff").visible = false		
 		#Global.target = monsters[Global.targetMonsterIdx]
 		#target = monsters[Global.targetMonsterIdx]
 		if Global.target:
@@ -1327,7 +1332,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 	get_parent().get_node("Panel").visible = true
 	if Global.onMagicAttacking == false:
 		get_parent().get_node("magicDescription").visible = false
-		get_node("buff").visible = false
+		get_node("contBuff").visible = false
 		get_parent().get_node("magicSelection").visible = false
 		get_parent().get_node("magicName").visible = true
 		get_parent().get_node("magicName/ColorRect/Label").text = magic.name 
@@ -1566,7 +1571,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 			
 			if magicControlType == "keyboard":
 				Global.allieTarget = players[Global.allieSelectIndex]
-				print(Global.allieTarget)
+	
 				Global.buffTarget.append(players[Global.allieSelectIndex])
 			else:
 				Global.allieTarget = self
@@ -1585,8 +1590,10 @@ func castMagic(delta, magic, target, type, onLastMagic):
 			
 			
 			for i in magic.buffEffect:
+				
 				for buffTarget in Global.buffTarget:
 					if i == "currHp":
+						
 						if buffTarget.alive == true:
 					
 						
@@ -1619,10 +1626,21 @@ func castMagic(delta, magic, target, type, onLastMagic):
 								
 								buffTarget.get_node("buffArea").visible = true
 								buffTarget.get_node("buffArea").play("currPlayerSpeed")
-								buffTarget.get_node("buff").visible = true
-								buffTarget.get_node("buff").play("speed")
+								buffTarget.get_node("contBuff").visible = true
+								buffTarget.get_node("contBuff").play("speed")
+			
 					if i == "contHp":
-						i = "hp"
+						
+						var disDamage = display_damage(round(magic.value),"heal")
+						buffTarget.get_node("hpControl").add_child(disDamage)	
+						#buffTarget.get_node("hpControl/hpLabel").text = str(magic.value)
+						buffTarget.get_node("hpControl/hpLabel").modulate= "88ff00"
+						buffTarget.get_node("AnimationPlayer").play("hpControl")
+						buffTarget.currHp += magic.value
+						buffTarget.get_node("getHitEffect").visible = true
+						buffTarget.get_node("getHitEffect").play(magic.name)						
+						
+						
 						if buffTarget.onHealBuff:
 							buffTarget.get_node("buffArea").visible = true
 							buffTarget.get_node("buffArea").play("contHp")
@@ -1633,14 +1651,14 @@ func castMagic(delta, magic, target, type, onLastMagic):
 								buffTarget.onHealBuff = magic.duration	
 								for x in buffTarget.buffs:
 									pass
-								healBuffAmount = magic.value
+								Global.healBuffAmount = magic.value
 								buffTarget.buffs.append({"onHealBuff": buffTarget.onHealBuff})
-								buffTarget.set(i, buffTarget.get(i) + magic.value)
+								buffTarget.set("hp", buffTarget.get("hp") + magic.value)
 								
 								buffTarget.get_node("buffArea").visible = true
 								buffTarget.get_node("buffArea").play("contHp")
-								buffTarget.get_node("buff").visible = true
-								buffTarget.get_node("buff").play("contHp")								
+								buffTarget.get_node("contBuff").visible = true
+								buffTarget.get_node("contBuff").play("contHp")								
 				
 					if i == "currStr":
 						if buffTarget.onAttackBuff:
@@ -1882,7 +1900,7 @@ func useItem(item, target, type):
 	get_parent().get_node("Panel").visible = true
 	if Global.onItemUsing == false:
 		get_parent().get_node("magicDescription").visible = false
-		get_node("buff").visible = false
+		get_node("contBuff").visible = false
 		get_parent().get_node("magicSelection").visible = false
 		get_parent().get_node("magicName/ColorRect/Label").text = item.info.name
 		for child  in get_parent().get_node("magicSelection/GridBoxContainer").get_children():
