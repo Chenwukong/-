@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://biupoe6gxds7c"]
+[gd_scene load_steps=69 format=3 uid="uid://biupoe6gxds7c"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_pc4i0"]
 [ext_resource type="Texture2D" uid="uid://bvgdu5b170y8v" path="res://panoramas2/普陀山_潮音洞.jpg" id="2_uh3md"]
@@ -31,9 +31,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1y76q"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
-vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1029, -240, -1033, 909, -1033, 1372, -1039, 2773, 3439, 2794, 3439, -213)])
+vertices = PackedVector2Array(7629, 90, 7622, 2487, -1118, 2525, -5253, 2512, -5240, 1130, -5221, 83)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-5221, 83, -5240, 1130, -5253, 2512, -1118, 2525, 7622, 2487, 7629, 90)])
 
 [sub_resource type="Gradient" id="Gradient_behck"]
 
@@ -44,18 +44,6 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_gs70c"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1459, 1578)]
-}
 
 [sub_resource type="Animation" id="Animation_y5c4b"]
 resource_name = "守卫move"
@@ -217,6 +205,34 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-112, 0), Vector2(136, 5), Vector2(0, 0), Vector2(130, 0), Vector2(0, 0), Vector2(-130, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4maeb"]
+resource_name = "移动大鹏"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("金翅大鹏:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6631, 2002), Vector2(-4307, 499)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(6665, 2002), Vector2(-4533.88, 413.464)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
 _data = {
 "RESET": SubResource("Animation_gs70c"),
@@ -228,7 +244,8 @@ _data = {
 "水云仙移动2": SubResource("Animation_02bkt"),
 "水云仙移动3": SubResource("Animation_6o7fw"),
 "水云仙移动4": SubResource("Animation_gnaby"),
-"现身": SubResource("Animation_3dbbv")
+"现身": SubResource("Animation_3dbbv"),
+"移动大鹏": SubResource("Animation_4maeb")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7brvw"]

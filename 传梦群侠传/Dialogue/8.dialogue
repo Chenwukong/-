@@ -535,8 +535,8 @@ set Global.onTalk = false
 
 ~ 五庄观4
 set Global.onTalk = true
-set Global.getnode("清风").visble = false
-set Global.getnode("清风2").visble = true
+set Global.getnode("清风").visible = false
+set Global.getnode("清风2").visible = true
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/AnimatedSprite2D").play("downStand")
@@ -669,5 +669,100 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 set Global.changebgm("res://panoramas2/普陀山.jpg")
 set FightScenePlayers.learnMagic("姜韵","净瓶仙露")
 set Global.showMsg("姜韵学会净瓶仙露技能！")
+set Global.onTalk = false
+=> END
+
+
+
+~ 初见大鹏1
+set Global.onTalk = true
+金翅大鹏: [speed=0.5]站住站住，前方禁止通行！
+小二: [speed=0.5]哎？大鹏，是你啊
+金翅大鹏: [speed=0.5]你是？？？
+小二: [speed=0.5]我是小二啊，你忘记了吗
+金翅大鹏: [speed=0.5]！！！？
+金翅大鹏: [speed=0.5]小二，居然真的是你啊，你还没死啊
+小二: [speed=0.5]呸呸呸，你是大鹏，不是乌鸦，哪来的乌鸦嘴！
+小二: [speed=0.5]给你们介绍下，他是我以前认识的一个朋友，不是坏人
+凌若昭: [speed=0.5]你们是怎么认识的啊
+小二: [speed=0.5]当年我见他饿趴在地上，分了他点吃的
+金翅大鹏: [speed=0.5]别提了别提了
+时追云: [speed=0.5]我看你不像是普通小妖，为何会到那种地步
+金翅大鹏: [speed=0.5]三年前，我和人打了一架后灵力枯竭，浑身都动弹不得
+小二: [speed=0.5]又是三年前，你不会是和那群魔打的吧
+金翅大鹏: [speed=0.5]你也知道魔？？看来这些年你有点长进啊
+小二: [speed=0.5]那是
+小二: [speed=0.5]哎？话说你为什么要挡在这里？
+金翅大鹏: [speed=0.5]你们是要往西边去吗？
+小二: [speed=0.5]是啊，一来就看到你挡路
+金翅大鹏: [speed=0.5]唉，你以为我想啊，我只是不想有人过去送死
+小二: [speed=0.5]送死？？？什么意思
+金翅大鹏: [speed=0.5]现在西边的国家没一个正常的，妖怪横行，异国人过去太过危险了
+小二: [speed=0.5]可我们不得不过去
+金翅大鹏: [speed=0.5]不行不行，多年好友一场，我不能看你去送死
+小二: [speed=0.5]不用担心，我现在可是很强的
+金翅大鹏: [speed=0.5]就你？？？
+小二: [speed=0.5]我靠我怎么了！来比划比划！
+set get_tree().current_scene.bossFight("金翅大鹏","res://Audio/BGM/切磋比武.mp3", "金翅大鹏")
+set Global.canLose = true
+
+set Global.onTalk = false
+=> END
+
+
+~ 初见大鹏2
+set Global.onTalk = true
+set Global.canLose = false
+if Global.lost:
+	金翅大鹏: [speed=0.5]什么呀，这么菜还敢过去送
+	- 再来
+		set Global.npcs.get("金翅大鹏").current_dialogue_index = 1
+		set get_tree().current_scene.bossFight("金翅大鹏","res://Audio/BGM/切磋比武.mp3", "金翅大鹏")
+		set Global.canLose = true
+	- 我再练练
+		set Global.npcs.get("金翅大鹏").current_dialogue_index = 1	
+else:
+	set Global.lost = false
+	小二: [speed=0.5]怎么样
+	金翅大鹏: [speed=0.5]咳咳，看来你确实变强了不少，还找了一堆强力队友
+	小二: [speed=0.5]那你可以放我们过去了吧
+	金翅大鹏: [speed=0.5]你真的确定吗，前方可都是妖怪
+	小二: [speed=0.5]我们有不得不去的理由
+	金翅大鹏: [speed=0.5]好吧，前方路远，我送你们一程
+	小二: [speed=0.5]谢谢你老鹏
+	set Global.getnode("player").visible = false
+	set Global.getnode("AnimationPlayer").play("移动大鹏")
+	set Global.toggleballon()
+	[next=9]
+	set Global.toggleballon()
+	set Global.getnode("player").visible = true
+	小二: [speed=0.5]你的速度还是这么快啊
+	金翅大鹏: [speed=0.5]小二，我只能帮你们到这了
+	金翅大鹏: [speed=0.5]一定要小心所有高高在上的人
+	小二: [speed=0.5]什么？
+	set Global.getnode("金翅大鹏").visible = false	
+	小二: [speed=0.5]他走了？？
+	时追云: [speed=0.5]看来刚才速度还是收敛了的，我都没看清他是怎么消失的
+	小二: [speed=0.5]他那句话是什么意思啊。。。啊，最讨厌谜语了
+	姜韵: [speed=0.5]继续往前走应该就能知道了吧，不过要小心点为好，他说的应该不是假话
+	时追云: [speed=0.5]嗯
+	
+	
+	
+set Global.onTalk = false
+=> END
+
+~ 对练
+set Global.onTalk = true
+怪僧: [speed=0.5]你要与我对练吗？
+set get_tree().current_scene.bossFight("怪僧","res://Audio/BGM/战斗-仙剑.mp3", "怪僧")
+
+set Global.onTalk = false
+=> END
+
+~ 对练2
+set Global.onTalk = true
+set Global.npcs.get("怪僧").current_dialogue_index = 0
+
 set Global.onTalk = false
 => END

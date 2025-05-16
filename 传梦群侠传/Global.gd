@@ -148,7 +148,7 @@ var currentCamera
 var currPlayer
 var currScene
 var onTeamPlayer = ["时追云","小二","凌若昭","姜韵"]
-var onTeamPet = ["敖阳","朱雀","玄武","青龙"]
+var onTeamPet = ["敖白","朱雀","玄武","青龙"]
 var onTeamSmallPet = ["小鹿"]
 var smallPets = ["小鹿"]
 var currPlayerPos
@@ -1701,7 +1701,24 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},		
-		
+	"金翅大鹏":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "初见大鹏1", "unlocked": true, "bgm": null ,"trigger":false},														
+					{"chapter": 8, "dialogue": "初见大鹏2", "unlocked": true, "bgm": null ,"trigger":false},	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"怪僧":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "对练", "unlocked": true, "bgm": null ,"trigger":false},				
+					{"chapter": 8, "dialogue": "对练2", "unlocked": true, "bgm": null ,"trigger":false},																
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},						
 			
 } 
 var potentialBalls = {

@@ -1266,8 +1266,8 @@ var fightScenePlayerData2= {
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
 	},
-	"敖阳": {
-		"name": "敖阳",
+	"敖白": {
+		"name": "敖白",
 		"sex": "male",
 		"icon": "res://Pictures/¤敖白.png",
 		"smallIcon": "res://Pictures/¤敖白.png",
@@ -1298,9 +1298,9 @@ var fightScenePlayerData2= {
 		"currHp": 500,
 		"currMp": 500,
 		"potential": 70 * Global.enKey,
-		"idle": "敖阳idle",
-		"autoAttack": "敖阳autoAttack",
-		"magicAutoAttack": "敖阳magicAutoAttack",
+		"idle": "敖白idle",
+		"autoAttack": "敖白autoAttack",
+		"magicAutoAttack": "敖白magicAutoAttack",
 		"playerMagic": [
 
 			{
@@ -2104,8 +2104,8 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]		
 	},
-	"敖阳":{
-			"name": "敖阳",
+	"敖白":{
+			"name": "敖白",
 			"sex": "male",
 			"icon": "res://Pictures/¤敖白.png",
 			"smallIcon":"res://Pictures/¤敖白.png",
@@ -2136,10 +2136,10 @@ var fightScenePlayerData = {
 			"currHp": 500,
 			"currMp": 500,
 			"potential": 70,
-			"idle": "敖阳idle",
-			"autoAttack":'敖阳autoAttack',
+			"idle": "敖白idle",
+			"autoAttack":'敖白autoAttack',
 			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
-			"magicAutoAttack":"敖阳magicAutoAttack",
+			"magicAutoAttack":"敖白magicAutoAttack",
 			"playerMagic": [
 				{
 				"name": "龙卷雨击",
@@ -2782,7 +2782,7 @@ func calculate_speed_for_level(level, player = null):
 	if player == "大海龟":
 		baseSpeed = 35.0
 		speedIncreasePerLevel = 3	
-	if player == "敖阳" or player == "敖雨" or player == "金甲":
+	if player == "敖白" or player == "敖雨" or player == "金甲":
 		speedIncreasePerLevel = 4
 
 		
@@ -2796,7 +2796,7 @@ func calculate_abilityPower_for_level(level, player = null):
 	var totalAp = baseAp + apIncreasePerLevel * (level - 1)	
 	if player == "大海龟" or player == "敖雨":
 		apIncreasePerLevel = 3  # Speed increase per level
-	if player == "敖阳":
+	if player == "敖白":
 		apIncreasePerLevel = 4 # Speed increase per level
 
 	totalAp = baseAp + apIncreasePerLevel * (level - 1)		

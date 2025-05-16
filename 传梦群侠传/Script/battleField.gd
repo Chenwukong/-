@@ -604,7 +604,6 @@ func _process(delta):
 				if player.name == i:
 					player.currHp = FightScenePlayers.fightScenePlayerData.get(i).hp
 					player.currMp = FightScenePlayers.fightScenePlayerData.get(i).mp
-			
 			FightScenePlayers.fightScenePlayerData.get(i).currHp = 	FightScenePlayers.fightScenePlayerData.get(i).hp
 			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp	
 

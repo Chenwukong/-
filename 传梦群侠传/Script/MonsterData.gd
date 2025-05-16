@@ -3968,14 +3968,14 @@ var monsters = {
 	"金翅大鹏":{
 		"金翅大鹏": Monster.new({
 			"name": "金翅大鹏",
-			"speed": 100,
+			"speed": 500,
 			"level": 1,
 			"magicDefense": 200,
 			"physicDefense": 200,
-			"attackDmg": 0,
-			"magicDmg": 0,
+			"attackDmg": 10000,
+			"magicDmg": 10000,
 			"posi": "middle",
-			"hp": 300000,
+			"hp": 50000,
 			"exp": 100,
 			"gold": 100,
 			"idle": "金翅大鹏idle",
@@ -3985,7 +3985,26 @@ var monsters = {
 			],
 			}),
 			},				
-			
+	"怪僧":{
+		"怪僧": Monster.new({
+			"name": "怪僧",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 10000,
+			"magicDmg": 10000,
+			"posi": "middle",
+			"hp": 10,
+			"exp": 100,
+			"gold": 100,
+			"idle": "怪僧idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+			},					
 					
 		}	
 

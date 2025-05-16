@@ -357,9 +357,13 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1544, 1453)					
 		if toScene == "五庄观":
 			return Vector2(62, 581)				
-			
-			
-			
+		if toScene == "西行之路":
+			return Vector2(7369, 2225)						
+	if currScene == "西行之路":
+		if toScene == "大唐境外":
+			return Vector2(-506,1808)					
+		if toScene == "朱紫国":
+			return Vector2(156,1607)					
 			
 			
 			
@@ -453,3 +457,13 @@ func checkSetPos(currScene, toScene):
 	if currScene == "乾坤殿":
 		if toScene == "五庄观":
 			return Vector2(483, 331)
+	if currScene == "朱紫国":
+		if toScene == "朱紫国旅馆":
+			return Vector2(1239,898)
+		if toScene == "朱紫国皇宫":
+			return Vector2(1093, 1118)
+	if currScene == "朱紫国旅馆":						
+		return Vector2(1035,1493)	
+	if currScene == "朱紫国皇宫":						
+		if toScene == "朱紫国":
+			return Vector2(2004,341)	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://byxu87bmihjat"]
+[gd_scene load_steps=44 format=3 uid="uid://byxu87bmihjat"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_acs6j"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_ejxb2"]
@@ -15,19 +15,14 @@
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="13_prsox"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="14_3bee2"]
 [ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="15_2rw50"]
-[ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="16_dnp64"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_76pvl"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_n4dyb"]
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="19_534th"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_7rfxx"]
-[ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="21_wli5l"]
-[ext_resource type="Texture2D" uid="uid://cox76u442bx1f" path="res://Characters/蟹黄.png" id="22_n63ra"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="23_vvogr"]
-[ext_resource type="Texture2D" uid="uid://dyxtnbfsqis5s" path="res://SeparateAnimation/敖雨/971-11.png" id="24_cujq0"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="25_p2vgr"]
-[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="26_op4j8"]
-[ext_resource type="Texture2D" uid="uid://cvxfqutxwn6nj" path="res://Pictures/金箍棒.png" id="27_bpqoh"]
-[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="28_x50ju"]
+[ext_resource type="Texture2D" uid="uid://c32uhs2awy8rh" path="res://Characters/壮汉.png" id="22_u3fg8"]
+[ext_resource type="Texture2D" uid="uid://ktiu5pt2cg4f" path="res://Characters/大胡子.png" id="23_22hbd"]
+[ext_resource type="Texture2D" uid="uid://cvir8w5pwspla" path="res://Characters/妖僧.png" id="23_rcj6k"]
+[ext_resource type="Texture2D" uid="uid://dsp7clle17vkc" path="res://Characters/卫兵.png" id="24_a7too"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="29_7eq68"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
@@ -35,10 +30,10 @@ vertices = PackedVector2Array(17, 63, 4289, 54, 4280, 2363, 26, 1188, 31, 2366, 
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(17, 63, 26, 1188, 20, 1489, 31, 2366, 4280, 2363, 4289, 54)])
 
-[sub_resource type="Gradient" id="Gradient_kdn04"]
+[sub_resource type="Gradient" id="Gradient_4d7nw"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
-gradient = SubResource("Gradient_kdn04")
+gradient = SubResource("Gradient_4d7nw")
 fill = 1
 fill_from = Vector2(1, 0.612536)
 
@@ -87,112 +82,19 @@ shader_parameter/storm_strength = 1.0
 shader_parameter/storm_density = 2.0
 shader_parameter/turbulence = 1.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bmfa1"]
-atlas = ExtResource("21_wli5l")
-region = Rect2(0, 99, 96, 99)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_abplv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bmfa1")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ippcd"]
-atlas = ExtResource("22_n63ra")
-region = Rect2(0, 80, 108, 80)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hl0be"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ippcd")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0gh27"]
-atlas = ExtResource("24_cujq0")
-region = Rect2(0, 0, 96, 104)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_shebl"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0gh27")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="Animation" id="Animation_wd1ow"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("敖阳:position")
+tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(815.347, 1825.22)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
 "values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("金箍棒2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("金箍棒2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(522, 392)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("金箍棒2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_eg635"]
@@ -210,57 +112,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("金箍棒2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3, 2.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.2, 0.2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("金箍棒2:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(2.4, 4.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(522, 392), Vector2(530, 943)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("金箍棒2:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(5),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_fa28m"]
 resource_name = "解除误会"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("敖阳:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(815.347, 1825.22), Vector2(490, 2043)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
 _data = {
@@ -268,6 +122,66 @@ _data = {
 "shake": SubResource("Animation_eg635"),
 "解除误会": SubResource("Animation_fa28m")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ym8m"]
+atlas = ExtResource("22_u3fg8")
+region = Rect2(0, 0, 106, 98)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y0br0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ym8m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goaws"]
+atlas = ExtResource("23_22hbd")
+region = Rect2(0, 91, 92, 91)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nmp1t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_goaws")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6kok"]
+atlas = ExtResource("23_rcj6k")
+region = Rect2(0, 0, 100, 117)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1q7uv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6kok")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kepp"]
+atlas = ExtResource("24_a7too")
+region = Rect2(0, 103, 116, 103)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_04rwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kepp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="朱紫国" type="Node2D"]
 script = ExtResource("1_acs6j")
@@ -287,12 +201,13 @@ texture = ExtResource("4_6whe4")
 
 [node name="player" parent="." instance=ExtResource("5_nhsvr")]
 z_index = 1
-position = Vector2(2228, 731)
+position = Vector2(137, 1577)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
-animation = &"拔剑"
+animation = &"downStand"
+frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.7, 0.7)
@@ -433,13 +348,6 @@ max_distance = 99999.0
 wait_time = 2.0
 one_shot = true
 
-[node name="小二" parent="." instance=ExtResource("16_dnp64")]
-position = Vector2(574, 988)
-
-[node name="小二" parent="小二" index="0"]
-position = Vector2(-18, 7)
-animation = &"左上"
-
 [node name="menuControl" parent="." instance=ExtResource("17_76pvl")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("18_n4dyb")]
@@ -447,100 +355,67 @@ animation = &"左上"
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_ao4we")
-offset_left = -2184.0
-offset_top = -765.0
-offset_right = 1662.0
-offset_bottom = 1647.0
+offset_left = -1918.0
+offset_top = -302.0
+offset_right = 1131.0
+offset_bottom = 2110.0
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 z_index = 100
 material = SubResource("ShaderMaterial_ao4we")
-offset_left = 7936.0
-offset_top = 2306.0
-offset_right = 11782.0
-offset_bottom = 4718.0
+offset_left = 3742.0
+offset_top = 1691.0
+offset_right = 5850.0
+offset_bottom = 3773.0
 rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="teleportCircle2" parent="." instance=ExtResource("12_v7uhj")]
-position = Vector2(2366, 988)
-toScene = "水晶宫"
+position = Vector2(2051, 286)
+toScene = "朱紫国皇宫"
 
-[node name="npc" parent="." instance=ExtResource("20_7rfxx")]
-position = Vector2(556.059, 1881.97)
-sprite_frames = SubResource("SpriteFrames_abplv")
-
-[node name="npc3" parent="." instance=ExtResource("20_7rfxx")]
-position = Vector2(832, 2036)
-sprite_frames = SubResource("SpriteFrames_abplv")
-
-[node name="npc2" parent="." instance=ExtResource("20_7rfxx")]
-position = Vector2(725, 2107)
-sprite_frames = SubResource("SpriteFrames_hl0be")
-
-[node name="npc4" parent="." instance=ExtResource("20_7rfxx")]
-position = Vector2(455, 1943)
-sprite_frames = SubResource("SpriteFrames_hl0be")
-
-[node name="初遇敖雨" parent="." instance=ExtResource("23_vvogr")]
-visible = false
-position = Vector2(424, 2029)
-rotation = -0.702406
-scale = Vector2(0.331969, 3.53297)
-triggerEvent = "初遇敖雨"
-
-[node name="敖雨" parent="." instance=ExtResource("20_7rfxx")]
-position = Vector2(709, 1988)
-sprite_frames = SubResource("SpriteFrames_shebl")
-npcName = "敖雨"
-
-[node name="petFoodBall" parent="." instance=ExtResource("25_p2vgr")]
-position = Vector2(533, 815)
-id = "东海龙宫1"
-
-[node name="敖阳" parent="." instance=ExtResource("26_op4j8")]
-position = Vector2(815.347, 1825.22)
+[node name="teleportCircle3" parent="." instance=ExtResource("12_v7uhj")]
+position = Vector2(164, 266)
+toScene = "神使宫殿"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_n3778")
 }
 
-[node name="玉箍棒" parent="." instance=ExtResource("23_vvogr")]
-visible = false
-position = Vector2(430, 931)
-triggerEvent = "玉箍棒"
-
-[node name="CollisionShape2D" parent="玉箍棒/Area2D" index="0"]
-position = Vector2(80, -49)
-
-[node name="Panel" parent="玉箍棒/Area2D" index="1"]
-offset_left = -60.0
-offset_top = -137.0
-offset_right = 218.0
-offset_bottom = 242.0
-metadata/_edit_use_anchors_ = true
-
-[node name="金箍棒2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(522, 392)
-texture = ExtResource("27_bpqoh")
-
-[node name="凌若昭" parent="." instance=ExtResource("28_x50ju")]
-position = Vector2(427.373, 1003.73)
-animation = &"右上"
-frame_progress = 0.0
-
-[node name="敖雨2" parent="." instance=ExtResource("20_7rfxx")]
-position = Vector2(530, 1078)
-sprite_frames = SubResource("SpriteFrames_shebl")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
 script = ExtResource("29_7eq68")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="朱紫国士兵" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(198, 297)
+sprite_frames = SubResource("SpriteFrames_y0br0")
+
+[node name="朱紫国药铺老板" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(1887, 1355)
+sprite_frames = SubResource("SpriteFrames_nmp1t")
+itemSale = ["返生丸", null]
+npcName = "朱紫国药铺老板"
+
+[node name="teleportCircle" parent="." instance=ExtResource("12_v7uhj")]
+position = Vector2(1088, 1426)
+toScene = "朱紫国旅馆"
+
+[node name="怪僧" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(507, 860)
+sprite_frames = SubResource("SpriteFrames_1q7uv")
+npcName = "怪僧"
+
+[node name="卫兵" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(1918, 281)
+sprite_frames = SubResource("SpriteFrames_04rwr")
+
+[node name="卫兵2" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(2057, 349)
+sprite_frames = SubResource("SpriteFrames_04rwr")
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
@@ -552,8 +427,5 @@ script = ExtResource("29_7eq68")
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
 
 [editable path="player"]
-[editable path="小二"]
-[editable path="小二/小二"]
 [editable path="CanvasLayer"]
 [editable path="CanvasLayer/importantMsg"]
-[editable path="玉箍棒"]
