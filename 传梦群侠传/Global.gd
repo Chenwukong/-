@@ -535,7 +535,10 @@ var npcVis = {
 	},
 	"大唐境外":{
 		"瑞兽": {"visible":false},			
-	}		
+	},
+	"朱紫国":{
+		"方大爷": {"visible":false},			
+	}				
 															
 }
 var baseChance = 0

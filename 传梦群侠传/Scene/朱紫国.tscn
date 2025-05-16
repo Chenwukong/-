@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://byxu87bmihjat"]
+[gd_scene load_steps=50 format=3 uid="uid://byxu87bmihjat"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_acs6j"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_ejxb2"]
@@ -23,6 +23,8 @@
 [ext_resource type="Texture2D" uid="uid://ktiu5pt2cg4f" path="res://Characters/大胡子.png" id="23_22hbd"]
 [ext_resource type="Texture2D" uid="uid://cvir8w5pwspla" path="res://Characters/妖僧.png" id="23_rcj6k"]
 [ext_resource type="Texture2D" uid="uid://dsp7clle17vkc" path="res://Characters/卫兵.png" id="24_a7too"]
+[ext_resource type="Texture2D" uid="uid://idgbe6aiajm3" path="res://Characters/老头.png" id="25_jjuns"]
+[ext_resource type="Texture2D" uid="uid://di32djtvk6lup" path="res://Characters/☆喜庆侍女.png" id="26_xv036"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="29_7eq68"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
@@ -177,6 +179,36 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7kepp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i6d2w"]
+atlas = ExtResource("25_jjuns")
+region = Rect2(0, 0, 60, 77)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_odm2h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i6d2w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_371r6"]
+atlas = ExtResource("26_xv036")
+region = Rect2(0, 0, 120, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ulao"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_371r6")
 }],
 "loop": true,
 "name": &"default",
@@ -353,6 +385,7 @@ one_shot = true
 [node name="CanvasLayer" parent="." instance=ExtResource("18_n4dyb")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ao4we")
 offset_left = -1918.0
@@ -362,6 +395,7 @@ offset_bottom = 2110.0
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ao4we")
 offset_left = 3742.0
@@ -385,7 +419,6 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 script = ExtResource("29_7eq68")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
@@ -416,6 +449,15 @@ sprite_frames = SubResource("SpriteFrames_04rwr")
 [node name="卫兵2" parent="." instance=ExtResource("20_7rfxx")]
 position = Vector2(2057, 349)
 sprite_frames = SubResource("SpriteFrames_04rwr")
+
+[node name="方大爷" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(1300, 246)
+sprite_frames = SubResource("SpriteFrames_odm2h")
+npcName = "方大爷"
+
+[node name="npc2" parent="." instance=ExtResource("20_7rfxx")]
+position = Vector2(1450, 920)
+sprite_frames = SubResource("SpriteFrames_1ulao")
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

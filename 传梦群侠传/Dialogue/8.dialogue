@@ -664,7 +664,7 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 观音菩萨: [speed=0.5]希望，你们能做到我们所没做到的事
 姜韵: [speed=0.5]借您吉言
 姜韵: [speed=0.5]对了菩萨，您知道弥勒佛现在何处吗？
-观音菩萨: [speed=0.5]他现在应该在这里往西的地方，所在之地皆是风沙，你们可往那去寻
+观音菩萨: [speed=0.5]他现在应该在这里往西的地方，所在之地皆是风沙，具体在哪我不确定，你们可往那去寻
 姜韵喜: [speed=0.5]好，谢谢菩萨！
 set Global.changebgm("res://panoramas2/普陀山.jpg")
 set FightScenePlayers.learnMagic("姜韵","净瓶仙露")
@@ -764,5 +764,15 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.npcs.get("怪僧").current_dialogue_index = 0
 
+set Global.onTalk = false
+=> END
+
+~ 看戏
+set Global.onTalk = true
+凌若昭喜: [speed=0.5]前面是干什么啊，感觉好热闹啊
+小二: [speed=0.5]好像是在举行什么典礼？
+时追云: [speed=0.5]看起来像是在庆祝什么事情
+小二: [speed=0.5]累死了，先去找客栈吧
+时追云: [speed=0.5]嗯，先休息一晚吧，顺便和老板打听一下情况
 set Global.onTalk = false
 => END
