@@ -1716,13 +1716,60 @@ var npcs = {
 	"怪僧":{
 		"dialogues": [
 				#0
-					{"chapter": 8, "dialogue": "对练", "unlocked": true, "bgm": null ,"trigger":false},				
-					{"chapter": 8, "dialogue": "对练2", "unlocked": true, "bgm": null ,"trigger":false},																
+					{"chapter": 8, "dialogue": "怪僧1", "unlocked": true, "bgm": null ,"trigger":false},				
+																
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false,
+	},						
+	"朱紫国士兵":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "卡路", "unlocked": true, "bgm": null ,"trigger":false},				
+					{"chapter": 8, "dialogue": "对练2", "unlocked": false, "bgm": null ,"trigger":false},																
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": true	
-	},						
-			
+	},				
+	"朱紫国阻拦":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "朱紫国阻拦", "unlocked": true, "bgm": null ,"trigger":false},																
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},			
+	"看戏":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "看戏", "unlocked": false, "bgm": null ,"trigger":false},																
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},				
+	
+	"朱紫国旅馆老板":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "问情况", "unlocked": false, "bgm": null ,"trigger":false},	
+					{"chapter": 8, "dialogue": "问情况2", "unlocked": false, "bgm": null ,"trigger":false},	
+																									
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},				
+	"追杀":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "追杀1", "unlocked": false, "bgm": null ,"trigger":false},		
+																									
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},			
+	
+	
+				
 } 
 var potentialBalls = {
 

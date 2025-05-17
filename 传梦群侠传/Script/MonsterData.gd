@@ -4005,7 +4005,26 @@ var monsters = {
 			],
 			}),
 			},					
-					
+	"罗非":{
+		"罗非": Monster.new({
+			"name": "罗非",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 10000,
+			"magicDmg": 10000,
+			"posi": "middle",
+			"hp": 10,
+			"exp": 100,
+			"gold": 100,
+			"idle": "罗非僧idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+			},						
 		}	
 
 
