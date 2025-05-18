@@ -27,7 +27,7 @@ set Global.getnode("菩提老祖"),position = Vector2(1557, 154)
 菩提老祖: [speed=0.5]你们此行可去寻二人
 菩提老祖: [speed=0.5]南海观世音菩萨，她手中的杨柳仙露可治万物疾病伤痕，甚至复原躯壳
 白虎: [speed=0.5]那...
-菩提老祖: [speed=0.5]而西天的未来之佛-弥勒佛祖，他有特殊法术能灭魔，想必也能除魔气
+菩提老祖: [speed=0.5]而西天的未来之佛-弥勒佛祖，他有特殊法术能除魔气
 玄武: [speed=0.5]那如来佛祖呢？他也在天庭吗？
 菩提老祖: [speed=0.5]如来，已经陨落了
 白虎: [speed=0.5]什么！竟有这等事，连他也
@@ -784,6 +784,7 @@ set Global.onTalk = false
 
 ~ 怪僧4
 set Global.onTalk = true
+set Global.changebgm("res://Audio/BGM/轩辕-危机.mp3")
 时追云惊: [speed=0.5]这，竟然有这么多的灵力
 小二: [speed=0.5]这得杀了多少人啊...
 凌若昭怒: [speed=0.5]他们真的在杀人夺取灵力！
@@ -955,6 +956,7 @@ set Global.onTalk = false
 
 ~ 追杀1
 set Global.onTalk = true
+set Global.changebgm("res://Audio/BGM/大堂-急迫.ogg")
 时追云: [speed=0.5]你就是朱紫国的国主吗
 罗非: [speed=0.5]你们是谁，竟然敢闯进我的皇宫
 set Global.getnode("AnimationPlayer").play("移动主角")
@@ -990,8 +992,15 @@ set Global.getnode("罗与非").visible = false
 小二: [speed=0.5]大象？？？
 时追云惊: [speed=0.5]有人把他救走了！
 凌若昭怒: [speed=0.5]气息还不远，大家跟我来！
+老二: [speed=0.5]老大，你刚才犹豫了吧，其实我也是
+时追云: [speed=0.5]...
+set Global.changeScene("狮驼岭",null)
 
+set Global.onTalk = false
+=> END
 
+~ 追杀3
+set Global.onTalk = true
 
 
 set Global.onTalk = false
