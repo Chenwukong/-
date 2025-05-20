@@ -804,6 +804,8 @@ set Global.onTalk = true
 时追云: [speed=0.5]看起来像是在庆祝什么事情
 小二: [speed=0.5]累死了，先去找客栈吧
 时追云: [speed=0.5]嗯，先休息一晚吧，顺便和老板打听一下情况
+set Global.npcs.get("朱紫国旅馆老板").dialogues[0].unlocked = true
+
 set Global.onTalk = false
 => END
 
@@ -985,23 +987,373 @@ set Global.onTalk = true
 小二: [speed=0.5]受死吧你！
 罗非: [speed=0.5]不！你们不能杀我！西域这里全是妖怪，你们杀了我，没有人保护这里的人，他们也会被妖怪杀死的！
 时追云: [speed=0.5]...
+罗非: [speed=0.5]！
 set Global.getnode("npc").visible = true
-罗非: [speed=0.5]多谢大仙来救！
+set Global.getnode("npc").play()
+罗非: [speed=0.5]多谢大人来救！
+set Global.playsound("res://Audio/SE/014-Move02.ogg")
 set Global.getnode("npc").visible = false
-set Global.getnode("罗与非").visible = false
-小二: [speed=0.5]大象？？？
+set Global.getnode("罗非").visible = false
+
 时追云惊: [speed=0.5]有人把他救走了！
-凌若昭怒: [speed=0.5]气息还不远，大家跟我来！
-老二: [speed=0.5]老大，你刚才犹豫了吧，其实我也是
-时追云: [speed=0.5]...
-set Global.changeScene("狮驼岭",null)
+凌若昭怒: [speed=0.5]我能追踪他们的气息，大家跟我来！
+老二: [speed=0.5]老大，你刚才犹豫了吧
+时追云: [speed=0.5]对，我犹豫了，我不知道该不该杀他，但在他逃走的一瞬间我想明白了
+set Global.changebgm("res://Audio/BGM/#绝望.ogg")
+set Global.getnode("鬼魂").visible = true
+时追云: [speed=0.5]不必想什么之后的事情，如果我放任这种东西活在世上，所有惨死之人都将永不瞑目！这里的冤魂将永世盯着我！
+[next=15]
+set Global.dial = "追杀"
+set Global.changeScene("小西天",null)
+
+
+
 
 set Global.onTalk = false
 => END
 
 ~ 追杀3
 set Global.onTalk = true
+时追云: [speed=0.5]他的气息就在这吗
+凌若昭: [speed=0.5]嗯！我在战斗中就偷偷锁定了他的气息了，他跑不掉的！
+时追云: [speed=0.5]前方那个建筑很可疑，如果他要藏，应该会在那里
+set Global.onTalk = false
+=> END
+
+~ 追杀4
+set Global.onTalk = true
+不知名声音: [speed=0.5]殿下之人可是我的信徒啊
+不知名声音: [speed=0.5]上前来吧
+小二: [speed=0.5]怎么办？
+时追云: [speed=0.5]过去看看怎么回事吧
+set Global.dial = null
+set Global.onTalk = false
+=> END
+
+~ 黄眉1
+set Global.onTalk = true
+set Global.showBlack = false
+set Global.getnode("player/Camera2D").zoom = Vector2(0.7,0.7)
+set Global.getnode("player").position = Vector2(449,512)
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+set Global.getnode("姜韵").visible = true
+set Global.changevis("雷音寺","凌若昭")
+set Global.changevis("雷音寺","小二")
+set Global.changevis("雷音寺","姜韵")
+小二: [speed=0.5]请问你是？
+弥勒佛: [speed=0.5]既见未来，为何不拜！
+小二: [speed=0.5]未来？
+凌若昭: [speed=0.5]看这里的样子，难道是雷音寺？未来，就是指的未来佛弥勒！？
+时追云: [speed=0.5]他就是弥勒佛祖吗，这里和我想象的不太一样
+弥勒佛: [speed=0.5]既见未来，为何不拜！！！
+小二: [speed=0.5]误打误撞找到了他哎？我们是来求他要东西的，那要不..?
+弥勒佛: [speed=0.5]既是来索求，还不跪下
+时追云: [speed=0.5]我不跪又如何？
+弥勒佛: [speed=0.5]不跪，乃心不诚！
+时追云: [speed=0.5]南海观世音菩萨与五庄观镇元大仙，从未令我们跪拜，反而在初见之时，便慷慨相助，毫无保留。
+时追云: [speed=0.5]我并不认为人人都该无私奉献，但也不该以跪拜为交换，才配得一份善意。
+
+时追云: [speed=0.5]你要普渡的众生，并不包含未向你卑躬屈膝之人吗
+姜韵喜: [speed=0.5]夫君说得好
+弥勒佛: [speed=0.5]看来你们是来找茬的，不可理喻！
+弥勒佛: [speed=0.5]既是无知异教徒，那就葬在此地吧！
+
+set get_tree().current_scene.bossFight("弥勒佛","res://Audio/BGM/战斗-雪.mp3", "弥勒佛")
+
+set Global.onTalk = false
+=> END
+
+~ 黄眉2
+set Global.onTalk = true
+
+黄眉: [speed=0.5]你们这群毛头小子怎么可能有这种力量
+黄眉: [speed=0.5]你，你们，你们是天命之人！？
+姜韵: [speed=0.5]你不是弥勒佛祖吧！
+黄眉: [speed=0.5]佛祖？呵呵，这世界上早就没有佛祖了！他们都死了！死了！
+时追云惊: [speed=0.5]都死了？
+小二: [speed=0.5]那你为什么要假扮他？
+黄眉: [speed=0.5]他们自以为能拯救这个世界，但却把自己的命都给搭上了！他们死了，佛就不存在了，还有谁会信我们！
+黄眉: [speed=0.5]他活着的时候一直在规训我，死了后他还算什么
+小二: [speed=0.5]佛，还在！
+黄眉: [speed=0.5]什么？
+小二: [speed=0.5]我说佛，他还在！
+黄眉: [speed=0.5]你在胡说什么！我亲眼看着他们被魔尊打死的！
+小二: [speed=0.5]金山寺的戒色和尚，他还活着
+黄眉: [speed=0.5]我以为你要说什么，一个破寺庙的和尚，法力绝对不如我们西天坐下任何一个罗汉，也配称佛吗
+小二: [speed=0.5]他原本是和我一样贪生怕死的人，但他却肯为了无辜的百姓而反抗他师傅，亲自带师兄弟们去对抗妖怪！
+小二: [speed=0.5]他很菜，他的实力可能甚至都不如一个士兵，但他肯为了别人而战，他的圣佛之心无比的耀眼！
+小二: [speed=0.5]如果世界上真的没有佛了，那也是等到他这种人都死光了之后！
+黄眉: [speed=0.5]......
+黄眉: [speed=0.5]一派胡言！
+set Global.getnode("风沙").visible = false
+set Global.getnode("风沙").play()
+set Global.playsound("res://Audio/SE/014-Move02.ogg")
+set Global.getnode("黄眉2").visible = false
+[next=2]
+set Global.getnode("风沙").visible = false
+时追云: [speed=0.5]又是这招，之前救走那人的果然是他！
+姜韵: [speed=0.5]追上他！
+
 
 
 set Global.onTalk = false
 => END
+
+
+~ 黄眉3
+set Global.onTalk = true
+罗非: [speed=0.5]大仙，你这是干什么！你要对我做什么！
+黄眉: [speed=0.5]哼哼，没办法了，养你这么久可不是白养的，你的灵力就归我了吧
+罗非: [speed=0.5]我们不是说好了吗！我每个月给你贡献灵力，你教我神术！
+罗非: [speed=0.5]是人太少了吗，我，我可以每个月多杀点人啊！
+罗非: [speed=0.5]不。。。不要啊！
+set Global.getnode("npc").play("attack")
+set Global.playsound("res://Audio/SE/041-Knock02.ogg")
+set Global.getnode("罗与非").play("blood")
+set Global.toggleballon()
+[next=0.5]
+set Global.toggleballon()
+set Global.getnode("提升").visible = true
+set Global.getnode("提升").play()
+set Global.toggleballon()
+[next=1]
+
+set Global.getnode("AnimationPlayer").play("移动主角")
+set Global.getnode("player/Camera2D").position = Vector2(231,178)
+[next=1]
+set Global.toggleballon()
+时追云: [speed=0.5]自作孽，不可活
+时追云: [speed=0.5]轮到你了！
+set Global.getnode("npc").scale = Vector2(-1,1)
+黄眉: [speed=0.5]你们真是冤魂不散啊
+黄眉: [speed=0.5]你们自诩为大侠的样子真令我恶心
+黄眉: [speed=0.5]我曾经也帮助过很多人——也许是几十人，也许是几百人。
+黄眉: [speed=0.5]可沧海桑田，这些被我救过的人，早已化作尘土。
+黄眉: [speed=0.5]在这无数年流转的时光中，他们的生命不过是一片随风飘落的树叶，转瞬即逝。
+黄眉: [speed=0.5]到头来，无论我救了多少，他们依旧会死。所以我才明白，帮助他人并没有什么狗屁意义！
+黄眉: [speed=0.5]比起那份短暂的温情，还是作恶反而来得痛快得多啊！
+黄眉: [speed=0.5]我已经收了这蠢蛋的全部灵力，你们已经打不过我了！
+set Global.getnode("金箍棒").visible = true
+set Global.getnode("AnimationPlayer").play("金箍棒")
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+时追云惊: ？？？
+set Global.changebgm("res://Audio/BGM/轩辕-危机.mp3")
+set Global.getnode("六耳").visible = true
+六耳猕猴: [speed=0.5]这就是当初困住孙悟空的黄眉大王，居然这么弱！
+六耳猕猴: [speed=0.5]不仅是他弱！被他困住的孙悟空更弱！！
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+六耳猕猴: [speed=0.5]你们又是谁？
+姜韵: [speed=0.5]小声: 夫君，尽量不要和他起冲突，我们刚打完一场战，而且他居然能一击杀了黄眉，实力着实恐怖
+时追云: [speed=0.5]...
+姜韵: [speed=0.5]我们是他的敌人罢了
+六耳猕猴: [speed=0.5]他的敌人？
+六耳猕猴: [speed=0.5]嗯？带剑那小子，你身上，怎么会有孙悟空的气味？！
+时追云: [speed=0.5]？
+时追云: [speed=0.5]应该是我身上带有大圣的信物的原因
+六耳猕猴: [speed=0.5]带有其他的器物？你和他是什么关系！？
+六耳猕猴: [speed=0.5]我一直在找他，我要亲手打死他，我要向所有人证明他不如我！
+六耳猕猴: [speed=0.5]快告诉我他在那里！
+姜韵: [speed=0.5]你也是在找孙悟空的吗，其实我们也是
+六耳猕猴: [speed=0.5]嗯？
+姜韵: [speed=0.5]找到他的线索就在我夫君身上，我们也一直在找孙悟空呢
+六耳猕猴: [speed=0.5]是吗，那你们有什么线索
+姜韵: [speed=0.5]暂时还没有，不过有他给我们的信物，我们本人一定能靠这个找到他的线索
+六耳猕猴: [speed=0.5]......
+六耳猕猴: [speed=0.5]你们最好不是在撒谎，不然我会一棍子敲死你们！
+六耳猕猴: [speed=0.5]我盯着你们了，你们最好赶快给我找到孙悟空！
+set Global.getnode("六耳").visible = false
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+小二: [speed=0.5]我去，好强的气场
+凌若昭: [speed=0.5]听他的口气，好像能和我师兄比划
+时追云: [speed=0.5]还好娘子急中生智哄骗他
+姜韵: [speed=0.5]无奈之举，现在又多了半个敌人盯着我们
+白虎: [speed=0.5]那去除魔气的功法，找到了吗，要是他也没有就糟糕了啊
+姜韵喜: [speed=0.5]放心吧，我在他的尸体上找到了，应该就是我们所需要的
+小二: [speed=0.5]是什么啊？
+姜韵喜: [speed=0.5]金刚经！
+
+set Global.changeScene("朱紫国旅馆",null)
+set Global.onTalk = false
+=> END
+
+
+~ 黄眉4
+set Global.onTalk = true
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+set Global.getnode("老方").visible = true
+set Global.getnode("姜韵").visible = true
+姜韵喜: [speed=0.5]老人家，我们回来了
+老方: [speed=0.5]哎哟，可急死我了，宫里的人没拿你们怎么样吧
+姜韵喜: [speed=0.5]我们没事
+老方: [speed=0.5]那。。我的女儿？
+姜韵喜: [speed=0.5]老人家，你先等一下！
+set Global.getnode("回血").visible = true
+set Global.getnode("回血").play()
+set Global.playsound("res://Audio/SE/回复-观音.ogg")
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+姜韵喜: [speed=0.5]老人家，你的腹部是不是不疼了
+老方: [speed=0.5]哎?还真是啊，姑娘，难道你
+姜韵喜: [speed=0.5]我们是你女儿派来给你治病的，她让我告诉你，她在天上过的很好
+姜韵喜: [speed=0.5]不过因为天庭的规矩，她不能随意下凡，她只希望你能好好的过日子，不用担心她
+老方: [speed=0.5]这。。。真的是这样吗
+姜韵喜: [speed=0.5]我们何必骗你呢，你看凡间哪有我这等神术能治你绝症呢
+老方: [speed=0.5]这。。。这倒也是！
+老方: [speed=0.5]她，真的过的很好吗？
+姜韵喜: [speed=0.5]是啊，您就放心吧，神仙的生活可不是一般人能够想象的
+老方: [speed=0.5]好吧，既然是这样那我就放心了，嘿我女儿成神仙了
+姜韵喜: [speed=0.5]这里还有一点盘缠，您尽快回家吧，路上遇到黑色的鸟仙，可叫他带你一程
+老方: [speed=0.5]好好好，谢谢你们了！
+set Global.getnode("老方").visible = false
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+姜韵: [speed=0.5]...
+时追云: [speed=0.5]我们应该骗他吗
+set Global.getnode("姜韵").play("down")
+姜韵哀: [speed=0.5]我不知道，但我想他的女儿如果还活着，也会希望她的父亲能好好的开心的活着吧
+姜韵: [speed=0.5]我没办法救活他的女儿，我只希望用自己所学，消除别人的痛楚
+set Global.changebgm("res://Audio/BGM/女神2.ogg")
+姜韵喜: [speed=0.5]若我因为撒谎而下地府被拔舌，夫君可要保护我哦
+时追云喜: [speed=0.5]我谅阎王老头也不敢
+小二: [speed=0.5]...
+小二: [speed=0.5]若昭你看！
+凌若昭: [speed=0.5]看什么？
+小二: [speed=0.5]我们前方出现了女神！是大嫂，她露出了女神的光辉！
+凌若昭喜: [speed=0.5]真的耶嘻嘻
+姜韵喜: [speed=0.5]好啊，你们敢打趣我了，看拳！
+时追云喜: [speed=0.5]哈哈哈
+set Global.toggleballon()
+[next=2]
+
+set Global.getnode("AnimationPlayer").play("turnDark")
+
+[next=1]
+
+set get_tree().current_scene.modulate = "ffffff"
+[next=23]
+set Global.changeScene("大唐官府大厅",null)
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 黄眉5
+set Global.onTalk = true
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+时追云: [speed=0.5]这阵子幸苦你了娘子，又是教人灵气练剑，又是教人金刚经的
+小二: [speed=0.5]朱紫国和大唐的百姓真把大嫂当女神了，要走的时候一个个都舍不得
+凌若昭: [speed=0.5]还送了我们好多鸡蛋
+姜韵喜: [speed=0.5]我还挺乐在其中的，看他们有自保的能力了我才能安心离开
+时追云: [speed=0.5]相信有这些神术，凡间将来能够诞生许多能人异士
+程咬金: [speed=0.5]别的我不敢说，我大唐官府将来绝对会名震一方的！
+师爷: [speed=0.5]姜姑娘的神术真是帮了我们大忙啊！
+姜韵喜: [speed=0.5]那些不是我的，无量神水乃是观音菩萨托我给百姓的，神兵炼器之法是五庄观镇元大仙叫我代为传授的
+姜韵喜: [speed=0.5]而金刚经嘛，是弥勒佛祖给我的
+师爷: [speed=0.5]原来是这样，看来神仙们还是没放弃我们的，我这就下发告令
+程咬金: [speed=0.5]我看你们最近又变强了啊，来和我练练？
+时追云: [speed=0.5]这。。。
+程咬金: [speed=0.5]别这这那那的了，看看你最近横扫千军练的怎么样了！
+时追云: [speed=0.5]好吧
+set FightScenePlayer.healAll()
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPet.erase("白虎")
+set Global.onTeamPet.erase("玄武")
+
+
+
+
+set get_tree().current_scene.bossFight("程咬金","res://Audio/BGM/战斗-城市.mp3", "程咬金")
+set Global.onTalk = false
+=> END
+
+~ 黄眉6
+set Global.onTalk = true
+程咬金: [speed=0.5]哈哈哈哈哈，我真是拍马也赶不上你了啊
+师爷: [speed=0.5]时少侠已然迈入仙人的行列了吧
+时追云: [speed=0.5]再多的法术和灵力，对我来说也只是保护百姓的一种手段
+程咬金: [speed=0.5]哈哈哈哈哈哈哈，说的好，来一杯
+时追云: [speed=0.5]好
+set Global.changeScene("北俱芦洲",Vector2(1638,1893))
+
+
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 黄眉7
+set Global.onTalk = true
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+set Global.getnode("青龙4").visible = true
+set Global.getnode("朱雀3").visible = true
+set Global.getnode("青龙4").play("人形")
+青龙: [speed=0.5]这是怎么回事
+玄武: [speed=0.5]你可算清醒过来了
+白虎: [speed=0.5]你之前发疯了，拦都拦不住你，还好他们去西域找到了佛门圣法金刚经助你消除魔性
+青龙: [speed=0.5]想必是我吃掉的魔物作祟
+小二: [speed=0.5]吃，吃掉魔物？
+青龙: [speed=0.5]这是我的种族天赋，能够吞噬掉被我击败的对手并立马增强实力，我当年为了击败魔军不得已吃掉了一堆魔物，但他们身上残留的魔气似乎没办法消除
+玄武: [speed=0.5]你心也够大的，敢吃那种东西
+青龙: [speed=0.5]好处是，我现在修为比之前强多了
+玄武: [speed=0.5]你倒是舒服了，可把我们累得够呛
+青龙: [speed=0.5]玄武，你话变多了！
+玄武: [speed=0.5]呵呵
+白虎: [speed=0.5]别闲聊了。青龙你应该是最先遇到魔物的，你当初可有看到那群魔物是从何而来？
+青龙: [speed=0.5]如果我没看错的话，他们是从创界山出来的！
+玄武: [speed=0.5]居然是那里吗！？
+白虎: [speed=0.5]为什么会是在那里
+时追云: [speed=0.5]创界山是什么地方?
+玄武: [speed=0.5]那是一切开始的地方，那是盘古开天之时脚下所站之地，之后那地方长成了山，有了林和生物
+玄武: [speed=0.5]一些远古之神应该也是从那里诞生的
+白虎: [speed=0.5]据说那里的山石不管怎么样都无法破坏
+时追云: [speed=0.5]可这和魔有什么关系
+玄武: [speed=0.5]不知道...
+set Global.changebgm("res://Audio/BGM/E.S.mp3")
+set Global.addshader("建业左","res://shader/shake.gdshader")
+set Globbal.playsound("res://Audio/SE/050-Explosion03.ogg")
+凌若昭: [speed=0.5]！！！
+时追云惊: 何来的如此巨大震动！
+姜韵恐: [speed=0.5]恐怕不是地上的震动！
+玄武: [speed=0.5]是天！！是天在震动！
+小二: [speed=0.5]天怎么也会震动啊！
+菩提老祖: [speed=0.5]追云，若昭，小二，你们速速回来！
+时追云: [speed=0.5]菩提祖师的千里传音？
+凌若昭: [speed=0.5]看来事情很紧急！
+青龙: [speed=0.5]我与你们一同前往
+set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
+朱雀: ...
+[next=1]
+set Global.current_chapter_id = 9
+set Global.changeScene("chapterPreview",null)
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 没有更多可说的了
+set Global.onTalk = true
+{{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END
+

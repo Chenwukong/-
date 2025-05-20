@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cl3y1f4oo5d4h"]
+[gd_scene load_steps=98 format=3 uid="uid://cl3y1f4oo5d4h"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_d5ft8"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_qoatp"]
@@ -28,7 +28,14 @@
 [ext_resource type="Texture2D" uid="uid://chqd3665273u5" path="res://SeparateAnimation/天命人罗与非/952-6.png" id="26_w2xtk"]
 [ext_resource type="Texture2D" uid="uid://cle5173qcdiiw" path="res://SeparateAnimation/天命人罗与非/952-7.png" id="27_6vsbd"]
 [ext_resource type="Texture2D" uid="uid://doxvmc1c7ybei" path="res://SeparateAnimation/天命人罗与非/952-8.png" id="28_gftog"]
-[ext_resource type="Texture2D" uid="uid://dgnxj80xu7tiy" path="res://Characters/大象。。.png" id="29_nvgn1"]
+[ext_resource type="Texture2D" uid="uid://cf1sxqdjlorgk" path="res://梦魂Animation/法术-飞沙走石.png" id="29_deg42"]
+[ext_resource type="Texture2D" uid="uid://oble4wracso0" path="res://Characters/乞丐.png" id="30_pii5h"]
+[ext_resource type="Texture2D" uid="uid://c32uhs2awy8rh" path="res://Characters/壮汉.png" id="31_ul1b5"]
+[ext_resource type="Texture2D" uid="uid://bdwcawfuah1s7" path="res://Characters/孩子.png" id="32_thj4l"]
+[ext_resource type="Texture2D" uid="uid://briuinxobdhj2" path="res://Characters/☆老婆婆.png" id="33_8msng"]
+[ext_resource type="Texture2D" uid="uid://daeraqsaya3ec" path="res://Characters/0紫霞.png" id="34_q65sx"]
+[ext_resource type="Texture2D" uid="uid://maxeo471c3hq" path="res://Characters/士兵.png" id="35_b3ry3"]
+[ext_resource type="Texture2D" uid="uid://c2nh4w1qxh46p" path="res://Characters/小孩-女.png" id="36_vvb1o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_urj7t"]
 vertices = PackedVector2Array(17, 63, 4289, 54, 4280, 2363, 26, 1188, 31, 2366, 20, 1489)
@@ -121,9 +128,6 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(-200, 0), Vector2(200, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_fa28m"]
-resource_name = "解除误会"
-
 [sub_resource type="Animation" id="Animation_7qs0m"]
 resource_name = "移动主角"
 tracks/0/type = "value"
@@ -138,6 +142,9 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1093, 1118), Vector2(1523, 886)]
 }
+
+[sub_resource type="Animation" id="Animation_fa28m"]
+resource_name = "解除误会"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
 _data = {
@@ -211,36 +218,298 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yypir"]
-atlas = ExtResource("29_nvgn1")
-region = Rect2(0, 0, 199, 148)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrhm0"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 0, 362, 384)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ka1is"]
-atlas = ExtResource("29_nvgn1")
-region = Rect2(199, 0, 199, 148)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xk6ly"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 384, 362, 384)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vc50s"]
-atlas = ExtResource("29_nvgn1")
-region = Rect2(398, 0, 199, 148)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fprrl"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 768, 362, 384)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3riti"]
-atlas = ExtResource("29_nvgn1")
-region = Rect2(597, 0, 199, 148)
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfl76"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 1152, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js1fi"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 1536, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqgkd"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 1920, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydg1e"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 2304, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wsvd"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 2688, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg6x2"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 3072, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo54o"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 3456, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omrvc"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 3840, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4gp5"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 4224, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4016"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 4608, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmif5"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 4992, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhhyt"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 5376, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u8yct"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 5760, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnagi"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 6144, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1fxb"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 6528, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5mutf"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 6912, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dajex"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 7296, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jypb5"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 7680, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8dat"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 8064, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ehk5"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 8448, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aebwv"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 8832, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4u4k"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 9216, 362, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t01hg"]
+atlas = ExtResource("29_deg42")
+region = Rect2(0, 9600, 362, 384)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wwfer"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yypir")
+"texture": SubResource("AtlasTexture_xrhm0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ka1is")
+"texture": SubResource("AtlasTexture_xk6ly")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vc50s")
+"texture": SubResource("AtlasTexture_fprrl")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3riti")
+"texture": SubResource("AtlasTexture_lfl76")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js1fi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqgkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydg1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wsvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg6x2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo54o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omrvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4gp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4016")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmif5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhhyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u8yct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnagi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1fxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5mutf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dajex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jypb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8dat")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ehk5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aebwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4u4k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t01hg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux8kn"]
+atlas = ExtResource("30_pii5h")
+region = Rect2(180, 212, 90, 106)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j14jk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux8kn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6unqn"]
+atlas = ExtResource("31_ul1b5")
+region = Rect2(0, 196, 106, 98)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a32lq"]
+atlas = ExtResource("32_thj4l")
+region = Rect2(0, 128, 38, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i0q86"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6unqn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a32lq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6p06w"]
+atlas = ExtResource("33_8msng")
+region = Rect2(0, 0, 83, 74)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1oeeq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6p06w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11li8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a32lq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84vqe"]
+atlas = ExtResource("34_q65sx")
+region = Rect2(255, 182, 85, 91)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_21j4q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84vqe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35dhw"]
+atlas = ExtResource("35_b3ry3")
+region = Rect2(0, 0, 108, 129)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bos5i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35dhw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8ndk"]
+atlas = ExtResource("36_vvb1o")
+region = Rect2(0, 213, 50, 71)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxail"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8ndk")
 }],
 "loop": true,
 "name": &"default",
@@ -258,6 +527,7 @@ texture = ExtResource("3_c5thu")
 offset = Vector2(-2153, -82)
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(1347, 857)
 scale = Vector2(0.7, 0.7)
@@ -453,9 +723,195 @@ npcName = "朱紫国旅馆老板"
 
 [node name="npc" parent="." instance=ExtResource("20_egimb")]
 visible = false
-position = Vector2(1487, 789)
+position = Vector2(1567, 781)
 sprite_frames = SubResource("SpriteFrames_wwfer")
-frame_progress = 0.00252237
+frame = 25
+frame_progress = 1.0
+
+[node name="鬼魂" type="Node2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.470588)
+position = Vector2(1358.16, 998.637)
+
+[node name="npc" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(44.8376, -91.6368)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc3" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-19.1624, 83.3632)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc9" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-205.162, -65.6368)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc10" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-48.1624, -31.6368)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc14" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-48.1624, -31.6368)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc15" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-131.162, -215.637)
+sprite_frames = SubResource("SpriteFrames_1oeeq")
+
+[node name="npc11" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(53.8376, 27.3632)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc12" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-148.162, 12.3632)
+sprite_frames = SubResource("SpriteFrames_11li8")
+
+[node name="npc13" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(18.8376, -29.6368)
+sprite_frames = SubResource("SpriteFrames_11li8")
+
+[node name="npc2" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-54.1624, -205.637)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc4" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(104.838, -27.6368)
+sprite_frames = SubResource("SpriteFrames_21j4q")
+
+[node name="npc5" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(67.8376, -252.637)
+sprite_frames = SubResource("SpriteFrames_bos5i")
+
+[node name="npc6" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-38.1624, -293.637)
+sprite_frames = SubResource("SpriteFrames_bos5i")
+
+[node name="npc7" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(185.838, -94.6368)
+sprite_frames = SubResource("SpriteFrames_cxail")
+
+[node name="npc8" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(270.838, -103.637)
+sprite_frames = SubResource("SpriteFrames_cxail")
+
+[node name="npc16" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-187.162, -70.1368)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc17" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-251.162, 104.863)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc18" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-437.162, -44.1368)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc19" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-280.162, -10.1368)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc20" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-280.162, -10.1368)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc21" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-363.162, -194.137)
+sprite_frames = SubResource("SpriteFrames_1oeeq")
+
+[node name="npc22" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-178.162, 48.8632)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc23" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-380.162, 33.8632)
+sprite_frames = SubResource("SpriteFrames_11li8")
+
+[node name="npc24" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-213.162, -8.13678)
+sprite_frames = SubResource("SpriteFrames_11li8")
+
+[node name="npc25" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-286.162, -184.137)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc26" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-127.162, -6.13678)
+sprite_frames = SubResource("SpriteFrames_21j4q")
+
+[node name="npc27" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-164.162, -231.137)
+sprite_frames = SubResource("SpriteFrames_bos5i")
+
+[node name="npc28" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-270.162, -272.137)
+sprite_frames = SubResource("SpriteFrames_bos5i")
+
+[node name="npc29" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-46.1624, -73.1368)
+sprite_frames = SubResource("SpriteFrames_cxail")
+
+[node name="npc30" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(38.8376, -82.1368)
+sprite_frames = SubResource("SpriteFrames_cxail")
+
+[node name="npc31" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(76.8376, 31.8632)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc32" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(12.8376, 206.863)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc33" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-173.162, 57.8632)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc34" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-16.1624, 91.8632)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc35" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-16.1624, 91.8632)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc36" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-99.1624, -92.1368)
+sprite_frames = SubResource("SpriteFrames_1oeeq")
+
+[node name="npc37" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(85.8376, 150.863)
+sprite_frames = SubResource("SpriteFrames_i0q86")
+
+[node name="npc38" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-116.162, 135.863)
+sprite_frames = SubResource("SpriteFrames_11li8")
+
+[node name="npc39" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(50.8376, 93.8632)
+sprite_frames = SubResource("SpriteFrames_11li8")
+
+[node name="npc40" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-22.1624, -82.1368)
+sprite_frames = SubResource("SpriteFrames_j14jk")
+
+[node name="npc41" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(136.838, 95.8632)
+sprite_frames = SubResource("SpriteFrames_21j4q")
+
+[node name="npc42" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(99.8376, -129.137)
+sprite_frames = SubResource("SpriteFrames_bos5i")
+
+[node name="npc43" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(-6.16235, -170.137)
+sprite_frames = SubResource("SpriteFrames_bos5i")
+
+[node name="npc44" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(217.838, 28.8632)
+sprite_frames = SubResource("SpriteFrames_cxail")
+
+[node name="npc45" parent="鬼魂" instance=ExtResource("20_egimb")]
+position = Vector2(302.838, 19.8632)
+sprite_frames = SubResource("SpriteFrames_cxail")
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

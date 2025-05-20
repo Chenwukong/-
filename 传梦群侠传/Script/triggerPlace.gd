@@ -188,7 +188,9 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("看戏"))							
 			"阻拦":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("阻拦"))							
-				
+			"黄眉":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("黄眉"))							
+								
 				
 func get_npc_dialogue(npc_id):
 	
@@ -197,7 +199,7 @@ func get_npc_dialogue(npc_id):
 
 	if npc["dialogues"].size() > dialogue_index:
 		var dialogue_entry = npc["dialogues"][dialogue_index]
-
+		
 		if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id:
 			update_npc_dialogue_index(npc_id)
 			if npc["dialogues"][dialogue_index].bgm != null:

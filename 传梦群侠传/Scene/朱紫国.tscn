@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://1ld0qxpmwyck" path="res://Panoramas/朱紫国.jpg" id="3_o7hr0"]
 [ext_resource type="Texture2D" uid="uid://carwm1ro02r08" path="res://Panoramas/朱紫国_2.png" id="4_6whe4"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_nhsvr"]
-[ext_resource type="AudioStream" uid="uid://dtxvkdvvkdg2w" path="res://Audio/BGM/聂薇 - 朱紫国.mp3" id="6_l72vb"]
+[ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="6_v4w0k"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_4iobq"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_nf3hq"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_l4a0y"]
@@ -373,7 +373,7 @@ zoom = Vector2(0.7, 0.7)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("6_l72vb")
+stream = ExtResource("6_v4w0k")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -510,7 +510,6 @@ one_shot = true
 [node name="CanvasLayer" parent="." instance=ExtResource("18_n4dyb")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ao4we")
 offset_left = -1918.0
@@ -520,7 +519,6 @@ offset_bottom = 2110.0
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ao4we")
 offset_left = 3742.0

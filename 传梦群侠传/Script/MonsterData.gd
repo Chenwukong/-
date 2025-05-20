@@ -1266,7 +1266,7 @@ var monsters = {
 			"attackDmg": 1200,
 			"magicDmg": 250,
 			"luck": 50,
-			"hp": 15000,
+			"hp": 13000,
 			"posi": "middle",
 			"exp": 0,
 			"gold": 0,
@@ -4018,13 +4018,34 @@ var monsters = {
 			"hp": 10,
 			"exp": 100,
 			"gold": 100,
-			"idle": "罗非僧idle",
+			"idle": "罗非idle",
 			 "monsterMagicList": [
 				magics.get("水满金山"),
 				magics.get("水炮"),
 			],
 			}),
-			},						
+			},
+	"弥勒佛":{
+		"弥勒佛": Monster.new({
+			"name": "弥勒佛",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 10000,
+			"magicDmg": 10000,
+			"posi": "middle",
+			"hp": 10,
+			"exp": 100,
+			"gold": 100,
+			"idle": "弥勒佛idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+			},			
+									
 		}	
 
 

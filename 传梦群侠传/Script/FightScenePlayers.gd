@@ -1,7 +1,7 @@
 extends Node
 var hashTable = {}
 var gold = 0
-var golds = 10000 * Global.enKey
+var golds = 1 * Global.enKey
 var seconds = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,10 +49,10 @@ var consumeItem = {
 		"info": ItemData.consume.get("西瓜"),
 		"number": 100
 	},	
-	"人参果":{
-		"info": ItemData.consume.get("人参果"),
-		"number": 1
-	},		
+#	"人参果":{
+#		"info": ItemData.consume.get("人参果"),
+#		"number": 1
+#	},		
 	
 }
 
@@ -71,7 +71,7 @@ var questItem = {
 	
 }
 
-var petFoodBall = 50
+var petFoodBall = 0
 var petFood = 1
 var bagArmorItem = {
 	"大剑":{
@@ -2953,7 +2953,7 @@ var unLearnMagic = {
 					"needExp": 50,
 					"attackType": "buff",
 					"buffEffect": ["currPhysicDefense", "currMagicDefense"], 
-					"value": 200,
+					"value": 100,
 					"cost": 10,
 					"description": "提高防御",	
 					"effectArea": "aoe",
@@ -3068,7 +3068,6 @@ var unLearnMagic = {
 					"icon": "res://Icons/●图标 (15).png",
 				},	
 			"斩龙决":{
-					"level": 1,
 					"currExp": 0,
 					"needExp": 50,
 					"attackType": "range",
@@ -3083,7 +3082,6 @@ var unLearnMagic = {
 						},	
 			"净瓶仙露":{ 
 					"name": "净瓶仙露",
-					"level": 1,
 					"currExp": 0,
 					"needExp": 50,
 					"attackType": "buff",
@@ -3098,6 +3096,24 @@ var unLearnMagic = {
 					"audio": "res://Audio/SE/回复-观音.ogg",
 					"icon":"res://Icons/●图标 (77).png",
 			},			
+			"金刚经":{
+					"name": "金刚经",
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "buff",
+					"buffEffect": ["currPhysicDefense", "currMagicDefense"], 
+					"value": 600,
+					"cost": 500,
+					"description": "短时间内给三名队友提升大量防御",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 3,
+					"duration": 2,
+					"audio": "res://Audio/ME/啊弥拖佛.ogg",
+					"icon":"res://Icons/●图标 (77).png",
+				},			
+			
+			
 				
 }
 func learnMagic(character, magicName):

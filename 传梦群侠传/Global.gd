@@ -538,12 +538,16 @@ var npcVis = {
 	},
 	"朱紫国":{
 		"方大爷": {"visible":false},			
-	}				
-															
+	},				
+	"雷音寺":{
+		"小二": {"visible":false},			
+		"姜韵": {"visible":false},					
+		"凌若昭": {"visible":false},					
+	}																			
 }
 var baseChance = 0
 var musicOn = true
-var enKey = 2 #randi_range(1, 3000)
+var enKey = randi_range(1, 3000)
 
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
@@ -1717,7 +1721,7 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 8, "dialogue": "怪僧1", "unlocked": true, "bgm": null ,"trigger":false},				
-																
+					{"chapter": 8, "dialogue": "怪僧2", "unlocked": false, "bgm": null ,"trigger":false},																	
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false,
@@ -1726,7 +1730,7 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 8, "dialogue": "卡路", "unlocked": true, "bgm": null ,"trigger":false},				
-					{"chapter": 8, "dialogue": "对练2", "unlocked": false, "bgm": null ,"trigger":false},																
+													
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": true	
@@ -1742,7 +1746,7 @@ var npcs = {
 	"看戏":{
 		"dialogues": [
 				#0
-					{"chapter": 8, "dialogue": "看戏", "unlocked": false, "bgm": null ,"trigger":false},																
+					{"chapter": 8, "dialogue": "看戏", "unlocked": true, "bgm": null ,"trigger":false},																
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
@@ -1752,7 +1756,7 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 8, "dialogue": "问情况", "unlocked": false, "bgm": null ,"trigger":false},	
-					{"chapter": 8, "dialogue": "问情况2", "unlocked": false, "bgm": null ,"trigger":false},	
+					{"chapter": 8, "dialogue": "问情况2", "unlocked": true, "bgm": null ,"trigger":false},	
 																									
 				],
 		"current_dialogue_index": 0,	
@@ -1761,13 +1765,25 @@ var npcs = {
 	"追杀":{
 		"dialogues": [
 				#0
-					{"chapter": 8, "dialogue": "追杀1", "unlocked": false, "bgm": null ,"trigger":false},		
+					{"chapter": 8, "dialogue": "追杀1", "unlocked": true, "bgm": null ,"trigger":false},		
 																									
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},			
 	
+	"黄眉":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "黄眉1", "unlocked": true, "bgm":  "res://Audio/BGM/0情况危机.ogg","trigger":false},		
+					{"chapter": 8, "dialogue": "黄眉2", "unlocked": true, "bgm":"res://Audio/BGM/庄严1.mp3" ,"trigger":false},
+					{"chapter": 8, "dialogue": "黄眉3", "unlocked": true, "bgm":"res://Audio/BGM/庄严1.mp3" ,"trigger":false},					
+					{"chapter": 8, "dialogue": "黄眉4", "unlocked": true, "bgm":null ,"trigger":false},		
+					{"chapter": 8, "dialogue": "黄眉5", "unlocked": true, "bgm":null ,"trigger":false},																																			
+				],
+		"current_dialogue_index": 3,	
+		"constNpc": false	
+	},				
 	
 				
 } 

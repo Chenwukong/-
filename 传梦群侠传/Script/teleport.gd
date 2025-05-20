@@ -463,7 +463,11 @@ func checkSetPos(currScene, toScene):
 		if toScene == "朱紫国皇宫":
 			return Vector2(1093, 1118)
 	if currScene == "朱紫国旅馆":						
-		return Vector2(1035,1493)	
+		return Vector2(542,908)	
 	if currScene == "朱紫国皇宫":						
 		if toScene == "朱紫国":
 			return Vector2(2004,341)	
+	if currScene == "小西天":						
+		return Vector2(2004,341)	
+	if currScene == "雷音寺":						
+		return Vector2(203, -115)

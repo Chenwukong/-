@@ -98,7 +98,7 @@
 [ext_resource type="Texture2D" uid="uid://b6rv33sy85g7j" path="res://Pictures/四圣change.jpg" id="97_rcrdp"]
 [ext_resource type="PackedScene" uid="uid://b26xijjbntyeb" path="res://Scene/鬼帝化身.tscn" id="97_uwl7f"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsolh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_owmq0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -2432,13 +2432,13 @@ animations = [{
 script = ExtResource("1_a8ipr")
 
 [node name="建业左" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_hsolh")
+material = SubResource("ShaderMaterial_owmq0")
 position = Vector2(1201, 1197.1)
 texture = ExtResource("2_va1q1")
 
 [node name="player" parent="." instance=ExtResource("3_l7hqn")]
 z_index = 2
-position = Vector2(3267.44, 2265.6)
+position = Vector2(1638.9, 1894.53)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -2625,9 +2625,6 @@ animation = &"左上"
 frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
-frame_progress = 0.0
-
-[node name="斩击" parent="小二/小二/effects" index="3"]
 frame_progress = 0.0
 
 [node name="飞剑诀" parent="小二/小二/effects" index="4"]
@@ -2912,7 +2909,7 @@ visible = false
 position = Vector2(1305, 1283)
 scale = Vector2(2.12567, 2.01106)
 sprite_frames = SubResource("SpriteFrames_h4tmk")
-animation = &"施法"
+animation = &"人形"
 autoplay = "default"
 npcName = "青龙"
 
