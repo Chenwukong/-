@@ -1,4 +1,4 @@
-[gd_scene load_steps=429 format=3 uid="uid://d1psa2w4drbnv"]
+[gd_scene load_steps=430 format=3 uid="uid://d1psa2w4drbnv"]
 
 [ext_resource type="Script" path="res://chat_ballon/chatBalloon.gd" id="1_l52tu"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_065px"]
@@ -7,7 +7,8 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_86jyl"]
 [ext_resource type="Texture2D" uid="uid://bd2fn3qdbl3sv" path="res://Pictures/Pictures/¤黑熊精.png" id="3_iuf66"]
 [ext_resource type="Texture2D" uid="uid://c14hfppuwn757" path="res://Pictures/框.png" id="3_kxjc0"]
-[ext_resource type="Texture2D" uid="uid://cuau1pro2p7o0" path="res://portrait/玄武.PNG" id="5_cdiud"]
+[ext_resource type="Texture2D" uid="uid://cpca6fhr8vf2x" path="res://portrait/小二.png" id="4_fv7cx"]
+[ext_resource type="Texture2D" uid="uid://c6y74cr5w6ji6" path="res://portrait/墨兮.png" id="4_w7oan"]
 [ext_resource type="Texture2D" uid="uid://bxy5krj1dmfmi" path="res://portrait/时追云红眼.png" id="5_vlhgy"]
 [ext_resource type="Texture2D" uid="uid://b1swkwvj21vgc" path="res://portrait/敖雨.png" id="7_byoll"]
 [ext_resource type="FontFile" uid="uid://chjrjt643xgk1" path="res://Aa剑豪体.ttf" id="7_f5hwo"]
@@ -2919,7 +2920,7 @@ offset_top = -222.168
 offset_right = 1097.17
 offset_bottom = 686.832
 scale = Vector2(0.630088, 0.584083)
-texture = ExtResource("5_cdiud")
+texture = ExtResource("4_fv7cx")
 
 [node name="TextureRect2" type="TextureRect" parent="Balloon"]
 visible = false
@@ -2930,9 +2931,10 @@ offset_top = -208.283
 offset_right = 981.573
 offset_bottom = 365.717
 scale = Vector2(0.630088, 0.584083)
-texture = ExtResource("5_cdiud")
+texture = ExtResource("4_fv7cx")
 
 [node name="TextureRect4" type="TextureRect" parent="Balloon"]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_left = 571.748
@@ -2940,7 +2942,7 @@ offset_top = -177.307
 offset_right = 891.748
 offset_bottom = 324.693
 scale = Vector2(0.630088, 0.584083)
-texture = ExtResource("5_cdiud")
+texture = ExtResource("4_fv7cx")
 
 [node name="敖雨rect" type="TextureRect" parent="Balloon"]
 visible = false
@@ -2952,7 +2954,27 @@ offset_top = -248.871
 offset_right = 3970.22
 offset_bottom = 3307.13
 scale = Vector2(0.15, 0.13)
-texture = ExtResource("5_cdiud")
+texture = ExtResource("4_w7oan")
+
+[node name="墨兮rect" type="TextureRect" parent="Balloon"]
+visible = false
+layout_mode = 0
+offset_left = 99.956
+offset_top = -233.917
+offset_right = 1123.96
+offset_bottom = 790.083
+scale = Vector2(0.279068, 0.342219)
+texture = ExtResource("4_fv7cx")
+
+[node name="真小二rect" type="TextureRect" parent="Balloon"]
+visible = false
+layout_mode = 0
+offset_left = 515.773
+offset_top = -234.985
+offset_right = 1539.77
+offset_bottom = 789.015
+scale = Vector2(0.279068, 0.342219)
+texture = ExtResource("4_fv7cx")
 
 [node name="CharacterLabel" type="RichTextLabel" parent="Balloon"]
 unique_name_in_owner = true

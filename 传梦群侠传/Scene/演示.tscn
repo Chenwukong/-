@@ -1,29 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4nodmwyrek8p"]
+[gd_scene load_steps=2 format=3 uid="uid://b4nodmwyrek8p"]
 
-[ext_resource type="Texture2D" uid="uid://bvvx3nlh2kbht" path="res://xyq.bmp" id="1_lva88"]
-[ext_resource type="Texture2D" uid="uid://cqffvl0ak0x2a" path="res://数字/23-3.png" id="2_hhq4a"]
-[ext_resource type="Texture2D" uid="uid://ck6yu256am0" path="res://数字/23-1.png" id="3_b1c5t"]
-[ext_resource type="Texture2D" uid="uid://raatre0fu182" path="res://数字/23-6.png" id="4_lta0d"]
+[ext_resource type="Script" path="res://Script/演示.gd" id="1_vaax4"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
-
-[node name="Xyq" type="Sprite2D" parent="."]
-position = Vector2(69, 25)
-scale = Vector2(0.434783, 0.434783)
-texture = ExtResource("1_lva88")
-
-[node name="23-3" type="Sprite2D" parent="."]
-position = Vector2(180, 22)
-texture = ExtResource("2_hhq4a")
-
-[node name="23-1" type="Sprite2D" parent="."]
-position = Vector2(227, 26)
-texture = ExtResource("3_b1c5t")
-
-[node name="23-4" type="Sprite2D" parent="."]
-position = Vector2(178, 70)
-texture = ExtResource("2_hhq4a")
-
-[node name="23-6" type="Sprite2D" parent="."]
-position = Vector2(226, 70)
-texture = ExtResource("4_lta0d")
+[node name="CanvasLayer" type="Sprite2D"]
+script = ExtResource("1_vaax4")

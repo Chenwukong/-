@@ -471,3 +471,27 @@ func checkSetPos(currScene, toScene):
 		return Vector2(2004,341)	
 	if currScene == "雷音寺":						
 		return Vector2(203, -115)
+	if currScene == "长寿村":						
+		if toScene == "神庙":
+			return Vector2(1702,913)	
+		if toScene == "长寿村药店":
+			return Vector2(796,949)		
+		if toScene == "长寿村村长家":
+			return Vector2(1318,998)							
+		if toScene == "长寿村民居":
+			return Vector2(1900,974)	
+		if toScene == "长寿村酒店":
+			return Vector2(1934,970)	
+			
+								
+	if currScene == "神庙":						
+		if toScene == "长寿村":
+			return Vector2(2306,117)	
+	if currScene == "长寿村药店":						
+		return Vector2(1809,1722)
+	if currScene == "长寿村村长家":						
+		return Vector2(1234,122)
+	if currScene == "长寿村民居":						
+		return Vector2(1158,1515)
+	if currScene == "长寿村酒店":						
+		return Vector2(2116,456)

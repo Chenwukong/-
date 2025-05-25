@@ -7,6 +7,9 @@ extends CanvasLayer
 @onready var mainPortrait = $Balloon/TextureRect2
 @onready var 小二portrait = $Balloon/TextureRect4
 @onready var 敖雨portrait = $"Balloon/敖雨rect"
+@onready var 墨兮portrait = $"Balloon/墨兮rect"
+@onready var 真小二portrait = $"Balloon/真小二rect"
+
 
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
@@ -52,7 +55,8 @@ var dialogue_line: DialogueLine:
 			character_label.text = "小二"				
 		elif dialogue_line.character == "水云仙"  or dialogue_line.character == "水云仙哀" or dialogue_line.character == "水云仙哭" or dialogue_line.character == "水云仙死":
 			character_label.text = "水云仙"					
-			
+		elif dialogue_line.character == "墨兮"  or dialogue_line.character == "墨兮2":
+			character_label.text = "墨兮"				
 		else:
 			character_label.text = tr(dialogue_line.character, "dialogue")
 		if dialogue_line.character == "<null>":
@@ -69,15 +73,19 @@ var dialogue_line: DialogueLine:
 			portrait.visible = false
 			敖雨portrait.visible = false
 			小二portrait.visible = false
+			墨兮portrait.visible = false
+			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598,80)
-		elif name == "小二"   or name == "虎范" or name == "白虎" :
+		elif  name == "虎范" or name == "白虎" :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = false
 			小二portrait.visible = true
 			小二portrait.texture = load(portraitPath)
-			portrait.visible = false			 
+			portrait.visible = false	
+			墨兮portrait.visible = false		 
 			mainPortrait.visible = false
+			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)
 		elif name == "敖雨" or name == "朱雀":
@@ -85,8 +93,10 @@ var dialogue_line: DialogueLine:
 			敖雨portrait.visible = true
 			敖雨portrait.texture = load(portraitPath)
 			小二portrait.visible = false
-			portrait.visible = false			 
-			mainPortrait.visible = false	
+			portrait.visible = false	
+			墨兮portrait.visible = false		 
+			mainPortrait.visible = false
+			真小二portrait.visible = false	
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)			
 		elif name == "小男孩"or name == "小追云" :
@@ -95,12 +105,36 @@ var dialogue_line: DialogueLine:
 			敖雨portrait.texture = load(portraitPath)
 			敖雨portrait.scale.x = 0.15
 			敖雨portrait.scale.y = 0.13
+			墨兮portrait.visible = false
 			小二portrait.visible = false
 			portrait.visible = false			 
 			mainPortrait.visible = false	
+			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)
-			敖雨portrait.position = Vector2(493,-139)
+			敖雨portrait.position = Vector2(493,-139)		
+		elif name == "墨兮"or name == "寒天云" :
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			墨兮portrait.texture = load(portraitPath)
+			墨兮portrait.visible = true
+			敖雨portrait.visible = false
+			小二portrait.visible = false
+			portrait.visible = false			 
+			mainPortrait.visible = false	
+			真小二portrait.visible = false
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(598, 80)
+		elif name == "小二" or name == "小二真身":
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			真小二portrait.texture = load(portraitPath)
+			墨兮portrait.visible = false
+			敖雨portrait.visible = false
+			小二portrait.visible = false
+			portrait.visible = false			 
+			mainPortrait.visible = false
+			真小二portrait.visible = true
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(598, 80)	
 		else:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
 			portrait.visible = true

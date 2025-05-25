@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://vja1i88n76g5"]
+[gd_scene load_steps=36 format=3 uid="uid://vja1i88n76g5"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_pteas"]
 [ext_resource type="Texture2D" uid="uid://bwhebula2aifg" path="res://Panoramas/颠倒幻境.png" id="2_edm3l"]
@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_jcwws"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_75y4j"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="12_valin"]
-[ext_resource type="Texture2D" uid="uid://bb1u05mbryp5a" path="res://Characters/2侠客1.png" id="13_38hvy"]
+[ext_resource type="Texture2D" uid="uid://c56s0p1qheflj" path="res://SeparateAnimation/传梦/传大将军坏事做尽待机.png" id="13_0gp4k"]
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="14_74q2n"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="15_kafu7"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_1jein"]
@@ -66,15 +66,92 @@ _data = {
 "turnDark": SubResource("Animation_p0fbi")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uw548"]
-atlas = ExtResource("13_38hvy")
-region = Rect2(127, 0, 127, 127)
+[sub_resource type="AtlasTexture" id="AtlasTexture_vycaj"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(0, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_up076"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(260, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vhlp"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(520, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6b1y"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(780, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f72t0"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(1040, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkysf"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(1300, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77cy1"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(1560, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6txb"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(1820, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hb87o"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(2080, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b1tb"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(2340, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgc0k"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(2600, 0, 260, 223)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_758nd"]
+atlas = ExtResource("13_0gp4k")
+region = Rect2(2860, 0, 260, 223)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_w26ab"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uw548")
+"texture": SubResource("AtlasTexture_vycaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_up076")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vhlp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6b1y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f72t0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkysf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77cy1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6txb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hb87o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b1tb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgc0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_758nd")
 }],
 "loop": true,
 "name": &"default",
@@ -211,6 +288,8 @@ libraries = {
 [node name="传梦" parent="." instance=ExtResource("12_valin")]
 position = Vector2(339, 309)
 sprite_frames = SubResource("SpriteFrames_w26ab")
+autoplay = "default"
+frame_progress = 0.295987
 npcName = "传梦"
 
 [node name="CollisionPolygon2D" parent="传梦/npcBody" index="1"]

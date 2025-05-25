@@ -387,6 +387,29 @@ var magics = {
 
 
 var monsters = {
+	"传梦":{
+		"传梦": Monster.new({
+			"name": "传梦",
+			"speed": calculate_speed_for_level(99),
+			"level": 99,
+			"magicDefense": 5,
+			"physicDefense": 20,
+			"attackDmg": 50,
+			"magicDmg": calculate_monster_ap(3),
+			"posi": "middle",
+			"hp": calculate_monster_hp(99),
+			"exp": calculate_monster_exp(calculate_monster_hp(3)),
+			"gold": calculate_monster_gold(calculate_monster_hp(3)),
+			"luck": 10,
+			"idle": "传梦idle",
+			 "monsterMagicList": [
+				magics.get("落岩"),
+			],
+			}),	
+	},		
+	
+	
+	
 	"东海湾": {
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
@@ -4045,7 +4068,26 @@ var monsters = {
 			],
 			}),
 			},			
-									
+	"鬼帝":{
+		"鬼帝": Monster.new({
+			"name": "鬼帝",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 100000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "鬼帝idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+			},										
 		}	
 
 

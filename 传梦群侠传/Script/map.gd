@@ -46,8 +46,9 @@ func update_cursor():
 
 		
 func _ready():
-
- 
+	if get_tree().current_scene.name == "长寿村":
+		$"CanvasLayer/长寿村过场图".visible = true
+		
 	$AudioStreamPlayer2D.autoplay = true
 	#DisplayServer.window_set_title("传梦之路：第一章《浮生难安》")
 
@@ -1872,3 +1873,7 @@ func snowStorm():
 	$ColorRect.material.set_shader_parameter("wind_speed", 40)
 	$ColorRect.material.set_shader_parameter("snow_speed", 20)
 	$ColorRect.material.set_shader_parameter("direction", 1)
+
+
+func _on_timer_2_timeout():
+	$"CanvasLayer/长寿村过场图".visible = false

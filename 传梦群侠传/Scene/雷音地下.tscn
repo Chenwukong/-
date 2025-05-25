@@ -41,14 +41,14 @@
 [ext_resource type="Texture2D" uid="uid://brl00xmx67cd" path="res://Characters/NPC孙悟空D4A10B10T.png" id="39_sjrlr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
-vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619, 20, 1489)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(17, 63, 26, 1188, 20, 1489, 175, 2619, 1949, 2661, 4289, 54)])
+vertices = PackedVector2Array(3131, 518, 3113, 2232, 1193, 2218, 1173, 1411, 1166, 984, 1168, 515)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1168, 515, 1166, 984, 1173, 1411, 1193, 2218, 3113, 2232, 3131, 518)])
 
-[sub_resource type="Gradient" id="Gradient_4d7nw"]
+[sub_resource type="Gradient" id="Gradient_mq71m"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
-gradient = SubResource("Gradient_4d7nw")
+gradient = SubResource("Gradient_mq71m")
 fill = 1
 fill_from = Vector2(1, 0.612536)
 
@@ -191,42 +191,6 @@ resource_name = "解除误会"
 
 [sub_resource type="Animation" id="Animation_15bs8"]
 resource_name = "金箍棒"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("金箍棒:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(2704, 503), Vector2(1973, 877)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("金箍棒:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, -1.93058]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("金箍棒:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
 _data = {

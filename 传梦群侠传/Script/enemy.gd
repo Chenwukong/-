@@ -60,7 +60,7 @@ var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3},
 						,"堕逝":{"name":"风雨雷电","round":4}
 						,"黑山":{"name":"硝爆","round":4}
 						,"鬼将军":{"name":"血傀","round":4}						
-						
+						,"鬼帝":{"name":"血傀","round":2}
 						
 						}
 var bigMagics ={
@@ -1009,7 +1009,7 @@ func useBigMagic():
 	round = monsterAndMagic.get(monsterName).round
 	get_parent().get_node("roundCountDown").text = str(round)
 	get_parent().get_parent().get_node("bigMagicTimer").start()
-	self.play(monsterName + "magic")
+	self.play(monsterName + "bigMagic")
 	get_parent().get_node("bigMagic").visible = true
 	get_parent().get_node("bigMagic/Label").text = magicInfo.name
 	get_parent().get_node("bigMagic/bossHead").texture = load("res://portrait/"+monsterName+".png")

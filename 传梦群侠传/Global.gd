@@ -100,8 +100,8 @@ var onMultiHit = 0
 var fangCunState = 1
 var atDark = false
 var onBoss = false
-var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1"]
+var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军","鬼帝"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1","神庙","女娲神迹"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -174,7 +174,8 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 8
+var current_chapter_id = 9
+
 
 var mcVisible = true
 var npcVis = {
@@ -543,7 +544,25 @@ var npcVis = {
 		"小二": {"visible":false},			
 		"姜韵": {"visible":false},					
 		"凌若昭": {"visible":false},					
-	}																			
+	},				
+	"长寿村":{
+		"墨兮": {"visible":false},							
+	},	
+	"神庙":{
+		"墨兮": {"visible":false},	
+		"姜韵": {"visible":false},	
+		"凌若昭": {"visible":false},	
+		"小二": {"visible":false},	
+						
+							
+	},				
+	"长寿村郊外":{
+		"蝎霸王": {"visible":false},							
+	}		
+		
+		
+		
+															
 }
 var baseChance = 0
 var musicOn = true
@@ -551,10 +570,19 @@ var enKey = randi_range(1, 3000)
 
 var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
-	"传梦之路":{"传":false,"梦":false,"之":false,"路":false,"complete":false},
+	"传梦之路":{"传":false,"梦":false,"之":false,"路":false},
 	"抓鬼":{"野鬼":0, "complete":false},
 	
 }
+
+func checkChuanMeng():
+	for value in quests["传梦之路"].values():
+		if value != true:
+			return false
+	return true
+
+
+
 
 var canTake = false
 
@@ -755,7 +783,7 @@ var npcs = {
 				#0
 					{"chapter": 1, "dialogue": "新手警告", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 1, "dialogue": "送物资", "unlocked": true, "bgm":null,"trigger":false},
-					
+					{"chapter": 9, "dialogue": "进入传梦空间", "unlocked": true, "bgm":null,"trigger":false},
 				],
 			"current_dialogue_index": 0,	
 			"constNpc": false
@@ -961,8 +989,8 @@ var npcs = {
 					{"chapter": 2, "dialogue": "再见凌若昭", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 2, "dialogue": "传送方寸", "unlocked": false, "bgm":null,"trigger":false},
 					{"chapter": 3, "dialogue": "假方寸", "unlocked": false, "bgm":null,"trigger":false},				
-					{"chapter": 3, "dialogue": "真方寸山", "unlocked": true, "bgm":"","trigger":false},
-	
+					{"chapter": 3, "dialogue": "真方寸山", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "若昭移动", "unlocked": true, "bgm":null,"trigger":false},			
 					
 				],
 		"current_dialogue_index": 0,	
@@ -1781,10 +1809,61 @@ var npcs = {
 					{"chapter": 8, "dialogue": "黄眉4", "unlocked": true, "bgm":null ,"trigger":false},		
 					{"chapter": 8, "dialogue": "黄眉5", "unlocked": true, "bgm":null ,"trigger":false},																																			
 				],
-		"current_dialogue_index": 3,	
+		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},				
+	"女侠":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "女侠", "unlocked": true, "bgm":  null,"trigger":false},																																				
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},				
+	"村长":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "长寿村1", "unlocked": true, "bgm":null ,"trigger":false},				
+					{"chapter": 9, "dialogue": "长寿村2", "unlocked": true, "bgm":null ,"trigger":false},								
+					{"chapter": 9, "dialogue": "长寿村3", "unlocked": true, "bgm":null ,"trigger":false},								
+					{"chapter": 9, "dialogue": "长寿村4", "unlocked": true, "bgm":null ,"trigger":false},			
+					{"chapter": 9, "dialogue": "长寿村5", "unlocked": true, "bgm":null ,"trigger":false},																																							
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},				
+	"长寿村酒楼掌柜":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "长寿村酒楼掌柜", "unlocked": true, "bgm":null ,"trigger":false},																																			
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},					
 	
+			
+	"墨兮":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "墨兮1", "unlocked": true, "bgm":"res://Audio/BGM/幽默-市集.mp3" ,"trigger":false},			
+																																					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},						
+	"蝎霸王":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "蝎霸王1", "unlocked": true, "bgm": "res://Audio/BGM/0情况危机.ogg","trigger":false},	
+					{"chapter": 9, "dialogue": "蝎霸王2", "unlocked": true, "bgm": null,"trigger":false},								
+																																					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},					
+						
+			
+			
 				
 } 
 var potentialBalls = {
@@ -1883,7 +1962,10 @@ var triggerPlace ={
 	"初见观音": {"trigger":false, "disable": false},		
 	"五庄观": {"trigger":false, "disable": false},	
 	"五庄观2": {"trigger":false, "disable": false},	
-	"再见观音": {"trigger":false, "disable": true},									
+	"再见观音": {"trigger":false, "disable": true},		
+	"长寿村酒楼掌柜": {"trigger":false, "disable": true},		
+	"神庙": {"trigger":false, "disable": false},
+								
 }
 
 var isDead ={
@@ -2072,7 +2154,10 @@ func loadData():
 		"五庄观": {"trigger":false, "disable": false},		
 		"五庄观2": {"trigger":false, "disable": false},	
 		"除虫": {"trigger":false, "disable": false},		
-		"再见观音": {"trigger":false, "disable": true},														
+		"再见观音": {"trigger":false, "disable": true},
+		"长寿村酒楼掌柜": {"trigger":false, "disable": true},	
+		"神庙": {"trigger":false, "disable": false},			
+																		
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
