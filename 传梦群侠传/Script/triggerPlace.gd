@@ -26,6 +26,8 @@ func _on_area_2d_area_entered(area):
 		Global.triggerPlace.get(triggerEvent).disable = true
 		print(triggerEvent)
 		match triggerEvent:
+			"玉帝物品事件":
+				DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue("玉帝物品事件"))			
 			"二娃请求":
 				DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue("二娃"))
 			"城主施舍":
@@ -190,7 +192,12 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("阻拦"))							
 			"黄眉":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("黄眉"))							
-								
+			"幻境1":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("幻境"))	
+			"幻境2":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("幻境"))				
+			"幻境3":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("幻境"))												
 				
 func get_npc_dialogue(npc_id):
 	

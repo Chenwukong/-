@@ -1031,7 +1031,6 @@ scale = Vector2(1.2, 1.2)
 text = "↓"
 
 [node name="importantMsg" parent="CanvasLayer" instance=ExtResource("15_q5j77")]
-visible = false
 position = Vector2(363, 58)
 
 [node name="menuAnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1548,9 +1547,6 @@ one_shot = true
 [node name="小二" parent="." instance=ExtResource("46_3ip4f")]
 position = Vector2(2274, 300)
 
-[node name="小二" parent="小二" index="0"]
-animation = &"右上"
-
 [node name="篝火" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(2871, 381)
@@ -1585,7 +1581,8 @@ npcName = "提毗"
 [node name="menuControl" parent="." instance=ExtResource("41_fo4w2")]
 
 [node name="player" parent="." instance=ExtResource("41_aiikt")]
-position = Vector2(1943, 605)
+position = Vector2(2148, 901)
+scale = Vector2(24.6402, 25.6258)
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

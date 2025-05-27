@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://dcb2u6xa5p55x"]
+[gd_scene load_steps=116 format=3 uid="uid://dcb2u6xa5p55x"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_pfo0l"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_d4hde"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://b67nrw18kcp3o" path="res://Characters/妇女-2.png" id="33_saim5"]
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="34_b8kc4"]
 [ext_resource type="Texture2D" uid="uid://bsb23jpa621a2" path="res://Characters/青蛙.png" id="35_qc3nd"]
+[ext_resource type="Texture2D" uid="uid://b1psu2ebwpl7" path="res://Pictures/NT.png" id="35_rvniy"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="37_ekk6w"]
 [ext_resource type="PackedScene" uid="uid://buy8i1pvjftxi" path="res://Scene/questItem.tscn" id="39_4alh8"]
 [ext_resource type="AudioStream" uid="uid://plt3823mjkqe" path="res://Audio/SE/打击2.ogg" id="40_loepp"]
@@ -764,6 +765,21 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ysnxt"]
 size = Vector2(136.5, 91)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo2bn"]
+atlas = ExtResource("35_rvniy")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cdn1j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo2bn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="东海湾" type="Node2D"]
 script = ExtResource("1_pfo0l")
 shader = ExtResource("2_d4hde")
@@ -1223,6 +1239,19 @@ special = "鱼大爷"
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
+[node name="玉帝物品事件" parent="." instance=ExtResource("34_b8kc4")]
+visible = false
+position = Vector2(2116.57, 1157.47)
+triggerEvent = "玉帝物品事件"
+
+[node name="CollisionShape2D" parent="玉帝物品事件/Area2D" index="0"]
+position = Vector2(25.1511, -8.42725)
+
+[node name="玉帝物品" parent="." instance=ExtResource("15_w7f0s")]
+position = Vector2(2141, 1168)
+scale = Vector2(0.684865, 0.684865)
+sprite_frames = SubResource("SpriteFrames_cdn1j")
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered"]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered"]
@@ -1248,3 +1277,4 @@ special = "鱼大爷"
 [editable path="王姨遇险"]
 [editable path="杀戮"]
 [editable path="teleportCircle2"]
+[editable path="玉帝物品事件"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d3f8bcy20mi0u"]
+[gd_scene load_steps=54 format=3 uid="uid://d3f8bcy20mi0u"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_40dg4"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_tv1u6"]
@@ -17,8 +17,17 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="16_wfrgo"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="17_b6wx2"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="18_o5fcp"]
+[ext_resource type="Texture2D" uid="uid://d0r2iwfv5hhxw" path="res://SeparateAnimation/梦澹/站立7000.PNG" id="19_1v6hl"]
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="19_psp7f"]
-[ext_resource type="Texture2D" uid="uid://dx1uhpydba5uk" path="res://梦魂Animation/四法青云.png" id="20_vk21c"]
+[ext_resource type="Texture2D" uid="uid://bmh2541irhgok" path="res://SeparateAnimation/梦澹/站立7001.PNG" id="20_sh37x"]
+[ext_resource type="Texture2D" uid="uid://b8t11sg8tk6gp" path="res://SeparateAnimation/梦澹/站立7002.PNG" id="21_fitq1"]
+[ext_resource type="Texture2D" uid="uid://c274rw6cnxty5" path="res://SeparateAnimation/梦澹/站立7003.PNG" id="22_safuq"]
+[ext_resource type="Texture2D" uid="uid://clvqgrkenkbwq" path="res://SeparateAnimation/梦澹/站立7004.PNG" id="23_65283"]
+[ext_resource type="Texture2D" uid="uid://cjhrhpqn54m4a" path="res://SeparateAnimation/梦澹/站立7005.PNG" id="24_kpen1"]
+[ext_resource type="Texture2D" uid="uid://c65a0p0bq88po" path="res://SeparateAnimation/梦澹/站立7006.PNG" id="25_u0nqf"]
+[ext_resource type="Texture2D" uid="uid://bhpuboia3vao6" path="res://SeparateAnimation/梦澹/站立7007.PNG" id="26_pc3ej"]
+[ext_resource type="Texture2D" uid="uid://cv2e6uicis44x" path="res://SeparateAnimation/梦澹/站立7008.PNG" id="27_u5et7"]
+[ext_resource type="Texture2D" uid="uid://dr3jiwrwe65fv" path="res://SeparateAnimation/梦澹/站立7009.PNG" id="28_ofyde"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619, 20, 1489)
@@ -226,6 +235,84 @@ shader_parameter/storm_speed = 2.0
 shader_parameter/storm_strength = 1.0
 shader_parameter/storm_density = 2.0
 shader_parameter/turbulence = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rsat1"]
+atlas = ExtResource("19_1v6hl")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkd1q"]
+atlas = ExtResource("20_sh37x")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4r7e"]
+atlas = ExtResource("21_fitq1")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0jg82"]
+atlas = ExtResource("22_safuq")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j36q3"]
+atlas = ExtResource("23_65283")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llaif"]
+atlas = ExtResource("24_kpen1")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f37ny"]
+atlas = ExtResource("25_u0nqf")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etfdr"]
+atlas = ExtResource("26_pc3ej")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n00v"]
+atlas = ExtResource("27_u5et7")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nuwtq"]
+atlas = ExtResource("28_ofyde")
+region = Rect2(0, 0, 193, 127)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcwla"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rsat1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkd1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4r7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0jg82")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j36q3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llaif")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f37ny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etfdr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n00v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nuwtq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="女娲神迹" type="Node2D"]
 script = ExtResource("1_40dg4")
@@ -507,11 +594,13 @@ offset_bottom = 5928.0
 rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
-[node name="四法青云" type="Sprite2D" parent="."]
-position = Vector2(-380, -274)
-rotation = -2.37348
-scale = Vector2(2.07682, 2.07682)
-texture = ExtResource("20_vk21c")
+[node name="四法青云" type="AnimatedSprite2D" parent="."]
+position = Vector2(-358, -352)
+rotation = 1.47392
+scale = Vector2(3.07539, 3.07539)
+sprite_frames = SubResource("SpriteFrames_lcwla")
+autoplay = "default"
+frame_progress = 0.867868
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

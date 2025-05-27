@@ -186,7 +186,7 @@ set Global.onTalk = true
 小二: ？？？
 小二: [speed=0.5]你刚才是不是换了一身白衣说话
 时追云: [speed=0.5]我们受菩提祖师所嘱托，要在这里寻得一件叫梦澹(dan)的物品，墨兄似乎对这里很了解，可知道一二？
-墨兮: [speed=0.5]梦澹(dan)不是物品，他是一把超脱于时代的绝世神兵
+墨兮: [speed=0.5]梦澹(dan)不是物品，它们是超脱于时代的绝世神兵
 时追云: [speed=0.5]原来如此
 寒天云: [speed=0.5]哼哼，就凭你们想要获得梦澹(dan)？别做梦了
 时追云: [speed=0.5]...
@@ -376,16 +376,120 @@ set Global.getnode("player").visible = false
 姜韵: [speed=0.5]他是倔脾气，这种事上是争不过的，我们所能做的就是安心等他回来
 凌若昭哀: [speed=0.5]可我们也想帮他的
 姜韵喜: [speed=0.5]若昭已经很强啦，每次战斗都很努力
-姜韵: [speed=0.5]你们不要怪他，他会这样，也是因为亲眼见到全镇的人和我都被杀害...复活后我就看出来了，他得了心病
+姜韵: [speed=0.5]你们不要怪他，他会这样，也是因为亲眼见到全镇的人和我都被杀害...再次见到他后我就看出来了，他得了心病
 姜韵: [speed=0.5]如果是势均力敌的战斗还好说，但要是面对过于强大的敌人，他会紧紧把我们护在身后，如果遇到未知的危险，他也会独自向前顶
 姜韵: [speed=0.5]我们能做的就是相信他，并且...保护好自己，不要再令他感受到那种痛苦
 小二: [speed=0.5]原来老大他...
 凌若昭哀: [speed=0.5]也是哦，师父离开我的时候我也很难受，而时大哥当初是看着全部人死在他面前
-
+set Global.dial = "幻境"
+set Global.changeScene("幻境1",null)
 
 
 set Global.onTalk = false
 => END
+
+
+~ 幻境1
+set Global.onTalk = true
+时追云惊: [speed=0.5这是...长安？不对，长安哪有这么阴森？
+时追云: [speed=0.5街上的摊贩怎么一个人都没有？
+时追云: [speed=0.5这种感觉。。。像是梦
+时追云: [speed=0.5]神庙的内部绝对不可能如此邪气，莫非...这里是类似幻境之类的地方
+set Global.onTalk = false
+=> END
+
+~ 幻境2
+set Global.onTalk = true
+时追云怒: [speed=0.5]奔霸！
+时追云怒: [speed=0.5]你怎么会在这里！
+奔霸: [speed=0.5]我当然在这里，我已经带领妖怪占领了这里
+奔霸: [speed=0.5]这里的人，都被我吃了
+时追云怒: [speed=0.5]什么！？
+奔霸: [speed=0.5]就和，当初的建业一样哈哈哈哈哈哈哈哈，啊哈哈哈哈哈哈哈哈哈！
+奔霸: [speed=0.5]当初那些被我杀死的人，他们死的的时候的样子我都记得，太美妙了！
+奔霸: [speed=0.5]有个老头子跪地求饶，说愿意做任何事，只求多活一天,哈哈哈哈哈
+时追云怒: [speed=0.5]真是杀死你几遍都不够！
+奔霸: [speed=0.5]时追云，你当初怎么没出来救他们呢，你事后杀了我有用吗，他们还是死了！惨死了！哈哈哈哈
+时追云怒: 你！
+奔霸: [speed=0.5]怎么，我说的有错吗！你对得起那些被我杀死的人吗！
+时追云惊: [speed=0.5]............
+set Global.changebgm("res://Audio/BGM/七剑.mp3")
+时追云怒: [speed=0.5]不对！他们并不是我害死的！
+时追云怒: [speed=0.5]凶手是你和你那些手下！
+时追云怒: [speed=0.5]我当时确实没能阻止你，但我以后绝对不会再放任你们这种东西为非作歹了！
+set Global.onHurry = true
+set get_tree().current_scene.bossFight("奔霸","res://Audio/BGM/仙劍奇俠傳三 - 仗劍 - Battle Them - BGM [1080p].mp3", "幻境")
+
+
+set Global.onTalk = false
+=> END
+
+~ 幻境3
+set Global.onTalk = true
+set Global.onHurry = false
+时追云: [speed=0.5]刚才那个，应该不是真的奔霸吧
+时追云: [speed=0.5]奇怪，我明明知道这里是幻境，为什么会那么容易被他调动情绪
+时追云: [speed=0.5]刚才的我，是真的认为他是奔霸的
+时追云: [speed=0.5]难道这是幻境的某种力量干扰了我吗
+时追云: [speed=0.5]但刚才的话...确实是我一直在心里想的
+时追云: [speed=0.5]如果我真的被幻境控制住了……是不是就会永远沉溺在愧疚里？
+set Global.dial = "妖盟入侵"
+set Global.toggleballon()
+[next=1]
+set Global.changeScene("神庙",null)
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵1
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+set Global.changevis("神庙","墨兮")
+小二: [speed=0.5]唉，老大不知道要进去多久
+凌若昭: [speed=0.5]那我们现在做什么
+姜韵: [speed=0.5]我们不知道蝎霸王说的是真是假，但假设是真的话，看来神庙里的东西确实会对妖盟产生很大的威胁
+凌若昭: [speed=0.5]啊，那姐姐你刚才和村长说的
+姜韵喜: [speed=0.5]诈唬他罢了
+姜韵: [speed=0.5]不过很大概率是真的，所以我们要在他出来前，尽量抵挡妖盟的进攻
+小二: [speed=0.5]好
+set Global.toggleballon()
+[next=1]
+set Global.changeScene("幻境2",null)
+
+set Global.onTalk = false
+=> END
+
+
+
+
+~ 玉帝秘境
+set Global.onTalk = true
+时追云: [speed=0.5]这棵树，很奇怪，似乎是漂浮在半空之中的，似乎另有玄机
+时追云: [speed=0.5]周围隐约能看见灵力波动，触碰的时候稍微有点反弹，这里应该也是个结界，谁会在结界内又设立了一个结界呢？
+要试着破解结界吗？
+- 破除结界
+	
+
+
+set Global.onTalk = false
+=> END
+
+~ 幻境4
+set Global.onTalk = true
+时追云: [speed=0.5]
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 幻境5
+set Global.onTalk = true
+
+
+set Global.onTalk = false
+=> END
+
+
 
 
 ~ 没有更多可说的了

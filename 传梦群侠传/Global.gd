@@ -147,7 +147,7 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云","小二","凌若昭","姜韵"]
+var onTeamPlayer = ["时追云改","小二","凌若昭","姜韵"]
 var onTeamPet = ["敖白","朱雀","玄武","青龙"]
 var onTeamSmallPet = ["小鹿"]
 var smallPets = ["小鹿"]
@@ -181,6 +181,8 @@ var mcVisible = true
 var npcVis = {
 	"东海湾":{
 		"鱼叟":{"visible" : true},
+		"玉帝物品":{"visible" : false},
+		
 		"大海龟":{"visible" : true},
 		"丁真":{"visible" : true},
 		"丁真2":{"visible" : false},
@@ -194,6 +196,8 @@ var npcVis = {
 		"小兵4":{"visible" : false},
 		"小兵5":{"visible" : false},
 		"小兵6":{"visible" : false},
+		
+		
 	},
 	"建邺城":{
 		"城主": {"visible" : false},
@@ -572,8 +576,17 @@ var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
 	"传梦之路":{"传":false,"梦":false,"之":false,"路":false},
 	"抓鬼":{"野鬼":0, "complete":false},
-	
+	"玉帝遗迹":{"complete":false}
 }
+
+func checkYuDiItem():
+	for i in FightScenePlayers.keyItem:
+		if i == "渔头方巾":
+			return true
+		
+	return false
+
+
 
 func checkChuanMeng():
 	for value in quests["传梦之路"].values():
@@ -1811,7 +1824,19 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
-	},				
+	},	
+	"弑天魔":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "弑天魔1", "unlocked": true, "bgm": "res://Audio/BGM/0情况危机.ogg","trigger":false},			
+																																					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},						
+	
+	
+				
 	"女侠":{
 		"dialogues": [
 				#0
@@ -1861,8 +1886,28 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},					
+	"幻境":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "幻境1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 9, "dialogue": "幻境2", "unlocked": true, "bgm": "res://Audio/BGM/0情况危机.ogg","trigger":false},													
+																																					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},					
+									
+	"妖盟入侵":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "妖盟入侵1", "unlocked": true, "bgm":null,"trigger":false},	
+											
+																																					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},					
 						
-			
 			
 				
 } 
@@ -1965,6 +2010,10 @@ var triggerPlace ={
 	"再见观音": {"trigger":false, "disable": true},		
 	"长寿村酒楼掌柜": {"trigger":false, "disable": true},		
 	"神庙": {"trigger":false, "disable": false},
+	"幻境1": {"trigger":false, "disable": false},	
+	"幻境2": {"trigger":false, "disable": false},		
+	"幻境3": {"trigger":false, "disable": false},		
+	
 								
 }
 
@@ -2157,7 +2206,9 @@ func loadData():
 		"再见观音": {"trigger":false, "disable": true},
 		"长寿村酒楼掌柜": {"trigger":false, "disable": true},	
 		"神庙": {"trigger":false, "disable": false},			
-																		
+		"幻境1": {"trigger":false, "disable": false},	
+		"幻境2": {"trigger":false, "disable": false},		
+		"幻境3": {"trigger":false, "disable": false},																				
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
