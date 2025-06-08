@@ -147,8 +147,8 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云改","小二","凌若昭","姜韵"]
-var onTeamPet = ["敖白","朱雀","玄武","青龙"]
+var onTeamPlayer = ["时追云","小二","凌若昭"]
+var onTeamPet = ["青龙"]
 var onTeamSmallPet = ["小鹿"]
 var smallPets = ["小鹿"]
 var currPlayerPos
@@ -174,7 +174,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 9
+var current_chapter_id = 10
 
 
 var mcVisible = true
@@ -561,9 +561,18 @@ var npcVis = {
 							
 	},				
 	"长寿村郊外":{
-		"蝎霸王": {"visible":false},							
-	}		
+		"蝎霸王": {"visible":false},	
+		"凌若昭": {"visible":false},	
+		"姜韵": {"visible":false},			
+		"小二": {"visible":true},										
+	},		
+	"黑暗空间":{
+		"凌若昭": {"visible":true},	
+		"姜韵": {"visible":true},			
+		"小二": {"visible":true},			
 		
+								
+	}			
 		
 		
 															
@@ -576,15 +585,10 @@ var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
 	"传梦之路":{"传":false,"梦":false,"之":false,"路":false},
 	"抓鬼":{"野鬼":0, "complete":false},
-	"玉帝遗迹":{"complete":false}
+	"玉帝秘境":{"complete":false}
 }
+var yuDiItem = false
 
-func checkYuDiItem():
-	for i in FightScenePlayers.keyItem:
-		if i == "渔头方巾":
-			return true
-		
-	return false
 
 
 
@@ -623,7 +627,14 @@ var npcs = {
 		"current_dialogue_index": 0,
 		"constNpc": true
 	},
-	
+	"玉帝物品事件": {
+		"dialogues": [ 
+			#0
+			{"chapter": 1, "dialogue": "玉帝物品事件", "unlocked": true, "bgm":null, "trigger":false},
+		],
+		"current_dialogue_index": 0,
+		"constNpc": false
+	},	
 	
 	
 	
@@ -1891,23 +1902,41 @@ var npcs = {
 				#0
 					{"chapter": 9, "dialogue": "幻境1", "unlocked": true, "bgm":null,"trigger":false},	
 					{"chapter": 9, "dialogue": "幻境2", "unlocked": true, "bgm": "res://Audio/BGM/0情况危机.ogg","trigger":false},													
-																																					
+					{"chapter": 9, "dialogue": "幻境3", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "幻境4", "unlocked": true, "bgm":"res://Audio/BGM/十二国记-不尽的哀伤.mp3" ,"trigger":false},																																					
+					{"chapter": 9, "dialogue": "幻境5", "unlocked": true, "bgm":null,"trigger":false},			
+					{"chapter": 9, "dialogue": "幻境6", "unlocked": true, "bgm":null,"trigger":false},			
+			
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
-	},					
-									
+	},								
 	"妖盟入侵":{
 		"dialogues": [
 				#0
 					{"chapter": 9, "dialogue": "妖盟入侵1", "unlocked": true, "bgm":null,"trigger":false},	
-											
-																																					
+					{"chapter": 9, "dialogue": "妖盟入侵2", "unlocked": true, "bgm": "res://Audio/BGM/0妖族阴谋.mp3" ,"trigger":false},												
+					{"chapter": 9, "dialogue": "妖盟入侵3", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "妖盟入侵4", "unlocked": true, "bgm":null,"trigger":false},					
+					{"chapter": 9, "dialogue": "妖盟入侵5", "unlocked": true, "bgm":null,"trigger":false},					
+					{"chapter": 9, "dialogue": "妖盟入侵6", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "妖盟入侵7", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "妖盟入侵8", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "妖盟入侵9", "unlocked": true, "bgm": "res://Audio/BGM/卢小旭 - 憾天威.mp3","trigger":false},					
+					{"chapter": 9, "dialogue": "妖盟入侵10", "unlocked": true, "bgm": "res://Audio/BGM/未知.ogg","trigger":false},																																																								
 				],
-		"current_dialogue_index": 0,	
+		"current_dialogue_index": 7,	
 		"constNpc": false	
 	},					
-						
+	"女娲神迹":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "女娲神迹1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 9, "dialogue": "女娲神迹2", "unlocked": true, "bgm":"res://Audio/BGM/雪見-落入凡塵 [TubeRipper.cc].ogg","trigger":false},																																															
+				],
+		"current_dialogue_index": 1,	
+		"constNpc": false	
+	},							
 			
 				
 } 
@@ -2013,8 +2042,8 @@ var triggerPlace ={
 	"幻境1": {"trigger":false, "disable": false},	
 	"幻境2": {"trigger":false, "disable": false},		
 	"幻境3": {"trigger":false, "disable": false},		
-	
-								
+	"幻境4": {"trigger":false, "disable": false},		
+	"女娲神迹": {"trigger":false, "disable": false},								
 }
 
 var isDead ={
@@ -2090,6 +2119,7 @@ func save():
 	saveData.onTeamSmallPet = onTeamSmallPet
 	saveData.smallPetData = SmallPetData.currSmallPetData
 	saveData.onGhost = onGhost
+	saveData.yuDiItem = yuDiItem
 func loadData():
 	if saveData.has(maxLevel):
 		maxLevel = saveData.maxLevel
@@ -2131,6 +2161,7 @@ func loadData():
 	fangCunState = saveData.fangCunState
 	quests = saveData.quests
 	cantShow = saveData.cantShow
+	yuDiItem = saveData.yuDiItem
 	if saveData.has("isDead"):
 		isDead = saveData.isDead
 	if saveData.has("treasureBox"):
@@ -2208,7 +2239,9 @@ func loadData():
 		"神庙": {"trigger":false, "disable": false},			
 		"幻境1": {"trigger":false, "disable": false},	
 		"幻境2": {"trigger":false, "disable": false},		
-		"幻境3": {"trigger":false, "disable": false},																				
+		"幻境3": {"trigger":false, "disable": false},
+		"幻境4": {"trigger":false, "disable": false},
+		"女娲神迹": {"trigger":false, "disable": false},																						
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
@@ -2436,6 +2469,9 @@ func changebgm(bgm):
 	get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load(bgm)
 	get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 func playsound(sound):
+	if sound == null:
+		get_tree().current_scene.get_node("oneTimeSound").stream = null
+		return
 	get_tree().current_scene.get_node("oneTimeSound").stream = load(sound)
 	get_tree().current_scene.get_node("oneTimeSound").play()		
 func toggleballon():

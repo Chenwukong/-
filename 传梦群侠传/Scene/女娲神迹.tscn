@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://d3f8bcy20mi0u"]
+[gd_scene load_steps=75 format=3 uid="uid://d3f8bcy20mi0u"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_40dg4"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_tv1u6"]
@@ -28,6 +28,11 @@
 [ext_resource type="Texture2D" uid="uid://bhpuboia3vao6" path="res://SeparateAnimation/梦澹/站立7007.PNG" id="26_pc3ej"]
 [ext_resource type="Texture2D" uid="uid://cv2e6uicis44x" path="res://SeparateAnimation/梦澹/站立7008.PNG" id="27_u5et7"]
 [ext_resource type="Texture2D" uid="uid://dr3jiwrwe65fv" path="res://SeparateAnimation/梦澹/站立7009.PNG" id="28_ofyde"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="29_6gko8"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="30_mdq1r"]
+[ext_resource type="Texture2D" uid="uid://bao573gqd5dob" path="res://SeparateAnimation/墨/墨兮站立.png" id="31_ib8kh"]
+[ext_resource type="Shader" path="res://shader/风沙飘散.gdshader" id="31_lr2pn"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="32_wpja7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619, 20, 1489)
@@ -79,6 +84,18 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_wd1ow"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("墨兮:material:shader_parameter/dissolve_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_eg635"]
 resource_name = "shake"
@@ -217,6 +234,22 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_q1j7c"]
+resource_name = "风沙"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("墨兮:material:shader_parameter/dissolve_progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
 _data = {
 "RESET": SubResource("Animation_wd1ow"),
@@ -224,7 +257,8 @@ _data = {
 "turnDark": SubResource("Animation_0wtib"),
 "移动主角": SubResource("Animation_g8nsq"),
 "解除误会": SubResource("Animation_fa28m"),
-"金箍棒": SubResource("Animation_15bs8")
+"金箍棒": SubResource("Animation_15bs8"),
+"风沙": SubResource("Animation_q1j7c")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ijbly"]
@@ -314,6 +348,108 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6472"]
+shader = ExtResource("31_lr2pn")
+shader_parameter/dissolve_progress = 0.0
+shader_parameter/wind_force = 0.204
+shader_parameter/wind_dir = Vector2(1, -0.2)
+shader_parameter/noise_scale = 300.0
+shader_parameter/sand_color = Vector4(0.9, 0.7, 0.4, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c37xv"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(0, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41rwl"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(245, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8shru"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(490, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wue4e"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(735, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k30my"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(980, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4ujo"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(1225, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adkvi"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(1470, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdguc"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(1715, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pcur"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(1960, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rhgj"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(2205, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy80e"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(2450, 320, 245, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mewaj"]
+atlas = ExtResource("31_ib8kh")
+region = Rect2(2695, 320, 245, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hudmb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c37xv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41rwl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8shru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wue4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k30my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v4ujo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adkvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdguc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pcur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rhgj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy80e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mewaj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rjm1w"]
+
 [node name="女娲神迹" type="Node2D"]
 script = ExtResource("1_40dg4")
 shader = ExtResource("2_tv1u6")
@@ -330,12 +466,16 @@ texture = ExtResource("4_iqkqi")
 
 [node name="player" parent="." instance=ExtResource("5_75v07")]
 z_index = 1
-position = Vector2(356, 1497)
+position = Vector2(-882, 1814)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
+frame = 0
 frame_progress = 0.0
+
+[node name="Camera2D" parent="player" index="3"]
+zoom = Vector2(1, 1)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -456,8 +596,12 @@ stream = ExtResource("13_m37ds")
 volume_db = 4.552
 
 [node name="potentialBall" parent="." instance=ExtResource("14_0kuth")]
-position = Vector2(3701, -170)
-id = "方寸山1"
+position = Vector2(2561, -122)
+id = "女娲神迹1"
+
+[node name="potentialBall2" parent="." instance=ExtResource("14_0kuth")]
+position = Vector2(2090, 1671)
+id = "女娲神迹2 "
 
 [node name="shake" type="AnimationPlayer" parent="."]
 libraries = {
@@ -491,6 +635,7 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 script = ExtResource("18_o5fcp")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -595,12 +740,47 @@ rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="四法青云" type="AnimatedSprite2D" parent="."]
-position = Vector2(-358, -352)
-rotation = 1.47392
+position = Vector2(-316, -259)
+rotation = 2.14602
 scale = Vector2(3.07539, 3.07539)
 sprite_frames = SubResource("SpriteFrames_lcwla")
 autoplay = "default"
-frame_progress = 0.867868
+frame_progress = 0.117578
+
+[node name="四法青云2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-404.537, -285.711)
+rotation = 0.728416
+scale = Vector2(3.07539, 3.07539)
+sprite_frames = SubResource("SpriteFrames_lcwla")
+autoplay = "default"
+frame_progress = 0.499489
+
+[node name="女娲神迹" parent="." instance=ExtResource("29_6gko8")]
+visible = false
+position = Vector2(-386.138, -224.02)
+triggerEvent = "女娲神迹"
+
+[node name="CollisionShape2D" parent="女娲神迹/Area2D" index="0"]
+position = Vector2(9.65765, 26.4626)
+
+[node name="墨兮" parent="." instance=ExtResource("30_mdq1r")]
+material = SubResource("ShaderMaterial_r6472")
+position = Vector2(-526, -49)
+sprite_frames = SubResource("SpriteFrames_hudmb")
+frame_progress = 0.509883
+
+[node name="petFoodBall" parent="." instance=ExtResource("32_wpja7")]
+position = Vector2(-1044.19, 569.308)
+id = "女娲神迹1"
+
+[node name="petFoodBall2" parent="." instance=ExtResource("32_wpja7")]
+position = Vector2(2592, -81)
+id = "女娲神迹2"
+
+[node name="女娲雕像" parent="." instance=ExtResource("30_mdq1r")]
+position = Vector2(1853, 408)
+sprite_frames = SubResource("SpriteFrames_rjm1w")
+npcName = "女娲雕像"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
@@ -612,3 +792,4 @@ frame_progress = 0.867868
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
 
 [editable path="player"]
+[editable path="女娲神迹"]

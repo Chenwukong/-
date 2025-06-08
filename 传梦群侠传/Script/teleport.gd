@@ -495,3 +495,5 @@ func checkSetPos(currScene, toScene):
 		return Vector2(1158,1515)
 	if currScene == "长寿村酒店":						
 		return Vector2(2116,456)
+	if currScene == "秘境":						
+		return Vector2(725,766)

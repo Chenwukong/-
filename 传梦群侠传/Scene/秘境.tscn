@@ -1,0 +1,416 @@
+[gd_scene load_steps=32 format=3 uid="uid://bhq6h86uvdnur"]
+
+[ext_resource type="Script" path="res://Script/map.gd" id="1_boxk1"]
+[ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_84x86"]
+[ext_resource type="Texture2D" uid="uid://dpuwgmsfpevqy" path="res://panoramas2/蟠桃园.jpg" id="3_67cog"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_wxslx"]
+[ext_resource type="Texture2D" uid="uid://cu80mu21bow1q" path="res://main character/tile004.png" id="5_d65gf"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="6_885f8"]
+[ext_resource type="AudioStream" uid="uid://b2i1mcevdujjo" path="res://Audio/BGM/东海湾.mp3" id="7_sukv3"]
+[ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="8_prf68"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="9_3c8t3"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="10_oeom1"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="11_r1ggj"]
+[ext_resource type="Texture2D" uid="uid://cf5jkrd0c7vmw" path="res://panoramas2/蟠桃园_2.png" id="12_vfurg"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="13_4826i"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="14_nku6j"]
+[ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="15_nclxo"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="16_k6en5"]
+[ext_resource type="Texture2D" uid="uid://cejkg1su7j72k" path="res://main character/down.png" id="17_7nqtc"]
+[ext_resource type="AudioStream" uid="uid://plt3823mjkqe" path="res://Audio/SE/打击2.ogg" id="18_frua6"]
+[ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="19_ql4fj"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="21_8vv7v"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="22_w7m7w"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="23_dpyxh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
+vertices = PackedVector2Array(-403, 85, 2802, 72, 2797, 2478, -398, 1229, -396, 2487, -403, 1493)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(3, 2, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-403, 85, -398, 1229, -403, 1493, -396, 2487, 2797, 2478, 2802, 72)])
+
+[sub_resource type="Gradient" id="Gradient_h5dxg"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
+gradient = SubResource("Gradient_h5dxg")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_7582q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"leftStand"]
+}
+
+[sub_resource type="Animation" id="Animation_vnfib"]
+resource_name = "turnDark"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.2, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
+load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
+
+[sub_resource type="Animation" id="Animation_uv4pd"]
+resource_name = "wangyiMove"
+length = 18.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7.2, 7.4, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 10.6, 16.6, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_1eey2"), ExtResource("17_7nqtc"), ExtResource("17_7nqtc"), SubResource("CompressedTexture2D_1eey2")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("subSound:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(7.5, 10.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("8_prf68"), ExtResource("18_frua6")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("subSound:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(7.6, 10.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("DirectionalLight2D2:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(11.6, 12.4, 15.3, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 8.0, 8.0, 4.5]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("player/AnimatedSprite2D:animation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 11.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [&"down", &"dead"]
+}
+
+[sub_resource type="Animation" id="Animation_nkovl"]
+resource_name = "海龟救场"
+length = 2.0
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hlah0"]
+_data = {
+"RESET": SubResource("Animation_7582q"),
+"turnDark": SubResource("Animation_vnfib"),
+"wangyiMove": SubResource("Animation_uv4pd"),
+"海龟救场": SubResource("Animation_nkovl")
+}
+
+[node name="秘境" type="Node2D"]
+script = ExtResource("1_boxk1")
+shader = ExtResource("2_84x86")
+
+[node name="东海湾全景" type="Sprite2D" parent="."]
+position = Vector2(1201, 1197.1)
+texture = ExtResource("3_67cog")
+
+[node name="player" parent="." instance=ExtResource("4_wxslx")]
+z_index = 2
+position = Vector2(1620, 876)
+scale = Vector2(0.903555, 0.940031)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" parent="player" index="0"]
+texture = ExtResource("5_d65gf")
+
+[node name="AnimatedSprite2D" parent="player" index="1"]
+animation = &"leftStand"
+autoplay = "leftStand"
+frame = 0
+frame_progress = 0.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+script = ExtResource("6_885f8")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(1872, 1720, 2075, 1755, 2293, 1730, 2368, 1709, 2327, 1593, 2289, 1537, 2385, 1146, 2500, 1150, 2651, 1108, 2621, 966, 2551, 936, 2459, 927, 2313, 619, 2404, 604, 2345, 469, 2143, 438, 1964, 476, 1917, 546, 1719, 534, 1547, 487, 1354, 429, 1293, 377, 1207, 322, 1089, 303, 1017, 325, 1005, 385, 777, 419, 721, 414, 604, 442, 497, 463, 307, 507, 247, 550, 182, 573, 90, 556, 55, 526, -20, 533, -71, 541, -144, 588, -105, 704, -57, 790, 43, 1052, -85, 1100, -205, 1178, -167, 1284, -49, 1252, -64, 1337, -130, 1466, -180, 1558, -249, 1622, -250, 1685, -47, 1735, 115, 1719, 253, 1733, 386, 1800, 757, 1948, 724, 1993, 753, 2036, 894, 2057, 1074, 2096, 1257, 2011, 1224, 1946, 1409, 1899, 1651, 1824, 1864, 1735)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1201, 1846, 1602, 1734, 1807, 1656, 1844, 1613, 1910, 1587, 1776, 1485, 1574, 1353, 1292, 1404, 1232, 1453, 1173, 1661, 1127, 1824)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1139, 1424, 1054, 1675, 998, 1825, 822, 1882, 771, 1832, 568, 1756, 414, 1680, 317, 1645, 262, 1564, 504, 1493, 746, 1386, 830, 1351, 970, 1396, 1091, 1414)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-49, 1577, 344, 1455, 680, 1329, 660, 1273, 563, 1213, 467, 1241, 262, 1223, 155, 1222, 85, 1244, 57, 1319, -42, 1555)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(174, 1111, 520, 1128, 567, 1081, 656, 1013, 706, 947, 909, 752, 979, 482, 319, 621, 289, 747, 158, 775, 67, 782)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1422, 1122, 1475, 1276, 1332, 1278, 1187, 1223, 1099, 1090, 1089, 1025, 1178, 973, 1163, 1048, 1324, 1072)
+
+[node name="CollisionPolygon2D7" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1031, 955, 1221, 879, 1232, 780, 1324, 701, 1547, 706, 1649, 684, 1841, 696, 1841, 695, 1937, 642, 1877, 623, 1604, 596, 1336, 517, 1230, 552, 1076, 475, 1028, 679, 1019, 838)
+
+[node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(2027, 1533, 2169, 1520, 2211, 1385, 2258, 1221, 2265, 1140, 2251, 1073, 1922, 1051, 1739, 1062, 1548, 1099, 1525, 1132, 1542, 1230, 1576, 1264, 1676, 1295, 1804, 1366, 1971, 1494)
+
+[node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1947, 961, 2269, 987, 2360, 939, 2202, 650, 2032, 684, 1929, 738, 1965, 811, 2021, 869, 1988, 919)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1301, 873)
+stream = ExtResource("7_sukv3")
+volume_db = 8.072
+max_distance = 1e+07
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="." groups=["grayArea"]]
+
+[node name="enterFightCd" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="enterFightCd2" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="canFullTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="subSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_prf68")
+volume_db = 7.0
+max_distance = 10000.0
+
+[node name="BattleReward" parent="." instance=ExtResource("9_3c8t3")]
+
+[node name="battleRewardGone" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
+position = Vector2(5, -82)
+navigation_polygon = SubResource("NavigationPolygon_su7y6")
+constrain_avoidance = true
+
+[node name="Circle" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332.128, 1271.12)
+scale = Vector2(0.0631201, 0.0198038)
+texture = ExtResource("10_oeom1")
+
+[node name="circleTimer" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
+[node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_r1ggj")
+volume_db = 6.0
+max_distance = 100000.0
+
+[node name="shadow" type="Sprite2D" parent="."]
+visible = false
+z_index = 2
+position = Vector2(1147, 1335)
+texture = ExtResource("12_vfurg")
+
+[node name="position" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(1710, 2018)
+energy = 1.24
+texture = SubResource("GradientTexture2D_4br6b")
+texture_scale = 2.89
+
+[node name="canPress" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
+offset_right = 1152.0
+offset_bottom = 804.0
+texture = ExtResource("13_4826i")
+
+[node name="teleportCircle" parent="." instance=ExtResource("14_nku6j")]
+position = Vector2(76, 731)
+toScene = "建邺城"
+
+[node name="AnimatedSprite2D" parent="." instance=ExtResource("15_nclxo")]
+position = Vector2(54, 2259)
+id = "东海湾0"
+
+[node name="AnimatedSprite2D2" parent="." instance=ExtResource("15_nclxo")]
+position = Vector2(875, 133)
+scale = Vector2(0.559814, 0.585106)
+id = "东海湾1"
+
+[node name="addChild" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_k6en5")
+volume_db = 2.432
+max_distance = 1e+06
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.168627, 0.168627, 0.168627, 1)
+energy = 0.0
+blend_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_hlah0")
+}
+
+[node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_ql4fj")
+max_distance = 1e+09
+
+[node name="menuControl" parent="." instance=ExtResource("21_8vv7v")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("22_w7m7w")]
+
+[node name="Node2D" parent="." instance=ExtResource("23_dpyxh")]
+position = Vector2(2136, 532)
+id = "秘境1"
+items = {
+"GM战甲": 1
+}
+
+[node name="Node2D2" parent="." instance=ExtResource("23_dpyxh")]
+position = Vector2(1976.48, 2252.83)
+id = "东海湾2"
+goldAmount = 500
+gold = true
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="teleportCircle2" parent="." instance=ExtResource("14_nku6j")]
+position = Vector2(1707, 748)
+toScene = "幻境2"
+
+[node name="Node2D3" parent="." instance=ExtResource("23_dpyxh")]
+position = Vector2(1458, 875)
+id = "秘境2"
+items = {
+"GM战靴": 1
+}
+
+[node name="Node2D4" parent="." instance=ExtResource("23_dpyxh")]
+position = Vector2(2173, 1641)
+id = "秘境3"
+items = {
+"GM头盔": 1
+}
+
+[node name="Node2D5" parent="." instance=ExtResource("23_dpyxh")]
+position = Vector2(1011, 1947)
+id = "秘境4"
+items = {
+"GM凤披": 1
+}
+
+[node name="Node2D6" parent="." instance=ExtResource("23_dpyxh")]
+position = Vector2(-15, 614)
+id = "秘境5"
+goldAmount = 50000
+gold = true
+
+[node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="MarkerLeft" type="Marker2D" parent="."]
+position = Vector2(-392.388, 2.54703)
+
+[node name="MarkerRight" type="Marker2D" parent="."]
+position = Vector2(2794, 2366)
+
+[connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
+[connection signal="body_entered" from="Area2D" to="player" method="_on_area_2d_body_entered" flags=18]
+[connection signal="body_exited" from="Area2D" to="player" method="_on_area_2d_body_exited" flags=18]
+[connection signal="body_shape_entered" from="Area2D" to="player" method="_on_area_2d_body_shape_entered" flags=18]
+[connection signal="body_shape_exited" from="Area2D" to="player" method="_on_area_2d_body_shape_exited" flags=18]
+[connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="enterFightCd2" to="." method="_on_enter_fight_cd_timeout" flags=18]
+[connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
+[connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
+[connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+
+[editable path="player"]

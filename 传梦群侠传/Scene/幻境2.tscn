@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b40diwjupo3x3" path="res://panoramas2/洞穴.jpg" id="3_hhpit"]
 [ext_resource type="Texture2D" uid="uid://dd3av7mcs2jda" path="res://panoramas2/洞穴_2.png" id="4_sla5v"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_4yhxd"]
-[ext_resource type="AudioStream" uid="uid://bo578ovrcmho2" path="res://Audio/BGM/误入迷失森林 伟启良 [TubeRipper.cc].ogg" id="6_luhua"]
+[ext_resource type="AudioStream" uid="uid://qvprmxblk0r6" path="res://Audio/BGM/#子母河.mp3" id="6_mbwf8"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_x4vtp"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_o0xnu"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_hy04c"]
@@ -28,10 +28,10 @@ vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619,
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(17, 63, 26, 1188, 20, 1489, 175, 2619, 1949, 2661, 4289, 54)])
 
-[sub_resource type="Gradient" id="Gradient_4d7nw"]
+[sub_resource type="Gradient" id="Gradient_yuuuf"]
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4br6b"]
-gradient = SubResource("Gradient_4d7nw")
+gradient = SubResource("Gradient_yuuuf")
 fill = 1
 fill_from = Vector2(1, 0.612536)
 
@@ -372,18 +372,19 @@ texture = ExtResource("4_sla5v")
 
 [node name="player" parent="." instance=ExtResource("5_4yhxd")]
 z_index = 1
-position = Vector2(-194, 1671)
+position = Vector2(78, 1282)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
+frame = 0
 frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("6_luhua")
+stream = ExtResource("6_mbwf8")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -536,7 +537,8 @@ libraries = {
 script = ExtResource("17_lhu2x")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-49, 1397, 448, 1144, 1107, 1396, 1435, 1240, 1266, 1165, 1449, 1062, 1449, 810, 1173, 701, 1171, 593, 1269, 539, 1455, 609, 1452, 504, 1221, 417, 884, 598, 743, 561, 734, 545, 1066, 353, 861, 299, 468, 491, 369, 445, 441, 325, 462, 267, 293, 259, 292, 303, 227, 313, 163, 309, 79, 289, 35, 326, 47, 390, -4, 492, 17, 521, 207, 423, 308, 485, 315, 573, -38, 742, -45, 847, 143, 757, 241, 808, 246, 919, 5, 1011, 242, 1110, 259, 1181, -47, 1332)
+build_mode = 1
+polygon = PackedVector2Array(-49, 1397, 448, 1144, 1107, 1396, 1435, 1240, 1266, 1165, 1449, 1062, 1449, 810, 1173, 701, 1171, 593, 1269, 539, 1455, 609, 1452, 504, 1221, 417, 884, 598, 743, 561, 734, 545, 1066, 353, 861, 299, 468, 491, 369, 445, 441, 325, 462, 267, 293, 259, 292, 303, 227, 313, 163, 309, 79, 289, 35, 326, 47, 390, -4, 492, 17, 521, 207, 423, 308, 485, 315, 573, -38, 742, -45, 847, 143, 757, 241, 808, 246, 919, 5, 1011, 242, 1110, 254, 1163, -46, 1321)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(958, 1158, 1340, 964, 1344, 928, 1342, 884, 947, 715, 858, 773, 861, 872, 1078, 930, 836, 1102, 838, 1133, 953, 1162)
@@ -622,11 +624,12 @@ autoplay = "default"
 frame_progress = 0.378864
 npcName = "奔霸"
 
-[node name="幻境1" parent="." instance=ExtResource("22_sc6gd")]
-position = Vector2(1245.97, 186.573)
-triggerEvent = "幻境1"
+[node name="幻境2" parent="." instance=ExtResource("22_sc6gd")]
+visible = false
+position = Vector2(52, 277)
+triggerEvent = "幻境2"
 
-[node name="CollisionShape2D" parent="幻境1/Area2D" index="0"]
+[node name="CollisionShape2D" parent="幻境2/Area2D" index="0"]
 position = Vector2(34.5254, 33.5)
 shape = SubResource("RectangleShape2D_ydwwp")
 
@@ -653,5 +656,5 @@ shape = SubResource("RectangleShape2D_lp1qw")
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
 
 [editable path="player"]
-[editable path="幻境1"]
+[editable path="幻境2"]
 [editable path="玉帝秘境"]

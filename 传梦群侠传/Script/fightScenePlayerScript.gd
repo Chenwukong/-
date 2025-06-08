@@ -511,7 +511,7 @@ func _process(delta):
 			target.play(remove_numbers_from_string(target.name) + "idle")	
 			target.get_node("getHitEffect").visible = false
 			target.self_modulate = "#ffffff"
-		elif controlType == "keyboard":
+		elif controlType == "keyboard": 
 			if !is_instance_valid(Global.target):
 				return
 			if Global.target.name == "敖阳" or Global.target.name == "时追云" or Global.target.name == "敖雨" or Global.target.name == "大海龟" or Global.target.name == "小二"  or Global.target.name == "姜韵"  or Global.target.name == "金甲"  or Global.target.name == "凌若昭":
@@ -705,6 +705,10 @@ func _process(delta):
 		
 	#法术施展完毕后
 	if self.is_playing() == false and self.animation != (playerName + "idle") and self.animation!=(playerName + "hurt")  and self.animation!=(playerName + "defend")  and Global.onAttackingList and self.playerName == Global.onAttackingList[0]:
+		if playerName == "朱雀":
+			get_parent().get_node("朱雀影").visible = false		
+		if playerName == "青龙":
+			get_parent().get_node("青龙影").visible = false			
 		
 		if Global.currUsingMagic.name == "真身现世":	
 			get_parent().get_node("小二脸").visible = false
@@ -1306,6 +1310,14 @@ func attack(target, type):
 
 
 func castMagic(delta, magic, target, type, onLastMagic):
+	if playerName == "朱雀":
+		get_parent().get_node("朱雀影").visible = true
+		get_parent().get_node("朱雀影").play("法术")
+	if playerName == "青龙":
+		get_parent().get_node("青龙影").visible = true
+		get_parent().get_node("青龙影").play("施法")		
+		
+		
 	magicControlType = type
 	if onLastMagic:
 		Global.target = castLastMagic.target
@@ -1404,7 +1416,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 						if magic.damageSource == "AP":
 							var damage_to_deduct = currMagicDmg  * magic.value * float(targets.magicDefense)/1000 		
 							
-							
+						
 							Global.dealtDmg = round(( currMagicDmg * magic.value - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg))*Global.damageReward1)
 							
 							

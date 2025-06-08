@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://c6fp415mg5xn5"]
+[gd_scene load_steps=131 format=3 uid="uid://c6fp415mg5xn5"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ffuip"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_cymtg"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://c810qadlyw2ma" path="res://梦魂Animation/leaf4.png" id="30_agr8k"]
 [ext_resource type="Texture2D" uid="uid://decafuhjtxwby" path="res://SeparateAnimation/传梦/传大将军站立.png" id="33_ou4a1"]
 [ext_resource type="Texture2D" uid="uid://bao573gqd5dob" path="res://SeparateAnimation/墨/墨兮站立.png" id="34_dp6f4"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="35_hlpe2"]
 [ext_resource type="Texture2D" uid="uid://brl00xmx67cd" path="res://Characters/NPC孙悟空D4A10B10T.png" id="38_unh6g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l7v4u"]
@@ -814,6 +815,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
+frame = 0
 frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
@@ -971,9 +973,8 @@ scale = Vector2(0.759115, 0.795898)
 texture = ExtResource("19_nddy5")
 
 [node name="teleportCircle2" parent="." instance=ExtResource("12_sc41c")]
-position = Vector2(2069, -256)
+position = Vector2(2055, -241)
 scale = Vector2(0.67683, 0.67683)
-toScene = "雷音寺"
 
 [node name="teleportCircle6" parent="." instance=ExtResource("12_sc41c")]
 position = Vector2(2257, 76)
@@ -1260,6 +1261,10 @@ sprite_frames = SubResource("SpriteFrames_7tdwl")
 animation = &"left"
 frame_progress = 0.102637
 npcName = "墨兮"
+
+[node name="petFoodBall" parent="." instance=ExtResource("35_hlpe2")]
+position = Vector2(1278.65, -28.5143)
+id = "长寿村1"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

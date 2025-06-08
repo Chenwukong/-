@@ -453,7 +453,14 @@ set Global.currNpc = null
 => END
 
 
-
+~ 玉帝物品事件
+set Global.onTalk = true
+set Global.addItem("渔夫草帽", "keyItem", "keyItem", 1)
+时追云: [speed=0.5]嗯？这个不是渔大爷的草帽吗？算了，先收起来吧
+set Global.yuDiItem = true
+set Global.changevis("东海湾","玉帝物品")
+set Global.onTalk = true
+=> END
 
 
 ~ 时追云醒来

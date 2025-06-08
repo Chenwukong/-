@@ -24,7 +24,8 @@ func _ready():
 			$Panel/Label.text = "第八章:  西域险行"
 		9:
 			$Panel/Label.text = "第九章:  梦澹现世"			
-			
+		10:
+			$Panel/Label.text = "第十章:  齐天巨猿"				
 			
 				
 		
@@ -61,3 +62,6 @@ func _on_timer_timeout():
 			get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")	
 		9:
 			get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")	
+		10:
+			get_tree().change_scene_to_file("res://Scene/"+"创界山"+".tscn")	
+			Global.dial = "创界山"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=207 format=3 uid="uid://b3dtk2snxdgij"]
+[gd_scene load_steps=217 format=3 uid="uid://b3dtk2snxdgij"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_b15sp"]
 [ext_resource type="Shader" path="res://shader/playerOutline.gdshader" id="2_jts12"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://dvp6fkcgrnb7d" path="res://Battlers/天麒dead.png" id="4_6bxdr"]
 [ext_resource type="Script" path="res://Camera2D.gd" id="4_622eh"]
 [ext_resource type="Texture2D" uid="uid://b5iacd88b8gqk" path="res://Animations/辅助-降速度.png" id="5_7tq41"]
+[ext_resource type="Texture2D" uid="uid://cgppqftodrb8f" path="res://梦魂Animation/云超进化/待机.png" id="6_n2mde"]
 [ext_resource type="Texture2D" uid="uid://bd6q4ri5iyqdj" path="res://梦魂Animation/袖里乾坤.png" id="6_vjoau"]
+[ext_resource type="Texture2D" uid="uid://bfvqlcpkes0dc" path="res://梦魂Animation/云超进化/云攻击.png" id="7_gswjl"]
 [ext_resource type="Texture2D" uid="uid://dra03f54o336o" path="res://梦魂Animation/#-隐龙.png" id="7_wrhc2"]
 [ext_resource type="Texture2D" uid="uid://cxyeth1d533k" path="res://梦魂Animation/辅助-全提升.png" id="8_hup2c"]
 [ext_resource type="Texture2D" uid="uid://bk5txr60ooe4u" path="res://梦魂Animation/#-回蓝回血.png" id="9_ahpbg"]
@@ -119,6 +121,38 @@ region = Rect2(840, 0, 280, 222)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lk7qx"]
 atlas = ExtResource("3_y8pk5")
 region = Rect2(0, 1840, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4c6r"]
+atlas = ExtResource("6_n2mde")
+region = Rect2(0, 0, 154, 180)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8to3a"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 1104, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wobbn"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 1472, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ntl58"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 1840, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_utncu"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 2208, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snebe"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 2576, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehqrn"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 2944, 384, 368)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unsrx"]
+atlas = ExtResource("7_gswjl")
+region = Rect2(0, 3312, 384, 368)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0lx1r"]
 animations = [{
@@ -251,6 +285,40 @@ animations = [{
 "loop": false,
 "name": &"拔剑",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4c6r")
+}],
+"loop": true,
+"name": &"时追云改idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8to3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wobbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ntl58")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_utncu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snebe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehqrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unsrx")
+}],
+"loop": false,
+"name": &"时追云改拔剑",
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rbu1l"]
@@ -1433,8 +1501,9 @@ texture = SubResource("CompressedTexture2D_1eey2")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_pbjet")
 sprite_frames = SubResource("SpriteFrames_0lx1r")
-animation = &"左上dead"
-frame_progress = 0.636398
+animation = &"时追云改拔剑"
+frame = 6
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 17)

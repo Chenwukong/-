@@ -193,12 +193,16 @@ func _on_area_2d_area_entered(area):
 			"黄眉":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("黄眉"))							
 			"幻境1":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("幻境"))	
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))	
 			"幻境2":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("幻境"))				
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))				
 			"幻境3":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("幻境"))												
-				
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))												
+			"幻境4":
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))
+			"女娲神迹":
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("女娲神迹"))				
+								
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]

@@ -29,10 +29,10 @@ set Global.changebgm("res://Audio/BGM/0情况危机.ogg")
 时追云: [speed=0.5]那有什么我们能做的事情吗
 set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 菩提老祖: [speed=0.5]前往创界山，找到滋生魔尊的罪魁祸首并且击败他！
-时追云: [speed=0.5]什么叫滋生魔尊？
+时追云: [speed=0.5]滋生魔尊？
 菩提老祖: [speed=0.5]每一个魔，都是由生物的阴暗面所滋生的！那如果上古之神，拥有强大的阴暗面呢？
-姜韵: [speed=0.5]而这个上古之神就是蚩尤!
-菩提老祖: [speed=0.5]对，他是个特殊的上古神，因为没人像他那样，阴暗面比自身实力都强大！
+菩提老祖: [speed=0.5]而这个上古之神就是蚩尤!他是个特殊的上古神，因为没人像他那样，阴暗面比自身实力都强大！
+菩提老祖: [speed=0.5]而只要原主死亡，被分离出去的那部分也会受伤！那我们对付魔尊的胜算就更大了！
 时追云: [speed=0.5]为什么会诞生魔，之前不是都消失了吗
 菩提老祖: [speed=0.5]魔一直都在，只要有生物，那么就永远都会有魔诞生，这是天道的法则！
 菩提老祖: [speed=0.5]之前的魔也并没有消失，只是一直在被玉帝和佛祖压在创界山。
@@ -66,7 +66,6 @@ set Global.changebgm("res://Audio/BGM/#沧桑叹.ogg")
 菩提老祖: 追云，你对黄眉所说之事怎么看，你是否也会觉得帮人无用
 时追云: [speed=0.5]每个人的一生都是短暂且重要的，哪怕只能让百姓在这一生少受一分苦、笑多一次，也有意义
 时追云: [speed=0.5]若因人会转世而漠视一切，这世界将会变得无比残酷冷漠，恶行也将变得理所应当
-时追云: [speed=0.5]哪怕这些事会有其他人来做，也不是我什么都不做的理由！
 菩提老祖: 你能如此想，我便放心了
 菩提老祖: 虽然你们的实力突飞猛进，但想要对抗这些万年怪物还是太难了
 菩提老祖: 时追云，去长寿村吧，那里有这个时代属于你的东西，梦澹(dan)！
@@ -274,7 +273,7 @@ set Global.changeBgm()
 时追云惊: [speed=0.5]又是妖盟，你怎么知道？
 蝎霸王: [speed=0.5]我在妖盟有内应！
 蝎霸王: [speed=0.5]我们家族老祖宗因为受过这里的人的恩惠，所以我们家族世世代代一直守护着这里
-蝎霸王: [speed=0.5]知道消息后我马上就跑去告诉这里的村民，可他们听不懂我说的话，我就到处砍树破坏提醒他们
+蝎霸王: [speed=0.5]知道消息后我马上就跑去告诉这里的村民，可他们不信我说的话，我就到处砍树破坏想吓走他们
 时追云: [speed=0.5]这么说...是我冤枉你了
 蝎霸王: [speed=0.5]那当然了！
 时追云: [speed=0.5]我给你道歉
@@ -357,7 +356,7 @@ set Global.toggleballon()
 凌若昭: [speed=0.5]我对秘境之类的比较熟！我去！
 时追云怒: [speed=0.5]不行，菩提祖师是叫我去，你们不准进去！
 姜韵: [speed=0.5]...
-小二: [speed=0.5]我现在实力不比老大你差了，老大你不能一直瞧不起我,我也想多帮你一点，我不能一直受你保护！
+小二悲: [speed=0.5]我现在实力不比老大你差了，老大你不能一直瞧不起我,我也想多帮你一点，我不能一直受你保护！
 时追云: [speed=0.5]我不是瞧不起你，只是...
 寒天云: [speed=0.5]得了得了，你们时间很多吗？天庭的人都快死光光了吧
 时追云: [speed=0.5]娘子，小二，若昭。
@@ -366,20 +365,22 @@ set Global.toggleballon()
 姜韵: [speed=0.5]夫君，你去吧
 姜韵: [speed=0.5]...
 姜韵: [speed=0.5]我等你回来
-时追云: [speed=0.5]嗯！
+时追云: [speed=0.5]我进去之后，你们也要万般小心，我觉得，我们周围很不对劲
+姜韵: [speed=0.5]我们会小心的，你安心去吧
+时追云: [speed=0.5]好！
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
 set Global.playsound("res://Audio/SE/019-Teleport02.ogg")
 set Global.getnode("player").visible = false
-小二: [speed=0.5]大嫂你
+小二悲: [speed=0.5]大嫂你
 姜韵: [speed=0.5]他是倔脾气，这种事上是争不过的，我们所能做的就是安心等他回来
 凌若昭哀: [speed=0.5]可我们也想帮他的
 姜韵喜: [speed=0.5]若昭已经很强啦，每次战斗都很努力
 姜韵: [speed=0.5]你们不要怪他，他会这样，也是因为亲眼见到全镇的人和我都被杀害...再次见到他后我就看出来了，他得了心病
 姜韵: [speed=0.5]如果是势均力敌的战斗还好说，但要是面对过于强大的敌人，他会紧紧把我们护在身后，如果遇到未知的危险，他也会独自向前顶
 姜韵: [speed=0.5]我们能做的就是相信他，并且...保护好自己，不要再令他感受到那种痛苦
-小二: [speed=0.5]原来老大他...
+小二悲: [speed=0.5]原来老大他...
 凌若昭哀: [speed=0.5]也是哦，师父离开我的时候我也很难受，而时大哥当初是看着全部人死在他面前
 set Global.dial = "幻境"
 set Global.changeScene("幻境1",null)
@@ -461,34 +462,625 @@ set Global.onTalk = false
 
 
 
-~ 玉帝秘境
+~ 玉帝秘境1
 set Global.onTalk = true
 时追云: [speed=0.5]这棵树，很奇怪，似乎是漂浮在半空之中的，似乎另有玄机
 时追云: [speed=0.5]周围隐约能看见灵力波动，触碰的时候稍微有点反弹，这里应该也是个结界，谁会在结界内又设立了一个结界呢？
 要试着破解结界吗？
 - 破除结界
-	
-
+	if Global.yuDiItem:
+		set Global.changeScene("秘境",null)
+		set Global.dial = "玉帝秘境"
+		set Global.quests.get("玉帝秘境").complete = true
+	else:
+		时追云: [speed=0.5]算了，貌似打不开
+- 算了，正事要紧
 
 set Global.onTalk = false
 => END
+
+
+~ 玉帝秘境2
+set Global.onTalk = true
+set Global.dial = null
+时追云: [speed=0.5]这里...貌似是某位大能所设置的秘境
+时追云: [speed=0.5]是谁会在结界内的必经之路设置这秘境呢
+时追云: [speed=0.5]这里貌似还有些宝物，难道是专门留给前往神庙结界内的人的吗
+时追云: [speed=0.5]可我都不知道我刚才是怎么打开这结界的...这里的主人怎么知道我能来这里？
+时追云: [speed=0.5]算了，不是想这个的时候
+
+set Global.onTalk = false
+=> END
+
+
+
 
 ~ 幻境4
 set Global.onTalk = true
-时追云: [speed=0.5]
+时追云哀: [speed=0.5]每当要面对妖魔那蛮横无比的力量...
+时追云哀: [speed=0.5]每当我面对血魔那血腥无比的血盆大口...
+时追云哀: [speed=0.5]每当我遇到妖魔族群，而被包围的时候，我都感觉...好害怕
+时追云哀: [speed=0.5]曾经的我只是一个普通人，但我不得不去面对无数个体型和力量大我好几倍的敌人
+时追云哀: [speed=0.5]曾经的我已经一无所有，所以面对死亡也只会感到些许的害怕
+时追云哀: [speed=0.5]但现在的我...还是无所畏惧的吗？
+时追云哀: [speed=0.5]不。。。我可以很确定，我不想死，我害怕死了
+时追云哀: [speed=0.5]我。。。。我不想死！
+时追云哀: [speed=0.5]...
+时追云哀: [speed=0.5]...
+时追云哀: [speed=0.5]我不想死...因为如果我死了
+set Global.changebgm("res://Audio/BGM/觉醒.mp3")
+时追云怒: 就没人保护他们了!
+时追云: [speed=0.5]对，只要有他们，我就能继续战斗下去
+时追云怒: [speed=0.5]如果惧怕妖怪和魔物伤害到伙伴，那就磨练自己，变得更强
+时追云怒: [speed=0.5]如果因为恐惧而踌躇不前的话，死亡只会加速来临！
+时追云怒: [speed=0.5]我害怕失去伙伴，但我更怕我什么都不做而失去他们！
+时追云怒: [speed=0.5]懦弱不能带来生机，唯有为未竟之事而奋斗者才能勇敢！
+时追云: [speed=0.5]...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]刚才似乎又被这里的力量给影响了心境，这次是调动了我内心不易察觉的恐惧吗
+时追云: [speed=0.5]虽然它是无限放大负面情绪，但是这些思绪或多或少都是真的，所以显得无比真实
+时追云: [speed=0.5]如果被恐惧拖垮，就会一直留在这里被恐惧吞噬吧
+时追云: [speed=0.5]而经历过这些情绪波动之后，我相对的阴霾则被一扫而光，连一丁点这方面的思绪都没了
+时追云: [speed=0.5]难道，这就是这些关卡的意义吗
+set Global.toggleballon()
+[next=1]
+set Global.dial = "妖盟入侵"
+set Global.changeScene("长寿郊外",null)
+
+set Global.onTalk = false
+=> END
+
+
+
+~ 妖盟入侵2
+set Global.onTalk = true
+
+set Global.getnode("shadow").visible = false
+set Global.getnode("妖盟").visible = true
+set Global.changevis("长寿郊外","小二")
+set Global.changevis("长寿郊外","凌若昭")
+set Global.changevis("长寿郊外","姜韵")
+set Global.changevis("长寿郊外", "蝎霸王")
+set Global.getnode("姜韵").visible = true
+set Global.getnode("player").visible = false
+小二: [speed=0.5]这。。。真的假的啊，他们是倾巢出动了吗
+姜韵恐: [speed=0.5]梦澹对他们的威胁，可能比我们想象的还要大
+set Global.getnode("AnimationPlayer").play("moveCamera")
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+夜护法: 呀，小帅哥，你是来送鲜肉的吗
+小二: 什，什么意思
+夜护法: 吃的就是你啊呵呵呵呵呵
+小二: [speed=0.5]阿姨，你别笑了，我瘆得慌
+夜护法: [speed=0.5]你说什么！！！？
+小二: [speed=0.5]我说，阿姨，你别笑了，我瘆得慌
+夜护法: [speed=0.5]呵呵呵呵呵，我会让你求生不得，求死不能的
+夜护法: [speed=0.5]都给我上！把这村子里的人全杀了！把那破神庙也摧毁！里面的东西会阻碍我们的大业！
+set Global.onTeamPlayer.erase("时追云")
+
+set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖魔入侵")
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵3
+set Global.onTalk = true
+夜护法: [speed=0.5]哟，挺强的嘛，继续上！
+set Global.getnode("player").visible = false
+set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖魔入侵")
+
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵4
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+夜护法: [speed=0.5]呀，又被你们解决了啊。后面的人，继续上！
+小二: [speed=0.5]喂！你怎么不自己上！
+夜护法: [speed=0.5]哦呵呵呵呵~，我为什么要先上，让你们被消耗完灵力，我再慢慢地折磨你们
+凌若昭怒: 卑鄙！ 
+set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖魔入侵")
+
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵5
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+小二: [speed=0.5]不行，再这么下去会被拖死的
+凌若昭: [speed=0.5]他们太强了，绝对不能让他们过去！
+小二: [speed=0.5]没办法了，大嫂，你还剩多少灵力，还能令我恢复全盛状态吗
+姜韵: [speed=0.5]只有你一个人的话那应该勉强可以，可是...
+小二: [speed=0.5]大嫂，帮我恢复状态吧！
+姜韵: [speed=0.5]好
+set Global.getnode("回血").visible = true
+set Global.getnode("回血").play()
+set Global.playsound("res://Audio/SE/HEAL 6.ogg")
+[next=3]
+姜韵: [speed=0.5]好了，你现在已经完全恢复了，但就算你化作真身，我也不觉得你可以面对这么多妖怪...
+小二: [speed=0.5]小声: 大嫂，若昭，我的千机变，不仅可以模仿伙伴的法术，也可以模仿敌人的，而有这么一个妖盟的法术，我一直没有去模仿
+凌若昭: [speed=0.5]小声: 难道说！
+小二: [speed=0.5]小声: 嗯，就是他们引来天谴渡劫的法术！
+凌若昭: [speed=0.5]小声: 可是用这招的话，不是有一半概率失败吗！
+小二: [speed=0.5]小声: 不会的，我研究过了，只要修为到了足以匹配渡劫的强度，那么就不会有事！
+姜韵: [speed=0.5]小声: 只是，你不能确定是否真的到了那个程度
+小二: [speed=0.5]我...相信我可以！不管怎么样，在老大出来之前，都要守住这里！
+
+set Global.getnode("小二/小二").play("真身左下")
+set Global.getnode("小二/小二/effects/真身特效").visible = true
+set Global.getnode("小二/小二/effects/真身特效").play()
+set Global.playsound("res://Audio/SE/猛兽2.ogg")
+
+set Global.toggleballon()
+[next=4]
+
+set Global.toggleballon()
+夜护法: [speed=0.5]哦？原来你就是那个从我们这里叛逃的天命人，那你们几位，应该就是一直在和我们作对的那一伙人了
+小二真身: [speed=0.5]我从来都不是你们那边的人
+夜护法: [speed=0.5]没想到，来这一趟居然还有意外之喜啊，正好将你们一网打尽
+小二真身: [speed=0.5]今天是有人会死，但是是你们
+夜护法: [speed=0.5]小帅哥，你该不会觉得用这副身躯就能对抗我了吧，我可不觉得哦
+小二真身: [speed=0.5]我能感觉得到你很强大，你应该在妖盟内最强大的几个妖王之一，但你今天，失算了
+set Global.getnode("天劫").visible = true
+set Global.getnode("天劫").play()
+set Global.playsound("res://Audio/SE/125-Thunder03.ogg")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+小二真身: 啊啊啊啊啊啊啊啊啊啊
+凌若昭哭: 小二！
+小二真身: 别，别过来！
+夜护法: 刚才的那是...天劫？你怎么可能会这招！
+小二真身: 呵呵，看来是我赌赢了！
+set Global.toggleballon()
+[next=1]
+set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
+set Global.getnode("真身特效").visible = true
+set Global.getnode("真身特效").play()
+set Global.getnode("小二/小二").play("进阶真身左下")
+set Global.playsound("res://Audio/SE/猛兽2.ogg")
+set Global.addshader("建业左","res://shader/shake.gdshader")
+set Global.addshader("shadow","res://shader/shake.gdshader")
+set Global.getnode("ColorRect").visible = true
+[next=4]
+set Global.removeshader("建业左")
+set Global.removeshader("shadow")
+set Global.toggleballon()
+夜护法: [speed=0.5]怎。。。怎么可能，你一个半人半妖血统不纯的家伙，妖力怎会如此可怕！
+夜护法: [speed=0.5]全部人都跟我上！不要留手，一定要在这里杀了他，他会成为我们之后总攻的威胁！
+set Global.getnode("蝎军").visible = true
+蝎霸王: [speed=0.5]我带着我的族人来帮你们了
+夜护法: [speed=0.5]你也是妖怪，何不加入我们呢，待我们夺取天下，少不了你的好处
+蝎霸王: [speed=0.5]我呸，我虽然是妖，但我也懂得报恩！多年前我的祖辈受人恩惠，我现在决不能让你伤害长寿村的那些人！
+小二真身: [speed=0.5]随我击杀她！
+set Global.toggleballon()
+[next=1.5]
+set Global.dial = "幻境"
+set Global.changeScene("幻境3", null)
 
 
 set Global.onTalk = false
 => END
 
+~ 妖盟入侵6
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+set Global.getnode("妖盟").visible = true
+set Global.getnode("蝎军").visible = true
+set Global.getnode("姜韵").visible = true
+set Global.getnode("小二/小二").play("进阶真身左下")
+小二真身: [speed=0.5]随我击杀她！
+set get_tree().current_scene.bossFight("夜护法","res://Audio/BGM/战斗Y.mp3", "妖盟入侵")
+
+
+set Global.onTalk = false
+=> END
 
 ~ 幻境5
 set Global.onTalk = true
+时追云: [speed=0.5]我为什么会有这些幻觉，难道我内心已经很渴望远离这些战争，归养山田吗
+时追云: [speed=0.5]为什么这世界上有许多满天神佛，诸多大能，最后却要靠我们来面对这一切！
+时追云: [speed=0.5]为什么会落到我们头上，我本该只是一位渔夫
+时追云: [speed=0.5]我也不是唯一的天命人...其他的人呢，为什么只有我们！
+时追云: [speed=0.5]要什么都不管了吗，和娘子继续找个深山躲起来...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]...
+时追云: [speed=0.5]不对！哪怕这些事会有其他人来做，也不是我什么都不做的理由！
+时追云: [speed=0.5]我们并不是在单独战斗，钟馗前辈，菩提祖师，观音大士和镇元大仙，他们都在用各自的方法在守护着这个世界
+时追云: [speed=0.5]而两位佛祖貌似也都因为三年前那场战斗消失了，神佛也都在用他们的命在战斗
+时追云: [speed=0.5]其他人各自有其天命，而我的使命，是保护百姓！
+时追云: [speed=0.5]我不是为了如堕逝，叛军那样的人而战，我是为了每一个夜里因妖魔侵袭而失去家人落泪的苦命人而战
+时追云: [speed=0.5]这世道若不平，我愿一剑开泰！
+set Global.toggleballon()
+[next=1.5]
+set Global.dial = "妖盟入侵"
+set Global.changeScene("长寿郊外",null)
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵7
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+set Global.changebgm(null)
+夜护法: 这小哥太变态了，你还不出来吗！
+夜护法: 再不出来，我们就真的死了，到时候你就永远别想逃出来了！
+小二真身: [speed=0.5]你在和谁说话
+set Global.toggleballon()
+[next=2]
+set Global.getnode("Ink").visible = true
+set Global.getnode("AnimationPlayer").play("雨滴")
+set Global.playsound("res://Audio/SE/two-drops-87977.mp3")
+[next=1.3]
+
+set Global.changebgm("res://Audio/BGM/鬼帝出场.mp3")
+[next=1]
+set Global.getnode("ColorRect2").visible = true
+set Global.getnode("AnimationPlayer").play("水墨")
+[next=15.5]
+set Global.changebgm(null)
+set Global.dial = "幻境"
+set Global.changeScene("幻境4",null)
+
 
 
 set Global.onTalk = false
 => END
 
+~ 幻境6
+set Global.onTalk = true
+时追云惊: [speed=0.5]娘子！？
+时追云: [speed=0.5]不对，她不可能在这里，你是谁
+姜韵: [speed=0.5]夫君，你连我都认不出来了吗？我是烟儿啊
+时追云: [speed=0.5]烟儿...
+时追云: [speed=0.5]烟儿....你怎么会在...这里
+姜韵: [speed=0.5]夫君，我们不要再战斗了好吗？
+时追云: [speed=0.5]我。。。绝对不会再逃避了
+姜韵: [speed=0.5]哪怕我再次死在你面前吗？
+时追云惊: [speed=0.5]这。。。。我
+时追云惊: [speed=0.5]我。。。
+时追云哀: [speed=0.5]我不愿意你们受伤，但我也绝对不能放弃这世间百姓的性命
+姜韵: [speed=0.5]可是你在接下来的战斗中，真的能保护好所有人吗，如果有伙伴死在你面前，你又该如何呢？
+时追云哀: [speed=0.5]我...
+时追云哀: [speed=0.5]...
+时追云: [speed=0.5]娘子，你能不能告诉我，我到底该怎么办？
+姜韵: [speed=0.5]你尝试过相信你的伙伴吗？
+时追云: [speed=0.5]相信。。。我的伙伴？
+姜韵: [speed=0.5]既然你无法避免他们陷入战争，那不如相信他们会和你并肩作战获得最后的胜利
+姜韵: [speed=0.5]你一直在保护着他们，但他们真的需要你的保护吗？
+姜韵: [speed=0.5]他们刻苦修炼，是为了能有一天能够保护你，而不是继续跟在你身边当拖油瓶
+姜韵: [speed=0.5]与其畏惧敌人的强大，不如相信你伙伴的力量
+时追云惊: [speed=0.5]...
+时追云: [speed=0.5]你到底是谁？你刚才是在帮我。。。走出心理困境？
+姜韵: [speed=0.5]我是现实与幻境的结合，因你的内心所生
+姜韵: [speed=0.5]这个幻境的所有生灵与幻觉的目的都是为了摧垮你的心灵，而我却...
+姜韵: [speed=0.5]看来，你娘子和她在你内心的样子，都正的无言啊
+姜韵: [speed=0.5]往前走吧，不管如何，你已经通过了所有的考验
+姜韵: [speed=0.5]幻境是一种考验，也是一种赐福，虽然这次帮你解决了你心里所有的困境，但你能保证这些念头永远都不会再滋生吗，呵呵呵呵呵
+set Global.dial = '女娲神迹'
+set Global.changeScene("女娲神迹",null)
+
+set Global.onTalk = false
+=> END
+
+~ 女娲神迹1
+set Global.onTalk = true
+时追云: [speed=0.5]看来已经脱离幻境了，这里神庙真正所隐藏的地方吧
+时追云: [speed=0.5]这里貌似一个人都没有，只能到处找找看了
+set Global.onTalk = false
+=> END
+
+~ 女娲神迹2
+set Global.onTalk = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(40.5)
+时追云: [speed=0.5]这，就是梦澹吗？
+时追云: [speed=0.5]两把剑？
+set Global.getnode("墨兮").visible = true
+墨兮: [speed=0.5]是啊，梦澹，其实是两把剑
+时追云惊: [speed=0.5]墨兄？你怎会在此？
+墨兮: [speed=0.5]你认识我？
+时追云: [speed=0.5]我们不是在外面见过吗，还是你帮我打开的神迹结界
+墨兮: [speed=0.5]我明白了，你应该是碰见了我的转世
+时追云: [speed=0.5]什么。。。意思？
+墨兮: [speed=0.5]寻常修仙之人自然是不能转世的，我用了某种方法...完成了转世
+墨兮: [speed=0.5]而现在在这里的我，只是一律残念罢了
+时追云: [speed=0.5]那你当初为什么要舍弃一身修为和记忆去转世？
+墨兮: [speed=0.5]因为我发现，我引以自豪的法力成为了束缚，我旧有的一身修为全来自于它，而既然来自于它，自然也没法对抗它...我只能另寻他法
+时追云: [speed=0.5]它是谁？
+墨兮: [speed=0.5]你以后会知道的，这是属于你的宿命
+if Global.quests.get("玉帝秘境").complete:
+	墨兮: 已经很久没人来过这里了，上次来这里的人，还是玉帝
+	时追云: [speed=0.5]玉帝？天庭的主人，来过这里？
+	墨兮: [speed=0.5]嗯
+时追云: [speed=0.5]那我能拿走梦澹吗？
+墨兮: [speed=0.5]你既已经通过了考验，那自然有资格拿走它们
+墨兮: [speed=0.5]但你要想清楚——一旦拿起梦澹，就没有回头路了。无论你愿不愿意，你的命运将与这片天地纠缠不清
+墨兮: [speed=0.5]我曾以为自己能够拯救这个世界，推翻这令人厌恶的秩序
+墨兮: [speed=0.5]可我最后落得的，是转世轮回、身死道消的结局
+时追云: [speed=0.5]那你现在后悔了吗？
+墨兮: [speed=0.5]不，我不后悔。若再有一次机会，我依旧会踏上那条路。
+墨兮: [speed=0.5]我只是...可惜没能真正改变这个世道。我明明已经那么接近答案，却还是差了一步
+墨兮: [speed=0.5]那一步，我迈不过去。也许是我太犹豫，也许是我太执着
+墨兮: [speed=0.5]曾经的我一呼百应，所言所行皆能引起风云变幻。别人不敢做的，我来做；别人不愿担的，我来担
+墨兮: [speed=0.5]我以为我能撑起整片天，但终究是被天压垮了
+墨兮: [speed=0.5]如果我当初成功了，现在的世界绝对能够更美好
+墨兮: [speed=0.5]你知道吗？曾经的人间，是何等的繁华热闹，灯火不熄、众生皆乐
+墨兮: [speed=0.5]我只是……有点怀念过去了
+时追云: [speed=0.5]我没见过你口中那样的世界。自我修行之日起，天地就早已千疮百孔
+时追云: [speed=0.5]但我知道，曾经的你，绝对是个伟大的人
+墨兮: [speed=0.5]何出此言
+时追云: [speed=0.5]我不知道你那个时代经历了怎样的劫难
+时追云: [speed=0.5]但即使痛苦缠身，你仍然选择坚持、抗争，从不曾真正后悔
+时追云: [speed=0.5]你选择转世，不是逃避，而是延续。延续那份希望与意志
+时追云: [speed=0.5]而你的转世，也没辜负你。我虽与他交情不深，但我知道，他是我生平仅见的大侠。
+时追云: [speed=0.5]你当初所做的一切，在今日仍回荡在这片残破的土地上
+时追云: [speed=0.5]或许事情无法尽善尽美，但这个世界还没有完蛋，还有人活着，还有人愿意改变
+时追云: [speed=0.5]这不就是你我这种人存在的意义吗？
+墨兮: [speed=0.5]你会是下一个改变者吗？你要接起这份责任吗？
+时追云: [speed=0.5]就如同当初的你一样。
+墨兮: [speed=0.5]哈哈哈哈哈哈……好，好一个“如同当初的我一样”。
+墨兮: [speed=0.5]我此生有憾，却因你今日一言，而心安
+墨兮: [speed=0.5]这世间已久无人能让我如此痛快了，可惜，你晚生了许多年
+墨兮: [speed=0.5]听我最后一句话，作为梦澹前任持有者的唯一忠告：梦澹，从不属于任何一个人
+墨兮: [speed=0.5]收下它吧！去完成我未完成之事！
+set Global.getnode("AnimationPlayer").play("风沙")
+
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+时追云: [speed=0.5]我会接着守护这个世界
+set Global.toggleballon()
+[next=2]
+set Global.dial = "妖盟入侵"
+set Global.changeScene("黑暗空间",null)
+
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵8
+set Global.onTalk = true
+
+小二: 怎么回事！？
+凌若昭: 好黑！什么都看不到了！
+set Global.playsound("res://Audio/SE/打击4.ogg")
+[next=0.5]
+姜韵恐: 啊！
+凌若昭: 姐姐怎么了
+姜韵恐: 有东西在暗处，刚才我被狠狠打了一下！
+set Global.playsound("res://Audio/SE/打击4.ogg")
+[next=0.5]
+小二: 唔！你们做好防护，这里确实有敌人，我们看不见他，他却能看到我们
+凌若昭怒: 怎么办，怎么会这样！
+set Global.playsound("res://Audio/SE/打击4.ogg")
+[next=0.5]
+小二: 啊！！！
+凌若昭哭: 小二！
+小二: [speed=0.5]不仅阴险...他的力量，也是恐怖至极！！
+姜韵怒: [speed=0.5]你们靠近我点，我给你们疗伤
+小二: [speed=0.5]这样下去，我们迟早会...
+凌若昭怒: [speed=0.5]可恶！ 
+set Global.toggleballon()
+[next=1]
+set Global.getnode("Sword/AnimationPlayer").play("划破黑暗")
+[next=3]
+set Global.changebgm("res://Audio/BGM/觉醒.mp3")
+set Global.toggleballon()
+小二: [speed=0.5]这里的黑暗，被劈开了！
+姜韵恐: [speed=0.5]用剑劈开了黑暗？
+凌若昭: [speed=0.5]是之前那个人！
+鬼帝: [speed=0.5]你是谁！竟然能闯进我的空间
+墨兮: [speed=0.5]黑暗的法术吗，总感觉我见过，不自觉地就使出了破解之法
+寒天云: [speed=0.5]你又是什么鬼东西？敢站在我面前还不跑？
+姜韵恐: 鬼帝！是你！
+小二: 什么！
+凌若昭怒: 糟糕了，传闻鬼帝可是和妖皇魔尊齐名的
+墨兮: [speed=0.5]在这里出现的并不是他的真身，他的真身应该还在地府，所以他能发挥的实力有限
+姜韵: [speed=0.5]可他不是还被关押着的吗，他的分身怎么可能出现在这里
+墨兮: [speed=0.5]很简单，附在人身上不就被带出来了吗
+姜韵恐: [speed=0.5]是我们...把他的分身带出来的
+鬼帝: [speed=0.5]我很早就想吃了你们了，我一直跟在你们旁边，你们完全没有发现我
+鬼帝: [speed=0.5]但你们之前太弱了，吃掉了不足以补足我受伤的元气
+鬼帝: [speed=0.5]但现在，你们够我吃了，只要把你们和那小子都吃了，我一定就能恢复状态
+鬼帝: [speed=0.5]到时候，我要地府和天庭全部都给我陪葬！
+墨兮: [speed=0.5]你们先调息恢复状态，我来拖住他
+小二: [speed=0.5]这，你能行吗？
+寒天云: [speed=0.5]看不起谁呢？他一缕分身给小爷装什么呢！看剑看剑看剑看剑！
+set Global.toggleballon()
+set Global.getnode("AnimationPlayer").play("飞剑式")
+[next=0.1]
+set Global.getnode("鬼帝").play("hurt")
+[next=0.1]
+set Global.getnode("鬼帝").play("default")
+[next=0.5]
+set Global.addshader("建业左","res://shader/shake.gdshader" )
+set Global.addshader("shadow","res://shader/shake.gdshader" )
+
+[next=0.8]
+
+set Global.getnode("鬼帝").play("hurt")
+[next=1.3]
+set Global.removeshader("建业左")
+set Global.getnode("鬼帝").play("default")
+
+[next=4]
+set Global.toggleballon()
+小二: [speed=0.5]好强！
+凌若昭: [speed=0.5]他的剑看起来也不是凡品！
+墨兮: 墨染花！
+set Global.getnode("墨兮").play("magic")
+set Global.playsound("res://Audio/SE/法术-气势强.ogg")
+set Global.getnode("墨染花").visible = true
+set Global.getnode("墨染花").play()
+set Global.getnode("鬼帝").play("hurt")
+set Global.toggleballon()
+[next=2]
+set Global.playsound("res://Audio/SE/051-Explosion04.ogg")
+set Global.getnode("鬼帝").play("attack")
+set Global.getnode("墨兮").play("hurt")
+[next=2]
+set Global.getnode("鬼帝").play("default")
+set Global.getnode("墨兮").play("left")
+[next=0.4]
+set Global.getnode("鬼帝").play("magic")
+set Global.getnode("墨兮").play("hurt")
+set Global.getnode("黑象").visible = true
+set Global.getnode("黑象").play()
+set Global.playsound("res://Audio/SE/大象X.ogg")
+[next=3]
+set Global.getnode("鬼帝").play("default")
+set Global.getnode("墨兮").play("left")
+[next=0.5]
+set Global.getnode("墨兮").play("magic")
+set Global.playsound("res://Audio/SE/法术-气势强.ogg")
+set Global.getnode("墨染花").visible = true
+set Global.getnode("墨染花").play()
+set Global.getnode("鬼帝").play("hurt")
+[next=2]
+set Global.getnode("鬼帝").play("default")
+set Global.getnode("墨兮").play("left")
+
+
+set Global.toggleballon()
+
+鬼帝: [speed=0.5]你到底是谁！为什么要来阻止我！！！
+墨兮: [speed=0.5]我只是一个过路人罢了
+寒天云: [speed=0.5]看你不爽想打你，还需要理由吗
+墨兮: [speed=0.5]我不会放任你这种邪物重归世间的
+墨兮: [speed=0.5]但今天，解决你的，另有他人
+寒天云: [speed=0.5]一个人打你够久了，我也挺累的
+set Global.changebgm("res://Audio/BGM/千山.ogg")
+set Global.toggleballon()
+[next=1]
+set Global.getnode("四法青云").visible = true
+set Global.getnode("AnimationPlayer").play("时追云到场")
+set Global.playsound("res://Audio/SE/兵器-入肉.ogg")
+[next=1]
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("时追云改拔剑")
+set Global.getnode("player").visible = true
+set Global.playsound("res://Audio/SE/男-剑.ogg")
+set Global.getnode("鬼帝").play("hurt")
+[next=0.5]
+set Global.getnode("鬼帝").play("default")
+set Global.toggleballon()
+姜韵喜: 夫君！
+小二: 老大！
+凌若昭喜: 时大哥你出来了！
+set Global.getnode("player").position = Vector2(425,916)
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+鬼帝: [speed=0.5]你又是怎么进来的！你手中这两把剑是。。。梦澹！？
+姜韵喜: [speed=0.5]夫君你成功拿到梦澹了
+时追云: [speed=0.5]嗯
+时追云: [speed=0.5]我之前就觉得蹊跷，果然有人一直在跟着我们，虽然我不确定是什么东西，但我一直感到不安
+时追云: [speed=0.5]你是在我和鬼将军战斗之时悄悄附着在我身上的吧,之后你便刻意弄出大动静使我快速离开地府，也好带着你的分身一起走
+鬼帝: [speed=0.5]可惜，我应该早点动手的，不过现在也不晚
+时追云: [speed=0.5]从现在起，你就再也没机会了！
+时追云: [speed=0.5]娘子，若昭，小二，随我死战！
+姜韵喜: [speed=0.5]好
+小二: [speed=0.5]这样才对嘛老大！
+凌若昭喜: [speed=0.5]嗯！
+寒天云: [speed=0.5]本大爷打的有点累了，你们加油吧
+set get_tree().current_scene.bossFight("鬼帝","res://Audio/BGM/仙剑全音乐.ogg", "妖盟入侵")
+set Global.getnode("黑象").visible = false
+
+
+
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵9
+set Global.onTalk = true
+
+鬼帝: [speed=0.5]不！不！！！你们这些垃圾！要不是我真身不在这里，你们怎么可能赢我！
+鬼帝: [speed=0.5]我不要再被关住了！我要杀了你们！
+时追云惊: [speed=0.5]你想干什么！
+鬼帝: [speed=0.5]哪怕这分身和你们爆了，我也要弄死你们！！！
+set Global.toggleballon()
+set Global.getnode("鬼帝").play("magic")
+[next=2.5]
+set Global.changebgm("res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——星宿大阵 - 1.《大侠立志传》游戏音乐BGM纯享版——星宿大阵(Av527578023,P1).mp3")
+set Global.getnode("鬼帝").play("die")
+set Global.playsound("res://Audio/SE/Ghost_scream.mp3")
+set Global.getnode("subSound").pitch_scale = 0.5
+
+[next=3]
+set Global.toggleballon()
+set Global.getnode("鬼帝").visible = false
+鬼帝: 不！！！！！！！！！！
+时追云惊: [speed=0.5]刚才那是？
+地藏菩萨: [speed=0.5]时追云，你们做的很好
+姜韵喜: [speed=0.5]地藏菩萨？您怎会在此？
+地藏菩萨: [speed=0.5]我此时并不在你们身边，我是在地府把他的分身给拖回来了
+姜韵喜: [speed=0.5]夫君，地藏菩萨之前在地府很照顾我，要不是那次鬼帝在他闭关的时候突袭地府，我也不会被抓走
+时追云: [speed=0.5]原来如此，久仰大名，之前在地府一直没见到，这次多谢您出手相助！
+地藏菩萨: [speed=0.5]之前我已经偷偷的见过你了，你是我们重点关注的人之一
+时追云: [speed=0.5]仙家们一直在关注我？
+地藏菩萨: [speed=0.5]嗯，现在看来，他是对的
+时追云: [speed=0.5]他？
+地藏菩萨: [speed=0.5]天庭现在情况很糟糕，你们即刻办你们该办的事情去吧，地府的鬼军我会压制住，鬼帝这次损失极为惨重，我不会再让他有机会出来了
+地藏菩萨: [speed=0.5]三界的安危，就交给你们了！
+
+
+set Global.getnode("AnimationPlayer").play("turnDark")
+set Global.toggleballon()
+[next=2]
+set Global.changeScene("长寿村村子家",Vector2(1086,923))
+
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵10
+set Global.onTalk = true
+set Global.getnode("墨兮").visible = true
+set Global.getnode("蝎霸王").visible = true
+蝎霸王: [speed=0.5]那个妖盟护法一看你们出来了，马上就带着一堆手下跑了！
+村长: [speed=0.5]原来你们一直在保护我们村子
+蝎霸王: [speed=0.5]是啊，你们还一直把我们当妖怪勒
+村长: [speed=0.5]是我们错怪你们了，你们是仙啊！
+墨兮: [speed=0.5]一念仙，一念妖，有趣
+时追云: [speed=0.5]都是从动物修炼而来，秉性却大不相同，我以前确实是有些偏见
+小二: [speed=0.5]我希望某一天我能带领所有妖怪改邪归正
+凌若昭喜: [speed=0.5]小二我支持你嘻嘻
+小二喜: [speed=0.5]嗯，有你陪我我一定可以的！
+寒天云: [speed=0.5]啧啧啧，我最讨厌有人在我面前秀恩爱了，我走了
+时追云: [speed=0.5]墨兄要前往何处？何不一起解救这三界危机呢
+墨兮: [speed=0.5]我有我自己的使命要完成，而这不比这次危机要来的轻
+寒天云: [speed=0.5]但我很有可能意志坚定了
+小二: ？
+时追云: [speed=0.5]好吧，山高路远，期待我们还有再见的那一天
+墨兮: [speed=0.5]保重，只要你还走在正确的道路上，我们始终会再次相遇
+set Global.getnode("墨兮").visible = false
+小二: [speed=0.5]他走了
+时追云: [speed=0.5]那我们也出发吧，去创界山！
+凌若昭: [speed=0.5]创界山应该就在这里附近，我们找一找！
+set Global.changevis.get("长寿郊外","小二")
+set Global.changevis.get("长寿郊外","凌若昭")
+
+set Global.changeScene("长寿郊外",null)
+set Global.onTalk = false
+=> END
+
+~ 妖盟入侵11
+set Global.onTalk = true
+set Global.getnode("六耳").visible = true
+set Global.getnode("player").visible = false
+六耳猕猴: [speed=0.5]妖.......仙？
+六耳猕猴: 无聊至极！只有无上的武力才是真的！
+set Global.toggleballon()
+[next=3]
+set Global.dial = null
+set Global.current_chapter_id = 10
+set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
+
+set Global.onTalk = false
+=> END
 
 
 

@@ -60,6 +60,8 @@ func _ready():
 	sceneName =  get_tree().current_scene.name
 	if sceneName == "东海湾" or  sceneName == "小树林":
 		$battleFieldPicture.texture = load("res://Battlebacks/东海湾.jpg")
+	elif sceneName == "黑暗空间":
+		$battleFieldPicture.texture = load("res://panoramas2/蜈蚣精.jpg")	
 	else:
 		$battleFieldPicture.texture = load ("res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png")
 		#$battleFieldPicture.texture = load ("res://Battlebacks/战斗覆盖.png")
@@ -260,7 +262,8 @@ func _process(delta):
 	if Global.onAttackPicking or Global.onMagicAttackPicking:
 		if Global.target and monsters:
 			$battleFieldPicture/enemyInfo.visible = true
-			$battleFieldPicture/enemyInfo/enemyName.text = remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
+			print(monsters[Global.targetMonsterIdx])
+			$battleFieldPicture/enemyInfo/enemyName.text = str(monsters[Global.targetMonsterIdx].level) # remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
 			$battleFieldPicture/enemyInfo/speedBar.value = monsters[Global.targetMonsterIdx].speedBar
@@ -324,7 +327,7 @@ func _process(delta):
 	if Global.onItemUsePicking:
 		if Global.currUsingItem.info.effect == "damage":
 			$battleFieldPicture/enemyInfo.visible = true
-			$battleFieldPicture/enemyInfo/enemyName.text = remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
+			$battleFieldPicture/enemyInfo/enemyName.text = str(monsters[Global.targetMonsterIdx].level) #remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
 			$battleFieldPicture/enemyInfo/speedBar.value = monsters[Global.targetMonsterIdx].speedBar
@@ -901,6 +904,7 @@ func instantiateMonster():
 		var enemySceneInstance = enemyScene.instantiate()
 		enemySceneInstance.add_to_group("monster")
 		# Set properties for the character instance
+		enemySceneInstance.level = monsterData.level
 		enemySceneInstance.speed = monsterData.speed
 		enemySceneInstance.magicDefense = monsterData.magicDefense
 		enemySceneInstance.type = monsterData.type
@@ -935,6 +939,11 @@ func instantiateMonster():
 		if selectedMonsters.size() == 1: 
 			posX = $bossPos.position.x
 			posY = $bossPos.position.y		
+			print(selectedMonsters,1111)
+			if selectedMonsters[0].name == "鬼帝0":
+				posX = -120
+				posY = -40
+
 
 			if selectedMonsters[0].name == "青龙0":
 				posX = -200
@@ -1006,9 +1015,17 @@ func instantiateBoss():
 			posY = (monsterIdx - 3) * 倾斜度 - 200
 
 		if selectedMonsters.size() == 1: 
-			if monsterData.name == "青龙":
+			posX = $bossPos.position.x
+			posY = $bossPos.position.y		
+			print(selectedMonsters[0])
+			if selectedMonsters[0].name == "鬼帝":
+				posX = -120
+				posY = -40
+
+
+			elif selectedMonsters[0].name == "青龙":
 				posX = -200
-				posY = -200
+				posY = -200			
 			else:
 				posX = $bossPos.position.x
 				posY = $bossPos.position.y

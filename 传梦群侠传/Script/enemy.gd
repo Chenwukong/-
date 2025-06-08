@@ -53,6 +53,7 @@ var canSee = true
 var round = 1
 var magicInfo
 var autoPlayed
+var level = 1
 var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3}, 
 						"奔霸":{"name":"水满金山","round":4}, 
 						"大鹏":{"name":"奔雷","round":3}, 
@@ -135,7 +136,8 @@ var bigMagics ={
 
 
 func _ready(): 
-
+	if name == "鬼帝0":
+		scale = Vector2(1,1)
 	if type == "鬼":
 		canSee = false
 
@@ -893,7 +895,7 @@ func selectTarget(delta, randi, magicRandi):
 
 
 func moveCharacter(delta):
-	if self.name == "青龙0":
+	if self.name == "青龙0" or name == "鬼帝0":
 		return
 	var moveSpeed = 15 
 	var newPosition = position.lerp(Vector2(Global.alivePlayers[Global.monsterTarget].position.x-60, Global.alivePlayers[Global.monsterTarget].position.y-60)  , moveSpeed * delta)
@@ -1010,9 +1012,13 @@ func useBigMagic():
 	get_parent().get_node("roundCountDown").text = str(round)
 	get_parent().get_parent().get_node("bigMagicTimer").start()
 	self.play(monsterName + "bigMagic")
-	get_parent().get_node("bigMagic").visible = true
-	get_parent().get_node("bigMagic/Label").text = magicInfo.name
-	get_parent().get_node("bigMagic/bossHead").texture = load("res://portrait/"+monsterName+".png")
+
+	if self.name != "鬼帝0":
+		get_parent().get_node("bigMagic").visible = true
+		get_parent().get_node("bigMagic/Label").text = magicInfo.name
+		get_parent().get_node("bigMagic/bossHead").texture = load("res://portrait/"+monsterName+".png")
+	
+	
 	
 	$bigMagicSound.stream = load("res://Audio/SE/017-Jump03.ogg")
 	$bigMagicSound.play()
