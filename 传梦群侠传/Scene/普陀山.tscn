@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://cla4bkj430yhn"]
+[gd_scene load_steps=51 format=3 uid="uid://cla4bkj430yhn"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ufg5e"]
 [ext_resource type="Texture2D" uid="uid://bpbcdxhfkeidl" path="res://panoramas2/普陀山.jpg" id="2_5hebb"]
@@ -18,13 +18,14 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_p866b"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_1jeyx"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_f03aw"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_6wfkt"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_6wfkt"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_1i0s1"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_8vior"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="22_vfn15"]
 [ext_resource type="Texture2D" uid="uid://dj4evlys287jc" path="res://Characters/8轩辕伏魔录 (22).png" id="23_1nfcj"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="24_v4ynj"]
 [ext_resource type="Texture2D" uid="uid://d2e0yhkjj7hx6" path="res://Characters/水云仙.png" id="25_rtnsi"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="26_sxo0g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ql4jk"]
 
@@ -307,6 +308,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
+frame = 0
 frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
@@ -324,7 +326,7 @@ polygon = PackedVector2Array(2150, 1910, 2140, 1782, 2029, 1712, 1929, 1672, 193
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(293, -210)
-polygon = PackedVector2Array(503, 1578, 516, 1616, 518, 1641, 654, 1647, 690, 1623, 690, 1592, 659, 1539, 512, 1560)
+polygon = PackedVector2Array(503, 1578, 516, 1616, 519, 1624, 640, 1626, 680, 1612, 690, 1592, 659, 1539, 512, 1560)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
@@ -533,6 +535,13 @@ scale = Vector2(0.798485, 0.827515)
 sprite_frames = SubResource("SpriteFrames_2vgbv")
 frame_progress = 0.292618
 npcName = "水云仙"
+
+[node name="凌若昭" parent="." instance=ExtResource("26_sxo0g")]
+position = Vector2(912, 1487)
+scale = Vector2(0.75, 0.75)
+animation = &"左上"
+frame_progress = 0.0
+npcName = "凌若昭"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

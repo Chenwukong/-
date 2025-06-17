@@ -201,7 +201,23 @@ func _on_area_2d_area_entered(area):
 			"幻境4":
 				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))
 			"女娲神迹":
-				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("女娲神迹"))				
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("女娲神迹"))	
+			"六耳救女孩":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("六耳"))					
+			"炼狱迷宫1":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
+			"炼狱迷宫2":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))	
+			"炼狱迷宫3":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
+			"炼狱迷宫4":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
+			"炼狱迷宫6":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))							
+			"炼狱终点":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
+								
+								
 								
 func get_npc_dialogue(npc_id):
 	

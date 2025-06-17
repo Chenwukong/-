@@ -1,4 +1,4 @@
-[gd_scene load_steps=221 format=3 uid="uid://0elhamjou8p7"]
+[gd_scene load_steps=238 format=3 uid="uid://0elhamjou8p7"]
 
 [ext_resource type="Script" path="res://Script/锁妖塔怪物脚本.gd" id="1_c80dp"]
 [ext_resource type="Texture2D" uid="uid://byjjguti3j8h1" path="res://Characters/狐狸精.png" id="2_1vdu8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bg6rdtfrh55ky" path="res://Characters/花妖.png" id="3_ygduv"]
 [ext_resource type="Texture2D" uid="uid://yxjhbqh1tar" path="res://Characters/树怪.png" id="4_3071l"]
 [ext_resource type="Texture2D" uid="uid://ceyxt1py8m4n5" path="res://Characters/羊头怪.png" id="4_sqdgl"]
+[ext_resource type="Texture2D" uid="uid://d4lr442ix3cuo" path="res://Characters/牛.png" id="6_sm5rb"]
 [ext_resource type="Texture2D" uid="uid://pj6klxhbjy8c" path="res://Characters/黑熊精.png" id="7_u2usd"]
 [ext_resource type="Texture2D" uid="uid://cvjfqn34hgmeh" path="res://Characters/老虎.png" id="8_pbp1t"]
 [ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="10_w7p3o"]
@@ -270,6 +271,70 @@ region = Rect2(322, 130, 161, 130)
 [sub_resource type="AtlasTexture" id="AtlasTexture_nd1fk"]
 atlas = ExtResource("3_k08tk")
 region = Rect2(483, 130, 161, 130)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhnub"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(0, 222, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_asy88"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(175, 222, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0lodv"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(350, 222, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e42uo"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(525, 222, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hj1fc"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(0, 0, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_im11a"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(175, 0, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oq87a"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(350, 0, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fj0w0"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(525, 0, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evbev"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(0, 333, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drhad"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(175, 333, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7byq"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(350, 333, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c10v0"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(525, 333, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybjh2"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(0, 111, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gecmi"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(175, 111, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cbca"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(350, 111, 175, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmdqg"]
+atlas = ExtResource("6_sm5rb")
+region = Rect2(525, 111, 175, 111)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgolg"]
 atlas = ExtResource("2_1vdu8")
@@ -1107,6 +1172,74 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_vhnub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_asy88")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0lodv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e42uo")
+}],
+"loop": false,
+"name": &"牛魔右上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hj1fc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_im11a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oq87a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fj0w0")
+}],
+"loop": false,
+"name": &"牛魔右下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evbev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drhad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7byq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c10v0")
+}],
+"loop": false,
+"name": &"牛魔左上",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybjh2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gecmi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cbca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmdqg")
+}],
+"loop": false,
+"name": &"牛魔左下",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hgolg")
 }, {
 "duration": 1.0,
@@ -1716,7 +1849,7 @@ script = ExtResource("1_c80dp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_c4h1h")
-animation = &"鬼火右上"
+animation = &"兔子精右上"
 
 [node name="Area2D" type="Area2D" parent="."]
 

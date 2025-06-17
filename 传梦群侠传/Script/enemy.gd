@@ -381,7 +381,10 @@ func _process(delta):
 				if Global.monsterTarget >= 0 and Global.monsterTarget < Global.alivePlayers.size():
 					Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 					Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
-					Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")		
+					if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+						Global.alivePlayers[Global.monsterTarget].play("时追云改idle")	
+					else:
+						Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")		
 				Global.alivePlayers[Global.monsterTarget].self_modulate = "#ffffff"
 				self.play(monsterName + "idle")
 				Global.onAttackingList.pop_front()
@@ -451,7 +454,10 @@ func _process(delta):
 							Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
-							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")
+							if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+								Global.alivePlayers[Global.monsterTarget].play("时追云改idle")	
+							else:
+								Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")	
 							if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
 								
 								Global.alivePlayers[Global.monsterTarget].alive = false
@@ -487,8 +493,13 @@ func _process(delta):
 							var damage_to_deduct = self.magicDmg  *  monsterMagicList[randi_range(0, magicRandi)].damage * float(i.currMagicDefense)/ float(1000)
 							Global.dealtDmg =  self.magicDmg *  monsterMagicList[magicRandi].damage - damage_to_deduct
 							
-							i.currHp -= round(Global.dealtDmg)	
-							i.play(i.playerName + "idle")
+							i.currHp -= round(Global.dealtDmg)
+							if i.playerName == "时追云" and Global.gai:
+								i.play("时追云改idle")	
+							else:
+								i.play(i.playerName + "idle")
+							
+							
 							FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)	
 							if i.currHp <= 0:
 							
@@ -536,7 +547,10 @@ func _process(delta):
 						Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 						Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 						Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
-						Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")
+						if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+							Global.alivePlayers[Global.monsterTarget].play("时追云改idle")	
+						else:
+							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")	
 						if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
 						
 							Global.alivePlayers[Global.monsterTarget].alive = false
@@ -571,7 +585,10 @@ func _process(delta):
 
 						i.get_node("getHitEffect").stop()
 						i.get_node("getHitEffect").visible = false
-						i.play(i.playerName + "idle")
+						if i.playerName == "时追云" and Global.gai:
+							i.play("时追云改idle")
+						else:
+							i.play(i.playerName + "idle")
 						self.play(monsterName + "idle")
 						Global.onAttackingList.pop_front()
 						Global.onAttacking = false
@@ -608,7 +625,10 @@ func _process(delta):
 							Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 							Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
-							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")
+							if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+								Global.alivePlayers[Global.monsterTarget].play("时追云改idle")	
+							else:
+								Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")	
 							if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
 					
 								Global.alivePlayers[Global.monsterTarget].alive = false
@@ -645,7 +665,10 @@ func _process(delta):
 							Global.dealtDmg =  magicInfo.damage * self.magicDmg - damage_to_deduct
 							
 							i.currHp -= round(Global.dealtDmg)	
-							i.play(i.playerName + "idle")
+							if i.playerName == "时追云" and Global.gai:
+								i.play("时追云改idle")
+							else:
+								i.play(i.playerName + "idle")
 							FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)	
 							if i.currHp <= 0:
 							
@@ -694,7 +717,10 @@ func _process(delta):
 						Global.alivePlayers[Global.monsterTarget].get_node('Control/hpBar').value = Global.alivePlayers[Global.monsterTarget].currHp
 						Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").stop()
 						Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
-						Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")
+						if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+							Global.alivePlayers[Global.monsterTarget].play("时追云改idle")	
+						else:
+							Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "idle")	
 						if Global.alivePlayers[Global.monsterTarget].currHp <= 0:
 						
 							Global.alivePlayers[Global.monsterTarget].alive = false
@@ -812,7 +838,12 @@ func selectTarget(delta, randi, magicRandi):
 
 		Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").play("monsterAutoAttack")
 		if !Global.blocked:
-			Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
+			if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+				Global.alivePlayers[Global.monsterTarget].play("时追云改hurt")			
+			else:
+				print(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
+				Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
+			
 		Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").modulate = "c80038"
 		Global.alivePlayers[Global.monsterTarget].get_node("AnimationPlayer").play("hpControl")
 
@@ -840,7 +871,11 @@ func selectTarget(delta, randi, magicRandi):
 						Global.onHitPlayer.append(ranTarget)
 			for onHitPlayer in Global.onHitPlayer:
 				onHitPlayer.get_node("getHitEffect").visible = false
-				onHitPlayer.play(onHitPlayer.name + "hurt")
+				
+				if onHitPlayer.playerName == "时追云" and Global.gai:
+					onHitPlayer.play("时追云改hurt")			
+				else:
+					onHitPlayer.play(onHitPlayer.name + "hurt")				
 				onHitPlayer.self_modulate = "#ef1354"
 				onHitPlayer.get_node("getHitEffect").visible = true
 				onHitPlayer.get_node("getHitEffect").play(monsterMagicList[magicRandi].name)		
@@ -877,7 +912,10 @@ func selectTarget(delta, randi, magicRandi):
 				if Global.alivePlayers.size()>0 and self.currHp > 0:			
 					Global.monsterTarget = randi_range(0, Global.alivePlayers.size() - 1)
 					Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").visible = false
-					Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].name + "hurt")
+					if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
+						Global.alivePlayers[Global.monsterTarget].play("时追云改hurt")			
+					else:
+						Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].name + "hurt")
 					Global.alivePlayers[Global.monsterTarget].self_modulate = "#ef1354"
 					Global.onAttacking = true
 					Global.selectedTarget = true
@@ -954,11 +992,12 @@ func _on_button_mouse_entered():
 				Global.targetMonsterIdx = i
 
 
-func _on_hp_animation_animation_finished(anim_name):
-	if anim_name == "hpDrop":
-		for child in get_node("hpControl").get_children():
-			if child.name != "hpLabel":
-				child.queue_free()
+#func _on_hp_animation_animation_finished(anim_name):
+#
+#	if anim_name == "hpDrop":
+#		for child in get_node("hpControl").get_children():
+#			if child.name != "hpLabel":
+#				child.queue_free()
 
 
 func _on_攻击间隔_timeout():
@@ -1043,7 +1082,10 @@ func useBigMagic():
 						Global.onHitPlayer.append(ranTarget)
 			for onHitPlayer in Global.onHitPlayer:
 				onHitPlayer.get_node("getHitEffect").visible = false
-				onHitPlayer.play(onHitPlayer.name + "hurt")
+				if onHitPlayer.name == "时追云" and Global.gai:
+					onHitPlayer.play("时追云改hurt")				
+				else:
+					onHitPlayer.play(onHitPlayer.name + "hurt")
 				onHitPlayer.self_modulate = "#ef1354"
 				onHitPlayer.get_node("getHitEffect").visible = true
 				onHitPlayer.get_node("getHitEffect").play(magicInfo.name)		
@@ -1056,3 +1098,10 @@ func playAutoSound():
 		$autoAttackSound.stream = load(autoAttackSound)
 		$autoAttackSound.play()	
 		autoPlayed = true
+
+
+func deleteNum():
+	get_node("hpControl").visible = false
+	for child in get_node("hpControl").get_children():
+		if child.name != "hpLabel":
+			child.queue_free()

@@ -118,6 +118,8 @@ func _process(delta):
 		for i in Global.onTeamPlayer.size():
 			var player = get_node("status/Player" + str(i + 1))
 			player.get_node("characterIcon").texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].icon)
+			if Global.onTeamPlayer[i] == "小二":
+				player.get_node("characterIcon").scale = Vector2(0.27,0.27)
 			
 			player.get_node("expText/expValue").text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].exp))+ "/" + str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].needExp))
 			

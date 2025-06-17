@@ -1,6 +1,11 @@
+
+
+
+
 ~ 创界山1
 set Global.onTalk = true
 set Global.dial = null
+
 时追云: [speed=0.5]大家都小心一点，这里的气息很令人不安
 姜韵: [speed=0.5]这也说明我们来对了地方
 时追云: [speed=0.5]只要找到蚩尤，击杀他之后魔尊的实力就会下降一大截
@@ -12,6 +17,505 @@ set Global.dial = null
 时追云: [speed=0.5]走吧，不管这前面是什么，这是我们要在凡间做的最后一件事了，然后就是...
 姜韵: [speed=0.5]要赶在他们彻底摧毁天庭之前上天庭与魔军对抗！
 小二: 嗯！ 
+
+set Global.onTalk = false
+=> END
+
+~ 六耳救女孩
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+set Global.getnode("小女孩").visible = true
+set Global.getnode("魔妖").visible = true
+小女孩: [speed=0.5]求求你别吃我,放我走好不好
+魔妖: [speed=0.5]我不容易能开荤，你还想叫我放了你
+魔妖: [speed=0.5]不要叫了，乖乖让我吃了你吧！
+set Global.getnode("六耳").visible = true
+
+
+set Global.changebgm("res://Audio/BGM/切磋比武.mp3")
+六耳猕猴: [speed=0.5]哪来的小妖怪，你挡住俺的路了
+六耳猕猴: [speed=0.5]赶紧滚开，俺没时间和你浪费
+魔妖: [speed=0.5]哪来的野猴子，吓我一跳，还以为是孙悟空出来了，你以为你是孙悟空吗还拿根棍子！
+六耳猕猴: [speed=0.5]你！说！什！么！
+魔妖: [speed=0.5]我说，你在模仿孙悟空吗！
+六耳猕猴: 你tm！
+set Global.getnode("六耳").play("attack")
+[next=0.8]
+set Global.playsound("res://Audio/SE/打击4.ogg")
+[next=0.6]
+set Global.getnode("魔妖").visible = false
+
+六耳猕猴: [speed=0.5]哼，垃圾！
+set Global.getnode("六耳").play("default")
+小女孩: [speed=0.5]哥哥，你是来救我的吗？
+六耳猕猴: [speed=0.5]俺才不是来救你的，俺是来杀人的！
+小女孩: [speed=0.5]啊？你要杀谁
+六耳猕猴: [speed=0.5]我要杀了这里的老大！
+小女孩: [speed=0.5]那你是孙大圣吗！你那根棍子是金箍棒吗？
+六耳猕猴: [speed=0.5]你*#@#*％&￥$￥#!!!!
+六耳猕猴: [speed=0.5]算了我不和你一般见识，赶紧给我滚！
+小女孩: [speed=0.5]我没地方去了，我家里人都被他吃了
+小女孩: [speed=0.5]我能跟你走吗？
+六耳猕猴: [speed=0.5]随便你，别妨碍俺，不然我一棍子敲死你！
+小女孩: [speed=0.5]嗯嗯！
+小女孩: 哎大圣你走慢点等等我！
+
+
+set Global.getnode("六耳").visible = false
+set Global.getnode("小女孩").visible = false
+set Global.getnode("player").visible = true
+
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 镰魔1
+set Global.onTalk = true
+镰魔: [speed=0.5]冤家路窄，又是你们这群家伙！
+镰魔: [speed=0.5]早知道之前就该把你们做掉了！
+小二: [speed=0.5]是你！你之前居然没死！
+镰魔: [speed=0.5]哼，那只是我的意念分身罢了，想杀我可没那么容易！
+时追云: [speed=0.5]那现在在这里的总该是你的本体了吧
+凌若昭怒: [speed=0.5]这次你别想再逃了！
+镰魔: [speed=0.5]妖盟那群废物解决不掉你们，我们可不一样
+set get_tree().current_scene.bossFight("镰魔","res://Audio/BGM/战斗-仙剑.mp3", "镰魔")
+set Global.onTalk = false
+=> END
+
+~ 镰魔2
+set Global.onTalk = true
+镰魔: [speed=0.5]养虎为患...本来想培养你们削弱妖盟的，但没想到你们成长到这种地步了
+镰魔: [speed=0.5]魔尊...会把你们都杀了的！
+set Global.getnode("镰魔").visible = false
+小二喜: [speed=0.5]惹到我们老大，你魔尊的头也得被砍下来当球踢
+时追云: [speed=0.5]我没那么暴力吧。。。
+姜韵喜: [speed=0.5]没有吗嘻嘻 
+时追云: [speed=0.5]他们虽然结为同盟，但却还一直想着提防和削弱对方，这也给了我们机会
+凌若昭: [speed=0.5]他们会不会自己打起来啊
+姜韵: [speed=0.5]现在还不一定，但到了获取利益的时候，肯定会！
+
+set Global.onTalk = false
+=> END
+
+~ 魔龙1
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+set Global.getnode("魔龙").visible = true
+魔龙: [speed=0.5]孙悟空！？你怎么可能会在这里，你不是被我们关...
+六耳猕猴: [speed=0.5]孙尼玛！
+set Global.getnode("六耳").play("左上attack")
+[next=0.8]
+set Global.playsound("res://Audio/SE/打击4.ogg")
+[next=0.6]
+set Global.getnode("魔龙").visible = false
+[next=0.5]
+小女孩: [speed=0.5]哇，你好厉害！一棍子就敲死他了！
+六耳猕猴: [speed=0.5]哼，那当然！
+小女孩: [speed=0.5]真不愧是大圣！
+六耳猕猴: [speed=0.5]......
+set Global.getnode("六耳").visible = false
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+set Global.getnode("player").visible = true
+时追云: [speed=0.5]这里刚刚好像发生过战斗...
+姜韵: [speed=0.5]也许是他们内讧了，看起来战斗结束的很快，如果不认识的话，那这人的实力一定很恐怖
+小二: [speed=0.5]希望我们不要遇见他...
+凌若昭喜: [speed=0.5]小二你现在都这么强了，怎么还是和以前一样
+小二: [speed=0.5]哎呀，怂太久了=_=,没办法一下子改变思想
+set Global.getnode("魔刹").visible = true
+set Global.getnode("AnimationPlayer").play("魔刹")
+魔刹: [speed=0.5]你们是谁！就是你们打败了魔龙吗！
+时追云: [speed=0.5]不用废话了，动手吧
+set get_tree().current_scene.bossFight("魔刹","res://Audio/BGM/战斗-仙剑.mp3", "魔龙")
+
+set Global.onTalk = false
+=> END
+
+~ 魔龙2
+set Global.onTalk = true
+凌若昭: [speed=0.5]这些魔物都好强
+姜韵: [speed=0.5]难怪能对天庭造成这么大的压力
+时追云: [speed=0.5]我们已经找遍了这山，貌似没有半点蚩尤的踪迹...
+凌若昭: [speed=0.5]这雕像好像就是蚩尤的雕像
+时追云: [speed=0.5]那会不会这里
+凌若昭: [speed=0.5]嗯，我看看！
+凌若昭: [speed=0.5]...........
+凌若昭: [speed=0.5]找到了！这里貌似有密室！
+凌若昭: [speed=0.5]好像不久前有人进去过
+时追云: [speed=0.5]...那看来一会就会遇到那个人了，大家都要小心点
+set Global.cantShow.erase("炼狱迷宫1",null)
+
+set Global.onTalk = false
+=> END
+
+~ 炼狱迷宫1
+set Global.onTalk = true
+
+凌若昭: [speed=0.5]这里的空间，貌似有点错乱
+小二: [speed=0.5]空间错乱？
+凌若昭: [speed=0.5]也就是说，有可能我们一直向下走，然后就会突然回到上面去
+小二: [speed=0.5]这么玄乎，那怎么办
+凌若昭: [speed=0.5]跟着我走吧，师傅教过我怎么应付 
+时追云: [speed=0.5]好，你来带路吧
+set Global.onTalk = false
+=> END
+
+~ 画魔
+set Global.onTalk = true
+set Global.changeVis("炼狱迷宫1","画魔")
+set get_tree().current_scene.bossFight("画魔","res://Audio/BGM/网易游戏 - 战斗7-山地.mp3", null)
+set Global.onTalk = false
+=> END
+
+
+
+~ 炼狱迷宫2
+set Global.onTalk = true
+小二: [speed=0.5]这里还真是七上八下的啊
+时追云: [speed=0.5]看守也很严格，看来很大概率蚩尤就在这里
+姜韵: [speed=0.5]遇到他一定要万分小心。他已经是修炼上万年的老怪物了...
+时追云: [speed=0.5]嗯，倒是娘子你还好吗，这些魔物全是靠你解决的
+姜韵喜: [speed=0.5]我状态还好，只是做出致命一击而已，还好我身上流淌的灵力能克制他们
+凌若昭: [speed=0.5]检测到了，走这边这边
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 魔狐
+set Global.onTalk = true
+set Global.changeVis("炼狱迷宫2","魔狐")
+set get_tree().current_scene.bossFight("魔狐","res://Audio/BGM/网易游戏 - 战斗7-山地.mp3", null)
+set Global.onTalk = false
+=> END
+
+
+~ 炼狱迷宫3
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+小女孩: [speed=0.5]大圣，我们刚才好像走过这里了
+六耳猕猴: md，怎么这里和迷宫似的，还有别叫我大圣！
+小女孩: [speed=0.5]那我叫你什么
+六耳猕猴: [speed=0.5]我叫...
+小女孩: [speed=0.5]什么？
+六耳猕猴: [speed=0.5]算了
+小女孩: [speed=0.5]那我以后叫你猴哥哥吧！
+六耳猕猴: [speed=0.5]随便你
+set Global.getnode("六耳猕猴").visible = false
+[next=1]
+set Global.getnode("player").visible = true
+时追云: [speed=0.5]总感觉在哪里见过这气息
+凌若昭: [speed=0.5]我也感觉
+小二: [speed=0.5]他应该刚走不久
+姜韵: [speed=0.5]也不知道是敌是友
+set Global.onTalk = false
+=> END
+
+
+~ 魔阎罗1
+set Global.onTalk = true
+时追云惊: [speed=0.5]阎罗王？你怎么会在这里！？
+姜韵怒: [speed=0.5]夫君小心，他并不是你认识的阎罗王  
+set get_tree().current_scene.bossFight("魔阎罗","res://Audio/BGM/战斗-BOSS 正义.mp3", "魔阎罗")
+set Global.changeVis("炼狱迷宫3","魔阎罗")
+set Global.onTalk = false
+=> END
+
+~ 魔阎罗2
+set Global.onTalk = true
+时追云: [speed=0.5]这是怎么回事
+姜韵: [speed=0.5]菩提祖师说过，魔就是生物不自觉中分化出来的阴暗面
+姜韵: [speed=0.5]所以，我们目前为止遇到的魔物，都是其他地方的某人分化出来的
+姜韵: [speed=0.5]只是这次，正好遇到了我们认识的人
+小二: [speed=0.5]那世界上会不会也有魔化版的我们啊
+凌若昭: [speed=0.5]啊
+时追云: [speed=0.5]...
+姜韵喜: [speed=0.5]不用担心，阴暗面不强的人所滋生出来的魔物我估计也不会太强，比如刚才的阎罗王，灵智都未开
+时追云: [speed=0.5]难道那老头不阴暗吗...(在地府战斗中的阎罗王打了个喷嚏)
+
+
+set Global.onTalk = false
+=> END
+
+~ 炼狱迷宫4
+set Global.onTalk = true
+set Global.getnode("六耳").visible = true
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.getnode("六耳").visible = false
+时追云: [speed=0.5]刚才那人是六耳猕猴吧
+小二: [speed=0.5]原来是他，他来这里干什么
+姜韵: [speed=0.5]上次见面他威胁我们找到孙大圣，这次见面，估计不会相安无事
+凌若昭: [speed=0.5]我们应该暂时遇不到他，我们不同时间走的话会前往不同的地点
+set Global.dial = "炼狱迷宫"
+set Global.changeScene("炼狱迷宫5",null)
+
+
+set Global.onTalk = false
+=> END
+
+~ 炼狱迷宫5
+set Global.onTalk = true
+set Global.getnode("六耳").visible = true
+set Global.getnode("player").visible = false
+六耳猕猴: [speed=0.5]喂！你确定是走这条路吗？
+小女孩: [speed=0.5]嗯嗯我不会记错的猴哥哥，走过的路我都记得，这前面的路我们没走过
+六耳猕猴: [speed=0.5]这里这么阴森，你不怕吗
+小女孩: [speed=0.5]怕？为什么要怕，有猴哥哥保护我
+六耳猕猴: [speed=0.5]我才不会干这种多余的事，赶紧指路
+set Global.getnode("六耳").visible = false
+set Global.getnode("player").visible = true
+set Global.onTalk = false
+=> END
+
+
+~ 魔妾
+set Global.onTalk = true
+set get_tree().current_scene.bossFight("魔妾","res://Audio/BGM/轩辕-战斗.mp3", "魔妾")
+set Global.onTalk = false
+=> END
+
+
+
+
+~ 炼狱迷宫6
+set Global.onTalk = true
+时追云: [speed=0.5]魔尊和蚩尤的关系看来还挺不错的
+小二: [speed=0.5]是啊，派这么多魔物给他守着
+姜韵: [speed=0.5]哪怕关系不好，他也得守着蚩尤不出事吧，毕竟如果蚩尤死了，他也会受损
+凌若昭: [speed=0.5]那更强的那个人应该会把更弱的关起来吧
+时追云: [speed=0.5]这也说不定，看起来是保护，实则是软禁
+小二: [speed=0.5]话说这一层好空旷啊，都没见到几个魔物
+姜韵: [speed=0.5]按照六耳猕猴的性格，应该是都被他打死了
+时追云: [speed=0.5]看来我们的速度差不多，抓紧走吧
+set Global.onTalk = false
+=> END
+
+
+~ 蛟魔王1
+set Global.onTalk = true
+蛟魔王: [speed=0.5]站住！你们竟敢闯入这里！
+时追云: [speed=0.5]有灵智，和刚才那些不一样
+小二: [speed=0.5]看他的样子就不像是好惹的
+蛟魔王: [speed=0.5]哼，看来也是来杀蚩尤的，你们只是白费功夫！
+set get_tree().current_scene.bossFight("蛟魔王","res://Audio/BGM/轩辕-战斗.mp3", "蛟魔王")
+
+
+set Global.onTalk = false
+=> END
+
+~ 蛟魔王2
+set Global.onTalk = true
+蛟魔王: [speed=0.5]哈哈哈哈哈，就算你们见到了蚩尤又如何...你们终究是白费功夫
+set Global.changeVis("炼狱迷宫7","蛟魔王")
+时追云: [speed=0.5]他似乎很确信我们杀不死蚩尤
+姜韵: [speed=0.5]可能他们还有什么手段吧
+凌若昭: [speed=0.5]我能感觉到，前面就是重点了
+小二: [speed=0.5]那我们快走吧，不然一会六耳也到了
+	
+set Global.onTalk = false
+=> END
+
+
+~ 炼狱终点
+set Global.onTalk = true
+时追云惊: [speed=0.5]这是？
+姜韵惊: [speed=0.5]看这副打扮，孙大圣？ 
+小二: [speed=0.5]啊？孙大圣？那蚩尤呢？
+凌若昭: [speed=0.5]师兄！！？？？
+孙悟空: [speed=0.5]咳，咳咳
+孙悟空: [speed=0.5]你们是谁？来这里做什么，赶紧出去！
+时追云: [speed=0.5]我们是来击杀蚩尤的，如果能击杀他，那魔尊实力就会受损
+孙悟空: [speed=0.5]咳咳，俺老孙当初也是这么想的，但事情没那么简单
+姜韵: [speed=0.5]听说您失踪了很久，是发生了什么事吗？你一直都在这里？
+孙悟空: [speed=0.5]我当初在花果山遇到魔物军团后，就想着去帮天庭一把
+孙悟空: [speed=0.5]当时我们想到的计策也是把蚩尤给杀了，削弱他们的实力！
+孙悟空: [speed=0.5]蚩尤这老贼，和魔尊是一条路的，如果能干掉他，我们能轻松很多
+孙悟空: [speed=0.5]但俺老孙没想到，这蚩尤能无限复活！不管我杀了他多少次，他每隔一段时间就又会出现！
+小二: [speed=0.5]无限...复活！！？？
+时追云: [speed=0.5]怪不得刚才那人一直在说我们白费功夫
+姜韵: [speed=0.5]上古大神的特殊能力，匪夷所思
+时追云: [speed=0.5]那你这三年...一直在这里守着蚩尤？
+孙悟空: [speed=0.5]既然无法彻底杀死他，也不能让他好好的，在这里和他一直战斗，也能阻止他出去捣乱
+孙悟空: [speed=0.5]所以你们也赶紧走吧，免得等会他复活，我和他打起来伤着你们
+凌若昭: [speed=0.5]可是师兄你看起来很累的样子
+孙悟空: [speed=0.5]你叫我师兄？你也是方寸山的弟子吗
+凌若昭: [speed=0.5]嗯！
+孙悟空: [speed=0.5]师傅他老人家还好吗？
+凌若昭哀: [speed=0.5]师傅他为了告诉我们天机，已经融于天道了
+孙悟空怒: [speed=0.5]什么！？
+孙悟空: [speed=0.5]...
+孙悟空: [speed=0.5]师傅他是另一个级别的神仙了，他不会那么轻易消亡的，你放心吧，他肯定还留有后手
+凌若昭: [speed=0.5]嗯！
+孙悟空: [speed=0.5]是他叫你们来这里的吗？
+凌若昭: [speed=0.5]是啊，可是现在看来，我们杀不死蚩尤
+孙悟空: [speed=0.5]不，既然是他叫你们来，那就一定有办法完成这件事
+时追云: [speed=0.5]既然蚩尤这么危险，也不安分，那为什么天庭这几千年来一直没对他动手呢，哪怕是提前将他关押
+孙悟空: [speed=0.5]蚩尤很早以前确实是被封印住了，是被神农和人皇一起封印的！
+姜韵: [speed=0.5]...
+set Global.getnode("轮回").visible = true
+set Global.getnode("轮回").play()
+set Global.playsound("res://Audio/SE/HEAL 3.ogg")
+[next=4]
+set Global.getnode("轮回").visible = false
+set Global.getnode("蚩尤").visible = true
+蚩尤: [speed=0.5]哈哈哈哈哈，孙悟空，我又活了，我们继续来战斗！这次我已经让那些魔都滚出去了！
+set Global.getnode("孙悟空").play("右上")
+孙悟空怒: [speed=0.5]蚩尤！
+姜韵惊: [speed=0.5]！！！
+小二: [speed=0.5]！？？
+凌若昭怒: [speed=0.5]你就是蚩尤！
+时追云惊: [speed=0.5]竟然真的能这样凭空复活
+蚩尤: [speed=0.5]嗯？这次多了几只小虫子，不过无所谓，你们可以一起上！
+孙悟空怒: [speed=0.5]可恶，这次居然这么快就复活了，每次复活仙力也都会跟着复原！
+小二: [speed=0.5]这也太赖皮了吧！
+凌若昭: [speed=0.5]难怪师兄看起来这么累，你要连番和他打
+孙悟空: [speed=0.5]我看你们也都不弱，你们帮我拖一会，我调息片刻！
+姜韵: [speed=0.5]小声: 夫君，我一直在想，妖盟和魔尊为什么会那么怕我的族群
+姜韵: [speed=0.5]小声: 我猜，初始之力不仅可以对魔物造成致命伤，对同样拥有初始之力的人，也同样有起效！但是我需要在战斗中验证一下！
+时追云: [speed=0.5]小声: 好，我明白了
+set get_tree().current_scene.bossFight("蚩尤","res://Audio/BGM/战斗-Y.mp3", "炼狱迷宫")
+
+
+set Global.onTalk = false
+=> END
+
+~ 炼狱迷宫8
+set Global.onTalk = true
+蚩尤: [speed=0.5]哈哈哈哈，继续来啊，继续来战斗！
+时追云: [speed=0.5](他的体力简直就和无限似的，哪怕杀了他也能复活...)
+set Global.getnode("六耳")
+set Global.changebgm("res://Audio/BGM/大堂-急迫.ogg")
+六耳猕猴: [speed=0.5]这里就是终点了吗？一不小心就和那女娃子走散了。。。
+六耳猕猴: 蚩尤，给老子出来！！
+孙悟空: [speed=0.5]？？？
+六耳猕猴: 等等，孙悟空！？是你！你居然在这里！哈哈哈哈哈哈哈哈，真是得来不费功夫！
+六耳猕猴: [speed=0.5]孙悟空！来和我决一死战！我不要再活在你的阴影之下了！我今天就要让这个世界知道，我比你强一万倍！
+孙悟空怒: [speed=0.5]别在这里发癫，六耳猕猴我没空和你打！
+六耳猕猴: [speed=0.5]哼，有没有空可由不得你！等我打碎你的头，你就不得不应战了！
+时追云怒: [speed=0.5]六耳猕猴！枉你一身功力，你竟全用在争强斗狠之上了！
+六耳猕猴: [speed=0.5]原来是你们，之前放过你们是让你们找到孙悟空，现在已经找到了，你们已经没有用了！
+时追云怒: [speed=0.5]之前是我们放过了你，这次由不得你逞凶了！
+小二: [speed=0.5]老大
+孙悟空: [speed=0.5]你们小心，他实力不弱！
+set get_tree().current_scene.bossFight("六耳猕猴","res://Audio/BGM/Hollow Knight OST - False Knight.mp3", "炼狱迷宫")
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 炼狱迷宫9
+set Global.onTalk = true
+六耳猕猴: [speed=0.5]md，我找孙悟空关你们屁事，你们为什么要拦着我！
+姜韵: [speed=0.5]你为何不自己用眼睛看看他
+六耳猕猴: [speed=0.5]孙悟空？你怎么变得这么弱了！
+姜韵: [speed=0.5]他现在这么虚弱是因为他在这里和蚩尤不间断的战斗了三年，在你想着如何与别人争虚名之时，他想着的是保护百姓
+姜韵: [speed=0.5]如果你今天在这里，要为了证明自己比孙大圣强，而去乘机攻击他，那么你就永远是个失败者了！
+六耳猕猴: [speed=0.5]你说...什么
+set Global.getnode("六耳/小女孩").visible = true
+小女孩: [speed=0.5]找到了找到了，你跑的太快了啦
+小女孩: [speed=0.5]疑？有两个猴哥哥？
+六耳猕猴: [speed=0.5]...
+六耳猕猴: [speed=0.5]算了，这么弱的你我打赢了也没用！你给我等着，我一定会再来找你的！
+小女孩: [speed=0.5]哎等等我嘛！
+set Global.playsound("res://Audio/SE/013-Move01.ogg")
+set Global.getnode("六耳").visible = false
+
+
+蚩尤: [speed=0.5]你们说完了吗，说完继续来和我撕杀吧！我已经很久没打的这么爽快了！
+小二: [speed=0.5]战斗狂啊...
+时追云: [speed=0.5]蠢货！看看你头顶吧！
+蚩尤: 什么？
+孙悟空: ！！！
+set Global.toggleballon()
+set Global.getnode("雷").play("default")
+[next=0.2]
+set Global.getnode("雷2").play("default")
+[next=0.2]
+set Global.getnode("雷3").play("default")
+[next=0.2]
+set Global.getnode("雷4").play("default")
+[next=0.2]
+set Global.getnode("雷5").play("default")
+[next=0.2]
+set Global.getnode("雷6").play("default")
+[next=0.2]
+set Global.getnode("雷7").play("default")
+[next=0.2]
+set Global.getnode("雷8").play("default")
+[next=1]
+set Global.getnode("雷9").play("default")
+set Global.getnode("AnimationPlayer").play("合雷")
+[next=2]
+set Global.toggleballon()
+set Global.playsound("res://Audio/SE/痛苦的吼叫.ogg")
+蚩尤: 啊啊啊啊啊啊啊啊啊啊啊啊！
+小二: 我去！！！？？
+凌若昭: 咦?
+时追云: [speed=0.5]好像对他真的有效
+姜韵: [speed=0.5]这是九戒之雷，我舍弃了其伤害，取而代之的是，对上古生物的绝命限制！
+蚩尤: [speed=0.5]这股力量。。。。我太熟悉了，你是神农后人！！！
+姜韵: [speed=0.5]先祖将他的灵力流传下来，赋予我们。恐怕就是为了对付你们。
+蚩尤: [speed=0.5]若不是我不完整！又怎会被你！！！！
+姜韵: [speed=0.5]消失吧！起码在短期内，你是不可能再复活的了！
+set Global.playsound("res://Audio/SE/125-Thunder03.ogg")
+set Global.getnode("蚩尤").visible = false
+时追云: [speed=0.5]这样封印会对魔尊造成伤害吗
+姜韵喜: [speed=0.5]放心吧，现在他就和真的死了没区别，来源于他的魔尊一定也受到了伤害
+小二: [speed=0.5]大嫂深藏不露啊！
+凌若昭喜: [speed=0.5]我刚才还以为我们要在这里和他打三年呢
+孙悟空: [speed=0.5]他居然真的就这么被你封印住了
+时追云: [speed=0.5]孙大圣，天庭封闭了通往天上的道路，你有办法上去吗
+孙悟空: [speed=0.5]俺老孙自有办法，不过你们确定要去吗，上面可是九死一生啊
+孙悟空: [speed=0.5]若在人间还有事未做，那就办了再来找俺老孙，我在花果山等你们
+set Global.getnode("孙悟空").visible = false
+set Global.changevis("水帘洞","孙悟空")
+时追云: [speed=0.5]...
+凌若昭: [speed=0.5]大家有什么想去的地方吗？
+set Global.changevis("五庄观","凌若昭")
+set Global.changevis("普陀山","凌若昭")
+set Global.changevis("长安城","凌若昭")
+set Global.changevis("傲来国","凌若昭")
+
+- 普陀山
+	set Global.changeScene("普陀山",null)
+- 五庄观
+	set Global.changeScene("五庄观",null)
+- 长安城
+	set Global.changeScene("长安城",null)
+- 傲来国
+	set Global.changeScene("傲来国",null)
+
+set Global.onTalk = false
+=> END
+
+~ 若昭传送
+set Global.onTalk = true
+set Global.npcs.get("凌若昭").current_dialogue_index = 6
+凌若昭: 接下来要去哪里？
+- 普陀山
+	set Global.changeScene("普陀山",null)
+- 五庄观
+	set Global.changeScene("五庄观",null)
+- 长安城
+	set Global.changeScene("长安城",null)
+- 傲来国
+	set Global.changeScene("傲来国",null)
+
+set Global.onTalk = false
+=> END
+
+~ 传送天庭
+set Global.onTalk = true
+孙悟空: [speed=0.5]看来你们决定好了，那就随我来吧
+set Global.changeScene("天宫",null)
+
 
 
 

@@ -34,7 +34,13 @@ class Monster:
 		autoAttackSound = params.autoAttackSound if "autoAttackSound" in params else ""
 		monsterMagicList = params.monsterMagicList if "monsterMagicList" in params else []
 # Define monsters organized by levels using dictionaries
-
+func _ready():
+	monsters["炼狱迷宫2"] = monsters['炼狱迷宫1']
+	monsters["炼狱迷宫3"] = monsters['炼狱迷宫1']
+	monsters["炼狱迷宫4"] = monsters['炼狱迷宫1']
+	monsters["炼狱迷宫5"] = monsters['炼狱迷宫1']
+	monsters["炼狱迷宫6"] = monsters['炼狱迷宫1']
+	monsters["炼狱迷宫7"] = monsters['炼狱迷宫1']
 func calculate_monster_hp(level):
 	var baseHp = 100  # Base HP at level 1
 	var finalHp = 5000  # Desired HP at level 100
@@ -394,10 +400,10 @@ var monsters = {
 			"level": 99,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 50,
-			"magicDmg": calculate_monster_ap(3),
+			"attackDmg": 999999,
+			"magicDmg": 999999,
 			"posi": "middle",
-			"hp": calculate_monster_hp(99),
+			"hp": 9999999,
 			"exp": calculate_monster_exp(calculate_monster_hp(3)),
 			"gold": calculate_monster_gold(calculate_monster_hp(3)),
 			"luck": 10,
@@ -3879,7 +3885,8 @@ var monsters = {
 			
 			},				
 																		
-	"青龙":{
+	"
+	":{
 		"青龙": Monster.new({
 			"name": "青龙",
 			"speed": 280,
@@ -3936,7 +3943,7 @@ var monsters = {
 			"attackDmg": 1500,
 			"magicDmg": 0,
 			"posi": "middle",
-			"hp": 30000,
+			"hp": 50000,
 			"exp": 0,
 			"gold": 0,
 			"type": "",
@@ -4055,8 +4062,8 @@ var monsters = {
 			"level": 1,
 			"magicDefense": 200,
 			"physicDefense": 200,
-			"attackDmg": 10000,
-			"magicDmg": 10000,
+			"attackDmg": 100,
+			"magicDmg": 10,
 			"posi": "middle",
 			"hp": 10,
 			"exp": 100,
@@ -4506,10 +4513,319 @@ var monsters = {
 			],
 			}),
 			},					
+	"创界山":{
+		"牛魔": Monster.new({
+			"name": "牛魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "牛魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+		"贪念魔": Monster.new({
+			"name": "贪念魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "贪念魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),			
 			
-			
-			
+			},				
+	"创界山顶":{
+		"牛魔": Monster.new({
+			"name": "牛魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "牛魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+		"贪念魔": Monster.new({
+			"name": "贪念魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "贪念魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),	
+		"嗔念魔": Monster.new({
+			"name": "嗔念魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "嗔念魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),							
+			},				
+	"黑龙王":{
+		"黑龙王": Monster.new({
+			"name": "黑龙王",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "黑龙王idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},	
+	"炼狱迷宫1":{
+		"牛魔": Monster.new({
+			"name": "牛魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "牛魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),
+		"贪念魔": Monster.new({
+			"name": "贪念魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "贪念魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),	
+		"嗔念魔": Monster.new({
+			"name": "嗔念魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "嗔念魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),	
+		"痴念魔": Monster.new({
+			"name": "痴念魔",
+			"speed": 500,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50000,
+			"exp": 100,
+			"gold": 100,
+			"idle": "痴念魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),				
+									
+			},	
 								
+	"魔刹":{
+		"魔刹": Monster.new({
+			"name": "魔刹",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "魔刹idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},	
+	"魔画":{
+		"魔画": Monster.new({
+			"name": "魔画",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "魔画idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},				
+	"魔狐":{
+		"魔狐": Monster.new({
+			"name": "魔狐",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "魔狐idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},								
+	"魔阎罗":{
+		"魔阎罗": Monster.new({
+			"name": "魔阎罗",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "魔阎罗idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},	
+	"魔妾":{
+		"魔妾": Monster.new({
+			"name": "魔妾",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "魔妾idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},	
+	"蛟魔王":{
+		"蛟魔王": Monster.new({
+			"name": "蛟魔王",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "蛟魔王idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),		
+			},				
+						
+											
 		}	
 
 

@@ -86,7 +86,8 @@ set Global.onTalk = false
 
 ~ 鱼叟初次见面
 set Global.onTalk = true
-set get_tree().current_scene.bossFight("鬼帝","res://Audio/BGM/战斗-BOSS 正义.mp3", "王姨")
+set FightScenePlayers.fightScenePlayerData["时追云"].item.weapon = ItemData.weapon.get("梦澹")
+
 鱼叟: [speed=0.3]今天这么早就回去了啊微笑
 时追云: [speed=0.3]是啊，您看看这些鱼能卖多少钱？大笑
 鱼叟: [speed=0.3]哟，成果不错啊

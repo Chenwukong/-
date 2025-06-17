@@ -33,6 +33,7 @@ var canPress = true
 var sceneName 
 var rewardAdded = false
 var dialogued = false
+var fightTime = 0
 func areAllPlayersDead() -> bool:
 	for player in players:
 		if player.alive:
@@ -99,7 +100,10 @@ func _ready():
 		totalExp += i.exp
 		totalGold += i.gold
 		totalHp += i.hp
-
+	if monsters[0].name == "天道":
+		$fightTime.start()
+		
+		
 	$battleFieldPicture/Panel/ProgressBar.max_value = totalHp
 	
 	#FightScenePlayers.update_players_with_item_stats()
@@ -262,7 +266,7 @@ func _process(delta):
 	if Global.onAttackPicking or Global.onMagicAttackPicking:
 		if Global.target and monsters:
 			$battleFieldPicture/enemyInfo.visible = true
-			print(monsters[Global.targetMonsterIdx])
+		
 			$battleFieldPicture/enemyInfo/enemyName.text = str(monsters[Global.targetMonsterIdx].level) # remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
@@ -382,7 +386,7 @@ func _process(delta):
 			for index in players[Global.allieSelectIndex].buffs.size():	
 				var i = players[Global.allieSelectIndex]
 				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).visible = true	
-				print(i.buffs[index].keys())
+			
 				var icon
 				if i.buffs[index].keys()[0] == "onAttackBuff":
 					icon = "res://Icons/317.png"
@@ -497,7 +501,7 @@ func _process(delta):
 	#如果怪物等于0就摧毁战斗场景并且让一切恢复成战斗之前
 	if monsters.size() <= 0:	
 		
-	
+		setFightTime()
 		if !manaAdded:	
 			manaAdded = true
 			Global.onFight = false
@@ -939,7 +943,7 @@ func instantiateMonster():
 		if selectedMonsters.size() == 1: 
 			posX = $bossPos.position.x
 			posY = $bossPos.position.y		
-			print(selectedMonsters,1111)
+
 			if selectedMonsters[0].name == "鬼帝0":
 				posX = -120
 				posY = -40
@@ -1017,7 +1021,7 @@ func instantiateBoss():
 		if selectedMonsters.size() == 1: 
 			posX = $bossPos.position.x
 			posY = $bossPos.position.y		
-			print(selectedMonsters[0])
+			
 			if selectedMonsters[0].name == "鬼帝":
 				posX = -120
 				posY = -40
@@ -1053,6 +1057,7 @@ func instantiatePlayers():
 		zindex -= 1
 		fightScenePlayerSceneInstance.add_to_group("fightScenePlayers")
 		fightScenePlayerSceneInstance.idle = i.idle
+		
 		fightScenePlayerSceneInstance.autoAttack = i.autoAttack
 		fightScenePlayerSceneInstance.magicAutoAttack = i.magicAutoAttack
 		fightScenePlayerSceneInstance.playerName = i.name
@@ -1779,3 +1784,17 @@ func _on_accept_button_button_down():
 						magicSceneInstance.get_node("Button/icon").texture = load(i.info.icon)
 						get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)		
 	
+
+
+func _on_fight_time_timeout():
+	fightTime += 1
+
+func seconds_to_hms(total_seconds: int) -> String:
+	var hours = total_seconds / 3600
+	var minutes = (total_seconds % 3600) / 60
+	var seconds = total_seconds % 60
+
+	return str(hours) + "时" + str(minutes) + "分" + str(seconds) + "秒"
+
+func setFightTime():
+	Global.fightTime = seconds_to_hms(75)

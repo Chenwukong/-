@@ -7,7 +7,7 @@ var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":5,  }
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":5, "创界山":8, "创界山顶":8, "炼狱迷宫1": 8, "炼狱迷宫2":8}
 var menuOut = false
 var healBuffAmount = 0
 var onAttackingList = []
@@ -101,7 +101,7 @@ var fangCunState = 1
 var atDark = false
 var onBoss = false
 var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军","鬼帝"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1","神庙","女娲神迹"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1","神庙","女娲神迹","炼狱迷宫1"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -112,7 +112,7 @@ var bgmList = [
 	"res://Audio/BGM/战斗-九龙.mp3",
 	#"res://Audio/BGM/战斗-Y.mp3",
 	#"res://Audio/BGM/战斗-BOSS 正义.mp3",
-	"res://Audio/BGM/战斗-仙剑.mp3",
+	#"res://Audio/BGM/战斗-仙剑.mp3", 
 	"res://Audio/BGM/战斗-任务.mp3",
 	"res://Audio/BGM/金庸-战斗.mp3",
 	#"res://Audio/BGM/黄鹤遗址.ogg",
@@ -147,10 +147,10 @@ var atNight = false
 var currentCamera
 var currPlayer
 var currScene
-var onTeamPlayer = ["时追云","小二","凌若昭"]
-var onTeamPet = ["青龙"]
-var onTeamSmallPet = ["小鹿"]
-var smallPets = ["小鹿"]
+var onTeamPlayer = ["时追云","小二",]
+var onTeamPet = []
+var onTeamSmallPet = []
+var smallPets = ["水无痕","狐葬魂"]
 var currPlayerPos
 var currNpc = null
 var saveIndex = 0
@@ -175,14 +175,13 @@ var chapters = {
 var tempValue = 0
 var arDark = false
 var current_chapter_id = 10
-
-
+var fightTime = ""
+var gai =true
 var mcVisible = true
 var npcVis = {
 	"东海湾":{
 		"鱼叟":{"visible" : true},
 		"玉帝物品":{"visible" : false},
-		
 		"大海龟":{"visible" : true},
 		"丁真":{"visible" : true},
 		"丁真2":{"visible" : false},
@@ -426,6 +425,7 @@ var npcVis = {
 		"npcs2": {"visible":false},
 		"逆无邪": {"visible":false},
 		"上官冕": {"visible":false},
+		"凌若昭": {"visible":false},
 	},		
 	"傲来民居":{
 		"大生": {"visible":true},
@@ -458,7 +458,7 @@ var npcVis = {
 		"敖雨": {"visible":false},
 		"小二": {"visible":false},
 		"凌若昭": {"visible":false},		
-		
+		"孙悟空": {"visible":false},	
 	},			
 	"两界山":{
 		"小二": {"visible":false},
@@ -532,8 +532,12 @@ var npcVis = {
 		"小二": {"visible":false},
 		"梧桐": {"visible":false},					
 	},	
+	"五庄观":{
+		"凌若昭": {"visible":false},		
+	},	
 	"普陀山":{
-		"水云仙": {"visible":true},			
+		"水云仙": {"visible":true},	
+		"凌若昭": {"visible":false},		
 	},
 	"潮音洞":{
 		"姜韵": {"visible":false},			
@@ -572,9 +576,27 @@ var npcVis = {
 		"小二": {"visible":true},			
 		
 								
-	}			
-		
-		
+	},
+	"传梦空间":{
+		"关重七": {"visible":false},	
+		"二胡游": {"visible":false},			
+
+								
+	},
+	"炼狱迷宫1":{
+		"画魔": {"visible":true},	
+								
+	},
+	"炼狱迷宫2":{
+		"魔狐": {"visible":true},	
+								
+	},
+	"炼狱迷宫3":{
+		"魔阎罗": {"visible":true},							
+	}				
+	
+	
+					
 															
 }
 var baseChance = 0
@@ -630,7 +652,7 @@ var npcs = {
 	"玉帝物品事件": {
 		"dialogues": [ 
 			#0
-			{"chapter": 1, "dialogue": "玉帝物品事件", "unlocked": true, "bgm":null, "trigger":false},
+			{"chapter": 1, "dialogue": "玉帝物品事件", "unlocked": false, "bgm":null, "trigger":false},
 		],
 		"current_dialogue_index": 0,
 		"constNpc": false
@@ -808,8 +830,10 @@ var npcs = {
 					{"chapter": 1, "dialogue": "新手警告", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 1, "dialogue": "送物资", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 9, "dialogue": "进入传梦空间", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "挑战传梦", "unlocked": true, "bgm":null,"trigger":false},		
+					{"chapter": 9, "dialogue": "传梦真谛", "unlocked": true, "bgm":null,"trigger":false},										
 				],
-			"current_dialogue_index": 0,	
+			"current_dialogue_index": 3,	
 			"constNpc": false
 		},	
 	"老鸨":{
@@ -1015,7 +1039,7 @@ var npcs = {
 					{"chapter": 3, "dialogue": "假方寸", "unlocked": false, "bgm":null,"trigger":false},				
 					{"chapter": 3, "dialogue": "真方寸山", "unlocked": true, "bgm":null,"trigger":false},
 					{"chapter": 9, "dialogue": "若昭移动", "unlocked": true, "bgm":null,"trigger":false},			
-					
+					{"chapter": 10, "dialogue": "若昭传送", "unlocked": true, "bgm":null,"trigger":false},							
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false							
@@ -1934,12 +1958,209 @@ var npcs = {
 					{"chapter": 9, "dialogue": "女娲神迹1", "unlocked": true, "bgm":null,"trigger":false},	
 					{"chapter": 9, "dialogue": "女娲神迹2", "unlocked": true, "bgm":"res://Audio/BGM/雪見-落入凡塵 [TubeRipper.cc].ogg","trigger":false},																																															
 				],
-		"current_dialogue_index": 1,	
+		"current_dialogue_index": 0,	
 		"constNpc": false	
-	},							
-			
-				
-} 
+	},	
+	"镰魔":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "镰魔1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "镰魔2", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"狼叔":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "狼叔", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"老寒":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "老寒", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},
+	"清风柒":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "清风柒", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"遗憾":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "遗憾", "unlocked": true, "bgm":null,"trigger":false},																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"白泽":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "白泽", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true
+	},
+	"汤姆":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "汤姆", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true
+	},						
+	"入您":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "入您", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},				
+	"橙子色的橘子":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "橙子色的橘子", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},			
+	"关重七":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "关重七", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},						
+	"二胡游":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "二胡游", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false
+	},						
+	"西游遗憾":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "西游遗憾1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 9, "dialogue": "西游遗憾2", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "西游遗憾3", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "西游遗憾4", "unlocked": true, "bgm":null,"trigger":false},		
+					{"chapter": 9, "dialogue": "西游遗憾5", "unlocked": true, "bgm":null,"trigger":false},																																																						
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"梦幻群侠传遗憾":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾2", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾3", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾4", "unlocked": true, "bgm":null,"trigger":false},					
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾5", "unlocked": true, "bgm":null,"trigger":false},			
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾6", "unlocked": true, "bgm":null,"trigger":false},					
+					{"chapter": 9, "dialogue": "梦幻群侠传遗憾7", "unlocked": true, "bgm":null,"trigger":false},								
+							
+																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},				
+							
+	"六耳":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "六耳救女孩", "unlocked": true, "bgm":null,"trigger":false},	
+																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"魔龙":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "魔龙1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "魔龙2", "unlocked": true, "bgm":null,"trigger":false},																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"炼狱迷宫":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "炼狱迷宫1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "炼狱迷宫2", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "炼狱迷宫3", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "炼狱迷宫4", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "炼狱迷宫5", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "炼狱迷宫6", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "炼狱迷宫7", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 10, "dialogue": "炼狱迷宫8", "unlocked": true, "bgm":null,"trigger":false},																																																												
+					{"chapter": 10, "dialogue": "炼狱迷宫9", "unlocked": true, "bgm": "res://Audio/BGM/E.S.mp3","trigger":false},	
+				],
+		"current_dialogue_index": 8,	
+		"constNpc": false	
+	},	
+	
+	"画魔":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "画魔", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},						
+	"魔狐":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "魔狐", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},					
+	"魔阎罗":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "魔阎罗1", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 10, "dialogue": "魔阎罗2", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"蛟魔王":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "蛟魔王1", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 10, "dialogue": "蛟魔王2", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},			
+	
+	
+	
+}
 var potentialBalls = {
 
 }
@@ -2043,7 +2264,9 @@ var triggerPlace ={
 	"幻境2": {"trigger":false, "disable": false},		
 	"幻境3": {"trigger":false, "disable": false},		
 	"幻境4": {"trigger":false, "disable": false},		
-	"女娲神迹": {"trigger":false, "disable": false},								
+	"女娲神迹": {"trigger":false, "disable": false},			
+	"六耳救女孩": {"trigger":false, "disable": false},				
+						
 }
 
 var isDead ={
@@ -2120,7 +2343,9 @@ func save():
 	saveData.smallPetData = SmallPetData.currSmallPetData
 	saveData.onGhost = onGhost
 	saveData.yuDiItem = yuDiItem
+	saveData.gai = gai
 func loadData():
+	gai = saveData.gai
 	if saveData.has(maxLevel):
 		maxLevel = saveData.maxLevel
 	onGhost = saveData.onGhost
@@ -2241,7 +2466,8 @@ func loadData():
 		"幻境2": {"trigger":false, "disable": false},		
 		"幻境3": {"trigger":false, "disable": false},
 		"幻境4": {"trigger":false, "disable": false},
-		"女娲神迹": {"trigger":false, "disable": false},																						
+		"女娲神迹": {"trigger":false, "disable": false},			
+		"六耳救女孩": {"trigger":false, "disable": false},																				
 	}
 	# Ensure saved data has all default places, add if missing
 	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
@@ -2253,6 +2479,7 @@ func loadData():
 func turnDark():
 	var current_scene = get_tree().current_scene
 	current_scene.modulate = "000000"
+	
 func passNight():
 	var current_scene = get_tree().current_scene
 	
@@ -2532,3 +2759,4 @@ func moveTiger():
 func showMsg(text):
 	getnode("messageLayer/importantMsg").visible = true
 	getnode("messageLayer/importantMsg/Panel/ImportantMsg").text = text
+

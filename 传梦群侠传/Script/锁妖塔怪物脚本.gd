@@ -23,19 +23,18 @@ func changeDir():
 	if dir == 0:
 		velocity = Vector2(-1, 1) * speed
 		$AnimatedSprite2D.play(monster_name + "左下")
-		print($AnimatedSprite2D.animation)
+
 	elif dir == 1:
 		velocity = Vector2(1, 1) * speed
 		$AnimatedSprite2D.play(monster_name + "右下")
-		print(1)
+
 	elif dir == 2:
 		velocity = Vector2(1, -1) * speed
 		$AnimatedSprite2D.play(monster_name + "右上")
-		print(2)
+	
 	elif dir == 3:
 		velocity = Vector2(-1, -1) * speed
 		$AnimatedSprite2D.play(monster_name + "左上")
-		print(3)
 
 
 func _on_animated_sprite_2d_animation_finished():
@@ -50,5 +49,8 @@ func _on_area_2d_area_entered(area):
 		if get_tree().current_scene.name == "花果山":
 			get_parent().get_parent().touchFight()
 		else:
-			get_parent().touchFight()
+			if get_parent().has_method("touchFight"):
+				get_parent().touchFight()
+			elif get_parent().get_parent().has_method("touchFight"):
+				get_parent().get_parent().touchFight()
 		self.queue_free()

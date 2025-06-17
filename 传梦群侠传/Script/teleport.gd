@@ -482,7 +482,8 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1900,974)	
 		if toScene == "长寿村酒店":
 			return Vector2(1934,970)	
-			
+		if toScene == "创界山":
+			return Vector2(1995,1759)			
 								
 	if currScene == "神庙":						
 		if toScene == "长寿村":
@@ -497,3 +498,53 @@ func checkSetPos(currScene, toScene):
 		return Vector2(2116,456)
 	if currScene == "秘境":						
 		return Vector2(725,766)
+	if currScene == "创界山":						
+		if toScene == "长寿村":
+			return Vector2(2061,-98)	
+		if toScene == "创界山顶":
+			return Vector2(2006,2345)				
+	if currScene == "创界山顶":						
+		if toScene == "创界山":
+			return Vector2(1811,891)				
+		if toScene == "炼狱迷宫1":
+			return Vector2(1720,1608)						
+	if currScene == "炼狱迷宫1":						
+		if toScene == "创界山顶":
+			return Vector2(1811,891)				
+		if toScene == "炼狱迷宫2":
+			return Vector2(2006,1472)	
+	if currScene == "炼狱迷宫2":						
+		if toScene == "炼狱迷宫1":
+			return Vector2(822,890)				
+		if toScene == "炼狱迷宫3":
+			return Vector2(1772,1590)				
+	if currScene == "炼狱迷宫3":						
+		if toScene == "炼狱迷宫2":
+			return Vector2(1828,804)				
+		if toScene == "炼狱迷宫4":
+			return Vector2(863,780)							
+	if currScene == "炼狱迷宫4":						
+		if toScene == "炼狱迷宫3":
+			return Vector2(1900,896)				
+		if toScene == "炼狱迷宫5":
+			return Vector2(668,1590)	
+	if currScene == "炼狱迷宫5":						
+		if toScene == "炼狱迷宫4":
+			return Vector2(1838,848)				
+		if toScene == "炼狱迷宫6":
+			return Vector2(547,818)	
+	if currScene == "炼狱迷宫6":						
+		if toScene == "炼狱迷宫5":
+			return Vector2(1491,814)				
+		if toScene == "炼狱迷宫7":
+			return Vector2(1814,848)	
+	if currScene == "炼狱迷宫7":						
+		if toScene == "炼狱迷宫6":
+			return Vector2(1751,1613)				
+		if toScene == "炼狱终点":
+			return Vector2(1112,1398)				
+	if currScene == "炼狱终点":						
+		if toScene == "炼狱迷宫7":
+			return Vector2(822,738)				
+		if toScene == "炼狱终点":
+			return Vector2(1112,1398)	

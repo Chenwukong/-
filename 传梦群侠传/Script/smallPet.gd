@@ -11,6 +11,7 @@ var autoAttack = "autoAttack"
 var state = idle
 var rageBar = 0
 var str 
+var tempStr = 0
 var monsters 
 var aliveMonsters = []
 var oriPosition
@@ -67,7 +68,9 @@ func _process(delta):
 					#target.get_node("debuff").play(magicInfo.name)
 					target.get_node("getHitEffect").visible = true
 					target.get_node("getHitEffect").play(magicInfo.name)			
-			
+				if magicInfo.name == "逆天破":
+					target.get_node("逆天破").visible = true
+					target.get_node("逆天破/AnimationPlayer").play("show")
 			play(petName + magic)
 			
 		elif state == autoAttack:
@@ -113,9 +116,9 @@ func attack():
 
 	if is_instance_valid(target):
 		if target.canSee:
-			target.get_node("Label").text = str(str)
+			target.get_node("Label").text = str(str + tempStr)
 			target.get_node("petHpAnimation").play("petHp")
-			target.currHp -= str 
+			target.currHp -= (str + tempStr)
 	
 func castMagic():
 	magicInfo = SmallPetData.currSmallPetData[petName].petMagic
@@ -143,7 +146,9 @@ func castMagic():
 				target.get_node("Label").text = str(magicInfo.value)
 				target.get_node("petHpAnimation").play("petHp")
 				target.currHp -= magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower			
-		
+	if magicInfo.type == "buff":
+		if magicInfo.name == "战神念法":
+			tempStr += SmallPetData.currSmallPetData[petName].abilityPower/4
 		
 		
 func moveCharacter(delta):

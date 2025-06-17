@@ -257,7 +257,19 @@ var weapon = {
 		"key":true,
 		"added": false,
 		"gold": 10000
+	},
+	"梦澹":{
+		"name": "梦澹",
+		"user": "时追云",
+		"icon": "res://SeparateAnimation/梦澹/梦澹icon(1).png",
+		"picture": "res://SeparateAnimation/梦澹/梦澹icon(1).png",
+		"value": {"additionDmg": 1000* Global.enKey, "addHp": 3000 * Global.enKey},
+		"description": "时追云专属武器，伤害+1000",
+		"key":true,
+		"added": false,
+		"gold": 10000
 	},	
+		
 	"竹节双剑":{
 		"name": "竹节双剑",
 		"user": "凌若昭",

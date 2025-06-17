@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="31_qltgs"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="32_c7jyr"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="33_7krxq"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="33_l0ild"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="33_l0ild"]
 [ext_resource type="Texture2D" uid="uid://cdu5kr2eacm8f" path="res://smallPets/小鹿/idle/419-17.png" id="34_258oy"]
 [ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="35_raxfi"]
 [ext_resource type="Texture2D" uid="uid://dhvffeyyk31ia" path="res://smallPets/小鹿/idle/419-18.png" id="35_v504e"]
@@ -837,6 +837,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"rightStand"
 autoplay = "upStand"
+frame = 0
 frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]

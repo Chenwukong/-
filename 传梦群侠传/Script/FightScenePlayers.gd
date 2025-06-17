@@ -70,12 +70,18 @@ var battleItem = {
 var questItem = {
 	
 }
-
+var totalPetFoodBall = 400
 var petFoodBall = 0
 var petFood = 1
 var bagArmorItem = {
 	"大剑":{
 		"info": ItemData.weapon.get("大剑"),
+		"type": "weapon",
+		"number": 1,
+		"added": false
+	},
+	"梦澹":{
+		"info": ItemData.weapon.get("梦澹"),
 		"type": "weapon",
 		"number": 1,
 		"added": false
@@ -1503,75 +1509,7 @@ var fightScenePlayerData = {
 			"accessories": null
 		},
 		"buff": ["speed", "strength", "accuracy", "defense"]
-	},	
-	"时追云改":{
-			"name": "时追云改",
-			"sex": "male",
-			"icon":"res://Pictures/Pictures/时追云.png",
-			"smallIcon":"res://main character/tile000.png",
-			"alive":true,
-			"playerAttackType": "melee",
-			"playerSpeed": 20,
-			"addPlayerSpeed": 0,
-			"critChance": 1,
-			"addCritChance": 0,
-			"blockChance":1,
-			"addBlockChance": 0,
-			"level": 1,
-			"exp": 0,
-			"needExp":100 ,
-			"magicDeense": 5,
-			"addMagicDefense": 0,
-			"physicDefense": 5,
-			"addPhysicDefense": 0,
-			"str": 100 ,
-			"addStr": 0,
-			"abilityPower": 0,
-			"addAbilityPower":0 ,
-			"additionDmg": 10000 * Global.enKey,
-			"hp": 200,
-			"addHp": 0 ,
-			"addMp": 0 ,
-			"mp": 100,
-			"currHp": 200,
-			"currMp": 100,
-			"potential": 0,
-			"idle": "时追云改idle",
-			"autoAttack":'时追云改autoAttack',
-			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
-			"magicAutoAttack":"时追云改magicAutoAttack",
-			"playerMagic": [
-				{
-				"name": "调息法",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "buff",
-				"buffEffect": ["currHp","currMp",], 
-				"value": 100,
-				"cost": 30,
-				"description": "调息周身运转，恢复状态",	
-				"effectArea": "single",
-				"effectingNum": 1,
-				"animationArea":"allie",
-				"audio": "res://Audio/SE/HEAL9.ogg",
-				"duration": 3,
-				"icon":"res://Icons/●图标 (64).png",
-			},
-
-			# Add more magic spells as needed
-			],
-			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
-			"attackOnEnemySound": null,
-			"item":{
-				"weapon":null,
-				"cloth":null,
-				"hat":null,
-				"shoes":null,
-				"accessories":null
-			},
-			"buff":["speed","strength","accuracy","defense"]
-			},	
+	},		
 	"时追云":{
 			"name": "时追云",
 			"sex": "male",
@@ -1581,7 +1519,7 @@ var fightScenePlayerData = {
 			"playerAttackType": "melee",
 			"playerSpeed": 20,
 			"addPlayerSpeed": 0,
-			"critChance": 1,
+			"critChance": 100,
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
@@ -1596,7 +1534,7 @@ var fightScenePlayerData = {
 			"addStr": 0,
 			"abilityPower": 0,
 			"addAbilityPower":0 ,
-			"additionDmg": 10000 * Global.enKey,
+			"additionDmg": 100 * Global.enKey,
 			"hp": 200,
 			"addHp": 0 ,
 			"addMp": 0 ,
@@ -1625,6 +1563,22 @@ var fightScenePlayerData = {
 				"audio": "res://Audio/SE/HEAL9.ogg",
 				"duration": 3,
 				"icon":"res://Icons/●图标 (64).png",
+			},{
+				"name": "横扫千军",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 3,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1, 
+				"cost": 50,
+				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (11).png",
 			},
 
 			# Add more magic spells as needed
@@ -1851,7 +1805,7 @@ var fightScenePlayerData = {
 			"addCritChance":0,
 			"blockChance":0,
 			"addBlockChance": 0,
-			"level": 10,
+			"level": 70,
 			"exp": 0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1863,7 +1817,7 @@ var fightScenePlayerData = {
 			"abilityPower": 100 * Global.enKey,
 			"addAbilityPower":0,
 			"additionDmg": 0,
-			"hp": 200,
+			"hp": 1000,
 			"addHp": 0,
 			"mp": 300,
 			"addMp":0,
@@ -2574,7 +2528,110 @@ var fightScenePlayerData = {
 			},
 			"buff":["speed","strength","accuracy","defense"]		
 	},					
-	
+	"狐葬魂":{
+			"name": "狐葬魂",
+			"sex": "male",
+			"icon": "res://portrait/白虎.png",
+			"smallIcon":"res://portrait/白虎.png",
+			"alive":true,
+			"playerAttackType": "melee",
+			"playerSpeed": 20,
+			"addPlayerSpeed": 0,
+			"critChance": 1,
+			"addCritChance": 100,
+			"blockChance":1,
+			"addBlockChance": 0,
+			"level": 70,
+			"exp":0,
+			"needExp":100,
+			"magicDefense": 5,
+			"addMagicDefense": 0,
+			"physicDefense": 5,
+			"addPhysicDefense": 0,
+			"str": 100,
+			"addStr": 0,
+			"abilityPower": 0,
+			"addAbilityPower":0,
+			"additionDmg": 0,
+			"hp": 500,
+			"addHp": 0,
+			"addMp":3200,
+			"mp": 100,
+			"currHp": 200,
+			"currMp": 3000,
+			"potential": 0,
+			"idle": "狐葬魂idle",
+			"autoAttack":'狐葬魂autoAttack',
+			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
+			"magicAutoAttack":"狐葬魂magicAutoAttack",
+			"playerMagic": [
+			{
+				"name": "狐啸",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currStr"], 
+				"value": 250,
+				"cost": 100,
+				"description": "狐族技能，啸叫提升所有人肉体本能！",	
+				"effectArea": "aoe",
+				"animationArea":"allie",
+				"effectingNum": 8,
+				"duration": 4,
+				"audio":"res://Audio/SE/妖怪-哈~.ogg",
+				"icon":"res://Icons/●图标 (77).png",
+			},			
+			{
+				"name": "六月飞雪",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 6,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1, 
+				"cost": 50,
+				"description": "全力攻击六次，休息一回合",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男侠客-出招吼.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},			
+			{
+					"name": "逆天破",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 1,
+					"damageSource": "AD",
+					"duration": 1,
+					"value": 300, 
+					"cost": 300,
+					"description": "终结技！",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/050-Explosion03.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},				
+			
+			# Add more magic spells as needed
+			],
+			"autoAttackSound": "res://Audio/SE/剑侠客-攻击.ogg",
+			"attackOnEnemySound": null,
+			"item":{
+				"weapon":null,
+				"cloth":null,
+				"hat":null,
+				"shoes":null,
+				"accessories":null
+			},
+			"buff":["speed","strength","accuracy","defense"]		
+	},					
+		
 	
 	
 }
@@ -2814,15 +2871,15 @@ func calculate_exp_for_magic_level(level):
 	# You can adjust this formula as per your requirement	
 	return 20 * level
 
-func calculate_exp_for_player_level(level):
-	var baseExp = 60
-	var linearComponent = 100 * (level - 1)  # Linear growth
-	var exponentialComponent = baseExp * pow(1.2, level - 1)  # Exponential growth
+func calculate_exp_for_player_level(level: int) -> int:
+	var baseExp = 100  # 从60增到100
+	var linearComponent = 80 * (level - 1)  # 线性增量增大
+	var exponentialComponent = baseExp * pow(1.09, level - 1)  # 指数增幅保持温和
 
-	# Combine linear and exponential components
 	var totalExp = linearComponent + exponentialComponent
 
 	return int(totalExp)
+
 
 
 func calculate_defense_for_level(level, player =null):

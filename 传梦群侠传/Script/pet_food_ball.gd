@@ -25,6 +25,7 @@ func _on_area_2d_body_entered(body):
 		return
 	if Global.petFoodBalls.get(id).pickUp == false:
 		FightScenePlayers.petFoodBall += 1
+		FightScenePlayers.totalPetFoodBall += 1
 		body.get_node("effect").visible = true
 		body.get_node("effect").play("potentialBall")
 		if !added:

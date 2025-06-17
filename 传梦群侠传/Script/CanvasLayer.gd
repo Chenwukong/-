@@ -977,3 +977,8 @@ func _on_敏捷加点_button_down():
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addPlayerSpeed += 0.6
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
+
+
+func _on_reset_button_button_down():
+	FightScenePlayers.petFoodBall = FightScenePlayers.totalPetFoodBall
+	SmallPetData.reset_curr_pet_data()

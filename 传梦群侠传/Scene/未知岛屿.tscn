@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://chdmdey818tyn"]
+[gd_scene load_steps=68 format=3 uid="uid://chdmdey818tyn"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_5wvmp"]
 [ext_resource type="Texture2D" uid="uid://cmn7gxvoyhk6k" path="res://panoramas2/蓬莱仙岛.jpg" id="2_dgu43"]
@@ -48,6 +48,24 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_gs70c"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc/npc2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-83.9293, 52.6128)]
+}
+
+[sub_resource type="Animation" id="Animation_fs77c"]
+resource_name = "tunDark"
+
+[sub_resource type="Animation" id="Animation_m776c"]
+resource_name = "turnWhite"
 
 [sub_resource type="Animation" id="Animation_y5c4b"]
 resource_name = "守卫move"
@@ -135,63 +153,15 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5bc14"]
 resource_name = "水云仙移动1"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("水云仙:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1458.69, 1397.74), Vector2(1379, 1345)]
-}
 
 [sub_resource type="Animation" id="Animation_02bkt"]
 resource_name = "水云仙移动2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("水云仙:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1379, 1345), Vector2(1276, 1280)]
-}
 
 [sub_resource type="Animation" id="Animation_6o7fw"]
 resource_name = "水云仙移动3"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("水云仙:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1276, 1280), Vector2(1174, 1219)]
-}
 
 [sub_resource type="Animation" id="Animation_gnaby"]
 resource_name = "水云仙移动4"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("水云仙:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1174, 1219), Vector2(1062, 1140)]
-}
 
 [sub_resource type="Animation" id="Animation_3dbbv"]
 resource_name = "现身"
@@ -209,9 +179,27 @@ tracks/0/keys = {
 "values": [Vector2(0, 0), Vector2(-112, 0), Vector2(136, 5), Vector2(0, 0), Vector2(130, 0), Vector2(0, 0), Vector2(-130, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_6kmky"]
+resource_name = "移动绣红"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("npc/npc2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-83.9293, 52.6128), Vector2(423.071, 457.613)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
 _data = {
 "RESET": SubResource("Animation_gs70c"),
+"tunDark": SubResource("Animation_fs77c"),
+"turnWhite": SubResource("Animation_m776c"),
 "守卫move": SubResource("Animation_y5c4b"),
 "时追云move": SubResource("Animation_2adbs"),
 "时追云移动": SubResource("Animation_8l52q"),
@@ -220,7 +208,8 @@ _data = {
 "水云仙移动2": SubResource("Animation_02bkt"),
 "水云仙移动3": SubResource("Animation_6o7fw"),
 "水云仙移动4": SubResource("Animation_gnaby"),
-"现身": SubResource("Animation_3dbbv")
+"现身": SubResource("Animation_3dbbv"),
+"移动绣红": SubResource("Animation_6kmky")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nxmvu"]
@@ -366,7 +355,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="潮音洞" type="Node2D"]
+[node name="未知岛屿" type="Node2D"]
 material = SubResource("ShaderMaterial_e5e4p")
 script = ExtResource("1_5wvmp")
 
@@ -595,7 +584,6 @@ autoplay = ""
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(46, 923)
-scale = Vector2(1.25904, 1.25904)
 sprite_frames = SubResource("SpriteFrames_7j3ri")
 frame_progress = 0.541077
 

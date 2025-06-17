@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://sbkhfuco3ypu"]
+[gd_scene load_steps=97 format=3 uid="uid://sbkhfuco3ypu"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_bt3q3"]
 [ext_resource type="Texture2D" uid="uid://b6sysbo53k8cf" path="res://panoramas2/傲来国.jpg" id="2_dfmpa"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_fi5u7"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_kar3w"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_sqxht"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_t21cg"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="20_t21cg"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_5cyrp"]
 [ext_resource type="Texture2D" uid="uid://c32uhs2awy8rh" path="res://Characters/壮汉.png" id="22_soaw5"]
 [ext_resource type="Texture2D" uid="uid://stkmuj6ya5i3" path="res://Characters/老头-2.png" id="23_j2dox"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cixntcrqo8geh" path="res://Characters/驿站兵.png" id="39_usss4"]
 [ext_resource type="Texture2D" uid="uid://d3ivfeukiit8w" path="res://Characters/强盗.png" id="40_htypg"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="41_vb8c1"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="42_cbr8t"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -481,7 +482,7 @@ texture = ExtResource("2_dfmpa")
 
 [node name="player" parent="." instance=ExtResource("3_deur2")]
 z_index = 2
-position = Vector2(975, 2343)
+position = Vector2(1755, 2443)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -660,11 +661,12 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
+frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("17_fi5u7")]
@@ -774,7 +776,7 @@ position = Vector2(1356, 868)
 [node name="effect" parent="npcs/npc" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="npcs/npc/effects" index="1"]
+[node name="飞剑诀" parent="npcs/npc/effects" index="4"]
 frame = 4
 
 [node name="npc8" parent="npcs" instance=ExtResource("21_5cyrp")]
@@ -929,6 +931,12 @@ position = Vector2(358.218, 41.5)
 shape = SubResource("RectangleShape2D_mpt3r")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="凌若昭" parent="." instance=ExtResource("42_cbr8t")]
+position = Vector2(1817.41, 2328.61)
+animation = &"左下"
+frame_progress = 0.0
+npcName = "凌若昭"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

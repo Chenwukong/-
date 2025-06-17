@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://ce8egij5fadlu"]
+[gd_scene load_steps=108 format=3 uid="uid://ce8egij5fadlu"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_u1n1c"]
 [ext_resource type="Texture2D" uid="uid://b5bmbi6hnbefl" path="res://panoramas2/五庄观.jpg" id="2_8j2pt"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="14_vj7ah"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="15_w28a7"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="16_ikukm"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="17_kb333"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="17_kb333"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="18_65rpt"]
 [ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="19_jkt1f"]
 [ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="20_ngwga"]
@@ -54,7 +54,8 @@
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="54_32reg"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="54_rd2nf"]
 [ext_resource type="Texture2D" uid="uid://du1cnt61ci3gw" path="res://Characters/1暴力熊.png" id="55_3rc1r"]
-[ext_resource type="PackedScene" path="res://Scene/messageLayer.tscn" id="56_eil8h"]
+[ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="56_eil8h"]
+[ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="56_ypw2k"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
 
@@ -628,6 +629,7 @@ scale = Vector2(0.697482, 0.747203)
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
+frame = 0
 frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
@@ -707,6 +709,12 @@ frame_progress = 0.414091
 [node name="除虫" parent="." instance=ExtResource("54_32reg")]
 position = Vector2(134, 2)
 triggerEvent = "除虫"
+
+[node name="凌若昭" parent="." instance=ExtResource("56_ypw2k")]
+position = Vector2(325, 399)
+animation = &"左下"
+frame_progress = 0.0
+npcName = "凌若昭"
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

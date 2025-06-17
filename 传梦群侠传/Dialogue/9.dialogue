@@ -12,6 +12,588 @@ Nathan: For more information see the online documentation.
 
 => END
 
+~ 入您
+set Global.onTalk = true
+if Global.npcs.get("入您").dialogues[0].trigger == false:
+	入您: 秋水微凉映月明，星光几缕如你心。言辞未尽情先露，步步相携影相邻。
+	入您: 不惧风霜多冷寂，只求今世共浮沉！
+入您: [speed=0.5]我可以让你随意走动地图十秒哦,不过10秒之后你就会回到我面前！
+- 随意走动
+	set Global.getnode("StaticBody2D/CollisionPolygon2D").disabled = true
+	set Global.getnode("StaticBody2D/CollisionPolygon2D2").disabled = true
+	set Global.getnode("ghostedTimer").start()
+- 算了
+
+set Global.onTalk = false
+=> END
+
+~ 汤姆
+set Global.onTalk = true
+汤姆: 和我对话完全没什么用哦，请往前走
+
+
+set Global.onTalk = false
+=> END
+
+~ 二胡游
+set Global.onTalk = true
+二胡游: [speed=0.5]这么幸苦的去弥补遗憾，送你点特殊的东西吧，这是我用仙气捏的假人，或许可以派上点用场
+set Global.showMsg("获得狐葬魂假人助战")
+set Global.onTalk = false
+=> END
+
+~ 关重七
+set Global.onTalk = true
+关重七: [speed=0.5]谢谢你，让他有一个美好的结局
+set Global.showMsg("获得水无痕假人助战")
+set Global.onTalk = false
+=> END
+
+~ 白泽
+set Global.onTalk = true
+白泽: [speed=0.5]这地图挺大的，让我给你加速一阵子吧！
+set Global.getnode("player").speed = 700
+set Global.getnode("speedTimer").start()
+set Global.onTalk = false
+=> END
+
+~ 狼叔
+set Global.onTalk = true
+狼叔: [speed=0.5]忙死我了忙死我了，今天帮传梦做Godot插件，明天帮清风老寒做GGE功能，自己的游戏都耽搁了
+狼叔: [speed=0.5]你要来玩我的游戏嘛？梦5Q群: 240703671
+狼叔: [speed=0.5]话说这么多，送你点装备吧
+set Global.addItem("GM之靴", "shoes", "bagArmorItem", 1)
+
+set Global.onTalk = false
+=> END
+
+~ 老寒
+set Global.onTalk = true
+老寒: [speed=0.5]大胆！我现在每天都要给传梦这货做UI当美工找素材，他现在素材都不自己找了，懒得一比！
+老寒: [speed=0.5]我提了超多玩法和意见（馊点子99.99%）但是都没被采纳
+老寒: [speed=0.5]快来玩我的梦魂。Q群：310201519
+老寒: [speed=0.5]话说这么多，赏你点装备吧
+set Global.addItem("GM战甲", "cloth", "bagArmorItem", 1)
+
+set Global.onTalk = false
+=> END
+
+~ 清风柒
+set Global.onTalk = true
+清风柒: [speed=0.5]接头霸王说的就是我了，啊，早上五点了吗，要起床去上班了
+清风柒: [speed=0.5]这里是一点装备，你拿着吧
+清风柒: [speed=0.5]对了，这是我做的游戏，梦游战记Q群：82326195
+
+set Global.addItem("GM头盔", "hat", "bagArmorItem", 1)
+
+set Global.onTalk = false
+=> END
+
+~ 挑战传梦
+set Global.onTalk = true
+传梦: [speed=0.5]你要挑战终极彩蛋吗，赢了我，你就知道传梦的真谛了
+- 挑战
+	set get_tree().current_scene.bossFight("传梦","res://Audio/BGM/战斗-仙剑.mp3", "传梦")
+	set Global.canLose = true
+- 算了
+	set Global.npcs.get("传梦").current_dialogue_index = 3
+
+
+set Global.onTalk = false
+=> END
+
+~ 传梦真谛
+set Global.onTalk = true
+if Global.lost == false:
+	传梦: 主角四人对应了我的内心，时追云的勇敢和永不退却的决心，小二的懦弱和迷茫，若昭的童心，姜韵的温和.
+	传梦: 当害怕的心情出来的时候，勇敢和决心总是会鼓励他。当决心动摇的时候，总是会有姜韵的支持。当所有人无可奈何得时候，勇气总是会站在所有人的面前，并且坚定要走这条路的决心。
+	传梦: 小二是人是妖的抉择同样也发生在我的身上，我认为自己始终是中国人，但就连最好的朋友也会一直叫我美国人，这可能是我一生跨不过去的坎，我很高兴小二能有选择的权力。不管怎么样，既然已经是这样的情况了，不如用这美国身份做点什么
+	传梦: 既然能挣钱快点，那我省下的时间就能为梦单，能为国内独立游戏做点什么。
+	传梦: 如果你能看到这句话，说明你因为我的影响更改了这个游戏，或者有人和你分享了更改后的游戏。如果是因为卡了bug才打过我，那很尴尬。如同故事一直强调的那样，时追云一伙四个人不可能拯救整个世界，梦单也不属于特定群体
+	传梦: 很抱歉以这种正常游戏内不可能打的出来的形式作为彩蛋之一，但传梦之路意在传递。如果有人因为更改了传梦之路，对做梦单或者做游戏产生了兴趣，那这传梦之路才算真正的完成了它的使命, 如同当初的梦幻群侠传。如果想做梦单，大可以用我的传梦之路作为模版
+	传梦: 最后祝各位身体健康，游玩愉快！
+else:
+	传梦: [speed=0.5]靠普通的手段是无法打败我的，想想如何打败我吧！
+	set FightScenePlayers.healAll()
+	set Global.npcs.get("传梦").current_dialogue_index = 3
+
+set Global.lost = false
+set Global.canLose = false	
+
+set Global.onTalk = false
+=> END
+
+
+
+
+~ 遗憾
+set Global.onTalk = true
+遗憾: [speed=0.5]往事如烟，世界上发生了太多令人遗憾的往事
+遗憾: [speed=0.5]我可以送你到一些地方，去弥补遗憾
+- 前往弥补遗憾
+	set Global.dial = "西游遗憾"
+	set Global.getnode("AnimationPlayer2").play("turnDark")
+	set Global.toggleballon()
+	[next=2]
+	set Global.toggleballon()
+	遗憾: [speed=0.5]曾经有一名书生，名叫刘长源，他心地善良，抱负宏大，每天都想着自己能拯救百姓与水火
+	遗憾: [speed=0.5]有这么一天，他在野外散心之时，遇到了一名倒地不起的女子，他上前一看，竟然是一只狐狸精！
+	遗憾: [speed=0.5]他犹豫不决，但转念一想，上天有好生之德，不管是人是精，都应该一视同仁，想到此，他不再犹豫，背起了这陌生女子
+	遗憾: [speed=0.5]其父不解，莫不是这儿被狐妖迷了眼睛，怎会把一只妖怪给带回家了呢？她准是在外面干了些偷鸡摸狗的事情才会被打成这样！
+	遗憾: [speed=0.5]修行不易，这修成了人形的狐狸，真的就一定是坏心肠吗？长源与其父亲争辩，但终究敌不过一声: "你不听爹的话了吗！"
+	遗憾: [speed=0.5]争辩容易赢，血脉压制难，但即便如此，刘长源依旧保持心中观念，悉心照料女子。几日后，女子醒
+	遗憾: [speed=0.5]刘长源仅一眼，便心跳加速。女子疑惑怎么会有如此天真之人，居然会去救助一只来历不明狐狸精？
+	遗憾: [speed=0.5]恰逢此时，刘长源之父带来了名道士，欲捉拿此狐狸，刘长源辩解道："爹，你看到了！她没有伤害我！她是个好人！"
+	遗憾: [speed=0.5]道士不屑:"妖怪就是妖怪，全都该杀了！"
+	遗憾: [speed=0.5]狐狸精冷笑，觉得有些人类那么天真，有的又那么无知。随即便想与道士开战，可她忘了她是带伤之身，无法施展法术！
+	遗憾: [speed=0.5]无奈之下，她只好挟持刘长源一同逃走。遁逃之后，狐狸疑惑，为什么刘长源丝毫不惧，但聪明的刘长源早已看出了她的善良本质，女子也向他讲述起了自己的故事
+	遗憾: [speed=0.5]原来这女子名为九狐，是狐族中人，因不愿与大妖黄袍怪同流合污侵袭长安，与之战斗，才会沦落至此
+	遗憾: [speed=0.5]明朗了真相的刘长源遂决定留下来照顾九狐。而在刘长源的悉心照料下，九狐的伤势也渐渐恢复
+	遗憾: [speed=0.5]洞中三日，世上已千年，虽九狐恢复的快，但黄袍怪更甚！一日他的抓牙寻得此地，九狐与其开战，险胜，但伤上加伤！
+	遗憾: [speed=0.5]一日，刘长源外出采药之时偶然偷听到黄袍怪的手下谈论黄袍怪将要下毒之事，他心头一颤，刚欲告知小狐，但转念一想，她还有伤在身，怎可再令她身陷险境！
+	遗憾: [speed=0.5]那一夜，他表明了他的心意...次日大唐官府...
+	set Global.changeScene("西游奇缘官府大厅",null)
+- 往事随风而去
+
+set Global.onTalk = false
+=> END
+
+~ 橙子色的橘子
+set Global.onTalk = true
+橙子色的橘子: [speed=0.5]我最喜欢西游奇缘了，它足足陪了我14年！
+橙子色的橘子: [speed=0.5]你打出了这游戏的隐藏结局吗？我打出了西游奇缘的完美结局!
+橙子色的橘子: [speed=0.5]传梦托我在这偷偷告诉你隐藏解决的解锁方式!
+橙子色的橘子: [speed=0.5]那就是第一章的时候一定要去捡渔夫的斗笠并且进入幻境中的结界！
+橙子色的橘子: [speed=0.5]嘿嘿，让西游奇缘再次伟大！西游奇缘粉丝Q群：185399519
+橙子色的橘子: [speed=0.5]啊，传梦你说什么，你说要给玩家好处他们才进群？那好吧！
+橙子色的橘子: [speed=0.5]这个给你吧！
+set Global.addItem("GM奖牌", "accessories", "bagArmorItem", 1)
+
+set Global.onTalk = false
+=> END
+
+~  骑迹行者
+set Global.onTalk = true
+骑迹行者: [speed=0.5]让我骑迹行者来看看你是否有好好看剧情了！
+骑迹行者: [speed=0.5]四圣为何陨落？
+- 被魔尊打残
+- 传梦干的
+- 被魔军围攻
+	骑迹行者: [speed=0.5]很好很好，那么下一题: 主角团当初为什么要去锁妖塔？
+	- 要把妖怪全突突了
+	- 宝塔灵气将尽，里面的妖怪要出来了
+		骑迹行者: [speed=0.5]哎哟不错哟，那么下面一题你能答的出来吗？
+		骑迹行者: [speed=0.5]当时是谁在傲来国叫来帮手帮了主角们
+		- 老猴子
+		- 上官冕
+			骑迹行者: [speed=0.5]这。。。你居然答对了呢！
+			骑迹行者: 这是最后一道超难之题！你准备好了吗！
+			骑迹行者: 时追云在幻境中进入了谁的结界？
+			- 玉帝
+			骑迹行者: [speed=0.5]没办法了，只能把这个给你了！
+			set Global.addItem("GM奖牌", "accessories", "bagArmorItem", 1)
+		- 龟丞相
+		- 敖白
+	- 有妖怪在帮反叛军进攻长安城
+	- 要救霍遮儿
+- 被妖盟围攻
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 西游遗憾1
+set Global.onTalk = true
+程咬金: [speed=0.5]你说什么？！有人要在我们长安水源下毒？！
+刘长源: [speed=0.5]没错！此事千真万确！请大人立马派人保护水源，警示百姓！
+程咬金: [speed=0.5]我凭什么相信你？！
+刘长源: [speed=0.5]我。。。。我。。。。
+刘长源: [speed=0.5]我没有证据。。。。。。但是请大人这回一定要相信我！黄袍怪会在全城中毒瘫痪之后，立刻攻入长安！
+程咬金: [speed=0.5]痴人说梦！就算真的有妖魔要下毒，我们水源警卫一向强盛，不必恐慌！
+刘长源: [speed=0.5]那就请大人赶快告示百姓，并且将他们转移！不然等到黄袍怪攻入，必定生灵涂炭！
+程咬金: [speed=0.5]你一个文弱书生，我为什么要凭白无故相信你，然后大费周章的转移全城百姓？！
+刘长源: [speed=0.5]程大人，求求你这次一定要相信我啊！黄袍怪会刺杀皇上的！他目的是霸占大唐！
+set Global.changebgm("res://Audio/BGM/SWD5 临敌.mp3")
+set Global.playsound("res://Audio/SE/汉子-笑9.ogg")
+set Global.getnode("subSound").stream = load("res://Audio/SE/119-Fire03.ogg")
+set Global.getnode("subSound").play()
+set Global.getnode("火").visible = true
+set Global.getnode("火").play()
+[next=1.5]
+set Global.getnode("黄袍怪").visible = true
+set Global.getnode("火").visible = false
+黄袍怪: [speed=0.5]哇哈哈哈，想不到居然有人来这里告密！还好我警觉，不然岂不误了我的大事！！
+刘长源: [speed=0.5]黄袍怪！！！
+程咬金: [speed=0.5]什么？！
+set Global.getnode("程咬金").play("左上")
+黄袍怪: [speed=0.5]既然如此，我就先解决了你们！！
+set get_tree().current_scene.bossFight("弥勒佛","res://Audio/BGM/战斗-仙剑.mp3", "西游遗憾")
+
+set Global.onTalk = false
+=> END
+
+~ 西游遗憾2
+set Global.onTalk = true
+set Global.getnode("九狐").visible = true
+九狐: [speed=0.5]黄袍怪！
+黄袍怪: [speed=0.5]什么！？九狐！你怎么会在这里！
+九狐: [speed=0.5]我是来阻止你的！
+刘长源: [speed=0.5]小狐。。。
+九狐: [speed=0.5]长源，为什么要自己一个人来，你不知道这很危险吗！
+刘长源: [speed=0.5]黄袍怪要下毒危害长安百姓，我不能不管，但我同样不想受伤的你和他战斗
+九狐: [speed=0.5]你怎么这么傻，还好我来得及时，不然你出事了我该怎么办？
+黄袍怪: [speed=0.5]哼哼哼，就算你来了又如何，凭你这个状态也想打赢我吗？
+九狐: [speed=0.5]黄袍怪，我确实受伤了打不过你，但你打得过天庭的人吗？
+黄袍怪: [speed=0.5]什么？！
+九狐: [speed=0.5]来之前我已经想办法通知了天庭，他们马上就会派人前来捉拿你！
+黄袍怪: [speed=0.5]可恶。。。你这只死狐狸！！！
+黄袍怪: [speed=0.5](我可不能在这里被抓住，一时间也不可能打死九狐，啧，只能先躲躲风头了)
+set Global.getnode("黄袍怪").visible = false
+set Global.getnode("程咬金").play("default")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+九狐: [speed=0.5]呼，还好他走了
+刘长源: [speed=0.5]小狐你为什么这么说，让天兵天将把他抓住不好吗？
+九狐: [speed=0.5]傻瓜，我来的匆忙，哪有时间去找天兵，刚才只是诈他一下罢了
+刘长源: [speed=0.5]原来如此，小狐果然聪明
+九狐: [speed=0.5]长源...以后不准这样了，不准再抛下我一个人！
+刘长源: [speed=0.5]...好，我答应你
+程咬金: [speed=0.5]这次真是谢谢你们了，看来我以后还是不能大意啊！
+刘长源: [speed=0.5]无妨，只希望程将军以后能保护好长安城！
+set Global.getnode("AnimationPlayer").play("turnDark")
+遗憾: [speed=0.5]刘长源随后与九狐归隐深山，九狐交给长源修仙之法，一起过上了神仙眷侣般的生活，他们也生了一个儿子
+遗憾: [speed=0.5]他们的儿子就叫做: 狐葬魂。他们还给儿子找了个师父，师父名为逆天魔
+遗憾: [speed=0.5]自从狐葬魂学艺完成下山历练之后，认识了种种朋友和敌人，还带了一个美娇娘张若嫣回来
+遗憾: [speed=0.5]而这天的逆天山山底...
+set Global.changeScene("西游奇缘逆天山", null)
+
+set Global.onTalk = false
+=> END
+
+
+~ 西游遗憾3
+set Global.onTalk = true
+张若嫣: [speed=0.5]嘻嘻，野菜都摘得差不多了。待会葬魂看见野菜汤一定会很开心的......
+黑龙王: [speed=0.5]张若嫣，我们好久不见啊！
+set Global.playsound("res://Audio/SE/082-Monster04.ogg")
+set Global.getnode("黑龙吼").visible = true
+set Global.getnode("黑龙吼").play()
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+张若嫣: [speed=0.5]黑...黑龙王！你...你怎么会在这里！！
+黑龙王: [speed=0.5]哼，这么强的仙元之力，我会察觉不到吗？当然要跟来看看了
+张若嫣: [speed=0.5]你...你发现了神器？
+黑龙王: [speed=0.5]张若嫣，我给你最后一个机会: 只要你答应我回龙宫做我的四海夫人，我今日便不杀你
+张若嫣: [speed=0.5]你这妖孽别痴心妄想了！我就算死也不会跟你回去的！
+黑龙王: [speed=0.5]哼，狐葬魂那小子到底有什么好？让你这么死心塌地地跟着他？
+黑龙王: [speed=0.5]好，既然如此，那我今日便先占有了你，再杀了狐葬魂取得神器！！
+张若嫣: [speed=0.5]你...你要做什么？！不要过来!!
+黑龙王: [speed=0.5]啊哈哈哈哈哈，啊哈哈哈哈哈哈哈
+set Global.getnode("AnimationPlayer2").play("turnDark")
+
+
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+遗憾: [speed=0.5]而这次，他赶到了！
+set Global.getnode("AnimationPlayer2").play("turnWhite")
+
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+
+set Global.getnode("狐葬魂").visible = true
+set Global.changebgm("res://Audio/BGM/10刁女.mp3")
+
+狐葬魂喜: [speed=0.5]若嫣你在这干什么呢？
+张若嫣: [speed=0.5]葬魂！
+狐葬魂怒: [speed=0.5]黑龙王！
+黑龙王: [speed=0.5]可恶，美事被你给搅了，算了，直接在这里杀死你结果也一样！
+狐葬魂怒: [speed=0.5]今天死的人只会是你！
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPlayer.append("狐葬魂")
+set Global.onTeamPet.erase("朱雀")
+set Global.onTeamPet.erase("青龙")
+set Global.onTeamPet.erase("玄武")
+set Global.onTeamPet.erase("白虎")
+set get_tree().current_scene.bossFight("黑龙王","res://Audio/BGM/战斗-仙剑.mp3", "西游遗憾")
+
+
+set Global.onTalk = false
+=> END
+
+~ 西游遗憾4
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+黑龙王: [speed=0.5]你什么时候成长到这种地步了！！
+set Global.getnode("player").visible = false
+set Global.playsound("res://Audio/SE/痛苦的吼叫.ogg")
+set Global.getnode("黑龙王").visible = false
+狐葬魂: [speed=0.5]总感觉刚才打他特别轻松
+狐葬魂喜: [speed=0.5]嫣儿，你没事吧？
+张若嫣: [speed=0.5]我没事，还好你来得及时,不然....
+狐葬魂喜: [speed=0.5]刚才我就感觉一阵心慌，这才感应到了你有危险，我们可真是心有灵犀啊
+张若嫣: [speed=0.5]嘴贫~
+set Global.getnode("幽冥心").visible = true
+幽冥心: [speed=0.5]葬魂！我回来了！我...我明白了我的内心！
+狐葬魂喜: [speed=0.5]心儿！
+幽冥心: [speed=0.5]疑？张若嫣？
+set Global.getnode("AnimationPlayer2").play("turnDark")
+set Global.toggleballon()
+[next=1.5]
+set Global.toggleballon()
+遗憾: [speed=0.5]狐葬魂的路还很长，只是这次，故事的结局多了点美好
+遗憾: [speed=0.5]听说他后续的日子很没羞没臊，这里就暂且不提了
+遗憾: [speed=0.5]不久之前，一只蝴蝶精灵救助了西行团队中的小白龙，帮助他恢复了伤势，并且找到了师兄们，平定了四海之乱
+遗憾: [speed=0.5]在这期间，他们暗生情愫，碟灵理所当然的加入了取经的队伍里
+遗憾: [speed=0.5]但好景不长，一日他们到了女儿国歇脚，却偶遇万圣公主在此！说起那万圣公主，可是歹毒的很，几次差点害死白龙不说，四海也差点被她搅乱！
+遗憾: [speed=0.5]这次的相遇，她依然卑鄙。她竟然挟持了唐三藏和碟灵！她要求小白龙在师傅和爱人之间选一位！但无论白龙选什么，碟灵的命都是保不住的
+遗憾: [speed=0.5]心狠手辣的万神公主杀死了碟灵，并且带走了唐三藏，白龙万分自责，颓废不已
+遗憾: [speed=0.5]而此时，有人拿着金箍棒走向了某处...
+set Global.changeScene("西游奇缘地府",null)
+
+set Global.onTalk = false
+=> END
+
+~ 西游遗憾5
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+阎罗王: 哎哟去！
+孙悟空: [speed=0.5]怎么，你见到鬼啦
+孙悟空: [speed=0.5]不对，这里本来就都是鬼
+阎罗王: 哎哟！我的大圣爷啊，你。。你你你怎么会突然光临呢
+孙悟空: [speed=0.5]怎么，不欢迎俺老孙？
+阎罗王: [speed=0.5]那，那怎么可能呢！
+孙悟空: [speed=0.5]哟，这是你新招的判官吗
+阎罗王: [speed=0.5]是啊，上次真没想到那个是个叛徒！
+孙悟空: [speed=0.5]行了行了，没空和你罗嗦了，你查查最近有没有一个叫碟灵的魂魄来地府了
+阎罗王: [speed=0.5]啊是，我这就查，这就查
+set Global.getnode("AnimationPlayer2").play("turnDark")
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+遗憾: [speed=0.5]嗯...后面的事情想必就不用多说了
+遗憾: [speed=0.5]总之，他们一猪，一猴，一狐，一碟，一龙，还有两人继续上路了
+遗憾: [speed=0.5]至此，属于西游的故事先告一段落吧
+遗憾: [speed=0.5]有一悲惨男子，名为无痕，他乃半人半魔之体，天生便是赤红一片，因此也招到了村里人的排斥
+遗憾: [speed=0.5]他没有体会过父爱，好在，他有一个完美的母亲，可结局是...他在魔化后亲手杀死了全村的人，包括他的母亲，而这一切，他并不知道
+遗憾: [speed=0.5]随后他在大唐官府结识了他的孽缘，程绣红。
+遗憾: [speed=0.5]他们一起经历了许许多多，曾经刚到大唐官府颓颓废废的傻小子也逐渐变得开朗了起来，或许，是她治愈了他受伤的心
+遗憾: [speed=0.5]经历了安禄山之乱，他们之间的关系变得更加坚固，而在庆功之日过后，无痕看着这无比体贴的绣红，他的心从未跳过如此之快！
+set Global.dial = "梦幻群侠传遗憾"
+set Global.changeScene("梦幻群侠传长安城",null)
+
+
+set Global.onTalk = false
+=> END
+
+
+
+~ 梦幻群侠传遗憾1
+set Global.onTalk = true
+程绣红: [speed=0.5]草药师傅，早上好啊
+尝百草: [speed=0.5]哟，程家大小姐啊，找俺老药罐有何贵干啊？
+程绣红: [speed=0.5]我到您这买点醒酒药，您这还有吗？
+尝百草: [speed=0.5]呵呵，这东西怎么会没有，这可是俺的独门妙方呢
+程绣红: [speed=0.5]我想把你手头上的都买下来，做完庆功宴，好多兵士都一醉不醒呢
+尝百草: [speed=0.5]哎哟哟，出售真大方，全卖你了
+程绣红: [speed=0.5]谢谢草药师傅
+set Global.changebgm("res://Audio/BGM/大堂-冲动.ogg")
+程绣红: [speed=0.5]喏~这就是解酒的特效药哦，包管你头不会再疼了
+无痕: [speed=0.5]还是绣红最会体贴人呢
+程绣红: [speed=0.5]现在知道我的好处了吧，我知道你一直把我当娇小姐看待
+无痕: [speed=0.5]哪有，自从我第一次见到你，我就知道绣红又体贴又温柔
+程绣红: [speed=0.5]嗬，平时见你一本正经，今天嘴怎么像抹了蜜似的，说，你跟谁学的坏？
+无痕: [speed=0.5]我说的句句当真，你也知道我不会撒谎的
+程绣红: [speed=0.5]好啦好啦，逗你玩呢，这么认真
+无痕: [speed=0.5]绣红，在你心目中。我是怎么样的人？
+程绣红: [speed=0.5]怎么突然问这个？
+无痕: [speed=0.5]回答我。好嘛？
+程绣红喜: [speed=0.5]你啊。。。你为人正直，对人真诚，武功比秦哥哥还好。。。
+程绣红喜: [speed=0.5]这么护着我，还听我的话，嗯，你是我最好的朋友！
+程绣红喜: [speed=0.5]突然问这种问题，你真是个傻瓜~~~~
+set Global.getnode("AnimationPlayer").play("移动绣红")
+set Global.toggleballon()
+[next=4]
+set Global.toggleballon()
+无痕: [speed=0.5]最好的朋友。。。。。。绣红，难道你看不出我的心思吗？
+无痕: [speed=0.5]还是。。。你不好意思明说。。。。。。
+无痕: [speed=0.5]不行，我要鼓起勇气表白才是，男子汉大丈夫，既然喜欢，就要说出来！ 
+无痕: [speed=0.5]嗯！一有机会，我就向她表白
+set Global.toggleballon()
+set Global.getnode("AnimationPlayer2").play("turnDark")
+[next=2]
+set Global.toggleballon()
+遗憾: [speed=0.5]故事就是在这里发生了转折，无痕嘴上说着鼓起勇气，心里却一直没底，一再而再的拖延
+遗憾: [speed=0.5]而这天.....
+set Global.changeScene("梦幻群侠传绣红屋",null)
+
+
+set Global.onTalk = false
+=> END
+
+~ 梦幻群侠传遗憾2
+set Global.onTalk = true
+set Global.getnode("player").visible = false
+无痕: [speed=0.5]绣红...
+程绣红: [speed=0.5]无痕，你今天来找我到底有什么事啊，一直支支吾吾的干什么？
+无痕: [speed=0.5]绣红，这件事我一直憋在心里很久了，我今天必须得说出来！
+程绣红: [speed=0.5]什么事呀？
+无痕: [speed=0.5]和你相处这么多年，不知不觉中，我发现我已经深深的爱上了你，无法自拔
+无痕: [speed=0.5]我不希望别人把你从我身边夺走，因为我无法忍受没有你的日子
+无痕: [speed=0.5]我的脑子里全是你的影子，而你永远都像当初我们见面时那样，微笑着,微笑着。。。
+无痕: [speed=0.5]所以，我要向你表白我的心意
+程绣红: [speed=0.5]无痕...
+无痕: [speed=0.5]即使你真的对我只是兄妹之情，我也必须要让你知道我对你的感受！
+无痕: [speed=0.5]绣红，我喜欢你！
+- 接受无痕的爱
+	set Global.changebgm("res://Audio/BGM/女神2.ogg")
+	程绣红: [speed=0.5]无痕...我，我很意外，我不知道该怎么说
+	程绣红: [speed=0.5]我也不知道什么是喜欢...但是和你一起玩的时候，我觉得很开心
+	程绣红: [speed=0.5]每次见你上前杀敌的时候，我都好担心，怕你出意外
+	程绣红: [speed=0.5]见不到你的时候，我也会在想你在干什么
+	程绣红: [speed=0.5]或许，这就是喜欢吧？
+	无痕: [speed=0.5]绣红。。。我不是在做梦吧
+	无痕: [speed=0.5]你。。也喜欢我吗
+	程绣红喜: [speed=0.5]嗯！我也喜欢无痕~
+	无痕: [speed=0.5]太好了！我就知道鼓起勇气是对的！
+	无痕: [speed=0.5]可我,只是一名普通的大唐弟子
+	程绣红: [speed=0.5]那又怎么了！我只知道在我生病的时候一直是你在照顾我，在我要被我爹责罚时，一直是你在替我承担！
+	程绣红: [speed=0.5]我之前一直不明白，也没去想过这些事，但是直到你刚才...刚才..
+	程绣红: [speed=0.5]我才想通，你，一直对我都这么好
+	程绣红喜: [speed=0.5]无痕，和你在一起的时候，我不仅是感到开心，当你在我身边的时候，我一直都很安心
+	程绣红: [speed=0.5]如果我爹敢反对，我们就一起骂他！
+	无痕: [speed=0.5]额，这可不行，他是我师傅
+	程绣红喜: [speed=0.5]嘻嘻
+	
+	
+	[next=1.5]
+	set Global.changeScene("梦幻群侠传秦府",null)
+	
+	
+	
+- 婉拒无痕的爱
+	set Global.changebgm("res://Audio/BGM/旅愁.ogg")
+	程绣红: [speed=0.5]对不起，无痕，你是个好人
+	无痕: [speed=0.5]...
+	set Global.toggleballon()
+	[next=2]
+	set Global.getnode("AnimationPlayer2").play("turnDark")
+	set Global.toggleballon()
+	遗憾: [speed=0.5]世界的走向并没有改变，或许这就是他的命吧
+	遗憾: [speed=0.5]好了，所有遗憾都已经结束了，我送你回去
+	set Global.dial = null
+	set Global.changeScene("传梦空间",null)
+
+
+set Global.onTalk = false
+=> END
+
+~ 梦幻群侠传遗憾3
+set Global.onTalk = true
+秦祥林: [speed=0.5]今大仇得报，我是否也该开始考虑自己的终身大事了。。。
+秦祥林: [speed=0.5]绣红，你是否也一样喜欢我呢...
+秦祥林: [speed=0.5]算了，一时半会也不急，还是再等一阵子再去和她表明心意吧
+set Global.getnode("AnimationPlayer2").play("turnDark")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+秦祥林: [speed=0.5]虽说心里下了决心，却一直鼓不起勇气。。。
+秦祥林: [speed=0.5]这一天。天气晴，微风。我决定告诉绣红："我喜欢你"
+秦祥林: [speed=0.5]可是我却怎么也找不到绣红
+[next=3]
+set Global.changeScene("小树林ntr",null)
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 梦幻群侠传遗憾4
+set Global.onTalk = true
+秦祥林: [speed=0.5]这。。。这不是
+秦祥林: [speed=0.5]不。。。。不可能。。。
+set Global.toggleballon()
+[next=10]
+set Global.getnode("AnimationPlayer2").play("turnDark")
+[next=2]
+set Global.toggleballon()
+遗憾: [speed=0.5]而很快，来到了无痕与绣红成亲的日子...
+set Global.changeScene("梦幻群侠传成亲",null)
+
+set Global.onTalk = false
+=> END
+
+~ 梦幻群侠传遗憾5
+set Global.onTalk = true
+程绣红: [speed=0.5]无痕，你怎么现在就过来啦
+无痕: [speed=0.5]我，忍不住想来看看你
+无痕: [speed=0.5]今天的你，好美
+程绣红喜: [speed=0.5]又口花花啦
+程绣红喜: [speed=0.5]这都是干娘帮我打扮的，我心里好紧张啊
+无痕: [speed=0.5]我也是...
+程绣红喜: [speed=0.5]哎呀你快回去准备啦，可别误了时辰
+无痕: [speed=0.5]嗯！
+set Global.getnode("AnimationPlayer2").play("turnDark")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+遗憾: [speed=0.5]小事易改，天命难违，无痕最终还是踏上了游历四方的道路...和绣红一起
+遗憾: [speed=0.5]路上，他们结识了了女儿村的锦文，化生寺的肖遥，与...方寸山的燕子
+遗憾: [speed=0.5]他们一同经历种种磨难与欢笑，打败了一个又一个的敌人。。。包括蚩尤...
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.changeScene("梦幻群侠传战神山",null)
+
+set Global.onTalk = false
+=> END
+
+~ 梦幻群侠传遗憾6
+set Global.onTalk = true
+云燕儿: [speed=0.5]嘻嘻，肖遥哥哥真好玩~
+无痕: [speed=0.5]呵呵，你说得没错，他们真是天生的一对
+云燕儿: [speed=0.5]那么。。。我也该走啦
+无痕: [speed=0.5]燕子。。。！
+云燕儿: [speed=0.5]怎么了？
+程绣红: [speed=0.5]燕子，你不要走了
+程绣红: [speed=0.5]和我们一起继续闯荡江湖吧！
+云燕儿: [speed=0.5]可是这样的话...我
+程绣红喜: [speed=0.5]你还当我看不出来吗？我不介意我们可以三个人可以组成一家人
+云燕儿: [speed=0.5]真的吗？燕子好高兴！
+无痕: [speed=0.5]这。。。
+程绣红: [speed=0.5]我都没意见了，你就不要发言了哦
+无痕: [speed=0.5]呵呵，好吧，那我们尽量在天黑前找到回去的路，不然又得露营了
+set Global.getnode("AnimationPlayer2").play("turnDark")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+遗憾: [speed=0.5]至此，我已经没有遗憾了，我也该送你回到原来的世界了...
+set Global.changeScene("黑屏",null)
+
+set Global.onTalk = false
+=> END
+
+~ 梦幻群侠传遗憾7
+set Global.onTalk = true
+二胡游: 胆子真大呢，居然在这里乱改我的剧本，以前在玩我的西游奇缘的时候就该把他踢出游戏
+关重七: ...
+二胡游: 不过有生之年居然还能看到有人在做梦单，我的三重下巴都要惊呆了
+set Global.changevis("传梦空间","二胡游")
+set Global.changevis("传梦空间","关重七")
+set Global.dial = null
+set Global.changeScene("传梦空间",null)
+
+set Global.onTalk = false
+=> END
+
+
 ~ 菩提告辞
 set Global.onTalk = true
 set Global.changevis("灵台宫","凌若昭")
@@ -392,6 +974,13 @@ set Global.onTalk = false
 
 ~ 幻境1
 set Global.onTalk = true
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPet.erase("青龙")
+set Global.onTeamPet.erase("朱雀")
+set Global.onTeamPet.erase("玄武")
+set Global.onTeamPet.erase("白虎")
 时追云惊: [speed=0.5这是...长安？不对，长安哪有这么阴森？
 时追云: [speed=0.5街上的摊贩怎么一个人都没有？
 时追云: [speed=0.5这种感觉。。。像是梦
@@ -534,6 +1123,14 @@ set Global.onTalk = false
 
 ~ 妖盟入侵2
 set Global.onTalk = true
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPlayer.append("姜韵")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPet.append("青龙")
+set Global.onTeamPet.append("朱雀")
+set Global.onTeamPet.append("玄武")
+set Global.onTeamPet.append("白虎")
 
 set Global.getnode("shadow").visible = false
 set Global.getnode("妖盟").visible = true
@@ -656,6 +1253,14 @@ set Global.getnode("蝎军").visible = true
 set Global.toggleballon()
 [next=1.5]
 set Global.dial = "幻境"
+set Global.onTeamPlayer.append("时追云")
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPet.erase("青龙")
+set Global.onTeamPet.erase("朱雀")
+set Global.onTeamPet.erase("玄武")
+set Global.onTeamPet.erase("白虎")
 set Global.changeScene("幻境3", null)
 
 
@@ -664,6 +1269,7 @@ set Global.onTalk = false
 
 ~ 妖盟入侵6
 set Global.onTalk = true
+
 set Global.getnode("player").visible = false
 set Global.getnode("妖盟").visible = true
 set Global.getnode("蝎军").visible = true
@@ -678,6 +1284,7 @@ set Global.onTalk = false
 
 ~ 幻境5
 set Global.onTalk = true
+
 时追云: [speed=0.5]我为什么会有这些幻觉，难道我内心已经很渴望远离这些战争，归养山田吗
 时追云: [speed=0.5]为什么这世界上有许多满天神佛，诸多大能，最后却要靠我们来面对这一切！
 时追云: [speed=0.5]为什么会落到我们头上，我本该只是一位渔夫
@@ -695,6 +1302,14 @@ set Global.onTalk = true
 set Global.toggleballon()
 [next=1.5]
 set Global.dial = "妖盟入侵"
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPlayer.append("姜韵")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPet.append("青龙")
+set Global.onTeamPet.append("朱雀")
+set Global.onTeamPet.append("玄武")
+set Global.onTeamPet.append("白虎")
 set Global.changeScene("长寿郊外",null)
 set Global.onTalk = false
 => END
@@ -758,6 +1373,14 @@ set Global.onTalk = true
 姜韵: [speed=0.5]往前走吧，不管如何，你已经通过了所有的考验
 姜韵: [speed=0.5]幻境是一种考验，也是一种赐福，虽然这次帮你解决了你心里所有的困境，但你能保证这些念头永远都不会再滋生吗，呵呵呵呵呵
 set Global.dial = '女娲神迹'
+set Global.onTeamPlayer.append("时追云")
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPet.erase("青龙")
+set Global.onTeamPet.erase("朱雀")
+set Global.onTeamPet.erase("玄武")
+set Global.onTeamPet.erase("白虎")
 set Global.changeScene("女娲神迹",null)
 
 set Global.onTalk = false
@@ -967,9 +1590,19 @@ set Global.getnode("鬼帝").play("hurt")
 [next=0.5]
 set Global.getnode("鬼帝").play("default")
 set Global.toggleballon()
+set Global.gai = true
 姜韵喜: 夫君！
 小二: 老大！
 凌若昭喜: 时大哥你出来了！
+
+set Global.onTeamPlayer.append("姜韵")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPet.append("青龙")
+set Global.onTeamPet.append("朱雀")
+set Global.onTeamPet.append("玄武")
+set Global.onTeamPet.append("白虎")
+
 set Global.getnode("player").position = Vector2(425,916)
 set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
 鬼帝: [speed=0.5]你又是怎么进来的！你手中这两把剑是。。。梦澹！？

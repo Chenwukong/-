@@ -56,7 +56,13 @@ var dialogue_line: DialogueLine:
 		elif dialogue_line.character == "水云仙"  or dialogue_line.character == "水云仙哀" or dialogue_line.character == "水云仙哭" or dialogue_line.character == "水云仙死":
 			character_label.text = "水云仙"					
 		elif dialogue_line.character == "墨兮"  or dialogue_line.character == "墨兮2":
-			character_label.text = "墨兮"				
+			character_label.text = "墨兮"	
+		elif dialogue_line.character == "狐葬魂"  or dialogue_line.character == "狐葬魂怒"  or dialogue_line.character == "狐葬魂喜":
+			character_label.text = "狐葬魂"									
+		elif dialogue_line.character == "程绣红"  or dialogue_line.character == "程绣红喜":
+			character_label.text = "程绣红"	
+		elif dialogue_line.character == "孙悟空"  or dialogue_line.character == "孙悟空怒":
+			character_label.text = "孙悟空"			
 		else:
 			character_label.text = tr(dialogue_line.character, "dialogue")
 		if dialogue_line.character == "<null>":
@@ -66,7 +72,7 @@ var dialogue_line: DialogueLine:
 		var name = dialogue_line.character.to_lower()
 	
 	
-		if name == "关重七" or name == "玄武" or name == "小姜韵" or name == "小追云"or name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕" or name == "水云仙"  or name == "水云仙哀"  or name == "水云仙哭" or name == "水云仙死"                                                          :
+		if  name == "云燕儿" or name == "狼叔" or name == "清风柒" or name == "九狐" or name == "孙悟空"  or name == "孙悟空怒"  or name == "无痕" or name == "程绣红" or name == "程绣红喜"  or name == "狐葬魂" or name == "狐葬魂怒" or name == "狐葬魂喜" or name == "关重七" or name == "玄武" or name == "小姜韵" or name == "小追云"or name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕" or name == "水云仙"  or name == "水云仙哀"  or name == "水云仙哭" or name == "水云仙死"                                                          :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			mainPortrait.visible = true
 			mainPortrait.texture = load(portraitPath)
@@ -113,7 +119,7 @@ var dialogue_line: DialogueLine:
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)
 			敖雨portrait.position = Vector2(493,-139)		
-		elif name == "墨兮"or name == "寒天云" or name == "鬼帝":
+		elif name == "墨兮"or name == "寒天云" or name == "鬼帝" or name == "老寒":
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			墨兮portrait.texture = load(portraitPath)
 			墨兮portrait.visible = true

@@ -44,8 +44,8 @@ func update_cursor():
 	# Set the current frame as the cursor
 	Input.set_custom_mouse_cursor(cursor_frames[int(current_frame)], 0, cursor_scale)
 
-	
 func _ready():
+	
 	if get_tree().current_scene.name == "长寿村":
 		$"CanvasLayer/长寿村过场图".visible = true
 		
@@ -96,8 +96,7 @@ func _ready():
 		#DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 
 func _process(delta):
-	
-	
+
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -1877,3 +1876,19 @@ func snowStorm():
 
 func _on_timer_2_timeout():
 	$"CanvasLayer/长寿村过场图".visible = false
+
+
+func _on_ghosted_timer_timeout():
+	Global.getnode("StaticBody2D/CollisionPolygon2D").disabled = false
+	Global.getnode("StaticBody2D/CollisionPolygon2D2").disabled = false
+	Global.getnode("player").position = Vector2(476,363)
+
+
+func _on_黑龙吼_animation_finished():
+	Global.getnode("张若嫣").play("右上")
+	Global.getnode("黑龙吼").visible = false
+	Global.getnode("黑龙王").visible = true
+
+
+func _on_speed_timer_timeout():
+	$player.speed = 300

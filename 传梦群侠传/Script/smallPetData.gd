@@ -28,7 +28,25 @@ var magics = {
 		"duration": 1,
 		"value": 200,
 		"description": ""
-	}
+	},
+	"逆天破": {
+		"name": "逆天破",
+		"type": "aoe",
+		"hitNum": 5,
+		"duration": 1,
+		"value": 400,
+		"description": ""
+	},
+	"战神念法": {
+		"name": "战神念法",
+		"type": "buff",
+		"hitNum": 5,
+		"duration": 1,
+		"value": 10,
+		"description": "fds"
+	}		
+	
+	
 }
 
 # Original pet data
@@ -39,6 +57,7 @@ var oriSmallPetData = {
 		"level": 1,
 		"str": 100,
 		"abilityPower": 0,
+		"tempStr":0,
 		"hungry": 20000,
 		"hungryValue": 1,
 		"rage": 10,
@@ -51,8 +70,9 @@ var oriSmallPetData = {
 		"name": "敖雨",
 		"petAttackType": "melee",
 		"level": 1,
-		"str": 600,
+		"str": 150,
 		"abilityPower": 0,
+		"tempStr":0,
 		"hungry": 20000,
 		"hungryValue": 3,
 		"rage": 7,
@@ -60,7 +80,39 @@ var oriSmallPetData = {
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
 		"description": "东海龙宫敖阳之妹,有着身为地方神的傲气与责任感,也有近似凡人的天真"
-	}
+	},
+	"狐葬魂": {
+		"name": "狐葬魂",
+		"petAttackType": "range",
+		"level": 1,
+		"str": 400,
+		"abilityPower": 100,
+		"tempStr":0,
+		"hungry": 20000,
+		"hungryValue": 3,
+		"rage": 7,
+		"petMagic": magics.get("逆天破"),
+		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+		"attackOnEnemySound": null,
+		"description": "西游奇缘2的男主狐葬魂"
+	},
+	"水无痕": {
+		"name": "水无痕",
+		"petAttackType": "melee",
+		"level": 1,
+		"str": 600,
+		"abilityPower": 0,
+		"tempStr":0,
+		"hungry": 20000,
+		"hungryValue": 3,
+		"rage": 7,
+		"petMagic": magics.get("战神念法"),
+		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+		"attackOnEnemySound": null,
+		"description": "梦幻群侠传2的男主水无痕"
+	}		
+	
+	
 }
 
 # Current pet data
@@ -71,6 +123,7 @@ var currSmallPetData = {
 		"level": 1,
 		"str": 100,
 		"abilityPower": 100,
+		"tempStr":0,
 		"hungryValue": 1,
 		"hungry": 20000,
 		"rage": 10,
@@ -84,11 +137,74 @@ var currSmallPetData = {
 		"level": 1,
 		"str": 100,
 		"abilityPower": 0,
+		"tempStr":0,
 		"hungry": 200,
 		"hungryValue": 3,
 		"rage": 10,
 		"petMagic": magics.get("水满金山"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null
-	}
+	},
+	"狐葬魂": {
+		"name": "狐葬魂",
+		"petAttackType": "range",
+		"level": 1,
+		"str": 400,
+		"abilityPower": 100,
+		"tempStr":0,
+		"hungry": 20000,
+		"hungryValue": 3,
+		"rage": 80,
+		"petMagic": magics.get("逆天破"),
+		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+		"attackOnEnemySound": null,
+		"description": "西游奇缘2的男主狐葬魂摸样的假人"
+	},
+	"水无痕": {
+		"name": "水无痕",
+		"petAttackType": "melee",
+		"level": 1,
+		"str": 600,
+		"abilityPower": 0,
+		"tempStr":0,
+		"hungry": 20000,
+		"hungryValue": 3,
+		"rage": 100,
+		"petMagic": magics.get("战神念法"),
+		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
+		"attackOnEnemySound": null,
+		"description": "梦幻群侠传2的男主水无痕摸样的假人"
+	}			
+	
 }
+
+# 假如你的代码是在同一个script中:
+
+func deep_copy_dictionary(original: Dictionary) -> Dictionary:
+	var new_dictionary = {}
+	for key in original.keys():
+		var value = original[key]
+		if value is Dictionary:
+			new_dictionary[key] = deep_copy_dictionary(value)
+		elif value is Array:
+			new_dictionary[key] = deep_copy_array(value)
+		else:
+			new_dictionary[key] = value
+	return new_dictionary
+
+
+func deep_copy_array(arr: Array) -> Array:
+	var new_array = []
+	for item in arr:
+		if item is Dictionary:
+			new_array.append(deep_copy_dictionary(item))
+		elif item is Array:
+			new_array.append(deep_copy_array(item))
+		else:
+			new_array.append(item)
+	return new_array
+
+
+func reset_curr_pet_data():
+	currSmallPetData = deep_copy_dictionary(oriSmallPetData)
+	# 这样修改 currSmallPetData 就不会作用到 oriSmallPetData
