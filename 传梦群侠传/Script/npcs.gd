@@ -3,11 +3,19 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+
+	if !Global.npcVis.get(get_tree().current_scene.name).get(self.name).visible:
+		if name == "吸血鬼组" or name == "小魔头组":
+			for i in get_children():
+				i.queue_free()
+			
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if name == "吸血鬼组" or name == "小魔头组":
+		return
+	
 	
 	if Global.npcVis.get(get_tree().current_scene.name).get(self.name).visible:
 		self.visible = true
@@ -19,3 +27,10 @@ func _process(delta):
 			self.visible = false
 			i.visible = false
 			i.get_node("npcBody/CollisionPolygon2D").disabled = true
+
+func queueFree():
+	if !Global.npcVis.get(get_tree().current_scene.name).get(name).visible:
+		if name == "吸血鬼组" or name == "小魔头组":
+			return
+			for i in get_children():
+				i.queue_free()

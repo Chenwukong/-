@@ -274,7 +274,8 @@ func _process(delta):
 			var enemyBuffSlot =  $battleFieldPicture/enemyInfo/buffs.get_children()
 			for x in enemyBuffSlot:
 				x.visible = false
-			if Global.target and Global.target.buffs: 
+				
+			if is_instance_valid(Global.target) and Global.target.buffs: 
 				for index in Global.target.buffs.size():	
 					var i = Global.target
 					

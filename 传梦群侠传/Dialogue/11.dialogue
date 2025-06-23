@@ -1,0 +1,301 @@
+
+~ 天庭之战1
+set Global.onTalk = true
+
+妖皇: [speed=0.5]魔尊！这和说好的不一样！！！
+妖皇: [speed=0.5]说好了我们是平分天下！现在我们死了大半人，就要拿下天庭了，你居然要独吞！
+魔尊: [speed=0.5]智力低下者，要天下何益。难道汝一直都没怀疑过我们的结盟吗？
+魔尊: [speed=0.5]鬼帝不也被你我抛弃了吗，现在被利用完就丢掉的是汝，汝就气急败坏了吗？
+妖皇: [speed=0.5]你！！无耻！！！
+魔尊: [speed=0.5]妖怪的首领是汝，何其悲哀
+魔尊: [speed=0.5]尽管地面那些小虫子还在活动，但无伤大雅。等汝和天庭剩下的人死后，我将打破天庭布下的结界
+魔尊: [speed=0.5]你的妖军将在杀完最后一个天庭之人后被我灭杀。秩序将颠覆，三界将尽归于魔
+魔尊: [speed=0.5]妖盟和天庭已经完成了使命，可以消散了
+妖皇: [speed=0.5]你痴心妄想！
+set Global.getnode("妖皇").play("turn")
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+set Global.getnode("妖皇").play("战斗")
+妖皇: [speed=0.5]想把我们吃干抹尽？没那么便宜！
+妖皇: [speed=0.5]你以为我不知道你在这里布置了结界吗，你是想阻止我给外面传递消息吧！
+魔尊: [speed=0.5]是又如何？
+妖皇: [speed=0.5]你笑我们妖怪粗鄙，却不知道我们也在防着你，我早就和我的几个心腹缔结了血约！不管在哪里，我都能对他们发号施令！
+妖皇: [speed=0.5]四大护法都听着！让所有的妖盟兵士都知道：暂时放弃进攻天庭，绞杀你们身边的魔军！
+魔尊: [speed=0.5]...
+妖皇: [speed=0.5]哈哈哈哈哈哈，你以为你算尽了一切，却没想到你口中的蠢货也有计谋是吗
+妖皇: [speed=0.5]你觉得我为什么一直没派我的全部心腹直接去杀了全部天命人,哈哈哈哈，毕竟他们对你的威胁更大不是吗
+妖皇: [speed=0.5]鬼帝已经被出局了，还剩下我们妖盟，天庭，还有你们魔，你既然要弄死我们，你也别想好过！看看我们谁能活到最后！
+魔尊: [speed=0.5]你会死的很惨！
+set Global.playsound("res://Audio/SE/猛男-唔哈。气势.ogg")
+set Global.getnode("魔尊").play("攻击")
+set Global.toggleballon()
+[next=2]
+
+set Global.getnode("象脚").visible = true
+set Global.getnode("象脚").play()
+set Global.playsound("res://Audio/SE/大象X.ogg")
+set Global.getnode("AnimationPlayer2").play("turnDark")
+[next=3]
+set Global.changeScene("天宫",null)
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 天庭之战2
+set Global.onTalk = true
+set Global.dial = null
+set Global.getnode("小二").visible = true
+set Global.getnode("凌若昭").visible = true
+set Global.getnode("姜韵").visible = true
+set Global.getnode("青龙").visible = true
+set Global.getnode("朱雀").visible = true
+set Global.getnode("白虎").visible = true
+set Global.getnode("玄武").visible = true
+
+凌若昭: 我们这就到天宫了啊
+小二真身: 危险！
+set Global.getnode("shadow").visible = false
+set Global.playsound("res://Audio/SE/142-Burst02.ogg")
+set Global.getnode("陨石").visible = true
+set Global.getnode("陨石").play()
+set Global.getnode("护体").visible = true
+set Global.getnode("护体").play()
+set Global.toggleballon()
+[next=3]
+set Global.toggleballon()
+set Global.getnode("陨石").visible = false
+set Global.getnode("护体").visible = false
+玄武: 还好我反应快，连余波的威力都这么大吗
+姜韵: 看来他们已经到了拼死的阶段了，才会法术乱轰炸
+凌若昭: 师兄看来已经走到前方去战斗了，我们要快去帮忙吧
+白虎: 擒贼先擒王，我们只要把他们的将领和魔尊都杀了，他们就自然会崩溃了
+时追云: 这是最后一场战斗了，大家都小心点，活着在人间再相聚！
+小二真身: 好！
+凌若昭: 嗯！
+set Global.getnode("shadow").visible = true
+
+set Global.getnode("小二").visible = false
+set Global.getnode("凌若昭").visible = false
+set Global.getnode("姜韵").visible = false
+set Global.getnode("青龙").visible = false
+set Global.getnode("朱雀").visible = false
+set Global.getnode("白虎").visible = false
+set Global.getnode("玄武").visible = false
+
+
+set Global.onTalk = false
+=> END
+
+
+
+
+
+
+
+~ 炎魔神1
+set Global.onTalk = true
+set get_tree().current_scene.bossFight("炎魔神","res://Audio/BGM/战斗-仙剑.mp3", "炎魔神")
+
+set Global.onTalk = false
+=> END
+
+~ 炎魔神2
+set Global.onTalk = true
+set Global.changevis("天宫","炎魔神")
+哪吒: 谢谢你们了，我要在这里运功调息一会，你们先去帮别人吧！
+set Global.onTalk = false
+=> END
+
+
+~ 天庭之战3
+set Global.onTalk = true
+set Global.getnode("大力金刚").play("attack")
+set Global.playsound("res://Audio/SE/大力金刚.ogg")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.getnode("大力金刚2").visible = false
+时追云: [speed=0.5]这是...魔军和妖盟打起来了？
+小二真身: [speed=0.5]蛇鼠一窝，互相翻脸了吧
+金刚护法: [speed=0.5]喂，后面那几个人，我们现在不和你们打，你们也别来烦我们
+金刚护法: [speed=0.5]大王要我们传令，妖盟全力攻打魔军
+小二真身: 什么？！ 
+时追云: [speed=0.5]你们怎么看
+凌若昭: 会不会是在骗我们？
+姜韵: [speed=0.5]假设他们说的是真的话，嗯...放眼望去，我看是魔军占大优势
+姜韵: [speed=0.5]如果真要两面开战的话，恐怕确实对我们不利...不如我们
+时追云: [speed=0.5]和妖盟的人一起先打魔军吧！
+小二真身: [speed=0.5]老大...你确定吗？
+时追云: [speed=0.5]我知道这很讽刺，要和打了几年的敌人合作，但更重要的是解救这场危机！
+时追云: [speed=0.5]不管之后如何，我们现在的敌人是一致的，那就是魔军！
+时追云: [speed=0.5]但也不能掉以轻心，因为如果魔军的人数少了，那么妖盟就很有可能变卦了
+凌若昭: [speed=0.5]好复杂啊！
+小二真身: [speed=0.5]好，我相信老大和大嫂的判断
+set Global.onTalk = false
+=> END
+
+
+~ 魔巫1
+set Global.onTalk = true
+夜护法: 那边的小哥们，来帮我一下吧
+set get_tree().current_scene.bossFight("魔巫","res://Audio/BGM/战斗-仙剑.mp3", "魔巫")
+
+set Global.onTalk = false
+=> END
+
+~ 魔巫2
+set Global.onTalk = true
+set Global.changevis("天宫","魔巫")
+夜护法: 你们果然很克制魔，是这位美人的原因吧。真是多谢你们了呢
+姜韵怒: 当初屠杀仙缘村是谁的命令！
+夜护法: 自然是魔尊咯，你们对他的威胁可太大了
+夜护法: 至于建业，那是奔霸加入我们的投名状
+姜韵: ...
+时追云: 与你们暂时合作，但要是你们突然变卦。你们会是先死的
+夜护法: 呵呵呵，小女明白了
+set Global.onTalk = false
+=> END
+
+~ 幽灵1
+set Global.onTalk = true
+风伯: 哎哎哎，那边的小伙子，你们是人类吧，来帮我一下吧！
+set get_tree().current_scene.bossFight("魔刹","res://Audio/BGM/战斗2.ogg", "魔刹")
+
+set Global.onTalk = false
+=> END
+
+~ 幽灵2
+set Global.onTalk = true
+set Global.changevis("天宫","魔刹")
+风伯: 真是谢谢你们了，听说东面的战神殿还有许多怪物，你们快去帮忙吧
+小二真身: 那你呢？
+风伯: 我要在这里找一下我的风袋子
+时追云: ...
+set Global.onTalk = false
+=> END
+
+
+~ 杨戬1
+set Global.onTalk = true
+东海龙王: [speed=0.5]杨戬你疯了吗，你居然和那些魔军勾搭在一起！
+杨戬: [speed=0.5]你们还看不出来吗，天庭已经没救了，魔尊要赢了！
+兽护法: [speed=0.5]可笑，论到忠诚，你们天庭还不如我们妖盟
+时追云: [speed=0.5]这里怎么了？
+小二真身: [speed=0.5]莫非这位就是东海龙王？
+东海龙王: [speed=0.5]你们是？
+时追云: [speed=0.5]我们是敖白仙人的朋友，前来助战的
+东海龙王: [speed=0.5]太好了！你们快来帮我解决这个叛徒！
+凌若昭: [speed=0.5]他莫非就是传说中的二郎神？可是怎么没看到哮天犬？
+杨戬: [speed=0.5]你们凡人一个个的都把我和二郎神弄混了！二郎神是二郎神，我杨戬是我杨戬！我们是不同的人！
+时追云: [speed=0.5]我不管你是二郎神还是杨戬，在这危急时刻反叛的都该死
+杨戬: [speed=0.5]那就看你做不做得到了！
+set get_tree().current_scene.bossFight("杨戬","res://Audio/BGM/战斗-BOSS 正义.mp3", "杨戬事件")
+
+set Global.onTalk = false
+=> END
+
+~ 杨戬2
+set Global.onTalk = true
+set Global.getnode("东海龙王2").visible = false
+set Global.getnode("东海龙王3").visible = false
+set Global.cantShow.append("战神殿")
+set Global.getnode("杨戬").play("dead")
+杨戬: 再过不久，你们也会死的！！！
+时追云: [speed=0.5]我能看到叛徒的下场，你却看不到我们的将来
+set Global.getnode("杨戬").visible = false
+东海龙王: [speed=0.5]真是谢谢你们了，不然我这把老骨头可能就得交代在这了
+时追云: [speed=0.5]老仙人我看你伤的不轻，现在这里歇着吧，我们去前方看看
+东海龙王: [speed=0.5]哎好
+小二真身: [speed=0.5]那边的妖盟护法，不要做出不明智的事
+兽护法: [speed=0.5]哼，大王给的命令是现在全力攻打魔军，我自然是听他的
+
+
+
+
+
+set Global.onTalk = false
+=> END
+
+
+
+~ 太白金星1
+set Global.onTalk = true
+
+if Global.checkTianTing():
+	太白金星: [speed=0.5]莫非你们就是从人间来的天命人！？
+	太白金星: [speed=0.5]各位请祝我们天庭一臂之力！
+else:
+	set Global.npcs.get("太白金星").current_dialogue_index = 0
+	太白金星: [speed=0.5]前面太危险了，你们不能过去
+
+
+set Global.onTalk = false
+=> END
+
+~ 天庭之战4
+set Global.onTalk = true
+魔尊: [speed=0.5]你们只有这点实力吗
+孙悟空: [speed=0.5]玉帝老儿，都叫你在凌霄殿里躲着了，怎么还出来，现在好了，被堵住了
+玉帝: [speed=0.5]朕不能看着你们与人拼杀，自己却躲在里面，如果今天朕陨落了，那也是朕的天命
+
+二郎神: [speed=0.5]猴头，你体力变差了啊
+孙悟空: [speed=0.5]嘿嘿，俺老孙还没到极限呢
+二郎神: [speed=0.5]好，那就让我们继续并肩作战吧！
+
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战1
+set Global.onTalk = true
+时追云: 11111
+#set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战2
+set Global.onTalk = true
+时追云: 还有很多，大家小心
+小二真身: 嗯！
+#set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战3
+set Global.onTalk = true
+set Global.changevis("月宫","吸血鬼组")
+set Global.getnode("吸血鬼组").queueFree()
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战4
+set Global.onTalk = true
+set get_tree().current_scene.bossFight("小魔头组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战5
+set Global.onTalk = true
+时追云: 他们又上来了，做好防御！
+姜韵: 嗯！
+set get_tree().current_scene.bossFight("小魔头组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战6
+set Global.onTalk = true
+set Global.changevis("月宫","小魔头组")
+set Global.getnode("小魔头组").queueFree()
+
+set Global.onTalk = false
+=> END

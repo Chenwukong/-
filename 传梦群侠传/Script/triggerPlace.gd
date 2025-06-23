@@ -3,28 +3,30 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	triggerEvent = self.name
-	if triggerEvent in Global.triggerPlace:
-		pass
-	else:
-		Global.triggerPlace[triggerEvent] = {"trigger":false, "disable": false} 
-	
+	$Timer.start()
+#	if triggerEvent in Global.triggerPlace:
+#		pass
+#	else:
+#		print(111)
+#		Global.triggerPlace[name] = {"trigger":false, "disable": false} 
+			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var places = get_tree().get_nodes_in_group("triggerPlace")
 	for i in places:
+		if !Global.triggerPlace.get(i.name):
+			return
 		if Global.triggerPlace.get(i.name).disable == true:
 			i.get_node("Area2D/CollisionShape2D").disabled = true
 		if Global.triggerPlace.get(i.name).disable == false:
 			i.get_node("Area2D/CollisionShape2D").disabled = false
 
 func _on_area_2d_area_entered(area):
-
-	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(triggerEvent).disable == false:
+	
+	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(name).disable == false:
 		var player = area.get_parent()
-		Global.triggerPlace.get(triggerEvent).disable = true
-		print(triggerEvent)
+		Global.triggerPlace.get(name).disable = true
 		match triggerEvent:
 			"玉帝物品事件":
 				DialogueManager.show_chat(load("res://Dialogue/1.dialogue"),get_npc_dialogue("玉帝物品事件"))			
@@ -216,9 +218,13 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))							
 			"炼狱终点":
 				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
-								
-								
-								
+			"天庭之战":
+				DialogueManager.show_chat(load("res://Dialogue/11.dialogue"),get_npc_dialogue("天庭之战"))											
+			"杨戬事件":
+				DialogueManager.show_chat(load("res://Dialogue/11.dialogue"),get_npc_dialogue("杨戬事件"))								
+			"月宫之战":
+				DialogueManager.show_chat(load("res://Dialogue/11.dialogue"),get_npc_dialogue("月宫之战"))								
+										
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]
@@ -247,3 +253,11 @@ func complete_task(chapter_id, task_id):
 		Global.chapters[chapter_id]["tasks"][task_id] = true
 		for npc_id in Global.npcs.keys():
 			update_npc_dialogue_index(npc_id)
+
+
+func _on_timer_timeout():
+	if name in Global.triggerPlace:
+		pass
+	else:
+		Global.triggerPlace[name] = {"trigger":false, "disable": false} 
+	

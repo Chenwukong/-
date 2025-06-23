@@ -101,7 +101,7 @@ var fangCunState = 1
 var atDark = false
 var onBoss = false
 var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军","鬼帝"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1","神庙","女娲神迹","炼狱迷宫1"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","花果山","海底迷宫1","女儿村", "地府迷宫1", "森罗殿","轮回司","轮回之门","普陀山","五庄观","龙窟1","凤巢1","神庙","女娲神迹","炼狱迷宫1","凌霄宝殿"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -174,7 +174,7 @@ var chapters = {
 
 var tempValue = 0
 var arDark = false
-var current_chapter_id = 10
+var current_chapter_id = 11
 var fightTime = ""
 var gai =true
 var mcVisible = true
@@ -593,8 +593,24 @@ var npcVis = {
 	},
 	"炼狱迷宫3":{
 		"魔阎罗": {"visible":true},							
-	}				
-	
+	},		
+	"炼狱迷宫5":{
+		"魔妾": {"visible":true},							
+	},	
+	"炼狱迷宫7":{
+		"蛟魔王": {"visible":true},							
+	},			
+		
+	"天宫":{
+		"炎魔神": {"visible":true},
+		"魔巫": {"visible":true},			
+		"魔刹": {"visible":true},					
+	},		
+	"月宫":{
+		"孙悟空": {"visible":true},
+		"吸血鬼组": {"visible":true},			
+		"小魔头组": {"visible":true},					
+	}			
 	
 					
 															
@@ -607,7 +623,8 @@ var quests ={
 	"方寸罗师兄":{"小师弟":0, "complete":false},
 	"传梦之路":{"传":false,"梦":false,"之":false,"路":false},
 	"抓鬼":{"野鬼":0, "complete":false},
-	"玉帝秘境":{"complete":false}
+	"玉帝秘境":{"complete":false},
+	"天庭魔军":{"炎魔神":false,"魔刹":false,"杨戬":false,"魔巫":false}
 }
 var yuDiItem = false
 
@@ -620,7 +637,11 @@ func checkChuanMeng():
 			return false
 	return true
 
-
+func checkTianTing():
+	for value in quests["天庭魔军"].values():
+		if value != true:
+			return false
+	return true
 
 
 var canTake = false
@@ -2157,9 +2178,74 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},			
-	
-	
-	
+	"天庭之战":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "天庭之战1", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 11, "dialogue": "天庭之战2", "unlocked": true, "bgm":null,"trigger":false},																																																		
+					{"chapter": 11, "dialogue": "天庭之战3", "unlocked": true, "bgm":null,"trigger":false},		
+				],
+		"current_dialogue_index": 1,	
+		"constNpc": false	
+	},				
+	"炎魔神":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "炎魔神1", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 11, "dialogue": "炎魔神2", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"太白金星":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "太白金星1", "unlocked": true, "bgm":null,"trigger":false},
+																																																					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	"魔刹":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "幽灵1", "unlocked": true, "bgm":null,"trigger":false},																																																
+					{"chapter": 11, "dialogue": "幽灵2", "unlocked": true, "bgm":null,"trigger":false},	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},			
+	"魔巫":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "魔巫1", "unlocked": true, "bgm":null,"trigger":false},																																																
+					{"chapter": 11, "dialogue": "魔巫2", "unlocked": true, "bgm":null,"trigger":false},		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},				
+	"杨戬事件":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "杨戬1", "unlocked": true, "bgm":"res://Audio/BGM/临敌2.ogg","trigger":false},																																																
+					{"chapter": 11, "dialogue": "杨戬2", "unlocked": true, "bgm":null,"trigger":false},		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"月宫之战":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "月宫之战1", "unlocked": true, "bgm":null,"trigger":false},																																																
+					{"chapter": 11, "dialogue": "月宫之战2", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 11, "dialogue": "月宫之战3", "unlocked": true, "bgm":null,"trigger":false},																																																
+					{"chapter": 11, "dialogue": "月宫之战4", "unlocked": true, "bgm":null,"trigger":false},		
+					{"chapter": 11, "dialogue": "月宫之战5", "unlocked": true, "bgm":null,"trigger":false},																																																
+					{"chapter": 11, "dialogue": "月宫之战6", "unlocked": true, "bgm":null,"trigger":false},				
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},			
 }
 var potentialBalls = {
 
@@ -2186,86 +2272,12 @@ var mapPlayerPos = Vector2(0, 0)
 var haveLantern = true
 var saveData = {}
 var onHurry = false
-var default_trigger_places
+
 var saved_trigger_places
 var totalPotentialBall = 0
 var uniqueId
 var countDownOn = false
-var triggerPlace ={
-	"新手警告": {"trigger":false, "disable": false},
-	"二娃请求": {"trigger":false, "disable": true},
-	"城主施舍": {"trigger":false, "disable": true},
-	"王姨尖叫": {"trigger":false, "disable": true},
-	"王姨遇险": {"trigger":false, "disable": true},
-	"管家请求": {"trigger":false, "disable": true},
-	"初见奔霸": {"trigger":false, "disable": true},
-	"时追云杀完2": {"trigger":false, "disable": true},
-	"时追云杀完3": {"trigger":false, "disable": true},
-	"杀戮": {"trigger":false, "disable": true},
-	"时追云进城": {"trigger":false, "disable": true},
-	"时追云赶到": {"trigger":false, "disable": true},
-	"斩妖": {"trigger":false, "disable": true},
-	"初见小二": {"trigger":false, "disable": false},
-	"小二休息": {"trigger":false, "disable": false},
-	"王婆卖瓜": {"trigger":false, "disable": false},
-	"解围金甲": {"trigger":false, "disable": false},
-	"初见若昭": {"trigger":false, "disable": true},
-	"进塔": {"trigger":false, "disable": false},
-	"再见凌若昭": {"trigger":false, "disable": false},
-	"塔2": {"trigger":false, "disable": false},
-	"塔3": {"trigger":false, "disable": false},
-	"塔4": {"trigger":false, "disable": false},
-	"塔5": {"trigger":false, "disable": false},
-	"塔6": {"trigger":false, "disable": false},
-	"首入国境": {"trigger":false, "disable": false},
-	"平定峰": {"trigger":false, "disable": false},
-	"遣返": {"trigger":false, "disable": true},
-	"登顶": {"trigger":false, "disable": false},
-	"教学千机": {"trigger":false, "disable": true},
-	"方寸夜晚小二谈恋爱2": {"trigger":false, "disable": true},
-	"听见异响": {"trigger":false, "disable": true},
-	"黑山送剑": {"trigger":false, "disable": true},
-	"真方寸山": {"trigger":false, "disable": false},
-	"重回建邺": {"trigger":false, "disable": true},
-	"东海海道": {"trigger":false, "disable": false},
-	"玉箍棒": {"trigger":false, "disable": true},
-	"救老李头": {"trigger":false, "disable": false},
-	"老李头死": {"trigger":false, "disable": true},
-	"兵分两路": {"trigger":false, "disable": false},
-	"花果山拦敌1": {"trigger":false, "disable": false},
-	"花果山拦敌2": {"trigger":false, "disable": false},
-	"花果山拦敌3": {"trigger":false, "disable": false},
-	"再见奔霸": {"trigger":false, "disable": false},
-	"到地府入口": {"trigger":false, "disable": false},
-	"初见孟婆": {"trigger":false, "disable": false},
-	"真离开地府": {"trigger":false, "disable": false},
-	"找罐子": {"trigger":false, "disable": false},
-	"重遇上官1": {"trigger":false, "disable": false},
-	"重遇上官2": {"trigger":false, "disable": false},	
-	"第一次遇鬼": {"trigger":false, "disable": false},
-	"进回忆": {"trigger":false, "disable": false},	
-	"进回忆2": {"trigger":false, "disable": false},			
-	"进回忆3": {"trigger":false, "disable": false},	
-	"进回忆4": {"trigger":false, "disable": false},	
-	"回忆3": {"trigger":false, "disable": false},	
-	"地府决战": {"trigger":false, "disable": false},	
-	"凌若昭回忆": {"trigger":false, "disable": false},							
-	"再见小二": {"trigger":false, "disable": false},	
-	"寻四圣2": {"trigger":false, "disable": false},	
-	"寻四圣3": {"trigger":false, "disable": false},	
-	"方寸山之魔": {"trigger":false, "disable": false},		
-	"初见观音": {"trigger":false, "disable": false},		
-	"五庄观": {"trigger":false, "disable": false},	
-	"五庄观2": {"trigger":false, "disable": false},	
-	"再见观音": {"trigger":false, "disable": true},		
-	"长寿村酒楼掌柜": {"trigger":false, "disable": true},		
-	"神庙": {"trigger":false, "disable": false},
-	"幻境1": {"trigger":false, "disable": false},	
-	"幻境2": {"trigger":false, "disable": false},		
-	"幻境3": {"trigger":false, "disable": false},		
-	"幻境4": {"trigger":false, "disable": false},		
-	"女娲神迹": {"trigger":false, "disable": false},			
-	"六耳救女孩": {"trigger":false, "disable": false},				
+var triggerPlace ={				
 						
 }
 
@@ -2300,6 +2312,7 @@ func _process(delta):
 
 
 func save():
+	
 	saveData.maxLevel = maxLevel
 	saveData.baseChance = baseChance
 	saveData.noMouse = noMouse
@@ -2374,6 +2387,7 @@ func loadData():
 	npcVis = saveData.npcVis 
 	haveLantern = saveData.haveLantern
 	triggerPlace = saveData.triggerPlace
+	print(222)
 	killedAmount = saveData.killAmount
 	dangerScene = saveData.dangerScene
 	questItem = saveData.questItem
@@ -2392,89 +2406,9 @@ func loadData():
 	if saveData.has("treasureBox"):
 		treasureBox = saveData.treasureBox
 	uniqueId = saveData.uniqueId
-	default_trigger_places = {
-		"新手警告": {"trigger": false, "disable": false},
-		"二娃请求": {"trigger": false, "disable": true},
-		"城主施舍": {"trigger": false, "disable": true},
-		"王姨尖叫": {"trigger": false, "disable": true},
-		"王姨遇险": {"trigger": false, "disable": true},
-		"管家请求": {"trigger": false, "disable": true},
-		"初见奔霸": {"trigger": false, "disable": true},
-		"时追云杀完2": {"trigger": false, "disable": true},
-		"时追云杀完3": {"trigger": false, "disable": true},
-		"杀戮": {"trigger": false, "disable": true},
-		"时追云进城": {"trigger": false, "disable": true},
-		"时追云赶到": {"trigger": false, "disable": true},
-		"斩妖": {"trigger": false, "disable": true},
-		"初见小二": {"trigger": false, "disable": false},
-		"小二休息": {"trigger": false, "disable": false},
-		"王婆卖瓜": {"trigger": false, "disable": false},
-		"解围金甲": {"trigger":false, "disable": false},
-		"初见若昭": {"trigger":false, "disable": true},
-		"进塔": {"trigger":false, "disable": false},
-		"再见凌若昭": {"trigger":false, "disable": false},
-		"塔2": {"trigger":false, "disable": false},
-		"塔3": {"trigger":false, "disable": false},		
-		"塔4": {"trigger":false, "disable": false},
-		"塔5": {"trigger":false, "disable": false},	
-		"塔6": {"trigger":false, "disable": false},
-		"首入国境": {"trigger":false, "disable": false},
-		"平定峰": {"trigger":false, "disable": false},
-		"遣返": {"trigger":false, "disable": true},
-		"登顶": {"trigger":false, "disable": false},
-		"真方寸山": {"trigger":false, "disable": false},
-		"教学千机": {"trigger":false, "disable": true},
-		"方寸夜晚小二谈恋爱2": {"trigger":false, "disable": true},
-		"听见异响": {"trigger":false, "disable": true},
-		"黑山送剑": {"trigger":false, "disable": true},
-		"重回建邺": {"trigger":false, "disable": true},
-		"东海海道": {"trigger":false, "disable": false},
-		"玉箍棒": {"trigger":false, "disable": true},
-		"救老李头": {"trigger":false, "disable": false},
-		"老李头死": {"trigger":false, "disable": true},
-		"兵分两路": {"trigger":false, "disable": false},
-		"花果山拦敌1": {"trigger":false, "disable": false},
-		"花果山拦敌2": {"trigger":false, "disable": false},
-		"花果山拦敌3": {"trigger":false, "disable": false},
-		"再见奔霸": {"trigger":false, "disable": false},
-		"到地府入口": {"trigger":false, "disable": false},
-		"初见孟婆": {"trigger":false, "disable": false},
-		"真离开地府": {"trigger":false, "disable": true},
-		"找罐子": {"trigger":false, "disable": false},
-		"重遇上官1": {"trigger":false, "disable": false},
-		"重遇上官2": {"trigger":false, "disable": false},	
-		"第一次遇鬼": {"trigger":false, "disable": false},
-		"进回忆": {"trigger":false, "disable": false},	
-		"进回忆2": {"trigger":false, "disable": false},			
-		"进回忆3": {"trigger":false, "disable": false},	
-		"进回忆4": {"trigger":false, "disable": false},			
-		"回忆3": {"trigger":false, "disable": false},			
-		"地府决战": {"trigger":false, "disable": false},	
-		"凌若昭回忆": {"trigger":false, "disable": false},							
-		"再见小二": {"trigger":false, "disable": false},	
-		"寻四圣2": {"trigger":false, "disable": false},	
-		"寻四圣3": {"trigger":false, "disable": false},	
-		"方寸山之魔": {"trigger":false, "disable": false},
-		"初见观音": {"trigger":false, "disable": false},			
-		"五庄观": {"trigger":false, "disable": false},		
-		"五庄观2": {"trigger":false, "disable": false},	
-		"除虫": {"trigger":false, "disable": false},		
-		"再见观音": {"trigger":false, "disable": true},
-		"长寿村酒楼掌柜": {"trigger":false, "disable": true},	
-		"神庙": {"trigger":false, "disable": false},			
-		"幻境1": {"trigger":false, "disable": false},	
-		"幻境2": {"trigger":false, "disable": false},		
-		"幻境3": {"trigger":false, "disable": false},
-		"幻境4": {"trigger":false, "disable": false},
-		"女娲神迹": {"trigger":false, "disable": false},			
-		"六耳救女孩": {"trigger":false, "disable": false},																				
-	}
+
 	# Ensure saved data has all default places, add if missing
-	saved_trigger_places = saveData.triggerPlace if saveData.has("triggerPlace") else {}
-	for key in default_trigger_places.keys():
-		if not saved_trigger_places.has(key):
-			saved_trigger_places[key] = default_trigger_places[key]
-	triggerPlace = saved_trigger_places		
+
 	get_tree().change_scene_to_file("res://Scene/"+saveData.currScene+".tscn")
 func turnDark():
 	var current_scene = get_tree().current_scene

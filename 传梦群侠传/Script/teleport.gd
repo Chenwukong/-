@@ -548,3 +548,11 @@ func checkSetPos(currScene, toScene):
 			return Vector2(822,738)				
 		if toScene == "炼狱终点":
 			return Vector2(1112,1398)	
+	if currScene == "天宫":						
+		if toScene == "战神殿":
+			return Vector2(1622,1406)				
+		if toScene == "炼狱终点":
+			return Vector2(1112,1398)	
+	if currScene == "战神殿":						
+		if toScene == "天宫":
+			return Vector2(3379,94)					
