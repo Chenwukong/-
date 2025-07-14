@@ -1,4 +1,4 @@
-[gd_scene load_steps=168 format=3 uid="uid://ck2vc3grektu4"]
+[gd_scene load_steps=166 format=3 uid="uid://ck2vc3grektu4"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_s4ggv"]
 [ext_resource type="Texture2D" uid="uid://bc1oig20auj7d" path="res://panoramas2/魔界.jpg" id="2_ir2pm"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_b13x0"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_0sgle"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_xdtn6"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_sr8p6"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_sr8p6"]
 [ext_resource type="Shader" path="res://shader/rain.gdshader" id="20_t0y1b"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="21_4dnxj"]
 [ext_resource type="Script" path="res://Script/ghostSound.gd" id="22_iv1dm"]
@@ -29,10 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="27_ertit"]
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="28_qs1eh"]
 [ext_resource type="Texture2D" uid="uid://c3xo7qsfxwi2" path="res://梦魂Animation/【进阶鬼将】.png" id="29_s6y50"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_tv5p1"]
-[ext_resource type="Texture2D" uid="uid://b0sjowm0bn5x2" path="res://SeparateAnimation/鬼帝/9-5.png" id="31_ga5tr"]
-[ext_resource type="Texture2D" uid="uid://cu4aaufhrer52" path="res://SeparateAnimation/鬼帝/9-6.png" id="32_28dx5"]
-[ext_resource type="Texture2D" uid="uid://2nhdtlrd3tth" path="res://SeparateAnimation/鬼帝/9-7.png" id="33_7p6oh"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="30_tv5p1"]
+[ext_resource type="Texture2D" uid="uid://boiq46ps3fkgv" path="res://SeparateAnimation/鬼帝/攻击.png" id="31_xtqeq"]
 [ext_resource type="Texture2D" uid="uid://d3oib0t4q1p3s" path="res://SeparateAnimation/骷刹/##黑山老妖.png" id="34_6wp6y"]
 [ext_resource type="Texture2D" uid="uid://bf6hbmwklksyo" path="res://SeparateAnimation/骷刹/##黑山老妖攻击.png" id="35_ull7t"]
 [ext_resource type="Texture2D" uid="uid://crnp7vx3nwvam" path="res://SeparateAnimation/骷刹/##黑山老妖施法.png" id="36_lrcyp"]
@@ -580,15 +578,12 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dq8ns"]
-atlas = ExtResource("31_ga5tr")
 region = Rect2(0, 0, 800, 600)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yn81v"]
-atlas = ExtResource("32_28dx5")
 region = Rect2(0, 0, 800, 600)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uyfm8"]
-atlas = ExtResource("33_7p6oh")
 region = Rect2(0, 0, 800, 600)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pmjoa"]
@@ -1629,7 +1624,7 @@ position = Vector2(1200, 3066)
 toScene = "傲来武器铺"
 
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("14_um5je")
+stream = ExtResource("15_pyr8d")
 volume_db = 4.552
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
@@ -1747,7 +1742,7 @@ frame_progress = 0.19328
 frame = 0
 frame_progress = 0.0
 
-[node name="破暗" parent="鬼将/effects" index="3"]
+[node name="破暗" parent="鬼将/effects" index="6"]
 rotation = 0.604971
 
 [node name="地府决战" parent="." instance=ExtResource("30_tv5p1")]
@@ -1762,7 +1757,9 @@ position = Vector2(93.5, 38.5)
 z_index = 55
 position = Vector2(2759, -1176)
 scale = Vector2(-3.76823, 3.76823)
-texture = ExtResource("31_ga5tr")
+texture = ExtResource("31_xtqeq")
+hframes = 12
+frame = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -1785,7 +1782,7 @@ sprite_frames = SubResource("SpriteFrames_cjglp")
 animation = &"攻击"
 autoplay = "default"
 
-[node name="阎罗令" parent="骷刹/effects" index="4"]
+[node name="阎罗令" parent="骷刹/effects" index="7"]
 position = Vector2(-68, -46)
 scale = Vector2(1.92756, 1.92756)
 

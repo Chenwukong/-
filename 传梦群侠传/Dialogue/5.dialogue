@@ -55,6 +55,9 @@ set Global.cantShow.append("两界山")
 时追云: [speed=0.5]嗯
 时追云: [speed=0.5](嗯？怎么娘子给我的这盏灯到地府自动就发亮了，到了地府居然都能亮吗)
 set Global.dial = null
+if !Global.smallPets.has("敖雨"):
+	set Global.onTeamSmallPet.append("敖雨")
+	set Global.smallPets.append("敖雨")
 set Global.onTalk = false
 => END
 
@@ -741,16 +744,45 @@ set Global.dial = "回忆"
 set Global.onTalk = false
 => END
 
+~ 鬼司1
+set Global.onTalk = true
+set get_tree().current_scene.bossFight("鬼司","res://Audio/BGM/战斗-雪.mp3", "鬼司")
+set Global.onTalk = false
+=> END
+
+~ 鬼司2
+set Global.onTalk = true
+set Global.getnode("鬼司").play("dead")
+set Global.toggleballon()
+[next=2]
+set Global.changevis("地府迷宫2","鬼司")
+set Global.onTalk = false
+=> END
+
+~ 冥鸟1
+set Global.onTalk = true
+set Global.changevis("地府迷宫3","冥鸟")
+set get_tree().current_scene.bossFight("冥鸟","res://Audio/BGM/战斗-雪.mp3", null)
+set Global.onTalk = false
+=> END
+
+~ 僵尸王1
+set Global.onTalk = true
+僵尸王: 活人？？你的血，看起来好，好诱人！
+时追云怒: 滚开！
+set Global.changevis("地府迷宫4","僵尸王")
+set get_tree().current_scene.bossFight("僵尸王","res://Audio/BGM/战斗-生肖2.ogg", null)
+set Global.onTalk = false
+=> END
+
 ~ 回忆1回1
 set Global.onTalk = true
-set get_tree().current_scene.get_node("player/Camera2D").position = Vector2(76,-1113)
-set get_tree().current_scene.get_node("TextureRect").visible = true
-小男孩: 好饿...
-set get_tree().current_scene.get_node("小男主").play("倒地")
+
 [next=2]
 set get_tree().current_scene.get_node("player/Camera2D").position = Vector2(-7, -10)
 小姜韵: 嘻嘻，婆婆今天不在
 小姜韵: 偷偷跑出去玩吧~
+小姜韵: 村口在西北fang
 set Global.onTalk = false
 => END
 
@@ -1389,8 +1421,16 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云惊: [speed=0.5]在地府里面怎么会下雨！！？？
 姜韵恐: [speed=0.5]这恐怕不是雨...这是鬼气
 姜韵恐: [speed=0.5]如此恐怖的气息...和刚才完全不一样
+set get_tree().current_scene.bossFight("骷刹","res://Audio/BGM/轩辕-战斗2", "地府决战")
+set Global.onTalk = false
+=> END
+
+~ 打败鬼将军2
+set Global.onTalk = true
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0妖族阴谋.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.5](糟糕，刚才对付鬼将军已经很吃力了，而这鬼王的实力更是深不可测)
-骷刹: [speed=0.5]你们不过来的话，我可要过去了
+骷刹: [speed=0.5]你将成为我最伟大的杰作
 时追云怒: [speed=0.5](怎么办，只能拼死了吗，但是实力相差过于悬殊了，这还不是我能够对付的级别)
 时追云惊: [speed=0.5]对了！
 set Engine.time_scale = 0.4

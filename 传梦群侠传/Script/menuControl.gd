@@ -628,8 +628,11 @@ func _process(delta):
 				if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "":
 					$"装备页面/装备栏/status/伤害/value/arrow".visible = false
 					if Input.is_action_just_released("ui_accept") and armorItemSelectIndex == 0 and !Global.noKeyboard:
-
+						
 						if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
+							
+							if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
+								Global.gai = false
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
 							
 							if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
@@ -652,6 +655,11 @@ func _process(delta):
 		
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "" :
+							
+							if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "梦澹":
+								Global.gai = true
+							if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
+								Global.gai = false							
 							FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
 							FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
 							
@@ -2884,6 +2892,7 @@ func bagButton():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name == "姜韵" and Global.onGhost:
 		return
 	if armorItemSelectIndex == 0:
+		print(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon)
 		weapons = []
 		for i in bagArmorItemsData:
 			if bagArmorItemsData[i].type == "weapon" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name:
@@ -2920,6 +2929,8 @@ func bagButton():
 			$"装备页面/装备栏/status/伤害/value/arrow".visible = false
 			if armorItemSelectIndex == 0:
 				if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon != null:
+					if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
+						Global.gai = false					
 					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg -= FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg
 					if FightScenePlayers.bagArmorItem.has(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name):
 						FightScenePlayers.bagArmorItem[FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name].number += 1
@@ -2937,11 +2948,16 @@ func bagButton():
 					$"../subSound".play()
 			#如果选中的背包位子不是空的
 		elif bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text != "":
+			
 			if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name != 	FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.user:
 				return
 			if canPress and armorItemSelectIndex == 0:
 				#如果选中的背包位子不是空的，并且武器不是空的
 				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
+					if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "梦澹":
+						Global.gai = true
+					if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
+						Global.gai = false
 					FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].additionDmg - FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.value.additionDmg + FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.value.additionDmg
 					FightScenePlayers.bagArmorItem.get(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text).info.added = true	
 		

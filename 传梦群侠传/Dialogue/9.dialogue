@@ -39,12 +39,18 @@ set Global.onTalk = false
 set Global.onTalk = true
 二胡游: [speed=0.5]这么幸苦的去弥补遗憾，送你点特殊的东西吧，这是我用仙气捏的假人，或许可以派上点用场
 set Global.showMsg("获得狐葬魂假人助战")
+if !Global.smallPets.has("狐葬魂"):
+	set Global.onTeamSmallPet.append("狐葬魂")
+	set Global.smallPets.append("狐葬魂")
 set Global.onTalk = false
 => END
 
 ~ 关重七
 set Global.onTalk = true
 关重七: [speed=0.5]谢谢你，让他有一个美好的结局
+if !Global.smallPets.has("水无痕"):
+	set Global.onTeamSmallPet.append("水无痕")
+	set Global.smallPets.append("水无痕")
 set Global.showMsg("获得水无痕假人助战")
 set Global.onTalk = false
 => END
@@ -1231,25 +1237,32 @@ set Global.toggleballon()
 小二真身: 呵呵，看来是我赌赢了！
 set Global.toggleballon()
 [next=1]
-set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
+set Global.changebgm("res://Audio/BGM/兵凶.ogg")
 set Global.getnode("真身特效").visible = true
 set Global.getnode("真身特效").play()
-set Global.getnode("小二/小二").play("进阶真身左下")
-set Global.playsound("res://Audio/SE/猛兽2.ogg")
+
+
+
 set Global.addshader("建业左","res://shader/shake.gdshader")
 set Global.addshader("shadow","res://shader/shake.gdshader")
 set Global.getnode("ColorRect").visible = true
 [next=4]
+set Global.playsound("res://Audio/SE/119-Fire03.ogg")
+set Global.getnode("火力场").visible = true
+set Global.getnode("火力场").play()
 set Global.removeshader("建业左")
 set Global.removeshader("shadow")
 set Global.toggleballon()
+set FightScenePlayers.learnMagic("小二真身", "火域")
+set FightScenePlayers.learnMagic("小二真身", "滔天")
+
 夜护法: [speed=0.5]怎。。。怎么可能，你一个半人半妖血统不纯的家伙，妖力怎会如此可怕！
 夜护法: [speed=0.5]全部人都跟我上！不要留手，一定要在这里杀了他，他会成为我们之后总攻的威胁！
 set Global.getnode("蝎军").visible = true
 蝎霸王: [speed=0.5]我带着我的族人来帮你们了
 夜护法: [speed=0.5]你也是妖怪，何不加入我们呢，待我们夺取天下，少不了你的好处
 蝎霸王: [speed=0.5]我呸，我虽然是妖，但我也懂得报恩！多年前我的祖辈受人恩惠，我现在决不能让你伤害长寿村的那些人！
-小二真身: [speed=0.5]随我击杀她！
+小二真身: [speed=0.5]受死吧！
 set Global.toggleballon()
 [next=1.5]
 set Global.dial = "幻境"
@@ -1275,7 +1288,7 @@ set Global.getnode("妖盟").visible = true
 set Global.getnode("蝎军").visible = true
 set Global.getnode("姜韵").visible = true
 set Global.getnode("小二/小二").play("进阶真身左下")
-小二真身: [speed=0.5]随我击杀她！
+小二真身: [speed=0.5]来吧！
 set get_tree().current_scene.bossFight("夜护法","res://Audio/BGM/战斗Y.mp3", "妖盟入侵")
 
 
@@ -1617,7 +1630,8 @@ set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
 小二: [speed=0.5]这样才对嘛老大！
 凌若昭喜: [speed=0.5]嗯！
 寒天云: [speed=0.5]本大爷打的有点累了，你们加油吧
-set get_tree().current_scene.bossFight("鬼帝","res://Audio/BGM/仙剑全音乐.ogg", "妖盟入侵")
+set FightScenePlayers.fightScenePlayerData["时追云"].item.weapon = ItemData.weapon.get("梦澹")
+set get_tree().current_scene.bossFight("鬼帝","res://Audio/BGM/曲刃亂影 [TubeRipper.cc].ogg", "妖盟入侵")
 set Global.getnode("黑象").visible = false
 
 
@@ -1723,3 +1737,49 @@ set Global.onTalk = true
 set Global.onTalk = false
 => END
 
+~ 弑天魔1
+set Global.onTalk = true
+
+set get_tree().current_scene.bossFight("弑天魔","res://Audio/BGM/战斗-仙剑.mp3", "弑天魔")
+
+set Global.onTalk = false
+=> END
+
+~ 弑天魔2
+set Global.onTalk = true
+set Global.cantShow.append("镇魔地1")
+set Global.quests["镇魔地"]["镇魔地1"] = true
+set Global.changeScene("方寸山",Vector2(1548,175))
+
+set Global.onTalk = false
+=> END
+
+~ 炎魔神1
+set Global.onTalk = true
+
+set get_tree().current_scene.bossFight("炎魔神","res://Audio/BGM/战斗-仙剑.mp3", "炎魔神")
+
+set Global.onTalk = false
+=> END
+
+~ 炎魔神2
+set Global.onTalk = true
+set Global.cantShow.append("镇魔地2")
+set Global.changeScene("普陀山",Vector2(1442,1060))
+set Global.onTalk = false
+=> END
+
+~ 冲天魔1
+set Global.onTalk = true
+
+set get_tree().current_scene.bossFight("冲天魔","res://Audio/BGM/战斗-仙剑.mp3", "冲天魔")
+
+set Global.onTalk = false
+=> END
+
+~ 冲天魔2
+set Global.onTalk = true
+set Global.cantShow.append("镇魔地3")
+set Global.changeScene("五庄观",Vector2(909,578))
+set Global.onTalk = false
+=> END

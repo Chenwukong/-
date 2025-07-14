@@ -26,7 +26,7 @@ set Global.getnode("妖皇").play("战斗")
 妖皇: [speed=0.5]哈哈哈哈哈哈，你以为你算尽了一切，却没想到你口中的蠢货也有计谋是吗
 妖皇: [speed=0.5]你觉得我为什么一直没派我的全部心腹直接去杀了全部天命人,哈哈哈哈，毕竟他们对你的威胁更大不是吗
 妖皇: [speed=0.5]鬼帝已经被出局了，还剩下我们妖盟，天庭，还有你们魔，你既然要弄死我们，你也别想好过！看看我们谁能活到最后！
-魔尊: [speed=0.5]你会死的很惨！
+魔尊: [speed=0.5]我将会用这把魔剑，杀了你
 set Global.playsound("res://Audio/SE/猛男-唔哈。气势.ogg")
 set Global.getnode("魔尊").play("攻击")
 set Global.toggleballon()
@@ -94,20 +94,6 @@ set Global.onTalk = false
 
 
 
-
-~ 炎魔神1
-set Global.onTalk = true
-set get_tree().current_scene.bossFight("炎魔神","res://Audio/BGM/战斗-仙剑.mp3", "炎魔神")
-
-set Global.onTalk = false
-=> END
-
-~ 炎魔神2
-set Global.onTalk = true
-set Global.changevis("天宫","炎魔神")
-哪吒: 谢谢你们了，我要在这里运功调息一会，你们先去帮别人吧！
-set Global.onTalk = false
-=> END
 
 
 ~ 天庭之战3
@@ -227,6 +213,8 @@ set Global.onTalk = true
 if Global.checkTianTing():
 	太白金星: [speed=0.5]莫非你们就是从人间来的天命人！？
 	太白金星: [speed=0.5]各位请祝我们天庭一臂之力！
+	set Global.dial = "天庭之战"
+	set Global.changeScene("月宫",null)
 else:
 	set Global.npcs.get("太白金星").current_dialogue_index = 0
 	太白金星: [speed=0.5]前面太危险了，你们不能过去
@@ -237,6 +225,9 @@ set Global.onTalk = false
 
 ~ 天庭之战4
 set Global.onTalk = true
+set Global.dial = null
+set Global.getnode("player/Camera2D").position = Vector2(-862,-1083)
+set Global.getnode("魔尊").play("右上")
 魔尊: [speed=0.5]你们只有这点实力吗
 孙悟空: [speed=0.5]玉帝老儿，都叫你在凌霄殿里躲着了，怎么还出来，现在好了，被堵住了
 玉帝: [speed=0.5]朕不能看着你们与人拼杀，自己却躲在里面，如果今天朕陨落了，那也是朕的天命
@@ -244,6 +235,19 @@ set Global.onTalk = true
 二郎神: [speed=0.5]猴头，你体力变差了啊
 孙悟空: [speed=0.5]嘿嘿，俺老孙还没到极限呢
 二郎神: [speed=0.5]好，那就让我们继续并肩作战吧！
+set Global.getnode("player/Camera2D").position = Vector2(0,0)
+set Global.getnode("魔尊").play("攻击右上")
+
+set Global.onTalk = false
+=> END
+
+~ 嫦娥
+set Global.onTalk = true
+嫦娥: 你们是路过的凡人吗？赏赐给你们一些月饼吧
+嫦娥: 我给每个路过的人都送了月饼，包括魔军，这样不管谁赢了我都安然无恙
+时追云: 哪怕是天庭也有如此多趋炎附势之人...
+小二真身: [speed=0.5]也难怪天庭会被打成这样！
+set Global.addItem("月饼", "battleConsume", "battleItem", 5)
 
 
 set Global.onTalk = false
@@ -251,8 +255,11 @@ set Global.onTalk = false
 
 ~ 月宫之战1
 set Global.onTalk = true
-时追云: 11111
-#set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+小二真身: [speed=0.5]看来他们不会让我们轻易过去了
+时追云: [speed=0.5]太多了，如果不把他们解决掉就过去，最后会导致我们被夹击
+姜韵: [speed=0.5]如果玉帝死了，我们就败了
+凌若昭怒: [speed=0.5]绝对不能让他们得逞！ 
+set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
 
 set Global.onTalk = false
 => END
@@ -261,7 +268,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 时追云: 还有很多，大家小心
 小二真身: 嗯！
-#set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
 
 
 set Global.onTalk = false
@@ -277,6 +284,9 @@ set Global.onTalk = false
 
 ~ 月宫之战4
 set Global.onTalk = true
+凌若昭: [speed=0.5]怎么是一群小孩子呀
+时追云: [speed=0.5]他们身形虽小，但是身上散发出的怨气惊人
+小二真身: [speed=0.5]纯粹的魔气集合体...
 set get_tree().current_scene.bossFight("小魔头组","res://Audio/BGM/战斗1.ogg", "月宫之战")
 
 set Global.onTalk = false
@@ -296,6 +306,445 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.changevis("月宫","小魔头组")
 set Global.getnode("小魔头组").queueFree()
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战7
+set Global.onTalk = true
+时追云怒: 真是没完了！
+set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战8
+set Global.onTalk = true
+小二真身: 还好妖盟帮我们分担了点压力
+set get_tree().current_scene.bossFight("吸血鬼组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战9
+set Global.onTalk = true
+set Global.getnode("player/Camera2D").position = Vector2(949,-795)
+魔尊: [speed=0.5]你们去阻拦他们一下，我这里快结束了
+set Global.getnode("player/Camera2D").position = Vector2(-1428,-983)
+set Global.toggleballon()
+[next=0.5]
+set Global.toggleballon()
+set Global.changevis("月宫","魔金刚")
+set Global.changevis("月宫","鬼面")
+set Global.changevis("月宫","魔鸟")
+set Global.changevis("月宫","雷龙")
+魔金刚: [speed=0.5]是！
+
+set Global.changevis("月宫","吸血鬼组2")
+set Global.getnode("吸血鬼组2").queueFree()
+
+set Global.getnode("player/Camera2D").position = Vector2(0,0)
+
+
+set Global.onTalk = false
+=> END
+
+~ 月宫之战10
+set Global.onTalk = true
+魔金刚: [speed=0.5]你们就是尊主说的天命之人吧！难怪能杀掉我们那么多人，不过也就到此为止了！
+时追云: [speed=0.5]你似乎...不是纯粹的魔
+魔金刚: [speed=0.5]嗯？被发现了吗，我确实不是纯粹的魔，我是被大王的神通给转换的！
+魔金刚: [speed=0.5]我们大王能感染别人，将其变为伟大的魔！
+时追云惊: [speed=0.5]什么！
+小二真身: [speed=0.5]那与他对战的人岂不是...很危险
+魔金刚: [speed=0.5]世界将诚服在尊主之下！
+set get_tree().current_scene.bossFight("四人组","res://Audio/BGM/战斗1.ogg", "月宫之战")
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 月宫之战11
+set Global.onTalk = true
+set Global.getnode("ColorRect").visible = false
+set Global.changebgm("res://Audio/BGM/卢小旭 - 憾天威.mp3")
+set Global.getnode("魔尊").play("右上")
+魔金刚: [speed=0.5]世界属于尊主！！！
+set Global.changevis("月宫","魔金刚")
+set Global.changevis("月宫","鬼面")
+set Global.changevis("月宫","魔鸟")
+set Global.changevis("月宫","雷龙")
+set Global.getnode("player/Camera2D").position = Vector2(749,-595)
+魔尊: [speed=0.5]我会记得你们的忠诚，现在已经不会有意外。天命之人，初始之力携带之人，你们来吧，让我赐予你们最后的死亡
+set Global.getnode("魔尊").play("攻击右上")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.changevis("月宫","小兵")
+set Global.getnode("孙悟空").modulate = "blue"
+set Global.getnode("二郎神").modulate = "blue"
+set Global.getnode("护法").modulate = "blue"
+set Global.getnode("魔尊").play("右上")
+玉帝: 不好！孙悟空，二郎神！护法！
+魔尊: [speed=0.5]他们两个确实难缠，可惜他们并不能抵抗我的魔气侵袭
+魔尊: [speed=0.5]他们已经和妖皇一样，成为我的手下了
+set Global.getnode("player/Camera2D").position = Vector2(0,0)
+凌若昭怒: [speed=0.5]糟糕了！
+时追云怒: [speed=0.5]只剩下我们了！保护玉帝！
+set Global.getnode("魔尊").play("左下")
+
+set Global.onTalk = false
+=> END
+
+
+~ 月宫之战12
+set Global.onTalk = true
+魔尊: [speed=0.5]你们的天命确实强悍，凭借这等修为也能闯到我面前。不过运气也该到此结束了。
+时追云: [speed=0.5]少说废话，解除他们的状态！
+魔尊: [speed=0.5]我很欣赏你，你们也将会获得此殊荣！
+凌若昭怒: [speed=0.5]我呸！
+魔尊: [speed=0.5]几位爱将，将死亡赐予他们，让他们拥抱魔之心
+set Global.getnode("悟空杨戬").visible = true
+set Global.toggleballon()
+[next=4]
+set Global.toggleballon()
+set Global.getnode("悟空杨戬").visible = false
+set Global.getnode("魔尊").visible = false
+set Global.getnode("妖皇").visible = false
+
+set get_tree().current_scene.bossFight("魔尊","res://Audio/BGM/仙剑全音乐.ogg", "月宫之战")
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 月宫之战13
+set Global.onTalk = true
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+set Global.getnode("player").z_index = 0
+
+set Global.getnode("孙悟空").modulate = "ffffff"
+set Global.getnode("二郎神").modulate = "ffffff"
+set Global.getnode("魔尊").visible = true
+set Global.getnode("妖皇").visible = true
+set Global.getnode("shadow").visible = false
+魔尊: [speed=0.5]你手上的那两把剑...原来如此，他被你给拿到了吗
+魔尊: [speed=0.5]看来，绝对留你不得了
+魔尊: [speed=0.5]我本不需要要这一招的...
+set Global.getnode("player").position = Vector2(1362,597)
+set Global.getnode("AnimationPlayer").play("法天相地")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("downStand")
+
+
+时追云惊: ！！！
+set Global.getnode("shadow").visible = false
+小二真身: 他怎么会变得这么大！
+姜韵: 不仅仅是个头...他的气息也涨幅了无数倍
+玉帝: 猴头，二郎，你们清醒了吧
+孙悟空: 居然差点栽了跟头
+二郎神: 嗯，我清醒了
+玉帝: 你们的状态都不好，趁着魔尊现在还在适应身体，速速将你们的那招醍醐灌顶给他！
+孙悟空: 将我和小圣的力量都输给他？这样他会撑爆的
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+时追云: 孙大圣，不管你们说的是什么，做吧！现在什么都不做只会死！
+二郎神: 好，有胆量！
+set Global.getnode("player/effect").visible = true
+set Global.getnode("player/effect").play("醍醐灌顶")
+set Global.getnode("AudioStreamPlayer").stream = load("res://Audio/SE/回复-仙术.ogg")
+set Global.getnode("AudioStreamPlayer").play()
+
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+时追云怒: 啊啊啊啊啊啊！！
+姜韵哀: 夫君！ 
+孙悟空: 喂，你还能受的住吗！
+时追云怒: 再来！！
+孙悟空: 好！
+set Global.getnode("player/effect").play("醍醐灌顶")
+set Global.getnode("AudioStreamPlayer").stream = load("res://Audio/SE/回复-仙术.ogg")
+set Global.getnode("AudioStreamPlayer").play()
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+时追云怒: 啊啊啊！！！！！！
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+set Global.getnode("player/ColorRect").visible = true
+二郎神: 这是？！
+玉帝: 他身上的天运。。。
+set Global.getnode("shadow").visible = false
+set Global.getnode("CanvasLayer2/blackSide").visible = false
+set get_tree().current_scene.add_shader()
+
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+set Global.playsound("res://Audio/SE/131-Earth03.ogg")
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+set Global.getnode("player").z_index = 2
+set Global.getnode("魔尊").play("右下")
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+set Global.changebgm("res://Audio/BGM/法天相地.ogg")
+set Global.getnode("AnimationPlayer").play("法天相地2")
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+set Global.toggleballon()
+[next=5]
+set Global.toggleballon()
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set get_tree().current_scene.remove_shader()
+时追云: [speed=0.3]好奇怪的感觉...天地彷佛与我融为一体
+魔尊: [speed=0.3]你一个人类，何德何能与我平视！你怎会用得如此神功！
+时追云: [speed=0.3]我已经听够了人类如何如何了，人虽肉体生来孱弱，但意志却不输与任何生物！
+时追云: [speed=0.3]如果最后只有一方能够活下来，那答案将永远是人！
+时追云: [speed=0.3]你们都自视甚高，觉得高人一等，视人命如草芥，不仅多番追杀我妻子，将她家乡毁灭，还将人间多地屠戮殆尽！
+时追云: [speed=0.3]而现在，我要让你尝尝被凡人灭杀殆尽的滋味！
+魔尊: [speed=0.3]痴心妄想！
+set Global.getnode("AnimationPlayer").play("突刺")
+set Global.getnode("player/AnimatedSprite2D").play("时追云改拔剑")
+set Global.getnode("魔尊").play("挨打右下")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/男-剑.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set Global.toggleballon()
+[next=1.5]
+set Global.toggleballon()
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+set Global.getnode("魔尊").play("右下")
+魔尊: [speed=0.3]你的实力...怎会突飞猛进
+魔尊: [speed=0.3]这天运难道真的就如此无敌吗！
+魔尊: [speed=0.3]唔哈！！！
+
+set Global.getnode("魔尊").play("攻击右下")
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/猛男-唔哈。气势.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set Global.getnode("player/AnimatedSprite2D").play("时追云改defend")
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+set Global.getnode("魔尊").play("右下")
+时追云: [speed=0.3]多行不义必自毙，我不知道那狗屁天道之前是如何想的，但看来，现在他想让你死
+魔尊: [speed=0.3]如果他真的想让我死，为什么要给我这个机会！为什么要让我诞生！
+时追云: [speed=0.3]带着你的疑惑去死吧！
+set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/猛男-唔哈。气势.ogg")
+set get_tree().current_scene.get_node("subSound").play()
+set Global.getnode("player/AnimatedSprite2D").play("时追云改法术")
+set Global.toggleballon()
+[next=1]
+set Global.toggleballon()
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+set Global.getnode("斩龙决").visible = true
+set Global.getnode("斩龙决").play()
+set Global.getnode("魔尊").play("挨打右下")
+set Global.playsound("res://Audio/SE/096-Attack08.ogg")
+set Global.toggleballon()
+[next=1.5]
+set Global.toggleballon()
+魔尊: [speed=0.3]唔...
+魔尊: [speed=0.3]待我夺得了三界，我可以分你一半！
+时追云: [speed=0.3]你对妖皇鬼帝也是这么说的吗
+魔尊: [speed=0.3]...
+时追云: [speed=0.3]收起你的心思吧，今天要么你死，要么我死
+魔尊: [speed=0.3]蠢货！！！何必与我拼命！！！
+set Global.playsound("res://Audio/SE/119-Fire03.ogg")
+set Global.getnode("魔尊").play("魔法右下")
+set Global.getnode("地狱火").visible = true
+set Global.getnode("地狱火").play()
+set Global.getnode("player/AnimatedSprite2D").play("时追云改defend")
+set Global.toggleballon()
+[next=3.7]
+set Global.getnode("地狱火").visible = false
+set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
+set Global.toggleballon()
+set Global.getnode("魔尊").play("右下")
+魔尊: [speed=0.3]你看看我们脚下的那群人，我们现在甚至都听不见他们的声音，他们只是能被我们一脚踩死的蝼蚁
+魔尊: [speed=0.3]更别说这世间数以万计的生灵了！他们的性命与你何干！他们值得你拼上性命和我死斗吗！
+时追云: [speed=0.3]你只是世界产生的污秽罢了，凭你也配评判生灵吗？
+时追云: [speed=0.3]我已不愿与你多费口舌，这是我所剩下的全部灵力，受死吧！
+时追云: [speed=0.3]盼这世间无妖孽，慢慢黑夜永不侵，我愿为这世开太平，永阳！
+
+set Global.getnode("player/AnimatedSprite2D").play("时追云改法术")
+set Global.getnode("永阳").visible = true
+set Global.getnode("永阳").play()
+set Global.getnode("oneTimeSound").volume_db = 3
+set Global.playsound("res://Audio/SE/HEAL13.ogg")
+set Global.toggleballon()
+[next=2]
+set Global.getnode("AnimationPlayer").play("getWhite")
+set Global.getnode("ColorRect2").visible = true
+[next=2]
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+set Global.getnode("player/ColorRect").visible = false
+set Global.getnode("妖皇").visible = false
+set Global.getnode("姜韵").visible = true
+set Global.getnode("player/Camera2D").position = Vector2(0,0)
+set Global.getnode("player/Camera2D").zoom = Vector2(1,1)
+set Global.getnode("player").scale = Vector2(1,1)
+set Global.getnode("player").position = Vector2(1444,609)
+set Global.getnode("魔尊").scale = Vector2(1.6,1.6)
+set Global.getnode("魔尊").position = Vector2(1226,415)
+[next=3]
+set Global.getnode("AnimationPlayer").play("getBlack")
+[next=2]
+set Global.toggleballon()
+
+魔尊: 你们不可能赢我的，不可能！
+时追云: 娘子，由你来亲手杀了他吧！
+姜韵: 嗯!
+魔尊: 就凭你！！？
+姜韵怒: 死到临头了还嘴硬，还我全村279口人命来！
+set Global.changebgm("res://Audio/BGM/处决魔尊.ogg")
+set Global.toggleballon()
+set Global.getnode("魔尊").play("挨打右下")
+set Global.getnode("姜韵").play("施法")
+set Global.getnode("树根").visible = true
+set Global.getnode("树根").play()
+[next=1.5]
+set Global.getnode("树根2").visible = true
+set Global.getnode("树根2").play()
+[next=1.5]
+set Global.getnode("树根3").visible = true
+set Global.getnode("树根3").play()
+[next=1.5]
+
+set Global.getnode("树根4").visible = true
+set Global.getnode("树根4").play()
+[next=1.5]
+set Global.getnode("树根5").visible = true
+set Global.getnode("树根5").play()
+
+[next=4.5]
+set Global.toggleballon()
+魔尊: 我不甘心！！！！
+
+
+set Engine.time_scale = 0.4
+set Global.toggleballon()
+set Global.getnode("魔尊").play("die")
+set Global.getnode("树根").visible = false
+set Global.getnode("树根2").visible = false
+set Global.getnode("树根3").visible = false
+set Global.getnode("树根4").visible = false
+set Global.getnode("树根5").visible = false
+[next=2]
+set Global.getnode("AnimationPlayer").play("getWhite")
+set Global.getnode("ColorRect2").visible = true
+[next=6]
+set Global.changeScene("凌霄宝殿",null)
+set Global.onTalk = false
+=> END
+
+
+~ 李靖
+set Global.onTalk = true
+李靖: [speed=0.5]嗯？你说我手上的塔很像长安城的锁妖塔？哈哈哈哈哈，那其实就是我手上的这座宝塔
+时追云惊: [speed=0.5]什么？
+李靖: [speed=0.5]四天前，在我们关闭天庭大门之前，玉帝命我将我手中的宝塔灵韵丢向凡间人类最密集的地方，以此保护他们
+李靖: [speed=0.5]而很多其他的神仙应该也是类似的情况，不过这也导致了我们的实力整体下滑
+时追云: [speed=0.5]原来他一直有考虑人间吗...
+时追云: [speed=0.5]李仙人，请问你宝塔中的塔灵，他还好吗？
+李靖: [speed=0.5]他呀，最近貌似变强了不少，生龙活虎着呢
+小二: [speed=0.5]那就好...
+凌若昭喜: [speed=0.5]我就知道金甲大哥会没事！ 
+
+set Global.onTalk = false
+=> END
+
+~ 哪吒
+set Global.onTalk = true
+哪吒: 原来他之前的塔一直是没有神韵状态的吗...啧，可惜了
+时追云: ？
+哪吒: 哦，没什么，玉帝在找你们呢，快去参见他吧
+set Global.onTalk = false
+=> END
+
+
+~ 玉帝殿前1
+set Global.onTalk = true
+玉帝: [speed=0.5]战况如何
+东海龙王: [speed=0.5]六成的天兵天将已经殒命，而杨戬他背叛了天庭！
+玉帝: [speed=0.5]那些妖怪都送下去了吧
+东海龙王: [speed=0.5]是
+玉帝: [speed=0.5]可惜，我们也暂时没办法消灭他们了
+玉帝: [speed=0.5]嗯，你们来了啊，身体恢复的怎么样了
+姜韵喜: [speed=0.5]多谢玉帝赐予的仙丹妙药，我们已经好多了
+玉帝: [speed=0.5]嗯，这就好，你们可是我们的大功臣啊
+时追云: [speed=0.5]我们也只是出了我们的一份力罢了
+玉帝: [speed=0.5]若天下都是你们这种人，我们三界就安全了
+玉帝: [speed=0.5]朕封你们为护庭大将军，你们可愿意啊？
+时追云: [speed=0.5]这...
+小二: [speed=0.5]...
+玉帝: [speed=0.5]你们可是不愿啊？
+小二: [speed=0.5]禀玉帝，我想回到凡间，去点化那些妖怪，让他们成为善仙！
+凌若昭喜: [speed=0.5]小二，我和你一起
+玉帝: [speed=0.5]嗯，这也算积德行善呐，与三界也有大益
+玉帝: [speed=0.5]那时追云你呢？要回去砍妖怪的头吗？
+if Global.quests.get("玉帝秘境").complete and Global.violencePoint >= 80 and Global.checkZhenMo():
+	时追云惊: [speed=0.5]！！！！！！！！！
+	玉帝: [speed=0.5]嗯，怎么了吗？
+	时追云: [speed=0.5]玉帝...您到底是谁
+	玉帝: [speed=0.5]我？朕一直是朕啊，我还能是谁啊
+	时追云: [speed=0.5]...
+	时追云: [speed=0.5]你，也有可能是东海湾的渔夫
+	set Global.dial = "道归虚无"
+	set Global.current_chapter_id = 12
+	set Global.changeScene("chapterPreview",null)
+	set Global.changevis("凌霄宝殿","姜韵")
+	set Global.changevis("凌霄宝殿","小二")
+	set Global.changevis("凌霄宝殿","凌若昭")
+	
+else:
+	set Global.changebgm("res://Audio/BGM/仙劍奇俠傳插曲輯-慶功版電視原聲帶-06仙劍奇緣 [TubeRipper.cc].ogg")
+	时追云: [speed=0.5]我不适合在天庭当官，我希望能回到人间，斩尽不平之事！
+	玉帝: [speed=0.5]你在天庭一样能斩妖除魔啊
+	时追云: [speed=0.5]天上一天，地上一年。如果我在天上，将会错过许多我本能做的事。
+	时追云: [speed=0.5]虽妖盟元气大伤，魔军也尽数灭绝，但仍然有许多危险
+	时追云: [speed=0.5]山间野怪宵小也都在无时不刻的危害人间
+	时追云: [speed=0.5]虽然死了被操控但尸体却莫名消失的妖皇也一直让我担心
+	时追云: [speed=0.5]还有蚩尤和魔尊的事情，我想他们身上还有许多秘密
+	时追云: [speed=0.5]我不想百姓再受到伤害
+	时追云: [speed=0.5]我属于凡间，我想成为人间的守护神
+	时追云: [speed=0.5]这就是我的夙愿和使命，也是梦澹的意义
+	姜韵喜: [speed=0.5]夫君，我支持你
+	小二: [speed=0.5]老大，我们一起努力！
+	时追云喜: [speed=0.5]嗯！
+	玉帝: [speed=0.5]唉，罢了罢了，既然你们都不愿意，那就算了
+	玉帝: [speed=0.5]不过你们在天庭游玩几天再走吧，不然真不知道该如何感谢你们
+	时追云: [speed=0.5]好！
+	set Global.getnode("AnimationPlayer").play("getDark")
+	set Global.toggleballon()
+	[next=3]
+	set Global.toggleballon()
+	传梦: [speed=0.5]恭喜你达成了假结局"蒙在鼓里"
+	传梦: [speed=0.5]还有很多奇怪的事情吧，还有很多遗憾没弥补吧，还有很多人没有再出现吧
+	传梦: [speed=0.5]在你这一路的旅途中，真的全部事都做完了吗？
+	传梦: [speed=0.5]不管怎么样，感谢你的游玩，起码魔尊是被你消灭了
+	传梦: [speed=0.5]但如果你想的话...我也可以送你回到开始的地方
+	[next=1]
+	- 以更强的样子重新开始传梦之路	
+		set Global.resetPlayer()
+		set Global.resetGlobal()
+		set Global.changeScene("新手村",null)
+	- 算了，这已经足够了
+		set get_tree().quit()
+
 
 set Global.onTalk = false
 => END

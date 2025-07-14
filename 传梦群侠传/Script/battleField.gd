@@ -62,7 +62,9 @@ func _ready():
 	if sceneName == "东海湾" or  sceneName == "小树林":
 		$battleFieldPicture.texture = load("res://Battlebacks/东海湾.jpg")
 	elif sceneName == "黑暗空间":
-		$battleFieldPicture.texture = load("res://panoramas2/蜈蚣精.jpg")	
+		$battleFieldPicture.texture = load("res://panoramas2/蜈蚣精.jpg")
+	elif sceneName == "小西天":
+		$battleFieldPicture.texture = load("res://Battlebacks/黄沙.jpg")
 	else:
 		$battleFieldPicture.texture = load ("res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png")
 		#$battleFieldPicture.texture = load ("res://Battlebacks/战斗覆盖.png")
@@ -487,7 +489,7 @@ func _process(delta):
 			get_parent().get_parent().get_node("CanvasLayer").visible = true
 			get_parent().get_parent().get_node("battleBgm").stop()
 			if !Global.onHurry:
-				get_parent().get_parent().get_node("AudioStreamPlayer2D").play()				
+				get_parent().get_parent().get_node("AudioStreamPlayer2D").stream_paused = false				
 		else:		
 			deadTrigger = true
 
@@ -576,10 +578,18 @@ func _process(delta):
 		Global.currAttacker = ""
 		
 		
+#		if dialogue and !dialogued:
+#			dialogued = true
+#			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))
 		if dialogue and !dialogued:
 			dialogued = true
-			DialogueManager.show_chat(load("res://Dialogue/"+str(Global.current_chapter_id)+".dialogue"),get_npc_dialogue(dialogue))
-
+			var npc = Global.npcs[dialogue]
+			var dialogue_index = npc["current_dialogue_index"]
+			var dialogue_entry = npc["dialogues"][dialogue_index]
+			
+			var chapterNum = dialogue_entry.chapter
+		
+			DialogueManager.show_chat(load("res://Dialogue/"+str(chapterNum)+".dialogue"),get_npc_dialogue(dialogue))
 	
 		get_parent().get_parent().get_node("shadow").visible = true
 		get_parent().get_parent().get_node("CanvasLayer").visible = true
@@ -595,6 +605,9 @@ func _process(delta):
 		
 		
 		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
+		
+		FightScenePlayers.golds += totalGold * Global.enKey
+		
 		if !rewardAdded:
 			rewardAdded = true	
 			for player_name in FightScenePlayers.fightScenePlayerData:
@@ -603,10 +616,10 @@ func _process(delta):
 					if player['level'] >= Global.maxLevel:
 						return
 					player["exp"] += totalExp * Global.enKey
-			FightScenePlayers.golds += totalGold * Global.enKey
+
 		get_parent().get_parent().get_node("battleBgm").stop()
 		if !Global.onHurry:
-			get_parent().get_parent().get_node("AudioStreamPlayer2D").play()
+			get_parent().get_parent().get_node("AudioStreamPlayer2D").stream_paused = false
 		for i in Global.onTeamPet:
 			for player in players:
 				if player.name == i:
@@ -793,6 +806,8 @@ func _process(delta):
 			if Input.is_action_just_released("ui_accept"):
 				if Global.playerMagicList[Global.magicSelectIndex].name == "高等炼体术":
 					return
+				if Global.playerMagicList[Global.magicSelectIndex].name == "真身现世" and currPlayer.真身round != 0:	
+					return	
 				if Global.playerMagicList[Global.magicSelectIndex].cost > currPlayer.currMp:
 					$systemSound.stream = load("res://Audio/SE/humandie2 (5).ogg")
 					$systemSound.play()
@@ -940,11 +955,12 @@ func instantiateMonster():
 			# Back row positions with a slight slant
 			posX = (monsterIdx - 3) * -50 + 25
 			posY = (monsterIdx - 3) * 倾斜度 - 200
+	
 
 		if selectedMonsters.size() == 1: 
 			posX = $bossPos.position.x
 			posY = $bossPos.position.y		
-
+	
 			if selectedMonsters[0].name == "鬼帝0":
 				posX = -120
 				posY = -40
@@ -1018,7 +1034,6 @@ func instantiateBoss():
 			# Back row positions with a slight slant
 			posX = (monsterIdx - 3) * -50 + 25
 			posY = (monsterIdx - 3) * 倾斜度 - 200
-
 		if selectedMonsters.size() == 1: 
 			posX = $bossPos.position.x
 			posY = $bossPos.position.y		
@@ -1042,6 +1057,21 @@ func instantiateBoss():
 		enemySceneInstance.position.x = posX
 		enemySceneInstance.position.y = posY
 		enemySceneInstance.monsterPosition = enemySceneInstance.position
+		
+		if enemySceneInstance.monsterName == "妖皇":
+			enemySceneInstance.monsterPosition = Vector2(-200,-130)
+			enemySceneInstance.position.x = -200
+			enemySceneInstance.position.y = -130
+		if enemySceneInstance.monsterName == "魔尊":	
+			enemySceneInstance.monsterPosition = Vector2(-90,-230)	
+			enemySceneInstance.position.x = -90
+			enemySceneInstance.position.y = -230
+		if enemySceneInstance.monsterName == "天道":	
+			enemySceneInstance.monsterPosition = Vector2(-200,-160)	
+			enemySceneInstance.position.x = -200
+			enemySceneInstance.position.y = -160			
+			
+			
 		# Add the character instance to the scene hierarchy
 		$battleFieldPicture.add_child(enemySceneInstance)
 
@@ -1198,17 +1228,19 @@ func _on_bgm_timer_timeout():
 func _on_dead_timer_timeout():
 	get_tree().change_scene_to_file("res://Scene/failScene.tscn")
 func get_npc_dialogue(npc_id):
+	
 	if Global.npcs.has(npc_id):
 		var npc = Global.npcs[npc_id]
 		var dialogue_index = npc["current_dialogue_index"]
 		
 		if npc["dialogues"].size() > dialogue_index:
 			var dialogue_entry = npc["dialogues"][dialogue_index]
-
-			if dialogue_entry["unlocked"] and dialogue_entry["chapter"] == Global.current_chapter_id:
+			
+			if dialogue_entry["unlocked"]:
+				
 				update_npc_dialogue_index(npc_id)
 				if npc["dialogues"][dialogue_index].bgm != null:
-				
+					
 					self.get_parent().get_parent().get_node("AudioStreamPlayer2D").stream = load(npc["dialogues"][dialogue_index].bgm)
 					self.get_parent().get_parent().get_node("AudioStreamPlayer2D").play()
 				return dialogue_entry["dialogue"]

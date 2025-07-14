@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://ddsvn32obk0hw" path="res://Characters/牛妖.png" id="36_6sres"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="36_lw5be"]
 [ext_resource type="Texture2D" uid="uid://ceyxt1py8m4n5" path="res://Characters/羊头怪.png" id="37_y2k40"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="38_4c7o2"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="38_4c7o2"]
 [ext_resource type="Script" path="res://Script/triggerPlace.gd" id="38_fgsiw"]
 [ext_resource type="Texture2D" uid="uid://bk5nf2es7xd5g" path="res://Characters/蓝羽妖女head.png" id="39_5u5xq"]
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="40_y4hpb"]
@@ -233,13 +233,12 @@ texture = ExtResource("2_gycxv")
 
 [node name="player" parent="." instance=ExtResource("3_y0rqp")]
 z_index = 2
-position = Vector2(2563, 1260)
+position = Vector2(2626, 1222)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -388,7 +387,6 @@ position = Vector2(2255, 1413)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="牛妖" parent="." instance=ExtResource("34_lmxbt")]
 position = Vector2(2164, 1305)
@@ -658,8 +656,10 @@ sprite_frames = SubResource("SpriteFrames_bwd35")
 autoplay = "default"
 
 [node name="守城兵" parent="." instance=ExtResource("34_lmxbt")]
+visible = false
 position = Vector2(841, 1180)
 sprite_frames = SubResource("SpriteFrames_88sxb")
+script = null
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

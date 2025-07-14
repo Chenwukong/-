@@ -25,7 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="23_necmc"]
 [ext_resource type="Texture2D" uid="uid://dw08a8dkfmnv2" path="res://Characters/守护兽.png" id="25_rnvpc"]
 [ext_resource type="Texture2D" uid="uid://bnwu53di8skji" path="res://Characters/吸血鬼.png" id="26_4wnym"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="26_lxg77"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="26_lxg77"]
 [ext_resource type="Texture2D" uid="uid://cwapfba4rhwx5" path="res://Characters/龙王.png" id="29_vuhdv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_owmq0"]
@@ -492,8 +492,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
@@ -505,6 +503,13 @@ zoom = Vector2(0.883333, 0.883333)
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("4_cnqd4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(2010, 1521, 1919, 1413, 1695, 1238, 1393, 1076, 1339, 1002, 1343, 903, 1193, 888, 1149, 926, 1055, 964, 1088, 1042, 1181, 1139, 1087, 1098, 1019, 1139, 1053, 1200, 892, 1044, 799, 1084, 574, 1225, 710, 1373, 797, 1455, 708, 1492, 1011, 1656, 1122, 1614, 1205, 1697, 1348, 1711, 1455, 1673, 1489, 1605, 1616, 1692, 1689, 1651, 1607, 1570, 1832, 1463, 1919, 1553)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1218, 1472, 1161, 1515, 968, 1511, 926, 1436, 888, 1413, 799, 1324, 804, 1244, 852, 1247, 953, 1292, 999, 1347)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)

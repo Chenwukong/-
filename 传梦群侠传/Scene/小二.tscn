@@ -561,11 +561,13 @@ animations = [{
 
 [node name="小二" parent="." instance=ExtResource("1_ci12r")]
 sprite_frames = SubResource("SpriteFrames_pihqq")
-animation = &"进阶真身左下"
-frame_progress = 0.20263
+animation = &"右上"
 
 [node name="CollisionPolygon2D" parent="小二/npcBody" index="1"]
 disabled = true
+
+[node name="Button" parent="小二" index="1"]
+metadata/_edit_use_anchors_ = true
 
 [node name="effect" parent="小二" index="2"]
 frame_progress = 0.78414
@@ -573,5 +575,8 @@ frame_progress = 0.78414
 [node name="斩击" parent="小二/effects" index="3"]
 frame = 0
 frame_progress = 0.0
+
+[node name="真身特效" parent="小二/effects" index="10"]
+position = Vector2(-27, -80)
 
 [editable path="小二"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://x4oxaam7fga0"]
+[gd_scene load_steps=35 format=3 uid="uid://x4oxaam7fga0"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_aybuv"]
 [ext_resource type="Texture2D" uid="uid://ce7g5b1qcs2e8" path="res://panoramas2/门派_女儿村_民居（女儿村29.21）.jpg" id="2_w33kn"]
@@ -17,10 +17,11 @@
 [ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="15_0anya"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="16_ycwlt"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="17_rbamf"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="18_gmkkm"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="19_p6aoi"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="18_gmkkm"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="19_p6aoi"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_2mpmq"]
 [ext_resource type="Texture2D" uid="uid://c2nh4w1qxh46p" path="res://Characters/小孩-女.png" id="21_olby7"]
+[ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="22_f43lh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_uy726"]
 vertices = PackedVector2Array(4592, 82, 4563, 1943, 1132, 1966, -771, 1956, -780, 1306, -793, 91)
@@ -442,6 +443,8 @@ text = "X"
 position = Vector2(1602, 942)
 sprite_frames = SubResource("SpriteFrames_1f5vy")
 npcName = "锦纹"
+
+[node name="messageLayer" parent="." instance=ExtResource("22_f43lh")]
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

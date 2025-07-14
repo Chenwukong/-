@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://shin3so33xlo" path="res://panoramas2/建邺_回春堂分店.jpg" id="2_72alq"]
 [ext_resource type="Texture2D" uid="uid://b3vsqsfyfheo2" path="res://panoramas2/建邺_回春堂分店_2.png" id="3_5h2ei"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_1v52l"]
+[ext_resource type="AudioStream" uid="uid://cbv0eqlgnc8ls" path="res://Audio/BGM/长安.mp3" id="6_o1cx6"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="14_35egm"]
-[ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="15_ck0n6"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_33g66"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="22_5x5e8"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="23_o5dgm"]
@@ -399,7 +399,6 @@ position = Vector2(355, 238)
 texture = ExtResource("3_5h2ei")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("4_1v52l")
@@ -423,7 +422,7 @@ zoom = Vector2(1.7, 1.7)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(713, 475)
-stream = ExtResource("15_ck0n6")
+stream = ExtResource("6_o1cx6")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -656,13 +655,21 @@ visible = false
 position = Vector2(389, 373)
 
 [node name="小二" parent="小二" index="0"]
+visible = false
 position = Vector2(-1, 1)
 animation = &"右上"
+frame_progress = 0.0
+
+[node name="npcShape" parent="小二/小二/npcBody" index="0"]
+one_way_collision = false
 
 [node name="金甲" parent="." instance=ExtResource("27_s1xcn")]
 visible = false
 position = Vector2(321, 354)
 sprite_frames = SubResource("SpriteFrames_ns4ts")
+
+[node name="CollisionPolygon2D" parent="金甲/npcBody" index="1"]
+disabled = true
 
 [node name="时追云" parent="." instance=ExtResource("27_s1xcn")]
 visible = false
@@ -701,4 +708,5 @@ zoom = Vector2(1.45, 1.35)
 [editable path="player"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="金甲"]
 [editable path="时追云"]

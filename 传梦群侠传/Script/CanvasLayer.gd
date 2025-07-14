@@ -83,7 +83,8 @@ func _process(delta):
 	$violencePoint/TextureProgressBar/Label.text = str(Global.violencePoint) + "%"
 	$violencePoint/TextureProgressBar.value = Global.violencePoint
 	if sceneName == "方寸山迷境":
-		$currState.visible = true	
+		$currState.visible = true
+		$questHint.visible = true	
 	if !Global.musicOn:
 		for i in all_nodes:
 			i.volume_db = -80
@@ -92,7 +93,8 @@ func _process(delta):
 			toSix = true
 			for i in all_nodes:
 				i.volume_db = 6
-	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and get_tree().current_scene.name != "北俱战场":
+	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and get_tree().current_scene.name != "北俱战场" and !Global.onTalk:
+		
 		$"宠物列表".visible = false
 		$"制作人列表".visible = false
 		$"其他梦单".visible = false
@@ -982,3 +984,10 @@ func _on_敏捷加点_button_down():
 func _on_reset_button_button_down():
 	FightScenePlayers.petFoodBall = FightScenePlayers.totalPetFoodBall
 	SmallPetData.reset_curr_pet_data()
+
+
+func _on_bgm_timer_timeout():
+	if Global.onFight:
+		return
+	Global.bgmTimer += 0.1
+	

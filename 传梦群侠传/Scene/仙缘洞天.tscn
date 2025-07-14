@@ -21,10 +21,10 @@
 [ext_resource type="PackedScene" uid="uid://ctqgsxn2fl82l" path="res://Scene/小男主.tscn" id="23_gc8co"]
 [ext_resource type="Texture2D" uid="uid://drhx7wtbu5lfa" path="res://Characters/无痕小-倒地2.png" id="25_434km"]
 [ext_resource type="Shader" path="res://shader/仙缘洞天.gdshader" id="25_n4pnp"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="26_3oyy6"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="26_3oyy6"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="31_yb64a"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="32_r4tjf"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="33_d58kj"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="33_d58kj"]
 [ext_resource type="Script" path="res://Script/AudioStreamPlayer2D.gd" id="42_cadya"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uyxbx"]
@@ -610,7 +610,10 @@ sprite_frames = SubResource("SpriteFrames_b26f2")
 animation = &"right"
 
 [node name="Camera2D" parent="player" index="3"]
-position = Vector2(-7.27275, -10.4894)
+limit_left = 9999
+limit_top = 9999
+limit_right = 9999
+limit_bottom = 9999
 
 [node name="PointLight2D" parent="player" index="11"]
 color = Color(1, 1, 1, 0)
@@ -780,6 +783,7 @@ one_shot = true
 [node name="CanvasLayer" parent="." instance=ExtResource("32_r4tjf")]
 
 [node name="petFoodBall" parent="." instance=ExtResource("33_d58kj")]
+position = Vector2(-646, 121)
 script = null
 
 [node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]

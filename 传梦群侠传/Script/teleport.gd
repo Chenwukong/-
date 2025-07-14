@@ -190,6 +190,11 @@ func checkSetPos(currScene, toScene):
 			return Vector2(116, 397)
 		if toScene == "方寸厢房":
 			return Vector2(444,324)
+		if toScene == "镇魔地1":
+			return Vector2(735,496)			
+	if currScene == "镇魔地1":
+		return Vector2(1548,175)	
+				
 	if currScene == "方寸厢房":
 		return Vector2(3352,1981)
 	if currScene == "灵台宫":
@@ -356,7 +361,8 @@ func checkSetPos(currScene, toScene):
 		if toScene == "普陀山":
 			return Vector2(1544, 1453)					
 		if toScene == "五庄观":
-			return Vector2(62, 581)				
+			return Vector2(62, 581)		
+					
 		if toScene == "西行之路":
 			return Vector2(7369, 2225)						
 	if currScene == "西行之路":
@@ -446,14 +452,24 @@ func checkSetPos(currScene, toScene):
 			return Vector2(904, 990)
 		if toScene == "大唐境外":
 			return Vector2(-528,-247)
+		if toScene == "镇魔地2":
+			return Vector2(818,548)
+	if currScene == "镇魔地2":
+		return Vector2(1442,1060)		
 			
-	if currScene == "普陀山":
+	if currScene == "潮音洞":
 		return Vector2(536,794)
 	if currScene == "五庄观":
 		if toScene == "大唐境外":
 			return Vector2(1487,475)
 		if toScene == "乾坤殿":
-			return Vector2(1487,475)
+			return Vector2(330,389)
+		if toScene == "镇魔地3":
+			return Vector2(818,548)			
+	if currScene == "镇魔地3":
+		return Vector2(909,578)		
+			
+			
 	if currScene == "乾坤殿":
 		if toScene == "五庄观":
 			return Vector2(483, 331)
@@ -462,6 +478,11 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1239,898)
 		if toScene == "朱紫国皇宫":
 			return Vector2(1093, 1118)
+		if toScene == "灵力储存场":
+			return Vector2(741,1041)			
+	if currScene == "灵力储存场":
+		if toScene == "朱紫国":
+			return Vector2(577,548)			
 	if currScene == "朱紫国旅馆":						
 		return Vector2(542,908)	
 	if currScene == "朱紫国皇宫":						
@@ -551,8 +572,17 @@ func checkSetPos(currScene, toScene):
 	if currScene == "天宫":						
 		if toScene == "战神殿":
 			return Vector2(1622,1406)				
-		if toScene == "炼狱终点":
-			return Vector2(1112,1398)	
-	if currScene == "战神殿":						
+		if toScene == "月宫":
+			return Vector2(2319,1926)	
+		if toScene == "凌霄宝殿":
+			return Vector2(1837,1309)				
+			
+	if currScene == "月宫":						
 		if toScene == "天宫":
-			return Vector2(3379,94)					
+			return Vector2(-531,-380)					
+		if toScene == "广寒宫":
+			return Vector2(988,1371)
+	if currScene == "广寒宫":						
+		if toScene == "月宫":
+			return Vector2(1927,903)			
+			

@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://byxu87bmihjat"]
+[gd_scene load_steps=71 format=3 uid="uid://byxu87bmihjat"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_acs6j"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_ejxb2"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="12_v7uhj"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="13_prsox"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="14_3bee2"]
-[ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="15_2rw50"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_76pvl"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_n4dyb"]
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="19_534th"]
@@ -27,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://idgbe6aiajm3" path="res://Characters/老头.png" id="25_jjuns"]
 [ext_resource type="Texture2D" uid="uid://di32djtvk6lup" path="res://Characters/☆喜庆侍女.png" id="26_xv036"]
 [ext_resource type="Texture2D" uid="uid://csw1lyqdo6qp" path="res://Characters/1少女1.png" id="27_npmdm"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="28_36u7s"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="28_36u7s"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="29_7eq68"]
 [ext_resource type="Texture2D" uid="uid://ctujgj17u8636" path="res://Characters/书生-老.png" id="30_axd8f"]
 [ext_resource type="Texture2D" uid="uid://cawje4lgnsjjg" path="res://Characters/土地.png" id="31_hlerm"]
@@ -364,8 +363,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"downStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.7, 0.7)
@@ -498,7 +495,6 @@ libraries = {
 }
 
 [node name="backgroundSoundEffect" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_2rw50")
 volume_db = -34.923
 max_distance = 99999.0
 
@@ -534,7 +530,7 @@ position = Vector2(2051, 286)
 toScene = "朱紫国皇宫"
 
 [node name="teleportCircle3" parent="." instance=ExtResource("12_v7uhj")]
-position = Vector2(164, 266)
+position = Vector2(236, -162)
 toScene = "神使宫殿"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -543,12 +539,11 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 script = ExtResource("29_7eq68")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(62, 1689, 131, 1691, 278, 1626, 427, 1481, 619, 1356, 723, 1399, 788, 1416, 829, 1472, 990, 1540, 1245, 1681, 1356, 1678, 1494, 1641, 1670, 1532, 1795, 1575, 2074, 1677, 2125, 1693, 2344, 1557, 2060, 1450, 1958, 1375, 1921, 1319, 1805, 1380, 1619, 1302, 1566, 1209, 1711, 1116, 1872, 1027, 2039, 1078, 2178, 1199, 2501, 1362, 2627, 1372, 2686, 1311, 2421, 1148, 2157, 956, 2403, 782, 2587, 880, 2687, 829, 2691, 709, 2604, 752, 2388, 683, 2152, 667, 2154, 702, 2034, 561, 2030, 506, 2169, 460, 2301, 431, 2453, 509, 2503, 567, 2587, 547, 2669, 486, 2690, 466, 2691, 326, 2565, 375, 2575, 416, 2459, 413, 2422, 353, 2340, 396, 2294, 371, 2237, 395, 2107, 338, 2083, 321, 2114, 248, 2016, 242, 1984, 294, 1939, 335, 1856, 325, 1769, 422, 1663, 413, 1600, 425, 1535, 286, 1368, 197, 1203, 271, 1117, 291, 1042, 259, 910, 185, 1099, 75, 983, 21, 530, 241, 327, 303, 242, 250, 145, 185, 87, 318, 159, 378, 55, 437, 119, 516, 207, 651, 227, 744, 39, 872, 129, 993, 230, 993, 272, 880, 405, 740, 636, 820, 705, 975, 650, 1036, 612, 1100, 611, 1075, 664, 993, 650, 892, 564, 834, 470, 788, 445, 909, 551, 917, 571, 995, 538, 1068, 448, 1094, 500, 1126, 421, 1169, 456, 1201, 410, 1233, 276, 1292, 309, 1384, 185, 1499, 62, 1435, 15, 1469, 7, 1687)
+polygon = PackedVector2Array(62, 1689, 131, 1691, 278, 1626, 427, 1481, 619, 1356, 723, 1399, 788, 1416, 829, 1472, 990, 1540, 1245, 1681, 1356, 1678, 1494, 1641, 1670, 1532, 1795, 1575, 2074, 1677, 2125, 1693, 2344, 1557, 2060, 1450, 1958, 1375, 1921, 1319, 1805, 1380, 1619, 1302, 1566, 1209, 1711, 1116, 1872, 1027, 2039, 1078, 2178, 1199, 2501, 1362, 2627, 1372, 2686, 1311, 2421, 1148, 2157, 956, 2403, 782, 2587, 880, 2687, 829, 2691, 709, 2604, 752, 2388, 683, 2152, 667, 2154, 702, 2034, 561, 2030, 506, 2169, 460, 2301, 431, 2453, 509, 2503, 567, 2587, 547, 2669, 486, 2690, 466, 2691, 326, 2565, 375, 2575, 416, 2459, 413, 2422, 353, 2340, 396, 2294, 371, 2237, 395, 2107, 338, 2083, 321, 2114, 248, 2016, 242, 1984, 294, 1939, 335, 1856, 325, 1769, 422, 1690, 386, 1608, 416, 1535, 286, 1368, 197, 1203, 271, 1117, 291, 1042, 259, 910, 185, 1099, 75, 983, 21, 530, 241, 327, 303, 242, 250, 228, 244, 87, 318, 159, 378, 55, 437, 119, 516, 207, 651, 227, 744, 39, 872, 129, 993, 230, 993, 272, 880, 405, 740, 636, 820, 705, 975, 650, 1036, 612, 1100, 611, 1075, 664, 993, 650, 892, 564, 834, 470, 788, 445, 909, 551, 917, 571, 995, 538, 1068, 448, 1094, 500, 1126, 421, 1169, 456, 1201, 410, 1233, 276, 1292, 309, 1384, 185, 1499, 62, 1435, 15, 1469, 7, 1687)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
@@ -556,7 +551,16 @@ polygon = PackedVector2Array(977, 883, 1294, 1072, 1629, 891, 1622, 832, 1315, 6
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(522, 549, 424, 491, 531, 386, 716, 270, 788, 247, 1131, 470, 1092, 612, 933, 696, 829, 705, 600, 594, 697, 533, 694, 427, 630, 426)
+polygon = PackedVector2Array(522, 549, 424, 491, 531, 386, 716, 270, 788, 247, 1131, 470, 1092, 612, 933, 696, 829, 705, 600, 594, 697, 533, 772, 472, 694, 427, 630, 426)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(840, 1298, 983, 1411, 1030, 1335, 1159, 1400, 1133, 1480, 1325, 1550, 1562, 1441, 1081, 1137)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1504, 479, 1607, 465, 1600, 506, 1509, 628, 1516, 575)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(1760, 760, 1866, 619, 1922, 611, 2038, 736, 1952, 751)
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
@@ -690,6 +694,10 @@ sprite_frames = SubResource("SpriteFrames_6ab2i")
 [node name="npc" parent="庆祝人群" instance=ExtResource("20_7rfxx")]
 position = Vector2(1323, 855)
 sprite_frames = SubResource("SpriteFrames_jlpw5")
+
+[node name="teleportCircle4" parent="." instance=ExtResource("12_v7uhj")]
+position = Vector2(708, 481)
+toScene = "灵力储存场"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

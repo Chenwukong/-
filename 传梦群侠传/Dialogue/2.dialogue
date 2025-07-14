@@ -285,7 +285,7 @@ set Global.onTalk = false
 ~ 结识金甲
 set Global.onTalk = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/长安.mp3")
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").play
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 set get_tree().current_scene.get_node("妖怪1").visible = false
 set get_tree().current_scene.get_node("妖怪2").visible = false
 set get_tree().current_scene.get_node("妖怪3").visible = false
@@ -315,7 +315,7 @@ set Global.onTalk = false
 
 ~ 金甲吃饭
 set Global.onTalk = true
-set Global.triggerPlace.get("金甲吃饭").disable = true
+
 set get_tree().current_scene.get_node("金甲").visible =true
 set get_tree().current_scene.get_node("小二/小二").visible =true
 金甲: [speed=0.4]找。。妖怪？疑惑
@@ -630,8 +630,8 @@ set Global.onTalk = false
 
 ~ 打赢鼠先锋
 set Global.npcVis.get("长安城").get("警戒士兵").visible = false
-
 set Global.onTalk = true
+set Global.getnode("鼠先锋").visible = false
 set Global.npcVis.get("大唐官府大厅").get("金甲").visible = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/幽默 - 04.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
@@ -1088,6 +1088,7 @@ set Global.questHint = "只有一条路走到黑了"
 set Global.onTeamPet.append("金甲")
 set Global.npcVis.get("大唐官府大厅").get("金甲").visible = false
 set Global.npcVis.get("长安北").get("金甲3").visible = false
+[next=0.2]
 set Global.onTalk = false
 => END
 
@@ -1210,6 +1211,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/SWD5 临敌.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云惊: !
 金甲: ！
 小二: 我去好大只鳄鱼！
@@ -1431,6 +1433,7 @@ set Global.onTalk = false
 ~ 塔5boss
 set Global.onTalk = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/2-阴谋.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 小二: [speed=0.4]又来一只守塔怪了，老大快上！
 时追云: 。。。
 蒙面人: [speed=0.4]且慢且慢
@@ -1487,6 +1490,7 @@ set Global.onTalk = false
 
 ~ 打赢塔5boss
 set Global.onTalk = true
+set Global.isDead["塔5boss"] = true
 蒙面人: 呵呵呵呵呵呵呵呵呵呵
 set Global.npcVis.get("锁妖塔5").get("蒙面人").visible = false
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/smile.ogg")
@@ -1642,7 +1646,7 @@ set Global.onTalk = false
 ~ 打赢塔7boss
 set Global.onTalk = true
 set Global.canLose = false
-
+set get_tree().current_scene.get_node("player/Sprite2D").visible = false
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("left")
 
@@ -1665,7 +1669,7 @@ if Global.lost:
 	[next = 0.1]
 	set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/猛男 死.ogg")
 	set get_tree().current_scene.get_node("oneTimeSound").play()
-	set get_tree().current_scene.get_node("鹰孽大王/AnimationPlayer").play("turnRed")
+	set get_tree().current_scene.get_node("鹰孽大王/AnimationPlayer").play("turnRed")[next=0.1]
 	鹰孽大王: [speed=0.4]呃
 	
 	
@@ -1691,7 +1695,7 @@ if Global.lost:
 	set get_tree().change_scene_to_file("res://Scene/"+"大唐官府大厅"+".tscn")
 	set Global.dial = "师爷"	
 else
-	if Global.isDead.get("塔7boss"):
+	if Global.isDead.get("塔5boss"):
 		set Global.damageReward1 += 0.1
 		set get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "击败全部首领，全队伤害提升一成！"
 		set get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true
@@ -2351,6 +2355,7 @@ set Global.onTalk = false
 => END
 
 ~ 传送方寸
+set Global.npcVis.get("长安北").get("凌若昭").visible = false
 set get_tree().current_scene.get_node("player").position = Vector2(1982, 1047)
 set get_tree().current_scene.get_node("player/Sprite2D").visible = false
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true

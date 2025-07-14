@@ -433,7 +433,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]....
 听闻瑞兽之血可增强人功力，你决定
 - 杀了他，获得功力加成
-	set Global.violencePoint -= 20
+	set Global.violencePoint -= 10
 	set Global.showViolence("negative",20)
 	set Global.damageReward1 += 0.1
 	set Global.showMsg("全队伤害永久提升一成！")
@@ -518,6 +518,7 @@ set Global.onTalk = false
 ~ 五庄观3
 set Global.onTalk = true
 set Global.getnode("player").visible = false
+set Global.getnode("清风").visible = true
 镇元大仙: [speed=0.5]嗯？观音大士托人来要人参果？
 镇元大仙: [speed=0.5]我知道了，你去让他们进来吧
 set Global.changeScene("五庄观",Vector2(489,338))
@@ -528,7 +529,7 @@ set Global.onTalk = false
 
 ~ 五庄观4
 set Global.onTalk = true
-set Global.getnode("清风").visible = false
+set Global.changevis("五庄观","清风")
 set Global.getnode("清风2").visible = true
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
@@ -544,6 +545,7 @@ set Global.onTalk = false
 
 ~ 五庄观5
 set Global.onTalk = true
+set Global.changevis("五庄观","清风")
 众人: [speed=0.5]拜见镇元大仙
 镇元大仙: [speed=0.5]嗯，诸位是为了人参果而来？
 姜韵: [speed=0.5]回大仙，我们是受观音大士所托来求一颗人参果
@@ -579,8 +581,11 @@ set Global.onTalk = true
 镇元大仙: [speed=0.5]回观音菩萨那去吧
 镇元大仙: [speed=0.5]如果有闲心，也可帮老道除一下人参果树上的虫子，没空也无妨
 时追云: [speed=0.5]好
+
 set Global.damageReward1 += 0.1
 set Global.showMsg("因兵器附着灵力，全队伤害永久提升一成！")
+
+
 set Global.addItem("人参果", "keyItem", "keyItem", 1)
 set Global.dial = null
 set Global.triggerPlace.get("再见观音").disable = false
@@ -852,6 +857,14 @@ set Global.onTalk = true
 set Global.onTalk = false
 => END
 
+~ 朱紫国药铺老板
+set Global.onTalk = true
+朱紫国药铺老板: 来点药吧
+set get_tree().current_scene.popShop()
+
+set Global.onTalk = false
+=> END
+
 
 ~ 阻拦
 set Global.onTalk = true
@@ -1012,6 +1025,91 @@ set Global.onTalk = true
 时追云: [speed=0.5]前方那个建筑很可疑，如果他要藏，应该会在那里
 set Global.onTalk = false
 => END
+
+~ 沙暴1
+set Global.onTalk = true
+set Global.getnode("player").position = Vector2(697,1423)
+时追云: [speed=0.5]这里的沙子不对劲！
+姜韵: [speed=0.5]快看那！
+set Global.changebgm("res://Audio/BGM/沙暴出场.ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(40.0)
+set Global.getnode("沙暴怪").visible = true
+set Global.getnode("AnimationPlayer").play("沙暴移动")
+set Global.toggleballon()
+[next=5]
+set Global.getnode("沙暴怪").visible = false
+set Global.getnode("AnimationPlayer").play("沙暴移动")
+[next=0.2]
+set Global.getnode("沙暴怪").visible = true
+[next=5.1]
+set Global.getnode("沙暴怪").visible = false
+set Global.getnode("沙暴怪/沙暴怪2").visible = false
+set Global.toggleballon()
+时追云惊: [speed=0.5]他要来了！[next=2]
+凌若昭怒: [speed=0.5]就在我们前面![next=2]
+set Global.toggleballon()
+set Global.playsound("res://Audio/SE/火3.ogg")
+set Global.getnode("飞沙走石").visible = true
+set Global.getnode("飞沙走石").play()
+[next=2.5]
+
+set Global.getnode("飞沙走石").visible = false
+set Global.getnode("沙暴怪").play("待机")
+set Global.getnode("沙暴怪").position = Vector2(688,1283)
+set Global.getnode("沙暴怪").visible = true
+
+set Global.playsound("res://Audio/SE/妖怪-哈~.ogg")
+[next=0.5]
+set get_tree().current_scene.bossFight("关重七伤势","res://Audio/BGM/打沙暴.ogg", "沙暴")
+set Global.onTalk = false
+=> END
+
+~ 沙暴2
+set Global.onTalk = true
+时追云: [next=0.5]他能一直沙化躲避我们攻击[next=2]
+姜韵: [next=0.5]他是依靠着风来漂动，如果可以控制这里的风向的话[next=2.5]
+小二: [next=0.5]可我们不会操控风啊！[next=1.5]
+金翅大鹏: [next=0.5]小二！我来助你！[next=2]
+set Global.playsound("res://Audio/SE/暴风.ogg")
+set Global.getnode("风暴").visible = true
+set Global.getnode("风暴").play()
+set Global.getnode("AnimationPlayer").play("大鹏移动")
+set Global.toggleballon()
+[next=2.5]
+set Global.toggleballon()
+小二: [speed=0.5]大鹏？？
+金翅大鹏: [speed=0.5]由于放心不下你们，所以前来看看
+小二: [speed=0.5]这怪怎么打都打不死
+金翅大鹏: [speed=0.5]没事，我专克他，看我的！
+set Global.getnode("沙暴怪/风").visible = true
+set Global.getnode("沙暴怪/风").play()
+set Global.playsound("res://Audio/SE/暴风.ogg")
+set Global.toggleballon()
+[next=3]
+
+set Global.getnode("沙暴怪/风").visible = false
+set Global.getnode("沙暴怪").play("dead")
+[next=2]
+set Global.getnode("沙暴怪").visible = false
+set Global.toggleballon()
+小二: [speed=0.5]我去，厉害了大鹏
+金翅大鹏: [speed=0.5]哼哼哼
+小二: [speed=0.5]你怎么会突然来帮我们啊
+金翅大鹏: [speed=0.5]送你们走后我思来想去，还是不能这么没有义气，所以壮着胆子来这里看看
+小二: [speed=0.5]你到底在害怕什么东西啊？
+金翅大鹏: [speed=0.5]说不清楚，但我生物的本能劝我不要靠近这里
+金翅大鹏: [speed=0.5]接下来，我真不能陪你了，我虽然也想做好事，但...
+小二: [speed=0.5]嗯我理解，你这些年已经做得够多了，不需要自责
+金翅大鹏: [speed=0.5]那祝你好运吧，再见
+小二: [speed=0.5]再见~
+set Global.getnode("大鹏").visible = false
+set Global.changebgm("res://Audio/BGM/聂薇 - 朱紫国.mp3")
+
+
+set Global.onTalk = false
+=> END
+
+
 
 ~ 追杀4
 set Global.onTalk = true

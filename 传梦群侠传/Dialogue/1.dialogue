@@ -86,7 +86,7 @@ set Global.onTalk = false
 
 ~ 鱼叟初次见面
 set Global.onTalk = true
-set FightScenePlayers.fightScenePlayerData["时追云"].item.weapon = ItemData.weapon.get("梦澹")
+
 
 鱼叟: [speed=0.3]今天这么早就回去了啊微笑
 时追云: [speed=0.3]是啊，您看看这些鱼能卖多少钱？大笑
@@ -466,7 +466,7 @@ set Global.onTalk = true
 
 ~ 时追云醒来
 set Global.onTalk = true
-set Global.changevis("东海湾","玉帝物品")
+
 时追云: 额，好痛，身体感觉不是自己的了
 时追云: 我这是躺了多久
 时追云惊: 糟了，已经这个点了，娘子肯定等我等着急了
@@ -643,7 +643,7 @@ set Global.onTalk = false
 
 ~ 管家请求
 set Global.onTalk = true
-set Global.onQuest = true
+set Global.questItemShow.get("佛手").visible = true
 管家: 时少侠，请问你这是要去海边吗？
 时追云: 是叶管家啊，有什么事吗？
 管家: 是这样的，我家大人最近过于操劳，累垮了身子，导致脾胃疼复发，本想去郎中那治，不曾想他也没药了，所以。。。
@@ -666,6 +666,7 @@ set Global.currNpc = null
 
 ~ 管家交付
 set Global.onTalk = true
+set Global.questItemShow.get("佛手").visible = false
 管家: 不愧是时少侠，这就集齐了
 管家: 这些是一些小小心意，不成敬意
 时追云: 叶管家，使不得，举手之劳而已。
@@ -729,6 +730,7 @@ set Global.onTalk = false
 ~ 三见女主
 set Global.onTalk = true
 set Global.npcVis.get("东海湾").get("鱼叟").visible = false
+set Global.changevis("东海湾","玉帝物品")
 时追云: 娘子我回来了
 姜韵喜: 夫君你回来啦，身体怎么样
 时追云喜: 啊？哦，挺好的啊

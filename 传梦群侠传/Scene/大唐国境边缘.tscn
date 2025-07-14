@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Script/map.gd" id="1_nqo5c"]
 [ext_resource type="Texture2D" uid="uid://b7f5hpif7mklw" path="res://panoramas2/大唐国境全景.jpg" id="2_bohud"]
 [ext_resource type="Shader" path="res://shader/炎热.gdshader" id="2_tnn6f"]
-[ext_resource type="Texture2D" uid="uid://3yx61g0pk175" path="res://Panoramas/大唐国境全景_2.png" id="3_7dees"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_tmjqg"]
+[ext_resource type="Texture2D" uid="uid://d4jxug3niapvc" path="res://hp.png" id="4_ujqpb"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_nfq4y"]
 [ext_resource type="Script" path="res://main character/凌若昭脚本/凌若昭player.gd" id="6_uu74l"]
 [ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="7_3j7c3"]
@@ -24,9 +24,9 @@
 [ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="20_2fhvu"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_sid0x"]
 [ext_resource type="Texture2D" uid="uid://wouitibtjke3" path="res://Characters/戒色.png" id="22_o57ke"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="23_uj1dj"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="23_uj1dj"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="24_70144"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="25_p3vr5"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="25_p3vr5"]
 [ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="27_vmjb2"]
 [ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="28_mrooj"]
 [ext_resource type="Texture2D" uid="uid://bvpd3ng8fggmm" path="res://SeparateAnimation/李逍遥/480-11.png" id="29_xp57v"]
@@ -656,11 +656,12 @@ scale = Vector2(0.89119, 0.883598)
 texture = ExtResource("2_bohud")
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 material = SubResource("ShaderMaterial_paxsi")
 position = Vector2(438.5, 301.625)
 scale = Vector2(0.50554, 0.500781)
-texture = ExtResource("3_7dees")
+texture = ExtResource("4_ujqpb")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 visible = false
@@ -718,7 +719,6 @@ texture = ExtResource("8_38ax3")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 sprite_frames = SubResource("SpriteFrames_f8nln")
 animation = &"rightStand"
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.6, 1.6)
@@ -904,7 +904,7 @@ position = Vector2(-2206, 2795)
 sprite_frames = SubResource("SpriteFrames_t0d0t")
 
 [node name="僧侣14" parent="." instance=ExtResource("21_sid0x")]
-position = Vector2(544, -671)
+position = Vector2(552, -619)
 sprite_frames = SubResource("SpriteFrames_t0d0t")
 
 [node name="凌若昭回忆" parent="." instance=ExtResource("23_uj1dj")]

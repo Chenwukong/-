@@ -251,7 +251,7 @@ set Global.onTalk = true
 						大生: [speed=0.5]呵呵呵呵呵呵呵呵
 						set Global.npcs.get("大生").current_dialogue_index = 0
 					- 成长
-						大生: [speed=0.5]成长吗...你们也成长了吗?
+						大生: [speed=0.5]成长吗...?
 						set Global.addItem("传字牌", "keyItem", "keyItem", 1)
 						set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/ME/smile2.wav")
 						set get_tree().current_scene.get_node("oneTimeSound").play()	
@@ -314,14 +314,15 @@ set Global.onTalk = true
 锦纹: [speed=0.5]你们能帮我找找我的武器吗，我把它弄丢了
 时追云: [speed=0.5]长什么样的
 锦纹: [speed=0.5]是一把斧头
-set Global.onQuest = true
+set Global.questItemShow.get("双头斧").visible = true
 set Global.onTalk = false
 => END 
 
 ~ 还锦纹武器
 set Global.onTalk = true
 
-if Global.questItem.get("双头斧").number >= 1:
+if Global.questItem.has("双头斧"):
+	set Global.questItemShow.get("双头斧").visible = false
 	锦纹: [speed=0.5]谢谢你们，这是给你们的酬劳
 	set Global.addItem("飞蝗石", "battleConsume", "battleItem", 10)
 	小二: [speed=0.5]你挥的动这武器吗。。。
@@ -601,7 +602,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set get_tree().current_scene.get_node("player").position = Vector2(1612,591)
 
-
+set Global.npcVis.get("傲来国").get("npcs").visible = true
 百姓: [speed=0.5]他出来了，他居然没有死
 百姓: [speed=0.5]他手上拿的是什么
 百姓: [speed=0.5]好像是那只妖怪的头！！！
@@ -707,7 +708,7 @@ set Global.onTeamPlayer.erase("小二")
 set Global.triggerPlace.get("兵分两路").disable = true
 时追云: [speed=0.5]糟糕，两边都有妖怪
 敖白: [speed=0.5]我去解决上边那个
-set Global.npcVis.get("花果山").get("敖白").visible = true
+set Global.npcVis.get("花果山").get("敖阳").visible = true
 小二: [speed=0.5]我来帮你
 时追云: [speed=0.5]好，我们解决右边的
 set get_tree().current_scene.get_node("AnimationPlayer").play("moveBoth")
@@ -726,7 +727,7 @@ set Global.npcVis.get("花果山").get("黑蝠3").visible = false
 set Global.npcVis.get("花果山").get("兔子精").visible = false
 set Global.onTeamPet.append("敖白")
 set Global.onTeamPlayer.append("小二")
-set Global.npcVis.get("花果山").get("敖白").visible = false
+set Global.npcVis.get("花果山").get("敖阳").visible = false
 时追云: [speed=0.5]你们那边也解决了吗
 小二: [speed=0.5]搞定啦
 敖白: [speed=0.5]嗯继续往前走吧
@@ -793,7 +794,7 @@ set Global.onTalk = false
 
 ~ 初见老猴子
 set Global.onTalk = true
-set Global.npcVis.get("水帘洞").get("敖白").visible = true
+set Global.npcVis.get("水帘洞").get("敖阳").visible = true
 set Global.npcVis.get("水帘洞").get("敖雨").visible = true
 set Global.npcVis.get("水帘洞").get("小二").visible = true
 set Global.npcVis.get("水帘洞").get("凌若昭").visible = true
@@ -946,7 +947,7 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 凌若昭: [speed=0.5]好像有很多人类的声音！
 时追云惊: [speed=0.5]快出去看看!
 set Global.npcVis.get("花果山").get("npcs").visible = true
-set Global.npcVis.get("水帘洞").get("敖白").visible = false
+set Global.npcVis.get("水帘洞").get("敖阳").visible = false
 set Global.npcVis.get("水帘洞").get("敖雨").visible = false
 set Global.npcVis.get("水帘洞").get("小二").visible = false
 set Global.npcVis.get("水帘洞").get("凌若昭").visible = false
@@ -1025,7 +1026,7 @@ set Global.onTalk = false
 ~ 花果山拦敌3
 set Global.onTalk = true
 set Global.onTeamPet.erase("敖白")
-set Global.npcVis.get("花果山").get("敖白2").visible = true
+set Global.npcVis.get("花果山").get("敖阳2").visible = true
 set Global.triggerPlace.get("花果山拦敌3").disable = true
 敖白: [speed=0.5]这头妖怪体型也不小，不能让他包夹我们，时少侠，敖雨你们先上去
 时追云: [speed=0.5]好！恩公你之后也赶紧过来
@@ -1410,7 +1411,7 @@ set get_tree().current_scene.get_node("AnimationPlayer").play("turnBlack")
 
 
 set Global.npcVis.get("水帘洞").get("小二").visible = true
-set Global.npcVis.get("水帘洞").get("敖白").visible = true
+set Global.npcVis.get("水帘洞").get("敖阳").visible = true
 set Global.npcVis.get("水帘洞").get("凌若昭").visible = true
 
 set get_tree().change_scene_to_file("res://Scene/"+"水帘洞"+".tscn")

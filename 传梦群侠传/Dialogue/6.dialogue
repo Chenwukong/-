@@ -14,7 +14,9 @@ Nathan: For more information see the online documentation.
 
 ~ 凌若昭回忆1
 set Global.onTalk = true
-set Global.learnMagic("凌若昭", "神风燎火")
+set FightScenePlayers.learnMagic("凌若昭", "万符归元")
+set FightScenePlayers.learnMagic("凌若昭", "风雨雷电")
+
 set get_tree().current_scene.get_node("player").visible = false
 set Global.npcVis.get("两界山").get("小二").visible = true
 set Global.npcVis.get("两界山").get("凌若昭").visible = true
@@ -114,6 +116,7 @@ set Global.onTalk = false
 
 ~ 凌若昭回忆5
 set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("moveMonsters")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=5]
@@ -129,6 +132,7 @@ set Global.onTalk = false
 
 ~ 凌若昭回忆6
 set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
 set get_tree().current_scene.get_node("小兵").visible =true
 set Global.npcVis.get("大唐官府大厅").get("小二").visible = true
 set Global.npcVis.get("大唐官府大厅").get("凌若昭").visible = true
@@ -160,6 +164,7 @@ set Global.onTalk = false
 ~ 凌若昭回忆7
 set Global.onTalk = true
 set Global.questHint = "找金山寺"
+set get_tree().current_scene.get_node("player").visible = false
 set Global.npcVis.get("大唐国境边缘").get("小二").visible = true
 set Global.npcVis.get("大唐国境边缘").get("凌若昭").visible = true
 小二: [speed=0.5]这里就是国境的边缘了吧，热到焦灼啊
@@ -174,6 +179,7 @@ set Global.onTalk = false
 
 ~ 凌若昭回忆8
 set Global.onTalk = true
+set get_tree().current_scene.get_node("player").visible = false
 小二: [speed=0.5]这里就是金山寺了！
 凌若昭: [speed=0.5]好气派的寺庙啊
 小二: [speed=0.5]找是找到了，但我们要怎么才能把他们叫去帮忙呢？？
@@ -289,7 +295,7 @@ set Global.changeScene("大唐国境边缘", Vector2(579, 630))
 小二: [speed=0.5]额，好说好说，我叫小二，她叫若昭
 梧桐: [speed=0.5]小二兄弟和若昭小妹可是为了长安被围一事在奔波啊？
 小二: [speed=0.5]你怎么知道？？算了，神仙就是能无所不知吧。
-梧桐: [speed=0.5]如果不介意的话，我愿帮助你们
+梧桐: [speed=0.5]如果不介意的话，我愿帮助你们,小仙修行了颇有些年月，对自身的实力还是有自信的
 小二: [speed=0.5]...
 小二: [speed=0.5]为什么要帮我们？这么多年也没见什么神仙出来主持公道
 梧桐: [speed=0.5]兴许他们也是自身难保呢，而我，只是厌恶见到这些恶毒之物
@@ -1258,20 +1264,20 @@ set Global.getnode("叶魅儿/effects/斩击").play()
 
 set Global.changebgm("res://Audio/BGM/因为爱上你.ogg")
 [next=1]
-虎范: [speed=0.5]女儿！！！！
-青面兽: [speed=0.5]这，这可和我没关系，是她自己撞向我的刀的
-小二: [speed=0.5]魅儿！！！！
-叶魅儿: [speed=0.5]爹，不要伤害。。。他
-小二: [speed=0.5]你。。。你为什么要这样
-叶魅儿: [speed=0.5]为了爱的人，有什么。。。不对吗？咳咳
-虎范: [speed=0.5]我的傻女儿。。。不要离开我
-叶魅儿: [speed=0.5]对不起爹。。。我不希望你因为我而做不愿意做的事情
-叶魅儿: [speed=0.5]小二，我好希望和你永远。。。在一起
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(25.0)
+虎范: 女儿！！！！[next=1]
+青面兽: 这，这可和我没关系，是她自己撞向我的刀的[next=3]
+小二: 魅儿！！！！[next=1]
+叶魅儿: 爹，不要伤害。。。他[next=2]
+小二: 你。。。你为什么要这样[next=2]
+叶魅儿: 为了爱的人，有什么。。。不对吗？咳咳[next=3.5]
+叶魅儿: 爹，娘当年，也是这么做的吗？[next=2.5]
+虎范: 我的傻女儿。。。不要离开我[next=2]
+叶魅儿: 对不起爹。。。我不希望你因为我而做不愿意做的事情[next=3]
+叶魅儿: 小二，我好希望和你永远。。。在一起[next=3]
 set Global.getnode("AnimationPlayer").play("魅儿回忆")
-set Global.getnode("回忆").visible = true
+#set Global.getnode("回忆").visible = true
 set Global.toggleballon()
-[next=68]
+#[next=68]
 set Global.toggleballon()
 set Global.changebgm("res://Audio/BGM/十二国记-不尽的哀伤.mp3")
 set Global.playsound("res://Audio/SE/女-脱力.ogg")
@@ -1295,11 +1301,6 @@ set Global.getnode("player").visible = true
 小二: [speed=0.5]哈哈哈哈哈哈哈哈哈哈
 凌若昭哀: [speed=0.5]小二...
 青面兽: [speed=0.5]已经怕疯了吗
-小二: [speed=0.5]我明白了，明白我为什么会有这种力量
-小二: [speed=0.5]上天赐给我这种力量就意味着有我必须去做的事，我若放任你等活着，就是对不起所有被你们残害之人！
-小二: [speed=0.5]人归人，妖归妖，而我是我，任何人都不能决定我的命运！
-
-set Global.onHurry = true
 
 set Global.getnode("小二/小二/effects/真身特效").visible = true
 set Global.getnode("小二/小二/effects/真身特效").play()
@@ -1307,17 +1308,33 @@ set Global.getnode("小二/小二").play("真身右下")
 set Global.playsound("res://Audio/SE/猛兽2.ogg")
 set Global.toggleballon()
 [next=1]
-set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
-[next=2]
+set Global.getnode("ColorRect").visible = true
+set Global.changebgm("res://Audio/BGM/兵凶.ogg")
+[next=4]
 set Global.toggleballon()
-青面兽: [speed=0.5]这妖力。。。原来你就是那个天命人！
-
-小二真身: 老大若昭，随我杀了他！
+时追云惊: 小二
+青面兽: 这妖力。。。原来你就是那个天命人！
+小二真身: 玉箍棒!来！
+set Global.playsound("res://Audio/SE/134-Wind03.ogg")
+set Global.getnode("金箍棒").visible = true
+set Global.getnode("AnimationPlayer").play("金箍棒来")
+set Global.toggleballon()
+[next=2.6]
+set Global.toggleballon()
+set Global.getnode("金箍棒").visible = false
+小二真身: 老大若昭，帮我杀了他！
+set FightScenePlayers.fightScenePlayerData["小二"].item.weapon = ItemData.weapon.get("玉箍棒")
 时追云怒: 好！
 凌若昭怒: 嗯！
+小二真身: [speed=0.5]我明白了，明白我为什么会有这种力量
+小二真身: [speed=0.5]上天既然赐给我这种力量就意味着有我必须去做的事
+小二真身: [speed=0.5]我若放任你等活着，就是对不起所有被你们残害之人！
+小二真身: [speed=0.5]道归道，魔归魔，而我是我，任何人都不能决定我的命运！
+set Global.onHurry = true
+set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
 set Global.onTeamPlayer.append("小二真身")
-set get_tree().current_scene.bossFight("青面兽","res://Audio/BGM/Hollow Knight OST - False Knight.mp3", "再见小二")
-
+set get_tree().current_scene.bossFight("青面兽","res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg", "再见小二")
+set Global.getnode("ColorRect").visible = false
 
 
 
@@ -1327,6 +1344,7 @@ set Global.onTalk = false
 ~ 再见小二7
 set Global.onTalk = true
 set Global.onHurry = false
+set Global.changebgm("res://Audio/BGM/【时光流逝】.ogg")
 set Global.playsound("res://Audio/SE/049-Explosion02.ogg")
 set Global.getnode("青面兽/effects/爆炸").visible = true
 set Global.getnode("青面兽/effects/爆炸").play()

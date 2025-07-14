@@ -22,7 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_6eplg"]
 [ext_resource type="Texture2D" uid="uid://b6rv33sy85g7j" path="res://Pictures/四圣change.jpg" id="21_34tbb"]
 [ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="22_gqh5s"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="23_lrdsu"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="23_lrdsu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_owmq0"]
 
@@ -211,8 +211,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
@@ -535,7 +533,7 @@ position = Vector2(530, 1251)
 monster_name = "牛魔"
 
 [node name="炼狱迷宫6" parent="." instance=ExtResource("23_lrdsu")]
-position = Vector2(514, 818)
+position = Vector2(614, 787)
 triggerEvent = "炼狱迷宫6"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]

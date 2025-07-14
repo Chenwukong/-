@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="27_ogdth"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="29_433ew"]
 [ext_resource type="Texture2D" uid="uid://11k1acnl1bw1" path="res://Characters/孩子-男_w.png" id="30_deh84"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="31_8nk54"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="31_8nk54"]
 [ext_resource type="Texture2D" uid="uid://7xkger2nyr7p" path="res://Animals/人物动作 (3)/251-1.png" id="32_a4ic5"]
 [ext_resource type="Texture2D" uid="uid://dqm4ss5q5nbg6" path="res://Animals/人物动作 (3)/251-2.png" id="33_8nc56"]
 [ext_resource type="Texture2D" uid="uid://ncvlqf8j1nbl" path="res://Characters/dead-男孩1.png" id="33_84e5h"]
@@ -1394,6 +1394,7 @@ npcName = "二娃"
 [node name="二娃请求" parent="." instance=ExtResource("31_8nk54")]
 visible = false
 position = Vector2(1366, 195)
+triggerEvent = "二娃请求"
 
 [node name="威迪" parent="." instance=ExtResource("29_433ew")]
 position = Vector2(559, 288)

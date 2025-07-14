@@ -17,19 +17,19 @@
 [ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="15_5f2se"]
 [ext_resource type="AudioStream" uid="uid://dg48w2u34bmg6" path="res://Audio/SE/096-Attack08.ogg" id="16_bb7y8"]
 [ext_resource type="AudioStream" uid="uid://cfn12n35h25v7" path="res://Audio/SE/098-Attack10.ogg" id="16_j4kjv"]
-[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="16_ujgvr"]
+[ext_resource type="PackedScene" path="res://Scene/敖阳.tscn" id="16_ujgvr"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_nwscv"]
 [ext_resource type="AudioStream" uid="uid://cruk3iwhkad5o" path="res://Audio/SE/095-Attack07.ogg" id="17_vmjgy"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_vhhhx"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_bavut"]
 [ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="20_0rjkl"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_krxdd"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="20_krxdd"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_3oul4"]
 [ext_resource type="Texture2D" uid="uid://dsyav2oerp3it" path="res://Characters/大鹏.png" id="22_3pk1e"]
 [ext_resource type="Texture2D" uid="uid://c4pbcvjtkvu0m" path="res://梦魂Animation/0雷鸟人法术.png" id="23_qv5gy"]
 [ext_resource type="Texture2D" uid="uid://ddsvn32obk0hw" path="res://Characters/牛妖.png" id="24_5hhg2"]
 [ext_resource type="Texture2D" uid="uid://cei25ut2cuj56" path="res://Characters/蝙蝠 .png" id="24_438m4"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="25_ylfyb"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="25_ylfyb"]
 [ext_resource type="Texture2D" uid="uid://da4jf2vvihvb5" path="res://Characters/兔子怪.png" id="26_rive1"]
 [ext_resource type="Texture2D" uid="uid://dq85jh5ravc8i" path="res://Characters/蛤蟆怪.png" id="27_y7d84"]
 [ext_resource type="AudioStream" uid="uid://bmd12bgmqillw" path="res://Audio/SE/013-Move01.ogg" id="28_pxb0c"]
@@ -2099,8 +2099,7 @@ frame_progress = 0.664254
 npcName = "大鹏"
 
 [node name="初到花果山" parent="." instance=ExtResource("25_ylfyb")]
-visible = false
-position = Vector2(-350, 2245)
+position = Vector2(-898, 2500)
 triggerEvent = "初到花果山"
 
 [node name="黑蝠3" parent="." instance=ExtResource("21_3oul4")]
@@ -2121,7 +2120,7 @@ polygon = PackedVector2Array(-270, -284, -293, -282, -337.727, -240.182, -293, -
 [node name="effect" parent="黑蝠" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="黑蝠/effects" index="1"]
+[node name="飞剑诀" parent="黑蝠/effects" index="4"]
 frame = 4
 
 [node name="黑蝠2" parent="." instance=ExtResource("21_3oul4")]
@@ -2136,7 +2135,7 @@ polygon = PackedVector2Array(-270, -284, -293, -282, -337.727, -240.182, -293, -
 [node name="effect" parent="黑蝠2" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="黑蝠2/effects" index="1"]
+[node name="飞剑诀" parent="黑蝠2/effects" index="4"]
 frame = 4
 
 [node name="兔子精" parent="." instance=ExtResource("21_3oul4")]
@@ -2653,7 +2652,7 @@ animation = &"左上"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="敖阳2" parent="." instance=ExtResource("16_ujgvr")]

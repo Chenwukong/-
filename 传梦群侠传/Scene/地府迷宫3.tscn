@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://cfaw8vlqou6hh"]
+[gd_scene load_steps=85 format=3 uid="uid://cfaw8vlqou6hh"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_xvuwd"]
 [ext_resource type="Texture2D" uid="uid://c4wra1axneov7" path="res://Panoramas/地府_地狱迷宫3.jpg" id="2_lyfui"]
@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="18_kwmie"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="19_8af7q"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_bysti"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="21_qf6gq"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="21_qf6gq"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="22_57fkt"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="23_s3yji"]
 [ext_resource type="Script" path="res://Script/怨蛛.gd" id="24_rwj6k"]
@@ -31,8 +31,9 @@
 [ext_resource type="AudioStream" uid="uid://bijpybef1ldec" path="res://Audio/SE/Laugh_spooky_3.mp3" id="29_qlvbf"]
 [ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="30_2d4sl"]
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="31_fysqn"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="32_xhixu"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="32_xhixu"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="33_gqujj"]
+[ext_resource type="Texture2D" uid="uid://bnwaeg4rb7732" path="res://SeparateAnimation/魔鸟/待机.png" id="34_fgdc5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -341,6 +342,84 @@ radius = 109.772
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qh01q"]
 size = Vector2(102, 62)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql0tx"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(0, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2v5bl"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(249, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uja62"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(498, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8x08"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(747, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0dap"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(996, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jubru"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(1245, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpo5i"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(1494, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rykpo"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(1743, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cyn5h"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(1992, 290, 249, 290)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epmvq"]
+atlas = ExtResource("34_fgdc5")
+region = Rect2(2241, 290, 249, 290)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u3qic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql0tx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2v5bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uja62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8x08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0dap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jubru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpo5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rykpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cyn5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epmvq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="地府迷宫3" type="Node2D"]
 script = ExtResource("1_xvuwd")
 
@@ -533,7 +612,7 @@ animation = &"左上"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("18_kwmie")]
@@ -709,6 +788,16 @@ scale = Vector2(0.236814, 0.217299)
 energy = 1.87
 texture = ExtResource("33_gqujj")
 
+[node name="冥鸟" parent="." instance=ExtResource("12_rid76")]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(2265, 451)
+sprite_frames = SubResource("SpriteFrames_u3qic")
+frame_progress = 0.152648
+npcName = "冥鸟"
+
+[node name="CollisionPolygon2D" parent="冥鸟/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -329, -280, -319, -232, -293, -217, -276, -215, -263, -199, -247, -216, -187, -176, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -730,3 +819,4 @@ texture = ExtResource("33_gqujj")
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="进回忆3"]
+[editable path="冥鸟"]

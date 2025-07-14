@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://ccmjxaqy5ffv5"]
+[gd_scene load_steps=113 format=3 uid="uid://ccmjxaqy5ffv5"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_5wvsl"]
 [ext_resource type="Texture2D" uid="uid://22lwjp0yyjj3" path="res://panoramas2/大唐境外北.jpg" id="2_5yst4"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="12_n3qna"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="13_hhqk2"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="14_o80w1"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="15_61uhq"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="15_61uhq"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="16_x4xof"]
 [ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="17_x0xh1"]
 [ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="18_uxjs8"]
@@ -55,7 +55,10 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="51_jpjh2"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="52_k7lbp"]
 [ext_resource type="Texture2D" uid="uid://ddxb4k57gip0d" path="res://Characters/古代瑞兽.png" id="55_kmgpn"]
-[ext_resource type="PackedScene" path="res://Scene/messageLayer.tscn" id="56_vuluf"]
+[ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="56_vuluf"]
+[ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="57_v2182"]
+[ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="58_sx2a7"]
+[ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="59_hsjnv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
 
@@ -438,6 +441,51 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6c80"]
+atlas = ExtResource("57_v2182")
+region = Rect2(0, 0, 38, 83)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n700i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6c80")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r015f"]
+atlas = ExtResource("58_sx2a7")
+region = Rect2(0, 0, 68, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q4efq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r015f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ecl3"]
+atlas = ExtResource("59_hsjnv")
+region = Rect2(0, 288, 55, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wumu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ecl3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="大唐境外" type="Node2D"]
 script = ExtResource("1_5wvsl")
 
@@ -604,7 +652,7 @@ position = Vector2(98, -899)
 autoplay = ""
 
 [node name="player" parent="." instance=ExtResource("50_nm3mc")]
-position = Vector2(-506, 1808)
+position = Vector2(1385.38, 57.8547)
 
 [node name="teleportCircle" parent="." instance=ExtResource("51_jpjh2")]
 position = Vector2(1566.97, -167.653)
@@ -640,6 +688,21 @@ frame_progress = 0.586314
 npcName = "瑞兽"
 
 [node name="messageLayer" parent="." instance=ExtResource("56_vuluf")]
+
+[node name="小二" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1257, 13)
+sprite_frames = SubResource("SpriteFrames_n700i")
+
+[node name="凌若昭" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1307, -32)
+sprite_frames = SubResource("SpriteFrames_q4efq")
+
+[node name="烟儿" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1442, 13)
+sprite_frames = SubResource("SpriteFrames_7wumu")
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

@@ -3,7 +3,22 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.start()
+	if not has_node("triggerPlaceTimer"):
+		var timer =Timer.new()
+		timer.wait_time = 0.1
+		timer.one_shot = true      
+		timer.autostart = true        
+		timer.name = "oneTimeSound"
+		timer.connect("timeout", Callable(self, "_on_triggerPlace_Timer_timeout"))
+		add_child(timer)
+	else:
+		print("节点已存在")
+
+	# 连接 timeout 信号到本脚本的 _on_timer_timeout 函数
+	
+	
+	
+	
 #	if triggerEvent in Global.triggerPlace:
 #		pass
 #	else:
@@ -23,7 +38,6 @@ func _process(delta):
 			i.get_node("Area2D/CollisionShape2D").disabled = false
 
 func _on_area_2d_area_entered(area):
-	
 	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(name).disable == false:
 		var player = area.get_parent()
 		Global.triggerPlace.get(name).disable = true
@@ -191,7 +205,9 @@ func _on_area_2d_area_entered(area):
 			"看戏":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("看戏"))							
 			"阻拦":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("阻拦"))							
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("阻拦"))	
+			"沙暴":
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("沙暴"))										
 			"黄眉":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("黄眉"))							
 			"幻境1":
@@ -224,7 +240,12 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/11.dialogue"),get_npc_dialogue("杨戬事件"))								
 			"月宫之战":
 				DialogueManager.show_chat(load("res://Dialogue/11.dialogue"),get_npc_dialogue("月宫之战"))								
-										
+			"玉帝殿前":
+				DialogueManager.show_chat(load("res://Dialogue/11.dialogue"),get_npc_dialogue("玉帝殿前"))
+			"挑战天道":
+				DialogueManager.show_chat(load("res://Dialogue/12.dialogue"),get_npc_dialogue("挑战天道"))	
+			"直面天道":
+				DialogueManager.show_chat(load("res://Dialogue/12.dialogue"),get_npc_dialogue("直面天道"))																		
 func get_npc_dialogue(npc_id):
 	
 	var npc = Global.npcs[npc_id]
@@ -255,7 +276,7 @@ func complete_task(chapter_id, task_id):
 			update_npc_dialogue_index(npc_id)
 
 
-func _on_timer_timeout():
+func _on_triggerPlace_Timer_timeout():
 	if name in Global.triggerPlace:
 		pass
 	else:

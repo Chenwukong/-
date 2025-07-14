@@ -12,6 +12,48 @@ Nathan: For more information see the online documentation.
 
 => END
 
+~ 梦老1
+set Global.onTalk = true
+梦老: [speed=0.5]年轻人，我的鞋子丢了，你能帮我找找嘛？
+set Global.questItemShow.get("鞋子").visible = true
+set Global.onTalk = false
+=> END
+
+~ 梦老2
+set Global.onTalk = true
+if Global.questItem.has("鞋子"):
+	梦老: [speed=0.5]真是谢谢你啊年轻人，哎哟，我的拐杖怎么不见了，你能帮我找找嘛？
+	set Global.questItemShow.get("鞋子").visible = false
+	set Global.questItemShow.get("拐杖").visible = true
+else:
+	梦老: 莫不是还没找到？
+	set Global.npcs.get("梦老").current_dialogue_index = 1
+	
+set Global.onTalk = false
+=> END
+
+~ 梦老3
+set Global.onTalk = true
+
+if Global.questItem.has("拐杖"):
+	梦老: [speed=0.5]真是太谢谢你了，我把这个送给你吧
+	set Global.questItemShow.get("拐杖").visible = false
+	set Global.violencePoint += 10
+	set Global.showViolence("positive",10)
+	set Global.showMsg("获得梦字牌!")
+	set Global.addItem("梦字牌", "keyItem", "keyItem", 1)
+	set Global.changeQuest("传梦之路","梦","boolean", true)
+	set Global.playsound("res://Audio/SE/汉子-笑9.ogg")
+	set Global.changevis("北俱芦洲","梦老")
+else:
+	梦老: 莫不是还没找到？
+	set Global.npcs.get("梦老").current_dialogue_index = 2
+
+set Global.onTalk = false
+=> END
+
+
+
 ~ 寻四圣1
 set Global.onTalk = true
 set Global.toggleballon()
@@ -41,26 +83,136 @@ set Global.changevis("北俱芦洲","梧桐")
 set Global.onTalk = false
 => END
 
+~ 百足虫1
+set Global.onTalk = true
+百足虫: [speed=0.5]哎呀呀，这大风大雪的还在这里拼命，是为了什么呀
+时追云: [speed=0.5]你是何人？
+百足虫: [speed=0.5]我啊，是这里的居民，看你们似乎在找什么，所以来问问
+梧桐: [speed=0.5]？
+小二: [speed=0.5]我们在找圣兽白虎，你知道他在哪里吗
+百足虫: [speed=0.5]啊他呀，我知道我知道，不过我可不能白告诉你们
+时追云: [speed=0.5]你要什么？
+百足虫: [speed=0.5]这里最近结了一朵千年雪莲，我想得到它，你们若是能帮我找来，也算了却我一心愿
+时追云: [speed=0.5]好，我们去帮你找
+百足虫: [speed=0.5]爽快，爽快啊，那你们快去快回啊
+set Global.changevis("北俱芦洲", "红鸟")
+set Global.questItemShow.get("雪莲").visible = true
+set Global.onTalk = false
+=> END
 
+~ 红鸟1
+set Global.onTalk = true
+时追云: [speed=0.5]他身后的莫非就是
+姜韵: [speed=0.5]千年雪莲
+小二: [speed=0.5]我感觉，他不是很友善的样子...
+set Global.playsound("res://Audio/SE/雷鸟人.ogg")
+set get_tree().current_scene.bossFight("红鸟","res://Audio/BGM/战斗-生肖.ogg", "红鸟")
+	
+	
+set Global.onTalk = false
+=> END
+
+~ 红鸟2
+set Global.onTalk = true
+set Global.changevis("北俱芦洲", "红鸟")
+时追云: [speed=0.5]把雪莲拿回去给他吧
+姜韵: [speed=0.5]嗯...
+set Global.onTalk = false
+=> END
+
+
+~ 百足虫2
+set Global.onTalk = true
+if Global.questItem.has("雪莲"):
+	set Global.getnode("player").position = Vector2(1542,1372)
+	百足虫: [speed=0.5]就是这个就是这个哈哈哈
+	百足虫: [speed=0.5]咕咕咕，看来是真的雪莲，我感觉力量都涌上来了
+	百足虫: [speed=0.5]今天我又是除掉了天敌，又吃到了千年雪莲
+	百足虫: [speed=0.5]不如你们再帮我个忙，把你们的头也一起留下
+	时追云: [speed=0.5]果然如此
+	百足虫: [speed=0.5]嗯？
+	姜韵: [speed=0.5]你肚子不痛吗
+	百足虫: [speed=0.5]嗯？
+	百足虫: [speed=0.5]唔！你们做了什么！？
+	小二: [speed=0.5]当然是往雪莲里面加了点东西啊
+	百足虫: [speed=0.5]妈的，卑鄙！
+	小二: [speed=0.5]承让承让
+	百足虫: [speed=0.5]吃我一刀！
+	set get_tree().current_scene.bossFight("百足虫","res://Audio/BGM/战斗-生肖2.ogg", "寻四圣")
+	
+	
+else:
+	百足虫: 速去速回啊
+	set Global.npcs.get("百足虫").current_dialogue_index = 1
+
+set Global.onTalk = false
+=> END
 
 ~ 寻四圣3
 set Global.onTalk = true
-set Global.playsound("res://Audio/SE/猛兽5.ogg")
+
 set Global.changebgm("res://Audio/BGM/谛听.ogg")
-时追云惊: [speed=0.5]这就是圣兽白虎吗！！？
+百足虫: [speed=0.5]唔，可恶！这是你们自找的！我和你们爆了！[next=2.5]
+set Global.playsound("res://Audio/SE/虎啸2.ogg")
+百足虫: [speed=0.5]嗯？[next=1]
+时追云: [speed=0.5]有什么东西要来了[next=1.5]
+梧桐: [speed=0.5]嗯？呵呵[next=1]
+小二: [speed=0.5]不知是敌是友[next=1.5]
+凌若昭: [speed=0.5]是野兽的声音！[next=1.5]
+set Global.getnode("白虎").visible = true
+set Global.getnode("白虎2").visible = true
+set Global.getnode("AnimationPlayer").play("白虎出场")
+set Global.getnode("百足虫").play("hurt")
+set Global.toggleballon()
+[next=4]
+set Global.toggleballon()
+时追云惊: [speed=0.5](速度惊人，如果要对我们出手的话，刚才绝对拦不住)[next=3]
+set Global.toggleballon()
+[next=3]
+set Global.getnode("白虎俯视").visible = true
+set Global.getnode("AnimationPlayer").play("透明俯视")
+set Global.getnode("白虎").play("idle")
+set Global.getnode("白虎2").play("idle")
+[next=9.1]
+
+
+set Global.toggleballon()
+百足虫: [speed=0.5]白白白白白白白白虎！！！！
+时追云: [speed=0.5](他就是白虎吗)
+小二: [speed=0.5]我去，好大！
+set Global.toggleballon()
+set Global.getnode("白虎").play("攻击")
+set Global.getnode("白虎2").play("攻击")
+set Global.playsound("res://Audio/SE/虎锤.ogg")
+[next=1]
+set Global.getnode("白虎").play("idle")
+set Global.getnode("白虎2").play("idle")
+set Global.toggleballon()
+set Global.changevis("北俱芦洲","百足虫")
+时追云惊: [speed=0.5]一击必杀，这就是圣兽白虎吗！！？
 凌若昭: [speed=0.5]感觉他的速度不快，但又快出残影了！
 小二: [speed=0.5]这也太大了，那我们要怎么让他帮我们
 梧桐: [speed=0.5]很简单，只要实力得到他的认可就可以了
-set Global.playsound("res://Audio/SE/猛兽5.ogg")
+小二: [speed=0.5]什。。什么意思，我们要和他打架吗？
+梧桐: [speed=0.5]放心，他的实力远不如当年
+set Global.playsound("res://Audio/SE/虎啸2.ogg")
+set Global.getnode("白虎").play("咆哮")
+set Global.getnode("白虎2").play("咆哮")
 白虎: [speed=0.5]吼！
-小二: [speed=0.5]梧桐大叔记得给我们治疗啊
+小二: [speed=0.5]那梧桐大叔记得给我们治疗啊
 梧桐: [speed=0.5]很抱歉，我不能帮你们
 小二: [speed=0.5]啊？
 梧桐: [speed=0.5]既然是让他认可你们，我自然不能出手
-小二: [speed=0.5]好吧，来吧圣虎！
+时追云: [speed=0.5]来吧！
 set get_tree().current_scene.bossFight("白虎","res://Audio/BGM/战斗-Y.mp3", "寻四圣")
+
+
+
+
 set Global.onTalk = false
 => END
+
+
 
 ~ 寻四圣4
 set Global.onTalk = true

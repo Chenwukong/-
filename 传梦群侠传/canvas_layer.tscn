@@ -2900,6 +2900,10 @@ visible = false
 position = Vector2(555, 459)
 texture = ExtResource("70_gkjac")
 
+[node name="bgmTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
 [connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]
@@ -2980,5 +2984,6 @@ texture = ExtResource("70_gkjac")
 [connection signal="button_up" from="宠物食物商店/AnimatedSprite2D3/minButton" to="." method="_on_min_button_button_up"]
 [connection signal="timeout" from="hashTimer" to="." method="_on_hash_timer_timeout"]
 [connection signal="timeout" from="countDownTimer" to="." method="_on_count_down_timer_timeout"]
+[connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
 
 [editable path="importantMsg"]

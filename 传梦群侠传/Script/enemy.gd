@@ -43,6 +43,7 @@ var canAttack = false
 @export var delay_timer: Timer
 var oriMonsterName 
 var monsters
+var hitByCircle = false
 #var selectedTarget = false
 var buffs = []
 var treeHealed = false
@@ -136,10 +137,6 @@ var bigMagics ={
 
 
 func _ready(): 
-	if name == "鬼帝0":
-		scale = Vector2(1,1)
-	if type == "鬼":
-		canSee = false
 
 	oriMonsterName = monsterName
 	monsterName = remove_numbers_from_string(monsterName)
@@ -147,6 +144,13 @@ func _ready():
 	if monsterName == "怨蛛":
 		self.scale.x = -1
 		self.modulate = "red"
+	elif monsterName == "鬼司":
+		scale.x = 2
+		scale.y = 2	
+		self.modulate = "red"
+	elif monsterName == "魔金刚" or monsterName == "孙悟空" or monsterName == "二郎神":
+		modulate = "blue"
+		
 	target = Global.target
 	currHp = hp
 	
@@ -157,7 +161,15 @@ func _ready():
 	if monsterName in Global.isBoss:
 		get_parent().get_node("roundCountDown").visible = true
 		get_parent().get_node("roundCountDown").text = str(round)
-	
+	if name == "鬼帝0":
+		scale = Vector2(1,1)
+		currHp *= 0.8	
+		get_parent().get_parent().decrease_value_over_time(currHp,0.17)
+	if type == "鬼":
+		canSee = false
+	if monsterName == "百足虫":
+		currHp *= 0.8	
+		get_parent().get_parent().decrease_value_over_time(currHp,0.17)
 var gotHit = false
 var randi = 0
 var magicRandi = 0
@@ -188,9 +200,11 @@ func _process(delta):
 	if self.name == "千年树0":
 		self.scale.x = 2
 		self.scale.y = 2
-	if self.name == "金翅大鹏0":
+	if self.name == "金翅大鹏0" or self.name == "魔尊4":
 		self.scale.x = 1.2
-		self.scale.y = 1.2		
+		self.scale.y = 1.2	
+		
+			
 		
 	if Global.canBlock and self.hp > 0:
 		if Input.is_action_just_pressed("ui_accept"):
@@ -316,7 +330,7 @@ func _process(delta):
 			onPhysicDefenseDebuff -= 1
 			if onPhysicDefenseDebuff == 0:
 				onPhysicDefenseDebuff = false						
-		
+	
 	#检测当前onAttackingList的是不是自己，是的话就触发选择玩家攻击	
 	if Global.onAttackingList.size() > 0 and Global.canEnemyHit:
 		if monsterName and self.currHp <= 0 and !dead:
@@ -755,6 +769,7 @@ func _process(delta):
 	if monsterName:
 		if currHp <= 0 and gotHit == false:
 			#get_node("Button").queue_free()
+			Global.onAttackingList.erase(self.name)
 			currHp = 0
 			Global.targetMonsterIdx = 0 
 			alive = false
@@ -933,7 +948,7 @@ func selectTarget(delta, randi, magicRandi):
 
 
 func moveCharacter(delta):
-	if self.name == "青龙0" or name == "鬼帝0":
+	if self.name == "青龙0" or name == "鬼帝0" or name == "妖皇5":
 		return
 	var moveSpeed = 15 
 	var newPosition = position.lerp(Vector2(Global.alivePlayers[Global.monsterTarget].position.x-60, Global.alivePlayers[Global.monsterTarget].position.y-60)  , moveSpeed * delta)
@@ -1105,3 +1120,8 @@ func deleteNum():
 	for child in get_node("hpControl").get_children():
 		if child.name != "hpLabel":
 			child.queue_free()
+
+
+func _on_circle_time_timeout():
+	hitByCircle = false
+	

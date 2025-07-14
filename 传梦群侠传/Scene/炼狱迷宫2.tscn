@@ -29,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://brl00xmx67cd" path="res://Characters/NPC孙悟空D4A10B10T.png" id="27_y4ww4"]
 [ext_resource type="Texture2D" uid="uid://b5jy5m28ffw65" path="res://梦魂Animation/【孙悟空攻击】.png" id="28_3mkiu"]
 [ext_resource type="Texture2D" uid="uid://c2nh4w1qxh46p" path="res://Characters/小孩-女.png" id="29_iragm"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_sdffh"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="30_sdffh"]
 [ext_resource type="Texture2D" uid="uid://pltj673ab6c4" path="res://Characters/幽灵.png" id="31_0ibyo"]
 [ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="32_pybw0"]
 [ext_resource type="Texture2D" uid="uid://j6thwn46aq4k" path="res://Characters/熊猫仙人.png" id="33_6rlx7"]
@@ -789,8 +789,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
@@ -1034,6 +1032,8 @@ position = Vector2(3364, 2303)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
+frame = 0
+frame_progress = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 

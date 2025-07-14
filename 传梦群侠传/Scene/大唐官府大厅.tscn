@@ -445,6 +445,14 @@ visible = false
 position = Vector2(395, 304)
 sprite_frames = SubResource("SpriteFrames_62flf")
 animation = &"right"
+script = null
+
+[node name="npcShape" parent="小兵/npcBody" index="0"]
+position = Vector2(388, -158)
+
+[node name="CollisionPolygon2D" parent="小兵/npcBody" index="1"]
+position = Vector2(641, 34)
+disabled = true
 
 [node name="姜韵" parent="." instance=ExtResource("23_86p1j")]
 visible = false
@@ -472,3 +480,4 @@ animation = &"左上"
 [editable path="师爷"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="小兵"]

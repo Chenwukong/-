@@ -540,7 +540,7 @@ set get_tree().current_scene.get_node("player/隐龙").visible = false
 set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
 set Global.npcVis.get("灵台宫").get("小二").visible = true
 set Global.triggerPlace.get("教学千机").disable = false
-
+set Global.dial = "菩提老祖"
 set get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")
 
 set Global.onTalk = false
@@ -857,8 +857,9 @@ set Global.onTalk = false
 
 ~ 灵鹿
 set Global.onTalk = true
-set Global.onTeamSmallPet.append("小鹿")
-set Global.smallPets.append("小鹿")
+if !Global.smallPets.has("小鹿"):
+	set Global.onTeamSmallPet.append("小鹿")
+	set Global.smallPets.append("小鹿")
 
 set Global.npcVis.get("方寸山").get("小鹿").visible = true
 set Global.npcVis.get("方寸山").get("凌若昭").visible = true
@@ -1087,7 +1088,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]...
 时追云: [speed=0.5]好，我相信祖师的判断
 set get_tree().change_scene_to_file("res://Scene/"+"水晶宫"+".tscn")
-set Global.dial = "敖白"
+set Global.dial = "敖阳"
 set Global.cantShow.erase("江南野外")
 
 
@@ -1194,7 +1195,7 @@ set Global.npcVis.get("方寸山").get("菩提老祖").visible = true
 菩提老祖: [speed=0.5]早点歇息
 set Global.npcVis.get("方寸山").get("菩提老祖").visible = false
 set get_tree().change_scene_to_file("res://Scene/"+"宝库"+".tscn")
-set Global.dial = "敖白"
+set Global.dial = "敖阳"
 set Global.onTalk = false
 => END
 
@@ -1206,12 +1207,12 @@ set Global.onTalk = true
 敖白: [speed=0.5]当音儿清醒之后，我不希望她看到的是被摧毁的世界...
 set get_tree().current_scene.get_node("npc").visible = true
 神秘人: [speed=0.5]吸魂大法！
-set get_tree().current_scene.get_node("敖白/effects/吸魂").visible =true
-set get_tree().current_scene.get_node("敖白/effects/吸魂").play()
+set get_tree().current_scene.get_node("敖阳/effects/吸魂").visible =true
+set get_tree().current_scene.get_node("敖阳/effects/吸魂").play()
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0妖族阴谋.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 敖白: [speed=0.5]呃啊！！
-set get_tree().current_scene.get_node("敖白").play("跪下")
+set get_tree().current_scene.get_node("敖阳").play("跪下")
 敖白: [speed=0.5]你是谁，居然敢暗地里下黑手
 神秘人: [speed=0.5]哼哼
 敖雨: [speed=0.5]什么声音，哥你还好吗
@@ -1219,7 +1220,7 @@ set get_tree().current_scene.get_node("敖白").play("跪下")
 神秘人: [speed=0.5]哼哼，算你走运
 set get_tree().current_scene.get_node("npc").visible = false
 [next=2]
-set get_tree().current_scene.get_node("敖白").play("趴下")
+set get_tree().current_scene.get_node("敖阳").play("趴下")
 [next=1]
 
 set get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")
@@ -1364,13 +1365,13 @@ set Global.onTalk = true
 时追云怒: [speed=0.5] 单挑就单挑，小二若昭你们不准出手
 小二: [speed=0.5] (第一次见老大这样，还是听他的吧)
 敖雨: [speed=0.5] 虚！沉！冰！封！
-set Global.npcVis.get("东海龙宫").get("敖白").visible = true
-set get_tree().current_scene.get_node("敖白").play("左下walk")
+set Global.npcVis.get("东海龙宫").get("敖阳").visible = true
+set get_tree().current_scene.get_node("敖阳").play("左下walk")
 set get_tree().current_scene.get_node("AnimationPlayer").play("解除误会")
 
 敖白: [speed=0.5] 敖雨，住手！
 时追云惊: [speed=0.5]恩公，是你!？
-set get_tree().current_scene.get_node("敖白").play("default")
+set get_tree().current_scene.get_node("敖阳").play("default")
 
 敖白: [speed=0.5]你是...
 敖白惊: [speed=0.5]你是当初我在建邺城看到的人类
@@ -1401,14 +1402,14 @@ set get_tree().current_scene.get_node("敖白").play("default")
 敖雨: [speed=0.5]哈，那我们不打架咯？吐舌
 时追云: [speed=0.5]嗯
 敖雨: [speed=0.5]你这剑法到底是怎么练的啊，刚才差点被你砍翻了，好像你身上还带了灵力耶，你真的是凡人吗
-set get_tree().current_scene.get_node("敖白").play("跪下")
+set get_tree().current_scene.get_node("敖阳").play("跪下")
 敖白: [speed=0.5]咳
 敖雨: [speed=0.5]哥！
 时追云惊: [speed=0.5]恩公？
-set Global.npcVis.get("敖白寝宫").get("敖白").visible = true
-set Global.npcVis.get("敖白寝宫").get("敖雨").visible = true
+set Global.npcVis.get("敖阳寝宫").get("敖阳").visible = true
+set Global.npcVis.get("敖阳寝宫").get("敖雨").visible = true
 [next=2]
-set get_tree().change_scene_to_file("res://Scene/"+"敖白寝宫"+".tscn")
+set get_tree().change_scene_to_file("res://Scene/"+"敖阳寝宫"+".tscn")
 set Global.mapPlayerPos = Vector2(357, 289)
 
 set Global.dial = "敖雨"
@@ -1419,10 +1420,10 @@ set Global.onTalk = false
 
 
 
-~ 敖白寝宫
+~ 敖阳寝宫
 set Global.onTalk = true
 set Global.questHint = "和敖雨对话"
-set Global.npcVis.get("东海龙宫").get("敖白").visible = false
+set Global.npcVis.get("东海龙宫").get("敖阳").visible = false
 set Global.npcVis.get("东海龙宫").get("敖雨").visible = false
 敖白: [speed=0.5]抱歉，让你们看笑话了
 时追云: [speed=0.5]恩公你怎么会伤的这么重
@@ -1469,7 +1470,7 @@ set Global.onTalk = false
 
 ~ 劝说
 set Global.onTalk = true
-set Global.npcVis.get("水晶宫").get("敖白").visible = false
+set Global.npcVis.get("水晶宫").get("敖阳").visible = false
 敖雨: [speed=0.5]喂，你真的要代表我们参加海权祭吗？疑惑
 敖雨: [speed=0.5]你们要面对的可是各大龙族的精英
 敖雨: [speed=0.5]而且他们还有可能出损招
@@ -1686,7 +1687,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 
 碧水夜叉: [speed=0.5]这个就是龙泉了吧哈哈哈哈，真是得来不费功夫
-set Global.npcVis.get("龙泉").get("敖白").visible = true
+set Global.npcVis.get("龙泉").get("敖阳").visible = true
 敖白: [speed=0.5]那可不一定
 碧水夜叉: ！！！
 碧水夜叉: [speed=0.5]你。。你怎么会
@@ -1774,7 +1775,7 @@ set Global.onTalk = false
 => END
 
 
-~ 敖白到场
+~ 敖阳到场
 
 set Global.onTalk = true
 set Global.npcVis.get("海斗场").get("北海龙王").visible = false
@@ -1782,11 +1783,11 @@ set Global.npcVis.get("海斗场").get("西海龙王").visible = false
 set Global.npcVis.get("海斗场").get("南海龙王").visible = false
 
 set Global.damageReward1 -= 0.7
-set get_tree().current_scene.get_node("敖白").play("左上walk")
+set get_tree().current_scene.get_node("敖阳").play("左上walk")
 set get_tree().current_scene.get_node("AnimationPlayer").play("敖白walk")
 [next=1]
 敖白惊: [speed=0.5]几位龙王呢？
-set get_tree().current_scene.get_node("敖白").play("左上")
+set get_tree().current_scene.get_node("敖阳").play("左上")
 时追云: [speed=0.5]全死了
 敖白惊: [speed=0.5]全。。。全死了？
 敖白惊: [speed=0.5]不就比个武吗怎么全死了？！
@@ -1826,7 +1827,7 @@ set Global.onTalk = true
 敖白: [speed=0.5]这也算是我们的谢礼吧
 时追云: [speed=0.5]好吧
 时追云: [speed=0.5]所以妖盟到底是谁建立的，没人管吗
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = "res://Audio/BGM/0情况危机"
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0情况危机")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 
 敖白: [speed=0.5]三年前突然有一些东西和天庭神佛打了起来

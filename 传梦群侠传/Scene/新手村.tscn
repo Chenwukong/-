@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_75y4j"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="12_valin"]
 [ext_resource type="Texture2D" uid="uid://c56s0p1qheflj" path="res://SeparateAnimation/传梦/传大将军坏事做尽待机.png" id="13_0gp4k"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="14_74q2n"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="14_74q2n"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="15_kafu7"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_1jein"]
 
@@ -311,6 +311,8 @@ triggerEvent = "新手警告"
 [node name="menuControl" parent="." instance=ExtResource("15_kafu7")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("16_1jein")]
+
+[node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

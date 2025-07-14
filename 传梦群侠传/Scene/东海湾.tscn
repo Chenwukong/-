@@ -1,15 +1,15 @@
-[gd_scene load_steps=116 format=3 uid="uid://dcb2u6xa5p55x"]
+[gd_scene load_steps=121 format=3 uid="uid://dcb2u6xa5p55x"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_pfo0l"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_d4hde"]
 [ext_resource type="Texture2D" uid="uid://c2cog03pcphav" path="res://panoramas2/东海湾全景.jpg" id="2_ulmbe"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="3_f0txs"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="3_usrc1"]
-[ext_resource type="Texture2D" uid="uid://cu80mu21bow1q" path="res://main character/tile004.png" id="4_5mbey"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_a4csx"]
 [ext_resource type="Texture2D" uid="uid://cejkg1su7j72k" path="res://main character/down.png" id="4_fufww"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="5_4jxy1"]
 [ext_resource type="AudioStream" uid="uid://b2i1mcevdujjo" path="res://Audio/BGM/东海湾.mp3" id="5_pylbr"]
+[ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="6_07vwm"]
 [ext_resource type="AudioStream" uid="uid://1gevcu6nah18" path="res://Audio/SE/男-挂.ogg" id="8_njg3o"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="9_brsup"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="10_wd4em"]
@@ -25,16 +25,21 @@
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="32_qspn4"]
 [ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="32_t6vd4"]
 [ext_resource type="Texture2D" uid="uid://b67nrw18kcp3o" path="res://Characters/妇女-2.png" id="33_saim5"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="34_b8kc4"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="34_b8kc4"]
 [ext_resource type="Texture2D" uid="uid://bsb23jpa621a2" path="res://Characters/青蛙.png" id="35_qc3nd"]
 [ext_resource type="Texture2D" uid="uid://b1psu2ebwpl7" path="res://Pictures/NT.png" id="35_rvniy"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="37_ekk6w"]
+[ext_resource type="Texture2D" uid="uid://drhx7wtbu5lfa" path="res://Characters/无痕小-倒地2.png" id="37_iyclg"]
+[ext_resource type="Texture2D" uid="uid://bw6x0sjiapbrs" path="res://Pictures/Pictures/小无痕.jpg" id="38_ojqdr"]
 [ext_resource type="PackedScene" uid="uid://buy8i1pvjftxi" path="res://Scene/questItem.tscn" id="39_4alh8"]
 [ext_resource type="AudioStream" uid="uid://plt3823mjkqe" path="res://Audio/SE/打击2.ogg" id="40_loepp"]
 [ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="40_muxqw"]
 [ext_resource type="Texture2D" uid="uid://cry36whvqo44o" path="res://SeparateAnimation/奔波儿霸/139-1.png" id="40_w3n4m"]
 [ext_resource type="Texture2D" uid="uid://dday3jm6d7ta7" path="res://Battlers/蟹将◆.png" id="41_xnien"]
 [ext_resource type="Texture2D" uid="uid://dwe8f20o8w6ur" path="res://Battlers/虾兵◆.png" id="42_ldrlq"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
+load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1k6y0"]
 radius = 33.0
@@ -558,14 +563,14 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("player/AnimatedSprite2D:animation")
+tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"leftStand"]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_vnfib"]
@@ -584,9 +589,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1eey2"]
-load_path = "res://.godot/imported/tile000.png-7f4822d32f62f9121ee366e786ad9818.ctex"
-
 [sub_resource type="Animation" id="Animation_uv4pd"]
 resource_name = "wangyiMove"
 length = 18.0
@@ -597,10 +599,10 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 7.2, 7.4, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 7.2, 7.4, 10, 11.4, 13.5, 16.6, 18),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0.192157, 0.192157, 0.192157, 1)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -662,6 +664,33 @@ tracks/5/keys = {
 "update": 1,
 "values": [&"down", &"dead"]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("王姨:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 7.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(391, 2087), Vector2(1775, 1893)]
+}
+
+[sub_resource type="Animation" id="Animation_i88pf"]
+resource_name = "姜韵move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("姜韵:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1251, 577), Vector2(1243, 470)]
+}
 
 [sub_resource type="Animation" id="Animation_nkovl"]
 resource_name = "海龟救场"
@@ -672,6 +701,7 @@ _data = {
 "RESET": SubResource("Animation_7582q"),
 "turnDark": SubResource("Animation_vnfib"),
 "wangyiMove": SubResource("Animation_uv4pd"),
+"姜韵move": SubResource("Animation_i88pf"),
 "海龟救场": SubResource("Animation_nkovl")
 }
 
@@ -780,6 +810,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_haia8"]
+atlas = ExtResource("37_iyclg")
+region = Rect2(0, 0, 150, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u5yc1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haia8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="东海湾" type="Node2D"]
 script = ExtResource("1_pfo0l")
 shader = ExtResource("2_d4hde")
@@ -795,15 +840,20 @@ scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="player" index="0"]
-texture = ExtResource("4_5mbey")
+texture = SubResource("CompressedTexture2D_1eey2")
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
-animation = &"leftStand"
+animation = &"down"
 autoplay = "leftStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="姜韵" parent="." instance=ExtResource("6_07vwm")]
+visible = false
+position = Vector2(1251, 577)
+scale = Vector2(0.903555, 0.940031)
+animation = &"left"
+autoplay = "left"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 2
@@ -830,6 +880,7 @@ shape = SubResource("CapsuleShape2D_1k6y0")
 position = Vector2(1301, 873)
 stream = ExtResource("5_pylbr")
 volume_db = 8.072
+autoplay = true
 max_distance = 1e+07
 metadata/_edit_group_ = true
 
@@ -850,7 +901,7 @@ one_shot = true
 wait_time = 0.5
 
 [node name="subSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_njg3o")
+stream = ExtResource("40_loepp")
 volume_db = 7.0
 max_distance = 10000.0
 
@@ -1055,8 +1106,7 @@ energy = 0.0
 blend_mode = 1
 
 [node name="王姨" parent="." instance=ExtResource("15_w7f0s")]
-visible = false
-position = Vector2(391, 2087)
+position = Vector2(354, 2082)
 sprite_frames = SubResource("SpriteFrames_e1ybh")
 animation = &"右上"
 autoplay = "左下"
@@ -1091,7 +1141,6 @@ position = Vector2(-4, 76.5)
 shape = SubResource("RectangleShape2D_qlyku")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_hlah0")
 }
@@ -1253,10 +1302,22 @@ position = Vector2(2141, 1168)
 scale = Vector2(0.684865, 0.684865)
 sprite_frames = SubResource("SpriteFrames_cdn1j")
 
+[node name="无痕" type="AnimatedSprite2D" parent="."]
+position = Vector2(1203, 404)
+sprite_frames = SubResource("SpriteFrames_u5yc1")
+
+[node name="小无痕" type="Sprite2D" parent="."]
+visible = false
+z_index = 9
+position = Vector2(1166, 592)
+scale = Vector2(1.70313, 1.43333)
+texture = ExtResource("38_ojqdr")
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event"]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered"]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered"]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
 [connection signal="body_entered" from="Area2D" to="player" method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="player" method="_on_area_2d_body_exited"]
 [connection signal="body_shape_entered" from="Area2D" to="player" method="_on_area_2d_body_shape_entered"]

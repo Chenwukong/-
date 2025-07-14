@@ -2141,6 +2141,7 @@ offset_bottom = 48.9412
 theme_override_styles/panel = SubResource("StyleBoxFlat_at4bn")
 
 [node name="head" type="TextureRect" parent="battleFieldPicture/currPlayer/Panel"]
+visible = false
 z_index = 1
 layout_mode = 0
 offset_left = 31.1682
@@ -2258,23 +2259,24 @@ expand_mode = 1
 [node name="nameBackground" type="TextureRect" parent="battleFieldPicture/currPlayer/Panel"]
 self_modulate = Color(0.702423, 0.702422, 0.702422, 1)
 layout_mode = 0
-offset_left = 138.151
-offset_top = 43.6134
-offset_right = 202.151
-offset_bottom = 77.6134
+offset_left = 70.5604
+offset_top = 30.1383
+offset_right = 158.56
+offset_bottom = 77.1383
 texture = ExtResource("16_t4y3a")
 expand_mode = 1
 
 [node name="currPlayerName" type="Label" parent="battleFieldPicture/currPlayer/Panel"]
 modulate = Color(1, 1, 0, 1)
 layout_mode = 0
-offset_left = 115.862
-offset_top = 57.8581
-offset_right = 223.862
-offset_bottom = 106.858
+offset_left = 70.0
+offset_top = 47.0
+offset_right = 155.0
+offset_bottom = 86.0
 scale = Vector2(0.856075, 0.801498)
 pivot_offset = Vector2(58.8235, -21.7647)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "时追云"
 horizontal_alignment = 1
 

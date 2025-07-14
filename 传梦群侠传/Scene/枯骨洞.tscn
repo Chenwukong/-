@@ -1,7 +1,7 @@
-[gd_scene load_steps=185 format=3 uid="uid://bsrnhwrntdxqm"]
+[gd_scene load_steps=189 format=3 uid="uid://bsrnhwrntdxqm"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2qfia"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="2_hwuyh"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="2_hwuyh"]
 [ext_resource type="Texture2D" uid="uid://bouwrtb6x377m" path="res://panoramas2/妖界领地.jpg" id="3_qnlar"]
 [ext_resource type="Texture2D" uid="uid://clyg24nlj6syh" path="res://panoramas2/妖界领地_2.PNG" id="4_x5gbs"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_yaueb"]
@@ -68,6 +68,8 @@
 [ext_resource type="Texture2D" uid="uid://bwr8ff7thmpw1" path="res://SeparateAnimation/李逍遥/480-31.png" id="65_gxl7b"]
 [ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="66_0osve"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="67_e88mi"]
+[ext_resource type="Texture2D" uid="uid://cvxfqutxwn6nj" path="res://Pictures/金箍棒.png" id="69_tsovn"]
+[ext_resource type="Shader" path="res://shader/zhenShen.gdshader" id="70_ymcl6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(518, 1334, 511, 172, 3802, 175, 3811, 2247, 525, 1514, 527, 2240)
@@ -304,12 +306,77 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_5a3le"]
+resource_name = "金箍棒来"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("金箍棒:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.8, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2188, 456), Vector2(1809, 480), Vector2(1809, 480), Vector2(2258, 573)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("金箍棒:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.8, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.0983889, 0.0983889), Vector2(0.776062, 0.776062), Vector2(0.776062, 0.776062), Vector2(0.0748272, 0.0748272)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("金箍棒:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.8, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -6.28319, -6.28319, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("player/Camera2D:zoom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.8, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(1.55, 1.55), Vector2(1.55, 1.55), Vector2(1.1, 1.1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("player/Camera2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 1.8, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(551.156, 104.252), Vector2(-309.887, 44.6794), Vector2(-309.887, 44.6794), Vector2(306.567, 112.762)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
 _data = {
 "RESET": SubResource("Animation_o8nmx"),
 "turnDark": SubResource("Animation_kak8o"),
 "变换": SubResource("Animation_k68q8"),
 "城主走开": SubResource("Animation_5d8hn"),
+"金箍棒来": SubResource("Animation_5a3le"),
 "魅儿回忆": SubResource("Animation_ko0di")
 }
 
@@ -1150,6 +1217,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j73lu"]
+shader = ExtResource("70_ymcl6")
+shader_parameter/time_speed = 1.0
+shader_parameter/noise_scale = 4.0
+shader_parameter/swirl_strength = 0.7
+shader_parameter/alpha_strength = 0.6
+shader_parameter/color1 = Color(1, 0, 0, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+
 [node name="枯骨洞" type="Node2D"]
 script = ExtResource("1_2qfia")
 
@@ -1177,7 +1253,9 @@ scale = Vector2(0.903555, 0.940031)
 [node name="AnimatedSprite2D" parent="player" index="1"]
 position = Vector2(12.1741, 0)
 animation = &"rightStand"
-frame_progress = 0.0
+
+[node name="Camera2D" parent="player" index="3"]
+position = Vector2(551.156, 104.252)
 
 [node name="CollisionShape2D" parent="player/playerTouch" index="0"]
 position = Vector2(-2.2135, 0)
@@ -1322,6 +1400,7 @@ scale = Vector2(1.408, 1.408)
 sprite_frames = SubResource("SpriteFrames_k5fi6")
 
 [node name="叶魅儿" parent="." instance=ExtResource("16_qpjj5")]
+z_index = 1
 position = Vector2(2339, 598)
 sprite_frames = SubResource("SpriteFrames_t8k8x")
 
@@ -1408,6 +1487,12 @@ position = Vector2(2266, 568)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-8.99976, 1.00006)
+animation = &"右上"
+autoplay = "右上"
+frame_progress = 0.0
+
+[node name="真身特效" parent="小二/小二/effects" index="10"]
+z_index = 99
 
 [node name="回忆" type="CanvasLayer" parent="."]
 visible = false
@@ -1662,6 +1747,7 @@ position = Vector2(-65.7147, -2008.64)
 position = Vector2(-145.637, 698.862)
 scale = Vector2(1.53807, 1.53807)
 sprite_frames = SubResource("SpriteFrames_pwye8")
+animation = &"default"
 frame_progress = 0.0
 
 [node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景4"]
@@ -1773,6 +1859,7 @@ text = "没事"
 autowrap_mode = 2
 
 [node name="凌若昭" parent="." instance=ExtResource("34_v0kag")]
+visible = false
 position = Vector2(2261, 459)
 animation = &"右下"
 frame_progress = 0.0
@@ -1788,6 +1875,21 @@ visible = false
 modulate = Color(1, 1, 1, 0.533333)
 position = Vector2(2149, 445)
 animation = &"right"
+
+[node name="金箍棒" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(2188, 456)
+scale = Vector2(0.0983889, 0.0983889)
+texture = ExtResource("69_tsovn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 99
+material = SubResource("ShaderMaterial_j73lu")
+offset_left = -2451.0
+offset_top = -289.0
+offset_right = 5153.0
+offset_bottom = 1877.0
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

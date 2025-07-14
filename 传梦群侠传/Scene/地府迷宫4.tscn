@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://cu5e0ky7bsdfl"]
+[gd_scene load_steps=65 format=3 uid="uid://cu5e0ky7bsdfl"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_51007"]
 [ext_resource type="Texture2D" uid="uid://df2blqvgv8p6l" path="res://Panoramas/地府_地狱迷宫4.jpg" id="2_yse5d"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_7ukbw"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_a560o"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_rl3o5"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_xh0ya"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_xh0ya"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_hmtuv"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_6kq0l"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="22_4kr0y"]
@@ -30,7 +30,9 @@
 [ext_resource type="AudioStream" uid="uid://bijpybef1ldec" path="res://Audio/SE/Laugh_spooky_3.mp3" id="28_mrwrj"]
 [ext_resource type="AudioStream" uid="uid://dxj6d6ypgvb6a" path="res://Audio/SE/Child laugh_2.mp3" id="29_fnwy7"]
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="30_fcwa5"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="31_i7p4t"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="31_i7p4t"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="32_lmn2d"]
+[ext_resource type="Texture2D" uid="uid://dtcqaq5hmlasg" path="res://Battlers/僵尸.png" id="33_oabmg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -247,6 +249,42 @@ radius = 109.772
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b24b5"]
 size = Vector2(102, 62)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6oec"]
+atlas = ExtResource("33_oabmg")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bdo8j"]
+atlas = ExtResource("33_oabmg")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pogjk"]
+atlas = ExtResource("33_oabmg")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg8f5"]
+atlas = ExtResource("33_oabmg")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ob53o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6oec")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bdo8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pogjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg8f5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="地府迷宫4" type="Node2D"]
 script = ExtResource("1_51007")
 
@@ -364,7 +402,7 @@ toScene = "女儿村"
 
 [node name="teleportCircle2" parent="." instance=ExtResource("11_cu0lh")]
 position = Vector2(292, 453)
-toScene = "鬼城下"
+toScene = "地府监狱"
 
 [node name="teleportCircle3" parent="." instance=ExtResource("11_cu0lh")]
 position = Vector2(-903, 1168)
@@ -431,7 +469,7 @@ animation = &"左上"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("16_7ukbw")]
@@ -661,6 +699,16 @@ scale = Vector2(0.236814, 0.217299)
 energy = 1.87
 texture = ExtResource("22_4kr0y")
 
+[node name="僵尸王" parent="." instance=ExtResource("32_lmn2d")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(291, 437)
+scale = Vector2(1.30243, 1.30243)
+sprite_frames = SubResource("SpriteFrames_ob53o")
+npcName = "僵尸王"
+
+[node name="CollisionPolygon2D" parent="僵尸王/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -341.173, -190.666, -278.981, -203.719, -262.858, -203.719, -248.27, -206.79, -230.61, -213.7, -207.576, -224.449, -146.92, -293.551, -224, -281, -238, -280, -258, -282, -266, -280)
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -681,3 +729,4 @@ texture = ExtResource("22_4kr0y")
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="进回忆4"]
+[editable path="僵尸王"]

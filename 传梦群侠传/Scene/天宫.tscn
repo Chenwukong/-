@@ -49,7 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://cplecgpx1y0io" path="res://梦魂Animation/0大力金刚攻击.png" id="47_icmdx"]
 [ext_resource type="Texture2D" uid="uid://corfooh32ctjl" path="res://Characters/1小妖怪.png" id="47_rsm6b"]
 [ext_resource type="Texture2D" uid="uid://b3cb5d7rak1bh" path="res://Characters/大力金刚.png" id="48_rgpqs"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="50_dkyw0"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="50_dkyw0"]
 [ext_resource type="Texture2D" uid="uid://ch45ln6fmgh07" path="res://Battlers/夜罗刹.png" id="51_pe7k3"]
 [ext_resource type="Texture2D" uid="uid://btcyrux5oqgkf" path="res://Characters/巫师.png" id="52_tkg8o"]
 [ext_resource type="Texture2D" uid="uid://dupiaf1xvbiox" path="res://Battlers/风伯.png" id="53_gjy8q"]
@@ -1858,13 +1858,11 @@ position = Vector2(1201, 1197.1)
 texture = ExtResource("2_3lmyq")
 
 [node name="player" parent="." instance=ExtResource("3_iktbe")]
-position = Vector2(-344.316, -238.167)
+position = Vector2(3416, 2511)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.8, 0.8)
@@ -1992,7 +1990,7 @@ toScene = "傲来布店"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("11_fhuin")]
 position = Vector2(-639, -430)
-toScene = "傲来祭堂"
+toScene = "月宫"
 
 [node name="addChild" type="Timer" parent="."]
 wait_time = 0.2
@@ -2075,6 +2073,8 @@ visible = false
 position = Vector2(3451, 2508)
 animation = &"left"
 autoplay = "left"
+frame = 0
+frame_progress = 0.0
 
 [node name="小二" parent="." instance=ExtResource("15_lt78c")]
 visible = false

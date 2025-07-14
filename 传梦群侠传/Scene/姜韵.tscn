@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dd1lhpctw2jww"]
+[gd_scene load_steps=20 format=3 uid="uid://dd1lhpctw2jww"]
 
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="1_qxql0"]
 [ext_resource type="Texture2D" uid="uid://bq17hiloi6g58" path="res://Battlers/烟儿dead.png" id="2_n24ec"]
+[ext_resource type="Texture2D" uid="uid://c7oayylj1dopj" path="res://Animations/0烟儿法术.png" id="3_y7p3x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2msb"]
 atlas = ExtResource("1_qxql0")
@@ -38,6 +39,30 @@ region = Rect2(560, 0, 280, 222)
 [sub_resource type="AtlasTexture" id="AtlasTexture_phv8r"]
 atlas = ExtResource("2_n24ec")
 region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jokl7"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(0, 288, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1m47v"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(55, 288, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_juglh"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(110, 288, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7htqg"]
+atlas = ExtResource("1_qxql0")
+region = Rect2(165, 288, 55, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prdj4"]
+atlas = ExtResource("3_y7p3x")
+region = Rect2(822, 192, 138, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53aug"]
+atlas = ExtResource("3_y7p3x")
+region = Rect2(50, 384, 138, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o4ccp"]
 animations = [{
@@ -97,9 +122,37 @@ animations = [{
 "loop": true,
 "name": &"左上dead",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jokl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1m47v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_juglh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7htqg")
+}],
+"loop": false,
+"name": &"左上walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prdj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53aug")
+}],
+"loop": false,
+"name": &"施法",
+"speed": 5.0
 }]
 
 [node name="姜韵" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_o4ccp")
-animation = &"左上dead"
+animation = &"左上walk"
 autoplay = "default"

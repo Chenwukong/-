@@ -23,6 +23,8 @@ func _ready():
 func _process(delta):
 	if talked:
 		visible = false
+		Global.npcVis.get(get_tree().current_scene.name)[name].visible = false	
+		
 		
 	if self.visible == false:
 		$npcBody/CollisionPolygon2D.disabled = true

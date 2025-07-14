@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="19_xia6n"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_ubvl1"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="21_pxtc7"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="22_vyc1i"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="22_vyc1i"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="23_0wxln"]
 [ext_resource type="Script" path="res://Script/flash.gd" id="24_tvuil"]
 [ext_resource type="Texture2D" uid="uid://dgfim87g4h6d7" path="res://Pictures/ghost.png" id="25_6chh1"]
@@ -29,7 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://bfnssmrhgfini" path="res://Audio/SE/scream-90747.mp3" id="27_em1vc"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="28_srbmk"]
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="29_3bejn"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_01se8"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="30_01se8"]
 [ext_resource type="Texture2D" uid="uid://dm2e5cic2nwj8" path="res://Characters/钟馗.png" id="31_t351j"]
 [ext_resource type="Texture2D" uid="uid://bl70chhni7bcg" path="res://Characters/4鬼火.png" id="32_8ep5j"]
 [ext_resource type="Texture2D" uid="uid://cp0m13nxtnadf" path="res://梦魂Animation/日照光华.png" id="33_xym6m"]
@@ -566,7 +566,6 @@ texture = ExtResource("4_cycxu")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
 autoplay = "leftStand"
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 

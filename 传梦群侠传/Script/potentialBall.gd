@@ -3,6 +3,10 @@ extends AnimatedSprite2D
 var added = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
+	if get_tree().current_scene.name == "灵力储存场":
+		id = randf_range(0,10000)
+	
 	if id in Global.potentialBalls:
 		pass
 	else:
@@ -26,15 +30,26 @@ func _on_area_2d_body_entered(body):
 		return
 	if Global.potentialBalls.get(id).pickUp == false:
 		Global.totalPotentialBall += 1
-		for i in FightScenePlayers.fightScenePlayerData:
+		if get_tree().current_scene.name == "灵力储存场":
+			Global.violencePoint -= 20
+			Global.showViolence("negative",20)
 			
-			FightScenePlayers.fightScenePlayerData.get(i).potential += 5 * Global.enKey
+		for i in FightScenePlayers.fightScenePlayerData:
+			if get_tree().current_scene.name == "灵力储存场":
+				FightScenePlayers.fightScenePlayerData.get(i).potential += 2 * Global.enKey
+			else:			
+				FightScenePlayers.fightScenePlayerData.get(i).potential += 5 * Global.enKey
 			body.get_node("AudioStreamPlayer2D").stream = load("res://Audio/SE/回复.ogg")
 			body.get_node("AudioStreamPlayer2D").play()
 			body.get_node("effect").visible = true
 			body.get_node("effect").play("potentialBall")
 			if !added:
-				Global.systemMsg.append("全队获得了5潜力点！")
+				if get_tree().current_scene.name == "灵力储存场":
+					Global.systemMsg.append("全队获得了2潜力点！")
+				else:
+					Global.systemMsg.append("全队获得了5潜力点！")
+					
+				
 			added = true
 			get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 		queue_free()

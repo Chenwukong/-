@@ -52,6 +52,9 @@ func _on_button_button_down():
 
 	if Global.playerMagicList[magicIndex].name == "高等炼体术":
 		return	
+	if Global.playerMagicList[magicIndex].name == "真身现世" and currPlayer.真身round != 0:	
+		return
+		
 	if !(Global.currUsingMagic.cost > currPlayer.currMp):
 		for i in Global.playerMagicList.size():
 
@@ -71,6 +74,9 @@ func _on_button_button_down():
 func _on_button_2_button_down():
 	if Global.playerMagicList[magicIndex].name == "高等炼体术":
 		return	
+	if Global.playerMagicList[magicIndex].name == "真身现世" and currPlayer.真身round != 0:	
+		return		
+		
 	if !(Global.currUsingMagic.cost > currPlayer.currMp):
 		for i in Global.playerMagicList.size():
 

@@ -36,7 +36,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="47_axi3f"]
 [ext_resource type="AudioStream" uid="uid://br8x1exu6xcgs" path="res://Audio/SE/猛男-攻击X.ogg" id="48_dgdc2"]
 [ext_resource type="AudioStream" uid="uid://cbsbe0xhxk828" path="res://Audio/SE/猛男-呼啊.ogg" id="49_620ex"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="53_v0k65"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="53_v0k65"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(518, 1334, 511, 172, 3802, 175, 3811, 2247, 525, 1514, 527, 2240)
@@ -747,7 +747,6 @@ scale = Vector2(16.7604, 17.8243)
 sprite_frames = SubResource("SpriteFrames_wmedm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 collision_layer = 5
 collision_mask = 5
 
@@ -755,7 +754,7 @@ collision_mask = 5
 position = Vector2(-1569, -612)
 scale = Vector2(1.62148, 1.62148)
 build_mode = 1
-polygon = PackedVector2Array(2045.66, 985.518, 2045.66, 1055.82, 2030.24, 1080.49, 2009.89, 1109.48, 2023.46, 1128.6, 2033.32, 1136.61, 2038.88, 1148.33, 2063.54, 1177.93, 2194.91, 1205.07, 2253.49, 1193.35, 2497.71, 1250.09, 2550.14, 1243.92, 2567, 1237, 2572, 1186, 2563, 1063, 2298, 1007, 2141.87, 981.201)
+polygon = PackedVector2Array(2045.66, 985.518, 2045.66, 1055.82, 2030.24, 1080.49, 2009.89, 1109.48, 2023.46, 1128.6, 2033.32, 1136.61, 2038.88, 1148.33, 2063.54, 1177.93, 2233.76, 1137.23, 2253.49, 1193.35, 2497.71, 1250.09, 2550.14, 1243.92, 2567, 1237, 2572, 1186, 2563, 1063, 2298, 1007, 2246.71, 1077.41)
 
 [node name="battleBgm" type="AudioStreamPlayer" parent="."]
 

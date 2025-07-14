@@ -1,9 +1,10 @@
-[gd_scene load_steps=207 format=3 uid="uid://csik74fi0ymum"]
+[gd_scene load_steps=217 format=3 uid="uid://csik74fi0ymum"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_bae51"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_wgxe7"]
 [ext_resource type="Texture2D" uid="uid://cr3s2f31kxvbx" path="res://panoramas2/长寿郊外.png" id="3_xik70"]
 [ext_resource type="Texture2D" uid="uid://omc8itu8jrit" path="res://panoramas2/长寿郊外全景_2.png" id="4_4lhns"]
+[ext_resource type="Texture2D" uid="uid://gyx03vu2f58j" path="res://梦魂Animation/！风火特效.png" id="5_51c20"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_avk28"]
 [ext_resource type="AudioStream" uid="uid://bew30mmr1cehg" path="res://Audio/BGM/长寿村.mp3" id="6_ylt34"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_g6pf6"]
@@ -1372,6 +1373,70 @@ shader_parameter/background_color = Color(0, 0, 0, 1)
 shader_parameter/ink_color = Color(0.176471, 0.176471, 0.176471, 0.372549)
 shader_parameter/noise_texture = ExtResource("37_ewy0a")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_01ecs"]
+atlas = ExtResource("5_51c20")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwt2i"]
+atlas = ExtResource("5_51c20")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b1ih"]
+atlas = ExtResource("5_51c20")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s6j4"]
+atlas = ExtResource("5_51c20")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yunhl"]
+atlas = ExtResource("5_51c20")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knfm1"]
+atlas = ExtResource("5_51c20")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl05g"]
+atlas = ExtResource("5_51c20")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hpxh"]
+atlas = ExtResource("5_51c20")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mlc3r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01ecs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwt2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b1ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s6j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yunhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knfm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl05g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hpxh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="长寿郊外" type="Node2D"]
 script = ExtResource("1_bae51")
 shader = ExtResource("2_wgxe7")
@@ -1397,8 +1462,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(32.0956, 32.9776)
@@ -1610,7 +1673,7 @@ scale = Vector2(0.7, 0.7)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-3.93546, -18.0714)
-animation = &"左下"
+animation = &"真身左下"
 autoplay = "左下"
 frame_progress = 0.0
 
@@ -1980,6 +2043,13 @@ offset_left = 1655.0
 offset_top = 28.0
 offset_right = 2837.0
 offset_bottom = 652.0
+
+[node name="火力场" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2334, 197)
+scale = Vector2(2.70595, 2.70595)
+sprite_frames = SubResource("SpriteFrames_mlc3r")
+frame_progress = 0.532081
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

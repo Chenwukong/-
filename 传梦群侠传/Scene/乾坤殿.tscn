@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=3 uid="uid://cq2mikxilt3e0"]
+[gd_scene load_steps=110 format=3 uid="uid://cq2mikxilt3e0"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_lu8vk"]
 [ext_resource type="Texture2D" uid="uid://ypum62mvan4b" path="res://panoramas2/门派_五庄观_乾坤殿.jpg" id="2_fup5e"]
@@ -49,7 +49,8 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="49_ca6kp"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="50_0p3qx"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="51_xybtw"]
-[ext_resource type="PackedScene" path="res://Scene/messageLayer.tscn" id="52_83det"]
+[ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="52_83det"]
+[ext_resource type="Texture2D" uid="uid://dxcl50ligqp1c" path="res://Characters/道童.png" id="52_owiet"]
 [ext_resource type="Texture2D" uid="uid://dul8k3xecm082" path="res://Characters/镇元大仙.png" id="53_pqs5f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
@@ -489,6 +490,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_iiavy"]
+atlas = ExtResource("52_owiet")
+region = Rect2(0, 138, 50, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m5o5t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iiavy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="乾坤殿" type="Node2D"]
 script = ExtResource("1_lu8vk")
 
@@ -628,8 +644,8 @@ position = Vector2(98, -899)
 autoplay = ""
 
 [node name="player" parent="." instance=ExtResource("49_ca6kp")]
-position = Vector2(509, 315)
-scale = Vector2(1.17161, 1.4672)
+position = Vector2(330, 389)
+scale = Vector2(1.5, 1.5)
 
 [node name="teleportCircle" parent="." instance=ExtResource("50_0p3qx")]
 position = Vector2(259, 489)
@@ -660,12 +676,18 @@ volume_db = 4.552
 
 [node name="镇元大仙" parent="." instance=ExtResource("15_pf54c")]
 position = Vector2(554, 234)
-scale = Vector2(1.4085, 1.4085)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_qfoxb")
 frame_progress = 0.0905649
 
 [node name="CollisionPolygon2D" parent="镇元大仙/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -293, -282, -308.049, -268.94, -316.568, -224.921, -291.719, -205.752, -275.39, -192.262, -256.22, -190.132, -206.522, -203.622, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
+
+[node name="清风" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(456.25, 339.625)
+scale = Vector2(1.75, 1.75)
+sprite_frames = SubResource("SpriteFrames_m5o5t")
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

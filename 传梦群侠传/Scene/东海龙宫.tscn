@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dt3gtbmb04pj8"]
+[gd_scene load_steps=64 format=3 uid="uid://dt3gtbmb04pj8"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_a530w"]
 [ext_resource type="Texture2D" uid="uid://plqdn6606dut" path="res://panoramas2/龙宫全景.jpg" id="2_a3je7"]
@@ -22,14 +22,15 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="21_gqlqy"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="22_1v2xb"]
 [ext_resource type="Texture2D" uid="uid://dyxtnbfsqis5s" path="res://SeparateAnimation/敖雨/971-11.png" id="23_4fqt8"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="23_lgun2"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="23_lgun2"]
 [ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="23_xna0r"]
 [ext_resource type="Texture2D" uid="uid://cox76u442bx1f" path="res://Characters/蟹黄.png" id="24_366ru"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="25_veifx"]
-[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="27_q2v25"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="25_veifx"]
+[ext_resource type="PackedScene" path="res://Scene/敖阳.tscn" id="27_q2v25"]
 [ext_resource type="Texture2D" uid="uid://cvxfqutxwn6nj" path="res://Pictures/金箍棒.png" id="28_iri21"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="29_r6jwa"]
 [ext_resource type="Texture2D" uid="uid://bd8tcb4vey0na" path="res://Characters/水泡.png" id="30_k34x0"]
+[ext_resource type="Texture2D" uid="uid://bjkvhgum6oie5" path="res://Characters/小如意.png" id="31_qocun"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(17, 63, 4289, 54, 4280, 2363, 26, 1188, 31, 2366, 20, 1489)
@@ -84,6 +85,8 @@ shader = ExtResource("18_6gvuf")
 shader_parameter/mouse_position = Vector2(0.5, 0.5)
 shader_parameter/wave_color = Color(1, 2, 4, 1)
 shader_parameter/wave_transparency = 0.14
+shader_parameter/pattern_offset = Vector2(0, 0)
+shader_parameter/pattern_scale = 10.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bmfa1"]
 atlas = ExtResource("23_xna0r")
@@ -132,66 +135,6 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_wd1ow"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("敖阳:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(815.347, 1825.22)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("金箍棒2:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("金箍棒2:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(522, 392)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("金箍棒2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_eg635"]
 resource_name = "shake"
@@ -245,6 +188,10 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_1xmg2"]
+resource_name = "结束"
+length = 30.0
+
 [sub_resource type="Animation" id="Animation_fa28m"]
 resource_name = "解除误会"
 tracks/0/type = "value"
@@ -264,6 +211,7 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_wd1ow"),
 "shake": SubResource("Animation_eg635"),
+"结束": SubResource("Animation_1xmg2"),
 "解除误会": SubResource("Animation_fa28m")
 }
 
@@ -325,6 +273,42 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_0dtg7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxes2"]
+atlas = ExtResource("31_qocun")
+region = Rect2(0, 0, 67, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1d16"]
+atlas = ExtResource("31_qocun")
+region = Rect2(67, 0, 67, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1x2d"]
+atlas = ExtResource("31_qocun")
+region = Rect2(134, 0, 67, 75)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yygpu"]
+atlas = ExtResource("31_qocun")
+region = Rect2(201, 0, 67, 75)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xlcpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxes2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1d16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1x2d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yygpu")
 }],
 "loop": true,
 "name": &"default",
@@ -434,6 +418,26 @@ offset_right = 1152.0
 offset_bottom = 804.0
 texture = ExtResource("9_5ponj")
 
+[node name="id" type="LineEdit" parent="CanvasLayer2"]
+visible = false
+offset_left = 481.0
+offset_top = 237.0
+offset_right = 748.0
+offset_bottom = 311.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "输入你想别人看到的id"
+alignment = 1
+
+[node name="message" type="LineEdit" parent="CanvasLayer2"]
+visible = false
+offset_left = 147.0
+offset_top = 199.0
+offset_right = 1089.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "输入你想给下一个传梦者的留言"
+alignment = 1
+
 [node name="addChild" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
@@ -476,7 +480,7 @@ stream = ExtResource("12_wqtrn")
 volume_db = 4.552
 
 [node name="potentialBall" parent="." instance=ExtResource("13_8lktv")]
-position = Vector2(3701, -170)
+position = Vector2(6564, -472)
 id = "方寸山1"
 
 [node name="shake" type="AnimationPlayer" parent="."]
@@ -503,6 +507,26 @@ animation = &"左上"
 [node name="menuControl" parent="." instance=ExtResource("21_gqlqy")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("22_1v2xb")]
+
+[node name="id" type="LineEdit" parent="CanvasLayer"]
+visible = false
+offset_left = 481.0
+offset_top = 237.0
+offset_right = 748.0
+offset_bottom = 311.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "输入你想别人看到的id"
+alignment = 1
+
+[node name="message" type="LineEdit" parent="CanvasLayer"]
+visible = false
+offset_left = 147.0
+offset_top = 199.0
+offset_right = 1089.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "输入你想给下一个传梦者的留言"
+alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = 100
@@ -582,6 +606,11 @@ frame_progress = 0.0
 
 [node name="敖雨2" parent="." instance=ExtResource("14_18ta8")]
 position = Vector2(530, 1078)
+sprite_frames = SubResource("SpriteFrames_shebl")
+
+[node name="敖雨3" parent="." instance=ExtResource("14_18ta8")]
+visible = false
+position = Vector2(1674, 1382)
 sprite_frames = SubResource("SpriteFrames_shebl")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -719,14 +748,83 @@ frame_progress = 0.939132
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
+[node name="天机娃娃" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(1452, 1408)
+sprite_frames = SubResource("SpriteFrames_xlcpj")
+frame_progress = 0.471593
+
+[node name="CanvasLayer3" type="CanvasLayer" parent="."]
+
+[node name="id" type="LineEdit" parent="CanvasLayer3"]
+visible = false
+offset_left = 481.0
+offset_top = 237.0
+offset_right = 748.0
+offset_bottom = 311.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "输入你想别人看到的id"
+alignment = 1
+
+[node name="message" type="TextEdit" parent="CanvasLayer3"]
+visible = false
+offset_left = 147.0
+offset_top = 199.0
+offset_right = 1089.0
+offset_bottom = 460.0
+theme_override_font_sizes/font_size = 25
+placeholder_text = "输入你想给下一个传梦者的留言"
+wrap_mode = 1
+autowrap_mode = 2
+
+[node name="发送" type="Button" parent="CanvasLayer3"]
+visible = false
+offset_left = 775.0
+offset_top = 246.0
+offset_right = 863.0
+offset_bottom = 302.0
+theme_override_font_sizes/font_size = 40
+text = "确认
+"
+
+[node name="发送2" type="Button" parent="CanvasLayer3"]
+visible = false
+offset_left = 999.0
+offset_top = 482.0
+offset_right = 1087.0
+offset_bottom = 538.0
+theme_override_font_sizes/font_size = 40
+text = "确认
+"
+
+[node name="Label" type="Label" parent="CanvasLayer3"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 444.0
+offset_top = 144.0
+offset_right = 798.0
+offset_bottom = 195.0
+theme_override_font_sizes/font_size = 40
+text = "已有此id，请换一个"
+
+[node name="http" type="HTTPRequest" parent="."]
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="text_submitted" from="CanvasLayer2/id" to="." method="_on_id_text_submitted"]
+[connection signal="text_submitted" from="CanvasLayer2/message" to="." method="_on_id_text_submitted"]
 [connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
+[connection signal="text_submitted" from="CanvasLayer/id" to="." method="_on_id_text_submitted"]
+[connection signal="text_submitted" from="CanvasLayer/message" to="." method="_on_id_text_submitted"]
+[connection signal="text_submitted" from="CanvasLayer3/id" to="." method="_on_id_text_submitted"]
+[connection signal="button_down" from="CanvasLayer3/发送" to="." method="_on_发送_button_down"]
+[connection signal="button_down" from="CanvasLayer3/发送2" to="." method="_on_发送2_button_down"]
+[connection signal="request_completed" from="http" to="." method="_on_http_request_completed"]
 
 [editable path="player"]
 [editable path="小二"]

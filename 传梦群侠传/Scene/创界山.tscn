@@ -78,7 +78,7 @@
 [ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="77_xi8ku"]
 [ext_resource type="Shader" path="res://shader/白虎.gdshader" id="78_qko0s"]
 [ext_resource type="Texture2D" uid="uid://cvjfqn34hgmeh" path="res://Characters/老虎.png" id="79_c442k"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="80_b61yv"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="80_b61yv"]
 [ext_resource type="Texture2D" uid="uid://cf8y03qdf2jd7" path="res://梦魂Animation/青龙2阶段/战斗待机.png" id="81_xbqr7"]
 [ext_resource type="Texture2D" uid="uid://rc5d0cjso542" path="res://梦魂Animation/青龙2阶段/攻击&施法.png" id="82_nn7o6"]
 [ext_resource type="Texture2D" uid="uid://bk1jbt5fnkkqp" path="res://梦魂Animation/龙龟/王八/待战【我】2.png" id="83_sn6uu"]
@@ -2618,8 +2618,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
@@ -2936,6 +2934,8 @@ position = Vector2(3364, 2303)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
+frame = 0
+frame_progress = 0.0
 
 [node name="姜韵2" parent="." instance=ExtResource("45_xwfn8")]
 visible = false
@@ -2944,6 +2944,8 @@ position = Vector2(925, 1523)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
+frame = 0
+frame_progress = 0.0
 
 [node name="姜韵3" parent="." instance=ExtResource("45_xwfn8")]
 visible = false
@@ -2952,6 +2954,8 @@ position = Vector2(2673, 2556)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
+frame = 0
+frame_progress = 0.0
 
 [node name="梧桐" parent="." instance=ExtResource("22_1w4oe")]
 position = Vector2(3340, 2188)

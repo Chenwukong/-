@@ -343,6 +343,7 @@ func get_line(resource: DialogueResource, key: String, extra_game_states: Array)
 	if key in resource.titles.values():
 		passed_title.emit(resource.titles.find_key(key))
 
+
 	assert(resource.lines.has(key), DialogueConstants.translate("errors.key_not_found").format({ key = key }))
 
 	var data: Dictionary = resource.lines.get(key)

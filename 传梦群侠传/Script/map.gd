@@ -6,7 +6,7 @@ var canEnterFight = false
 @export var onFight = false
 var monsters
 var canFull = true
-
+var httpStatus
 var onFull = false
 var circleGroup
 var custom_cursor_image = preload("res://Icons/001-weapon01.png")
@@ -43,15 +43,45 @@ var confirmButtonIndex = 0
 func update_cursor():
 	# Set the current frame as the cursor
 	Input.set_custom_mouse_cursor(cursor_frames[int(current_frame)], 0, cursor_scale)
+func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
+	for big_scene in Global.sameBigScene:
+		var sub_scenes = Global.sameBigScene[big_scene]
+		if scene_a in sub_scenes and scene_b in sub_scenes:
+			return true
+	return false
+
 
 func _ready():
+
+	if not has_node("oneTimeSound"):
+		var audio_player = AudioStreamPlayer.new()
+		audio_player.name = "oneTimeSound"
+		add_child(audio_player)
+	else:
+		print("节点已存在")
+	if not has_node("messageLayer"):
+		var messageLayer = load("res://Scene/messageLayer.tscn")
+		var audio_player = messageLayer.instantiate()
+		audio_player.name = "messageLayer"
+		add_child(audio_player)
+	else:
+		print("节点已存在")
 	
+	var streamer = $AudioStreamPlayer2D
+	if not streamer.is_connected("finished", Callable(self, "_on_audio_finished")):
+		streamer.connect("finished", Callable(self, "_on_audio_finished"))
+		
+	$AudioStreamPlayer2D.autoplay = true
+	$AudioStreamPlayer2D.play()
+	if is_in_same_big_scene(get_tree().current_scene.name, Global.prevScene):
+		$AudioStreamPlayer2D.seek(Global.bgmTimer + 0.1)	
+
+
 	if get_tree().current_scene.name == "长寿村":
 		$"CanvasLayer/长寿村过场图".visible = true
 		
-	$AudioStreamPlayer2D.autoplay = true
 	#DisplayServer.window_set_title("传梦之路：第一章《浮生难安》")
-
+	
 	playerPosition = get_node("player").position
 	if Global.onTalk:
 		Global.menuOut = false
@@ -62,6 +92,7 @@ func _ready():
 	if Global.npcs["system"].current_dialogue_index > 7:
 		if get_tree().current_scene.name == "建邺城右" or get_tree().current_scene.name == "建邺城":
 			get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/鬼城.mp3")
+			get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 	$enterFightCd.start()
 	cursor_frames.append(preload("res://Icons/5-1.png"))
 	cursor_frames.append(preload("res://Icons/5-2.png"))
@@ -96,7 +127,9 @@ func _ready():
 		#DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 
 func _process(delta):
-
+	if Input.is_action_just_pressed("L"):
+		Global.resetNpcVis()
+	
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -111,9 +144,9 @@ func _process(delta):
 	if !Global.onFight:
 		if has_node("battleBgm"):
 			$battleBgm.stop()
-	else:
-		if !Global.onHurry:
-			$AudioStreamPlayer2D.play()
+#	else:
+#		if !Global.onHurry:
+#			$AudioStreamPlayer2D.play()
 		
 		
 	if Global.mcVisible == false:
@@ -123,9 +156,7 @@ func _process(delta):
 		#get_tree().change_scene_to_file("res://Scene/"+get_tree().current_scene.name+".tscn")
 	
 	var questItem = get_tree().get_nodes_in_group("questItem")
-	if Global.onQuest == false:
-		for i in questItem:
-			i.visible = false
+
 #$ProgressBar.value +1
 	if Global.questItem.get("佛手"):
 		if Global.questItem.get("佛手").number >= 4:
@@ -821,8 +852,8 @@ func _process(delta):
 #	if is_instance_valid(get_node("player")):
 #		Global.currPlayerPos = get_node("player/Camera2D").get_screen_center_position()
 	
-	if $AudioStreamPlayer2D.is_playing() == false:
-		$AudioStreamPlayer2D.play()
+#	if $AudioStreamPlayer2D.is_playing() == false:
+#		$AudioStreamPlayer2D.play()
 #	if 	$nightBgm.is_playing() == false and Global.atNight:
 		#$nightBgm.play()
 	if Global.atNight:	
@@ -873,7 +904,7 @@ func check_enter_fight_scene():
 			
 			$shadow.visible = false
 			get_node("CanvasLayer").visible = false
-			get_node("AudioStreamPlayer2D").volume_db = -80
+			get_node("AudioStreamPlayer2D").stream_paused = true
 			$enterFightSound.stream = load("res://Audio/SE/SWD 战斗开始.mp3")
 			$enterFightSound.play()		
 			instance.set_name('battleField')		
@@ -1892,3 +1923,129 @@ func _on_黑龙吼_animation_finished():
 
 func _on_speed_timer_timeout():
 	$player.speed = 300
+
+
+func _on_魔尊_animation_looped():
+	if Global.getnode("魔尊").animation == "攻击右上":
+		$soundTimer.start()
+		Global.getnode("ColorRect").visible = true
+		Global.getnode("AnimationPlayer2").play("冲击波")
+
+func _on_sound_timer_timeout():
+
+	Global.playsound("res://Audio/SE/048-Explosion01.ogg")
+
+
+func _on_audio_finished():
+	$AudioStreamPlayer2D.play()
+	Global.bgmTimer = 0
+
+
+func _on_id_text_submitted(new_text):
+	var text = Global.getnode("CanvasLayer3/id").text
+	check_if_id_exists(text)
+
+
+func _on_发送_button_down():
+	var text = Global.getnode("CanvasLayer3/id").text
+	check_if_id_exists(text)
+
+@onready var http := $http
+
+var supabase_url := "https://qcrkhgmmvgpkamgadvxy.supabase.co"
+var api_key := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcmtoZ21tdmdwa2FtZ2Fkdnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MDMwNjEsImV4cCI6MjA2NDQ3OTA2MX0.pM3AZQkOz2xGvcVcfLJtTmCxn4y-nKrjKTSzhcyj-9E"
+
+func send_id(name: String, message: String) -> void:
+	httpStatus = "sendId"
+	var url = supabase_url + "/rest/v1/shareDream"
+	var headers = [
+		"Content-Type: application/json",
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key
+	]
+	var body = {
+		"name": name,
+		"message": message,
+	}
+	var json_body = JSON.stringify(body)
+
+	var err = http.request(url, headers, HTTPClient.METHOD_POST, json_body)
+	if err != OK:
+		print("请求发送失败，错误码：", err)
+
+func _on_http_request_completed(result, response_code, headers, body):
+	print("返回状态码: ", response_code)
+	print("响应内容: ", body.get_string_from_utf8())
+	
+	if response_code == 200:
+		if httpStatus == "checkId":
+			if body.get_string_from_utf8() != "[]":
+				Global.getnode("CanvasLayer3/Label").visible = true
+				Global.getnode("CanvasLayer3/Label").text = "已有此id，请换一个"
+			else:
+				Global.getnode("CanvasLayer3/id").visible = false
+				$"CanvasLayer3/发送".visible = false
+				$CanvasLayer3/Label.visible = false
+				$CanvasLayer3/message.visible = true
+				$"CanvasLayer3/发送2".visible = true
+	if response_code == 201:
+		if httpStatus == "sendId":
+			print("发送信息")
+			
+	else:
+		print("发生错误！")
+
+
+func get_all_ids():
+	var url = supabase_url + "/rest/v1/shareDream?select=name"
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	if err != OK:
+		print("❌ 获取 ID 请求发送失败，错误码：", err)
+	else:
+		print("📡 请求已发送，等待返回")
+
+func check_if_id_exists(player_id: String):
+	# 对 player_id 进行 URI 编码
+	httpStatus = "checkId"
+	var encoded_id = player_id.uri_encode()
+	var url = supabase_url + "/rest/v1/shareDream?name=eq." + encoded_id
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	if err != OK:
+		print("检查 ID 请求发送失败，错误码：", err)
+	else:
+		print("📡 检查 ID 请求已发送，等待返回")
+
+
+func _on_发送2_button_down():
+	print($CanvasLayer3/message.text.length(),$CanvasLayer3/message.text.length()>170)
+	if $CanvasLayer3/message.text.length() > 170:
+		$CanvasLayer3/Label.visible = true
+		$CanvasLayer3/Label.text = "字太多了！"
+		return
+	$"CanvasLayer3/发送2".visible = false
+	$CanvasLayer3/Label.visible = false
+	$CanvasLayer3/message.visible = false
+	send_id(Global.getnode("CanvasLayer3/id").text,Global.getnode("CanvasLayer3/message").text)
+	DialogueManager.show_chat(load("res://Dialogue/"+str(12)+".dialogue"),get_npc_dialogue("结局"))	
+
+
+func _on_message_text_submitted(new_text):
+	if $CanvasLayer3/message.text.length() > 170:
+		$CanvasLayer3/Label.visible = true
+		$CanvasLayer3/Label.text = "字太多了！"
+		return
+	$"CanvasLayer3/发送2".visible = false
+	$CanvasLayer3/Label.visible = false
+	$CanvasLayer3/message.visible = false
+	send_id(Global.getnode("CanvasLayer3/id").text,Global.getnode("CanvasLayer3/message").text)
+	DialogueManager.show_chat(load("res://Dialogue/"+str(12)+".dialogue"),get_npc_dialogue("结局"))	

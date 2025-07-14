@@ -418,6 +418,11 @@ set Global.onTalk = true
 姜韵: [speed=0.5]他现在这么虚弱是因为他在这里和蚩尤不间断的战斗了三年，在你想着如何与别人争虚名之时，他想着的是保护百姓
 姜韵: [speed=0.5]如果你今天在这里，要为了证明自己比孙大圣强，而去乘机攻击他，那么你就永远是个失败者了！
 六耳猕猴: [speed=0.5]你说...什么
+姜韵: [speed=0.5]而且，不用你来杀我们，今日之后，我们自会前往天庭和魔尊妖盟决一死战
+六耳猕猴: [speed=0.5]你们简直是疯了，现在跑上去和找死有什么区别
+六耳猕猴: [speed=0.5]这天下怎样与你们何干
+时追云: 	[speed=0.5]如果我们不去阻止魔尊，那么将来他成为三界之主涂炭生灵之时我必会后悔今朝没搏杀一番，献上我们的一份力
+六耳猕猴:  [speed=0.5]...
 set Global.getnode("六耳/小女孩").visible = true
 小女孩: [speed=0.5]找到了找到了，你跑的太快了啦
 小女孩: [speed=0.5]疑？有两个猴哥哥？
@@ -491,7 +496,8 @@ set Global.changevis("傲来国","凌若昭")
 	set Global.changeScene("长安城",null)
 - 傲来国
 	set Global.changeScene("傲来国",null)
-
+- 朱紫国
+	set Global.changeScene("朱紫国",null)
 set Global.onTalk = false
 => END
 
@@ -507,6 +513,9 @@ set Global.npcs.get("凌若昭").current_dialogue_index = 6
 	set Global.changeScene("长安城",null)
 - 傲来国
 	set Global.changeScene("傲来国",null)
+- 朱紫国
+	set Global.changeScene("朱紫国",null)
+
 
 set Global.onTalk = false
 => END
@@ -515,7 +524,8 @@ set Global.onTalk = false
 set Global.onTalk = true
 孙悟空: [speed=0.5]看来你们决定好了，那就随我来吧
 set Global.dial = "天庭之战"
-set Global.changeScene("天上虚空",null)
+set Global.chapter_id = 11
+set Global.changeScene("chapterPreview",null)
 
 set Global.onTalk = false
 => END

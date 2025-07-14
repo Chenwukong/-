@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ba0gbvspfp4nd" path="res://菜单.jpg" id="8_w3g50"]
 [ext_resource type="StyleBox" uid="uid://di4oug8y2x4" path="res://Scene/flat.tres" id="9_1bmxk"]
 [ext_resource type="Script" path="res://Script/menu_character.gd" id="10_qqw06"]
-[ext_resource type="Texture2D" uid="uid://b3da5qpqi63d2" path="res://Pictures/时追云.png" id="11_sfpuy"]
+[ext_resource type="Texture2D" uid="uid://b3da5qpqi63d2" path="res://portrait/时追云.png" id="11_sfpuy"]
 [ext_resource type="Texture2D" uid="uid://clsl8s4fnu3rt" path="res://Icons/312.png" id="12_c6j4d"]
 [ext_resource type="StyleBox" uid="uid://diiqem3l2xshe" path="res://Scene/armorItem.tres" id="13_e4ukw"]
 [ext_resource type="Texture2D" uid="uid://degsqccwdb0hx" path="res://Icons/项链-佛珠.png" id="14_ukufw"]
@@ -864,7 +864,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 enabled = false
@@ -4666,7 +4665,7 @@ visible = false
 position = Vector2(1355, 862)
 sprite_frames = SubResource("SpriteFrames_pwwya")
 frame_progress = 0.476251
-npcName = "鼠先锋"
+script = null
 
 [node name="时追云" parent="." instance=ExtResource("35_vj1bk")]
 visible = false
@@ -4692,6 +4691,9 @@ position = Vector2(734, 497)
 [node name="CanvasLayer" parent="." instance=ExtResource("31_f4gxe")]
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="MarkerRight2" type="Marker2D" parent="."]
+position = Vector2(1865, 1913)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

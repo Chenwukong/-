@@ -185,7 +185,17 @@ var battleConsume ={
 		"key":false,
 		"gold": 600
 	},	
-	
+	"月饼":{
+		"name": "月饼",
+		"effect": "hp",
+		"value": 9999 ,
+		"icon": "res://Icons/月宫月饼.png",
+		"picture":"res://Icons/月宫月饼.png",
+		"description": "恢复全部生命值",
+		"audio": "res://Audio/SE/HEAL11.ogg",
+		"key":false,
+		"gold": 0
+	},		
 	
 	"含沙射影":{
 		"name": "含沙射影",
@@ -336,8 +346,17 @@ var weapon = {
 		"added": false,
 		"gold": 20
 	},		
-			
-
+	"玉箍棒":{
+		"name": "玉箍棒",
+		"user": "小二",
+		"icon": "res://Pictures/Pictures/ba.png",
+		"picture": "res://Pictures/Pictures/ba.png",
+		"value": {"additionDmg": 400 * Global.enKey},
+		"description": "小二专属武器，伤害+20，金箍棒的孪生武器",
+		"key":false,
+		"added": false,
+		"gold": 20
+	},				
 	
 }
 
@@ -517,7 +536,7 @@ var accessories = {
 		"description": "速度+15, 物理防御+50，灵力防御+50，伤害+50，血量+200 (时追云专属)",
 		"key":true,
 		"added":false,
-		"gold":9999999999999999999,
+		"gold":999999,
 	},
 	
 	"五色飞石":{
@@ -644,6 +663,11 @@ var addItemInfo ={
 	},	
 	"小还丹":{
 		"name": "小还丹",
+		"type": "battleConsume",
+		"bagPlace": "battleItem"		
+	},	
+	"月饼":{
+		"name": "月饼",
 		"type": "battleConsume",
 		"bagPlace": "battleItem"		
 	},		

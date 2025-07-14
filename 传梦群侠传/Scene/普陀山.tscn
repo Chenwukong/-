@@ -45,18 +45,6 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_gs70c"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1459, 1578)]
-}
 
 [sub_resource type="Animation" id="Animation_y5c4b"]
 resource_name = "守卫move"
@@ -302,14 +290,15 @@ texture = ExtResource("2_5hebb")
 
 [node name="player" parent="." instance=ExtResource("3_2fr4s")]
 z_index = 2
-position = Vector2(1459, 1578)
+position = Vector2(1483.41, 1064.95)
 scale = Vector2(0.749621, 0.783326)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
-frame = 0
-frame_progress = 0.0
+
+[node name="Camera2D" parent="player" index="3"]
+zoom = Vector2(1.2, 1.2)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -322,7 +311,7 @@ script = ExtResource("4_1erpk")
 position = Vector2(598, 601)
 scale = Vector2(0.5, 0.5)
 build_mode = 1
-polygon = PackedVector2Array(2150, 1910, 2140, 1782, 2029, 1712, 1929, 1672, 1932, 1614, 1866, 1548, 1803, 1480, 1709, 1396, 1426, 1461, 1084, 1574, 922, 1642, 879, 1630, 905, 1587, 949, 1499, 1014, 1477, 1110, 1456, 1254, 1400, 1363, 1382, 1420, 1377, 1478, 1294, 1661, 1190, 1751, 1175, 1841, 1216, 1992, 1302, 2106, 1254, 2156, 1088, 2164, 1016, 2162, 902, 1942, 922, 1799, 895, 1914, 777, 2061, 658, 2126, 544, 2048, 500, 1957, 620, 1869, 668, 1807, 752, 1800, 898, 1653, 838, 1560, 858, 1522, 849, 1496, 757, 1362, 738, 1239, 739, 1065, 845, 945, 839, 830, 843, 725, 838, 704, 802, 648, 764, 620, 726, 586, 680, 488, 619, 395, 623, 374, 684, 393, 757, 534, 851, 490, 922, 513, 1051, 498, 1138, 916, 1100, 1132, 1076, 1258, 1004, 1356, 990, 1468, 1000, 1549, 1060, 1545, 1149, 1377, 1245, 1205, 1263, 1058, 1330, 884, 1350, 779, 1348, 589, 1358, 494, 1406, 269, 1457, 250, 1471, 253, 1718, 284, 1774, 444, 1834, 551, 1849, 880, 1793, 1027, 1803, 1385, 1635, 1506, 1597, 1648, 1564, 1694, 1601, 1764, 1636, 1806, 1671, 1782, 1709, 1699, 1913)
+polygon = PackedVector2Array(2150, 1910, 2140, 1782, 2029, 1712, 1929, 1672, 1932, 1614, 1866, 1548, 1803, 1480, 1709, 1396, 1426, 1461, 1084, 1574, 922, 1642, 879, 1630, 905, 1587, 949, 1499, 1014, 1477, 1110, 1456, 1254, 1400, 1363, 1382, 1420, 1377, 1478, 1294, 1661, 1190, 1751, 1175, 1841, 1216, 1992, 1302, 2106, 1254, 2156, 1088, 2164, 1016, 2162, 902, 1942, 922, 1830, 908, 1946, 802, 1786, 732, 2061, 658, 2126, 544, 2048, 500, 1957, 620, 1869, 668, 1786, 732, 1690, 802, 1653, 838, 1560, 858, 1522, 849, 1496, 757, 1362, 738, 1239, 739, 1065, 845, 945, 839, 830, 843, 725, 838, 704, 802, 648, 764, 620, 726, 586, 680, 488, 619, 395, 623, 374, 684, 393, 757, 534, 851, 490, 922, 513, 1051, 498, 1138, 916, 1100, 1132, 1076, 1258, 1004, 1356, 990, 1468, 1000, 1549, 1060, 1545, 1149, 1377, 1245, 1205, 1263, 1058, 1330, 884, 1350, 779, 1348, 589, 1358, 494, 1406, 269, 1457, 250, 1471, 253, 1718, 284, 1774, 444, 1834, 551, 1849, 880, 1793, 1027, 1803, 1385, 1635, 1506, 1597, 1648, 1564, 1694, 1601, 1764, 1636, 1806, 1671, 1782, 1709, 1699, 1913)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(293, -210)
@@ -440,7 +429,7 @@ stream = ExtResource("14_mnxxv")
 max_distance = 1e+09
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(2152, 1912)
+position = Vector2(1680, 1555)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -515,7 +504,7 @@ offset_right = 3501.0
 offset_bottom = 2910.0
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(250, 487)
+position = Vector2(723, 841)
 
 [node name="姜韵" parent="." instance=ExtResource("22_vfn15")]
 visible = false
@@ -542,6 +531,10 @@ scale = Vector2(0.75, 0.75)
 animation = &"左上"
 frame_progress = 0.0
 npcName = "凌若昭"
+
+[node name="teleportCircle" parent="." instance=ExtResource("11_mkcgk")]
+position = Vector2(1501, 1015)
+toScene = "镇魔地2"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

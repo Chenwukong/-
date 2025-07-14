@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://nrwlwnhl4kb6"]
+[gd_scene load_steps=108 format=3 uid="uid://nrwlwnhl4kb6"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_rgkg8"]
 [ext_resource type="Texture2D" uid="uid://cgtpd301syhid" path="res://Panoramas/地府_地狱迷宫2.jpg" id="2_1k4i6"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_5t4pv"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_i11tu"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_hp38g"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_1w7ce"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_1w7ce"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_o3jgn"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_t5o77"]
 [ext_resource type="Script" path="res://Script/怨蛛.gd" id="22_mr04a"]
@@ -31,9 +31,12 @@
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="29_uxfr3"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="30_jxn5x"]
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="31_dmvv3"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="32_2yhi3"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="32_2yhi3"]
 [ext_resource type="Texture2D" uid="uid://b1ngu8a173pqm" path="res://Characters/野鬼.png" id="33_p4jao"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="34_ix21t"]
+[ext_resource type="Texture2D" uid="uid://brhiltco2lfuc" path="res://Animations/鬼司/Death.png" id="35_1ad27"]
+[ext_resource type="Texture2D" uid="uid://dhqjg3pgrglgq" path="res://Animations/鬼司/Idle.png" id="36_pv03k"]
+[ext_resource type="Texture2D" uid="uid://bsmwc81hyejpy" path="res://Animations/鬼司/Move.png" id="37_3pobn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -60,6 +63,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("移动鬼司:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-67, 2173)]
+}
+
+[sub_resource type="Animation" id="Animation_u3prn"]
+resource_name = "move鬼司"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("移动鬼司:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-67, 2173), Vector2(2891, -57.9998), Vector2(2616, 2561), Vector2(-110, 2216)]
 }
 
 [sub_resource type="Animation" id="Animation_y5c4b"]
@@ -119,6 +151,7 @@ tracks/3/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
 _data = {
 "RESET": SubResource("Animation_gs70c"),
+"move鬼司": SubResource("Animation_u3prn"),
 "守卫move": SubResource("Animation_y5c4b"),
 "时追云move": SubResource("Animation_2adbs")
 }
@@ -301,6 +334,265 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioinb"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb7a3"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2m2u4"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6h1i"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cmdqm"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sah8"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so3ve"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(960, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_koxkd"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(1120, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aqokt"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(1280, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rkbk1"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(1440, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8vxj"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(1600, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bijt"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(1760, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1jvf"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(1920, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbut8"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(2080, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6ehg"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(2240, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5kreo"]
+atlas = ExtResource("35_1ad27")
+region = Rect2(2400, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84m26"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ort1f"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77wd5"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hkabo"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xijki"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(1120, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iogxi"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gcko"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ulm7"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(960, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmwb7"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(1280, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwyaa"]
+atlas = ExtResource("36_pv03k")
+region = Rect2(1440, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pnx4h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioinb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb7a3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2m2u4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6h1i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cmdqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sah8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so3ve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_koxkd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aqokt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rkbk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8vxj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bijt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1jvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbut8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6ehg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5kreo")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84m26")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ort1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77wd5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hkabo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xijki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iogxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gcko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ulm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmwb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwyaa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4a83"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(0, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlpe1"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(160, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptal8"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(320, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vox8x"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(480, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axqc7"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(640, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6ntt"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(800, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjxnm"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(960, 0, 160, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppld7"]
+atlas = ExtResource("37_3pobn")
+region = Rect2(1120, 0, 160, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ij3td"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4a83")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlpe1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptal8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vox8x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axqc7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6ntt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjxnm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppld7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="地府迷宫2" type="Node2D"]
 script = ExtResource("1_rgkg8")
 
@@ -472,6 +764,7 @@ max_distance = 1e+09
 position = Vector2(2395, 2095)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move鬼司"
 libraries = {
 "": SubResource("AnimationLibrary_nm37n")
 }
@@ -485,7 +778,7 @@ animation = &"左上"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("16_5t4pv")]
@@ -654,6 +947,7 @@ npcName = "鬼潇潇"
 polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -307.47, -192.701, -272.119, -181.832, -253.404, -175.311, -235.728, -177.485, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
 [node name="进回忆2" parent="." instance=ExtResource("32_2yhi3")]
+visible = false
 position = Vector2(34, 699)
 triggerEvent = "进回忆2"
 
@@ -679,6 +973,24 @@ scale = Vector2(0.236814, 0.217299)
 energy = 1.87
 texture = ExtResource("34_ix21t")
 
+[node name="鬼司" parent="." instance=ExtResource("30_jxn5x")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(130, 736)
+scale = Vector2(1.76875, 1.76875)
+sprite_frames = SubResource("SpriteFrames_pnx4h")
+animation = &"dead"
+autoplay = "default"
+npcName = "鬼司"
+
+[node name="CollisionPolygon2D" parent="鬼司/npcBody" index="1"]
+polygon = PackedVector2Array(-287.092, -300.272, -293, -282, -335.714, -255.608, -322.145, -206.42, -277.481, -202.463, -261.085, -199.636, -245.82, -209.813, -236.774, -221.12, -225, -234, -225, -251, -213.594, -304.795, -243.558, -298.011, -258.258, -300.272, -269.565, -309.883)
+
+[node name="移动鬼司" type="AnimatedSprite2D" parent="."]
+position = Vector2(-67, 2173)
+scale = Vector2(2.41899, 2.41899)
+sprite_frames = SubResource("SpriteFrames_ij3td")
+autoplay = "default"
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -700,3 +1012,4 @@ texture = ExtResource("34_ix21t")
 [editable path="小二/小二"]
 [editable path="鬼潇潇"]
 [editable path="进回忆2"]
+[editable path="鬼司"]

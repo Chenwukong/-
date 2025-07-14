@@ -99,6 +99,7 @@ position = Vector2(429, 303)
 texture = ExtResource("2_4cmp1")
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(430, 303)
 texture = ExtResource("3_7s0y0")
@@ -111,7 +112,7 @@ script = ExtResource("4_lq6lu")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(614, 524)
 build_mode = 1
-polygon = PackedVector2Array(110, -19, 51, 10, 8, 31, -28, 20, -234, 114, -271, 111, -367, 56, -533, -131, -563, -160, -475, -199, -463, -199, -263, 36, -147, -24, -195, -61, -272, -105, -280, -118, -276, -129, -272, -132, -265, -137, -201, -170, -195, -211, -98, -262, -53, -235, -119, -191, -129, -167, -22, -110, 1, -99, 41, -97, 82, -73, 98, -46, 84, -36)
+polygon = PackedVector2Array(110, -19, 51, 10, 8, 31, -28, 20, -234, 114, -271, 111, -367, 56, -533, -131, -563, -160, -475, -199, -463, -199, -263, 36, -141, -37, -191, -68, -272, -105, -280, -118, -276, -129, -272, -132, -265, -137, -201, -170, -195, -211, -98, -262, -53, -235, -119, -191, -122, -175, -15, -120, 7, -109, 41, -97, 82, -73, 98, -46, 84, -36)
 
 [node name="player" parent="." instance=ExtResource("5_ngq0l")]
 z_index = 1

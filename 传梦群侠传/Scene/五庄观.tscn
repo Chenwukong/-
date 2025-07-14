@@ -51,7 +51,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="52_hlbw8"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="53_0p266"]
 [ext_resource type="Texture2D" uid="uid://dxcl50ligqp1c" path="res://Characters/道童.png" id="53_knasl"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="54_32reg"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="54_32reg"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="54_rd2nf"]
 [ext_resource type="Texture2D" uid="uid://du1cnt61ci3gw" path="res://Characters/1暴力熊.png" id="55_3rc1r"]
 [ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="56_eil8h"]
@@ -594,7 +594,7 @@ libraries = {
 [node name="CanvasLayer" parent="." instance=ExtResource("15_w28a7")]
 
 [node name="potentialBall" parent="." instance=ExtResource("16_ikukm")]
-position = Vector2(866, 54)
+position = Vector2(1618, 153)
 id = "五庄观1"
 
 [node name="potentialBall2" parent="." instance=ExtResource("16_ikukm")]
@@ -606,7 +606,7 @@ position = Vector2(-2948.11, -1161.27)
 id = "大唐国境边缘"
 
 [node name="petFoodBall2" parent="." instance=ExtResource("17_kb333")]
-position = Vector2(817, 677)
+position = Vector2(871, 64)
 id = "五庄观"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -624,16 +624,17 @@ position = Vector2(98, -899)
 autoplay = ""
 
 [node name="player" parent="." instance=ExtResource("52_hlbw8")]
-position = Vector2(489, 338)
+position = Vector2(909, 578)
 scale = Vector2(0.697482, 0.747203)
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(2, 2)
+
+[node name="CollisionShape2D" parent="player/playerTouch" index="0"]
+position = Vector2(0, 1.33832)
 
 [node name="teleportCircle" parent="." instance=ExtResource("53_0p266")]
 position = Vector2(533, 297)
@@ -669,10 +670,11 @@ sprite_frames = SubResource("SpriteFrames_t3r8b")
 npcName = "清风"
 
 [node name="清风2" parent="." instance=ExtResource("18_65rpt")]
+visible = false
 position = Vector2(531, 278)
 scale = Vector2(0.766667, 0.766667)
 sprite_frames = SubResource("SpriteFrames_t3r8b")
-npcName = "清风"
+script = null
 
 [node name="明月" parent="." instance=ExtResource("18_65rpt")]
 position = Vector2(552, 342)
@@ -715,6 +717,10 @@ position = Vector2(325, 399)
 animation = &"左下"
 frame_progress = 0.0
 npcName = "凌若昭"
+
+[node name="teleportCircle5" parent="." instance=ExtResource("53_0p266")]
+position = Vector2(850, 638)
+toScene = "镇魔地3"
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

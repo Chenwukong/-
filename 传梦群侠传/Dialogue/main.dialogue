@@ -143,6 +143,7 @@ set Global.onTalk = true
 set Global.onTalk = false
 set Global.currNpc = null
 => END	
+
 ~ 二娃请求
 set Global.onTalk = true
 二娃: [speed=0.2]大哥哥，你有空吗？
@@ -583,6 +584,7 @@ set Global.playSound("res://Audio/BGM/幽默 - 04.mp3")
 管家: 多谢少侠，只需4颗佛手便可，其状如佛之手，色似黄金
 时追云: 好
 set Global.questHint = "去海边寻找四颗佛手，身上的道具佛手不算数"
+set Global.questItemShow.get("佛手").visible = true
 set Global.triggerPlace.get("管家请求").disable = true
 set Global.onTalk = false
 set Global.currNpc = null
@@ -590,6 +592,7 @@ set Global.currNpc = null
 
 ~ 管家交付
 set Global.onTalk = true
+
 管家: 不愧是时少侠，这就集齐了
 管家: 这些是一些小小心意，不成敬意
 时追云: 叶管家，使不得，举手之劳而已。
@@ -652,6 +655,7 @@ set Global.onTalk = false
 ~ 三见女主
 set Global.onTalk = true
 set Global.npcVis.get("东海湾").get("鱼叟").visible = false
+set Global.changevis("东海湾","玉帝物品")
 时追云: 娘子我回来了
 姜韵喜: 夫君你回来啦，身体怎么样
 时追云喜: 啊？哦，挺好的啊
@@ -747,9 +751,6 @@ set Global.npcVis.get("建邺城右").get("小兵5").visible = true
 set Global.npcVis.get("建邺城右").get("小兵6").visible = true
 set Global.npcVis.get("建邺城右").get("小兵7").visible = true
 set Global.npcVis.get("建邺城右").get("小兵8").visible = true
-
-
-
 
 set Global.onFight = true
 set get_tree().current_scene.bossFight("虾兵蟹将","res://Audio/BGM/P39.mp3","system")

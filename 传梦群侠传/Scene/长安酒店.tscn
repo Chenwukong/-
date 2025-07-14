@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://0wce3n5lkivb" path="res://Panoramas/长安酒楼1_2.png" id="3_gm81n"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_h6nkt"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_jgik2"]
-[ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="6_tb0v6"]
+[ext_resource type="AudioStream" uid="uid://cbv0eqlgnc8ls" path="res://Audio/BGM/长安.mp3" id="6_fukgt"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="13_1avst"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="14_ktwet"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="15_aki2v"]
@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://doyyrcbsbqysk" path="res://Characters/8轩辕剑.png" id="30_us03w"]
 [ext_resource type="Texture2D" uid="uid://bifwch4fc5yhi" path="res://Characters/春三十娘.png" id="31_eq442"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="32_5tobt"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="33_sx528"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="33_sx528"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="34_2kbkt"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="35_j6uxv"]
 
@@ -170,7 +170,7 @@ zoom = Vector2(1.6, 1.6)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("6_tb0v6")
+stream = ExtResource("6_fukgt")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -273,6 +273,7 @@ polygon = PackedVector2Array(-270, -284, -291, -283, -296, -248, -289, -233, -27
 
 [node name="斩击" parent="酒店老板/effects" index="3"]
 frame = 0
+frame_progress = 0.0
 
 [node name="npc" parent="." instance=ExtResource("27_yyfj7")]
 position = Vector2(354, 677)
@@ -298,6 +299,7 @@ triggerEvent = "初见若昭"
 [node name="凌若昭" parent="." instance=ExtResource("34_2kbkt")]
 visible = false
 position = Vector2(470, 403)
+script = null
 
 [node name="小二" parent="." instance=ExtResource("35_j6uxv")]
 visible = false
@@ -305,9 +307,9 @@ position = Vector2(214, 485)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-15, 10)
-
-[node name="斩击" parent="小二/小二/effects" index="3"]
-frame = 0
+animation = &"右上"
+autoplay = "右上"
+frame_progress = 0.0
 
 [node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
 
@@ -334,5 +336,6 @@ violencePointTreasure = true
 
 [editable path="player"]
 [editable path="酒店老板"]
+[editable path="凌若昭"]
 [editable path="小二"]
 [editable path="小二/小二"]

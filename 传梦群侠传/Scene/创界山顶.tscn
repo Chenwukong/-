@@ -29,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://pltj673ab6c4" path="res://Characters/幽灵.png" id="32_rvc41"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="43_n0typ"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="44_g7egy"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="79_au0mh"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="79_au0mh"]
 [ext_resource type="Texture2D" uid="uid://b6rv33sy85g7j" path="res://Pictures/四圣change.jpg" id="96_462dk"]
 [ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="97_7ucfp"]
 
@@ -683,8 +683,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"left"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
@@ -936,6 +934,8 @@ position = Vector2(3364, 2303)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
+frame = 0
+frame_progress = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 

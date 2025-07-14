@@ -25,9 +25,11 @@ func _ready():
 		9:
 			$Panel/Label.text = "第九章:  梦澹现世"			
 		10:
-			$Panel/Label.text = "第十章:  齐天巨猿"				
-			
-				
+			$Panel/Label.text = "第十章:  魔窟深渊"				
+		11:
+			$Panel/Label.text = "第十一章:  终局之战"			
+		12:
+			$Panel/Label.text = "第十二章:  道归虚无"				
 		
 		
 	
@@ -65,3 +67,8 @@ func _on_timer_timeout():
 		10:
 			get_tree().change_scene_to_file("res://Scene/"+"创界山"+".tscn")	
 			Global.dial = "创界山"
+		11:
+			get_tree().change_scene_to_file("res://Scene/"+"天上虚空"+".tscn")			
+		12:
+			Global.changeScene("凌霄宝殿",Vector2(906,983))	
+			Global.dial = "道归虚无"

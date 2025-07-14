@@ -16,8 +16,8 @@
 [ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="14_yv6hj"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="15_j0kho"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_6v2dg"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="17_bhpqh"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="18_fj6sv"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="17_bhpqh"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="18_fj6sv"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_4otba"]
 [ext_resource type="Texture2D" uid="uid://1qngqb40scr2" path="res://Characters/蛟龙.png" id="21_i1apx"]
 
@@ -128,6 +128,8 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
+frame = 0
+frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 

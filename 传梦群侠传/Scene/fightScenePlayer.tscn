@@ -1,4 +1,4 @@
-[gd_scene load_steps=1489 format=3 uid="uid://jvqq00koml8d"]
+[gd_scene load_steps=1500 format=3 uid="uid://jvqq00koml8d"]
 
 [ext_resource type="Texture2D" uid="uid://b308rjoqo3odw" path="res://梦魂Animation/0燕子攻击.png" id="1_1urxn"]
 [ext_resource type="Texture2D" uid="uid://c5q3chqbs0c4j" path="res://Animations/0乌龟攻击.png" id="1_go0bl"]
@@ -188,6 +188,8 @@
 [ext_resource type="Shader" path="res://shader/zhenShen.gdshader" id="143_n0vx8"]
 [ext_resource type="Texture2D" uid="uid://b7ju6tt7qocm" path="res://梦魂Animation/#-持续回血.png" id="167_mudf5"]
 [ext_resource type="Texture2D" uid="uid://doxsavi420vj3" path="res://梦魂Animation/持续-回血.png" id="168_fnqre"]
+[ext_resource type="Texture2D" uid="uid://gyx03vu2f58j" path="res://梦魂Animation/！风火特效.png" id="189_1rwy1"]
+[ext_resource type="Script" path="res://Script/火域.gd" id="190_sivha"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_34ucj"]
 
@@ -10338,6 +10340,70 @@ shader_parameter/alpha_strength = 0.07
 shader_parameter/color1 = Color(1, 0, 0, 1)
 shader_parameter/color2 = Color(0, 0, 0, 1)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_01ecs"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwt2i"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b1ih"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s6j4"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yunhl"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knfm1"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl05g"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hpxh"]
+atlas = ExtResource("189_1rwy1")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_naqlo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01ecs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwt2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b1ih")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s6j4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yunhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knfm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl05g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hpxh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" node_paths=PackedStringArray("delay_timer") groups=["fightScenePlayer"]]
 light_mask = 3
 visibility_layer = 3
@@ -10345,7 +10411,7 @@ material = SubResource("ShaderMaterial_34ucj")
 position = Vector2(283, 338)
 scale = Vector2(0.683333, 0.7)
 sprite_frames = SubResource("SpriteFrames_i76mx")
-animation = &"时追云改block"
+animation = &"小二真身idle"
 script = ExtResource("3_sqqwh")
 delay_timer = NodePath("DelayTimer")
 
@@ -10649,6 +10715,23 @@ offset_top = -744.286
 offset_right = 737.365
 offset_bottom = 708.714
 
+[node name="火域" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.678431)
+z_index = -10
+position = Vector2(21.9512, -8.57143)
+scale = Vector2(1.03853, 1.03853)
+sprite_frames = SubResource("SpriteFrames_naqlo")
+autoplay = "default"
+frame_progress = 0.411782
+script = ExtResource("190_sivha")
+
+[node name="Area2D" type="Area2D" parent="火域"]
+visible = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="火域/Area2D"]
+polygon = PackedVector2Array(22.546, -64.6519, 59.1832, -23.3847, 39.4554, 63.2763, -45.0919, 64.6519, -81.7291, 49.5206, -87.3656, -33.0137, -47.9102, -70.1542)
+
 [connection signal="button_down" from="battleCommends/attackButton" to="." method="_on_attack_button_button_down"]
 [connection signal="button_down" from="battleCommends/attackButton" to="battleCommends" method="_on_attack_button_button_down"]
 [connection signal="button_down" from="battleCommends/defenseButton" to="." method="_on_defense_button_button_down"]
@@ -10666,3 +10749,4 @@ offset_bottom = 708.714
 [connection signal="timeout" from="canDefense" to="." method="_on_can_defense_timeout"]
 [connection signal="timeout" from="canMove" to="." method="_on_can_move_timeout"]
 [connection signal="timeout" from="canCalculateAfterMulti" to="." method="_on_can_calculate_after_multi_timeout"]
+[connection signal="area_entered" from="火域/Area2D" to="." method="_on_area_2d_area_entered"]
