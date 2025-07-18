@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://d3f8bcy20mi0u"]
+[gd_scene load_steps=76 format=3 uid="uid://d3f8bcy20mi0u"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_40dg4"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_tv1u6"]
@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://bhpuboia3vao6" path="res://SeparateAnimation/梦澹/站立7007.PNG" id="26_pc3ej"]
 [ext_resource type="Texture2D" uid="uid://cv2e6uicis44x" path="res://SeparateAnimation/梦澹/站立7008.PNG" id="27_u5et7"]
 [ext_resource type="Texture2D" uid="uid://dr3jiwrwe65fv" path="res://SeparateAnimation/梦澹/站立7009.PNG" id="28_ofyde"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="29_6gko8"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="29_6gko8"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="30_mdq1r"]
 [ext_resource type="Texture2D" uid="uid://bao573gqd5dob" path="res://SeparateAnimation/墨/墨兮站立.png" id="31_ib8kh"]
 [ext_resource type="Shader" path="res://shader/风沙飘散.gdshader" id="31_lr2pn"]
@@ -348,6 +348,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sf6q"]
+size = Vector2(61.564, 272.916)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_r6472"]
 shader = ExtResource("31_lr2pn")
 shader_parameter/dissolve_progress = 0.0
@@ -471,8 +474,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1, 1)
@@ -626,7 +627,7 @@ rotation = -0.0891907
 toScene = "雷音寺"
 
 [node name="teleportCircle3" parent="." instance=ExtResource("12_uhjh4")]
-position = Vector2(146, 21)
+position = Vector2(-2718, 161)
 toScene = "神使宫殿"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -740,7 +741,7 @@ rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="四法青云" type="AnimatedSprite2D" parent="."]
-position = Vector2(-316, -259)
+position = Vector2(-324, -381)
 rotation = 2.14602
 scale = Vector2(3.07539, 3.07539)
 sprite_frames = SubResource("SpriteFrames_lcwla")
@@ -748,7 +749,7 @@ autoplay = "default"
 frame_progress = 0.117578
 
 [node name="四法青云2" type="AnimatedSprite2D" parent="."]
-position = Vector2(-404.537, -285.711)
+position = Vector2(-412.537, -407.711)
 rotation = 0.728416
 scale = Vector2(3.07539, 3.07539)
 sprite_frames = SubResource("SpriteFrames_lcwla")
@@ -761,7 +762,8 @@ position = Vector2(-386.138, -224.02)
 triggerEvent = "女娲神迹"
 
 [node name="CollisionShape2D" parent="女娲神迹/Area2D" index="0"]
-position = Vector2(9.65765, 26.4626)
+position = Vector2(126.356, 120.562)
+shape = SubResource("RectangleShape2D_2sf6q")
 
 [node name="墨兮" parent="." instance=ExtResource("30_mdq1r")]
 material = SubResource("ShaderMaterial_r6472")

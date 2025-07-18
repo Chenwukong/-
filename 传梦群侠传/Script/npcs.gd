@@ -3,7 +3,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(self.name)
+	Global.addStuff()
 	if !Global.npcVis.get(get_tree().current_scene.name).get(self.name).visible:
 		if name == "吸血鬼组" or name == "小魔头组" or name == "吸血鬼组2":
 			for i in get_children():

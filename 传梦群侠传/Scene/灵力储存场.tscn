@@ -376,7 +376,6 @@ position = Vector2(-5, 811)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-18, 7)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="menuControl" parent="." instance=ExtResource("17_edrls")]
 
@@ -396,8 +395,11 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 script = ExtResource("19_ujpi5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(783, 1115, 865, 1228, 1632, 1214, 1807, 1165, 2083, 849, 1765, 548, 909, 535, 545, 866, 679, 1030, 598, 1083, 658, 1155)
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 

@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://bk5nf2es7xd5g" path="res://Characters/蓝羽妖女head.png" id="21_4og5c"]
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="22_dblqy"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="23_02btv"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="24_4wfaw"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="24_4wfaw"]
 [ext_resource type="Texture2D" uid="uid://b5qp7qw246apk" path="res://Pictures/王婆卖瓜.jpg" id="25_x77bt"]
 [ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="26_6cosa"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="27_nxkuk"]
@@ -46,6 +46,18 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_efckp"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("monsters:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1135, -826)]
+}
 
 [sub_resource type="Animation" id="Animation_r14rp"]
 resource_name = "moveMonsters"
@@ -73,6 +85,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(987.212, 486.154)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("monsters:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(56, 34), Vector2(-1135, -826)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_trqvg"]
@@ -256,11 +280,10 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(987.212, 486.154)
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(0.5, 0.5)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -402,7 +425,6 @@ position = Vector2(2255, 1413)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="牛妖" parent="." instance=ExtResource("17_t21kt")]
 position = Vector2(2164, 1305)
@@ -524,7 +546,7 @@ items = {
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="monsters" type="Node2D" parent="."]
-position = Vector2(56, 34)
+position = Vector2(-1135, -826)
 
 [node name="npc" parent="monsters" instance=ExtResource("17_t21kt")]
 position = Vector2(2055, 2525)

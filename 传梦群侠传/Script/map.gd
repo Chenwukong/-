@@ -38,21 +38,29 @@ var canAdd = true
 var onBuy = false
 var onSale = false
 var confirmButtonIndex = 0
+@onready var http := $http
+
+var supabase_url := "https://qcrkhgmmvgpkamgadvxy.supabase.co"
+var api_key := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcmtoZ21tdmdwa2FtZ2Fkdnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MDMwNjEsImV4cCI6MjA2NDQ3OTA2MX0.pM3AZQkOz2xGvcVcfLJtTmCxn4y-nKrjKTSzhcyj-9E"
+
 @export var shader = load("res://shader/shake.tres")
 
 func update_cursor():
 	# Set the current frame as the cursor
 	Input.set_custom_mouse_cursor(cursor_frames[int(current_frame)], 0, cursor_scale)
 func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
+	
 	for big_scene in Global.sameBigScene:
 		var sub_scenes = Global.sameBigScene[big_scene]
 		if scene_a in sub_scenes and scene_b in sub_scenes:
+			
 			return true
 	return false
 
 
 func _ready():
-
+	
+	#-------------------------------------------------------------------------shader
 	if not has_node("oneTimeSound"):
 		var audio_player = AudioStreamPlayer.new()
 		audio_player.name = "oneTimeSound"
@@ -127,8 +135,7 @@ func _ready():
 		#DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 
 func _process(delta):
-	if Input.is_action_just_pressed("L"):
-		Global.resetNpcVis()
+
 	
 	if Global.onTalk:
 		Global.menuOut = false
@@ -1942,18 +1949,23 @@ func _on_audio_finished():
 
 
 func _on_id_text_submitted(new_text):
+	if $CanvasLayer3/id.text.length() > 12:
+		$CanvasLayer3/Label.visible = true
+		$CanvasLayer3/Label.text = "字太多了！"
+		return
 	var text = Global.getnode("CanvasLayer3/id").text
 	check_if_id_exists(text)
 
 
 func _on_发送_button_down():
+	if $CanvasLayer3/id.text.length() > 12:
+		$CanvasLayer3/Label.visible = true
+		$CanvasLayer3/Label.text = "字太多了！"
+		return
 	var text = Global.getnode("CanvasLayer3/id").text
 	check_if_id_exists(text)
 
-@onready var http := $http
 
-var supabase_url := "https://qcrkhgmmvgpkamgadvxy.supabase.co"
-var api_key := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcmtoZ21tdmdwa2FtZ2Fkdnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MDMwNjEsImV4cCI6MjA2NDQ3OTA2MX0.pM3AZQkOz2xGvcVcfLJtTmCxn4y-nKrjKTSzhcyj-9E"
 
 func send_id(name: String, message: String) -> void:
 	httpStatus = "sendId"
@@ -1963,37 +1975,18 @@ func send_id(name: String, message: String) -> void:
 		"apikey: " + api_key,
 		"Authorization: Bearer " + api_key
 	]
+	var id = ""
 	var body = {
 		"name": name,
 		"message": message,
+		"readed": false,
+		#"id": id
 	}
 	var json_body = JSON.stringify(body)
 
 	var err = http.request(url, headers, HTTPClient.METHOD_POST, json_body)
 	if err != OK:
 		print("请求发送失败，错误码：", err)
-
-func _on_http_request_completed(result, response_code, headers, body):
-	print("返回状态码: ", response_code)
-	print("响应内容: ", body.get_string_from_utf8())
-	
-	if response_code == 200:
-		if httpStatus == "checkId":
-			if body.get_string_from_utf8() != "[]":
-				Global.getnode("CanvasLayer3/Label").visible = true
-				Global.getnode("CanvasLayer3/Label").text = "已有此id，请换一个"
-			else:
-				Global.getnode("CanvasLayer3/id").visible = false
-				$"CanvasLayer3/发送".visible = false
-				$CanvasLayer3/Label.visible = false
-				$CanvasLayer3/message.visible = true
-				$"CanvasLayer3/发送2".visible = true
-	if response_code == 201:
-		if httpStatus == "sendId":
-			print("发送信息")
-			
-	else:
-		print("发生错误！")
 
 
 func get_all_ids():
@@ -2049,3 +2042,83 @@ func _on_message_text_submitted(new_text):
 	$CanvasLayer3/message.visible = false
 	send_id(Global.getnode("CanvasLayer3/id").text,Global.getnode("CanvasLayer3/message").text)
 	DialogueManager.show_chat(load("res://Dialogue/"+str(12)+".dialogue"),get_npc_dialogue("结局"))	
+
+
+
+func fetch_first_unread() -> void:
+	var url = supabase_url + "/rest/v1/shareDream?readed=eq.false&order=id.asc&limit=1&select=id,name,message"
+
+	httpStatus = "fetchFirstUnread"
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+
+	# 正确使用 HTTPClient.METHOD_GET 整数常量
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	if err != OK:
+		print("❌ 获取未读消息请求失败，错误码：", err)
+	else:
+		print("📡 获取未读消息请求已发送")
+func _on_http_request_completed(result, response_code, headers, body):
+	print("返回状态码: ", response_code)
+	var response_text = body.get_string_from_utf8()
+	print("响应内容: ", response_text)
+	
+	if response_code == 200:
+		if httpStatus == "checkId":
+
+			if response_text != "[]":
+				Global.getnode("CanvasLayer3/Label").visible = true
+				Global.getnode("CanvasLayer3/Label").text = "已有此id，请换一个"
+			else:
+				Global.getnode("CanvasLayer3/id").visible = false
+				$"CanvasLayer3/发送".visible = false
+				$CanvasLayer3/Label.visible = false
+				$CanvasLayer3/message.visible = true
+				$"CanvasLayer3/发送2".visible = true
+		
+		elif httpStatus == "fetchFirstUnread":
+			var json = JSON.new()
+			var err = json.parse(response_text)
+			if err == OK:
+				var data = json.get_data()
+				if data.size() > 0:
+					var record = data[0]
+					print("名字: ", record["name"])
+					print("消息: ", record["message"])
+
+					Global.helperName = record["name"]
+					Global.helperMsg = record["message"]
+					# 标记为已读，发PATCH请求更新
+					var update_url = supabase_url + "/rest/v1/shareDream?id=eq." + str(record["id"])
+					var update_headers = [
+						"Content-Type: application/json",
+						"apikey: " + api_key,
+						"Authorization: Bearer " + api_key,
+						"Prefer: return=representation"
+					]
+					var update_body = {"readed": true}
+					var jsons = JSON.new()
+					var json_body = jsons.stringify(update_body)
+										
+					httpStatus = "markRead"
+					var err2 = http.request(update_url, update_headers, HTTPClient.METHOD_PATCH, json_body)
+					if err2 != OK:
+						print("标记已读请求失败，错误码：", err2)
+				else:
+					print("没有未读消息")
+			else:
+				print("解析失败")
+	
+	elif response_code == 201:
+		if httpStatus == "sendId":
+			print("发送信息成功")
+
+	elif response_code == 204:
+		if httpStatus == "markRead":
+			print("成功标记消息为已读")
+
+	else:
+		print("发生错误！状态码:", response_code)

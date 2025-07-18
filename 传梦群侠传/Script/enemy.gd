@@ -834,7 +834,7 @@ func selectTarget(delta, randi, magicRandi):
 		$effectSound.stream = load("res://Audio/SE/打击1.ogg")
 		$effectSound.play()
 		Global.monsterTarget = randi_range(0, Global.alivePlayers.size() - 1)
-		
+	
 		var blockChance = FightScenePlayers.fightScenePlayerData.get(Global.alivePlayers[Global.monsterTarget].name).blockChance +  FightScenePlayers.fightScenePlayerData.get(Global.alivePlayers[Global.monsterTarget].name).addBlockChance
 		if randi_range(0,100) <= blockChance:
 			Global.canBlock = true

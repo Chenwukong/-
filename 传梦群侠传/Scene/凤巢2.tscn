@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_r5g4o"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_us0lt"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_g8jnb"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_w5e7k"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_w5e7k"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_rsbgr"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_ytwsd"]
 [ext_resource type="Script" path="res://main character/凌若昭脚本/凌若昭player.gd" id="22_so2uh"]
@@ -26,7 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="24_slhhy"]
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="25_yy6bw"]
 [ext_resource type="Texture2D" uid="uid://ded8mxfqpkn8n" path="res://Battlers/0天麒攻击.png" id="26_id2mv"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="27_4ouw6"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="27_4ouw6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_3xmyp"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -403,7 +403,6 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -483,12 +482,12 @@ texture = ExtResource("23_bg44b")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 sprite_frames = SubResource("SpriteFrames_acl7h")
 animation = &"rightStand"
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.6, 1.6)
 
 [node name="寻四圣" parent="." instance=ExtResource("27_4ouw6")]
+visible = false
 position = Vector2(2334, 1005)
 triggerEvent = "寻四圣"
 

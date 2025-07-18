@@ -372,13 +372,11 @@ texture = ExtResource("4_sla5v")
 
 [node name="player" parent="." instance=ExtResource("5_4yhxd")]
 z_index = 1
-position = Vector2(78, 1282)
+position = Vector2(73, 1278)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame = 0
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -462,10 +460,10 @@ wait_time = 0.2
 one_shot = true
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(-597, -152)
+position = Vector2(-45, 272)
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(2000, 1816)
+position = Vector2(1448, 1392)
 
 [node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1922, 1097)

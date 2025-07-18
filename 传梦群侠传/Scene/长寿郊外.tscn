@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://csik74fi0ymum"]
+[gd_scene load_steps=218 format=3 uid="uid://csik74fi0ymum"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_bae51"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_wgxe7"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="22_0af67"]
 [ext_resource type="Texture2D" uid="uid://cf1sxqdjlorgk" path="res://梦魂Animation/法术-飞沙走石.png" id="23_k8eka"]
 [ext_resource type="Texture2D" uid="uid://brl00xmx67cd" path="res://Characters/NPC孙悟空D4A10B10T.png" id="24_mp2jj"]
+[ext_resource type="Script" path="res://Script/npcs.gd" id="25_jjsq5"]
 [ext_resource type="Texture2D" uid="uid://dtlfvd7k076hy" path="res://Characters/蝎子.png" id="25_vxbsm"]
 [ext_resource type="Texture2D" uid="uid://q115fptp4b2s" path="res://Characters/九头精怪.png" id="26_tk82c"]
 [ext_resource type="Texture2D" uid="uid://blivb825xu7f3" path="res://Characters/九头蛇.png" id="27_bhvox"]
@@ -1329,50 +1330,6 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6b6hg"]
-atlas = ExtResource("25_vxbsm")
-region = Rect2(0, 122, 117, 122)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_seh01"]
-atlas = ExtResource("25_vxbsm")
-region = Rect2(117, 122, 117, 122)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gncuv"]
-atlas = ExtResource("25_vxbsm")
-region = Rect2(234, 122, 117, 122)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oddna"]
-atlas = ExtResource("25_vxbsm")
-region = Rect2(351, 122, 117, 122)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1gcuf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6b6hg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_seh01")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gncuv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oddna")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_swbek"]
-shader = ExtResource("36_wnqeb")
-shader_parameter/spread_threshold = 0.0
-shader_parameter/edge_softness = 0.034
-shader_parameter/background_color = Color(0, 0, 0, 1)
-shader_parameter/ink_color = Color(0.176471, 0.176471, 0.176471, 0.372549)
-shader_parameter/noise_texture = ExtResource("37_ewy0a")
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_01ecs"]
 atlas = ExtResource("5_51c20")
 region = Rect2(0, 192, 192, 192)
@@ -1436,6 +1393,50 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b6hg"]
+atlas = ExtResource("25_vxbsm")
+region = Rect2(0, 122, 117, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seh01"]
+atlas = ExtResource("25_vxbsm")
+region = Rect2(117, 122, 117, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gncuv"]
+atlas = ExtResource("25_vxbsm")
+region = Rect2(234, 122, 117, 122)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oddna"]
+atlas = ExtResource("25_vxbsm")
+region = Rect2(351, 122, 117, 122)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1gcuf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b6hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seh01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gncuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oddna")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swbek"]
+shader = ExtResource("36_wnqeb")
+shader_parameter/spread_threshold = 0.0
+shader_parameter/edge_softness = 0.034
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/ink_color = Color(0.176471, 0.176471, 0.176471, 0.372549)
+shader_parameter/noise_texture = ExtResource("37_ewy0a")
 
 [node name="长寿郊外" type="Node2D"]
 script = ExtResource("1_bae51")
@@ -1620,7 +1621,6 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 script = ExtResource("17_403sd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -1662,12 +1662,18 @@ animation = &"down"
 autoplay = "down"
 
 [node name="凌若昭" parent="." instance=ExtResource("20_m733f")]
+visible = false
 position = Vector2(2348, 259)
 scale = Vector2(0.7, 0.7)
 animation = &"左下"
 frame_progress = 0.0
+script = null
+
+[node name="npcBody" parent="凌若昭" index="0"]
+position = Vector2(1487.14, 245.714)
 
 [node name="小二" parent="." instance=ExtResource("21_ob12h")]
+visible = false
 position = Vector2(2285, 302)
 scale = Vector2(0.7, 0.7)
 
@@ -1675,7 +1681,10 @@ scale = Vector2(0.7, 0.7)
 position = Vector2(-3.93546, -18.0714)
 animation = &"真身左下"
 autoplay = "左下"
-frame_progress = 0.0
+script = null
+
+[node name="npcBody" parent="小二/小二" index="0"]
+position = Vector2(1661.08, 299.5)
 
 [node name="风沙" parent="." instance=ExtResource("22_0af67")]
 visible = false
@@ -1697,7 +1706,9 @@ autoplay = "default"
 frame_progress = 0.701982
 
 [node name="teleportCircle4" parent="." instance=ExtResource("12_psflb")]
-position = Vector2(2379, 102)
+position = Vector2(2377, 104)
+scale = Vector2(0.683099, 0.707317)
+toScene = "长寿村"
 
 [node name="teleportCircle5" parent="." instance=ExtResource("12_psflb")]
 position = Vector2(354, 1220)
@@ -1712,6 +1723,7 @@ npcName = "蝎霸王"
 
 [node name="妖盟" type="Node2D" parent="."]
 visible = false
+script = ExtResource("25_jjsq5")
 
 [node name="npc" parent="妖盟" instance=ExtResource("22_0af67")]
 position = Vector2(1440.02, 1417.43)
@@ -1886,6 +1898,9 @@ sprite_frames = SubResource("SpriteFrames_lcmox")
 autoplay = "default"
 frame_progress = 0.191942
 
+[node name="npcBody" parent="妖盟/npc42" index="0"]
+position = Vector2(1179.45, 287.741)
+
 [node name="npc37" parent="妖盟" instance=ExtResource("22_0af67")]
 position = Vector2(1581, 483)
 sprite_frames = SubResource("SpriteFrames_uiwmr")
@@ -1961,6 +1976,13 @@ position = Vector2(2263, 197)
 sprite_frames = SubResource("SpriteFrames_tdei3")
 frame = 30
 frame_progress = 1.0
+
+[node name="火力场" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(2334, 197)
+scale = Vector2(2.70595, 2.70595)
+sprite_frames = SubResource("SpriteFrames_mlc3r")
+frame_progress = 0.532081
 
 [node name="蝎军" type="Node2D" parent="."]
 visible = false
@@ -2044,13 +2066,6 @@ offset_top = 28.0
 offset_right = 2837.0
 offset_bottom = 652.0
 
-[node name="火力场" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(2334, 197)
-scale = Vector2(2.70595, 2.70595)
-sprite_frames = SubResource("SpriteFrames_mlc3r")
-frame_progress = 0.532081
-
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
@@ -2061,5 +2076,7 @@ frame_progress = 0.532081
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
 
 [editable path="player"]
+[editable path="凌若昭"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="妖盟/npc42"]

@@ -542,10 +542,6 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
 autoplay = "upStand"
-frame_progress = 0.0
-
-[node name="Camera2D" parent="player" index="3"]
-zoom = Vector2(0.7, 0.7)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -629,10 +625,10 @@ wait_time = 0.2
 one_shot = true
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(1074, 633)
+position = Vector2(682, 354)
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(1618, 1076)
+position = Vector2(2015, 1352)
 
 [node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1922, 1097)
@@ -689,7 +685,6 @@ position = Vector2(574, 988)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-18, 7)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="menuControl" parent="." instance=ExtResource("17_bthm6")]
 
@@ -714,7 +709,7 @@ script = ExtResource("19_7hvj6")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
-[node name="罗与非" parent="." instance=ExtResource("20_egimb")]
+[node name="罗非" parent="." instance=ExtResource("20_egimb")]
 position = Vector2(1616, 831)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_sugvx")

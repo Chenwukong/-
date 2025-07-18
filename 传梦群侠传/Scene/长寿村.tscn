@@ -809,14 +809,12 @@ npcName = "女侠"
 
 [node name="player" parent="." instance=ExtResource("5_nshyv")]
 z_index = 1
-position = Vector2(2061.87, -98.6733)
+position = Vector2(2374, 1795)
 scale = Vector2(0.613519, 0.638287)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(32.0956, 32.9776)
@@ -997,6 +995,7 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 script = ExtResource("17_u6fnh")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
@@ -1041,7 +1040,6 @@ position = Vector2(395.935, 561.071)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-3.93546, -18.0714)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="风沙" parent="." instance=ExtResource("22_bf5aa")]
 visible = false
@@ -1238,10 +1236,13 @@ one_shot = true
 autostart = true
 
 [node name="墨兮" parent="." instance=ExtResource("22_bf5aa")]
-position = Vector2(1423, 276)
+position = Vector2(1408, 257)
 scale = Vector2(0.5875, 0.5875)
 sprite_frames = SubResource("SpriteFrames_7tdwl")
 npcName = "墨兮"
+
+[node name="CollisionPolygon2D" parent="墨兮/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -340.489, -241.979, -293, -217, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
 [node name="petFoodBall" parent="." instance=ExtResource("35_hlpe2")]
 position = Vector2(1278.65, -28.5143)
@@ -1263,3 +1264,4 @@ id = "长寿村1"
 [editable path="黄眉"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="墨兮"]

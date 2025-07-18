@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="17_jclbl"]
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="18_lyqlo"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="19_5vex5"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="20_7p3s0"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="20_7p3s0"]
 [ext_resource type="Texture2D" uid="uid://b5qp7qw246apk" path="res://Pictures/王婆卖瓜.jpg" id="21_n8yjj"]
 [ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="22_ln7tg"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="23_bu6ot"]
@@ -378,8 +378,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -522,7 +520,6 @@ position = Vector2(2089, 1554)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(402, -169)
 animation = &"左下"
-frame_progress = 0.0
 
 [node name="王婆" parent="." instance=ExtResource("17_jclbl")]
 position = Vector2(1353, 267)

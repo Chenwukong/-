@@ -377,7 +377,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -533,8 +532,9 @@ position = Vector2(530, 1251)
 monster_name = "牛魔"
 
 [node name="炼狱迷宫6" parent="." instance=ExtResource("23_lrdsu")]
-position = Vector2(614, 787)
-triggerEvent = "炼狱迷宫6"
+visible = false
+position = Vector2(651, 772)
+triggerEvent = "炼狱迷宫"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

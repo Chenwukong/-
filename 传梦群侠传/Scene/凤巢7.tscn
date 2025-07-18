@@ -77,7 +77,7 @@
 [ext_resource type="Texture2D" uid="uid://bwr8ff7thmpw1" path="res://SeparateAnimation/李逍遥/480-31.png" id="60_thxtm"]
 [ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="61_d3873"]
 [ext_resource type="Texture2D" uid="uid://6r15scrvmgaa" path="res://Characters/火焰.png" id="62_g5g64"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="63_tfdr1"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="63_tfdr1"]
 [ext_resource type="Texture2D" uid="uid://cjut25uqo3o6s" path="res://554-1.png" id="79_5vfwb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1pwd"]
@@ -1028,7 +1028,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0tbvl"]
-size = Vector2(139, 179.832)
+size = Vector2(232.975, 184.416)
 
 [node name="凤巢7" type="Node2D"]
 script = ExtResource("1_gkuo6")
@@ -1169,11 +1169,10 @@ libraries = {
 }
 
 [node name="小二" parent="." instance=ExtResource("15_o777o")]
-position = Vector2(1828, 2495)
+position = Vector2(731, 936)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -1266,8 +1265,6 @@ texture = ExtResource("26_mott0")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 sprite_frames = SubResource("SpriteFrames_4bk17")
 animation = &"down"
-frame = 0
-frame_progress = 0.0
 
 [node name="梧桐" parent="." instance=ExtResource("22_54muk")]
 position = Vector2(858, 801)
@@ -1289,13 +1286,13 @@ scale = Vector2(29.0325, 29.0325)
 sprite_frames = SubResource("SpriteFrames_c6qwd")
 frame_progress = 0.888432
 
-[node name="寻四圣2" parent="." instance=ExtResource("63_tfdr1")]
+[node name="寻四圣12" parent="." instance=ExtResource("63_tfdr1")]
 visible = false
 position = Vector2(742, 823)
-triggerEvent = "寻四圣2"
+triggerEvent = "寻四圣"
 
-[node name="CollisionShape2D" parent="寻四圣2/Area2D" index="0"]
-position = Vector2(-2.47522, 33.5)
+[node name="CollisionShape2D" parent="寻四圣12/Area2D" index="0"]
+position = Vector2(44.5124, 35.792)
 shape = SubResource("RectangleShape2D_0tbvl")
 
 [node name="树苗" type="Sprite2D" parent="."]
@@ -1317,4 +1314,4 @@ texture = ExtResource("79_5vfwb")
 [editable path="小二/小二"]
 [editable path="player"]
 [editable path="梧桐"]
-[editable path="寻四圣2"]
+[editable path="寻四圣12"]

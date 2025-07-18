@@ -945,7 +945,7 @@ func resolve(tokens: Array, extra_game_states: Array):
 					value = apply_operation(token.value, get_state_value(lhs.value, extra_game_states), tokens[i+1].value)
 					set_state_value(lhs.value, value, extra_game_states)
 				"property": 
-					value = apply_operation(token.value,
+					value =  apply_operation(token.value,
 					 lhs.value.get(lhs.property), tokens[i+1].value)
 					if typeof(lhs.value) == TYPE_DICTIONARY:
 						lhs.value[lhs.property] = value

@@ -64,7 +64,7 @@ set Global.getnode("六耳").play("default")
 set Global.getnode("六耳").visible = false
 set Global.getnode("小女孩").visible = false
 set Global.getnode("player").visible = true
-
+set Global.changebgm("res://Audio/BGM/战神山.mp3")
 
 
 set Global.onTalk = false
@@ -102,6 +102,7 @@ set Global.onTalk = false
 ~ 魔龙1
 set Global.onTalk = true
 set Global.getnode("player").visible = false
+set Global.getnode("六耳").visible = true
 set Global.getnode("魔龙").visible = true
 魔龙: [speed=0.5]孙悟空！？你怎么可能会在这里，你不是被我们关...
 六耳猕猴: [speed=0.5]孙尼玛！
@@ -136,6 +137,7 @@ set Global.onTalk = false
 
 ~ 魔龙2
 set Global.onTalk = true
+set Global.getnode("魔刹").visible = false
 凌若昭: [speed=0.5]这些魔物都好强
 姜韵: [speed=0.5]难怪能对天庭造成这么大的压力
 时追云: [speed=0.5]我们已经找遍了这山，貌似没有半点蚩尤的踪迹...
@@ -165,8 +167,9 @@ set Global.onTalk = false
 
 ~ 画魔
 set Global.onTalk = true
-set Global.changeVis("炼狱迷宫1","画魔")
-set get_tree().current_scene.bossFight("画魔","res://Audio/BGM/网易游戏 - 战斗7-山地.mp3", null)
+时追云: ！
+set Global.changevis("炼狱迷宫1","魔画")
+set get_tree().current_scene.bossFight("魔画","res://Audio/BGM/网易游戏 - 战斗7-山地.mp3", null)
 set Global.onTalk = false
 => END
 
@@ -188,7 +191,8 @@ set Global.onTalk = false
 
 ~ 魔狐
 set Global.onTalk = true
-set Global.changeVis("炼狱迷宫2","魔狐")
+时追云: ！
+set Global.changevis("炼狱迷宫2","魔狐")
 set get_tree().current_scene.bossFight("魔狐","res://Audio/BGM/网易游戏 - 战斗7-山地.mp3", null)
 set Global.onTalk = false
 => END
@@ -205,7 +209,7 @@ set Global.getnode("player").visible = false
 六耳猕猴: [speed=0.5]算了
 小女孩: [speed=0.5]那我以后叫你猴哥哥吧！
 六耳猕猴: [speed=0.5]随便你
-set Global.getnode("六耳猕猴").visible = false
+set Global.getnode("六耳").visible = false
 [next=1]
 set Global.getnode("player").visible = true
 时追云: [speed=0.5]总感觉在哪里见过这气息
@@ -221,7 +225,7 @@ set Global.onTalk = true
 时追云惊: [speed=0.5]阎罗王？你怎么会在这里！？
 姜韵怒: [speed=0.5]夫君小心，他并不是你认识的阎罗王  
 set get_tree().current_scene.bossFight("魔阎罗","res://Audio/BGM/战斗-BOSS 正义.mp3", "魔阎罗")
-set Global.changeVis("炼狱迷宫3","魔阎罗")
+set Global.changevis("炼狱迷宫3","魔阎罗")
 set Global.onTalk = false
 => END
 
@@ -270,6 +274,7 @@ set Global.getnode("player").visible = false
 六耳猕猴: [speed=0.5]我才不会干这种多余的事，赶紧指路
 set Global.getnode("六耳").visible = false
 set Global.getnode("player").visible = true
+set Global.dial = null
 set Global.onTalk = false
 => END
 
@@ -312,7 +317,7 @@ set Global.onTalk = false
 ~ 蛟魔王2
 set Global.onTalk = true
 蛟魔王: [speed=0.5]哈哈哈哈哈，就算你们见到了蚩尤又如何...你们终究是白费功夫
-set Global.changeVis("炼狱迷宫7","蛟魔王")
+set Global.changevis("炼狱迷宫7","蛟魔王")
 时追云: [speed=0.5]他似乎很确信我们杀不死蚩尤
 姜韵: [speed=0.5]可能他们还有什么手段吧
 凌若昭: [speed=0.5]我能感觉到，前面就是重点了
@@ -322,7 +327,7 @@ set Global.onTalk = false
 => END
 
 
-~ 炼狱终点
+~ 炼狱迷宫7
 set Global.onTalk = true
 时追云惊: [speed=0.5]这是？
 姜韵惊: [speed=0.5]看这副打扮，孙大圣？ 
@@ -389,7 +394,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 蚩尤: [speed=0.5]哈哈哈哈，继续来啊，继续来战斗！
 时追云: [speed=0.5](他的体力简直就和无限似的，哪怕杀了他也能复活...)
-set Global.getnode("六耳")
+set Global.getnode("六耳").visible = true
 set Global.changebgm("res://Audio/BGM/大堂-急迫.ogg")
 六耳猕猴: [speed=0.5]这里就是终点了吗？一不小心就和那女娃子走散了。。。
 六耳猕猴: 蚩尤，给老子出来！！
@@ -412,6 +417,7 @@ set Global.onTalk = false
 
 ~ 炼狱迷宫9
 set Global.onTalk = true
+set Global.getnode("shadow").visible = false
 六耳猕猴: [speed=0.5]md，我找孙悟空关你们屁事，你们为什么要拦着我！
 姜韵: [speed=0.5]你为何不自己用眼睛看看他
 六耳猕猴: [speed=0.5]孙悟空？你怎么变得这么弱了！
@@ -483,21 +489,24 @@ set Global.getnode("孙悟空").visible = false
 set Global.changevis("水帘洞","孙悟空")
 时追云: [speed=0.5]...
 凌若昭: [speed=0.5]大家有什么想去的地方吗？
+set Global.changevis("水帘洞","孙悟空")
 set Global.changevis("五庄观","凌若昭")
 set Global.changevis("普陀山","凌若昭")
 set Global.changevis("长安城","凌若昭")
+set Global.changevis("朱紫国","凌若昭")
 set Global.changevis("傲来国","凌若昭")
-
-- 普陀山
-	set Global.changeScene("普陀山",null)
+set Global.changevis("方寸山","凌若昭")
+时追云: 那就...
+- 普陀山	
+	set Global.changeScene("普陀山",Vector2(1529,1428))
 - 五庄观
-	set Global.changeScene("五庄观",null)
-- 长安城
-	set Global.changeScene("长安城",null)
-- 傲来国
-	set Global.changeScene("傲来国",null)
+	set Global.changeScene("五庄观",Vector2(268,447))
 - 朱紫国
-	set Global.changeScene("朱紫国",null)
+	set Global.changeScene("朱紫国",Vector2(137,1577))
+- 方寸山
+	set Global.changeScene("方寸山",Vector2(2388,411))	
+- 水帘洞
+	set Global.changeScene("水帘洞",Vector2(1539,1160))	
 set Global.onTalk = false
 => END
 
@@ -505,18 +514,20 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.npcs.get("凌若昭").current_dialogue_index = 6
 凌若昭: 接下来要去哪里？
-- 普陀山
-	set Global.changeScene("普陀山",null)
+- 普陀山	
+	set Global.changeScene("普陀山",Vector2(1529,1428))
 - 五庄观
-	set Global.changeScene("五庄观",null)
-- 长安城
-	set Global.changeScene("长安城",null)
-- 傲来国
-	set Global.changeScene("傲来国",null)
+	set Global.changeScene("五庄观",Vector2(268,447))
 - 朱紫国
-	set Global.changeScene("朱紫国",null)
-
-
+	set Global.changeScene("朱紫国",Vector2(137,1577))
+- 方寸山
+	set Global.changeScene("方寸山",Vector2(2388,411))	
+- 水帘洞
+	set Global.dial = "天庭之战"
+	set Global.current_chapter_id = 11
+	set Global.changeScene("chapterPreview",null)
+	#set Global.changeScene("水帘洞",Vector2(1539,1160))	
+	
 set Global.onTalk = false
 => END
 

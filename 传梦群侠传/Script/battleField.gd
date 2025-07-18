@@ -80,7 +80,7 @@ func _ready():
 	Global.target = null
 	Global.onAttacking = false
 	Global.monsterTarget = null
-
+	Global.onAttackPicking = false
 	
 	randiTrans = randi_range(0,9)
 	
@@ -102,7 +102,7 @@ func _ready():
 		totalExp += i.exp
 		totalGold += i.gold
 		totalHp += i.hp
-	if monsters[0].name == "天道":
+	if monsters[0].name == "天道": 
 		$fightTime.start()
 		
 		
@@ -469,6 +469,7 @@ func _process(delta):
 			Global.target = null
 			Global.monsterTarget = null
 			Global.currAttacker = ""
+			Global.onAttackPicking = false
 			queue_free()
 			Global.onXiaoErZhenShen = false
 			
@@ -629,6 +630,7 @@ func _process(delta):
 			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp	
 
 		if Global.onBoss:
+			
 			queue_free()
 			totalExp = 0
 			Global.onBoss = false		
@@ -1417,6 +1419,7 @@ func showLastHit():
 
 
 func _on_queue_free_timeout():
+	Global.onAttackPicking = false
 	queue_free()
 	totalExp = 0
 

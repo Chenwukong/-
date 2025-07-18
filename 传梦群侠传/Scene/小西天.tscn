@@ -1,4 +1,4 @@
-[gd_scene load_steps=193 format=3 uid="uid://dgh634du2tiua"]
+[gd_scene load_steps=194 format=3 uid="uid://dgh634du2tiua"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ocboi"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_dkb4m"]
@@ -342,6 +342,9 @@ shader_parameter/storm_speed = 2.0
 shader_parameter/storm_strength = 1.0
 shader_parameter/storm_density = 2.0
 shader_parameter/turbulence = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5j7n"]
+size = Vector2(1593, 179.832)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ryqo"]
 atlas = ExtResource("20_exdkd")
@@ -1615,7 +1618,6 @@ polygon = PackedVector2Array(365, 149, 447, 109, 481, 128, 559, 93, 567, 48, 609
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ijbly")
 offset_left = -1918.0
@@ -1625,7 +1627,6 @@ offset_bottom = 1988.0
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect2" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ijbly")
 offset_left = 3863.0
@@ -1636,7 +1637,6 @@ rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect3" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ijbly")
 offset_left = 5066.0
@@ -1647,7 +1647,6 @@ rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect4" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ijbly")
 offset_left = 4865.0
@@ -1658,7 +1657,6 @@ rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect5" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ijbly")
 offset_left = 1767.0
@@ -1669,7 +1667,6 @@ rotation = 3.13083
 scale = Vector2(2.70884, 1.81542)
 
 [node name="ColorRect6" type="ColorRect" parent="."]
-visible = false
 z_index = 100
 material = SubResource("ShaderMaterial_ijbly")
 offset_left = 3409.0
@@ -1685,7 +1682,8 @@ position = Vector2(662.483, 1367.6)
 triggerEvent = "沙暴"
 
 [node name="CollisionShape2D" parent="沙暴/Area2D" index="0"]
-position = Vector2(37.5165, 4.99158)
+position = Vector2(29.017, 4.99158)
+shape = SubResource("RectangleShape2D_f5j7n")
 
 [node name="沙暴怪" type="AnimatedSprite2D" parent="."]
 position = Vector2(1359, 758)
@@ -1700,6 +1698,7 @@ autoplay = "default"
 frame_progress = 0.475595
 
 [node name="风" type="AnimatedSprite2D" parent="沙暴怪"]
+visible = false
 sprite_frames = SubResource("SpriteFrames_xdf0q")
 frame_progress = 0.847158
 

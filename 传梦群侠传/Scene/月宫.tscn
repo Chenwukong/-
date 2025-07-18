@@ -3219,7 +3219,7 @@ texture = ExtResource("2_dmjnt")
 
 [node name="player" parent="." instance=ExtResource("3_gb25m")]
 z_index = 1
-position = Vector2(1154, 753)
+position = Vector2(2272.75, 1920.22)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
@@ -3349,7 +3349,7 @@ toScene = "傲来布店"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("11_d7ggr")]
 position = Vector2(2004, 866)
-toScene = "月宫"
+toScene = "广寒宫"
 
 [node name="addChild" type="Timer" parent="."]
 wait_time = 0.2
@@ -3519,7 +3519,6 @@ scale = Vector2(2.47465, 2.47465)
 texture = ExtResource("32_eox21")
 
 [node name="吸血鬼组" type="AnimatedSprite2D" parent="."]
-visible = false
 script = ExtResource("34_bvva7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="吸血鬼组"]
@@ -3601,7 +3600,6 @@ sprite_frames = SubResource("SpriteFrames_0jdrs")
 autoplay = "default"
 
 [node name="吸血鬼组2" type="AnimatedSprite2D" parent="."]
-visible = false
 position = Vector2(2485, -431)
 scale = Vector2(-1, 1)
 script = ExtResource("34_bvva7")
@@ -3962,6 +3960,7 @@ frame = 29
 frame_progress = 1.0
 
 [node name="永阳" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(579, -132)
 scale = Vector2(9.75792, 9.75792)

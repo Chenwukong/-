@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://w8tjhm4b5tjf" path="res://SeparateAnimation/童子/站立/4.png" id="15_qoarb"]
 [ext_resource type="Texture2D" uid="uid://dyp4tgcbwqb1e" path="res://SeparateAnimation/童子/站立/2.png" id="16_35nd7"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="16_si2sn"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="17_nhpa3"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="17_nhpa3"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="18_mf5tm"]
 [ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="19_2ympk"]
 [ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="20_cehh7"]
@@ -56,7 +56,7 @@
 [ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="50_q4lxg"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="51_cl3bc"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="52_13dag"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="53_6sfe0"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="53_6sfe0"]
 [ext_resource type="Texture2D" uid="uid://cp6bc4tqcegur" path="res://Characters/绿烟儿.png" id="58_4x0rx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
@@ -968,16 +968,12 @@ position = Vector2(388, 178)
 position = Vector2(78, 29)
 sprite_frames = SubResource("SpriteFrames_jrkoa")
 animation = &"左下"
-frame_progress = 0.0
 
 [node name="Button" parent="小二/小二" index="1"]
 offset_left = -37.0
 offset_top = -50.0
 offset_right = 49.0
 offset_bottom = 52.0
-
-[node name="斩击" parent="小二/小二/effects" index="3"]
-frame = 0
 
 [node name="menuControl" parent="." instance=ExtResource("13_ayblx")]
 
@@ -1024,7 +1020,6 @@ position = Vector2(412, 325)
 [node name="AnimatedSprite2D" parent="player" index="1"]
 position = Vector2(-84, -5)
 animation = &"upStand"
-frame_progress = 0.0
 
 [node name="再见小二" parent="." instance=ExtResource("53_6sfe0")]
 visible = false
@@ -1040,9 +1035,11 @@ offset_right = 147.0
 offset_bottom = 36.0
 
 [node name="叶魅儿" parent="." instance=ExtResource("18_mf5tm")]
+visible = false
 position = Vector2(749, 462)
 sprite_frames = SubResource("SpriteFrames_od8u4")
 animation = &"左上idle"
+script = null
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 

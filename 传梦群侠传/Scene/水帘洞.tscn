@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://bpc25lookxg7a"]
+[gd_scene load_steps=72 format=3 uid="uid://bpc25lookxg7a"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_avpmp"]
 [ext_resource type="Texture2D" uid="uid://drec6lpwsk6r1" path="res://panoramas2/水帘洞.jpg" id="2_1t27y"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="13_n0mhu"]
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="14_um56v"]
 [ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="15_8m1fk"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="16_20h44"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="16_20h44"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_jv7r1"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_btr0g"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_3j22r"]
@@ -28,11 +28,12 @@
 [ext_resource type="Texture2D" uid="uid://b6pk4gtetfoig" path="res://Battlers/猴子.png" id="25_obvry"]
 [ext_resource type="Texture2D" uid="uid://cmbbgoj1r1105" path="res://Characters/猴子-行走.png" id="25_rhqux"]
 [ext_resource type="Texture2D" uid="uid://dfv6wujm4v4r2" path="res://Battlers/猴仙.png" id="27_ywytl"]
-[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="29_mmyru"]
+[ext_resource type="PackedScene" path="res://Scene/敖阳.tscn" id="29_mmyru"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="30_xuhj3"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="31_26mog"]
 [ext_resource type="Texture2D" uid="uid://bijs6hcxcn546" path="res://SeparateAnimation/敖雨/971-12.png" id="32_lellb"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="33_v40rd"]
+[ext_resource type="Texture2D" uid="uid://bvox2kbrpdgwg" path="res://Characters/孙悟空.png" id="34_0au0y"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -286,6 +287,21 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bo64u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urxjd"]
+atlas = ExtResource("34_0au0y")
+region = Rect2(0, 216, 176, 216)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_65h20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urxjd")
 }],
 "loop": true,
 "name": &"default",
@@ -547,7 +563,7 @@ animation = &"右下"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="凌若昭" parent="." instance=ExtResource("31_26mog")]
@@ -564,6 +580,11 @@ npcName = "敖雨"
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("33_v40rd")
 volume_db = 4.552
+
+[node name="孙悟空" parent="." instance=ExtResource("22_jerpn")]
+position = Vector2(1855, 1162)
+sprite_frames = SubResource("SpriteFrames_65h20")
+npcName = "孙悟空"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

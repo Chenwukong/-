@@ -113,7 +113,7 @@ var commanButtonIndex = 0
 func _ready():
 	
 	if self.playerName == "时追云":
-		$".".z_index = 1
+		#$".".z_index = 1
 		if Global.gai:
 			idle = "时追云改idle"
 			autoAttack = "时追云改autoAttack"

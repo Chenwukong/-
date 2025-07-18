@@ -676,7 +676,7 @@ texture = ExtResource("2_x1tjj")
 
 [node name="player" parent="." instance=ExtResource("3_lux6p")]
 z_index = 2
-position = Vector2(668, 1590)
+position = Vector2(1571, 844)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -847,7 +847,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -1016,11 +1015,18 @@ position = Vector2(573, 1524)
 sprite_frames = SubResource("SpriteFrames_a4xc3")
 animation = &"左上attack"
 autoplay = "左上"
+script = null
+
+[node name="npcBody" parent="六耳" index="0"]
+position = Vector2(-952, 33)
 
 [node name="小女孩" parent="六耳" instance=ExtResource("24_wqokw")]
 position = Vector2(-75, 0)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_nhn2j")
+
+[node name="npcBody" parent="六耳/小女孩" index="0"]
+position = Vector2(1515, -110)
 
 [node name="魔妾" parent="." instance=ExtResource("24_wqokw")]
 position = Vector2(1465, 826)
@@ -1043,3 +1049,5 @@ npcName = "魔妾"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="六耳"]
+[editable path="六耳/小女孩"]

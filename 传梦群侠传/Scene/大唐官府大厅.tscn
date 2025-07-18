@@ -417,7 +417,6 @@ position = Vector2(0, -7)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(482, 362)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="menuControl" parent="." instance=ExtResource("18_0fnvh")]
 
@@ -465,6 +464,10 @@ visible = false
 position = Vector2(567, 383)
 sprite_frames = SubResource("SpriteFrames_ftq0p")
 animation = &"左上"
+
+[node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="battleBgm" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

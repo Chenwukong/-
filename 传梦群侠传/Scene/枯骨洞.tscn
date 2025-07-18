@@ -254,58 +254,6 @@ tracks/11/keys = {
 resource_name = "城主走开"
 length = 5.0
 
-[sub_resource type="Animation" id="Animation_ko0di"]
-resource_name = "魅儿回忆"
-length = 70.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("回忆/东海湾全景:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 12),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("回忆/东海湾全景2:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(12, 21.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("回忆/东海湾全景3:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(21.1, 40),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("回忆/东海湾全景4:visible")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(40, 65.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="Animation" id="Animation_5a3le"]
 resource_name = "金箍棒来"
 length = 3.0
@@ -368,6 +316,58 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(551.156, 104.252), Vector2(-309.887, 44.6794), Vector2(-309.887, 44.6794), Vector2(306.567, 112.762)]
+}
+
+[sub_resource type="Animation" id="Animation_ko0di"]
+resource_name = "魅儿回忆"
+length = 70.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("回忆/东海湾全景:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 12),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("回忆/东海湾全景2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(12, 21.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("回忆/东海湾全景3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(21.1, 40),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("回忆/东海湾全景4:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(40, 65.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
@@ -1487,9 +1487,7 @@ position = Vector2(2266, 568)
 
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-8.99976, 1.00006)
-animation = &"右上"
 autoplay = "右上"
-frame_progress = 0.0
 
 [node name="真身特效" parent="小二/小二/effects" index="10"]
 z_index = 99
@@ -1509,7 +1507,6 @@ position = Vector2(-63.4467, -6.8217)
 position = Vector2(108.222, 63.433)
 scale = Vector2(0.647678, 0.647678)
 animation = &"真身左下"
-frame_progress = 0.0
 
 [node name="叶魅儿" parent="回忆/东海湾全景" instance=ExtResource("16_qpjj5")]
 position = Vector2(-15.6038, 82.6175)
@@ -1570,7 +1567,6 @@ position = Vector2(132.98, -297.141)
 position = Vector2(87.9897, 24.5617)
 scale = Vector2(1.53807, 1.53807)
 animation = &"右下"
-frame_progress = 0.0
 
 [node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景2"]
 self_modulate = Color(0, 0, 0, 0.521569)
@@ -1748,7 +1744,6 @@ position = Vector2(-145.637, 698.862)
 scale = Vector2(1.53807, 1.53807)
 sprite_frames = SubResource("SpriteFrames_pwye8")
 animation = &"default"
-frame_progress = 0.0
 
 [node name="ColorRect2" type="ColorRect" parent="回忆/东海湾全景4"]
 self_modulate = Color(0, 0, 0, 0.521569)

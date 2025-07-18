@@ -1,5 +1,6 @@
 ~ 道归虚无1
 set Global.onTalk = true
+set Global.addStuff()
 set FightScenePlayers.healAll()	
 set Global.getnode("姜韵").visible = true
 玉帝: ....
@@ -114,7 +115,7 @@ set Global.toggleballon()
 [next=3.5]
 set Global.toggleballon()
 set Global.dial = "挑战天道"
-set Global.getnode("天道东海湾",null)
+set Global.changeScene("天道东海湾",Vector2(1642,2121))
 
 
 
@@ -156,6 +157,7 @@ set Global.onTalk = false
 
 ~ 挑战天道3
 set Global.onTalk = true
+时追云惊: ！
 set get_tree().current_scene.bossFight("初代蛙","res://Audio/BGM/黄鹤遗址.ogg", "挑战天道")
 
 set Global.onTalk = false
@@ -163,7 +165,7 @@ set Global.onTalk = false
 
 ~ 挑战天道4
 set Global.onTalk = true
-set Global.changeScene("天道后山",null)
+set Global.changeScene("天道后山",Vector2(1712,1306))
 
 set Global.onTalk = false
 => END
@@ -200,7 +202,7 @@ set Global.onTalk = false
 
 ~ 挑战天道7
 set Global.onTalk = true
-set Global.changeScene("天道海",null)
+set Global.changeScene("天道海",Vector2(1934,1297))
 
 set Global.onTalk = false
 => END
@@ -236,7 +238,7 @@ set Global.onTalk = false
 
 ~ 挑战天道10
 set Global.onTalk = true
-set Global.changeScene("天道树林",null)
+set Global.changeScene("天道树林",Vector2(1036,1705))
 
 set Global.onTalk = false
 => END
@@ -277,7 +279,7 @@ set Global.onTalk = false
 
 ~ 挑战天道13
 set Global.onTalk = true
-set Global.changeScene("天道沉船",null)
+set Global.changeScene("天道沉船",Vector2(1730,1552))
 
 set Global.onTalk = false
 => END
@@ -387,7 +389,7 @@ set Global.toggleballon()
 
 
 set Engine.time_scale = 1
-set Global.changeScene("无边虚空",null)
+set Global.changeScene("无边虚空",Vector2(1730,1552))
 
 
 
@@ -501,7 +503,7 @@ set Global.getnode("player/AnimatedSprite2D").play("rightStand")
 set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 时追云: [speed=0.5]让我们一起结束这一切！
 set Global.dial = "挑战天道"
-set Global.changeScene("玄天幻化",null)
+set Global.changeScene("玄天幻化",Vector2(1208,2049))
 
 
 set Global.onTalk = false
@@ -510,6 +512,12 @@ set Global.onTalk = false
 
 ~ 挑战天道17
 set Global.onTalk = true
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPet.append("白虎")
+set Global.onTeamPet.append("青龙")
+set Global.onTeamPet.append("朱雀")
+set Global.onTeamPet.append("玄武")
 时追云惊: [speed=0.5]为什么你们都出来了，敖雨没有...
 凌若昭: [speed=0.5]她本该在那次就融于天道了...是时大哥的气运强行留住了她
 凌若昭: [speed=0.5]所以这次碰到天道就...
@@ -517,7 +525,7 @@ set Global.onTalk = true
 凌若昭: [speed=0.5]时大哥确实伤到了他，他应该没办法再用那个手段把我们变走了！
 时追云怒: [speed=0.5]天道，接受制裁吧！！！
 set Global.getnode("天道").play("施法")
-set Global.getnode("怪物组").visible = true
+set Global.getnode("怪物组1").visible = true
 时追云惊: [speed=0.5]这些妖怪，难道是
 set Global.getnode("天道").play("default")
 小二真身: [speed=0.5]看来我们一直在处于他的监视之下
@@ -830,6 +838,9 @@ if "洗髓丹" in FightScenePlayers.keyItem:
 	时追云: [speed=0.5]过往的一切都不再羁绊与我！
 	时追云: [speed=0.5]大家都退下！
 	时追云: [speed=0.5]让我以凡人的能力，与他决一死战！！
+	set Global.onTeamPlayer = []
+	set Global.onTeamPlayer.append("时追云")
+	set Global.onTeamPet = []
 	set Global.resetPlayer()
 	set get_tree().current_scene.bossFight("残血天道","res://Audio/BGM/BGM  逆天而行  天地劫手遊 X 仙劍奇俠傳  Kalpa of Universe_ Mobile.mp3", "直面天道")
 else:
@@ -917,8 +928,7 @@ set Global.getnode("命之轮").play()
 set Global.playsound("res://Audio/SE/HEAL 6.ogg")
 set Global.toggleballon()
 [next=2]
-set Global.getnode("救助者").visible = true
-set Global.getnode("AnimationPlayer2").play("救助者")
+set Global.getnode("神秘人").visible = true
 [next=1.5]
 set Global.toggleballon()
 set Global.changebgm("res://Audio/BGM/冲阵.mp3")
@@ -926,6 +936,13 @@ set Global.changebgm("res://Audio/BGM/冲阵.mp3")
 时追云惊: [speed=0.5]你是！？
 神秘人: [speed=0.5]我是，来帮你的人！
 神秘人: [speed=0.5]斩龙决！
+set Global.getnode("天道/吸取").visible = false
+set Global.getnode("敖白/吸取").visible = false
+set Global.getnode("金甲/吸取").visible = false
+set Global.getnode("孙悟空/吸取").visible = false
+set Global.getnode("小二/吸取").visible = false
+set Global.getnode("凌若昭/吸取").visible = false
+set Global.getnode("姜韵/吸取").visible = false
 set Global.getnode("斩龙").visible = true
 set Global.getnode("斩龙").play()
 set Global.getnode("天道").play("挨打")
@@ -1022,12 +1039,12 @@ set Global.getnode("AnimationPlayer2").play("getDark")
 [next=2]
 set Global.toggleballon()
 传梦: [speed=0.5]恭喜你达成完美结局"道归虚无"，感谢你的游玩
-传梦: [speed=0.5]刚才的神秘人托我告诉你，他的名字叫做xxxx
-传梦: [speed=0.5]他让我给你转达几句话 xxxxxxx
+传梦: [speed=0.5]刚才的神秘人托我告诉你，他的名字叫做{{Global.helperName}}
+传梦: [speed=0.5]他让我给你转达几句话{{Global.helperMsg}}
 传梦: [speed=0.5]转达完毕，接下来切回主人公们的视角吧
 
 set Global.dial = "结局"
-set Global.changeScene("回春堂",null)
+set Global.changeScene("长安城",null)
 
 
 set Global.onTalk = false
@@ -1058,8 +1075,9 @@ set Global.onTalk = true
 set Global.getnode("player/Camera2D").zoom = Vector2(0.5,0.5)
 set get_tree().current_scene.get_node("建业左").modulate = "414141"
 set get_tree().current_scene.get_node("shadow").modulate = "414141"
-set Global.getnode("黑山2").position = Vector2(637,2082)
+set Global.getnode("黑山2").position = Vector2(667,2072)
 set Global.getnode("姜韵").visible = true
+set Global.getnode("黑山2").visible = true
 set Global.changevis("方寸山","黑山2")
 set Global.getnode("店小二").visible = true
 set Global.getnode("若昭").visible = true
@@ -1073,6 +1091,7 @@ set Global.getnode("clouds").visible = false
 凌天麒: 三[next=1]
 凌天麒: 二[next=1]
 凌天麒: 一[next=1]
+set Global.getnode("黑山2").position = Vector2(667,2072)
 set Global.toggleballon()
 set Global.getnode("烟花").visible = true
 set Global.playsound("res://Audio/SE/烟花.ogg")
@@ -1099,6 +1118,8 @@ set Global.toggleballon()
 凌若昭: [speed=0.5]听说是姐姐在复活之后偷偷将自己的命运与大哥绑定了，所以他们都没了名字
 黑山: [speed=0.5]哇啊啊啊啊啊，夫妇竟皆如此爱对方
 小二: [speed=0.5]喂喂喂，你小声点，别打扰了气氛
+黑山: [speed=0.5]那他现在岂不是一点功力都没有了？
+小二: [speed=0.5]这个。。。有点复杂，以后再和你说吧
 set Global.toggleballon()
 set Global.getnode("AnimationPlayer").play("镜头移动2")
 [next=1.1]
@@ -1235,13 +1256,14 @@ set Global.onTalk = true
 天机娃娃: [speed=0.5]那我这就送你过去了！
 set Global.getnode("player").visible = false
 [next=3]
-set Global.getnode("敖雨").visible = true
+set Global.getnode("敖雨3").visible = true
 敖雨: [speed=0.5]嗯？我明明感觉到了他的气息
 天机娃娃: [speed=0.5]你是在找凌天麒他们吗？
 敖雨: [speed=0.5]是啊，你知道他们去哪了吗
 天机娃娃: [speed=0.5]他们被我送回过去了，不知道要多久才会回来
 敖雨: [speed=0.5]...
 敖雨: [speed=0.5]那我就在这等他回来！
+set Global.dial = null
 set Global.changeScene("结束",null)
 
 

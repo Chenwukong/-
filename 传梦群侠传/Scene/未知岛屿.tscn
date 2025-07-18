@@ -23,7 +23,7 @@
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_x5uh7"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="22_3sqyk"]
 [ext_resource type="Texture2D" uid="uid://dwg671ktdkjj0" path="res://Characters/观音.png" id="23_7s130"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="24_n7aa5"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="24_n7aa5"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="25_l78pd"]
 [ext_resource type="Texture2D" uid="uid://dc4xegu0eqscq" path="res://Battlers/关重七★5.png" id="26_4yda2"]
 [ext_resource type="Texture2D" uid="uid://0uei0mkmg6ta" path="res://Characters/关重七.png" id="27_ppsve"]
@@ -374,8 +374,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(-30.9092, 9.61548)
@@ -510,7 +508,6 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -601,6 +598,7 @@ position = Vector2(4503.81, 3410.04)
 sprite_frames = SubResource("SpriteFrames_3ucbn")
 animation = &"右下"
 autoplay = "右下"
+script = null
 
 [node name="水云仙" parent="." instance=ExtResource("25_l78pd")]
 position = Vector2(4593, 3456)

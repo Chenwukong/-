@@ -18,13 +18,13 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_hra30"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_crikl"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_n3fa7"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_4jmb3"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_4jmb3"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_glp8y"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_eic3x"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="22_iw0ks"]
 [ext_resource type="Texture2D" uid="uid://cf8y03qdf2jd7" path="res://梦魂Animation/青龙2阶段/战斗待机.png" id="23_iclks"]
 [ext_resource type="Texture2D" uid="uid://dqhbmq7v3j87a" path="res://梦魂Animation/青龙/怒1待机.png" id="24_w8vem"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="25_f8w85"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="25_f8w85"]
 [ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="25_orded"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="26_8kclq"]
 
@@ -46,18 +46,6 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_gs70c"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1459, 1578)]
-}
 
 [sub_resource type="Animation" id="Animation_y5c4b"]
 resource_name = "守卫move"
@@ -217,6 +205,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-112, 0), Vector2(136, 5), Vector2(0, 0), Vector2(130, 0), Vector2(0, 0), Vector2(-130, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D4:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasModulate:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.9, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.184314, 0.184314, 0.184314, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nm37n"]
@@ -688,13 +700,12 @@ texture = ExtResource("2_vneeq")
 
 [node name="player" parent="." instance=ExtResource("3_1fneo")]
 z_index = 2
-position = Vector2(1459, 1578)
+position = Vector2(26, 651)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -830,7 +841,6 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -914,11 +924,12 @@ position = Vector2(-29.0653, -17.3637)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.184314, 0.184314, 0.184314, 1)
 
-[node name="寻四圣3" parent="." instance=ExtResource("25_f8w85")]
+[node name="寻四圣9" parent="." instance=ExtResource("25_f8w85")]
+visible = false
 position = Vector2(1645, 990)
-triggerEvent = "寻四圣3"
+triggerEvent = "寻四圣"
 
-[node name="CollisionShape2D" parent="寻四圣3/Area2D" index="0"]
+[node name="CollisionShape2D" parent="寻四圣9/Area2D" index="0"]
 position = Vector2(-4.89136, -26.0337)
 rotation = -0.486032
 shape = SubResource("RectangleShape2D_4h1n3")
@@ -971,4 +982,4 @@ autoplay = ""
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="青龙"]
-[editable path="寻四圣3"]
+[editable path="寻四圣9"]

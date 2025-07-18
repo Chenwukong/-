@@ -2638,6 +2638,7 @@ var unLearnMagic = {
 				},				
 				
 			"斩龙决":{
+					"name": "斩龙决",
 					"currExp": 0,
 					"needExp": 50,
 					"attackType": "range",
@@ -2696,7 +2697,20 @@ var unLearnMagic = {
 					"audio": "res://Audio/SE/火4.ogg",
 					"icon":"res://Icons/●图标 (77).png",
 				},				
-			
+			"滔天":{
+					"name": "滔天",
+					"attackType": "special",
+					"value": 2.5,
+					"cost": 500,
+					"damageSource": "AD",
+					"description": "触碰到的人都会受到伤害",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"duration": 8,
+					"audio": "res://Audio/SE/火4.ogg",
+					"icon":"res://Icons/●图标 (77).png",
+				},				
 				
 }
 func learnMagic(character, magicName):

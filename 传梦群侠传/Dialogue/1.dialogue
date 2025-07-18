@@ -31,7 +31,10 @@ set Global.onTalk = false
 
 ~ 新手警告
 set Global.onTalk = true
-
+set get_tree().current_scene.fetch_first_unread()
+传梦: 11111
+传梦: [speed=0.5]刚才的神秘人托我告诉你，他的名字叫做{{Global.helperName}}
+传梦: [speed=0.5]他让我给你转达几句话{{Global.helperMsg}}
 传梦: 这是传梦之路试玩版，目前还有许多的bug。
 传梦: 如果在游戏中被npc或者建筑卡住，可按r或者点击左上角的坐标图急救
 传梦: 你的包内有装备记得穿上
@@ -62,7 +65,8 @@ set Global.onTalk = false
 => END	
 	
 ~ 送物资
-set Global.onTalk = true	
+set Global.onTalk = true
+set get_tree().current_scene.fetch_first_unread()
 传梦: 看你们测试这么多次怪幸苦的，送你们点测试版专有的新手物资吧
 set Global.addItem("黄金剑", "weapon", "bagArmorItem", 1)
 set Global.addItem("飞蝗石", "battleConsume", "battleItem", 10)
@@ -87,6 +91,8 @@ set Global.onTalk = false
 ~ 鱼叟初次见面
 set Global.onTalk = true
 
+传梦: [speed=0.5]刚才的神秘人托我告诉你，他的名字叫做{{Global.helperName}}
+传梦: [speed=0.5]他让我给你转达几句话{{Global.helperMsg}}
 
 鱼叟: [speed=0.3]今天这么早就回去了啊微笑
 时追云: [speed=0.3]是啊，您看看这些鱼能卖多少钱？大笑

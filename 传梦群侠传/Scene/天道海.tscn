@@ -448,6 +448,18 @@ resource_name = "推2"
 
 [sub_resource type="Animation" id="Animation_an87f"]
 resource_name = "推3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(600, 634), Vector2(1981, 1297)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcav6"]
 _data = {
@@ -467,7 +479,7 @@ texture = ExtResource("2_3c2gx")
 
 [node name="player" parent="." instance=ExtResource("3_ymush")]
 z_index = 2
-position = Vector2(1934, 1297)
+position = Vector2(1993, 1297)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
@@ -533,9 +545,8 @@ volume_db = 6.0
 max_distance = 100000.0
 
 [node name="shadow" type="Sprite2D" parent="."]
-visible = false
 z_index = 2
-position = Vector2(1200, 1197.1)
+position = Vector2(4304, 1218)
 texture = ExtResource("9_00f5v")
 
 [node name="position" type="Control" parent="."]
@@ -595,7 +606,7 @@ stream = ExtResource("13_cun4a")
 max_distance = 1e+09
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(1865, 1764)
+position = Vector2(2302, 1961)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "move_凤凰"
@@ -612,7 +623,7 @@ items = {
 }
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(506, 607)
+position = Vector2(120, 437)
 
 [node name="menuControl" parent="." instance=ExtResource("15_gw6b8")]
 

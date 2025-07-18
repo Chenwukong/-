@@ -1,11 +1,10 @@
-[gd_scene load_steps=71 format=3 uid="uid://bv27o7sqjm3s"]
+[gd_scene load_steps=70 format=3 uid="uid://bv27o7sqjm3s"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_en0py"]
-[ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_bjjmv"]
 [ext_resource type="Texture2D" uid="uid://c4urxm25fjbs4" path="res://panoramas2/傲来国民居(外坐标傲来国14.25)文老伯.jpg" id="3_56ug6"]
 [ext_resource type="Texture2D" uid="uid://vqyhadlg674f" path="res://panoramas2/傲来国民居(外坐标傲来国14.25)文老伯_2.png" id="4_vr07n"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_301ex"]
-[ext_resource type="AudioStream" uid="uid://dtxvkdvvkdg2w" path="res://Audio/BGM/聂薇 - 朱紫国.mp3" id="6_jjm22"]
+[ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="6_bsscu"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_w6xft"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_ru4sq"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_vwsne"]
@@ -21,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://ni3oh0kaey0e" path="res://Characters/老板.png" id="21_av63c"]
 [ext_resource type="Texture2D" uid="uid://fruw6wvuq06n" path="res://Characters/_药店老板.png" id="22_xf5ol"]
 [ext_resource type="Texture2D" uid="uid://b7ju6tt7qocm" path="res://梦魂Animation/#-持续回血.png" id="23_5ro6c"]
-[ext_resource type="PackedScene" path="res://Scene/messageLayer.tscn" id="24_1nark"]
+[ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="24_1nark"]
 [ext_resource type="Texture2D" uid="uid://bt37k1xp44qii" path="res://CutScene/练剑2.png" id="25_8ureq"]
 [ext_resource type="Texture2D" uid="uid://cwsli3a5uiwjx" path="res://CutScene/练剑1.png" id="26_3capy"]
 [ext_resource type="Texture2D" uid="uid://cvet8vebnf3ta" path="res://CutScene/给水.png" id="27_hj7cc"]
@@ -440,9 +439,7 @@ animations = [{
 }]
 
 [node name="朱紫国旅馆" type="Node2D"]
-modulate = Color(0, 0, 0, 1)
 script = ExtResource("1_en0py")
-shader = ExtResource("2_bjjmv")
 
 [node name="建业左" type="Sprite2D" parent="."]
 position = Vector2(3070.75, 881.092)
@@ -463,7 +460,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(11.0674, -23.4035)
@@ -473,7 +469,7 @@ zoom = Vector2(2, 2)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
-stream = ExtResource("6_jjm22")
+stream = ExtResource("6_bsscu")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -621,10 +617,6 @@ libraries = {
 "": SubResource("AnimationLibrary_n3778")
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
-script = ExtResource("19_l8s45")
-
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
 [node name="朱紫国旅馆老板" parent="." instance=ExtResource("20_nhy3u")]
@@ -656,8 +648,8 @@ texture = ExtResource("25_8ureq")
 
 [node name="练剑2" type="Sprite2D" parent="messageLayer"]
 visible = false
-position = Vector2(572.875, 398)
-scale = Vector2(0.765788, 0.796875)
+position = Vector2(573.5, 398)
+scale = Vector2(1.14941, 0.796875)
 texture = ExtResource("26_3capy")
 
 [node name="给水" type="Sprite2D" parent="messageLayer"]
@@ -678,6 +670,16 @@ position = Vector2(546.037, 820.109)
 animation = &"down"
 autoplay = "up"
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(-737, -368)
+script = ExtResource("19_l8s45")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(1169, 1371, 1241, 1341, 1364, 1251, 1473, 1139, 1437, 1046, 1388, 1009, 1248, 1088, 1261, 1123, 1125, 1187, 1090, 1256, 1038, 1309)
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
@@ -686,6 +688,8 @@ autoplay = "up"
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
 [connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
 [connection signal="timeout" from="cloudTimer" to="." method="_on_cloud_timer_timeout" flags=18]
+[connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
+[connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
 
 [editable path="player"]
 [editable path="CanvasLayer"]

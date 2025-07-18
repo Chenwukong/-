@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="17_55pkt"]
 [ext_resource type="Texture2D" uid="uid://cj6e4g3ruj0we" path="res://Characters/老巫婆.png" id="18_o3126"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="19_a7es1"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="20_5ihai"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="20_5ihai"]
 [ext_resource type="Texture2D" uid="uid://b5qp7qw246apk" path="res://Pictures/王婆卖瓜.jpg" id="21_v8omk"]
 [ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="22_olndn"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="23_1jmh0"]
@@ -674,16 +674,14 @@ scale = Vector2(1.21703, 1.19593)
 texture = ExtResource("2_am8v8")
 
 [node name="player" parent="." instance=ExtResource("3_sdl1d")]
-visible = false
 z_index = 2
 position = Vector2(2466.59, 1393.47)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
+visible = false
 animation = &"upStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.8, 0.8)
@@ -831,7 +829,6 @@ position = Vector2(2319, 1688)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(402, -169)
 animation = &"左下"
-frame_progress = 0.0
 
 [node name="王婆" parent="." instance=ExtResource("17_55pkt")]
 position = Vector2(1353, 267)

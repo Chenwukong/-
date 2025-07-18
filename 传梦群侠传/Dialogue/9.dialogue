@@ -602,7 +602,7 @@ set Global.onTalk = false
 
 ~ 菩提告辞
 set Global.onTalk = true
-set Global.changevis("灵台宫","凌若昭")
+set Global.dial = null
 set Global.changebgm("res://Audio/BGM/0情况危机.ogg")
 菩提老祖: [speed=0.5]天庭的平衡已经被打破了，是魔尊占了上风！
 凌若昭: [speed=0.5]怎么会这么突然
@@ -635,7 +635,7 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 姜韵恐: 果然是他们一直想杀我!
 玄武: [speed=0.5]而我那时。。正好也在建业
 菩提老祖: [speed=0.5]咳咳咳！
-set Global.getnode("菩提老祖").modulata.a = 0.5
+
 set Global.changebgm("res://Audio/BGM/#沧桑叹.ogg")
 凌若昭哭: [speed=0.5]师父你怎么在吐血
 时追云惊: 祖师你的身体？？
@@ -663,7 +663,7 @@ set Global.getnode("天道").visible = true
 set Global.getnode("天道").play()
 set Global.playsound("res://Audio/SE/法术-气势强.ogg")
 [next=2]
-set Global.npcVis.get("灵台宫").get("菩提祖师").visible = false
+set Global.npcVis.get("灵台宫").get("菩提老祖").visible = false
 时追云惊: 祖师！！！
 小二: !!!!
 凌若昭哭: 师傅！！！ 
@@ -679,6 +679,9 @@ set Global.npcVis.get("灵台宫").get("菩提祖师").visible = false
 小二: [speed=0.5]可长寿村在哪啊，没听过啊
 凌若昭哀: [speed=0.5]我去过，师父在我很小的时候带我去过那里，所以我可以用符飞过去
 凌若昭哀: [speed=0.5]等要走了就告诉我一声吧
+set Global.cantShow.erase("镇魔地1")
+set Global.cantShow.erase("镇魔地2")
+set Global.cantShow.erase("镇魔地3")
 
 set Global.onTalk = false
 => END
@@ -687,8 +690,8 @@ set Global.onTalk = false
 set Global.onTalk = true
 凌若昭哀: [speed=0.5]要走了吗？
 - 是
-	set Global.dial = "长寿村"
-	set Global.changeScene("长寿村",null)
+	set Global.dial = "村长"
+	set Global.changeScene("长寿村",Vector2(2327,1766))
 - 再等等
 	set Global.npcs.get("凌若昭").current_dialogue_index = 5
 set Global.onTalk = false
@@ -702,7 +705,7 @@ if Global.checkChuanMeng():
 	传梦: 这都能集齐？算你厉害！进去吧！
 else
 	传梦: 很遗憾，你没有集齐哦，下周目再试试吧
-	set Global.npcs.get("传梦").current_dialogue_index = 1
+	set Global.npcs.get("传梦").current_dialogue_index = 2
 set Global.onTalk = false
 => END
 
@@ -743,6 +746,7 @@ set Global.onTalk = true
 姜韵: [speed=0.5]那我们就在这里住下吧，外界的妖魔作乱也与我们无关，不过是多一天，多，死，几，万，人，罢了
 村长: [speed=0.5]...
 set Global.changevis("长寿村","墨兮")
+set Global.changeScene("长寿村",Vector2(1239,110))
 set Global.dial = "村长"
 set Global.onTalk = false
 => END
@@ -756,7 +760,7 @@ set Global.onTalk = true
 姜韵: [speed=0.5]他刚才不说，现在就也不会说
 时追云: [speed=0.5]我们先自己找找看吧	
 姜韵: [speed=0.5]也只能如此了
-
+set Global.dial = null
 set Global.onTalk = false
 => END
 
@@ -838,7 +842,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]这不会也和神庙有关吧
 长寿村酒楼掌柜: [speed=0.5]那就不知道了
 时追云: [speed=0.5]我们去解决那只蝎霸王吧！
-
+set Global.changevis("长寿郊外", "蝎霸王")
 set Global.onTalk = false
 => END
 
@@ -856,7 +860,6 @@ set Global.onTalk = true
 时追云: [speed=0.5]你还敢欺负村民吗！
 蝎霸王: [speed=0.5]欺负他们？我哪里欺负他们了！
 小二: [speed=0.5]嗯？那你在这里做什么，你都干了什么事？
-set Global.changeBgm()
 蝎霸王: [speed=0.5]我是想告诉他们大事不好了，妖盟要派大军对这里动手了！
 时追云惊: [speed=0.5]又是妖盟，你怎么知道？
 蝎霸王: [speed=0.5]我在妖盟有内应！
@@ -884,6 +887,7 @@ set Global.onTalk = false
 
 ~ 长寿村4
 set Global.onTalk = true
+set Global.changevis("长寿郊外", "蝎霸王")
 时追云: [speed=0.5]老村长，妖盟要来摧毁这里
 村长: [speed=0.5]什么什么什么？
 小二: [speed=0.5]妖盟是几年前起来的妖怪组织，他们对你们不利
@@ -910,7 +914,6 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.changevis("神庙","凌若昭")
 set Global.changevis("神庙","小二")
-set Global.changevis("神庙","姜韵")
 set Global.getnode("姜韵").visible = true
 
 时追云: [speed=0.5]这里很干净，除了这个雕像之外都找遍了
@@ -929,9 +932,10 @@ set Global.getnode("墨兮").play("magic")
 set Global.getnode("阵法").visible = true
 set Global.getnode("阵法").play()
 set Global.playsound("res://Audio/SE/050-Explosion03.ogg")
-set Global.cantShow("女娲神迹")
+set Global.cantShow.erase("女娲神迹")
 set Global.toggleballon()
 [next=2]
+set Global.getnode("阵法").visible = false
 set Global.toggleballon()
 小二: 你这真的不是直接炸开的吗
 寒天云: [speed=0.5]有什么关系，你拿到里面的东西后这神庙就再也没用了，炸掉这结界又何妨
@@ -971,7 +975,7 @@ set Global.getnode("player").visible = false
 小二悲: [speed=0.5]原来老大他...
 凌若昭哀: [speed=0.5]也是哦，师父离开我的时候我也很难受，而时大哥当初是看着全部人死在他面前
 set Global.dial = "幻境"
-set Global.changeScene("幻境1",null)
+set Global.changeScene("幻境1",Vector2(-90,1623))
 
 
 set Global.onTalk = false
@@ -987,7 +991,7 @@ set Global.onTeamPet.erase("青龙")
 set Global.onTeamPet.erase("朱雀")
 set Global.onTeamPet.erase("玄武")
 set Global.onTeamPet.erase("白虎")
-时追云惊: [speed=0.5这是...长安？不对，长安哪有这么阴森？
+时追云惊: [speed=0.5]这是...长安？不对，长安哪有这么阴森？
 时追云: [speed=0.5街上的摊贩怎么一个人都没有？
 时追云: [speed=0.5这种感觉。。。像是梦
 时追云: [speed=0.5]神庙的内部绝对不可能如此邪气，莫非...这里是类似幻境之类的地方
@@ -1023,6 +1027,7 @@ set Global.onTalk = false
 ~ 幻境3
 set Global.onTalk = true
 set Global.onHurry = false
+set Global.changevis("幻境1","奔霸")
 时追云: [speed=0.5]刚才那个，应该不是真的奔霸吧
 时追云: [speed=0.5]奇怪，我明明知道这里是幻境，为什么会那么容易被他调动情绪
 时追云: [speed=0.5]刚才的我，是真的认为他是奔霸的
@@ -1038,8 +1043,10 @@ set Global.onTalk = false
 
 ~ 妖盟入侵1
 set Global.onTalk = true
+set Global.dial = null
 set Global.getnode("player").visible = false
 set Global.changevis("神庙","墨兮")
+set Global.getnode("姜韵").visible = true
 小二: [speed=0.5]唉，老大不知道要进去多久
 凌若昭: [speed=0.5]那我们现在做什么
 姜韵: [speed=0.5]我们不知道蝎霸王说的是真是假，但假设是真的话，看来神庙里的东西确实会对妖盟产生很大的威胁
@@ -1049,7 +1056,7 @@ set Global.changevis("神庙","墨兮")
 小二: [speed=0.5]好
 set Global.toggleballon()
 [next=1]
-set Global.changeScene("幻境2",null)
+set Global.changeScene("幻境2",Vector2(78,1282))
 
 set Global.onTalk = false
 => END
@@ -1140,9 +1147,11 @@ set Global.onTeamPet.append("白虎")
 
 set Global.getnode("shadow").visible = false
 set Global.getnode("妖盟").visible = true
-set Global.changevis("长寿郊外","小二")
-set Global.changevis("长寿郊外","凌若昭")
-set Global.changevis("长寿郊外","姜韵")
+set Global.changevis("长寿郊外", "妖盟")
+set Global.getnode("姜韵").visible = true
+set Global.getnode("小二").visible = true
+set Global.getnode("凌若昭").visible = true
+
 set Global.changevis("长寿郊外", "蝎霸王")
 set Global.getnode("姜韵").visible = true
 set Global.getnode("player").visible = false
@@ -1162,7 +1171,7 @@ set Global.toggleballon()
 夜护法: [speed=0.5]都给我上！把这村子里的人全杀了！把那破神庙也摧毁！里面的东西会阻碍我们的大业！
 set Global.onTeamPlayer.erase("时追云")
 
-set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖魔入侵")
+set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖盟入侵")
 set Global.onTalk = false
 => END
 
@@ -1170,7 +1179,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 夜护法: [speed=0.5]哟，挺强的嘛，继续上！
 set Global.getnode("player").visible = false
-set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖魔入侵")
+set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖盟入侵")
 
 set Global.onTalk = false
 => END
@@ -1182,7 +1191,7 @@ set Global.getnode("player").visible = false
 小二: [speed=0.5]喂！你怎么不自己上！
 夜护法: [speed=0.5]哦呵呵呵呵~，我为什么要先上，让你们被消耗完灵力，我再慢慢地折磨你们
 凌若昭怒: 卑鄙！ 
-set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖魔入侵")
+set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖盟入侵")
 
 set Global.onTalk = false
 => END
@@ -1190,6 +1199,10 @@ set Global.onTalk = false
 ~ 妖盟入侵5
 set Global.onTalk = true
 set Global.getnode("player").visible = false
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = false
+set Global.getnode("shadow").visible = false
+set Global.getnode("shadow").texture = null
 小二: [speed=0.5]不行，再这么下去会被拖死的
 凌若昭: [speed=0.5]他们太强了，绝对不能让他们过去！
 小二: [speed=0.5]没办法了，大嫂，你还剩多少灵力，还能令我恢复全盛状态吗
@@ -1210,8 +1223,6 @@ set Global.playsound("res://Audio/SE/HEAL 6.ogg")
 小二: [speed=0.5]我...相信我可以！不管怎么样，在老大出来之前，都要守住这里！
 
 set Global.getnode("小二/小二").play("真身左下")
-set Global.getnode("小二/小二/effects/真身特效").visible = true
-set Global.getnode("小二/小二/effects/真身特效").play()
 set Global.playsound("res://Audio/SE/猛兽2.ogg")
 
 set Global.toggleballon()
@@ -1265,7 +1276,7 @@ set Global.getnode("蝎军").visible = true
 小二真身: [speed=0.5]受死吧！
 set Global.toggleballon()
 [next=1.5]
-set Global.dial = "幻境"
+
 set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.erase("小二")
@@ -1274,7 +1285,8 @@ set Global.onTeamPet.erase("青龙")
 set Global.onTeamPet.erase("朱雀")
 set Global.onTeamPet.erase("玄武")
 set Global.onTeamPet.erase("白虎")
-set Global.changeScene("幻境3", null)
+set Global.dial = null
+set Global.changeScene("幻境3", Vector2(67,1318))
 
 
 set Global.onTalk = false
@@ -1282,13 +1294,16 @@ set Global.onTalk = false
 
 ~ 妖盟入侵6
 set Global.onTalk = true
-
+set Global.changebgm(null)
 set Global.getnode("player").visible = false
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = false
+
 set Global.getnode("妖盟").visible = true
 set Global.getnode("蝎军").visible = true
 set Global.getnode("姜韵").visible = true
 set Global.getnode("小二/小二").play("进阶真身左下")
-小二真身: [speed=0.5]来吧！
+小二真身: 杀！[next=0.1]
 set get_tree().current_scene.bossFight("夜护法","res://Audio/BGM/战斗Y.mp3", "妖盟入侵")
 
 
@@ -1329,7 +1344,13 @@ set Global.onTalk = false
 
 ~ 妖盟入侵7
 set Global.onTalk = true
+set Global.getnode("火力场").visible = true
+set Global.getnode("火力场").play()
+set Global.getnode("姜韵").visible = true
+set Global.getnode("小二").visible = true
+set Global.getnode("凌若昭").visible = true
 set Global.getnode("player").visible = false
+set Global.getnode("shadow").texture = null
 set Global.changebgm(null)
 夜护法: 这小哥太变态了，你还不出来吗！
 夜护法: 再不出来，我们就真的死了，到时候你就永远别想逃出来了！
@@ -1347,7 +1368,16 @@ set Global.getnode("ColorRect2").visible = true
 set Global.getnode("AnimationPlayer").play("水墨")
 [next=15.5]
 set Global.changebgm(null)
-set Global.dial = "幻境"
+set Global.dial = null
+set Global.onTeamPlayer.append("时追云")
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPet.erase("青龙")
+set Global.onTeamPet.erase("朱雀")
+set Global.onTeamPet.erase("玄武")
+set Global.onTeamPet.erase("白虎")
+
 set Global.changeScene("幻境4",null)
 
 
@@ -1644,7 +1674,9 @@ set Global.onTalk = false
 
 ~ 妖盟入侵9
 set Global.onTalk = true
-
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 鬼帝: [speed=0.5]不！不！！！你们这些垃圾！要不是我真身不在这里，你们怎么可能赢我！
 鬼帝: [speed=0.5]我不要再被关住了！我要杀了你们！
 时追云惊: [speed=0.5]你想干什么！
@@ -1654,7 +1686,7 @@ set Global.getnode("鬼帝").play("magic")
 [next=2.5]
 set Global.changebgm("res://Audio/BGM/《大侠立志传》游戏音乐BGM纯享版——星宿大阵 - 1.《大侠立志传》游戏音乐BGM纯享版——星宿大阵(Av527578023,P1).mp3")
 set Global.getnode("鬼帝").play("die")
-set Global.playsound("res://Audio/SE/Ghost_scream.mp3")
+set Global.playsound("res://Audio/SE/Ghost_scream_2.mp3")
 set Global.getnode("subSound").pitch_scale = 0.5
 
 [next=3]
@@ -1678,7 +1710,7 @@ set Global.getnode("鬼帝").visible = false
 set Global.getnode("AnimationPlayer").play("turnDark")
 set Global.toggleballon()
 [next=2]
-set Global.changeScene("长寿村村子家",Vector2(1086,923))
+set Global.changeScene("长寿村村长家",Vector2(1086,923))
 
 set Global.onTalk = false
 => END
@@ -1707,15 +1739,15 @@ set Global.getnode("墨兮").visible = false
 小二: [speed=0.5]他走了
 时追云: [speed=0.5]那我们也出发吧，去创界山！
 凌若昭: [speed=0.5]创界山应该就在这里附近，我们找一找！
-set Global.changevis.get("长寿郊外","小二")
-set Global.changevis.get("长寿郊外","凌若昭")
 
-set Global.changeScene("长寿郊外",null)
+
+set Global.changeScene("长寿郊外",Vector2(2378,174))
 set Global.onTalk = false
 => END
 
 ~ 妖盟入侵11
 set Global.onTalk = true
+set Global.addStuff()
 set Global.getnode("六耳").visible = true
 set Global.getnode("player").visible = false
 六耳猕猴: [speed=0.5]妖.......仙？
@@ -1765,6 +1797,7 @@ set Global.onTalk = false
 ~ 炎魔神2
 set Global.onTalk = true
 set Global.cantShow.append("镇魔地2")
+set Global.quests["镇魔地"]["镇魔地2"] = true
 set Global.changeScene("普陀山",Vector2(1442,1060))
 set Global.onTalk = false
 => END
@@ -1780,6 +1813,9 @@ set Global.onTalk = false
 ~ 冲天魔2
 set Global.onTalk = true
 set Global.cantShow.append("镇魔地3")
+set Global.quests["镇魔地"]["镇魔地3"] = true
 set Global.changeScene("五庄观",Vector2(909,578))
+
+
 set Global.onTalk = false
 => END

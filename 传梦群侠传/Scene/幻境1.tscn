@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dx1uhpydba5uk" path="res://梦魂Animation/四法青云.png" id="19_mln7f"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_rtksg"]
 [ext_resource type="Texture2D" uid="uid://dit5mrg8yujlq" path="res://梦魂Animation/65碧水夜叉待机敌.png" id="21_v033u"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="22_gwqei"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="22_gwqei"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619, 20, 1489)
@@ -375,7 +375,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 

@@ -857,7 +857,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -934,8 +933,6 @@ position = Vector2(3364, 2303)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
-frame = 0
-frame_progress = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -1025,16 +1022,23 @@ animation = &"左上attack"
 autoplay = "左上"
 frame = 15
 frame_progress = 1.0
+script = null
+
+[node name="npcBody" parent="六耳" index="0"]
+position = Vector2(2965, 611)
 
 [node name="小女孩" parent="六耳" instance=ExtResource("21_av4g2")]
 position = Vector2(68, 84)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_uwe73")
 
+[node name="npcBody" parent="六耳/小女孩" index="0"]
+position = Vector2(-2483, 627)
+
 [node name="六耳杀黑龙" parent="." instance=ExtResource("79_au0mh")]
 visible = false
 position = Vector2(1240, 782)
-triggerEvent = "六耳杀黑龙"
+triggerEvent = "魔龙"
 
 [node name="魔刹" parent="." instance=ExtResource("21_av4g2")]
 visible = false
@@ -1043,6 +1047,10 @@ scale = Vector2(1.58667, 1.58667)
 sprite_frames = SubResource("SpriteFrames_v02u5")
 autoplay = "default"
 frame_progress = 0.872136
+script = null
+
+[node name="npcBody" parent="魔刹" index="0"]
+position = Vector2(-1165.96, 306.302)
 
 [node name="teleport" parent="." instance=ExtResource("11_o0e6c")]
 position = Vector2(1112, 618)
@@ -1063,3 +1071,6 @@ toScene = "炼狱迷宫1"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="六耳"]
+[editable path="六耳/小女孩"]
+[editable path="魔刹"]

@@ -354,7 +354,8 @@ func checkSetPos(currScene, toScene):
 			return Vector2(2241,495)				
 	if currScene == "大唐国境边缘":
 		if toScene == "大唐境外":
-			return Vector2(1509, -108)				
+			return Vector2(1509, -108)	
+						
 	if currScene == "大唐境外":
 		if toScene == "大唐国境边缘":
 			return Vector2(-1132, 1226)				
@@ -362,9 +363,14 @@ func checkSetPos(currScene, toScene):
 			return Vector2(1544, 1453)					
 		if toScene == "五庄观":
 			return Vector2(62, 581)		
-					
+		if toScene == "枯骨山":
+			return Vector2(2062,1649)						
 		if toScene == "西行之路":
-			return Vector2(7369, 2225)						
+			return Vector2(7369, 2225)		
+	if currScene == "枯骨山":
+		if toScene == "大唐境外":
+			return Vector2(-518,1217)				
+							
 	if currScene == "西行之路":
 		if toScene == "大唐境外":
 			return Vector2(-506,1808)					
@@ -379,7 +385,7 @@ func checkSetPos(currScene, toScene):
 		if toScene == "凤巢1":
 			return Vector2(900,1760)	
 		if toScene == "龙窟1":
-			return Vector2(2552, 1960)	
+			return Vector2(2572, 1981)	
 	if currScene == "凤巢1":
 		if toScene == "北俱芦洲":
 			return Vector2(634, -150)
@@ -449,16 +455,16 @@ func checkSetPos(currScene, toScene):
 			return Vector2(2114,719)
 	if currScene == "普陀山":
 		if toScene == "潮音洞":
-			return Vector2(904, 990)
+			return Vector2(1627,1510)
 		if toScene == "大唐境外":
-			return Vector2(-528,-247)
+			return Vector2(-461,-146)
 		if toScene == "镇魔地2":
 			return Vector2(818,548)
 	if currScene == "镇魔地2":
 		return Vector2(1442,1060)		
 			
 	if currScene == "潮音洞":
-		return Vector2(536,794)
+		return Vector2(901,1008)
 	if currScene == "五庄观":
 		if toScene == "大唐境外":
 			return Vector2(1487,475)
@@ -467,7 +473,7 @@ func checkSetPos(currScene, toScene):
 		if toScene == "镇魔地3":
 			return Vector2(818,548)			
 	if currScene == "镇魔地3":
-		return Vector2(909,578)		
+		return Vector2(923,585)		
 			
 			
 	if currScene == "乾坤殿":
@@ -475,7 +481,7 @@ func checkSetPos(currScene, toScene):
 			return Vector2(483, 331)
 	if currScene == "朱紫国":
 		if toScene == "朱紫国旅馆":
-			return Vector2(1239,898)
+			return Vector2(461,877)
 		if toScene == "朱紫国皇宫":
 			return Vector2(1093, 1118)
 		if toScene == "灵力储存场":
@@ -484,14 +490,17 @@ func checkSetPos(currScene, toScene):
 		if toScene == "朱紫国":
 			return Vector2(577,548)			
 	if currScene == "朱紫国旅馆":						
-		return Vector2(542,908)	
+		return Vector2(1027,1490)	
 	if currScene == "朱紫国皇宫":						
 		if toScene == "朱紫国":
 			return Vector2(2004,341)	
 	if currScene == "小西天":						
-		return Vector2(2004,341)	
-	if currScene == "雷音寺":						
-		return Vector2(203, -115)
+		return Vector2(1466,1433)	
+	if currScene == "雷音寺":		
+		if toScene == "小西天":
+			return Vector2(218,-107)
+		if toScene == "雷音地下":			
+			return Vector2(2786,460)
 	if currScene == "长寿村":						
 		if toScene == "神庙":
 			return Vector2(1702,913)	
@@ -504,7 +513,11 @@ func checkSetPos(currScene, toScene):
 		if toScene == "长寿村酒店":
 			return Vector2(1934,970)	
 		if toScene == "创界山":
-			return Vector2(1995,1759)			
+			return Vector2(1995,1759)	
+		if toScene == "长寿郊外":
+			return Vector2(2378,174)				
+	if currScene == "长寿郊外":
+		return Vector2(2374,1795)				
 								
 	if currScene == "神庙":						
 		if toScene == "长寿村":
@@ -576,7 +589,8 @@ func checkSetPos(currScene, toScene):
 			return Vector2(2319,1926)	
 		if toScene == "凌霄宝殿":
 			return Vector2(1837,1309)				
-			
+	if currScene == "战神殿":	
+		return Vector2(3379,90)		
 	if currScene == "月宫":						
 		if toScene == "天宫":
 			return Vector2(-531,-380)					

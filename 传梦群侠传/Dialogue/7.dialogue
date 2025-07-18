@@ -238,6 +238,7 @@ set Global.changebgm("res://Audio/BGM/北济芦洲.mp3")
 时追云: [speed=0.5]理所应当，你来这就是为了这个。那若昭你也随小二去吧。
 凌若昭: [speed=0.5]嗯！
 梧桐: [speed=0.5]小二，我来给你带路
+set Global.dial = null
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 时追云: [speed=0.5]龙窟的位置刚才已经已经看到了，我们先走一步，你们注意安全
@@ -252,7 +253,7 @@ set Global.onTalk = true
 set Global.getnode("player").position = Vector2(756,1355)
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
 set Global.getnode("player/AnimatedSprite2D").visible = true
-set Global.getnode("player").visible = false
+set Global.getnode("player/Sprite2D").visible = false
 时追云: [speed=0.5]这壁画上貌似写有字
 时追云: 生死由来一念间，孤身独断万龙巢。纵使此去身成土，也要人间无恶蛟！
 姜韵: [speed=0.5]莫不是前人斩杀恶龙的决志
@@ -269,16 +270,17 @@ set Global.playsound("res://Audio/SE/ice-collecting-01.wav")
 时追云: [speed=0.5]怕自己死后恶龙无法被杀，所以把自己的绝学留在这里给后人吗，令人敬佩！
 姜韵喜: [speed=0.5]那夫君你便将它学了去吧，也算不枉费前人的心血
 时追云: [speed=0.5]也好，待我仔细观摩片刻
+set Global.onTeamPlayer.erase("时追云")
+set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPlayer.append("凌若昭")
 set Global.changeScene("凤巢1", null)
 set Global.onTalk = false
 => END
 
 ~ 寻四圣6
 set Global.onTalk = true
-set Global.onTeamPlayer.erase("时追云")
-set Global.onTeamPlayer.erase("姜韵")
-set Global.onTeamPlayer.append("小二")
-set Global.onTeamPlayer.append("凌若昭")
+
 小二: [speed=0.5]我们明明是进入了地下，却感觉来到了一片天空之上？？
 凌若昭: [speed=0.5]这应该是朱雀法力体现的的小天地吧
 梧桐: [speed=0.5]正是如此，不过虽然是拟化的世界，但受到的伤害是真实的
@@ -294,7 +296,8 @@ set Global.onTalk = true
 梧桐: [speed=0.5]我确实未曾位列仙班，但承蒙朱雀大人赏识，之前跟在她身边做事，所以和四圣都很了解
 小二: [speed=0.5]原来如此，想必你们之前关系很好
 梧桐: [speed=0.5]朱雀大人是我永远崇拜的对象，不管让我做什么，我都会让她复苏的！
-set Global.changeScene("龙窟2",null)
+set Global.dial = "寻四圣"
+set Global.changeScene("龙窟1",null)
 set Global.onTalk = false
 => END
 
@@ -309,8 +312,8 @@ set Global.onTeamPlayer.append("姜韵")
 set Global.getnode("player").position = Vector2(756,1355)
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
 set Global.getnode("player/AnimatedSprite2D").visible = true
-set Global.getnode("player").visible = false
-set get_tree().current_scene.showMsg("飞剑决升级为斩龙决！")
+set Global.getnode("player/Sprite2D").visible = false
+set Global.showMsg("时追云感悟斩龙决！")
 set FightScenePlayers.learnMagic("时追云","斩龙决")
 set FightScenePlayers.eraseMagic("时追云","飞剑决")
 时追云: [speed=0.5]此法字字精妙，直指斩龙关键
@@ -318,6 +321,7 @@ set FightScenePlayers.eraseMagic("时追云","飞剑决")
 时追云: [speed=0.5]已领悟十之七八，应该足够我们对付这里的敌人了
 姜韵喜: [speed=0.5]那太好了，此地不宜久留，我们快走吧
 时追云: [speed=0.5]嗯，我去前面探路
+set Global.dial = null
 set Global.onTalk = false
 => END
 
@@ -332,6 +336,7 @@ set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 [next=0.5]
 
 set Global.playsound("res://Audio/SE/3994.wav")
+
 set Global.getnode("AnimationPlayer").play("现身")
 [next=1]
 set Global.changebgm("res://Audio/BGM/0妖族阴谋.mp3")
@@ -348,8 +353,9 @@ set Global.playsound("res://Audio/SE/3994.wav")
 set Global.toggleballon()
 时追云怒: [speed=0.5]他透露着杀意！他果然已经疯了！
 时追云怒: [speed=0.5]没办法了，只能上了！
-set get_tree().current_scene.bossFight("青龙","res://Audio/BGM/P39.mp3", "寻四圣")
-set Global.getnode("青龙").visible = false
+set Global.dial = "寻四圣"
+
+set Global.changeScene("龙窟7",null)
 
 set Global.onTalk = false
 => END
@@ -360,8 +366,8 @@ set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.append("小二")
 set Global.onTeamPlayer.append("凌若昭")
-set Global.dial = "寻四圣"
-set Global.changeScene("凤巢3",null)
+
+set Global.changeScene("凤巢4",null)
 
 set Global.onTalk = false
 => END
@@ -382,6 +388,7 @@ set Global.onTalk = false
 ~ 寻四圣12
 set Global.onTalk = true
 set Global.changevis("凤巢7", "梧桐")
+set Global.changevis("凤巢7", "小二")
 set Global.getnode("player").position = Vector2(824,877)
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
@@ -496,7 +503,12 @@ set Global.onTalk = false
 ~ 寻四圣14
 set Global.onTalk = true
 set Global.canLose = true
-set get_tree().current_scene.bossFight("青龙","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "寻四圣")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPlayer.append("时追云")
+set Global.onTeamPlayer.append("姜韵")
+时追云: 我们上！
+set get_tree().current_scene.bossFight("人形青龙","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "寻四圣")
 
 set Global.onTalk = false
 => END
@@ -567,7 +579,7 @@ set Global.changebgm("res://Audio/BGM/卢小旭 - 憾天威.mp3")
 
 set Global.getnode("AnimationPlayer").play("真身降落")
 [next=6]
-
+set Global.onTeamPet.erase("大海龟")
 
 
 set Global.toggleballon()
@@ -669,9 +681,9 @@ set Global.playsound("res://Audio/SE/猛兽5.ogg")
 玄武: 他的身上隐约有股魔气，很不对劲！
 玄武: 看来情况比想的还糟糕！
 白虎: 他现在太危险了，我们试着打醒他！
-
-set Global.onTeamPlayer.append("小二")
 set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二")
+
 set Global.onTeamPet.append("玄武")
 set Global.onTeamPet.append("朱雀")
 set Global.onTeamPet.append("白虎")
@@ -685,12 +697,15 @@ set Global.onTalk = false
 
 ~ 寻四圣21
 set Global.onTalk = true
+set Global.getnode("shadow").visible = false
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 set Global.getnode("玄武").visible = true
 set Global.getnode("青龙3").visible = true
+set Global.getnode("shadow").visible = false
 白虎: 不行，他的体力源源不断，真像是那群...
+set Global.getnode("shadow").visible = false
 玄武: 魔,他现在和那群魔物一模一样！
 set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
 朱雀: ...
@@ -763,15 +778,18 @@ set Global.getnode("青龙4").visible = false
 set Global.getnode("玄武").visible = false
 set Global.getnode("青龙3").visible = false
 set Global.getnode("姜韵3").visible = false
+set Global.getnode("白虎3").visible = false
+set Global.getnode("白虎4").visible = false
 set Global.getnode("player").visible = false
+set Global.onTeamPet.erase("朱雀")
 set Global.changevis("北俱芦洲","小二")
 set Global.changevis("北俱芦洲","凌若昭")
 set Global.toggleballon()
 [next=1]
 set Global.getnode("鬼帝化身").visible = true
 [next=3]
-
-
+set Global.triggerPlace.get("方寸山之魔").disable = false
+set Global.changevis("方寸山","菩提老祖2")
 set Global.current_chapter_id = 8
 set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
 

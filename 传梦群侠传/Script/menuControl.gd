@@ -69,7 +69,7 @@ func format_time(seconds):
 func _process(delta):
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 	for i in Global.onTeamPlayer.size():
-		playerStatus[i].visible = true
+		playerStatus[i].visible = true 
 	
 	mapPlayer = get_tree().get_nodes_in_group("mapPlayer")
 	if Global.menuOut:

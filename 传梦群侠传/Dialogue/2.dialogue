@@ -1829,6 +1829,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 师爷:  [speed=0.4]...
 师爷: [speed=0.4]去吧,金甲，去锁妖塔塔顶！
 金甲: [speed=0.4]金甲。。领命！
+
 set get_tree().change_scene_to_file("res://Scene/"+"锁妖塔7"+".tscn")
 set Global.dial = "鹰孽大王"	
 set Global.onTeamPet.erase("金甲")
@@ -1838,7 +1839,7 @@ set Global.onTalk = false
 
 ~ 金甲牺牲
 set Global.onTalk = true
-
+set Global.npcVis.get("大唐官府大厅").get("金甲").visible = false
 set Global.npcVis.get("锁妖塔7").get("凌若昭").visible = true
 set Global.npcVis.get("锁妖塔7").get("小二").visible = true
 set get_tree().current_scene.get_node("小二").visible = true

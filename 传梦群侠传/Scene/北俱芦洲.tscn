@@ -129,23 +129,59 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("青龙:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(1740, 1764)]
 }
 
 [sub_resource type="Animation" id="Animation_xr8a5"]
 resource_name = "move_凤凰"
 length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("朱雀:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-255, 76), Vector2(1825, 2225)]
+}
 
 [sub_resource type="Animation" id="Animation_fcfb3"]
 resource_name = "move白虎"
 length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("白虎2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-223, -289), Vector2(1291, 2429)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("白虎:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-223, -289), Vector2(1291, 2429)]
+}
 
 [sub_resource type="Animation" id="Animation_0kgst"]
 resource_name = "turnDark"
@@ -220,50 +256,6 @@ tracks/3/keys = {
 [sub_resource type="Animation" id="Animation_wjmgl"]
 resource_name = "玄武变身"
 
-[sub_resource type="Animation" id="Animation_rkqth"]
-resource_name = "真身降落"
-length = 8.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player/Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.1, 1.1), Vector2(0.45, 0.45)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasModulate:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.6, 1.7, 1.8, 1.9, 2, 2.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0.266667, 0.266667, 0.266667, 1), Color(0, 0, 0, 1), Color(0.309804, 0.309804, 0.309804, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_b3ykq"]
-resource_name = "被打飞"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("player:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(838, 1574), Vector2(2706, 2643)]
-}
-
 [sub_resource type="Animation" id="Animation_ln3qw"]
 resource_name = "白虎出场"
 length = 9.0
@@ -314,6 +306,74 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [true, true, true, true]
+}
+
+[sub_resource type="Animation" id="Animation_rkqth"]
+resource_name = "真身降落"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.1, 1.1), Vector2(0.45, 0.45)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasModulate:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.6, 1.7, 1.8, 1.9, 2, 2.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0.266667, 0.266667, 0.266667, 1), Color(0, 0, 0, 1), Color(0.309804, 0.309804, 0.309804, 1), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("青龙:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 6.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2045.31, 264.313), Vector2(1740, 1764)]
+}
+
+[sub_resource type="Animation" id="Animation_b3ykq"]
+resource_name = "被打飞"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(838, 1574), Vector2(2706, 2643)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("姜韵2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(934, 1515), Vector2(2798, 2594)]
 }
 
 [sub_resource type="Animation" id="Animation_jhfi3"]
@@ -2719,7 +2779,7 @@ texture = ExtResource("2_va1q1")
 
 [node name="player" parent="." instance=ExtResource("3_l7hqn")]
 z_index = 2
-position = Vector2(3192, 2184)
+position = Vector2(838, 1574)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -2859,7 +2919,7 @@ position = Vector2(-2051, 738)
 toScene = "傲来布店"
 
 [node name="teleportCircle7" parent="." instance=ExtResource("12_oo4rj")]
-position = Vector2(1773, 502)
+position = Vector2(7517, 358)
 toScene = "傲来祭堂"
 
 [node name="AnimatedSprite2D2" parent="." instance=ExtResource("13_nw5nb")]
@@ -2889,7 +2949,6 @@ max_distance = 1e+09
 position = Vector2(3477, 2897)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "move_凤凰"
 libraries = {
 "": SubResource("AnimationLibrary_nm37n")
 }
@@ -2901,7 +2960,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -2937,7 +2995,7 @@ items = {
 }
 
 [node name="teleportCircle8" parent="." instance=ExtResource("12_oo4rj")]
-position = Vector2(536, -208)
+position = Vector2(725, -843)
 toScene = "凤巢1"
 
 [node name="teleportCircle9" parent="." instance=ExtResource("12_oo4rj")]
@@ -2980,12 +3038,13 @@ animation = &"hit"
 autoplay = "default"
 frame = 29
 frame_progress = 1.0
+script = null
 
 [node name="Camera2D" type="Camera2D" parent="青龙2"]
 
 [node name="朱雀" parent="." instance=ExtResource("22_7a0r6")]
 visible = false
-position = Vector2(983.5, 1428)
+position = Vector2(-255, 76)
 scale = Vector2(2.13, 2.13)
 sprite_frames = SubResource("SpriteFrames_l1hue")
 autoplay = "default"
@@ -3048,9 +3107,9 @@ autoplay = ""
 [node name="姜韵2" parent="." instance=ExtResource("27_huwa2")]
 visible = false
 modulate = Color(1, 1, 1, 0.560784)
-position = Vector2(925, 1523)
+position = Vector2(934, 1515)
 scale = Vector2(1.35462, 1.35462)
-animation = &"left"
+animation = &"左上dead"
 autoplay = ""
 
 [node name="姜韵3" parent="." instance=ExtResource("27_huwa2")]
@@ -3071,7 +3130,7 @@ animation = &"down"
 visible = false
 z_index = 6
 material = SubResource("ShaderMaterial_hkt03")
-position = Vector2(629, 265)
+position = Vector2(1291, 2429)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_m3huj")
 animation = &"idle"
@@ -3093,7 +3152,7 @@ enabled = false
 visible = false
 self_modulate = Color(1, 1, 1, 0.25098)
 z_index = 6
-position = Vector2(629, 265)
+position = Vector2(1291, 2429)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_53nm8")
 animation = &"idle"
@@ -3112,6 +3171,7 @@ sprite_frames = SubResource("SpriteFrames_m3huj")
 animation = &"run"
 autoplay = "default"
 frame_progress = 0.494832
+script = null
 
 [node name="npcBody" parent="白虎3" index="0"]
 visible = false
@@ -3133,6 +3193,7 @@ scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_53nm8")
 animation = &"run"
 autoplay = "default"
+script = null
 
 [node name="斩击" parent="白虎4/effects" index="3"]
 frame = 0
@@ -3144,7 +3205,7 @@ position = Vector2(-449, 123)
 triggerEvent = "寻四圣"
 
 [node name="CollisionShape2D" parent="寻四圣2/Area2D" index="0"]
-position = Vector2(-207.678, -179.789)
+position = Vector2(-1633, -78)
 rotation = -0.57719
 shape = SubResource("RectangleShape2D_e3w4c")
 
@@ -3156,12 +3217,12 @@ offset_bottom = -125.0
 
 [node name="青龙" parent="." instance=ExtResource("22_7a0r6")]
 visible = false
-position = Vector2(2045.31, 264.313)
+position = Vector2(1740, 1764)
 scale = Vector2(2.12567, 2.01106)
 sprite_frames = SubResource("SpriteFrames_h4tmk")
 animation = &"施法"
 autoplay = "default"
-npcName = "青龙"
+script = null
 
 [node name="斩击" parent="青龙/effects" index="3"]
 frame = 0
@@ -3177,7 +3238,7 @@ scale = Vector2(2.12567, 2.01106)
 sprite_frames = SubResource("SpriteFrames_h4tmk")
 animation = &"施法"
 autoplay = "default"
-npcName = "青龙"
+script = null
 
 [node name="斩击" parent="青龙3/effects" index="3"]
 frame = 0
@@ -3193,7 +3254,7 @@ scale = Vector2(2.12567, 2.01106)
 sprite_frames = SubResource("SpriteFrames_h4tmk")
 animation = &"人形"
 autoplay = "default"
-npcName = "青龙"
+script = null
 
 [node name="斩击" parent="青龙4/effects" index="3"]
 frame = 0

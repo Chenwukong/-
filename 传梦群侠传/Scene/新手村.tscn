@@ -314,6 +314,8 @@ triggerEvent = "新手警告"
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
+[node name="http" type="HTTPRequest" parent="."]
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -323,6 +325,7 @@ triggerEvent = "新手警告"
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
+[connection signal="request_completed" from="http" to="." method="_on_http_request_completed"]
 
 [editable path="player"]
 [editable path="传梦"]

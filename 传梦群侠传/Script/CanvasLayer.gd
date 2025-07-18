@@ -32,7 +32,37 @@ func get_all_audio_stream_player2D():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
+	# 创建 ColorRect
+	var dark_mask = ColorRect.new()
+	dark_mask.name = "DarkMask"
+	dark_mask.color = Color.BLACK
+	dark_mask.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	dark_mask.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	dark_mask.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(dark_mask)
+
+	await get_tree().process_frame
+	dark_mask.anchor_left = 0.0
+	dark_mask.anchor_top = 0.0
+	dark_mask.anchor_right = 1.0
+	dark_mask.anchor_bottom = 1.0
+	dark_mask.offset_left = 0.0
+	dark_mask.offset_top = 0.0
+	dark_mask.offset_right = 0.0
+	dark_mask.offset_bottom = 0.0
+
+	# 加载 Shader
+	var shader = load("res://shader/turnWhite.gdshader")
+	var shader_mat = ShaderMaterial.new()
+	shader_mat.shader = shader
+	shader_mat.set_shader_parameter("center", Vector2(0.5, 0.5))  # 中央
+	shader_mat.set_shader_parameter("radius", 1.5)
+
+	dark_mask.material = shader_mat
+
+	# 播放扩散动画
+	var tween = get_tree().create_tween()
+	tween.tween_property(shader_mat, "shader_parameter/radius", 0.0,1.0)	
 	
 	
 	

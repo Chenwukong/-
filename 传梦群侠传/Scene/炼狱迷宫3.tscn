@@ -690,7 +690,7 @@ texture = ExtResource("2_hpsab")
 
 [node name="player" parent="." instance=ExtResource("3_kslqe")]
 z_index = 2
-position = Vector2(1772, 1590)
+position = Vector2(1971, 893)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -854,7 +854,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -931,8 +930,6 @@ position = Vector2(3364, 2303)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
-frame = 0
-frame_progress = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -955,11 +952,18 @@ position = Vector2(1626, 1454)
 sprite_frames = SubResource("SpriteFrames_kfbna")
 animation = &"左上"
 autoplay = "左上"
+script = null
+
+[node name="npcBody" parent="六耳" index="0"]
+position = Vector2(2457, 205)
 
 [node name="小女孩" parent="六耳" instance=ExtResource("24_3piro")]
 position = Vector2(68, 84)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_uwe73")
+
+[node name="npcBody" parent="六耳/小女孩" index="0"]
+position = Vector2(-2587, 224)
 
 [node name="魔刹" parent="." instance=ExtResource("24_3piro")]
 visible = false
@@ -1052,8 +1056,8 @@ npcName = "魔阎罗"
 
 [node name="炼狱迷宫3" parent="." instance=ExtResource("30_dpqc5")]
 visible = false
-position = Vector2(1708, 1584)
-triggerEvent = "炼狱迷宫3"
+position = Vector2(1608, 1493)
+triggerEvent = "炼狱迷宫"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -1070,3 +1074,5 @@ triggerEvent = "炼狱迷宫3"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="六耳"]
+[editable path="六耳/小女孩"]

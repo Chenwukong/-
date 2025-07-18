@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="30_uqil7"]
 [ext_resource type="Texture2D" uid="uid://dcmb4hkgqiunr" path="res://Characters/赤脚大仙.png" id="31_cfhly"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="32_nfvmc"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="33_nw24b"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="33_nw24b"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
@@ -572,9 +572,13 @@ sprite_frames = SubResource("SpriteFrames_mpqo8")
 npcName = "菩提老祖"
 
 [node name="凌若昭" parent="." instance=ExtResource("32_nfvmc")]
-position = Vector2(472, 304)
+position = Vector2(468, 315)
 animation = &"右上"
 frame_progress = 0.0
+npcName = "凌若昭"
+
+[node name="CollisionPolygon2D" parent="凌若昭/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -291, -190, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
 [node name="教学千机" parent="." instance=ExtResource("33_nw24b")]
 visible = false
@@ -624,4 +628,5 @@ frame_progress = 1.0
 [editable path="小二"]
 [editable path="小二/小二"]
 [editable path="时追云"]
+[editable path="凌若昭"]
 [editable path="教学千机"]

@@ -439,12 +439,36 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_0owog"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1769, 1306)]
+}
 
 [sub_resource type="Animation" id="Animation_266mk"]
 resource_name = "推1"
 
 [sub_resource type="Animation" id="Animation_aba1j"]
 resource_name = "推2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(972, 969), Vector2(1769, 1306)]
+}
 
 [sub_resource type="Animation" id="Animation_an87f"]
 resource_name = "推3"
@@ -467,7 +491,7 @@ texture = ExtResource("2_hws01")
 
 [node name="player" parent="." instance=ExtResource("3_mfsx2")]
 z_index = 2
-position = Vector2(1712, 1306)
+position = Vector2(1769, 1306)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
@@ -475,7 +499,6 @@ animation = &"left"
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
-zoom = Vector2(0.7, 0.7)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 

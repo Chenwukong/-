@@ -1301,7 +1301,6 @@ volume_db = 6.0
 max_distance = 100000.0
 
 [node name="shadow" type="Sprite2D" parent="."]
-visible = false
 z_index = 2
 position = Vector2(1200, 1197.1)
 texture = ExtResource("9_5yfru")
@@ -1398,7 +1397,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -1600,10 +1598,12 @@ scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_2yu1l")
 
 [node name="蚩尤" parent="." instance=ExtResource("23_uqgg6")]
+visible = false
 position = Vector2(1207, 1083)
 sprite_frames = SubResource("SpriteFrames_icide")
 autoplay = "default"
 frame_progress = 0.271268
+script = null
 
 [node name="雷" type="AnimatedSprite2D" parent="."]
 position = Vector2(1452, 1129)

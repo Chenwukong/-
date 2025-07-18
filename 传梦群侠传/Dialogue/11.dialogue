@@ -124,8 +124,19 @@ set Global.onTalk = false
 => END
 
 
+~ 魔如意
+set Global.onTalk = true
+哪吒: 那边的，帮我一下！
+set Global.quests["天庭魔军"]["魔如意"] = true
+set get_tree().current_scene.bossFight("魔如意","res://Audio/BGM/轩辕-战斗.mp3", null)
+
+set Global.onTalk = false
+=> END
+
+
 ~ 魔巫1
 set Global.onTalk = true
+set Global.quests["天庭魔军"]["魔巫"] = true
 夜护法: 那边的小哥们，来帮我一下吧
 set get_tree().current_scene.bossFight("魔巫","res://Audio/BGM/战斗-仙剑.mp3", "魔巫")
 
@@ -148,6 +159,7 @@ set Global.onTalk = false
 ~ 幽灵1
 set Global.onTalk = true
 风伯: 哎哎哎，那边的小伙子，你们是人类吧，来帮我一下吧！
+set Global.quests["天庭魔军"]["魔刹"] = true
 set get_tree().current_scene.bossFight("魔刹","res://Audio/BGM/战斗2.ogg", "魔刹")
 
 set Global.onTalk = false
@@ -166,6 +178,7 @@ set Global.onTalk = false
 
 ~ 杨戬1
 set Global.onTalk = true
+set Global.quests["天庭魔军"]["杨戬"] = true
 东海龙王: [speed=0.5]杨戬你疯了吗，你居然和那些魔军勾搭在一起！
 杨戬: [speed=0.5]你们还看不出来吗，天庭已经没救了，魔尊要赢了！
 兽护法: [speed=0.5]可笑，论到忠诚，你们天庭还不如我们妖盟
@@ -209,12 +222,12 @@ set Global.onTalk = false
 
 ~ 太白金星1
 set Global.onTalk = true
-
+set Global.addStuff()
 if Global.checkTianTing():
 	太白金星: [speed=0.5]莫非你们就是从人间来的天命人！？
 	太白金星: [speed=0.5]各位请祝我们天庭一臂之力！
 	set Global.dial = "天庭之战"
-	set Global.changeScene("月宫",null)
+	set Global.changeScene("月宫",Vector2(2272,1920))
 else:
 	set Global.npcs.get("太白金星").current_dialogue_index = 0
 	太白金星: [speed=0.5]前面太危险了，你们不能过去
@@ -226,7 +239,7 @@ set Global.onTalk = false
 ~ 天庭之战4
 set Global.onTalk = true
 set Global.dial = null
-set Global.getnode("player/Camera2D").position = Vector2(-862,-1083)
+set Global.getnode("player/Camera2D").position = Vector2(-862,-1283)
 set Global.getnode("魔尊").play("右上")
 魔尊: [speed=0.5]你们只有这点实力吗
 孙悟空: [speed=0.5]玉帝老儿，都叫你在凌霄殿里躲着了，怎么还出来，现在好了，被堵住了
@@ -647,7 +660,9 @@ set Global.getnode("树根5").visible = false
 set Global.getnode("AnimationPlayer").play("getWhite")
 set Global.getnode("ColorRect2").visible = true
 [next=6]
+
 set Global.changeScene("凌霄宝殿",null)
+set Engine.time_scale = 1
 set Global.onTalk = false
 => END
 
@@ -666,6 +681,10 @@ set Global.onTalk = true
 
 set Global.onTalk = false
 => END
+
+
+
+
 
 ~ 哪吒
 set Global.onTalk = true

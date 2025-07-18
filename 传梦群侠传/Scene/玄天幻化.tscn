@@ -3592,7 +3592,7 @@ position = Vector2(1201, 1197.1)
 texture = ExtResource("2_pllbd")
 
 [node name="player" parent="." instance=ExtResource("3_cbh1d")]
-position = Vector2(1208.61, 2049.5)
+position = Vector2(1212, 2049)
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.8, 0.8)
@@ -3814,9 +3814,7 @@ position = Vector2(1139, 2093)
 
 [node name="小二" parent="小二" index="0"]
 scale = Vector2(-1, 1)
-animation = &"右上"
 autoplay = "真身右上"
-frame_progress = 0.0
 
 [node name="Button" parent="小二/小二" index="1"]
 offset_left = -147.0
@@ -4278,10 +4276,11 @@ visible = false
 modulate = Color(0, 0, 0, 1)
 position = Vector2(506, -36)
 sprite_frames = SubResource("SpriteFrames_7vwe7")
+script = null
 
 [node name="命之轮" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(484, -3)
+position = Vector2(336, 220)
 sprite_frames = SubResource("SpriteFrames_lop8t")
 frame = 29
 frame_progress = 1.0
@@ -4330,3 +4329,4 @@ offset_bottom = 27.0
 [editable path="直面天道3"]
 [editable path="直面天道4"]
 [editable path="直面天道5"]
+[editable path="神秘人"]

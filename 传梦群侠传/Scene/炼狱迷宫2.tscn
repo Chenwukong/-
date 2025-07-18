@@ -783,7 +783,7 @@ texture = ExtResource("2_ovo0m")
 
 [node name="player" parent="." instance=ExtResource("3_vbkjt")]
 z_index = 2
-position = Vector2(2036, 1444)
+position = Vector2(1921, 873)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -955,7 +955,6 @@ position = Vector2(3208, 2400)
 position = Vector2(-21.0003, -41)
 scale = Vector2(1.32893, 1.32893)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -1032,8 +1031,6 @@ position = Vector2(3364, 2303)
 scale = Vector2(1.35462, 1.35462)
 animation = &"left"
 autoplay = ""
-frame = 0
-frame_progress = 0.0
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 
@@ -1168,8 +1165,8 @@ npcName = "魔狐"
 
 [node name="炼狱迷宫2" parent="." instance=ExtResource("30_sdffh")]
 visible = false
-position = Vector2(1977, 1445)
-triggerEvent = "炼狱迷宫2"
+position = Vector2(1921, 1280)
+triggerEvent = "炼狱迷宫"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

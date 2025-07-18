@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_2yj2t"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="17_uafum"]
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="18_nlish"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="20_kt6aw"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="20_kt6aw"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_7do3u"]
 [ext_resource type="Texture2D" uid="uid://boiq46ps3fkgv" path="res://SeparateAnimation/鬼帝/攻击.png" id="21_wsunu"]
 [ext_resource type="Texture2D" uid="uid://cq6wb24g0v362" path="res://SeparateAnimation/鬼帝/挨打.png" id="22_usiv4"]
@@ -1622,7 +1622,7 @@ offset = Vector2(-2153, -82)
 [node name="shadow" type="Sprite2D" parent="."]
 visible = false
 z_index = 2
-position = Vector2(702, 829)
+position = Vector2(4107, 2626)
 texture = ExtResource("4_iyyg5")
 
 [node name="player" parent="." instance=ExtResource("5_485o0")]
@@ -1634,8 +1634,6 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" parent="player" index="1"]
 position = Vector2(26, 7)
 animation = &"时追云改idle"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.34, 1.34)
@@ -1905,10 +1903,6 @@ position = Vector2(534, 969)
 position = Vector2(-5.99994, 5)
 animation = &"左上"
 autoplay = "左上"
-frame_progress = 0.0
-
-[node name="Button" parent="小二/小二" index="1"]
-metadata/_edit_use_anchors_ = true
 
 [node name="姜韵" parent="." instance=ExtResource("24_wx5wp")]
 position = Vector2(613, 916)

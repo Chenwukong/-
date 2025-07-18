@@ -18,10 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_pdsbn"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_rkhve"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_5y18x"]
-[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_oyijg"]
+[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_oyijg"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_4mky1"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_0st2p"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="23_mavlx"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="23_mavlx"]
 [ext_resource type="Texture2D" uid="uid://c8qrf277c1x26" path="res://梦魂Animation/回复-普陀.png" id="24_axsyi"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="25_kermo"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="26_6lvp1"]
@@ -592,7 +592,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"rightStand"
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -618,6 +617,7 @@ max_distance = 1e+07
 metadata/_edit_group_ = true
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(1200, 1197)
 texture = ExtResource("6_uvf3q")
@@ -733,7 +733,6 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -841,7 +840,6 @@ scale = Vector2(2.02665, 2.02665)
 sprite_frames = SubResource("SpriteFrames_ymfyb")
 animation = &"右边"
 autoplay = "右边"
-frame_progress = 0.0931146
 npcName = "金翅大鹏"
 
 [node name="teleportCircle" parent="." instance=ExtResource("11_esrlo")]

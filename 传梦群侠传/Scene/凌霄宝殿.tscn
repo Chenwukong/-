@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=3 uid="uid://p3uqeoy5bhd5"]
+[gd_scene load_steps=126 format=3 uid="uid://p3uqeoy5bhd5"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_4ra8a"]
 [ext_resource type="Texture2D" uid="uid://beqcky33g0dqd" path="res://panoramas2/门派_天宫_凌宵宝殿.jpg" id="2_f3t3u"]
@@ -34,6 +34,8 @@
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="32_omwuv"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="33_e3fvd"]
 [ext_resource type="Texture2D" uid="uid://5vib0jy0ch60" path="res://梦魂Animation/星辰爆.png" id="34_iwwg3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e7e0x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_owmq0"]
 
@@ -664,6 +666,7 @@ animations = [{
 }]
 
 [node name="凌霄宝殿" type="Node2D"]
+material = SubResource("ShaderMaterial_e7e0x")
 script = ExtResource("1_4ra8a")
 
 [node name="建业左" type="Sprite2D" parent="."]
@@ -817,7 +820,6 @@ position = Vector2(984, 998)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-21.0003, -41)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -934,8 +936,6 @@ visible = false
 position = Vector2(845, 1014)
 animation = &"left"
 autoplay = "left"
-frame = 0
-frame_progress = 0.0
 
 [node name="凌若昭" parent="." instance=ExtResource("33_e3fvd")]
 position = Vector2(1013.22, 925.351)
@@ -943,6 +943,7 @@ animation = &"左上"
 frame_progress = 0.0
 
 [node name="星辰变" type="AnimatedSprite2D" parent="."]
+visible = false
 z_index = 4
 position = Vector2(936, 911)
 scale = Vector2(3.06326, 3.06326)

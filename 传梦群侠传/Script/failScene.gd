@@ -16,7 +16,7 @@ func _process(delta):
 
 func _on_button_2_pressed():
 	get_tree().change_scene_to_file(("res://Scene/主页.tscn"))
-
+	Global.dial = null
 
 func _on_button_pressed():
 	get_tree().quit()

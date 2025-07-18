@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://cv2gcb2orjo36"]
+[gd_scene load_steps=97 format=3 uid="uid://cv2gcb2orjo36"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_5ieus"]
 [ext_resource type="Texture2D" uid="uid://0me7nwkbngnl" path="res://panoramas2/兽界.jpg" id="2_bwxl7"]
@@ -53,6 +53,7 @@
 [ext_resource type="Texture2D" uid="uid://cp32q84ygj5en" path="res://SeparateAnimation/李逍遥/480-32.png" id="50_wqehp"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="52_2h2oy"]
 [ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="53_rh67v"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="54_7bnn2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
 
@@ -611,15 +612,20 @@ position = Vector2(2062.44, 1649.9)
 [node name="再见小二" parent="." instance=ExtResource("53_rh67v")]
 visible = false
 position = Vector2(90, -991)
+triggerEvent = "再见小二"
 
 [node name="CollisionShape2D" parent="再见小二/Area2D" index="0"]
-position = Vector2(44.5, 56.5)
+position = Vector2(97.5, 62.792)
 
 [node name="Panel" parent="再见小二/Area2D" index="1"]
 offset_left = 38.0
 offset_top = -32.0
 offset_right = 147.0
 offset_bottom = 36.0
+
+[node name="teleportCircle" parent="." instance=ExtResource("54_7bnn2")]
+position = Vector2(2243, 1694)
+toScene = "大唐境外"
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

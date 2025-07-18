@@ -89,7 +89,7 @@ var dialogue_line: DialogueLine:
 			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598,80)
-		elif  name == "虎范" or name == "白虎" :
+		elif  name == "虎范"  :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = false
 			小二portrait.visible = true
@@ -113,22 +113,8 @@ var dialogue_line: DialogueLine:
 			$"Balloon/传梦rect".visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)			
-#		elif name == "小男孩"or name == "小追云" :
-#			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
-#			敖雨portrait.visible = true
-#			敖雨portrait.texture = load(portraitPath)
-#			敖雨portrait.scale.x = 0.15
-#			敖雨portrait.scale.y = 0.13
-#			墨兮portrait.visible = false
-#			小二portrait.visible = false
-#			portrait.visible = false			 
-#			mainPortrait.visible = false	
-#			$"Balloon/传梦rect".visible = false
-#			真小二portrait.visible = false
-#			%Balloon.texture = load("res://Pictures/对话框2.png")
-#			%CharacterLabel.position = Vector2(598, 80)
-#			敖雨portrait.position = Vector2(493,-139)		
-		elif name == "墨兮"or name == "寒天云" or name == "鬼帝" or name == "老寒":
+
+		elif name == "墨兮"or name == "寒天云" or name == "鬼帝" or name == "老寒" or name == "罗非" or name == "魔尊" or name == "妖皇":
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			墨兮portrait.texture = load(portraitPath)
 			墨兮portrait.visible = true
@@ -152,7 +138,7 @@ var dialogue_line: DialogueLine:
 			$"Balloon/传梦rect".visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)	
-		elif name == '传梦':
+		elif name == '传梦' or name == "白虎" :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			$"Balloon/传梦rect".texture = load(portraitPath)
 			墨兮portrait.visible = false

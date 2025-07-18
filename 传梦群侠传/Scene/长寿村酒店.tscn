@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bw5623ww08x1o"]
+[gd_scene load_steps=80 format=3 uid="uid://tiucphp172hc"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_48nx3"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_bff4m"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="15_oml2a"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_q53f4"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="17_j0m0w"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="18_ltqka"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="18_ltqka"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="19_bhl1b"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="20_dpuvu"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="21_41yl0"]
@@ -495,7 +495,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(32.0956, 32.9776)
@@ -701,7 +700,6 @@ position = Vector2(395.935, 561.071)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-3.93546, -18.0714)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="风沙" parent="." instance=ExtResource("22_4jstw")]
 visible = false
@@ -736,8 +734,8 @@ sprite_frames = SubResource("SpriteFrames_vtw1t")
 npcName = "长寿村酒楼掌柜"
 
 [node name="长寿村掌柜" parent="." instance=ExtResource("18_ltqka")]
-visible = false
-position = Vector2(1953, 981)
+position = Vector2(2231, 1041)
+triggerEvent = "长寿村酒楼掌柜"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

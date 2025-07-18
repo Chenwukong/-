@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cla4bkj430yhn"]
+[gd_scene load_steps=52 format=3 uid="uid://cla4bkj430yhn"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ufg5e"]
 [ext_resource type="Texture2D" uid="uid://bpbcdxhfkeidl" path="res://panoramas2/普陀山.jpg" id="2_5hebb"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="24_v4ynj"]
 [ext_resource type="Texture2D" uid="uid://d2e0yhkjj7hx6" path="res://Characters/水云仙.png" id="25_rtnsi"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="26_sxo0g"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="27_cpow1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ql4jk"]
 
@@ -290,7 +291,7 @@ texture = ExtResource("2_5hebb")
 
 [node name="player" parent="." instance=ExtResource("3_2fr4s")]
 z_index = 2
-position = Vector2(1483.41, 1064.95)
+position = Vector2(1529, 1428)
 scale = Vector2(0.749621, 0.783326)
 metadata/_edit_group_ = true
 
@@ -298,7 +299,7 @@ metadata/_edit_group_ = true
 animation = &"leftStand"
 
 [node name="Camera2D" parent="player" index="3"]
-zoom = Vector2(1.2, 1.2)
+zoom = Vector2(2, 2)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -441,7 +442,6 @@ position = Vector2(1828, 2495)
 
 [node name="小二" parent="小二" index="0"]
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
@@ -535,6 +535,11 @@ npcName = "凌若昭"
 [node name="teleportCircle" parent="." instance=ExtResource("11_mkcgk")]
 position = Vector2(1501, 1015)
 toScene = "镇魔地2"
+
+[node name="初见观音1" parent="." instance=ExtResource("27_cpow1")]
+visible = false
+position = Vector2(1139, 1361)
+triggerEvent = "初见观音"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

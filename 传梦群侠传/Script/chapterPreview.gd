@@ -59,12 +59,13 @@ func _on_timer_timeout():
 			Global.dial = "凌若昭回忆"
 			get_tree().change_scene_to_file("res://Scene/"+"两界山"+".tscn")	
 		7:
-			get_tree().change_scene_to_file("res://Scene/"+"两界山"+".tscn")	
+			get_tree().change_scene_to_file("res://Scene/"+"第七章序幕"+".tscn")	
 		8:
 			get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")	
 		9:
-			get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")	
+			Global.changeScene("灵台宫",Vector2(391,277))	
 		10:
+			Global.mapPlayerPos = Vector2(1995,1759)
 			get_tree().change_scene_to_file("res://Scene/"+"创界山"+".tscn")	
 			Global.dial = "创界山"
 		11:

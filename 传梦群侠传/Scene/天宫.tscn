@@ -1,4 +1,4 @@
-[gd_scene load_steps=280 format=3 uid="uid://bhrw6r7ejde32"]
+[gd_scene load_steps=277 format=3 uid="uid://bhrw6r7ejde32"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_5chi8"]
 [ext_resource type="Texture2D" uid="uid://dk4nym31q1ywc" path="res://panoramas2/天帝.jpg" id="2_3lmyq"]
@@ -45,7 +45,7 @@
 [ext_resource type="Texture2D" uid="uid://bdho7gsq8aan6" path="res://Characters/魔族仔  拷贝.png" id="43_7mwau"]
 [ext_resource type="Texture2D" uid="uid://cei25ut2cuj56" path="res://Characters/蝙蝠 .png" id="44_rsbk1"]
 [ext_resource type="Texture2D" uid="uid://bcjg46b73d727" path="res://Characters/哪吒.png" id="45_e48n1"]
-[ext_resource type="Texture2D" uid="uid://ejtxwyd4k1ax" path="res://Battlers/炎魔神◆.png" id="46_3mex3"]
+[ext_resource type="Texture2D" uid="uid://b3apf31ax3ao7" path="res://Characters/如意.png" id="46_d3s45"]
 [ext_resource type="Texture2D" uid="uid://cplecgpx1y0io" path="res://梦魂Animation/0大力金刚攻击.png" id="47_icmdx"]
 [ext_resource type="Texture2D" uid="uid://corfooh32ctjl" path="res://Characters/1小妖怪.png" id="47_rsm6b"]
 [ext_resource type="Texture2D" uid="uid://b3cb5d7rak1bh" path="res://Characters/大力金刚.png" id="48_rgpqs"]
@@ -59,9 +59,9 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_owmq0"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
-vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1029, -240, -1033, 909, -1033, 1372, -1039, 2773, 3439, 2794, 3439, -213)])
+vertices = PackedVector2Array(-1348, 1094, -1391, -454, 3831, -454, 3799, 2995, -1380, 3049, -1412, 1724)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1391, -454, -1348, 1094, -1412, 1724, -1380, 3049, 3799, 2995, 3831, -454)])
 
 [sub_resource type="Gradient" id="Gradient_dfnkp"]
 
@@ -1432,36 +1432,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d71jq"]
-atlas = ExtResource("46_3mex3")
-region = Rect2(0, 0, 280, 222)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fsysu"]
-atlas = ExtResource("46_3mex3")
-region = Rect2(280, 0, 280, 222)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_54itc"]
-atlas = ExtResource("46_3mex3")
-region = Rect2(560, 0, 280, 222)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jlhkj"]
-atlas = ExtResource("46_3mex3")
-region = Rect2(840, 0, 280, 222)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a52dn"]
+atlas = ExtResource("46_d3s45")
+region = Rect2(0, 204, 111, 102)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rsvev"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d71jq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fsysu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_54itc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jlhkj")
+"texture": SubResource("AtlasTexture_a52dn")
 }],
 "loop": true,
 "name": &"default",
@@ -1919,7 +1898,6 @@ wait_time = 2.0
 one_shot = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 position = Vector2(5, -82)
 navigation_polygon = SubResource("NavigationPolygon_su7y6")
 constrain_avoidance = true
@@ -2073,8 +2051,6 @@ visible = false
 position = Vector2(3451, 2508)
 animation = &"left"
 autoplay = "left"
-frame = 0
-frame_progress = 0.0
 
 [node name="小二" parent="." instance=ExtResource("15_lt78c")]
 visible = false
@@ -2314,15 +2290,15 @@ sprite_frames = SubResource("SpriteFrames_57b7h")
 autoplay = "default"
 frame_progress = 0.743594
 
-[node name="炎魔神" parent="." instance=ExtResource("23_g773q")]
+[node name="魔如意" parent="." instance=ExtResource("23_g773q")]
 modulate = Color(1, 0, 1, 1)
 position = Vector2(-774, 2375)
 sprite_frames = SubResource("SpriteFrames_rsvev")
 autoplay = "default"
 frame_progress = 0.0192304
-npcName = "炎魔神"
+npcName = "魔如意"
 
-[node name="CollisionPolygon2D" parent="炎魔神/npcBody" index="1"]
+[node name="CollisionPolygon2D" parent="魔如意/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -352, -167, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
 
 [node name="大力金刚2" parent="." instance=ExtResource("23_g773q")]
@@ -2635,6 +2611,6 @@ autoplay = "default"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
-[editable path="炎魔神"]
+[editable path="魔如意"]
 [editable path="天庭之战"]
 [editable path="太白金星"]

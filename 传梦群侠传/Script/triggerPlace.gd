@@ -38,7 +38,9 @@ func _process(delta):
 			i.get_node("Area2D/CollisionShape2D").disabled = false
 
 func _on_area_2d_area_entered(area):
+	
 	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(name).disable == false:
+		print(triggerEvent)
 		var player = area.get_parent()
 		Global.triggerPlace.get(name).disable = true
 		match triggerEvent:
@@ -186,10 +188,8 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("凌若昭回忆"))							
 			"再见小二":
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("再见小二"))		
-			"寻四圣2":
-				DialogueManager.show_chat(load("res://Dialogue/7.dialogue"),get_npc_dialogue("寻四圣"))		
-			"寻四圣3":
-				DialogueManager.show_chat(load("res://Dialogue/7.dialogue"),get_npc_dialogue("寻四圣"))									
+			"寻四圣":
+				DialogueManager.show_chat(load("res://Dialogue/7.dialogue"),get_npc_dialogue("寻四圣"))										
 			"方寸山之魔":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("寻四方"))						
 			"初见观音":
@@ -199,9 +199,7 @@ func _on_area_2d_area_entered(area):
 			"五庄观2":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("五庄观"))													
 			"除虫":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("除虫"))						
-			"再见观音":
-				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("再见观音"))					
+				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("除虫"))										
 			"看戏":
 				DialogueManager.show_chat(load("res://Dialogue/8.dialogue"),get_npc_dialogue("看戏"))							
 			"阻拦":
@@ -220,18 +218,15 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))
 			"女娲神迹":
 				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("女娲神迹"))	
+			"幻境":
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))					
 			"六耳救女孩":
-				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("六耳"))					
-			"炼狱迷宫1":
-				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
-			"炼狱迷宫2":
-				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))	
-			"炼狱迷宫3":
-				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
-			"炼狱迷宫4":
-				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
-			"炼狱迷宫6":
-				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))							
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("六耳"))		
+			"魔龙":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("魔龙"))						
+							
+			"炼狱迷宫":
+				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))															
 			"炼狱终点":
 				DialogueManager.show_chat(load("res://Dialogue/10.dialogue"),get_npc_dialogue("炼狱迷宫"))								
 			"天庭之战":
