@@ -31,8 +31,10 @@ set Global.onTalk = false
 
 ~ 新手警告
 set Global.onTalk = true
+
 set Global.isNewPlayer()
 传梦: 这是传梦之路试玩版，目前还有许多的bug。
+set FightScenePlayers.healAll()
 传梦: 如果在游戏中被npc或者建筑卡住，可按r或者点击左上角的坐标图急救
 传梦: 你的包内有装备记得穿上
 传梦: 十里坡剑神并不存在，玩家无法高于当前剧情等级，具体请看ui左上角
@@ -441,6 +443,7 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 set Global.questHint = "回家"
 set Global.npcVis.get("东海湾").get("大海龟").visible = false
 set Global.npcs.get("姜韵").dialogues[1].unlocked = true
+set Global.triggerPlace.get("玉帝物品事件").disable = true
 set Global.atNight = true
  
 set Global.onTalk = false
@@ -454,7 +457,7 @@ set Global.addItem("渔夫草帽", "keyItem", "keyItem", 1)
 时追云: [speed=0.5]嗯？这个不是渔大爷的草帽吗？算了，先收起来吧
 set Global.yuDiItem = true
 set Global.changevis("东海湾","玉帝物品")
-set Global.onTalk = true
+set Global.onTalk = false
 => END
 
 
@@ -835,6 +838,7 @@ set Global.onTalk = false
 
 
 ~ 时追云杀完
+set Global.baseChance = 900
 set Global.npcVis.get("东海湾").get("小兵").visible =  false
 set Global.npcVis.get("东海湾").get("小兵2").visible =  false
 set Global.npcVis.get("东海湾").get("小兵3").visible =  false
@@ -859,6 +863,7 @@ set Global.onTalk = false
 
 ~ 时追云杀完2
 set Global.onTalk = true
+set Global.baseChance = 900
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 4.5
 时追云怒: 你们这群畜生，给我他妈的滚开啊！怒喝
 set Global.triggerPlace.get("时追云杀完2").disable = true
@@ -868,6 +873,7 @@ set Global.onTalk = false
 
 ~ 时追云杀完3
 set Global.onTalk = true
+set Global.baseChance = 900
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 4.5
 set Global.triggerPlace.get("时追云杀完3").disable = true
 set Global.triggerPlace.get("杀戮").disable = false
@@ -1140,6 +1146,8 @@ set Global.baseChance = 900
 ~ 斩妖
 set Global.onTalk = true
 时追云: 一群畜生，碍事
+set Global.baseChance = 0
+set FightScenePlayers.learnMagic("时追云","飞剑决")
 #set get_tree().current_scene.get_node("AnimationPlayer").play("斩妖")
 set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/男-剑.ogg")
 set get_tree().current_scene.get_node("subSound").play()

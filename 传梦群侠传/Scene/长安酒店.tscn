@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://doyyrcbsbqysk" path="res://Characters/8轩辕剑.png" id="30_us03w"]
 [ext_resource type="Texture2D" uid="uid://bifwch4fc5yhi" path="res://Characters/春三十娘.png" id="31_eq442"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="32_5tobt"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="33_sx528"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="33_sx528"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="34_2kbkt"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="35_j6uxv"]
 
@@ -155,7 +155,7 @@ script = ExtResource("4_h6nkt")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(11, 614, 120, 673, 159, 611, 495, 446, 516, 478, 634, 530, 651, 510, 724, 545, 741, 574, 946, 469, 995, 375, 908, 319, 838, 389, 804, 454, 762, 473, 477, 331, 405, 279, 531, 100, 567, 99, 942, 307, 1050, 240, 532, -26, 543, 22, 419, 88, 322, 232, 216, 290, 393, 385, 374, 414, 206, 486, 5, 614)
+polygon = PackedVector2Array(11, 614, 120, 673, 159, 611, 495, 446, 516, 478, 634, 530, 651, 510, 724, 545, 741, 574, 946, 469, 995, 375, 908, 319, 838, 389, 804, 454, 762, 473, 477, 331, 405, 279, 531, 100, 567, 99, 942, 307, 1050, 240, 532, -26, 543, 22, 419, 88, 322, 232, 216, 290, 374, 388, 359, 402, 206, 486, 5, 614)
 
 [node name="player" parent="." instance=ExtResource("5_jgik2")]
 z_index = 1
@@ -288,7 +288,7 @@ position = Vector2(465, 521)
 sprite_frames = SubResource("SpriteFrames_mh4tg")
 
 [node name="potentialBall" parent="." instance=ExtResource("32_5tobt")]
-position = Vector2(925, 359)
+position = Vector2(2284, -415)
 id = "长安酒店1"
 
 [node name="初见若昭" parent="." instance=ExtResource("33_sx528")]

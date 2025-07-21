@@ -349,9 +349,12 @@ var npcVis = {
 	"长安东":{
 		"梧桐": {"visible" : true},
 	},	
-
+	"金甲家":{
+		"小二": {"visible" : true},
+	},	
 	"锁妖塔1":{
-		"凌若昭":{"visible": true}
+		"凌若昭":{"visible": true},
+		"小星星":{"visible": false}
 	},
 	"锁妖塔2":{
 		"鳄额呃":{"visible": true}
@@ -366,7 +369,8 @@ var npcVis = {
 		"蒙面人":{"visible": true}
 	},
 	"锁妖塔6":{
-		"千年树":{"visible": true}
+		"千年树":{"visible": true},
+		"小福星":{"visible": false}
 	},
 	"锁妖塔7":{
 		"鹰孽大王":{"visible": true},
@@ -755,7 +759,7 @@ var npcs = {
 	"玉帝物品事件": {
 		"dialogues": [ 
 			#0
-			{"chapter": 1, "dialogue": "玉帝物品事件", "unlocked": false, "bgm":null, "trigger":false},
+			{"chapter": 1, "dialogue": "玉帝物品事件", "unlocked": true, "bgm":null, "trigger":false},
 		],
 		"current_dialogue_index": 0,
 		"constNpc": false
@@ -1027,6 +1031,22 @@ var npcs = {
 			"current_dialogue_index": 0,	
 			"constNpc": true				
 	},
+	"小福星":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "小福星", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true			
+	},	
+	"小星星":{
+		"dialogues": [
+				#0
+					{"chapter": 2, "dialogue": "小星星", "unlocked": true, "bgm":null,"trigger":false},
+				],
+			"current_dialogue_index": 0,	
+			"constNpc": true			
+	},	
 	"画陀":{
 		"dialogues": [
 			#0
@@ -1090,6 +1110,7 @@ var npcs = {
 			"current_dialogue_index": 0,	
 			"constNpc": true			
 	},
+
 	"傲来酒店老板":{
 		"dialogues": [
 				#0
@@ -2782,8 +2803,8 @@ func loadData():
 	questItemShow = saveData.questItemShow
 	gameRound = saveData.gameRound
 	gai = saveData.gai
-	if saveData.has(maxLevel):
-		maxLevel = saveData.maxLevel
+
+	maxLevel = saveData.maxLevel
 	onGhost = saveData.onGhost
 	SmallPetData.currSmallPetData = saveData.smallPetData
 	baseChance = saveData.baseChance
@@ -3241,7 +3262,7 @@ static func resetGlobal():
 	"gai",
 	"mcVisible",
 	"npcVis",
-	"baseChance",
+	"",
 	"musicOn",
 	"enKey",
 	"quests",

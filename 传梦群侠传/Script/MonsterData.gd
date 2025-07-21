@@ -59,26 +59,7 @@ func calculate_monster_gold(hp):
 	var gold = hp/5
 	
 	return gold
-func calculate_monster_str(level):
-	var baseStr = 50  # Base defense at level 1
-	var finalStr = 1000  # Desired defense at level 100
-	var strIncreasePerLevel = (finalStr - baseStr) / 99  # Linear increase per level
-	
-	var totalStr = baseStr + strIncreasePerLevel * (level - 1)
-	return totalStr
-func calculate_monster_ap(level):
-	var baseStr = 30 # Base defense at level 1
-	var finalStr = 800  # Desired defense at level 100
-	var strIncreasePerLevel = (finalStr - baseStr) / 99  # Linear increase per level
-	
-	var totalStr = baseStr + strIncreasePerLevel * (level - 1)
-	return totalStr
-func calculate_speed_for_level(level):
-	var baseSpeed = 35.0  # Base speed at level 1
-	var speedIncreasePerLevel = 4  # Speed increase per level
-	var totalSpeed = baseSpeed + speedIncreasePerLevel * (level - 1)
 
-	return totalSpeed
 
 
 var magics = {
@@ -396,7 +377,7 @@ var monsters = {
 	"传梦":{
 		"传梦": Monster.new({
 			"name": "传梦",
-			"speed": calculate_speed_for_level(99),
+			"speed": 9999,
 			"level": 99,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -419,12 +400,12 @@ var monsters = {
 	"东海湾": {
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
-			"speed": 40,
+			"speed": 50,
 			"level": 1,
 			"magicDefense": 0,
 			"physicDefense": 0,
 			"attackDmg": 50,
-			"magicDmg": 30,
+			"magicDmg": 40,
 			"hp": 130,
 			"exp": 30,
 			"gold": 20,
@@ -433,34 +414,36 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("落岩"),
 			],
+			"autoAttackSound": "res://Audio/SE/小怪-攻击.ogg"
 			}),
 		"大海龟": Monster.new({
 			"name": "大海龟",
-			"speed":40,
+			"speed":45,
 			"level": 3,
 			"magicDefense":0,
 			"physicDefense": 0,
 			"attackDmg": 50,
-			"magicDmg": 26,
+			"magicDmg": 30,
 			"luck": 10,
-			"hp": 160,
+			"hp": 200,
 			"exp": 40,
 			"gold": 20,
 			"idle": "大海龟idle",
 			 "monsterMagicList": [
 				magics.get("水攻"),
 			],
+			"autoAttackSound": "res://Audio/SE/怪-法术.ogg"
 		}),
 	},	
 	"巨蛙":{
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
-			"speed": calculate_speed_for_level(3),
+			"speed": 40,
 			"level": 3,
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 50,
-			"magicDmg": calculate_monster_ap(3),
+			"magicDmg": 35,
 			"posi": "middle",
 			"hp": calculate_monster_hp(3),
 			"exp": calculate_monster_exp(calculate_monster_hp(3)),
@@ -470,15 +453,16 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("落岩"),
 			],
+			"autoAttackSound": "res://Audio/SE/小怪-攻击.ogg"
 			}),
 		"巨蛙": Monster.new({
 			"name": "巨蛙",
-			"speed": calculate_speed_for_level(6),
+			"speed": 60,
 			"level": 1,
 			"magicDefense": 0,
 			"physicDefense": 0,
 			"attackDmg": 100,
-			"magicDmg": calculate_monster_ap(5),
+			"magicDmg": 40,
 			"hp": 2000,
 			"exp": 1000,
 			"gold": 1000,
@@ -487,15 +471,16 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("水攻"),
 			],
+			"autoAttackSound": "res://Audio/SE/巨蛙X.ogg"
 			}),		
 		"大海龟": Monster.new({
 			"name": "大海龟",
-			"speed":calculate_speed_for_level(4),
+			"speed":40,
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 20,
 			"attackDmg": 50,
-			"magicDmg": calculate_monster_ap(5),
+			"magicDmg": 35,
 			"hp": calculate_monster_hp(5),
 			"exp": calculate_monster_exp(calculate_monster_hp(5)),
 			"gold": calculate_monster_gold(calculate_monster_hp(5)),
@@ -504,6 +489,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("水攻"),
 			],
+			"autoAttackSound": "res://Audio/SE/怪-法术.ogg"
 		}),				
 	},	
 	"奔霸":{
@@ -628,7 +614,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": calculate_monster_ap(2),
+			"magicDmg": 35,
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -636,6 +622,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("落岩"),
 			],
+			"autoAttackSound": "res://Audio/SE/锤击.ogg"
 			}),
 		"虾兵2": Monster.new({
 			"name": "虾兵",
@@ -644,7 +631,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": calculate_monster_ap(2),
+			"magicDmg": 35,
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -652,6 +639,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("落岩"),
 			],
+			"autoAttackSound": "res://Audio/SE/锤击.ogg"
 			}),	
 		"虾兵3": Monster.new({
 			"name": "虾兵",
@@ -660,7 +648,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": calculate_monster_ap(2),
+			"magicDmg": 35,
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -668,6 +656,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("落岩"),
 			],
+			"autoAttackSound": "res://Audio/SE/锤击.ogg"
 			}),
 		"蟹将1": Monster.new({
 			"name": "蟹将",
@@ -676,7 +665,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": calculate_monster_ap(2),
+			"magicDmg": 35,
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -684,6 +673,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("水攻"),
 			],
+			"autoAttackSound": "res://Audio/SE/敲击.ogg"
 			}),
 		"蟹将2": Monster.new({
 			"name": "蟹将",
@@ -692,7 +682,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": calculate_monster_ap(2),
+			"magicDmg": 35,
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -700,6 +690,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("水攻"),
 			],
+			"autoAttackSound": "res://Audio/SE/敲击.ogg"
 			}),		
 		"蟹将3": Monster.new({
 			"name": "蟹将",
@@ -708,7 +699,7 @@ var monsters = {
 			"magicDefense": 5,
 			"physicDefense": 20,
 			"attackDmg": 55,
-			"magicDmg": calculate_monster_ap(2),
+			"magicDmg": 35,
 			"hp": 300,
 			"exp": 50,
 			"gold": 10,
@@ -716,40 +707,44 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("水攻"),
 			],
+			"autoAttackSound": "res://Audio/SE/敲击.ogg"
 			}),														
 	},
 	"牛羊怪":{
 		"牛妖":Monster.new({
 			"name": "牛妖",
-			"speed": 60,
+			"speed": 80,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 100,
-			"magicDmg": calculate_monster_ap(8),
+			"attackDmg": 150,
+			"magicDmg": 70,
 			"hp": 2000,
 			"exp": calculate_monster_exp(2000),
-			"gold": calculate_monster_gold(2000),
+			"gold": 500,
 			"idle": "牛妖idle",
 			 "monsterMagicList": [
 				magics.get("地裂火"),
 			],
+			"autoAttackSound": "res://Audio/SE/虎-刀.ogg"
+			
 			}),
 		"羊妖":Monster.new({
 			"name": "羊妖",
-			"speed": 60,
+			"speed": 90,
 			"level": 8,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": 100,
-			"magicDmg": calculate_monster_ap(8),
+			"attackDmg": 130,
+			"magicDmg": 80,
 			"hp": 2000,
 			"exp": calculate_monster_exp(2000),
-			"gold": calculate_monster_gold(2000),
+			"gold": 500,
 			"idle": "羊妖idle",
 			 "monsterMagicList": [
 				magics.get("泰山压顶"),
 			],
+			"autoAttackSound":"res://Audio/SE/103-Attack15.ogg"
 			}),
 	},
 	"蓝羽妖女":{
@@ -770,16 +765,20 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("静电"),
 			],
-			})},		
+			}
+			),
+			"autoAttackSound": "res://Audio/SE/物理法术-妖女.ogg"
+			
+			},		
 	"江南野外": {
 		"狐狸精": Monster.new({
 			"name": "狐狸精",
-			"speed": calculate_speed_for_level(8),
+			"speed": 50,
 			"level": 8,
 			"magicDefense": 5,
 			"physicDefense": 30,
-			"attackDmg": calculate_monster_str(8),
-			"magicDmg": calculate_monster_ap(8),
+			"attackDmg": 130,
+			"magicDmg": 80,
 			"hp": calculate_monster_hp(8),
 			"exp": calculate_monster_exp(calculate_monster_hp(8)),
 			"gold": calculate_monster_gold(calculate_monster_hp(8)),
@@ -789,15 +788,16 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("狐魅术"),
 			],
+			"autoAttackSound": "res://Audio/SE/狐狸-攻击.ogg"
 			}),
 		"花妖": Monster.new({
 			"name": "花妖",
-			"speed":calculate_speed_for_level(9),
+			"speed": 60,
 			"level": 9,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": calculate_monster_str(9),
-			"magicDmg": calculate_monster_ap(9),
+			"attackDmg": 110,
+			"magicDmg": 100,
 			"luck": 10,
 			"hp": calculate_monster_hp(9),
 			"exp": calculate_monster_exp(calculate_monster_hp(9)),
@@ -807,15 +807,16 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("漫天花雨"),
 			],
+			"autoAttackSound": "res://Audio/SE/打击3.ogg"
 		}),
 		"牛妖":Monster.new({
 			"name": "牛妖",
-			"speed": calculate_speed_for_level(10),
+			"speed": 70,
 			"level": 10,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(10),
-			"magicDmg": calculate_monster_ap(10),
+			"attackDmg": 150,
+			"magicDmg": 50,
 			"luck": 10,
 			"hp": calculate_monster_hp(10),
 			"exp": calculate_monster_exp(calculate_monster_hp(10)),
@@ -825,15 +826,16 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("地裂火"),
 			],
+			"autoAttackSound": "res://Audio/SE/虎-刀.ogg"
 			}),
 		"羊妖":Monster.new({
 			"name": "羊妖",
-			"speed": calculate_speed_for_level(10),
+			"speed": 75,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(10),
-			"magicDmg": calculate_monster_ap(10),
+			"attackDmg": 140,
+			"magicDmg": 130,
 			"luck": 10,
 			"hp": calculate_monster_hp(10),
 			"exp": calculate_monster_exp(calculate_monster_hp(10)),
@@ -842,8 +844,11 @@ var monsters = {
 			"idle": "羊妖idle",
 			 "monsterMagicList": [
 				magics.get("泰山压顶"),
-			],
-			}),
+			]
+			,
+			"autoAttackSound":"res://Audio/SE/103-Attack15.ogg"
+			}
+			),
 			
 	},
 	"大鹏":{
@@ -863,27 +868,30 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("奔雷"),
 			],
-			"type":""
+			"type":"",
+			"autoAttackSound":"res://Audio/SE/凤凰-攻击.ogg"
+
 			})},		
 	"牛冠军": {
 		"牛冠军": Monster.new({
 			"name": "牛冠军",
-			"speed": 60,
+			"speed": 150,
 			"level": 1,
 			"magicDefense": 20,
 			"physicDefense": 20,
-			"attackDmg": 300,
-			"magicDmg": 2,
+			"attackDmg": 500,
+			"magicDmg": 150,
 			"exp": 200,
 			"posi": "middle",
-			"gold": 800,
+			"gold": 1000,
 			"luck": 0,
 			"hp": 3000,
 			"idle": "牛冠军idle",
 			 "monsterMagicList": [
 				magics.get("烈火"),
 			],	
-			"type":""		
+			"type":"",
+			"autoAttackSound":"res://Audio/SE/兵器-入肉.ogg"
 		}),
 	},
 	"鼠先锋": {
@@ -904,39 +912,41 @@ var monsters = {
 				magics.get("奔雷"),
 				magics.get("落岩"),
 			],	
-			"type":""		
+			"type":"",
+			"autoAttackSound":"res://Audio/SE/小妖-攻击.ogg"
 		}),
 	},
 	"爷傲奈我何": {
 		"爷傲奈我何": Monster.new({
 			"name": "爷傲奈我何",
-			"speed": 60,
+			"speed": 180,
 			"level": 1,
 			"magicDefense": 20,
 			"physicDefense": 20,
 			"attackDmg": 50,
 			"magicDmg": 1,
 			"posi": "middle",
-			"exp": 150,
+			"exp": 200,
 			"luck": 10,
 			"gold": 80,
-			"hp": 600,
+			"hp": 1000,
 			"idle": "爷傲奈我何idle",
 			 "monsterMagicList": [
 				magics.get("烈火"),
 			],
-			"type":""		
+			"type":"",
+			"autoAttackSound":"res://Audio/SE/兵器-入肉.ogg"
 		}),
 	},	
 	"锁妖塔2"	:{
 		"狐狸精": Monster.new({
 			"name": "狐狸精",
-			"speed": calculate_speed_for_level(15),
-			"level": 1,
+			"speed": 140,
+			"level": 15,
 			"magicDefense": 5,
 			"physicDefense": 30,
-			"attackDmg": calculate_monster_str(15),
-			"magicDmg": calculate_monster_ap(15),
+			"attackDmg": 180,
+			"magicDmg": 140,
 			"hp": calculate_monster_hp(15),
 			"exp": calculate_monster_exp(calculate_monster_hp(15)),
 			"luck": 10,
@@ -945,16 +955,17 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("狐魅术"),
 			],
-			"type":""
+			"type":"",
+			"autoAttackSound": "res://Audio/SE/狐狸-攻击.ogg"
 			}),
 		"花妖": Monster.new({
 			"name": "花妖",
-			"speed": calculate_speed_for_level(16),
+			"speed": 150,
 			"level": 16,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": calculate_monster_str(16),
-			"magicDmg": calculate_monster_ap(16),
+			"attackDmg": 150,
+			"magicDmg": 180,
 			"hp": calculate_monster_hp(16),
 			"exp": calculate_monster_exp(calculate_monster_hp(16)),
 			"luck": 10,
@@ -963,41 +974,43 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("漫天花雨"),
 			],
-			"type":""
+			"type":"",
+			"autoAttackSound": "res://Audio/SE/打击3.ogg"
 		}),			
 	},
 	
 	"鳄额呃":{
 		"鳄额呃": Monster.new({
 			"name": "鳄额呃",
-			"speed": 160,
+			"speed": 180,
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": 400,
+			"attackDmg": 450,
 			"magicDmg": 1,
 			"posi": "middle",
 			"hp": 4500,
-			"exp": calculate_monster_exp(4500),
+			"exp": 2000,
 			"luck": 50,
-			"gold":calculate_monster_gold(4500),
+			"gold":1200,
 			"type":"",
 			"idle": "鳄额呃idle",
 			 "monsterMagicList": [
 			],
+			"autoAttackSound": "res://Audio/SE/小怪-攻击.ogg"
 		}),				
 	},
 	"锁妖塔3":{
 		"牛妖":Monster.new({
 			"name": "牛妖",
-			"speed": calculate_speed_for_level(17),
+			"speed": 150,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(17),
-			"magicDmg": calculate_monster_ap(17),
+			"attackDmg": 240,
+			"magicDmg": 180,
 			"luck": 10,
-			"hp": calculate_monster_hp(17),
+			"hp": calculate_monster_hp(20),
 			"exp": calculate_monster_exp(calculate_monster_hp(17)),
 			"gold": calculate_monster_gold(calculate_monster_hp(17)),
 			"idle": "牛妖idle",
@@ -1005,17 +1018,18 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("地裂火"),
 			],
+			"autoAttackSound": "res://Audio/SE/虎-刀.ogg"
 			}),
 		"羊妖":Monster.new({
 			"name": "羊妖",
-			"speed": calculate_speed_for_level(18),
+			"speed": 160,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(18),
-			"magicDmg": calculate_monster_ap(18),
+			"attackDmg": 190,
+			"magicDmg": 240,
 			"luck": 10,
-			"hp": calculate_monster_hp(18),
+			"hp": calculate_monster_hp(20),
 			"exp": calculate_monster_exp(calculate_monster_hp(18)),
 			"gold": calculate_monster_gold(calculate_monster_hp(18)),
 			"idle": "羊妖idle",
@@ -1023,37 +1037,39 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("泰山压顶"),
 			],
+			"autoAttackSound":"res://Audio/SE/103-Attack15.ogg"
 			}),
 	},
 	"鼠老大":{
 		"鼠老大": Monster.new({
 			"name": "鼠先锋",
-			"speed": 170,
+			"speed": 230,
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 30,
-			"attackDmg": 380,
+			"attackDmg": 440,
 			"posi": "middle",
 			"luck": 50,
 			"magicDmg": 1.5,
 			"hp": 5000,
-			"exp": calculate_monster_exp(5000),
-			"gold":calculate_monster_gold(5000),
+			"exp": 2500,
+			"gold":1600,
 			"type":"",
 			"idle": "鼠先锋idle",
 			 "monsterMagicList": [
 			],
+			"autoAttackSound":"res://Audio/SE/小妖-攻击.ogg"
 		}),				
 	},	
 	"锁妖塔4":{
 		"兔子精":Monster.new({
 			"name": "兔子精",
-			"speed": 170,
+			"speed": 280,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(19),
-			"magicDmg": calculate_monster_ap(19),
+			"attackDmg": 190,
+			"magicDmg": 50,
 			"luck": 10,
 			"hp": calculate_monster_hp(19),
 			"exp": calculate_monster_exp(calculate_monster_hp(19)),
@@ -1063,15 +1079,16 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("地裂火"),
 			],
+			"autoAttackSound":"res://Audio/SE/小妖-攻击.ogg"
 			}),
 		"黑熊精":Monster.new({
 			"name": "黑熊精",
-			"speed": calculate_speed_for_level(20),
+			"speed": 160,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(20),
-			"magicDmg": calculate_monster_ap(20),
+			"attackDmg": 300,
+			"magicDmg": 90,
 			"luck": 10,
 			"hp": calculate_monster_hp(20),
 			"exp": calculate_monster_exp(calculate_monster_hp(20)),
@@ -1081,26 +1098,28 @@ var monsters = {
 			 "monsterMagicList": [
 				
 			],
+			"autoAttackSound":"res://Audio/SE/虎-刀.ogg"
 			}),
 	},	
 	"黑熊王":{
 		"黑熊王": Monster.new({
 			"name": "黑熊王",
-			"speed":110,
+			"speed": 240,
 			"level": 1,
 			"magicDefense":5,
 			"physicDefense": 30,
 			"posi": "middle",
-			"attackDmg": 470,
+			"attackDmg": 580,
 			"magicDmg": 1.5,
 			"luck": 50,
-			"hp": 5500,
-			"exp": calculate_monster_exp(5500),
-			"gold": calculate_monster_gold(5500),
+			"hp": 6500,
+			"exp": 4000,
+			"gold": 3000,
 			"type":"",
 			"idle": "黑熊王idle",
 			 "monsterMagicList": [
 			],
+			"autoAttackSound":"res://Audio/SE/野兽-攻击.ogg"
 		}),				
 	},		
 	"蒙面人":{
@@ -1125,46 +1144,48 @@ var monsters = {
 	"锁妖塔6":{
 		"树怪":Monster.new({
 			"name": "树怪",
-			"speed": calculate_speed_for_level(21),
+			"speed": 200,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
-			"attackDmg": calculate_monster_str(21),
-			"magicDmg": calculate_monster_ap(21),
+			"attackDmg": 280,
+			"magicDmg":30,
 			"luck": 10,
-			"hp": calculate_monster_hp(21),
+			"hp": calculate_monster_hp(25),
 			"exp": calculate_monster_exp(calculate_monster_hp(21)),
 			"gold": calculate_monster_gold(calculate_monster_hp(21)),
 			"idle": "树怪idle",
 			"type": "",
 			 "monsterMagicList": [
 			],
+			"autoAttackSound":"res://Audio/SE/104-Attack16.ogg"
 			}),
 	},	
 	"千年树":{
 		"千年树": Monster.new({
 			"name": "千年树",
-			"speed": 140,
+			"speed": 280,
 			"level": 1,
 			"magicDefense":5,
 			"posi": "middle",
 			"physicDefense": 30,
-			"attackDmg": 530,
+			"attackDmg": 500,
 			"magicDmg": 1.5,
 			"hp": 8000,
 			"luck": 50,
-			"exp": calculate_monster_exp(8000),
-			"gold": calculate_monster_gold(8000),
+			"exp": 5000,
+			"gold": 4000,
 			"type":"",
 			"idle": "千年树idle",
 			 "monsterMagicList": [
 			],
+			"autoAttackSound":"res://Audio/SE/104-Attack16.ogg"
 		}),				
 	},
 	"鹰孽大王":{
 		"鹰孽大王": Monster.new({
 			"name": "鹰孽大王",
-			"speed": 160,
+			"speed": 200,
 			"level": 1,
 			"magicDefense":0,
 			"physicDefense": 0,
@@ -1172,8 +1193,8 @@ var monsters = {
 			"magicDmg": 190,
 			"posi": "middle",
 			"hp": 14000,
-			"exp": calculate_monster_exp(9000),
-			"gold": calculate_monster_gold(9000),
+			"exp": 10000,
+			"gold":5000,
 			"luck": 65,
 			"type":"",
 			"idle": "鹰孽大王idle",
@@ -1182,6 +1203,7 @@ var monsters = {
 				magics.get("天火陨石"),
 				#magics.get("吸魂大法"),
 			],
+			"autoAttackSound":"res://Audio/SE/104-Attack11.ogg"
 		}),				
 	},
 	"大唐国境":{
@@ -1203,6 +1225,7 @@ var monsters = {
 			 "monsterMagicList": [
 				
 			],
+			"autoAttackSound":"res://Audio/SE/兵器-入肉.ogg"
 			}),
 		"反贼大头目":Monster.new({
 			"name": "反贼大头目",
@@ -1222,6 +1245,7 @@ var monsters = {
 			 "monsterMagicList": [
 				
 			],
+			"autoAttackSound":"res://Audio/SE/兵器-入肉.ogg"
 			}),
 	},
 	"反贼小头目":{
@@ -1242,6 +1266,7 @@ var monsters = {
 			"idle": "反贼小头目idle",
 			 "monsterMagicList": [
 			],
+			"autoAttackSound":"res://Audio/SE/兵器-入肉.ogg"
 		}),				
 	},
 	"反贼大头目":{
@@ -1263,6 +1288,7 @@ var monsters = {
 			 "monsterMagicList": [
 
 			],
+			"autoAttackSound":"res://Audio/SE/兵器-入肉.ogg"
 		}),				
 	},
 	"堕逝":{
@@ -1283,6 +1309,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("风雨雷电"),
 			],
+			"autoAttackSound":"res://Audio/SE/092-Attack04.ogg"
 		}),				
 	},
 	"程咬金":{
@@ -1304,6 +1331,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("开天辟地")
 			],
+			"autoAttackSound":"res://Audio/SE/098-Attack10.ogg"
 		}),				
 	},	
 	"黑山":{
@@ -1325,6 +1353,7 @@ var monsters = {
 			 "monsterMagicList": [
 				magics.get("硝爆")
 			],
+			"autoAttackSound":"res://Audio/SE/大力金刚X.ogg"
 		}),				
 	},
 	"小师弟":{

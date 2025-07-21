@@ -1,5 +1,5 @@
 ~ 初见小二
-set Global.maxLevel = 25
+set Global.maxLevel = 20
 set Global.onTalk = true
 set Global.onHurry = false
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
@@ -76,6 +76,7 @@ set Global.onTalk =  false
 
 ~ 程咬金登场
 set Global.onTalk = true
+set Global.maxLevel = 20
 set Global.npcVis.get("大唐官府大厅").get("程咬金").visible = true
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=2]
@@ -139,6 +140,7 @@ set Global.onTalk = false
 
 ~ 小二休息
 set Global.onTalk = true
+set Global.maxLevel = 20
 小二: [speed=0.4]走这么远的路累死了，我们去那边的瓜蒲歇会吧
 时追云: [speed=0.4]你体力这么差吗
 小二: [speed=0.4]大哥，我们这几天一路上见到一只妖怪杀一只妖怪，见到一对妖怪杀一双，你顶得住我可顶不住啊汗颜
@@ -680,6 +682,7 @@ set Global.onTalk = false
 ~ 起床找金甲
 set Global.onTalk = true
 set Global.atNight = false
+
 小二: [speed=0.4]好久没睡的这么舒服了
 小二: [speed=0.4]咦
 小二: [speed=0.4]金甲呢
@@ -693,7 +696,7 @@ set Global.atNight = false
 时追云: [speed=0.4]可别丢了工
 小二: [speed=0.4]没事的，走吧走吧
 set Global.questHint = "终于能保存了, 去找金甲吧"
-
+set Global.changevis("金甲家","小二")
 set Global.dial = null
 set Global.onTalk = false
 => END
@@ -1512,6 +1515,7 @@ set Global.onTalk = false
 
 ~ 塔6
 set Global.onTalk = true
+set Global.maxLevel = 25
 set Global.triggerPlace.get("塔6").disable = true
 金甲: 啊啊啊啊！！！！
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/猛男 死.ogg")
@@ -1587,8 +1591,28 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=2]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 金甲: 好
+set Global.changevis("锁妖塔6","小福星")
+set Global.changevis("锁妖塔1","小星星")
 
-	
+set Global.onTalk = false
+=> END
+
+~ 小星星
+set Global.onTalk = true
+小星星: 我可以送你去六楼哦
+- 去
+	set Global.changeScene("锁妖塔1",Vector2(2174,1232))
+- 不去
+set Global.onTalk = false
+=> END
+
+~ 小福星
+set Global.onTalk = true
+小福星: 我可以送你去一楼哦
+- 去
+	set Global.changeScene("锁妖塔1",Vector2(1519,1479))
+- 不去
+
 set Global.onTalk = false
 => END
 

@@ -30,10 +30,10 @@ func callFightScenePlayerData():
 			
 	return playerDataList
 var keyItem = {
-#	"洗髓丹":{
-#		"info": ItemData.keyItem.get("洗髓丹"),
-#		"number": 5
-#	},
+	"洗髓丹":{
+		"info": ItemData.keyItem.get("洗髓丹"),
+		"number": 9999
+	},
 }
 var consumeItem = {
 #	"佛手":{
@@ -807,7 +807,7 @@ var fightScenePlayerData2= {
 				"name": "小试牛刀",
 				"attackType": "melee",
 				"damageSource": "AD",
-				"value": 1,
+				"value": 1.5,
 				"cost": 10,
 				"description": "江湖伎俩",
 				"effectArea": "single",
@@ -986,7 +986,7 @@ var fightScenePlayerData = {
 			},{
 					"name": "小试牛刀",
 					"attackType": "range",
-					"value": 1.3,
+					"value": 1.5,
 					"cost": 20,
 					"damageSource": "AD",
 					"description": "江湖必备小试牛刀，单体伤害",	
@@ -2202,27 +2202,7 @@ func update_status():
 			player.potential +=  5 * Global.enKey
 			player["exp"] -= player["needExp"]
 			player["needExp"] = calculate_exp_for_player_level(player["level"]) * Global.enKey
-			
-			
-			if player.name == "时追云":
-				if player["level"] == 3:
-					player.get("playerMagic").append(
-						{"name": "飞剑决",
-							"level": 1,
-							"currExp": 0,
-							"needExp": 50,
-							"attackType": "range",
-							"damageSource": "AD",
-							"value": 2,
-							"cost": 30,
-							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
-							"effectArea": "single",
-							"animationArea":"enemy",
-							"audio": "res://Audio/SE/096-Attack08.ogg",
-							"icon": "res://Icons/斩龙诀.png"
-						},										
-						
-				)
+		
 				
 		var player_magic = player.get("playerMagic", [])
 		for magic in player_magic:
@@ -2282,7 +2262,7 @@ func calculate_exp_for_magic_level(level):
 func calculate_exp_for_player_level(level: int) -> int:
 	var baseExp = 100  # 从60增到100
 	var linearComponent = 80 * (level - 1)  # 线性增量增大
-	var exponentialComponent = baseExp * pow(1.09, level - 1)  # 指数增幅保持温和
+	var exponentialComponent = baseExp * pow(1.22, level - 1)  # 指数增幅保持温和
 
 	var totalExp = linearComponent + exponentialComponent
 
@@ -2408,6 +2388,22 @@ func remove_empty_items():
 	for key in keys_to_remove:
 		bagArmorItem.erase(key)
 var unLearnMagic = {
+			"飞剑决":{"name": "飞剑决",
+							"level": 1,
+							"currExp": 0,
+							"needExp": 50,
+							"attackType": "range",
+							"damageSource": "AD",
+							"value": 2,
+							"cost": 30,
+							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
+							"effectArea": "single",
+							"animationArea":"enemy",
+							"audio": "res://Audio/SE/096-Attack08.ogg",
+							"icon": "res://Icons/斩龙诀.png"
+						},		
+	
+	
 			"催眠咒":{
 					"name": "催眠",
 					"attackType": "debuff",
@@ -2710,7 +2706,7 @@ var unLearnMagic = {
 			"小试牛刀":{
 					"name": "小试牛刀",
 					"attackType": "range",
-					"value": 1.3,
+					"value": 1.5,
 					"cost": 20,
 					"damageSource": "AD",
 					"description": "江湖必备小试牛刀，单体伤害",	
@@ -2784,8 +2780,10 @@ func decrypt(value):
 
 func healAll():
 	for i in fightScenePlayerData:
+		
 		fightScenePlayerData[i].currHp = decrypt(fightScenePlayerData[i].addHp) + fightScenePlayerData[i].hp
 		fightScenePlayerData[i].currMp = decrypt(fightScenePlayerData[i].addMp) + fightScenePlayerData[i].mp
+
 var tempMagic = []
 func removeMagic(character):
 	var magicList = fightScenePlayerData.get(character).playerMagic

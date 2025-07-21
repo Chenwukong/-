@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dlkg52178hsyr"]
+[gd_scene load_steps=35 format=3 uid="uid://dlkg52178hsyr"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_trype"]
 [ext_resource type="Texture2D" uid="uid://sbrnmnnbcte8" path="res://panoramas2/大雁塔6.jpg" id="2_8in2g"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="5_kn5bm"]
 [ext_resource type="PackedScene" uid="uid://dw2xa4a3g20j6" path="res://Scene/importantMsg.tscn" id="15_xf65p"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_igbbo"]
+[ext_resource type="Texture2D" uid="uid://cnvhy0gagdvkg" path="res://Characters/小毛头.png" id="21_814dc"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="25_3a4lp"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="26_qa52p"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="27_o5a7g"]
@@ -280,6 +281,21 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_l4lqe"]
+atlas = ExtResource("21_814dc")
+region = Rect2(0, 0, 40, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j6sey"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l4lqe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="锁妖塔6" type="Node2D"]
 script = ExtResource("1_trype")
 
@@ -524,6 +540,11 @@ monster_name = "树怪"
 [node name="CanvasLayer" parent="." instance=ExtResource("19_igbbo")]
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="小福星" parent="." instance=ExtResource("34_kflnb")]
+position = Vector2(2230, 1084)
+sprite_frames = SubResource("SpriteFrames_j6sey")
+npcName = "小福星"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

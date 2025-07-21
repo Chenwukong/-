@@ -1,4 +1,4 @@
-[gd_scene load_steps=5397 format=3 uid="uid://c0tdp6n7u1830"]
+[gd_scene load_steps=5373 format=3 uid="uid://c0tdp6n7u1830"]
 
 [ext_resource type="Texture2D" uid="uid://c7afo2n2fa4ua" path="res://Animations/@@@@狐狸精攻击.png" id="1_6lpcr"]
 [ext_resource type="Texture2D" uid="uid://ctprvvab7b7og" path="res://梦魂Animation/@@@@兔子怪攻击.png" id="1_8rmnv"]
@@ -601,7 +601,6 @@
 [ext_resource type="Texture2D" uid="uid://baggl1ni7lqr5" path="res://梦魂Animation/【画魂施法】.png" id="389_06rt0"]
 [ext_resource type="Texture2D" uid="uid://cjsvixff583c7" path="res://梦魂Animation/阎罗王-攻击.png" id="393_lio14"]
 [ext_resource type="Texture2D" uid="uid://l87gwp2sf5x8" path="res://Battlers/阎罗王.png" id="394_2hbvf"]
-[ext_resource type="AudioStream" uid="uid://ca2nvl5bvoduk" path="res://Audio/SE/085-Monster07.ogg" id="394_i4f38"]
 [ext_resource type="Texture2D" uid="uid://bj6q067cqd1dd" path="res://梦魂Animation/阎罗王-法术.png" id="395_vdir0"]
 [ext_resource type="Texture2D" uid="uid://dledjisfamyef" path="res://梦魂Animation/■巫师攻击.png" id="396_be8tr"]
 [ext_resource type="Texture2D" uid="uid://by1jrwc5cterp" path="res://SeparateAnimation/鬼面/攻击.png" id="396_gf6hp"]
@@ -652,6 +651,7 @@
 [ext_resource type="Texture2D" uid="uid://ctwv6rgv7h4rc" path="res://梦魂Animation/0上官法术.png" id="636_tlfl2"]
 [ext_resource type="Texture2D" uid="uid://clkj2bn8rimxx" path="res://梦魂Animation/神风燎火.png" id="636_xc03j"]
 [ext_resource type="Texture2D" uid="uid://b116sgsqxkuy1" path="res://梦魂Animation/#龙怒.png" id="644_udo4u"]
+[ext_resource type="AudioStream" uid="uid://b4a04h3fwljm4" path="res://Audio/SE/099-Attack11.ogg" id="649_dkmkf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kcw4c"]
 atlas = ExtResource("1_g6loq")
@@ -1580,34 +1580,6 @@ region = Rect2(768, 192, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wtq4d"]
 atlas = ExtResource("4_btf3r")
 region = Rect2(960, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1hxs7"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(192, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2sm1s"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(384, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ijrei"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(576, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e1q82"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(768, 0, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppbwv"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(0, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xkvux"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(192, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_swdoi"]
-atlas = ExtResource("1_8rmnv")
-region = Rect2(384, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sqp72"]
 atlas = ExtResource("1_8rmnv")
@@ -8353,26 +8325,6 @@ region = Rect2(0, 4608, 293, 384)
 atlas = ExtResource("203_kqg2k")
 region = Rect2(0, 4992, 293, 384)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4wnmh"]
-atlas = ExtResource("1_6lpcr")
-region = Rect2(0, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vycjs"]
-atlas = ExtResource("1_6lpcr")
-region = Rect2(160, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c158k"]
-atlas = ExtResource("1_6lpcr")
-region = Rect2(386, 0, 143, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ffe0e"]
-atlas = ExtResource("1_6lpcr")
-region = Rect2(640, 0, 160, 160)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1mtxa"]
-atlas = ExtResource("1_6lpcr")
-region = Rect2(800, 0, 160, 160)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgtck"]
 atlas = ExtResource("1_6lpcr")
 region = Rect2(0, 160, 160, 160)
@@ -10056,38 +10008,6 @@ region = Rect2(768, 192, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sojnn"]
 atlas = ExtResource("231_a10dp")
 region = Rect2(0, 384, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4x1vp"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(0, 0, 200, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bfvcv"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(200, 0, 200, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bk6ko"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(400, 0, 200, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wqgqe"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(600, 0, 200, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_t1ysk"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(800, 0, 160, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_82r27"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(0, 192, 200, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gopda"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(200, 192, 200, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ra308"]
-atlas = ExtResource("4_4u17x")
-region = Rect2(400, 192, 200, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_08tqv"]
 atlas = ExtResource("4_4u17x")
@@ -15662,22 +15582,6 @@ region = Rect2(576, 576, 192, 192)
 atlas = ExtResource("96_1ikla")
 region = Rect2(768, 576, 192, 192)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0re0r"]
-atlas = ExtResource("109_2un0f")
-region = Rect2(0, 2328, 440, 388)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_twutb"]
-atlas = ExtResource("109_2un0f")
-region = Rect2(0, 2716, 440, 388)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_smkue"]
-atlas = ExtResource("109_2un0f")
-region = Rect2(0, 3104, 440, 388)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lfbb5"]
-atlas = ExtResource("109_2un0f")
-region = Rect2(0, 3492, 440, 388)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_hcb8v"]
 atlas = ExtResource("109_2un0f")
 region = Rect2(0, 3880, 440, 388)
@@ -17847,27 +17751,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1hxs7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2sm1s")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ijrei")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e1q82")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ppbwv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xkvux")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_swdoi")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sqp72")
 }, {
@@ -24094,21 +23977,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4wnmh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vycjs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c158k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ffe0e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1mtxa")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_vgtck")
 }, {
 "duration": 1.0,
@@ -24134,7 +24002,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"狐狸精autoAttack",
-"speed": 20.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -25690,30 +25558,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4x1vp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bfvcv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bk6ko")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wqgqe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_t1ysk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_82r27")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gopda")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ra308")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_08tqv")
 }, {
@@ -30849,18 +30693,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0re0r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_twutb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_smkue")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lfbb5")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_hcb8v")
 }, {
 "duration": 1.0,
@@ -30892,7 +30724,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"鹰孽大王autoAttack",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -37114,7 +36946,9 @@ animations = [{
 z_index = 2
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_8tral")
-animation = &"魔如意hurt"
+animation = &"狐狸精autoAttack"
+frame = 7
+frame_progress = 1.0
 script = ExtResource("1_avwje")
 delay_timer = NodePath("DelayTimer")
 shader_material = ExtResource("1_lbfo5")
@@ -37166,6 +37000,7 @@ libraries = {
 
 [node name="deadSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_hugle")
+volume_db = 4.685
 
 [node name="hpControl" type="Node2D" parent="."]
 visible = false
@@ -37234,7 +37069,8 @@ volume_db = 8.0
 max_distance = 9999.0
 
 [node name="autoAttackSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("394_i4f38")
+stream = ExtResource("649_dkmkf")
+volume_db = 8.432
 
 [node name="逆天破" type="Node2D" parent="."]
 visible = false

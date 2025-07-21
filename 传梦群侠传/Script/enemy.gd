@@ -184,7 +184,7 @@ var itemList = []
 
 
 func _process(delta):
-	
+
 	if canSee == false:
 		Global.dealtDmg = 0
 		self.modulate.a = 0.2
@@ -1111,8 +1111,9 @@ func useBigMagic():
 
 func playAutoSound():
 	if !autoPlayed:
-		$autoAttackSound.stream = load(autoAttackSound)
-		$autoAttackSound.play()	
+		print(autoAttackSound,"oka")
+		get_node("autoAttackSound").stream = load(autoAttackSound)
+		get_node("autoAttackSound").play()	
 		autoPlayed = true
 
 

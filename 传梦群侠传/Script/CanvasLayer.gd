@@ -1008,7 +1008,7 @@ func _on_气运加点_button_down():
 func _on_灵力加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 10
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 1
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
 

@@ -102,6 +102,7 @@ func _ready():
 		totalExp += i.exp
 		totalGold += i.gold
 		totalHp += i.hp
+	print(totalGold)
 	if monsters[0].name == "天道": 
 		$fightTime.start()
 		
@@ -156,7 +157,7 @@ func _process(delta):
 
 				
 					
-				$battleFieldPicture/currPlayer/Panel/head.texture = load(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).icon)
+				#$battleFieldPicture/currPlayer/Panel/head.texture = load(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).icon)
 			var children = $battleFieldPicture/currPlayer/Panel/background/buffs.get_children()
 			for i in children:
 				i.visible = false
@@ -607,11 +608,14 @@ func _process(delta):
 		
 		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 		
-		FightScenePlayers.golds += totalGold * Global.enKey
 		
+	
 		if !rewardAdded:
 			rewardAdded = true	
+			FightScenePlayers.golds += totalGold * Global.enKey
+			print("added")
 			for player_name in FightScenePlayers.fightScenePlayerData:
+				
 				if player_name in Global.onTeamPlayer or player_name in Global.onTeamPet:
 					var player = FightScenePlayers.fightScenePlayerData[player_name]
 					if player['level'] >= Global.maxLevel:
@@ -938,6 +942,7 @@ func instantiateMonster():
 		enemySceneInstance.idle = monsterData.idle
 		enemySceneInstance.monsterName = monsterData.name
 		enemySceneInstance.monsterMagicList = monsterData.monsterMagicList
+		enemySceneInstance.autoAttackSound = monsterData.autoAttackSound
 		enemySceneInstance.exp = monsterData.exp
 		enemySceneInstance.gold = monsterData.gold
 		enemySceneInstance.luck = monsterData.luck

@@ -143,7 +143,7 @@ func _ready():
 
 func _process(delta):
 
-	
+
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -181,6 +181,17 @@ func _process(delta):
 					i.visible = false
 				
 	shopItems = get_tree().get_nodes_in_group("shopItem")
+	if onShop:
+		if !onBuy and !Global.noKeyboard:
+			$shop/Panel/buyButton.visible = false
+			
+		if confirmButtonIndex == 0:
+			$shop/Panel/buyButton/cancel.modulate = "red"
+			$shop/Panel/buyButton/buy.modulate = "000000"
+		else:
+			$shop/Panel/buyButton/buy.modulate = "green"
+			$shop/Panel/buyButton/cancel.modulate = "000000"		
+				
 	if onShop and canPress:
 		if shopItems.size()>0:
 			$shop/Panel/description.text = shopItems[itemIndex].description
@@ -343,6 +354,7 @@ func _process(delta):
 				shopItems[itemIndex].get_node("Control").visible = true
 				onItemPicked = true
 				onItemPicking = false
+				print(333333333)
 				$canPress.start()
 				canPress = false
 				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
@@ -525,6 +537,8 @@ func _process(delta):
 				onItemPicked = true
 				onItemPicking = false	
 				$shop/Panel/buyButton.visible = false 
+				canPress = false
+				$canPress.start()
 			if Input.is_action_just_pressed("ui_right"):
 				if confirmButtonIndex == 1:
 					confirmButtonIndex = 0
@@ -563,7 +577,7 @@ func _process(delta):
 					onBuy = false
 					onItemPicked = false
 					onItemPicking = true		
-					
+	
 					$shop/Panel/buyButton.visible = false
 					FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) -int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
 					shopItems[itemIndex].get_node("Control").visible = false
@@ -1717,16 +1731,18 @@ func _on_button_2_button_down():
 
 
 func _on_cancel_button_down():
-
+	
 	if onBuy or onItemPicked or onItemPicking:
 		onBuy = false
 		onItemPicked = true		
+
 		$shop/Panel/buyButton.visible = false 	
 	if onSale or onSaleItemPicked or onSellPicking:
 		onSale = false
 		onSaleItemPicked = true		
 		$shop/Panel/buyButton.visible = false 
-
+	canPress = false
+	$canPress.start()
 
 func _on_buy_button_down():
 	if onBuy or onItemPicked or onItemPicking:
@@ -1734,9 +1750,14 @@ func _on_buy_button_down():
 		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
 		$subSound.play()						
 		onBuy = false
-		onItemPicking = true		
+	
 		$shop/Panel/buyButton.visible = false
 		FightScenePlayers.golds =  (decrypt(FightScenePlayers.golds) - int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
+		Global.showMsg("购买到"+ shopItems[itemIndex].name)
+		onItemPicked = false
+		onItemPicking = true
+		canPress = false
+		$canPress.start()
 		shopItems[itemIndex].get_node("Control").visible = false
 		shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
 		if FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name):
