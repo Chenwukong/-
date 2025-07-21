@@ -344,7 +344,7 @@ func _process(delta):
 			else:
 				$deadSound.stream = load("res://Audio/SE/小妖-倒地.ogg")
 			$deadSound.play()
-			
+	
 			$deadAnimationPlayer.play("deadAnimation")
 			$deadTimer.start()  # Start the timer only once when hp is less than or equal to 0
 			self.self_modulate = "#ef1354"
@@ -773,9 +773,10 @@ func _process(delta):
 			currHp = 0
 			Global.targetMonsterIdx = 0 
 			alive = false
+			dead = true
 			var deadSound = randi_range(0,1)
 			if deadSound == 0:
-				$deadSound.stream = load("res://Audio/SE/011-System12.ogg")
+				$deadSound.stream = load("res://Audio/SE/012-System12.ogg")
 			else:
 				$deadSound.stream = load("res://Audio/SE/小妖-倒地.ogg")
 			$deadSound.play()
@@ -856,7 +857,7 @@ func selectTarget(delta, randi, magicRandi):
 			if Global.alivePlayers[Global.monsterTarget].playerName == "时追云" and Global.gai:
 				Global.alivePlayers[Global.monsterTarget].play("时追云改hurt")			
 			else:
-				print(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
+				
 				Global.alivePlayers[Global.monsterTarget].play(Global.alivePlayers[Global.monsterTarget].playerName + "hurt")
 			
 		Global.alivePlayers[Global.monsterTarget].get_node("hpControl/hpLabel").modulate = "c80038"
@@ -1124,4 +1125,8 @@ func deleteNum():
 
 func _on_circle_time_timeout():
 	hitByCircle = false
-	
+
+func _on_aread_2d_area_exited(area):
+	pass
+func _on_hp_animation_finished():
+	pass

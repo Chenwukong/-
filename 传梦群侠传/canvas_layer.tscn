@@ -1,4 +1,4 @@
-[gd_scene load_steps=199 format=3 uid="uid://b7m0e2bvanxoi"]
+[gd_scene load_steps=200 format=3 uid="uid://b7m0e2bvanxoi"]
 
 [ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="1_njpa6"]
 [ext_resource type="Texture2D" uid="uid://w4dov1c3r346" path="res://消息底图 (1).png" id="2_wncf6"]
@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dvp7n1h7huk34" path="res://c6277344a9cd22bd9a84b152e3694890e1eca95984e96-n5kahh.png" id="9_t5u4b"]
 [ext_resource type="Texture2D" uid="uid://gumconrk3ue6" path="res://Pictures/Pictures/任务.png" id="10_7albm"]
 [ext_resource type="Texture2D" uid="uid://bi62omrrtf82v" path="res://Pictures/Pictures/宠物.png" id="11_guwxw"]
-[ext_resource type="Texture2D" uid="uid://csv63x36l2f1y" path="res://Pictures/按钮底图14格.png" id="12_2y8xw"]
 [ext_resource type="Texture2D" uid="uid://cdu5kr2eacm8f" path="res://smallPets/小鹿/idle/419-17.png" id="12_u4de8"]
+[ext_resource type="Texture2D" uid="uid://dtc47ciw4h66i" path="res://底图按钮.png" id="12_uyo51"]
 [ext_resource type="Texture2D" uid="uid://dhvffeyyk31ia" path="res://smallPets/小鹿/idle/419-18.png" id="13_2jart"]
 [ext_resource type="Texture2D" uid="uid://dha177fc62i5h" path="res://smallPets/小鹿/idle/419-19.png" id="14_nwftp"]
 [ext_resource type="Texture2D" uid="uid://duquniomd56bg" path="res://Pictures/Pictures/背景提示框改.png" id="15_6xmfw"]
@@ -24,7 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://bbkxd6b7fhlnk" path="res://smallPets/小鹿/idle/419-24.png" id="19_ywupy"]
 [ext_resource type="AudioStream" uid="uid://lld2y0qxwvqb" path="res://Audio/SE/002-System02.ogg" id="21_77b2d"]
 [ext_resource type="Texture2D" uid="uid://vvirs6cuafcs" path="res://动作.png" id="21_bueql"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="21_ycq5q"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="21_ycq5q"]
 [ext_resource type="Texture2D" uid="uid://dwao24qd67m88" path="res://帮派.png" id="22_omuv7"]
 [ext_resource type="Texture2D" uid="uid://bx6f10r7uga1x" path="res://当前底图.png" id="23_gmhob"]
 [ext_resource type="Texture2D" uid="uid://c7igi8h10esrl" path="res://好友.png" id="23_iidoh"]
@@ -83,6 +83,7 @@
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="62_lkti6"]
 [ext_resource type="Texture2D" uid="uid://bjexy8vuf58aj" path="res://宠物UI无字.png" id="66_o20tt"]
 [ext_resource type="Texture2D" uid="uid://br54nh7ksccf0" path="res://宠物加点/宠物UI宠物加点未弹起.png" id="70_gkjac"]
+[ext_resource type="PackedScene" uid="uid://bbr8r2yqceilb" path="res://Scene/传梦者名.tscn" id="84_cqgn7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tvqb"]
 atlas = ExtResource("11_guwxw")
@@ -1627,7 +1628,7 @@ offset_left = 704.0
 offset_top = 716.0
 offset_right = 1152.0
 offset_bottom = 787.0
-texture = ExtResource("12_2y8xw")
+texture = ExtResource("12_uyo51")
 
 [node name="menutButton" type="TextureButton" parent="."]
 offset_left = 1032.0
@@ -1728,7 +1729,7 @@ offset_right = 189.333
 offset_bottom = 91.6841
 scale = Vector2(0.155241, 0.172997)
 theme_override_font_sizes/font_size = 90
-text = "提示"
+text = "传梦者"
 
 [node name="loadButton" type="Sprite2D" parent="."]
 position = Vector2(1011, 774)
@@ -2703,6 +2704,7 @@ offset_left = -10.0
 offset_top = -10.0
 offset_right = 11.0
 offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="宠物食物商店"]
 offset_left = 83.2714
@@ -2809,25 +2811,25 @@ metadata/_edit_use_anchors_ = true
 [node name="TextureRect" type="TextureRect" parent="violencePoint"]
 self_modulate = Color(0, 1, 1, 1)
 layout_mode = 0
-offset_left = 200.0
-offset_top = -44.0
-offset_right = 246.0
-offset_bottom = 5.0
+offset_left = 437.0
+offset_top = 2.0
+offset_right = 464.0
+offset_bottom = 30.0
 scale = Vector2(5.10546, 2.87671)
 texture = ExtResource("43_v7ni5")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="violencePoint/TextureRect"]
 layout_mode = 0
-offset_left = 7.83472
-offset_top = 18.0762
-offset_right = 907.835
-offset_bottom = 374.076
+offset_left = 6.07196
+offset_top = 11.1238
+offset_right = 312.072
+offset_bottom = 132.124
 scale = Vector2(0.144182, 0.107433)
 theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 10
 theme_override_constants/shadow_outline_size = 100
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 50
 text = "仁德"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="violencePoint"]
@@ -2903,6 +2905,241 @@ texture = ExtResource("70_gkjac")
 [node name="bgmTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="传梦者列表" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(619, 405)
+scale = Vector2(0.720395, 0.720395)
+texture = ExtResource("9_t5u4b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="传梦者列表"]
+position = Vector2(576.073, -233.206)
+scale = Vector2(2.56807, 1.86015)
+sprite_frames = SubResource("SpriteFrames_l0x8k")
+
+[node name="传梦者列表button" type="Button" parent="传梦者列表/AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 11.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BoxContainer" type="BoxContainer" parent="传梦者列表"]
+offset_left = -561.0
+offset_top = -153.0
+offset_right = 561.0
+offset_bottom = 200.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="传梦者列表"]
+offset_left = -563.58
+offset_top = -154.082
+offset_right = 565.42
+offset_bottom = 216.918
+
+[node name="VBoxContainer" type="VBoxContainer" parent="传梦者列表/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="传梦者列表"]
+offset_left = -80.5114
+offset_top = -216.548
+offset_right = 78.4886
+offset_bottom = -159.548
+color = Color(0, 0, 0, 0.533333)
+
+[node name="Label" type="Label" parent="传梦者列表/ColorRect"]
+layout_mode = 0
+offset_left = 20.822
+offset_top = 4.16437
+offset_right = 140.822
+offset_bottom = 55.1644
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 40
+text = "传梦者"
 
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
@@ -2985,5 +3222,6 @@ autostart = true
 [connection signal="timeout" from="hashTimer" to="." method="_on_hash_timer_timeout"]
 [connection signal="timeout" from="countDownTimer" to="." method="_on_count_down_timer_timeout"]
 [connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
+[connection signal="button_down" from="传梦者列表/AnimatedSprite2D/传梦者列表button" to="." method="_on_传梦者列表button_button_down"]
 
 [editable path="importantMsg"]

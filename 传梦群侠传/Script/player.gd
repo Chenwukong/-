@@ -23,6 +23,8 @@ var onUp = false
 var onLeft = false
 var onDown = false
 var onRight = false
+var lastMove = ""
+
 func _ready():
 	canMouseMove = true
 	raycast = $RayCast2D3
@@ -209,16 +211,23 @@ func _physics_process(delta):
 			#velocity = Vector2(0, 0)
 			
 		if Input.is_action_pressed("ui_down") and !Global.onTalk:
+			$Sprite2D.visible = true
+			$AnimatedSprite2D.visible = false			
+			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "down":
+				return
+				
+			lastMove = "down"	
 			canMouseMove = false
 			velocity.y += 1
 			velocity.x -= 1
 			$RayCast2D.rotation_degrees = 0
-			
+			$RayCast2D4.rotation_degrees = $RayCast2D.rotation_degrees
 			
 			raycast.target_position = Vector2(velocity.x * 25, velocity.y * 25 )
-			
+
 			raycast2.rotation_degrees = 0
 			raycast2.target_position = Vector2(velocity.x * 35, velocity.y * 35 )
+			$RayCast2D4.target_position = raycast2.target_position
 			frames =  [
 					preload("res://main character/tile004.png"),
 					preload("res://main character/tile005.png"),
@@ -228,15 +237,22 @@ func _physics_process(delta):
 			if canMove and !collide and Global.menuOut == false:	
 				update_animation(delta)
 		elif Input.is_action_pressed("ui_up") and !Global.onTalk:
+			$Sprite2D.visible = true
+			$AnimatedSprite2D.visible = false	
+			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "up":
+				return		
+
+			lastMove = "up"
 			canMouseMove = false
 			velocity.y -= 1
 			velocity.x += 1
 			$RayCast2D.rotation_degrees = 0
 			raycast.target_position = Vector2(velocity.x * 25, velocity.y * 25 )
-			
+			$RayCast2D4.rotation_degrees = $RayCast2D.rotation_degrees
+
 			raycast2.rotation_degrees = 0
 			raycast2.target_position = Vector2(velocity.x * 35, velocity.y * 35 )			
-			
+			$RayCast2D4.target_position = raycast2.target_position
 			frames =  [
 					preload("res://main character/tile008.png"),
 					preload("res://main character/tile009.png"),
@@ -246,6 +262,13 @@ func _physics_process(delta):
 			if canMove and !collide and Global.menuOut == false:
 				update_animation(delta)
 		elif Input.is_action_pressed("ui_left") and !Global.onTalk:
+			$Sprite2D.visible = true
+			$AnimatedSprite2D.visible = false				
+			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "left":
+				return		
+				
+			lastMove = "left"				
+			
 			canMouseMove = false
 			$RayCast2D.enabled = true
 		
@@ -253,9 +276,11 @@ func _physics_process(delta):
 			velocity.y -= 1
 			$RayCast2D.rotation_degrees = 0
 			raycast.target_position = Vector2(velocity.x * 25, velocity.y * 25 )
-			
+			$RayCast2D4.rotation_degrees = $RayCast2D.rotation_degrees
+
 			raycast2.rotation_degrees = 0
-			raycast2.target_position = Vector2(velocity.x * 35, velocity.y * 35 )			
+			raycast2.target_position = Vector2(velocity.x * 35, velocity.y * 35 )	
+			$RayCast2D4.target_position = raycast2.target_position		
 			frames =  [
 					preload("res://main character/tile012.png"),
 					preload("res://main character/tile013.png"),
@@ -265,15 +290,24 @@ func _physics_process(delta):
 			if canMove and !collide and Global.menuOut == false:
 				update_animation(delta)
 		elif Input.is_action_pressed("ui_right") and !Global.onTalk:
+			$Sprite2D.visible = true
+			$AnimatedSprite2D.visible = false				
+			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "right":
+				return		
+		
+			lastMove = "right"				
+			
+			
 			canMouseMove = false
 			velocity.x += 1
 			velocity.y += 1
 			$RayCast2D.rotation_degrees = 0
 			raycast.target_position = Vector2(velocity.x * 25, velocity.y * 25 )
+			$RayCast2D4.rotation_degrees = $RayCast2D.rotation_degrees
 			
 			raycast2.rotation_degrees = 0
 			raycast2.target_position = Vector2(velocity.x * 35, velocity.y * 35 )			
-			
+			$RayCast2D4.target_position = raycast2.target_position
 			frames =  [
 					preload("res://main character/tile000.png"),
 					preload("res://main character/tile001.png"),
@@ -410,13 +444,28 @@ func complete_task(chapter_id, task_id):
 #	var dialogue_index = npc["current_dialogue_index"]
 #	var dialogue_entry = npc["dialogues"][dialogue_index]
 #	dialogue_entry["unlocked"] = true
+
+func _on_area_2d_body_exited(area):
+	pass
+func _on_area_2d_body_shape_exited(area):
+	pass
 	
 
+func _on_area_2d_body_shape_entered(area):
+	pass
+	
+
+func _on_area_2d_shape_entered(area):
+	pass
+func _on_area_2d_area_exited(area):
+	pass
 
 
 func _on_area_2d_area_entered(area):
 	pass
 
+func _on_timer_timeout():
+	pass
 
 func _on_area_2d_body_entered(body):
 	if body.name == "npcBody":

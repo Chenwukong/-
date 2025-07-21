@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://d1scyx6bedd3g"]
+[gd_scene load_steps=75 format=3 uid="uid://d1scyx6bedd3g"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_se3j3"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_qsfar"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="12_lax5g"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="13_wk6ru"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="14_4nfvc"]
-[ext_resource type="AudioStream" uid="uid://b1l0nnn3wk647" path="res://Audio/SE/雨.ogg" id="15_b40td"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="16_t8uiv"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_2u8h3"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_yg2jf"]
@@ -22,15 +21,16 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_ajlf5"]
 [ext_resource type="Texture2D" uid="uid://cqpg8i83dcrb8" path="res://Characters/虾米.png" id="21_rg8df"]
 [ext_resource type="Texture2D" uid="uid://cox76u442bx1f" path="res://Characters/蟹黄.png" id="22_dhsc6"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="23_tmfhy"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="23_tmfhy"]
 [ext_resource type="Texture2D" uid="uid://dyxtnbfsqis5s" path="res://SeparateAnimation/敖雨/971-11.png" id="24_3pvts"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="25_n6b44"]
-[ext_resource type="PackedScene" path="res://Scene/敖阳.tscn" id="26_rw1hg"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="25_n6b44"]
+[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="26_rw1hg"]
 [ext_resource type="Texture2D" uid="uid://cvxfqutxwn6nj" path="res://Pictures/金箍棒.png" id="27_a4pke"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="28_7jilb"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="29_eshmb"]
 [ext_resource type="Texture2D" uid="uid://bd8tcb4vey0na" path="res://Characters/水泡.png" id="30_e5h8r"]
 [ext_resource type="Texture2D" uid="uid://bjkvhgum6oie5" path="res://Characters/小如意.png" id="31_8fypo"]
+[ext_resource type="Script" path="res://Script/结局.gd" id="31_pcax8"]
 [ext_resource type="Texture2D" uid="uid://c4060dcff1obl" path="res://CutScene/敖白铃音.png" id="32_7g6jc"]
 [ext_resource type="Texture2D" uid="uid://hxms08sb17ht" path="res://Pictures/Pictures/结尾.jpg" id="32_7pu3t"]
 [ext_resource type="Texture2D" uid="uid://bvn0wlon1ufc8" path="res://CutScene/时追云杀妖.png" id="32_nllsj"]
@@ -40,6 +40,7 @@
 [ext_resource type="Texture2D" uid="uid://cliytibc4wwbt" path="res://CutScene/并肩作战.png" id="35_ttvwo"]
 [ext_resource type="Texture2D" uid="uid://b1kppqibd57iu" path="res://CutScene/家务.png" id="37_37gp8"]
 [ext_resource type="Texture2D" uid="uid://rfkygknu6nhg" path="res://CutScene/黑山吃鸡.png" id="37_cvpir"]
+[ext_resource type="Texture2D" uid="uid://ckwh2eod1keqo" path="res://dead.jpg" id="40_owxr5"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(17, 63, 4289, 54, 4280, 2363, 26, 1188, 31, 2366, 20, 1489)
@@ -144,6 +145,114 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_wd1ow"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer4/时追云杀妖:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer4/锁妖塔:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer4/黑山吃鸡:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer4/敖白铃音:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer4/并肩作战:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer4/旅游:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer4/怀孕:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer4/Dead:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer4/结尾:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_eg635"]
 resource_name = "shake"
@@ -197,6 +306,10 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_1xmg2"]
+resource_name = "结束"
+length = 30.0
+
 [sub_resource type="Animation" id="Animation_fa28m"]
 resource_name = "解除误会"
 tracks/0/type = "value"
@@ -212,14 +325,267 @@ tracks/0/keys = {
 "values": [Vector2(815.347, 1825.22), Vector2(490, 2043)]
 }
 
-[sub_resource type="Animation" id="Animation_1xmg2"]
-resource_name = "结束"
-length = 30.0
+[sub_resource type="Animation" id="Animation_rp88y"]
+resource_name = "结局"
+length = 120.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer4/家务:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer4/Dead:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(10, 15, 20.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer4/时追云杀妖:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(20.1, 25.1, 30.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer4/黑山吃鸡:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(40, 45, 50.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasLayer4/敖白铃音:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(50.1, 55.1, 60.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasLayer4/并肩作战:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(60.1, 65, 70),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasLayer4/旅游:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(70, 75.1, 80),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasLayer4/锁妖塔:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(30.1, 35, 40),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasLayer4/怀孕:modulate")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(80, 85, 90),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer4/结尾:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(90),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasLayer4/结尾/Node2D:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(91, 103.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(66.6439, -1019.55)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasLayer4/Dead:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 10, 20.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CanvasLayer4/时追云杀妖:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 20.1, 30.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CanvasLayer4/锁妖塔:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 30.1, 40),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CanvasLayer4/黑山吃鸡:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 40, 50.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("CanvasLayer4/敖白铃音:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(50.1, 60.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("CanvasLayer4/并肩作战:visible")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 60.1, 70),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("CanvasLayer4/旅游:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0, 70, 80),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("CanvasLayer4/怀孕:visible")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0, 80, 90),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("CanvasLayer4/家务:visible")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("CanvasLayer4/结尾:visible")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0, 90),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
 _data = {
 "RESET": SubResource("Animation_wd1ow"),
 "shake": SubResource("Animation_eg635"),
+"结局": SubResource("Animation_rp88y"),
 "结束": SubResource("Animation_1xmg2"),
 "解除误会": SubResource("Animation_fa28m")
 }
@@ -498,7 +864,6 @@ libraries = {
 }
 
 [node name="backgroundSoundEffect" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("15_b40td")
 volume_db = -34.923
 max_distance = 99999.0
 
@@ -512,11 +877,176 @@ position = Vector2(574, 988)
 [node name="小二" parent="小二" index="0"]
 position = Vector2(-18, 7)
 animation = &"左上"
-frame_progress = 0.0
 
 [node name="menuControl" parent="." instance=ExtResource("17_2u8h3")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("18_yg2jf")]
+visible = false
+
+[node name="msgBox" parent="CanvasLayer" index="0"]
+visible = false
+
+[node name="VBoxContainer" parent="CanvasLayer" index="1"]
+visible = false
+
+[node name="Label" parent="CanvasLayer/gameTitle" index="0"]
+visible = false
+
+[node name="东海海道" parent="CanvasLayer/map/东海湾" index="0"]
+visible = false
+
+[node name="mapSmallButton" parent="CanvasLayer/map" index="1"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/建邺城" index="0"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/建邺城" index="1"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/建邺城右" index="0"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/建邺城右" index="1"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/江南野外" index="0"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/江南野外" index="1"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/长安北" index="0"]
+visible = false
+
+[node name="建邺城右4" parent="CanvasLayer/map/长安北" index="1"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/长安北" index="2"]
+visible = false
+
+[node name="建邺城右3" parent="CanvasLayer/map/长安北" index="3"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/长安城" index="0"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/长安城" index="1"]
+visible = false
+
+[node name="建邺城右3" parent="CanvasLayer/map/长安城" index="2"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/大唐官府" index="0"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/大唐官府" index="1"]
+visible = false
+
+[node name="建邺城右3" parent="CanvasLayer/map/大唐官府" index="2"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/方寸山" index="0"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/傲来国" index="0"]
+visible = false
+
+[node name="建邺城右2" parent="CanvasLayer/map/傲来国" index="1"]
+visible = false
+
+[node name="建邺城右" parent="CanvasLayer/map/女儿村" index="0"]
+visible = false
+
+[node name="position" parent="CanvasLayer" index="4"]
+visible = false
+
+[node name="限制" parent="CanvasLayer/position" index="0"]
+visible = false
+
+[node name="xyLabel" parent="CanvasLayer/position" index="2"]
+visible = false
+
+[node name="mapName" parent="CanvasLayer/position" index="3"]
+visible = false
+
+[node name="坐标button" parent="CanvasLayer/position" index="4"]
+visible = false
+
+[node name="Label" parent="CanvasLayer/position" index="5"]
+visible = false
+
+[node name="phoneButtons" parent="CanvasLayer" index="5"]
+visible = false
+
+[node name="右上" parent="CanvasLayer/phoneButtons" index="0"]
+visible = false
+
+[node name="左上" parent="CanvasLayer/phoneButtons" index="1"]
+visible = false
+
+[node name="左下" parent="CanvasLayer/phoneButtons" index="2"]
+visible = false
+
+[node name="右下" parent="CanvasLayer/phoneButtons" index="3"]
+visible = false
+
+[node name="AudioStreamPlayer2D" parent="CanvasLayer" index="6"]
+visible = false
+
+[node name="currMsg" parent="CanvasLayer" index="7"]
+visible = false
+
+[node name="buttonBase" parent="CanvasLayer" index="8"]
+visible = false
+
+[node name="menutButton" parent="CanvasLayer" index="9"]
+visible = false
+
+[node name="宠物" parent="CanvasLayer" index="10"]
+visible = false
+
+[node name="questHint" parent="CanvasLayer" index="11"]
+visible = false
+
+[node name="hintButton" parent="CanvasLayer" index="12"]
+visible = false
+
+[node name="loadButton" parent="CanvasLayer" index="13"]
+visible = false
+
+[node name="loadButton" parent="CanvasLayer/loadButton" index="1"]
+visible = false
+
+[node name="system" parent="CanvasLayer" index="14"]
+visible = false
+
+[node name="weaponButton" parent="CanvasLayer" index="15"]
+visible = false
+
+[node name="地图" parent="CanvasLayer" index="16"]
+visible = false
+
+[node name="物品" parent="CanvasLayer" index="17"]
+visible = false
+
+[node name="队伍" parent="CanvasLayer" index="18"]
+visible = false
+
+[node name="交易" parent="CanvasLayer" index="19"]
+visible = false
+
+[node name="shopButton" parent="CanvasLayer/交易" index="1"]
+visible = false
+
+[node name="音乐" parent="CanvasLayer" index="20"]
+visible = false
+
+[node name="制作人" parent="CanvasLayer" index="21"]
+visible = false
+
+[node name="好友" parent="CanvasLayer" index="22"]
+visible = false
 
 [node name="id" type="LineEdit" parent="CanvasLayer"]
 visible = false
@@ -606,7 +1136,6 @@ offset_bottom = 242.0
 metadata/_edit_use_anchors_ = true
 
 [node name="金箍棒2" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(522, 392)
 texture = ExtResource("27_a4pke")
 
@@ -824,12 +1353,55 @@ offset_bottom = 2570.0
 color = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer4" type="CanvasLayer" parent="."]
+script = ExtResource("31_pcax8")
 
 [node name="结尾" type="Sprite2D" parent="CanvasLayer4"]
-visible = false
 position = Vector2(578, 403)
 scale = Vector2(1.81562, 1.67917)
 texture = ExtResource("32_7pu3t")
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer4/结尾"]
+
+[node name="Label" type="Label" parent="CanvasLayer4/结尾/Node2D"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -221.963
+offset_top = -204.268
+offset_right = 278.037
+offset_bottom = -141.268
+theme_override_font_sizes/font_size = 50
+text = "感谢所有测试的玩家！"
+
+[node name="Label2" type="Label" parent="CanvasLayer4/结尾/Node2D/Label"]
+modulate = Color(1, 0, 1, 1)
+layout_mode = 0
+offset_left = 237.935
+offset_top = 67.8907
+offset_right = 737.935
+offset_bottom = 1516.89
+theme_override_font_sizes/font_size = 50
+text = "入您
+奇迹行者
+橙子色的橘子
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+
+x
+ "
 
 [node name="怀孕" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
@@ -837,47 +1409,148 @@ position = Vector2(579, 472.75)
 scale = Vector2(1.11719, 0.924316)
 texture = ExtResource("33_ujmaw")
 
+[node name="Label" type="Label" parent="CanvasLayer4/怀孕"]
+offset_left = -287.76
+offset_top = -511.444
+offset_right = 512.24
+offset_bottom = -448.444
+rotation = 0.00263676
+theme_override_font_sizes/font_size = 50
+text = "实在没什么好说的了，写这行凑凑数
+"
+
 [node name="旅游" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(574.5, 401)
-scale = Vector2(1.12402, 0.511719)
+position = Vector2(584, 471)
+scale = Vector2(0.611327, 0.611327)
 texture = ExtResource("34_hqbu0")
+
+[node name="Label" type="Label" parent="CanvasLayer4/旅游"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -370.259
+offset_top = -72.5461
+offset_right = 385.741
+offset_bottom = 242.454
+rotation = -0.0128244
+theme_override_font_sizes/font_size = 50
+text = "            提供帮助的作者们:
+墨兮:梦魂作者
+狼叔: 梦5终结版作者
+清风柒: 梦游战记作者
+白泽: 梦5白泽版作者"
 
 [node name="并肩作战" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(397.5, 403.5)
-scale = Vector2(0.985026, 0.782227)
+position = Vector2(401.5, 398)
+scale = Vector2(0.990234, 0.792969)
 texture = ExtResource("35_ttvwo")
+
+[node name="Label" type="Label" parent="CanvasLayer4/并肩作战"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -303.412
+offset_top = 120.419
+offset_right = 46.5877
+offset_bottom = 183.419
+rotation = -0.449432
+theme_override_font_sizes/font_size = 50
+text = "游戏脚本：传梦
+"
 
 [node name="敖白铃音" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(577.5, 397.5)
-scale = Vector2(1.12988, 0.520182)
+position = Vector2(580, 401)
+scale = Vector2(0.516853, 0.515447)
 texture = ExtResource("32_7g6jc")
+
+[node name="Label" type="Label" parent="CanvasLayer4/敖白铃音"]
+offset_left = -451.625
+offset_top = 77.5083
+offset_right = 48.3749
+offset_bottom = 203.508
+theme_override_font_sizes/font_size = 50
+text = "素材来源：群侠传系列
+画迹，梦魂，西游奇缘，
+网易，仙剑，网络素材"
 
 [node name="黑山吃鸡" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(577, 399.5)
-scale = Vector2(1.12695, 0.525391)
+position = Vector2(561, 399)
+scale = Vector2(0.522461, 0.522461)
 texture = ExtResource("37_cvpir")
+
+[node name="Label" type="Label" parent="CanvasLayer4/黑山吃鸡"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 75.4248
+offset_top = -59.9553
+offset_right = 492.425
+offset_bottom = 3.04468
+theme_override_font_sizes/font_size = 50
+text = "插画来源: ChatGpt
+"
 
 [node name="锁妖塔" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(573.25, 397)
-scale = Vector2(0.758789, 0.783203)
+position = Vector2(605.5, 399)
+scale = Vector2(0.791016, 0.791016)
 texture = ExtResource("33_grp6j")
+
+[node name="Label" type="Label" parent="CanvasLayer4/锁妖塔"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -304.375
+offset_top = 216.837
+offset_right = 45.6253
+offset_bottom = 279.837
+rotation = 0.29846
+theme_override_font_sizes/font_size = 50
+text = "UI美工：墨兮
+"
 
 [node name="时追云杀妖" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(579, 400.5)
-scale = Vector2(0.755208, 0.786133)
+position = Vector2(574.5, 383)
+scale = Vector2(0.755859, 0.755859)
 texture = ExtResource("32_nllsj")
 
-[node name="家务" type="Sprite2D" parent="CanvasLayer4"]
+[node name="Label" type="Label" parent="CanvasLayer4/时追云杀妖"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -82.8694
+offset_top = 85.4659
+offset_right = 267.131
+offset_bottom = 148.466
+rotation = -0.383771
+theme_override_font_sizes/font_size = 50
+text = "游戏编剧：传梦
+"
+
+[node name="Dead" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
-position = Vector2(578, 397)
-scale = Vector2(1.12891, 0.792969)
+position = Vector2(574.445, 328.625)
+scale = Vector2(0.604398, 0.604398)
+texture = ExtResource("40_owxr5")
+
+[node name="Label" type="Label" parent="CanvasLayer4/Dead"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 313.941
+offset_top = -502.987
+offset_right = 923.941
+offset_bottom = -393.987
+theme_override_font_sizes/font_size = 50
+text = "此张为b站画师加班Jab所画"
+
+[node name="家务" type="Sprite2D" parent="CanvasLayer4"]
+position = Vector2(566.25, 400.25)
+scale = Vector2(0.788574, 0.788574)
 texture = ExtResource("37_37gp8")
+
+[node name="Label" type="Label" parent="CanvasLayer4/家务"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -317.12
+offset_top = 424.985
+offset_right = 32.8799
+offset_bottom = 487.985
+theme_override_font_sizes/font_size = 50
+text = "游戏作者：传梦
+"
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

@@ -13,58 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_75y4j"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="12_valin"]
 [ext_resource type="Texture2D" uid="uid://c56s0p1qheflj" path="res://SeparateAnimation/传梦/传大将军坏事做尽待机.png" id="13_0gp4k"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="14_74q2n"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="14_74q2n"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="15_kafu7"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_1jein"]
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
-vertices = PackedVector2Array(20, 95, 2390, 97, 2393, 2472, 11, 2472, 11, 1492, 9, 1337)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(0, 4, 5)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 1492, 11, 2472, 2393, 2472, 2390, 97)])
-
-[sub_resource type="Gradient" id="Gradient_h5dxg"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s2iao"]
-gradient = SubResource("Gradient_h5dxg")
-fill = 1
-fill_from = Vector2(1, 0.612536)
-
-[sub_resource type="Animation" id="Animation_amsj8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_p0fbi"]
-resource_name = "turnDark"
-length = 7.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3.5, 7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqvt8"]
-_data = {
-"RESET": SubResource("Animation_amsj8"),
-"turnDark": SubResource("Animation_p0fbi")
-}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vycaj"]
 atlas = ExtResource("13_0gp4k")
@@ -158,12 +109,62 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
+vertices = PackedVector2Array(41, 656, 11, 1492, 9, 1337, 20, 95, 712, 102, 706, 647)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(0, 3, 4, 5)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(20, 95, 9, 1337, 11, 1492, 41, 656, 706, 647, 712, 102)])
+
+[sub_resource type="Gradient" id="Gradient_h5dxg"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s2iao"]
+gradient = SubResource("Gradient_h5dxg")
+fill = 1
+fill_from = Vector2(1, 0.612536)
+
+[sub_resource type="Animation" id="Animation_amsj8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p0fbi"]
+resource_name = "turnDark"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqvt8"]
+_data = {
+"RESET": SubResource("Animation_amsj8"),
+"turnDark": SubResource("Animation_p0fbi")
+}
+
 [node name="新手村" type="Node2D"]
 position = Vector2(-2, -3)
 script = ExtResource("1_pteas")
 
 [node name="建业左" type="Sprite2D" parent="."]
-position = Vector2(330, 255)
+position = Vector2(327.5, 255)
+scale = Vector2(1.00762, 1)
 texture = ExtResource("2_edm3l")
 
 [node name="shadow" type="Sprite2D" parent="."]
@@ -182,7 +183,6 @@ build_mode = 1
 polygon = PackedVector2Array(535, 509, 674, 508, 706, 505, 717, 358, 711, 339, 707, 1, 331, 5, 326, 5, 301, 5, 286, 5, 60, 8, 62, 332, 69, 419, 61, 503, 127, 505, 240, 512, 349, 514, 423, 514, 494, 510)
 
 [node name="player" parent="." instance=ExtResource("5_ptfjq")]
-z_index = 1
 position = Vector2(484, 410)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
@@ -191,6 +191,24 @@ metadata/_edit_group_ = true
 zoom = Vector2(1.8, 1.8)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
+
+[node name="传梦" parent="." instance=ExtResource("12_valin")]
+position = Vector2(339, 309)
+sprite_frames = SubResource("SpriteFrames_w26ab")
+autoplay = "default"
+frame_progress = 0.295987
+npcName = "传梦"
+
+[node name="CollisionPolygon2D" parent="传梦/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -298, -216, -292, -202, -270, -196, -250, -198, -225, -210, -213, -241, -206, -262, -224, -281, -238, -280, -258, -282, -266, -280)
+
+[node name="Button" parent="传梦" index="1"]
+offset_right = 55.0
+offset_bottom = 56.0
+
+[node name="斩击" parent="传梦/effects" index="3"]
+frame = 0
+frame_progress = 0.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1301, 873)
@@ -216,8 +234,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
-position = Vector2(5, -82)
+position = Vector2(-52, -118)
 navigation_polygon = SubResource("NavigationPolygon_kwa23")
 constrain_avoidance = true
 
@@ -285,24 +302,6 @@ libraries = {
 "": SubResource("AnimationLibrary_kqvt8")
 }
 
-[node name="传梦" parent="." instance=ExtResource("12_valin")]
-position = Vector2(339, 309)
-sprite_frames = SubResource("SpriteFrames_w26ab")
-autoplay = "default"
-frame_progress = 0.295987
-npcName = "传梦"
-
-[node name="CollisionPolygon2D" parent="传梦/npcBody" index="1"]
-polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -298, -216, -292, -202, -270, -196, -250, -198, -225, -210, -213, -241, -206, -262, -224, -281, -238, -280, -258, -282, -266, -280)
-
-[node name="Button" parent="传梦" index="1"]
-offset_right = 55.0
-offset_bottom = 56.0
-
-[node name="斩击" parent="传梦/effects" index="3"]
-frame = 0
-frame_progress = 0.0
-
 [node name="新手警告" parent="." instance=ExtResource("14_74q2n")]
 visible = false
 position = Vector2(441, 388)
@@ -329,3 +328,4 @@ triggerEvent = "新手警告"
 
 [editable path="player"]
 [editable path="传梦"]
+[editable path="menuControl"]

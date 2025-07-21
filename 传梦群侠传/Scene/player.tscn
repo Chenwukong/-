@@ -1699,14 +1699,16 @@ shader_parameter/center_density = 0.546
 
 [node name="players" type="CharacterBody2D" groups=["mapPlayer"]]
 y_sort_enabled = true
-position = Vector2(504, 270)
+position = Vector2(500, 312)
 script = ExtResource("1_b15sp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
+y_sort_enabled = true
 texture = SubResource("CompressedTexture2D_1eey2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 material = SubResource("ShaderMaterial_pbjet")
 sprite_frames = SubResource("SpriteFrames_0lx1r")
 animation = &"左上"
@@ -1738,6 +1740,11 @@ autostart = true
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(-1, 76)
 collision_mask = 4
+collide_with_areas = true
+
+[node name="RayCast2D4" type="RayCast2D" parent="."]
+target_position = Vector2(-1, 76)
+collide_with_areas = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="."]
 enabled = false

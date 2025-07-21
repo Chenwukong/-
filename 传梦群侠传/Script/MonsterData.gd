@@ -42,7 +42,7 @@ func _ready():
 	monsters["炼狱迷宫6"] = monsters['炼狱迷宫1']
 	monsters["炼狱迷宫7"] = monsters['炼狱迷宫1']
 func calculate_monster_hp(level):
-	var baseHp = 100  # Base HP at level 1
+	var baseHp = 130  # Base HP at level 1
 	var finalHp = 5000  # Desired HP at level 100
 	
 	var hpIncreasePerLevel = (finalHp - baseHp) / 99  # Linear increase per level
@@ -67,14 +67,14 @@ func calculate_monster_str(level):
 	var totalStr = baseStr + strIncreasePerLevel * (level - 1)
 	return totalStr
 func calculate_monster_ap(level):
-	var baseStr = 5  # Base defense at level 1
+	var baseStr = 30 # Base defense at level 1
 	var finalStr = 800  # Desired defense at level 100
 	var strIncreasePerLevel = (finalStr - baseStr) / 99  # Linear increase per level
 	
 	var totalStr = baseStr + strIncreasePerLevel * (level - 1)
 	return totalStr
 func calculate_speed_for_level(level):
-	var baseSpeed = 30.0  # Base speed at level 1
+	var baseSpeed = 35.0  # Base speed at level 1
 	var speedIncreasePerLevel = 4  # Speed increase per level
 	var totalSpeed = baseSpeed + speedIncreasePerLevel * (level - 1)
 
@@ -419,15 +419,15 @@ var monsters = {
 	"东海湾": {
 		"海毛虫": Monster.new({
 			"name": "海毛虫",
-			"speed": calculate_speed_for_level(1),
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 0,
 			"physicDefense": 0,
 			"attackDmg": 50,
-			"magicDmg": calculate_monster_ap(1),
-			"hp": calculate_monster_hp(1),
-			"exp": calculate_monster_exp(calculate_monster_hp(1)),
-			"gold": calculate_monster_gold(calculate_monster_hp(1)),
+			"magicDmg": 30,
+			"hp": 130,
+			"exp": 30,
+			"gold": 20,
 			"luck": 10,
 			"idle": "海毛虫idle",
 			 "monsterMagicList": [
@@ -436,16 +436,16 @@ var monsters = {
 			}),
 		"大海龟": Monster.new({
 			"name": "大海龟",
-			"speed":calculate_speed_for_level(3),
+			"speed":40,
 			"level": 3,
 			"magicDefense":0,
 			"physicDefense": 0,
 			"attackDmg": 50,
-			"magicDmg": calculate_monster_ap(3),
+			"magicDmg": 26,
 			"luck": 10,
-			"hp": calculate_monster_hp(3),
-			"exp": calculate_monster_exp(calculate_monster_hp(3)),
-			"gold": calculate_monster_gold(calculate_monster_hp(3)),
+			"hp": 160,
+			"exp": 40,
+			"gold": 20,
 			"idle": "大海龟idle",
 			 "monsterMagicList": [
 				magics.get("水攻"),
@@ -623,7 +623,7 @@ var monsters = {
 	"虾兵蟹将":{
 		"虾兵": Monster.new({
 			"name": "虾兵",
-			"speed": 20,
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -639,7 +639,7 @@ var monsters = {
 			}),
 		"虾兵2": Monster.new({
 			"name": "虾兵",
-			"speed": 20,
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -655,7 +655,7 @@ var monsters = {
 			}),	
 		"虾兵3": Monster.new({
 			"name": "虾兵",
-			"speed": 20,
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -671,7 +671,7 @@ var monsters = {
 			}),
 		"蟹将1": Monster.new({
 			"name": "蟹将",
-			"speed": 20,
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -687,7 +687,7 @@ var monsters = {
 			}),
 		"蟹将2": Monster.new({
 			"name": "蟹将",
-			"speed": 20,
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -703,7 +703,7 @@ var monsters = {
 			}),		
 		"蟹将3": Monster.new({
 			"name": "蟹将",
-			"speed": 20,
+			"speed": 40,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -721,7 +721,7 @@ var monsters = {
 	"牛羊怪":{
 		"牛妖":Monster.new({
 			"name": "牛妖",
-			"speed": 50,
+			"speed": 60,
 			"level": 1,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -737,7 +737,7 @@ var monsters = {
 			}),
 		"羊妖":Monster.new({
 			"name": "羊妖",
-			"speed": 50,
+			"speed": 60,
 			"level": 8,
 			"magicDefense": 5,
 			"physicDefense": 20,
@@ -5967,7 +5967,63 @@ var monsters = {
 				magics.get("水攻"),
 			],
 			}),
-		},																	
+		},		
+	"天宫":{				
+		"魔巫": Monster.new({
+			"name": "魔巫",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"type": "",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "魔巫idle",
+			 "monsterMagicList": [
+				magics.get("水攻"),
+			],
+			}),
+		"小魔头": Monster.new({
+			"name": "小魔头",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "小魔头idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),	
+		"镰魔": Monster.new({
+			"name": "镰魔",
+			"speed": 100,
+			"level": 1,
+			"magicDefense": 200,
+			"physicDefense": 200,
+			"attackDmg": 0,
+			"magicDmg": 0,
+			"posi": "middle",
+			"hp": 50,
+			"exp": 100,
+			"gold": 100,
+			"idle": "镰魔idle",
+			 "monsterMagicList": [
+				magics.get("水满金山"),
+				magics.get("水炮"),
+			],
+			}),				
+		}															
 		}	
 
 

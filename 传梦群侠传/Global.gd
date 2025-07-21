@@ -7,7 +7,11 @@ var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
 var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":5, "创界山":8, "创界山顶":8, "炼狱迷宫1": 8, "炼狱迷宫2":8, "炼狱迷宫3":8, "炼狱迷宫4":8, "炼狱迷宫5":8, "炼狱迷宫6":8, "炼狱迷宫7":8}
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":6,"小西天":6, "北俱芦洲":6,
+"龙窟1": 4,"龙窟2": 4,"龙窟3": 4,"龙窟4": 4,"龙窟5": 4,"龙窟6": 4,"龙窟7": 4,
+"凤巢1": 4,"凤巢2": 4,"凤巢3": 4,"凤巢4": 4,"凤巢5": 4,"凤巢6": 4,"龙凤巢7": 4,
+ "女娲神迹": 3,
+ "创界山":8, "创界山顶":8, "炼狱迷宫1": 8, "炼狱迷宫2":8, "炼狱迷宫3":8, "炼狱迷宫4":8, "炼狱迷宫5":8, "炼狱迷宫6":8, "炼狱迷宫7":8,"天宫":8}
 var menuOut = false
 var healBuffAmount = 0
 var onAttackingList = []
@@ -18,14 +22,15 @@ var monsterTarget = null
 var onPhone = false
 var onButton = false
 var bgmTimer = 0
+var levelLimit = 10
 var battleButtonIndex = 0
-var maxLevel = 25
+var maxLevel = 10
 var onAttackPicking = false #是否在选择攻击对象
 var onMagicAttackPicking = false
 var playersAppended = false
 var onMagicAttacking = false
 var onAttacking = false
-
+var names = []
 var onHitPlayer = []
 var alivePlayers = []
 var selectedTarget = false
@@ -150,7 +155,8 @@ var currentCamera
 var currPlayer
 var currScene
 var noLimit = true
-var onTeamPlayer = ["时追云",]
+
+var onTeamPlayer = ["时追云"]
 var onTeamPet = []
 var onTeamSmallPet = []
 var smallPets = []
@@ -925,8 +931,7 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 1, "dialogue": "新手警告", "unlocked": true, "bgm":null,"trigger":false},
-					{"chapter": 1, "dialogue": "送物资", "unlocked": true, "bgm":null,"trigger":false},
-					{"chapter": 9, "dialogue": "进入传梦空间", "unlocked": true, "bgm":null,"trigger":false},
+					{"chapter": 9, "dialogue": "进入传梦空间", "unlocked": false, "bgm":null,"trigger":false},
 					{"chapter": 9, "dialogue": "挑战传梦", "unlocked": true, "bgm":null,"trigger":false},		
 					{"chapter": 9, "dialogue": "传梦真谛", "unlocked": true, "bgm":null,"trigger":false},										
 				],
@@ -2558,6 +2563,7 @@ var npcs = {
 	"结局":{
 		"dialogues": [
 				#0
+					{"chapter": 12, "dialogue": "结局0", "unlocked": true, "bgm": "res://Audio/BGM/#仙境.ogg","trigger":false},								
 					{"chapter": 12, "dialogue": "结局1", "unlocked": true, "bgm": null,"trigger":false},																																																									
 					{"chapter": 12, "dialogue": "结局2", "unlocked": true, "bgm": "res://Audio/BGM/比翼鸟.ogg","trigger":false},			
 					{"chapter": 12, "dialogue": "结局3", "unlocked": true, "bgm": "res://Audio/BGM/四个人的幸福时光.mp3","trigger":false},
@@ -2565,7 +2571,7 @@ var npcs = {
 					{"chapter": 12, "dialogue": "结局5", "unlocked": true, "bgm":"res://Audio/BGM/SWD5 无奈.mp3" ,"trigger":false},
 					{"chapter": 12, "dialogue": "结局6", "unlocked": true, "bgm": "res://Audio/BGM/雪見-落入凡塵 [TubeRipper.cc].ogg" ,"trigger":false},
 					{"chapter": 12, "dialogue": "结局7", "unlocked": true, "bgm": null,"trigger":false},
-						
+					{"chapter": 12, "dialogue": "结局8", "unlocked": true, "bgm": null,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
@@ -2594,7 +2600,7 @@ var storyVars = {
 }
 var vis
 var mapPlayerPos = Vector2(0, 0)
-var haveLantern = true
+var haveLantern = false
 var saveData = {}
 var onHurry = false
 
@@ -3308,3 +3314,9 @@ func addStuff():
 		"trigger": false,
 		"disable": false,
 	})
+
+func isNewPlayer():
+	if get_tree().current_scene.is_new_player():
+		get_tree().current_scene.get_current_player_num()
+	else:
+		pass

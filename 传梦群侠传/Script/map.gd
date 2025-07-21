@@ -38,8 +38,8 @@ var canAdd = true
 var onBuy = false
 var onSale = false
 var confirmButtonIndex = 0
-@onready var http := $http
-
+var http
+signal httpNameReady()
 var supabase_url := "https://qcrkhgmmvgpkamgadvxy.supabase.co"
 var api_key := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFjcmtoZ21tdmdwa2FtZ2Fkdnh5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDg5MDMwNjEsImV4cCI6MjA2NDQ3OTA2MX0.pM3AZQkOz2xGvcVcfLJtTmCxn4y-nKrjKTSzhcyj-9E"
 
@@ -59,7 +59,14 @@ func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
 
 
 func _ready():
-	
+	if not has_node("http"):
+		var httpRequest = HTTPRequest.new()
+		httpRequest.name = "http"
+		add_child(httpRequest)
+		
+	http = $http
+	http.request_completed.connect(_on_http_request_completed)
+	connect("httpNameReady", Callable($CanvasLayer, "onHttpNameReady"))
 	#-------------------------------------------------------------------------shader
 	if not has_node("oneTimeSound"):
 		var audio_player = AudioStreamPlayer.new()
@@ -897,6 +904,7 @@ func _process(delta):
 #			$enterFightCd.paused = false
 		if $player.velocity != Vector2(0, 0) and !onFight and !Global.onFight and canEnterFight == true and !Global.menuOut and Global.dangerScene.get(get_tree().current_scene.name) and !Global.onTalk:
 			#bossFight("奔霸","res://Audio/SE/SWD 战斗开始.mp3" )
+
 			check_enter_fight_scene()
 	Global.onFight = onFight
 
@@ -1019,6 +1027,9 @@ func _on_texture_button_button_down():
 
 		
 func _on_texture_button_pressed():
+	pass
+
+func _on_audio_stream_player_2d_finished():
 	pass
 
 
@@ -1949,7 +1960,7 @@ func _on_audio_finished():
 
 
 func _on_id_text_submitted(new_text):
-	if $CanvasLayer3/id.text.length() > 12:
+	if $CanvasLayer3/id.text.length() > 6:
 		$CanvasLayer3/Label.visible = true
 		$CanvasLayer3/Label.text = "字太多了！"
 		return
@@ -1958,7 +1969,7 @@ func _on_id_text_submitted(new_text):
 
 
 func _on_发送_button_down():
-	if $CanvasLayer3/id.text.length() > 12:
+	if $CanvasLayer3/id.text.length() > 6:
 		$CanvasLayer3/Label.visible = true
 		$CanvasLayer3/Label.text = "字太多了！"
 		return
@@ -2020,7 +2031,7 @@ func check_if_id_exists(player_id: String):
 
 
 func _on_发送2_button_down():
-	print($CanvasLayer3/message.text.length(),$CanvasLayer3/message.text.length()>170)
+
 	if $CanvasLayer3/message.text.length() > 170:
 		$CanvasLayer3/Label.visible = true
 		$CanvasLayer3/Label.text = "字太多了！"
@@ -2067,6 +2078,21 @@ func _on_http_request_completed(result, response_code, headers, body):
 	print("响应内容: ", response_text)
 	
 	if response_code == 200:
+		if httpStatus == "checkOld":
+			var data = JSON.parse_string(body.get_string_from_utf8())
+			if data and data.size() > 0:
+				var current = data[0]["playerNum"]
+				update_player_num(current + 1)
+		if httpStatus == "fetchName":
+			var json = JSON.parse_string(body.get_string_from_utf8())
+			if json:
+				Global.names = []
+				for entry in json:
+					Global.names.append(entry["name"])
+				emit_signal("httpNameReady")
+			else:
+				print("解析失败")
+		
 		if httpStatus == "checkId":
 
 			if response_text != "[]":
@@ -2086,8 +2112,6 @@ func _on_http_request_completed(result, response_code, headers, body):
 				var data = json.get_data()
 				if data.size() > 0:
 					var record = data[0]
-					print("名字: ", record["name"])
-					print("消息: ", record["message"])
 
 					Global.helperName = record["name"]
 					Global.helperMsg = record["message"]
@@ -2122,3 +2146,61 @@ func _on_http_request_completed(result, response_code, headers, body):
 
 	else:
 		print("发生错误！状态码:", response_code)
+
+func get_current_player_num():
+	httpStatus = "checkOld"
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+
+	var url = supabase_url + "/rest/v1/player_count?select=playerNum&id=eq.1"  # 假设主键是 id=1
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+
+	if err != OK:
+		print("Failed to send GET request")
+
+
+func update_player_num(new_value: int):
+	
+	var url = supabase_url + "/rest/v1/player_count?id=eq.1"
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+
+	var body = {
+		"playerNum": new_value
+	}
+	var json_body = JSON.stringify(body)
+	var err = http.request(url, headers, HTTPClient.METHOD_PATCH, json_body)
+
+	if err != OK:
+		print("更新玩家数量失败")
+const CONFIG_PATH := "user://player_data.cfg"
+
+func is_new_player() -> bool:
+	var config = ConfigFile.new()
+	var err = config.load(CONFIG_PATH)
+
+	if err == OK:
+		return false  # 有配置文件，不是新玩家
+	else:
+		# 创建文件标记首次运行
+		config.set_value("player", "first_launch", false)
+		config.save(CONFIG_PATH)
+		return true  # 没有配置文件，是新玩家
+func fetch_all_names():
+	httpStatus = "fetchName"
+	var url = supabase_url + "/rest/v1/shareDream?select=name"
+
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	if err != OK:
+		print("获取全部名字失败")

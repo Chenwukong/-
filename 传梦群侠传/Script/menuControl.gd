@@ -2889,8 +2889,8 @@ func _on_退出游戏按钮_button_down():
 	pass # Replace with function body.
 
 func bagButton():
-	if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name == "姜韵" and Global.onGhost:
-		return
+#	if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name == "姜韵" and Global.onGhost:
+#		return
 	if armorItemSelectIndex == 0:
 		print(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon)
 		weapons = []

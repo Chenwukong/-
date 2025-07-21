@@ -69,7 +69,7 @@ var totalMp = 0
 
 var healBuffAmount = 0
 var poisonDebuffAmount = 0
-var 真身round = 1
+var 真身round = 8
 
 var itemList = []
 var magicPanel
@@ -1774,6 +1774,8 @@ func castMagic(delta, magic, target, type, onLastMagic):
 								buffTarget.onPhysicDefenseBuff = magic.duration
 								buffTarget.buffs.append({"onPhysicDefenseBuff": buffTarget.onPhysicDefenseBuff})
 								buffTarget.set(i, buffTarget.get(i) + magic.value)
+								
+								
 					if i == "currMagicDefense":
 						if buffTarget.onMagicDefenseBuff:
 							pass
@@ -1782,6 +1784,9 @@ func castMagic(delta, magic, target, type, onLastMagic):
 								buffTarget.onMagicDefenseBuff = magic.duration
 								buffTarget.buffs.append({"onMagicDefenseBuff": buffTarget.onMagicDefenseBuff})
 								buffTarget.set(i, buffTarget.get(i) + magic.value)		
+								buffTarget.get_node("buffArea").visible = true
+								buffTarget.get_node("buffArea").play("currMagicDefense")								
+								
 					if i == "alive":
 						if buffTarget.alive == true:
 							pass

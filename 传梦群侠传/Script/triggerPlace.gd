@@ -216,6 +216,8 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))												
 			"幻境4":
 				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("幻境"))
+			"玉帝秘境":
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("玉帝秘境"))					
 			"女娲神迹":
 				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("女娲神迹"))	
 			"幻境":
@@ -277,3 +279,9 @@ func _on_triggerPlace_Timer_timeout():
 	else:
 		Global.triggerPlace[name] = {"trigger":false, "disable": false} 
 	
+
+func _on_trigger_place_timer_timeout():
+	if name in Global.triggerPlace:
+		pass
+	else:
+		Global.triggerPlace[name] = {"trigger":false, "disable": false} 

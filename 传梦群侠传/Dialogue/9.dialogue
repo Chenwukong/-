@@ -603,6 +603,7 @@ set Global.onTalk = false
 ~ 菩提告辞
 set Global.onTalk = true
 set Global.dial = null
+set Global.npcs.get("传梦").dialogues[1].unlocked = true
 set Global.changebgm("res://Audio/BGM/0情况危机.ogg")
 菩提老祖: [speed=0.5]天庭的平衡已经被打破了，是魔尊占了上风！
 凌若昭: [speed=0.5]怎么会这么突然
@@ -1747,7 +1748,6 @@ set Global.onTalk = false
 
 ~ 妖盟入侵11
 set Global.onTalk = true
-set Global.addStuff()
 set Global.getnode("六耳").visible = true
 set Global.getnode("player").visible = false
 六耳猕猴: [speed=0.5]妖.......仙？

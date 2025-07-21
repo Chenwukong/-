@@ -196,9 +196,13 @@ func _on_hint_button_button_down():
 	$hintButton.play("click")
 	if !hintOut:
 		hintOut = true
-		$questHint.visible = true
+		$"传梦者列表".visible = true
+		get_tree().current_scene.fetch_all_names()
+
+		
 	else:
 		hintOut = false
+		$"传梦者列表".visible = false
 		$questHint.visible = false
 	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
 	$AudioStreamPlayer2D.play()		
@@ -543,6 +547,7 @@ func _on_map_small_button_button_down():
 
 func _on_shop_button_button_down():
 	buyAmount = 0
+	
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	if !$"宠物食物商店".visible:
 		$"宠物食物商店".visible = true
@@ -573,12 +578,14 @@ func _on_灵宠商店button_button_down():
 
 
 func _on_add_button_button_down():
+	if cost >= FightScenePlayers.golds:
+		return
+	
 	buyAmount += 1
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/AnimatedSprite2D2".play("click")
-	cost = buyAmount * 100
-	if cost >= FightScenePlayers.golds:
-		return
+	
+	cost = buyAmount * 100	
 	$"宠物食物商店/cost".text = str(cost)
 
 func _on_add_button_button_up():
@@ -645,12 +652,13 @@ func _on_count_down_timer_timeout():
 func _on_buy_button_button_down():
 	FightScenePlayers.golds -= cost * Global.enKey
 	FightScenePlayers.petFood += buyAmount
+	Global.showMsg("购买了"+str(buyAmount)+"个灵宠食物")
 	buyAmount = 0
 	cost = 0
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/cost".text = str(cost)
-
-
+	$"宠物食物商店".visible = false
+	get_tree().current_scene.get_node("player").canMove = true	
 
 
 #func _on_右上_mouse_entered():
@@ -874,7 +882,7 @@ func _on_button_button_down():
 	$map.visible = false
 	$position.visible = false
 	$questHint.visible = false
-	
+	$"传梦者列表".visible = false
 	
 	$"宠物".play("click")
 	$"宠物列表".visible = true
@@ -924,6 +932,7 @@ func _on_team_button_button_down():
 	$map.visible = false
 	$position.visible = false
 	$questHint.visible = false		
+	$"传梦者列表".visible = false
 	$"队伍".play("click")
 	$"盟友列表".visible = true
 	get_tree().current_scene.get_node("player").canMove = false
@@ -1021,3 +1030,52 @@ func _on_bgm_timer_timeout():
 		return
 	Global.bgmTimer += 0.1
 	
+
+
+func _on_传梦者列表button_button_down():
+	$"传梦者列表".visible = false
+
+func onHttpNameReady():
+	
+	Global.names.shuffle()
+	
+	var vbox = $"传梦者列表/ScrollContainer/VBoxContainer"
+	
+	
+	for i in vbox.get_children():
+		i.queue_free()
+	
+	var current_hbox: HBoxContainer = null
+	var name_count := 0
+	current_hbox = HBoxContainer.new()
+	current_hbox.size_flags_horizontal = Control.SIZE_FILL
+	current_hbox.custom_minimum_size = Vector2(0, 40)
+	vbox.add_child(current_hbox)	
+	
+	
+	for i in Global.names:
+		if name_count % 5 == 0:
+			current_hbox = HBoxContainer.new()
+			current_hbox.size_flags_horizontal = Control.SIZE_FILL
+			current_hbox.custom_minimum_size = Vector2(0, 40)
+			vbox.add_child(current_hbox)
+
+		var labelInstance = preload("res://Scene/传梦者名.tscn").instantiate()
+		labelInstance.text = i
+		current_hbox.add_child(labelInstance)
+		name_count += 1
+			
+			
+
+	
+	
+func get_all_hbox_containers(parent_node: Node) -> Array:
+	var hboxes = []
+	for child in parent_node.get_children():
+		if child is HBoxContainer:
+			hboxes.append(child)
+		
+		# 递归查找子节点（如果你想要嵌套的也找出来）
+		hboxes += get_all_hbox_containers(child)
+	
+	return hboxes

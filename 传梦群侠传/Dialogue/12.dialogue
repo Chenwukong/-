@@ -1,6 +1,5 @@
 ~ 道归虚无1
 set Global.onTalk = true
-set Global.addStuff()
 set FightScenePlayers.healAll()	
 set Global.getnode("姜韵").visible = true
 玉帝: ....
@@ -1028,6 +1027,7 @@ set Global.getnode("AnimationPlayer2").play("复活")
 set Global.getnode("小女孩").play("天机")
 [next=2]
 set Global.toggleballon()
+set get_tree().current_scene.fetch_first_unread()
 时追云惊: [speed=0.5]这是？？？
 姜韵: [speed=0.5]这孩子...好像身上有天道的气息
 小二: [speed=0.5]什么！？难道是天道又复活了？
@@ -1044,9 +1044,33 @@ set Global.toggleballon()
 传梦: [speed=0.5]转达完毕，接下来切回主人公们的视角吧
 
 set Global.dial = "结局"
-set Global.changeScene("长安城",null)
+set Global.changeScene("凌霄宝殿",Vector2(889,983))
 
 
+set Global.onTalk = false
+=> END
+
+~ 结局0
+set Global.onTalk = true
+玉帝: [speed=0.5]你。。。你们居然真的做到了
+时追云: [speed=0.5]其中很大一部分是你的功劳吧
+玉帝: [speed=0.5]哈哈哈哈哈
+时追云: [speed=0.5]渔大爷，这是我最后一次这么叫你
+时追云: [speed=0.5]我今后不会站在神仙的一方，也不会站在妖魔的一方，我是属于人类的一方
+时追云: [speed=0.5]这样的话，如果你们今后要做些事，就得掂量一二了
+玉帝: [speed=0.5]你放心吧，如果不是必死之局，我是绝对不会危害凡人的
+时追云: [speed=0.5]嗯...再见！
+set Global.getnode("player").visible = false
+玉帝: [speed=0.5]...
+玉帝: [speed=0.5]你果然成长了很多啊，幸好，你不是个趋炎附势之人，幸好，你没有无脑站在天庭的一边
+玉帝: [speed=0.5]身为掌握天道之力的我，危害天道的行为将会极快的反噬到我身上，菩提可能失去了他的万事通能力
+玉帝: [speed=0.5]而我或许在天道反噬之下会变成残暴无比，昏庸至极
+玉帝: [speed=0.5]可惜这玉帝之位并不能随意传给他人，这已经乱了的天道之力，没人能承受得住
+玉帝: [speed=0.5]只希望到那个时候，还是你来阻止我...
+
+
+
+set Global.changeScene("长安城",Vector2(1957,1066))
 set Global.onTalk = false
 => END
 
@@ -1263,7 +1287,6 @@ set Global.getnode("敖雨3").visible = true
 天机娃娃: [speed=0.5]他们被我送回过去了，不知道要多久才会回来
 敖雨: [speed=0.5]...
 敖雨: [speed=0.5]那我就在这等他回来！
-set Global.dial = null
 set Global.changeScene("结束",null)
 
 
@@ -1272,3 +1295,23 @@ set Global.onTalk = false
 
 
 
+~ 结局8
+set Global.onTalk = true
+ 三界暂时回归了和平，妖仙魔之间，再次获得了短暂的和平，只是这次，多了一股人间势力[next=7]
+ 大唐官府自从学了金刚经，灵力注器之法后，搭配上他们的凡间武艺，已然成为妖魔不敢轻视的存在[next=7]
+ 观音菩萨与镇元大仙因此而收益，他们获得了大量的凡间信仰[next=7]
+ 玉帝的性情大变，变得时而昏庸时而精明，没有人知道他在想什么[next=7]
+ 地府在获得了天庭的帮助后，在与鬼帝的战斗中也取得了胜利[next=7]
+ 小二与若昭游历与各个妖魔部落之间，悉心劝导他们放下屠刀，若道理无法说通，那真理也不会迟到[next=7]
+ 凌天麒和烟儿则是在各地排除隐患，维护人间的安全，而梦澹也被放在了一个隐秘的地方，等待着下一个使用者[next=7]
+ 蚩尤还会复活吗？他的身上有着什么秘密？关于他的事都结束了吗？[next=7]
+传梦: 有缘的话，我们传梦2再见！[next=5]
+set Global.getnode("CanvasLayer4").visible = true
+set Global.getnode("AnimationPlayer").play("结局")
+set Global.getnode("CanvasLayer4").turnVisible()
+set Global.getnode("CanvasLayer4/家务").modulate = "ffffff"
+
+
+
+set Global.onTalk = false
+=> END

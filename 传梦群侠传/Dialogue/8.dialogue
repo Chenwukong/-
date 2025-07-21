@@ -390,7 +390,7 @@ set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 凌若昭: [speed=0.5]交给我们吧
 姜韵喜: [speed=0.5]菩萨放心，我们一定会把人参果带回来的
 观音菩萨: [speed=0.5]好，那就拜托你们了
-set Global.showMsg("姜韵可以穿装备了！")
+set Global.showMsg("姜韵防御增加！")
 set Global.getnode("姜韵").visible = false
 
 set Global.dial = "初见观音"
@@ -532,7 +532,6 @@ set Global.onTalk = false
 
 ~ 五庄观4
 set Global.onTalk = true
-set Global.addStuff()
 set Global.getnode("清风2").visible = true
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
@@ -549,7 +548,7 @@ set Global.onTalk = false
 ~ 五庄观5
 set Global.onTalk = true
 set Global.changevis("五庄观","清风")
-set Global.addStuff()
+
 众人: [speed=0.5]拜见镇元大仙
 镇元大仙: [speed=0.5]嗯，诸位是为了人参果而来？
 姜韵: [speed=0.5]回大仙，我们是受观音大士所托来求一颗人参果
@@ -858,7 +857,7 @@ set Global.onTalk = false
 
 ~ 卡路
 set Global.onTalk = true
-set Global.addStuff()
+
 朱紫国士兵: [speed=0.5]没有通关文牒不允许通过这里
 凌若昭: [speed=0.5]怎么办？
 时追云: [speed=0.5]找人问问吧，附近只有这有路了，不然还得走沙漠
@@ -973,7 +972,7 @@ set Global.onTalk = false
 
 ~ 追杀1
 set Global.onTalk = true
-set Global.addStuff()
+
 set Global.changebgm("res://Audio/BGM/大堂-急迫.ogg")
 时追云: [speed=0.5]你就是朱紫国的国主吗
 罗非: [speed=0.5]你们是谁，竟然敢闯进我的皇宫
@@ -1298,7 +1297,7 @@ set Global.onTalk = false
 
 ~ 黄眉4
 set Global.onTalk = true
-set Global.addStuff()
+
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/AnimatedSprite2D").play("upStand")

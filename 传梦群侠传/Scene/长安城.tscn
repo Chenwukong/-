@@ -1,6 +1,7 @@
-[gd_scene load_steps=132 format=3 uid="uid://3ae56ae6pv0p"]
+[gd_scene load_steps=134 format=3 uid="uid://3ae56ae6pv0p"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2w755"]
+[ext_resource type="Shader" path="res://shader/turnWhite.gdshader" id="1_a0moi"]
 [ext_resource type="Texture2D" uid="uid://bi1gl78smusew" path="res://panoramas2/长安城.PNG" id="2_uidke"]
 [ext_resource type="Texture2D" uid="uid://jj76kmfn3du4" path="res://panoramas2/长安城全景_2.png" id="3_ibq0p"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_ur10m"]
@@ -41,6 +42,11 @@
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="51_bceq2"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="51_gxx50"]
 [ext_resource type="Texture2D" uid="uid://cclhnu6j21du5" path="res://Characters/道姑.png" id="52_gyxru"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nrdq2"]
+shader = ExtResource("1_a0moi")
+shader_parameter/radius = 0.0
+shader_parameter/center = null
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vxdqv"]
 radius = 95.8801
@@ -670,6 +676,7 @@ animations = [{
 }]
 
 [node name="长安城" type="Node2D"]
+material = SubResource("ShaderMaterial_nrdq2")
 script = ExtResource("1_2w755")
 
 [node name="建业左" type="Sprite2D" parent="."]

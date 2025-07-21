@@ -23,9 +23,9 @@
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="29_lf4j1"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="30_7netp"]
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="32_qspn4"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="32_t6vd4"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="32_t6vd4"]
 [ext_resource type="Texture2D" uid="uid://b67nrw18kcp3o" path="res://Characters/妇女-2.png" id="33_saim5"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="34_b8kc4"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="34_b8kc4"]
 [ext_resource type="Texture2D" uid="uid://bsb23jpa621a2" path="res://Characters/青蛙.png" id="35_qc3nd"]
 [ext_resource type="Texture2D" uid="uid://b1psu2ebwpl7" path="res://Pictures/NT.png" id="35_rvniy"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="37_ekk6w"]
@@ -835,7 +835,7 @@ texture = ExtResource("2_ulmbe")
 
 [node name="player" parent="." instance=ExtResource("3_f0txs")]
 z_index = 2
-position = Vector2(2128, 1564)
+position = Vector2(1926, 1681)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -1303,6 +1303,7 @@ scale = Vector2(0.684865, 0.684865)
 sprite_frames = SubResource("SpriteFrames_cdn1j")
 
 [node name="无痕" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1203, 404)
 sprite_frames = SubResource("SpriteFrames_u5yc1")
 
@@ -1338,5 +1339,6 @@ texture = ExtResource("38_ojqdr")
 [editable path="王姨尖叫"]
 [editable path="王姨遇险"]
 [editable path="杀戮"]
+[editable path="potentialBall2"]
 [editable path="teleportCircle2"]
 [editable path="玉帝物品事件"]

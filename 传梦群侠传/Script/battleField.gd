@@ -912,6 +912,7 @@ func instantiateMonster():
 	
 	# Check if the current scene is in the array of easy levels
 	#if Global.currScene in easyLevels:
+	
 	numMonstersToSelect = randi_range(Global.dangerScene.get(get_tree().current_scene.name)-2, Global.dangerScene.get(get_tree().current_scene.name))  # Select 3 to 5 monsters for easy levels
 
 	#已被选中加入战斗的怪物，以numMonsterToSelect的随机数加入相应数量的已选中怪物
@@ -1420,6 +1421,7 @@ func showLastHit():
 
 func _on_queue_free_timeout():
 	Global.onAttackPicking = false
+	Global.targetMonsterIdx = 0
 	queue_free()
 	totalExp = 0
 

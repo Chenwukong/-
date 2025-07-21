@@ -17,7 +17,7 @@ signal skipped_typing()
 ## Emitted when typing finishes.
 signal finished_typing()
 
-var emoji_sprite = $"../../../emoji_sprite"
+@onready var emoji_sprite = $"../../../emoji_sprite"
 ## The action to press to skip typing.
 @export var skip_action: StringName = &"ui_cancel"
 
