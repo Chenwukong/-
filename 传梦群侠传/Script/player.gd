@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 900
+var speed = 300
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
@@ -365,6 +365,7 @@ func _unhandled_input(event):
 	if Input.is_action_just_pressed("ui_accept") and !Global.onFight and !Global.menuOut and !get_parent().onShop and !Global.noKeyboard:	
 	
 		if raycast.is_colliding():	
+			print(raycast.get_collider().get_parent())
 			if raycast.get_collider().get_parent().is_in_group("standNpc") and raycast.get_collider().get_parent().npcName != "":#and Global.npcs.has(raycast.get_collider().get_parent().npcName):
 				if raycast.get_collider().get_parent().talked:
 				

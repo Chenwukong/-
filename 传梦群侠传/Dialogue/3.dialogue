@@ -45,7 +45,7 @@ set FightScenePlayers.healAll()
 小二: [speed=0.5]好吧好吧
 凌若昭喜: [speed=0.5]加油加油加油！出发
 
-set Global.questHint = " 赤寻墨 墨寻赤 绿寻紫 紫寻绿 赤紫不相逢 黄蓝合是道 一遵规，二觅赤，三不遵，四无光，五合色 莫走相同色"
+set Global.questHint = " 赤寻墨 墨寻赤 绿寻紫 紫寻绿 赤紫不相逢 黄蓝合是道 一遵规，二觅赤，三不遵前文，四无光，五合色 莫走相同色"
 set Global.onTalk = false
 => END
 
@@ -219,6 +219,7 @@ set Global.onTalk = true
 时追云: ...
 凌若昭: [speed=0.5]那边有一间厢房，我们先过去休息会再想办法吧
 时追云: [speed=0.5]嗯
+set FightScenePlayers.healAll()
 set get_tree().change_scene_to_file("res://Scene/"+"方寸厢房"+".tscn")
 set Global.dial = "黑山"
 
@@ -586,7 +587,7 @@ set Global.onTalk = false
 ~ 篝火烧烤
 set Global.onTalk = true
 set Global.dial = null
-
+set Global.maxLevel = 35
 set Global.npcVis.get("灵台宫").get("小二").visible = false
 set get_tree().current_scene.get_node("小二").position = Vector2(2806,362)
 set get_tree().current_scene.get_node("凌若昭").position = Vector2(2980,344)
@@ -782,6 +783,8 @@ set Global.mapPlayerPos = Vector2(2877, 2104)
 
 set Global.dial = "小二"
 set Global.atDark = true
+set Global.atNight = true
+
 set Global.onTalk = false
 => END
 
@@ -789,6 +792,7 @@ set Global.onTalk = false
 ~ 方寸夜晚小二谈恋爱
 set Global.onTalk = true
 set Global.dial = null
+set Global.canMenu = false
 时追云: [speed=0.5]有点睡不着，小二也不见人影，去山上逛逛吧月亮
 set Global.questHint = "山上随便逛逛"
 set Global.npcVis.get("方寸山").get("小二").visible = true
@@ -850,7 +854,7 @@ set Global.dial = "灵鹿"
 set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
 set Global.mapPlayerPos = Vector2(2774, 1690)
 
-
+set Global.atNight = false
 set Global.atDark = false
 set Global.onTalk = false
 => END
@@ -1010,6 +1014,7 @@ set Global.npcs.get("黑山").dialogues[5].unlocked = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/圆周率 - 优雅嘲讽.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()	
 set Global.dial = null
+set Global.canMenu = true
 set Global.onTalk = false
 => END
 
@@ -1139,7 +1144,7 @@ set Global.npcVis.get("水晶宫").get("北海龙王").visible = false
 敖白: [speed=0.5]这我当然知道，但我们有什么办法呢，靠着海权祭我们至少能凭个人实力取胜，但要是起全面冲突，不管谁赢了，都对局面不好
 敖白: [speed=0.5]他们一定会联手先把我们踢出棋局，哪怕是海权祭估计也不会公平的
 敖白: [speed=0.5]但起码我们暂时还能仗着龙泉之力支撑着局面
-敖雨: [speed=0.5]可惜我还不够强，不然我要把他们这些败类一个个插成龙肉串
+敖雨: [speed=0.5]可惜我还不够强，你这些年又为了给昏迷的嫂子输送功力又消耗了大量仙力，不然一定要把他们这些败类一个个插成龙肉串
 敖白: [speed=0.5]额，不要这么暴力。我希望的是维持现状，大家都是同类，我不希望在我们之间起真的战争，哪怕是为了手底下的人也不行
 敖雨: [speed=0.5]哥，你就是太善良太迂腐了，这样早晚会被欺负到头顶的！
 敖雨: [speed=0.5]不对，我们早就已经被欺负到头顶了！
@@ -1147,6 +1152,7 @@ set Global.npcVis.get("水晶宫").get("北海龙王").visible = false
 敖雨: [speed=0.5]你都不适合难道我适合啊，父亲他是个大英雄，他的决定不会错的
 敖雨: [speed=0.5]他把东海交给你，交给了我们，我们不能让他失望！
 敖白: [speed=0.5]嗯，但在这次海权祭结束之后，我有件事情要先去办完...
+
 set get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")
 set get_tree().current_scene.get_node("player").position = Vector2(2835,493)
 set Global.mapPlayerPos = Vector2(2835,493)
@@ -1159,6 +1165,8 @@ set Global.onTalk = false
 ~ 又失眠
 set Global.onTalk = true
 set Global.atDark = true
+set Global.atNight = true
+set Global.canMenu = false
 时追云: [speed=0.5]又失眠了，我最近这是怎么了月亮
 时追云: [speed=0.5]难道是因为终于快要结束这一切了吗
 时追云: [speed=0.5]心里隐隐感觉有些不安
@@ -1167,7 +1175,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D2").stream = load("res
 set get_tree().current_scene.get_node("AudioStreamPlayer2D2").play()
 set Global.dial = null
 set Global.questHint = "在四周随便逛逛吧(自寻位置触发剧情"
-
+set Global.getnode("ColorRect").visible = true
 set Global.triggerPlace.get("听见异响").disable = false
 set Global.onTalk = false
 => END
@@ -1226,12 +1234,14 @@ set get_tree().current_scene.get_node("敖阳").play("趴下")
 set get_tree().change_scene_to_file("res://Scene/"+"灵台宫"+".tscn")
 set Global.dial = "system"
 set Global.atDark = false
+set Global.atNight = false
 set Global.onTalk = false
 => END
 
 ~ 离山
 set Global.onTalk = true
 set Global.dial = null
+set Global.canMenu = true
 set Global.npcVis.get("方寸山").get("黑山").visible = false
 set Global.triggerPlace.get("黑山送剑").disable = false
 set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
@@ -1499,7 +1509,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.npcVis.get("海斗场").get("小二").visible = true
 set Global.npcVis.get("海斗场").get("凌若昭").visible = true
-
+set FightScenePlayers.healAll()
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 小二: [speed=0.5]话说这海权祭是以什么形式进行的？

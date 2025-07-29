@@ -310,10 +310,11 @@ set Global.addGold(100)
 二娃: [speed=0.6]大哥哥，我先走啦，我要去找小花玩咯男拜
 时追云: [speed=0.6]嗯，再见
 时追云: (先把身上的酒送给两位差哥吧)
+set Global.violencePoint += 10
+set Global.showViolence("positive",10)
 set Global.questHint = "把身上的酒给两位差哥后继续捕鱼吧"
 set Global.npcs.get("丁真").dialogues[1].unlocked = true
 set Global.npcs.get("丙假").dialogues[1].unlocked = true
-set Global.violencePoint += 5
 set Global.onTalk = false
 set Global.currNpc = null
 => END	

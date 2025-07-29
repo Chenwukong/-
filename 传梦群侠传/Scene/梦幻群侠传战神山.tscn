@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="14_alpds"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="15_g3og6"]
 [ext_resource type="Texture2D" uid="uid://ccmbhchltrh4i" path="res://Pictures/小树林NTR.png" id="16_dixs3"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="17_16axt"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="17_16axt"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="18_nd5h2"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="19_gcwe1"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="20_ycphj"]
@@ -338,8 +338,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(-30.9092, 9.61548)
@@ -571,14 +569,17 @@ sprite_frames = SubResource("SpriteFrames_1b7c6")
 [node name="npc" parent="." instance=ExtResource("22_8bo1f")]
 position = Vector2(142, 1216)
 sprite_frames = SubResource("SpriteFrames_6482q")
+script = null
 
 [node name="npc" parent="npc" instance=ExtResource("22_8bo1f")]
 position = Vector2(600, 13.9999)
 sprite_frames = SubResource("SpriteFrames_gs3q3")
+script = null
 
 [node name="npc2" parent="npc" instance=ExtResource("22_8bo1f")]
 position = Vector2(674, -29.0001)
 sprite_frames = SubResource("SpriteFrames_amheg")
+script = null
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
 libraries = {

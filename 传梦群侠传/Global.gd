@@ -6,25 +6,28 @@ var monsterIdx = -1
 var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
-var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":3, "东海海道2":4,"东海海道3":5,"花果山":8,"海底迷宫1":8 
-,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":5,"地府迷宫3":5,"地府迷宫4":5,"地府监狱":5, "大唐国境边缘": 4,"大唐境外":6,"小西天":6, "北俱芦洲":6,
-"龙窟1": 4,"龙窟2": 4,"龙窟3": 4,"龙窟4": 4,"龙窟5": 4,"龙窟6": 4,"龙窟7": 4,
-"凤巢1": 4,"凤巢2": 4,"凤巢3": 4,"凤巢4": 4,"凤巢5": 4,"凤巢6": 4,"龙凤巢7": 4,
- "女娲神迹": 3,
+var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":5, "东海海道2":5,"东海海道3":5,"花果山":8,"海底迷宫1":8 
+,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":4,"地府迷宫3":4,"地府迷宫4":4,"地府监狱":4, "大唐国境边缘": 4,"大唐境外":5,"小西天":6, "北俱芦洲":6,
+"龙窟1": 3,"龙窟2": 4,"龙窟3": 4,"龙窟4": 4,"龙窟5": 4,"龙窟6": 4,"龙窟7": 4,
+"凤巢1": 3,"凤巢2": 3,"凤巢3": 3,"凤巢4": 3,"凤巢5": 3,"凤巢6": 3,"龙凤巢7": 4,
+ "长寿郊外": 7,"幻境1": 2,"幻境2": 2,
+ "女娲神迹": 2,
  "创界山":8, "创界山顶":8, "炼狱迷宫1": 8, "炼狱迷宫2":8, "炼狱迷宫3":8, "炼狱迷宫4":8, "炼狱迷宫5":8, "炼狱迷宫6":8, "炼狱迷宫7":8,"天宫":8}
 var menuOut = false
+var canMenu = true
 var healBuffAmount = 0
 var onAttackingList = []
 var currAttacker = ""
 var wait
 var target = null
 var monsterTarget = null
-var onPhone = false
+var onPhone = true
 var onButton = false
 var bgmTimer = 0
 var levelLimit = 10
 var battleButtonIndex = 0
 var maxLevel = 10
+var onPetAttack = false
 var onAttackPicking = false #是否在选择攻击对象
 var onMagicAttackPicking = false
 var playersAppended = false
@@ -44,7 +47,7 @@ var gameRound = 1
 signal autoAttackSignal
 var helperName = ""
 var helperMsg = ""
-
+var wutongOn = false
 var onItemSelectPicking = false
 var onItemUsePicking = false
 var onItemUsing = false
@@ -74,6 +77,7 @@ var itemPlayers = []
 var itemPlayerIndex
 var canAttack = false
 var prevScene = ""
+var petPotentialProgress = 0
 func connectAutoAttackSignal(enemy_instance):
 	enemy_instance.connect('autoAttackSignal', self, '_on_auto_attack')
 var noSounds = false
@@ -107,8 +111,8 @@ var onMultiHit = 0
 var fangCunState = 1
 var atDark = false
 var onBoss = false
-var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军","鬼帝"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","镇魔地1","镇魔地2","镇魔地3","花果山","普陀山","海底迷宫1", "地府迷宫1", "森罗殿","轮回司","大唐境外","大唐境外","轮回之门","五庄观","龙窟1","凤巢1","雷音地下", "创界山", "神庙","女娲神迹","炼狱迷宫1","凌霄宝殿"]
+var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军", "青龙", "弥勒佛", "鬼帝", "蚩尤","魔尊","天道"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","镇魔地1","镇魔地2","镇魔地3","花果山","普陀山","海底迷宫1", "地府迷宫1", "森罗殿","轮回司","大唐境外","大唐境外","西行之路","轮回之门","五庄观","龙窟1","凤巢1","雷音地下", "创界山", "神庙","女娲神迹","炼狱迷宫1","凌霄宝殿"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -156,7 +160,7 @@ var currPlayer
 var currScene
 var noLimit = true
 
-var onTeamPlayer = ["时追云"]
+var onTeamPlayer = ["时追云",]
 var onTeamPet = []
 var onTeamSmallPet = []
 var smallPets = []
@@ -604,7 +608,7 @@ var npcVis = {
 	},
 	"朱紫国":{
 		"凌若昭": {"visible":false},
-		"老方": {"visible":false},	
+		"方大爷": {"visible":false},	
 		"怪僧": {"visible":true},
 				
 	},				
@@ -648,7 +652,7 @@ var npcVis = {
 								
 	},
 	"炼狱迷宫1":{
-		"画魔": {"visible":true},	
+		"魔画": {"visible":true},	
 								
 	},
 	"炼狱迷宫2":{
@@ -668,7 +672,9 @@ var npcVis = {
 	"天宫":{
 		#"炎魔神": {"visible":true},
 		"魔巫": {"visible":true},			
-		"魔刹": {"visible":true},					
+		"魔刹": {"visible":true},
+		"魔如意": {"visible":true},
+		"太白金星": {"visible":true},							
 	},		
 	"月宫":{
 		"孙悟空": {"visible":true},
@@ -744,6 +750,14 @@ var npcs = {
 		"dialogues": [ 
 			#0
 			{"chapter": 1, "dialogue": "addMember", "unlocked": true, "bgm":null, "trigger":false},
+		],
+		"current_dialogue_index": 0,
+		"constNpc": false
+	},
+	"骑迹行者": {
+		"dialogues": [ 
+			#0
+			{"chapter": 9, "dialogue": "骑迹行者", "unlocked": true, "bgm":null, "trigger":false},
 		],
 		"current_dialogue_index": 0,
 		"constNpc": false
@@ -1291,8 +1305,8 @@ var npcs = {
 					{"chapter": 3, "dialogue": "教学千机", "unlocked": true, "bgm":"res://Audio/BGM/#豪爽.ogg" ,"trigger":false},
 					{"chapter": 3, "dialogue": "篝火烧烤", "unlocked": true, "bgm": "res://Audio/BGM/欢乐家园.mp3","trigger":false},
 					{"chapter": 3, "dialogue": "送丹药", "unlocked": true, "bgm":null ,"trigger":false},
-					{"chapter": 3, "dialogue": "告知打赢", "unlocked": true, "bgm":null ,"trigger":false},
-					{"chapter": 9, "dialogue": "菩提告辞", "unlocked": true, "bgm":null ,"trigger":false},
+					{"chapter": 3, "dialogue": "告知打赢", "unlocked": false, "bgm":null ,"trigger":false},
+					{"chapter": 9, "dialogue": "菩提告辞", "unlocked": false, "bgm":null ,"trigger":false},
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false		
@@ -1571,7 +1585,16 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false
-	},			
+	},
+	"白无常":{
+		"dialogues": [
+				#0
+					{"chapter": 5, "dialogue": "白无常", "unlocked": true, "bgm": null ,"trigger":false},
+
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true
+	},				
 	"钟馗":{
 		"dialogues": [
 				#0
@@ -1980,8 +2003,16 @@ var npcs = {
 				#0
 					{"chapter": 8, "dialogue": "怪僧1", "unlocked": true, "bgm": null ,"trigger":false},				
 					{"chapter": 8, "dialogue": "怪僧2", "unlocked": false, "bgm": null ,"trigger":false},	
-					{"chapter": 8, "dialogue": "怪僧3", "unlocked": false, "bgm": null ,"trigger":false},
-					{"chapter": 8, "dialogue": "怪僧4", "unlocked": false, "bgm": null ,"trigger":false},																	
+					{"chapter": 8, "dialogue": "怪僧3", "unlocked": true, "bgm": null ,"trigger":false},
+					{"chapter": 8, "dialogue": "怪僧4", "unlocked": true, "bgm": null ,"trigger":false},																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false,
+	},
+	"绿狸":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "绿狸", "unlocked": true, "bgm": null ,"trigger":false},																			
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false,
@@ -2038,7 +2069,15 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},				
-		
+	"鹿飞":{
+		"dialogues": [
+				#0
+					{"chapter": 8, "dialogue": "鹿飞", "unlocked": true, "bgm": null ,"trigger":false},																			
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},				
+				
 	"朱紫国旅馆老板":{
 		"dialogues": [
 				#0
@@ -2131,8 +2170,32 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},					
+	"长寿药店大夫":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "长寿药店大夫", "unlocked": true, "bgm":null ,"trigger":false},																																			
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},		
+	"长寿布店老板":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "长寿布店老板", "unlocked": true, "bgm":null ,"trigger":false},																																			
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},				
+	"长寿铁匠":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "长寿铁匠", "unlocked": true, "bgm":null ,"trigger":false},																																			
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},		
 	
-			
+	
 	"墨兮":{
 		"dialogues": [
 				#0
@@ -2330,7 +2393,17 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
-	},									
+	},			
+	"创界山":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "创界山1", "unlocked": true, "bgm":null,"trigger":false},	
+					{"chapter": 10, "dialogue": "创界山2", "unlocked": true, "bgm":null,"trigger":false},																																												
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+							
 	"六耳":{
 		"dialogues": [
 				#0
@@ -2370,6 +2443,14 @@ var npcs = {
 		"dialogues": [
 				#0
 					{"chapter": 10, "dialogue": "画魔", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},
+	"熊猫商人":{
+		"dialogues": [
+				#0
+					{"chapter": 10, "dialogue": "熊猫商人", "unlocked": true, "bgm":null,"trigger":false},																																																		
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
@@ -2442,7 +2523,7 @@ var npcs = {
 	"魔妾":{
 		"dialogues": [
 				#0
-					{"chapter": 11, "dialogue": "魔妾1", "unlocked": true, "bgm":null,"trigger":false},																																																
+					{"chapter": 10, "dialogue": "魔妾1", "unlocked": true, "bgm":null,"trigger":false},																																																
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
@@ -2518,7 +2599,15 @@ var npcs = {
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
-	},		
+	},	
+	"太上老君":{
+		"dialogues": [
+				#0
+					{"chapter": 11, "dialogue": "太上老君", "unlocked": true, "bgm":null,"trigger":false},																																																			
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": true	
+	},			
 	"玉帝殿前":{
 		"dialogues": [
 				#0
@@ -2733,7 +2822,7 @@ func _ready():
 var deltas
 
 var noMouse = true
-var noKeyboard = false
+var noKeyboard = true
 
 func _process(delta):
 	
@@ -2751,6 +2840,11 @@ func _process(delta):
 
 
 func save():
+	saveData.petPotentialProgress = petPotentialProgress
+	saveData.smallPets = smallPets
+	saveData.totalPotentialBall = totalPotentialBall
+	saveData.wutongOn = wutongOn
+	saveData.canMenu = canMenu
 	saveData.lost = lost
 	saveData.questItemShow = questItemShow
 	saveData.gameRound = gameRound
@@ -2800,10 +2894,14 @@ func save():
 	saveData.gai = gai
 func loadData():
 	#lost = saveData.lost
+	petPotentialProgress = saveData.petPotentialProgress
+	smallPets = saveData.smallPets
+	totalPotentialBall = saveData.totalPotentialBall
+	wutongOn = saveData.wutongOn
 	questItemShow = saveData.questItemShow
 	gameRound = saveData.gameRound
 	gai = saveData.gai
-
+	canMenu = saveData.canMenu
 	maxLevel = saveData.maxLevel
 	onGhost = saveData.onGhost
 	SmallPetData.currSmallPetData = saveData.smallPetData
@@ -2899,7 +2997,7 @@ func addGold(goldAmount):
 
 func lostGold(goldAmount):
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(-goldAmount)
-	
+	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").visible = false
 	FightScenePlayers.golds = ( decrypt(FightScenePlayers.golds) - goldAmount ) * enKey 
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer").visible = true	
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true	
@@ -2938,9 +3036,10 @@ func addItem(item,type,bagPlace,num):
 	
 func removeItem(item,type,bagPlace,num):
 	var bag = FightScenePlayers[bagPlace]
+	print(bag[item],"/",item,type,bagPlace,num)
 	bag[item].number -= num
 	if bag[item].number == 0:
-		bag.erase(bag[item])
+		bag.erase(bag[item].info.name) 
 
 
 	Global.systemMsg.append("失去了"+item + "x" + str(num))
@@ -3313,28 +3412,34 @@ static func resetNpcVis():
 		Global.set(name, new_state.get(name))
 func addStuff():
 	npcs["创界山"] = {
-		"dialogues": [
-			{"chapter": 10, "dialogue": "创界山1", "unlocked": true, "bgm": null, "trigger": false},
+		"dialogues": [ 
+			{
+				"chapter": 10,
+				"dialogue": "创界山1",
+				"unlocked": true,
+				"bgm": null,
+				"trigger": false
+			},
+				{
+				"chapter": 10,
+				"dialogue": "创界山2",
+				"unlocked": true,
+				"bgm": null,
+				"trigger": false
+			}
 		],
 		"current_dialogue_index": 0,
 		"constNpc": false
 	}
-	npcs["道归虚无"]["dialogues"].append({
-		"chapter": 12,
-		"dialogue": "道归虚无2",
-		"unlocked": true,
-		"bgm": null,
-		"trigger": false,
-		"disable": false,
-	})
-	npcs["道归虚无"]["dialogues"].append({
-		"chapter": 12,
-		"dialogue": "道归虚无3",
-		"unlocked": true,
-		"bgm": null,
-		"trigger": false,
-		"disable": false,
-	})
+#	npcs["月宫之战"]["dialogues"].append({
+#		"chapter": 11,
+#		"dialogue": "月宫之战14",
+#		"unlocked": true,
+#		"bgm": null,
+#		"trigger": false,
+#		"disable": false,
+#	})
+
 
 func isNewPlayer():
 	if get_tree().current_scene.is_new_player():

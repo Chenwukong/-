@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="13_n0mhu"]
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="14_um56v"]
 [ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="15_8m1fk"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="16_20h44"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="16_20h44"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_jv7r1"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_btr0g"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_3j22r"]
@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://b6pk4gtetfoig" path="res://Battlers/猴子.png" id="25_obvry"]
 [ext_resource type="Texture2D" uid="uid://cmbbgoj1r1105" path="res://Characters/猴子-行走.png" id="25_rhqux"]
 [ext_resource type="Texture2D" uid="uid://dfv6wujm4v4r2" path="res://Battlers/猴仙.png" id="27_ywytl"]
-[ext_resource type="PackedScene" path="res://Scene/敖阳.tscn" id="29_mmyru"]
+[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="29_mmyru"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="30_xuhj3"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="31_26mog"]
 [ext_resource type="Texture2D" uid="uid://bijs6hcxcn546" path="res://SeparateAnimation/敖雨/971-12.png" id="32_lellb"]
@@ -338,7 +338,7 @@ script = ExtResource("5_t6ugl")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(303, 1442, 409, 1454, 540, 1438, 613, 1479, 683, 1480, 735, 1486, 746, 1522, 799, 1549, 902, 1576, 941, 1577, 1003, 1612, 1133, 1608, 1171, 1584, 1157, 1538, 1055, 1475, 921, 1438, 738, 1382, 741, 1328, 824, 1298, 937, 1205, 979, 1193, 915, 1165, 949, 1106, 1029, 1124, 1163, 1148, 1273, 1138, 1280, 1059, 1256, 992, 1183, 992, 1088, 998, 996, 982, 975, 946, 1009, 911, 1133, 890, 1203, 905, 1309, 906, 1346, 1046, 1360, 1154, 1441, 1150, 1447, 1095, 1417, 1052, 1391, 941, 1445, 901, 1572, 836, 1608, 855, 1581, 965, 1587, 1057, 1698, 1103, 1717, 1121, 1774, 1078, 1773, 1017, 1798, 980, 1923, 965, 1975, 984, 1961, 1207, 1885, 1223, 1860, 1312, 1857, 1347, 1911, 1352, 1919, 1452, 1966, 1544, 1946, 1661, 1851, 1717, 1647, 1770, 1537, 1789, 1450, 1785, 1449, 1734, 1531, 1690, 1740, 1566, 1795, 1525, 1778, 1450, 1672, 1480, 1552, 1502, 1434, 1494, 1387, 1440, 1397, 1410, 1342, 1405, 1228, 1374, 1197, 1324, 1182, 1243, 1033, 1254, 952, 1363, 1017, 1406, 1062, 1420, 1139, 1404, 1185, 1416, 1163, 1447, 1221, 1476, 1275, 1506, 1295, 1595, 1154, 1682, 1015, 1695, 853, 1649, 776, 1600, 644, 1562, 473, 1550, 317, 1554, 306, 1552)
+polygon = PackedVector2Array(303, 1442, 409, 1454, 540, 1438, 620, 1463, 683, 1480, 735, 1486, 777, 1506, 830, 1528, 917, 1546, 962, 1561, 1003, 1598, 1121, 1586, 1158, 1575, 1157, 1538, 1055, 1475, 921, 1438, 738, 1382, 741, 1328, 824, 1298, 937, 1205, 979, 1193, 915, 1165, 949, 1106, 1029, 1124, 1163, 1148, 1273, 1138, 1280, 1059, 1256, 992, 1183, 992, 1088, 998, 996, 982, 975, 946, 1009, 911, 1133, 890, 1203, 905, 1309, 906, 1346, 1046, 1360, 1154, 1441, 1150, 1447, 1095, 1417, 1052, 1391, 941, 1445, 901, 1572, 836, 1608, 855, 1581, 965, 1587, 1057, 1698, 1103, 1717, 1121, 1774, 1078, 1773, 1017, 1798, 980, 1923, 965, 1975, 984, 1961, 1207, 1885, 1223, 1860, 1312, 1857, 1347, 1911, 1352, 1919, 1452, 1966, 1544, 1946, 1661, 1851, 1717, 1647, 1770, 1537, 1789, 1450, 1785, 1449, 1734, 1531, 1690, 1740, 1566, 1795, 1525, 1778, 1450, 1672, 1480, 1552, 1502, 1434, 1494, 1387, 1440, 1397, 1410, 1342, 1405, 1228, 1374, 1197, 1324, 1182, 1243, 1033, 1254, 980, 1351, 1038, 1380, 1073, 1404, 1143, 1388, 1185, 1416, 1190, 1439, 1221, 1476, 1275, 1506, 1295, 1595, 1154, 1682, 1015, 1695, 853, 1649, 776, 1600, 644, 1562, 473, 1550, 317, 1554, 306, 1552)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(1843, 1059, 1814, 1106, 1776, 1134, 1720, 1154, 1718, 1179, 1734, 1220, 1737, 1291, 1759, 1317, 1782, 1312, 1816, 1217, 1815, 1194, 1736, 1180, 1737, 1156, 1789, 1134, 1825, 1106, 1845, 1073, 1849, 1057)

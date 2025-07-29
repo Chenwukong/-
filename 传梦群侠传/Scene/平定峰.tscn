@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://d1d7xnhx3bc76"]
+[gd_scene load_steps=96 format=3 uid="uid://d1d7xnhx3bc76"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_l5254"]
 [ext_resource type="Texture2D" uid="uid://bhae423yyyatb" path="res://Panoramas/shanding.jpg" id="2_0ph88"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://c3kkjfos8ges" path="res://SeparateAnimation/程咬金/654-31.png" id="35_tia5i"]
 [ext_resource type="Texture2D" uid="uid://t8nd8c676inj" path="res://SeparateAnimation/程咬金/654-32.png" id="36_kodcn"]
 [ext_resource type="Texture2D" uid="uid://dm7d1puhv8qro" path="res://SeparateAnimation/程咬金/654-33.png" id="37_twkky"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="38_cm4eu"]
 [ext_resource type="Texture2D" uid="uid://7j8ue2wmwntq" path="res://SeparateAnimation/程咬金/654-34.png" id="38_kfmcc"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="38_sxfhj"]
 [ext_resource type="Texture2D" uid="uid://blr6o5i1rc4gk" path="res://SeparateAnimation/程咬金/654-35.png" id="39_qnwqa"]
@@ -36,7 +37,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="47_axi3f"]
 [ext_resource type="AudioStream" uid="uid://br8x1exu6xcgs" path="res://Audio/SE/猛男-攻击X.ogg" id="48_dgdc2"]
 [ext_resource type="AudioStream" uid="uid://cbsbe0xhxk828" path="res://Audio/SE/猛男-呼啊.ogg" id="49_620ex"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="53_v0k65"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="53_v0k65"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(518, 1334, 511, 172, 3802, 175, 3811, 2247, 525, 1514, 527, 2240)
@@ -485,7 +486,7 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"down"
 
-[node name="PointLight2D" parent="player" index="11"]
+[node name="PointLight2D" parent="player" index="12"]
 position = Vector2(-158.264, 484.027)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
@@ -790,8 +791,7 @@ autoplay = true
 max_distance = 90000.0
 
 [node name="平定峰" parent="." instance=ExtResource("53_v0k65")]
-visible = false
-position = Vector2(2462, 1220)
+position = Vector2(2708, 1190)
 triggerEvent = "平定峰"
 
 [node name="menuControl" parent="." instance=ExtResource("47_axi3f")]
@@ -799,6 +799,13 @@ triggerEvent = "平定峰"
 [node name="CanvasLayer" parent="." instance=ExtResource("38_sxfhj")]
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="." instance=ExtResource("38_cm4eu")]
+position = Vector2(2473, 1141)
+id = "锁妖塔7"
+items = {
+"小还丹": 2
+}
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

@@ -250,6 +250,7 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 #		dialogue_label.skip_typing()
 #		return
 	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()  # 告诉 Godot 这个输入已经被处理
 		return
 	if not is_waiting_for_input: return
 	if dialogue_line.responses.size() > 0: return

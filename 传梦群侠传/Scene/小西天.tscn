@@ -1,4 +1,4 @@
-[gd_scene load_steps=194 format=3 uid="uid://dgh634du2tiua"]
+[gd_scene load_steps=210 format=3 uid="uid://dgh634du2tiua"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ocboi"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_dkb4m"]
@@ -26,6 +26,9 @@
 [ext_resource type="Texture2D" uid="uid://1nk0l58fiv44" path="res://Characters/箱子.png" id="23_05fx7"]
 [ext_resource type="Texture2D" uid="uid://cf1sxqdjlorgk" path="res://梦魂Animation/法术-飞沙走石.png" id="23_aj8hh"]
 [ext_resource type="Texture2D" uid="uid://cnin8u8hg0ner" path="res://梦魂Animation/风暴传说.png" id="24_tralr"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="27_8dsjr"]
+[ext_resource type="Texture2D" uid="uid://bylbkuc1okp7y" path="res://SeparateAnimation/沙狸/待机.png" id="28_rngi8"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="29_tqciv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619, 20, 1489)
@@ -1348,6 +1351,98 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmk1g"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(0, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxxss"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(100, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibp16"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(200, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlfre"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(300, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yswpu"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(400, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ef1hj"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(500, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5b36f"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(600, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfaho"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(700, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ere5h"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(800, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4o42"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(900, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqhxw"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(1000, 85, 100, 85)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ri6pu"]
+atlas = ExtResource("28_rngi8")
+region = Rect2(1100, 85, 100, 85)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2n232"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmk1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxxss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibp16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlfre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yswpu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ef1hj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5b36f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfaho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ere5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4o42")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqhxw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ri6pu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="小西天" type="Node2D"]
 script = ExtResource("1_ocboi")
 shader = ExtResource("2_dkb4m")
@@ -1527,12 +1622,11 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 script = ExtResource("18_83ohv")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(1013, 2014, 1086, 1984, 1234, 2019, 1499, 2022, 1502, 1595, 1498, 1377, 1399, 1381, 1369, 1248, 1437, 1144, 1476, 1008, 1423, 900, 1442, 743, 1491, 744, 1500, 528, 1476, 473, 1473, 395, 1438, 369, 1384, 341, 1377, 308, 1457, 253, 1424, 202, 1377, 111, 1261, 142, 1273, 26, 1161, 45, 1187, 114, 1261, 141, 1255, 165, 1255, 178, 1281, 270, 1255, 365, 1282, 367, 1330, 385, 1375, 414, 1386, 446, 1408, 514, 1439, 607, 1398, 622, 1346, 611, 1349, 597, 1335, 537, 1289, 469, 1205, 483, 1134, 573, 930, 659, 800, 767, 746, 734, 864, 613, 942, 519, 1026, 484, 1064, 421, 993, 382, 945, 334, 1030, 284, 1079, 365, 1122, 383, 1152, 378, 1149, 341, 1257, 296, 1248, 223, 1172, 241, 1130, 266, 1095, 227, 1183, 174, 1149, 119, 1111, 69, 1111, 10, 1137, -75, 1169, -161, 1274, -146, 1353, -147, 1378, -200, 1286, -201, 1271, -296, 1275, -317, 1203, -326, 1101, -234, 1003, -192, 1016, -63, 1025, 39, 1062, 101, 1012, 182, 931, 261, 876, 244, 779, 181, 772, 160, 962, 17, 964, -5, 749, -109, 698, -90, 738, -51, 674, 1, 613, -58, 652, -84, 673, -103, 658, -127, 753, -163, 801, -136, 839, -183, 730, -231, 690, -194, 581, -249, 527, -333, 392, -296, 395, -238, 271, -195, 286, -103, 262, -110, 239, -185, 106, -145, 186, -57, 110, -28, -4, -33, -55, 14, 52, 73, 213, 120, 275, 113, 319, 169, 176, 232, 200, 284, 297, 247, 403, 209, 495, 215, 556, 242, 670, 177, 823, 292, 784, 318, 701, 290, 546, 324, 462, 396, 340, 447, 63, 458, -34, 546, -87, 717, -89, 1827, -93, 2019)
+polygon = PackedVector2Array(1013, 2014, 1086, 1984, 1234, 2019, 1499, 2022, 1502, 1595, 1498, 1377, 1399, 1381, 1369, 1248, 1437, 1144, 1476, 1008, 1423, 900, 1442, 743, 1491, 744, 1500, 528, 1476, 473, 1473, 395, 1438, 369, 1384, 341, 1377, 308, 1457, 253, 1424, 202, 1377, 111, 1261, 142, 1273, 26, 1161, 45, 1187, 114, 1261, 141, 1255, 165, 1255, 178, 1281, 270, 1255, 365, 1282, 367, 1330, 385, 1375, 414, 1386, 446, 1408, 514, 1439, 607, 1398, 622, 1346, 611, 1349, 597, 1335, 537, 1289, 469, 1205, 483, 1134, 573, 930, 659, 800, 767, 746, 734, 864, 613, 942, 519, 1026, 484, 1064, 421, 993, 382, 945, 334, 1030, 284, 1079, 365, 1122, 383, 1152, 378, 1149, 341, 1257, 296, 1248, 223, 1172, 241, 1130, 266, 1095, 227, 1183, 174, 1149, 119, 1111, 69, 1111, 10, 1137, -75, 1169, -161, 1274, -146, 1353, -147, 1378, -200, 1286, -201, 1271, -296, 1275, -317, 1203, -326, 1101, -234, 1003, -192, 1016, -63, 1025, 39, 1062, 101, 1012, 182, 931, 261, 890, 225, 812, 164, 798, 148, 962, 17, 964, -5, 749, -109, 698, -90, 738, -51, 679, -4, 671, -15, 628, -62, 652, -84, 673, -103, 658, -127, 753, -163, 801, -136, 839, -183, 730, -231, 690, -194, 581, -249, 527, -333, 392, -296, 395, -238, 271, -195, 286, -103, 262, -110, 239, -185, 106, -145, 186, -57, 110, -28, -4, -33, -55, 14, 52, 73, 213, 120, 275, 113, 319, 169, 176, 232, 200, 284, 297, 247, 403, 209, 495, 215, 556, 242, 670, 177, 823, 292, 784, 318, 701, 290, 546, 324, 462, 396, 340, 447, 63, 458, -34, 546, -87, 717, -89, 1827, -93, 2019)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(490, 1749)
@@ -1613,7 +1707,7 @@ polygon = PackedVector2Array(1232, 648, 1354, 682, 1281, 734, 1339, 761, 1335, 7
 polygon = PackedVector2Array(113, 701, 201, 668, 541, 734, 662, 705, 727, 605, 826, 540, 920, 446, 925, 406, 903, 354, 816, 414, 655, 541, 556, 613, 392, 606, 142, 558, 65, 586, 42, 692)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(365, 149, 447, 109, 481, 128, 559, 93, 567, 48, 609, 26, 605, 1, 542, -41, 497, -41, 418, 5, 408, 36, 340, 63, 329, 86, 340, 118)
+polygon = PackedVector2Array(376, 140, 447, 109, 481, 128, 559, 93, 567, 48, 609, 26, 605, 1, 542, -41, 497, -41, 418, 5, 408, 36, 340, 63, 333, 83, 352, 106)
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
@@ -1686,6 +1780,7 @@ position = Vector2(29.017, 4.99158)
 shape = SubResource("RectangleShape2D_f5j7n")
 
 [node name="沙暴怪" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(1359, 758)
 sprite_frames = SubResource("SpriteFrames_le32g")
 animation = &"待机"
@@ -1721,6 +1816,22 @@ position = Vector2(1359, 1876)
 sprite_frames = SubResource("SpriteFrames_st8il")
 frame = 26
 frame_progress = 1.0
+
+[node name="绿狸" parent="." instance=ExtResource("27_8dsjr")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(1393, 1359)
+scale = Vector2(1.31176, 1.31176)
+sprite_frames = SubResource("SpriteFrames_2n232")
+autoplay = "default"
+frame_progress = 0.818242
+npcName = "绿狸"
+
+[node name="Node2D" parent="." instance=ExtResource("29_tqciv")]
+position = Vector2(1300, 1327)
+id = "小西天"
+items = {
+"西瓜": 10
+}
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

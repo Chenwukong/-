@@ -12,10 +12,33 @@ Nathan: For more information see the online documentation.
 
 => END
 
+~ 长寿药店大夫
+set Global.onTalk = true
+set get_tree().current_scene.popShop()
+
+set Global.onTalk = false
+=> END
+
+~ 长寿布店老板
+set Global.onTalk = true
+set get_tree().current_scene.popShop()
+
+set Global.onTalk = false
+=> END
+
+~ 长寿铁匠
+set Global.onTalk = true
+set get_tree().current_scene.popShop()
+
+set Global.onTalk = false
+=> END
+
+
+
 ~ 入您
 set Global.onTalk = true
 if Global.npcs.get("入您").dialogues[0].trigger == false:
-	入您: 秋水微凉映月明，星光几缕如你心。言辞未尽情先露，步步相携影相邻。
+	入您: 秋水微凉映月明，星光几缕入你心。言辞未尽情先露，步步相携影相邻。
 	入您: 不惧风霜多冷寂，只求今世共浮沉！
 入您: [speed=0.5]我可以让你随意走动地图十秒哦,不过10秒之后你就会回到我面前！
 - 随意走动
@@ -102,7 +125,7 @@ set Global.onTalk = true
 	set get_tree().current_scene.bossFight("传梦","res://Audio/BGM/战斗-仙剑.mp3", "传梦")
 	set Global.canLose = true
 - 算了
-	set Global.npcs.get("传梦").current_dialogue_index = 3
+	set Global.npcs.get("传梦").current_dialogue_index = 2
 
 
 set Global.onTalk = false
@@ -110,6 +133,8 @@ set Global.onTalk = false
 
 ~ 传梦真谛
 set Global.onTalk = true
+
+
 if Global.lost == false:
 	传梦: 主角四人对应了我的内心，时追云的勇敢和永不退却的决心，小二的懦弱和迷茫，若昭的童心，姜韵的温和.
 	传梦: 当害怕的心情出来的时候，勇敢和决心总是会鼓励他。当决心动摇的时候，总是会有姜韵的支持。当所有人无可奈何得时候，勇气总是会站在所有人的面前，并且坚定要走这条路的决心。
@@ -119,9 +144,9 @@ if Global.lost == false:
 	传梦: 很抱歉以这种正常游戏内不可能打的出来的形式作为彩蛋之一，但传梦之路意在传递。如果有人因为更改了传梦之路，对做梦单或者做游戏产生了兴趣，那这传梦之路才算真正的完成了它的使命, 如同当初的梦幻群侠传。如果想做梦单，大可以用我的传梦之路作为模版
 	传梦: 最后祝各位身体健康，游玩愉快！
 else:
-	传梦: [speed=0.5]靠普通的手段是无法打败我的，想想如何打败我吧！
+	传梦: [speed=0.5]靠普通的手段是无法打败我的，想想如何在游戏内容之外打败我吧！
 	set FightScenePlayers.healAll()
-	set Global.npcs.get("传梦").current_dialogue_index = 3
+	set Global.npcs.get("传梦").current_dialogue_index = 2
 
 set Global.lost = false
 set Global.canLose = false	
@@ -194,10 +219,14 @@ set Global.onTalk = true
 		- 上官冕
 			骑迹行者: [speed=0.5]这。。。你居然答对了呢！
 			骑迹行者: 这是最后一道超难之题！你准备好了吗！
-			骑迹行者: 时追云在幻境中进入了谁的结界？
-			- 玉帝
-			骑迹行者: [speed=0.5]没办法了，只能把这个给你了！
-			set Global.addItem("GM奖牌", "accessories", "bagArmorItem", 1)
+			骑迹行者: 哪个作者最帅
+			- 狼叔
+			- 白泽
+			- 清风柒
+			- 老寒
+			- 传梦
+				骑迹行者: [speed=0.5]没办法了，只能把这个给你了！
+				set Global.addItem("GM奖牌", "accessories", "bagArmorItem", 1)
 		- 龟丞相
 		- 敖白
 	- 有妖怪在帮反叛军进攻长安城
@@ -322,7 +351,6 @@ set Global.changebgm("res://Audio/BGM/10刁女.mp3")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
-set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.append("狐葬魂")
 set Global.onTeamPet.erase("朱雀")
 set Global.onTeamPet.erase("青龙")
@@ -362,6 +390,13 @@ set Global.toggleballon()
 遗憾: [speed=0.5]这次的相遇，她依然卑鄙。她竟然挟持了唐三藏和碟灵！她要求小白龙在师傅和爱人之间选一位！但无论白龙选什么，碟灵的命都是保不住的
 遗憾: [speed=0.5]心狠手辣的万神公主杀死了碟灵，并且带走了唐三藏，白龙万分自责，颓废不已
 遗憾: [speed=0.5]而此时，有人拿着金箍棒走向了某处...
+set Global.onTeamPlayer.append("姜韵")
+set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二")
+set Global.onTeamPet.append("朱雀")
+set Global.onTeamPet.append("青龙")
+set Global.onTeamPet.append("玄武")
+set Global.onTeamPet.append("白虎")
 set Global.changeScene("西游奇缘地府",null)
 
 set Global.onTalk = false
@@ -603,6 +638,9 @@ set Global.onTalk = false
 ~ 菩提告辞
 set Global.onTalk = true
 set Global.dial = null
+set Global.changevis("灵台宫","凌若昭")
+set Global.changevis("灵台宫","菩提老祖")
+set Global.changevis("方寸山","菩提老祖2")
 set Global.npcs.get("传梦").dialogues[1].unlocked = true
 set Global.changebgm("res://Audio/BGM/0情况危机.ogg")
 菩提老祖: [speed=0.5]天庭的平衡已经被打破了，是魔尊占了上风！
@@ -704,9 +742,10 @@ set Global.onTalk = true
 传梦: 又见面了，不知道这次你是否集齐了传，梦，之，路四个字牌呢？
 if Global.checkChuanMeng():
 	传梦: 这都能集齐？算你厉害！进去吧！
+	set Global.changeScene("传梦空间",Vector2(291,2046))
 else
 	传梦: 很遗憾，你没有集齐哦，下周目再试试吧
-	set Global.npcs.get("传梦").current_dialogue_index = 2
+	set Global.npcs.get("传梦").current_dialogue_index = 1
 set Global.onTalk = false
 => END
 
@@ -994,7 +1033,7 @@ set Global.onTeamPet.erase("玄武")
 set Global.onTeamPet.erase("白虎")
 时追云惊: [speed=0.5]这是...长安？不对，长安哪有这么阴森？
 时追云: [speed=0.5街上的摊贩怎么一个人都没有？
-时追云: [speed=0.5这种感觉。。。像是梦
+时追云: [speed=0.5]这种感觉。。。像是梦
 时追云: [speed=0.5]神庙的内部绝对不可能如此邪气，莫非...这里是类似幻境之类的地方
 set Global.onTalk = false
 => END
@@ -1019,7 +1058,7 @@ set Global.changebgm("res://Audio/BGM/七剑.mp3")
 时追云怒: [speed=0.5]凶手是你和你那些手下！
 时追云怒: [speed=0.5]我当时确实没能阻止你，但我以后绝对不会再放任你们这种东西为非作歹了！
 set Global.onHurry = true
-set get_tree().current_scene.bossFight("奔霸","res://Audio/BGM/仙劍奇俠傳三 - 仗劍 - Battle Them - BGM [1080p].mp3", "幻境")
+set get_tree().current_scene.bossFight("奔霸2","res://Audio/BGM/仙劍奇俠傳三 - 仗劍 - Battle Them - BGM [1080p].mp3", "幻境")
 
 
 set Global.onTalk = false
@@ -1265,7 +1304,7 @@ set Global.getnode("火力场").play()
 set Global.removeshader("建业左")
 set Global.removeshader("shadow")
 set Global.toggleballon()
-set FightScenePlayers.learnMagic("小二真身", "火域")
+#set FightScenePlayers.learnMagic("小二真身", "火域")
 set FightScenePlayers.learnMagic("小二真身", "滔天")
 
 夜护法: [speed=0.5]怎。。。怎么可能，你一个半人半妖血统不纯的家伙，妖力怎会如此可怕！
@@ -1304,7 +1343,7 @@ set Global.getnode("妖盟").visible = true
 set Global.getnode("蝎军").visible = true
 set Global.getnode("姜韵").visible = true
 set Global.getnode("小二/小二").play("进阶真身左下")
-小二真身: 杀！[next=0.1]
+小二真身: 杀！[next=0.3]
 set get_tree().current_scene.bossFight("夜护法","res://Audio/BGM/战斗Y.mp3", "妖盟入侵")
 
 
@@ -1331,10 +1370,11 @@ set Global.onTalk = true
 set Global.toggleballon()
 [next=1.5]
 set Global.dial = "妖盟入侵"
+set FightScenePlayers.healAll()
 set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.append("姜韵")
-set Global.onTeamPlayer.append("小二")
 set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二真身")
 set Global.onTeamPet.append("青龙")
 set Global.onTeamPet.append("朱雀")
 set Global.onTeamPet.append("玄武")
@@ -1372,7 +1412,7 @@ set Global.changebgm(null)
 set Global.dial = null
 set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.erase("姜韵")
-set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("小二真身")
 set Global.onTeamPlayer.erase("凌若昭")
 set Global.onTeamPet.erase("青龙")
 set Global.onTeamPet.erase("朱雀")
@@ -1417,7 +1457,6 @@ set Global.onTalk = true
 姜韵: [speed=0.5]往前走吧，不管如何，你已经通过了所有的考验
 姜韵: [speed=0.5]幻境是一种考验，也是一种赐福，虽然这次帮你解决了你心里所有的困境，但你能保证这些念头永远都不会再滋生吗，呵呵呵呵呵
 set Global.dial = '女娲神迹'
-set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
@@ -1638,7 +1677,7 @@ set Global.gai = true
 姜韵喜: 夫君！
 小二: 老大！
 凌若昭喜: 时大哥你出来了！
-
+set FightScenePlayers.healAll()
 set Global.onTeamPlayer.append("姜韵")
 set Global.onTeamPlayer.append("凌若昭")
 set Global.onTeamPlayer.append("小二")
@@ -1718,6 +1757,7 @@ set Global.onTalk = false
 
 ~ 妖盟入侵10
 set Global.onTalk = true
+set Global.maxLevel = 75
 set Global.getnode("墨兮").visible = true
 set Global.getnode("蝎霸王").visible = true
 蝎霸王: [speed=0.5]那个妖盟护法一看你们出来了，马上就带着一堆手下跑了！
@@ -1819,3 +1859,4 @@ set Global.changeScene("五庄观",Vector2(909,578))
 
 set Global.onTalk = false
 => END
+

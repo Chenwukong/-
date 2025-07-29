@@ -36,12 +36,14 @@ set Global.onTalk = false
 set Global.onTalk = true
 
 if Global.questItem.has("拐杖"):
-	梦老: [speed=0.5]真是太谢谢你了，我把这个送给你吧
+	梦老: [speed=0.5]真是太谢谢你了，我把这送给你吧
 	set Global.questItemShow.get("拐杖").visible = false
 	set Global.violencePoint += 10
 	set Global.showViolence("positive",10)
 	set Global.showMsg("获得梦字牌!")
 	set Global.addItem("梦字牌", "keyItem", "keyItem", 1)
+	#set Global.addItem("踏雪无痕", "shoes", "bagArmorItem", 4)
+	
 	set Global.changeQuest("传梦之路","梦","boolean", true)
 	set Global.playsound("res://Audio/SE/汉子-笑9.ogg")
 	set Global.changevis("北俱芦洲","梦老")
@@ -56,6 +58,7 @@ set Global.onTalk = false
 
 ~ 寻四圣1
 set Global.onTalk = true
+set Global.maxLevel = 55
 set Global.toggleballon()
 [next=109]
 set Global.changeScene("北俱芦洲",null)
@@ -243,6 +246,7 @@ set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 时追云: [speed=0.5]龙窟的位置刚才已经已经看到了，我们先走一步，你们注意安全
 小二: [speed=0.5]嗯！老大你也小心
+set Global.wutongOn = false
 set Global.cantShow.erase("龙窟1")
 
 set Global.onTalk = false
@@ -272,8 +276,10 @@ set Global.playsound("res://Audio/SE/ice-collecting-01.wav")
 时追云: [speed=0.5]也好，待我仔细观摩片刻
 set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.erase("姜韵")
-set Global.onTeamPlayer.append("小二")
+set Global.onTeamPet.erase("大海龟")
 set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPlayer.append("小二")
+set Global.wutongOn = true
 set Global.changeScene("凤巢1", null)
 set Global.onTalk = false
 => END
@@ -281,7 +287,7 @@ set Global.onTalk = false
 ~ 寻四圣6
 set Global.onTalk = true
 
-小二: [speed=0.5]我们明明是进入了地下，却感觉来到了一片天空之上？？
+小二: [speed=0.5]我们明明是进入了地下，却感觉来到了一片天空之上
 凌若昭: [speed=0.5]这应该是朱雀法力体现的的小天地吧
 梧桐: [speed=0.5]正是如此，不过虽然是拟化的世界，但受到的伤害是真实的
 小二: [speed=0.5]那我们要在哪里复活朱雀？
@@ -303,12 +309,12 @@ set Global.onTalk = false
 
 ~ 寻四圣8
 set Global.onTalk = true
-
+set Global.wutongOn = false
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.append("姜韵")
-
+set Global.onTeamPet.append("大海龟")
 set Global.getnode("player").position = Vector2(756,1355)
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
 set Global.getnode("player/AnimatedSprite2D").visible = true
@@ -328,6 +334,7 @@ set Global.onTalk = false
 
 ~ 寻四圣9
 set Global.onTalk = true
+
 set Global.getnode("姜韵").visible = true
 set Global.toggleballon()
 set Global.getnode("player/Sprite2D").visible = false
@@ -366,7 +373,7 @@ set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.append("小二")
 set Global.onTeamPlayer.append("凌若昭")
-
+set Global.onTeamPet.erase("大海龟")
 set Global.changeScene("凤巢4",null)
 
 set Global.onTalk = false
@@ -375,6 +382,7 @@ set Global.onTalk = false
 ~ 寻四圣11
 set Global.onTalk = true
 set Global.dial = null
+set Global.wutongOn = true
 小二: [speed=0.5]这里简直和迷宫一样，要不是梧桐大叔你带路，我们怕是要晕死在这
 梧桐: [speed=0.5]哈哈哈哈，其实只要心不带杂念，这里就很容易走
 凌若昭: [speed=0.5]随心而定的小天地吗，朱雀一定很善良
@@ -423,7 +431,7 @@ set Global.onTalk = false
 ~ 寻四圣13
 set Global.onTalk = true
 set Global.getnode("player").position = Vector2(824,877)
-小二: [speed=0.5]他怎么会这么强！
+小二: [speed=0.5]不行，他的速度太快了，我没空化身！
 凌若昭怒: [speed=0.5]他肯定是用了什么方法！
 梧桐: [speed=0.5]这里是朱雀大人的内心世界，而他窃取了朱雀大人大量的力量本源，所以在这里他现在几乎是无敌的
 小二: [speed=0.5]那怎么办！
@@ -432,6 +440,7 @@ set Global.getnode("player").position = Vector2(824,877)
 镰魔: [speed=0.5]当我傻吗，我可不会放任你们复活他的
 梧桐: [speed=0.5]...
 set Global.changebgm("res://Audio/BGM/庄严3.mp3")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(11.0)
 set Global.getnode("梧桐/effects/火焰").visible = true
 set Global.getnode("梧桐/effects/火焰").play()
 set Global.playsound("res://Audio/SE/火1.ogg")
@@ -495,6 +504,7 @@ set Global.getnode("朱雀").play("default")
 小二: [speed=0.5]我明白了，哈哈哈哈哈哈哈
 凌若昭: [speed=0.5]怎么了
 小二: [speed=0.5]没什么，具体是怎么回事就交给后人去评定吧，我们还是先出去吧
+set Global.wutongOn = false
 set Global.changeScene("龙窟7",Vector2(1667,998))
 set Global.dial = "寻四圣"
 set Global.onTalk = false
@@ -503,10 +513,12 @@ set Global.onTalk = false
 ~ 寻四圣14
 set Global.onTalk = true
 set Global.canLose = true
+set FightScenePlayers.eraseMagic("时追云","飞剑决")
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.append("姜韵")
+set Global.onTeamPet.append("大海龟")
 时追云: 我们上！
 set get_tree().current_scene.bossFight("人形青龙","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "寻四圣")
 
@@ -688,7 +700,7 @@ set Global.onTeamPet.append("玄武")
 set Global.onTeamPet.append("朱雀")
 set Global.onTeamPet.append("白虎")
 set Global.getnode("青龙3").visible = false
-set Global.canLose = true
+set FightScenePlayers.healAll()
 set get_tree().current_scene.bossFight("青龙","res://Audio/BGM/仙劍奇俠傳-腥風血雨.mp3", "寻四圣")
 
 
@@ -790,6 +802,8 @@ set Global.getnode("鬼帝化身").visible = true
 [next=3]
 set Global.triggerPlace.get("方寸山之魔").disable = false
 set Global.changevis("方寸山","菩提老祖2")
+set Global.changevis("灵台宫","菩提老祖")
+set Global.changevis("灵台宫","凌若昭")
 set Global.current_chapter_id = 8
 set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
 

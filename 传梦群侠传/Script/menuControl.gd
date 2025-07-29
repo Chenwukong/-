@@ -67,6 +67,10 @@ func format_time(seconds):
 	return "%02d:%02d:%02d" % [hours, minutes, second]
 	
 func _process(delta):
+	if (Global.onPhone or Global.noKeyboard) and Global.menuOut:
+		$closeButton.visible = true
+		$backButton.visible = true
+		
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 	for i in Global.onTeamPlayer.size():
 		playerStatus[i].visible = true 
@@ -655,8 +659,9 @@ func _process(delta):
 		
 						#如果选中的背包位子不是空的，并且武器不是空的
 						if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "" :
-							
+							print(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text)
 							if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "梦澹":
+								
 								Global.gai = true
 							if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
 								Global.gai = false							
@@ -901,6 +906,7 @@ func _process(delta):
 					if bagArmorItemsData[i].type == "cloth":
 						cloths.append(bagArmorItemsData[i])
 				for i in cloths.size():
+					
 					bagArmorItems[i].get_node("itemImage").texture = load(cloths[i].info.icon )
 					bagArmorItems[i].get_node("itemImage/item").text = cloths[i].info.name
 					bagArmorItems[i].get_node("itemImage/item/itemNumber").text =  ":     " + str(cloths[i].number)
@@ -1453,6 +1459,7 @@ func _process(delta):
 			$"加点页面/介绍区/总共提高".visible = false		
 					
 		if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
+			Global.playsound("res://Audio/SE/002-System02.ogg")
 			if skillIndex == 0 and currPlayer.potential > 0:
 				pointOnHp += 1 * Global.enKey
 				currPlayer.potential -= Global.enKey 
@@ -1511,6 +1518,7 @@ func _process(delta):
 				$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".visible = true
 				
 			elif skillIndex == 5:	
+				Global.playsound("res://Audio/SE/007-System07.ogg")
 				if pointOnHp > 0:
 					currPlayer.addHp += pointOnHp * 7 
 					currPlayer.addPhysicDefense += pointOnHp 
@@ -1563,7 +1571,7 @@ func _process(delta):
 				$"加点页面/属性区/最大仙能/最大仙能数字".modulate = "ffffff"		
 				$"加点页面/属性区/最大仙能/最大仙能数字/increaseValue".visible = false				
 				
-				
+				Global.playsound("res://Audio/SE/004-System04.ogg")
 				currPlayer.potential += pointOnLuck + pointOnHp +pointOnSpeed + pointOnMagic + pointOnStr
 						
 				pointOnLuck= 0
@@ -2185,6 +2193,8 @@ func _on_仙力加点_button_down():
 func _on_确认按钮_button_down():
 	if !Global.noKeyboard:
 		return
+		
+	Global.playsound("res://Audio/SE/007-System07.ogg")
 	skillIndex = 5
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if pointOnHp > 0:
@@ -2892,7 +2902,7 @@ func bagButton():
 #	if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name == "姜韵" and Global.onGhost:
 #		return
 	if armorItemSelectIndex == 0:
-		print(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon)
+
 		weapons = []
 		for i in bagArmorItemsData:
 			if bagArmorItemsData[i].type == "weapon" and bagArmorItemsData[i].info.user == FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].name:
@@ -2954,6 +2964,7 @@ func bagButton():
 			if canPress and armorItemSelectIndex == 0:
 				#如果选中的背包位子不是空的，并且武器不是空的
 				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
+					print(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text)
 					if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "梦澹":
 						Global.gai = true
 					if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
@@ -3505,18 +3516,21 @@ func decrypt(value):
 
 
 func _on_close_button_button_down():
-	
 	Global.menuOut = false
 	$".".visible = false
 
 
 func _on_back_button_button_down():
 	if Global.menuOut and !Global.onMenuSelectCharacter and !Global.onMagicPage  and !Global.onStatusPage and !Global.onArmorItemPage and !Global.onQuitMenu and !Global.onStatusPage and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemPage:
+		
 		if Global.onFight == false:
 			characterIndex = 0			
 			if Global.onMagicPage == false:
 				buttonIndex = 0 
 			get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))
+			Global.menuOut = false
+			$".".visible = false
+
 	if Global.onMenuSelectCharacter:
 		Global.onMenuSelectCharacter = false
 		get_node("menuButton/menuButtonPlayer").play("menuButtonFlash" + str(buttonIndex + 1))

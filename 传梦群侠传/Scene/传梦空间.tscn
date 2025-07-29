@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://br214w1c8rvex"]
+[gd_scene load_steps=132 format=3 uid="uid://br214w1c8rvex"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_jgnfh"]
 [ext_resource type="Texture2D" uid="uid://dr6ri1nlcyc55" path="res://panoramas2/传梦空间.jpg" id="2_rvkgg"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_6fouk"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_qvybf"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_h47ur"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_5tnx6"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_5tnx6"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_5188l"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_2lfdh"]
 [ext_resource type="Texture2D" uid="uid://ceo1l7nl25x2i" path="res://Characters/无痕.png" id="24_5i5my"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://ni3oh0kaey0e" path="res://Characters/老板.png" id="33_us0sm"]
 [ext_resource type="Texture2D" uid="uid://0uei0mkmg6ta" path="res://Characters/关重七.png" id="34_qoobe"]
 [ext_resource type="Texture2D" uid="uid://bx0w1o30r7i6e" path="res://Characters/巡游.png" id="35_gr1yy"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="36_r66bw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5e4p"]
 
@@ -712,6 +713,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_s2tcs"]
+length = 0.001
+
 [sub_resource type="Animation" id="Animation_2g56x"]
 resource_name = "turnDark"
 tracks/0/type = "value"
@@ -726,9 +730,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_s2tcs"]
-length = 0.001
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l4anp"]
 _data = {
@@ -784,13 +785,11 @@ texture = ExtResource("2_rvkgg")
 
 [node name="player" parent="." instance=ExtResource("3_j002l")]
 z_index = 2
-position = Vector2(476.5, 363.493)
+position = Vector2(291, 2046)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(-30.9092, 9.61548)
@@ -798,14 +797,13 @@ position = Vector2(-30.9092, 9.61548)
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 light_mask = 2
 visibility_layer = 2
 script = ExtResource("4_la1t5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(-181, 1858, -113, 1898, -18, 1876, 117, 1859, 352, 1892, 515, 1986, 577, 2046, 833, 2086, 914, 2027, 1080, 1990, 1149, 1993, 1241, 1928, 1254, 1851, 1274, 1784, 1412, 1784, 1585, 1786, 1881, 1787, 1998, 1738, 2066, 1709, 2033, 1627, 2122, 1622, 2138, 1698, 2304, 1735, 2398, 1689, 2447, 1714, 2371, 1771, 2420, 1854, 2319, 1954, 2174, 1962, 1995, 1935, 1917, 1878, 1722, 1898, 1561, 1903, 1442, 1932, 1371, 1951, 1257, 2027, 1315, 2082, 1309, 2187, 1146, 2257, 966, 2254, 825, 2219, 825, 2160, 539, 2105, 503, 2184, 341, 2259, 179, 2289, 44, 2284, -116, 2259, -255, 2179, -283, 2079, -255, 2001, -189, 1937, -263, 1897, -267, 1900)
+polygon = PackedVector2Array(73, 1995, 74, 1916, 166, 1888, 235, 1883, 352, 1892, 515, 1986, 594, 2002, 835, 2033, 914, 2027, 1080, 1990, 1149, 1993, 1241, 1928, 1254, 1851, 1274, 1784, 1412, 1784, 1585, 1786, 1881, 1787, 1998, 1738, 2066, 1709, 2033, 1627, 2122, 1622, 2138, 1698, 2304, 1735, 2398, 1689, 2447, 1714, 2371, 1771, 2420, 1854, 2319, 1954, 2174, 1962, 1995, 1935, 1917, 1878, 1722, 1898, 1561, 1903, 1442, 1932, 1371, 1951, 1257, 2027, 1315, 2082, 1309, 2187, 1146, 2257, 966, 2254, 825, 2219, 825, 2160, 539, 2105, 503, 2184, 341, 2259, 179, 2289, 44, 2284, -116, 2259, -255, 2179, -283, 2079, -255, 2001, 66, 2289, 63, 2253, 60, 2156)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
@@ -975,8 +973,6 @@ id = "传梦空间9"
 [node name="Node2D3" parent="." instance=ExtResource("16_6fouk")]
 position = Vector2(2828.31, 244.75)
 id = "传梦空间"
-goldAmount = 100000
-gold = true
 
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_5188l")
@@ -1111,6 +1107,10 @@ position = Vector2(973, 1991)
 sprite_frames = SubResource("SpriteFrames_c0jvv")
 frame_progress = 0.979042
 npcName = "汤姆"
+
+[node name="teleportCircle" parent="." instance=ExtResource("36_r66bw")]
+position = Vector2(-189, 246)
+toScene = "长寿村"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

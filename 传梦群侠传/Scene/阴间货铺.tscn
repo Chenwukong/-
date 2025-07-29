@@ -1,23 +1,23 @@
-[gd_scene load_steps=37 format=3 uid="uid://tdin6vn1xaeg"]
+[gd_scene load_steps=31 format=3 uid="uid://ftuuaj13kouf"]
 
-[ext_resource type="Script" path="res://Script/map.gd" id="1_u6ic1"]
-[ext_resource type="Texture2D" uid="uid://c48vfs6t7yf1a" path="res://panoramas2/袄来药店.jpg" id="2_bn5d1"]
-[ext_resource type="Texture2D" uid="uid://b6qx6f4pckq5h" path="res://panoramas2/袄来药店_2.png" id="3_81tgc"]
-[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_enrmr"]
-[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_ixnji"]
-[ext_resource type="AudioStream" uid="uid://ba8m3d10lwijp" path="res://Audio/BGM/傲来.mp3" id="6_essdr"]
-[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_t61dx"]
-[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_75uth"]
-[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_x3qiv"]
-[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_is3j6"]
-[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_iam70"]
-[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="12_kopv5"]
-[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="13_wbb4d"]
-[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="14_xx81w"]
-[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="15_cygv0"]
-[ext_resource type="Texture2D" uid="uid://cikd0gev1w1p1" path="res://Characters/樵夫.png" id="16_1m7g7"]
-[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_43x42"]
-[ext_resource type="Texture2D" uid="uid://fruw6wvuq06n" path="res://Characters/_药店老板.png" id="18_pf55h"]
+[ext_resource type="Script" path="res://Script/map.gd" id="1_ekqpn"]
+[ext_resource type="Texture2D" uid="uid://caaohs1uivmvw" path="res://panoramas2/地府-大殿2.jpg" id="2_p6ggs"]
+[ext_resource type="Texture2D" uid="uid://b6qx6f4pckq5h" path="res://panoramas2/袄来药店_2.png" id="3_86w60"]
+[ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_4joyx"]
+[ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_xeqge"]
+[ext_resource type="AudioStream" uid="uid://c8lyx6lt612j7" path="res://Audio/BGM/地府.mp3" id="6_d35vx"]
+[ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="7_awcux"]
+[ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="8_lb02s"]
+[ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="9_1aka3"]
+[ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="10_478yq"]
+[ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="11_h2grq"]
+[ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="12_ayscq"]
+[ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="13_gdnhf"]
+[ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="14_y3wqm"]
+[ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="15_l7glc"]
+[ext_resource type="Texture2D" uid="uid://cikd0gev1w1p1" path="res://Characters/樵夫.png" id="16_ps8bn"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_d6knx"]
+[ext_resource type="Texture2D" uid="uid://dv0tfoifr1y1o" path="res://Characters/小白.png" id="18_f30dt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
@@ -54,7 +54,7 @@ border_color = Color(0.890196, 0.670588, 0.968627, 1)
 bg_color = Color(0, 0.568627, 0.552941, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hy8ir"]
-atlas = ExtResource("16_1m7g7")
+atlas = ExtResource("16_ps8bn")
 region = Rect2(0, 91, 64, 91)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kvggm"]
@@ -68,92 +68,51 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wpfen"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(0, 0, 50, 76)
+[sub_resource type="AtlasTexture" id="AtlasTexture_m83ro"]
+atlas = ExtResource("18_f30dt")
+region = Rect2(0, 0, 69, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2nqxr"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(50, 0, 50, 76)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7f7bc"]
+atlas = ExtResource("18_f30dt")
+region = Rect2(0, 96, 69, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_20vcn"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(100, 0, 50, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6acvs"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(150, 0, 50, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sexj4"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(200, 0, 50, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y83op"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(250, 0, 50, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wy5ru"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(300, 0, 50, 76)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fxvd5"]
-atlas = ExtResource("18_pf55h")
-region = Rect2(350, 0, 50, 76)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vfbsn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8nhf"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wpfen")
+"texture": SubResource("AtlasTexture_m83ro")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2nqxr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_20vcn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6acvs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sexj4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y83op")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wy5ru")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fxvd5")
+"texture": SubResource("AtlasTexture_7f7bc")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="傲来药店" type="Node2D"]
-script = ExtResource("1_u6ic1")
+[node name="阴间货铺" type="Node2D"]
+script = ExtResource("1_ekqpn")
 
 [node name="建业-布店" type="Sprite2D" parent="."]
 position = Vector2(355, 238)
-texture = ExtResource("2_bn5d1")
+texture = ExtResource("2_p6ggs")
 
 [node name="shadow" type="Sprite2D" parent="."]
+visible = false
 z_index = 2
 position = Vector2(355, 238)
-texture = ExtResource("3_81tgc")
+texture = ExtResource("3_86w60")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 light_mask = 2
 visibility_layer = 2
-script = ExtResource("4_enrmr")
+script = ExtResource("4_4joyx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(517, 545, 697, 453, 636, 380, 417, 253, 450, 194, 635, 299, 784, 206, 480, 58, 264, 180, 203, 139, 117, 171, 150, 211, -45, 304, 16, 375, 267, 245, 297, 297, 50, 409, 152, 373, 206, 409, 251, 436, 353, 523, 424, 497)
+polygon = PackedVector2Array(572, 480, 688, 430, 668, 402, 786, 344, 572, 222, 549, 244, 489, 210, 403, 141, 314, 191, 195, 275, 72, 343, 283, 455, 376, 512, 486, 508)
 
-[node name="player" parent="." instance=ExtResource("5_ixnji")]
+[node name="player" parent="." instance=ExtResource("5_xeqge")]
 z_index = 1
 position = Vector2(520, 400)
 scale = Vector2(0.903555, 0.940031)
@@ -161,11 +120,14 @@ scale = Vector2(0.903555, 0.940031)
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.7, 1.7)
 
+[node name="PointLight2D" parent="player" index="12"]
+position = Vector2(52.0167, 3.19141)
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(713, 475)
-stream = ExtResource("6_essdr")
+stream = ExtResource("6_d35vx")
 volume_db = 4.414
 max_distance = 1e+07
 metadata/_edit_group_ = true
@@ -180,7 +142,7 @@ wait_time = 0.5
 volume_db = 2.163
 max_distance = 10000.0
 
-[node name="BattleReward" parent="." instance=ExtResource("7_t61dx")]
+[node name="BattleReward" parent="." instance=ExtResource("7_awcux")]
 
 [node name="battleRewardGone" type="Timer" parent="."]
 wait_time = 2.0
@@ -196,14 +158,14 @@ constrain_avoidance = true
 visible = false
 position = Vector2(332.128, 1271.12)
 scale = Vector2(0.0631201, 0.0198038)
-texture = ExtResource("8_75uth")
+texture = ExtResource("8_lb02s")
 
 [node name="circleTimer" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [node name="enterFightSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_x3qiv")
+stream = ExtResource("9_1aka3")
 volume_db = 6.0
 max_distance = 100000.0
 
@@ -235,26 +197,26 @@ visible = false
 [node name="blackSide" type="TextureRect" parent="CanvasLayer2"]
 offset_right = 1152.0
 offset_bottom = 804.0
-texture = ExtResource("10_is3j6")
+texture = ExtResource("10_478yq")
 
-[node name="teleportCircle" parent="." instance=ExtResource("11_iam70")]
-position = Vector2(606, 487)
+[node name="teleportCircle" parent="." instance=ExtResource("11_h2grq")]
+position = Vector2(605, 440)
 scale = Vector2(0.887324, 0.829268)
-toScene = "傲来国"
+toScene = "地府"
 
 [node name="addChild" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
 [node name="MarkerRight" type="Marker2D" parent="."]
-position = Vector2(886, 595)
+position = Vector2(799, 506)
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
-position = Vector2(-223, -116)
+position = Vector2(-89, -26)
 
 [node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
 visible = false
-stream = ExtResource("12_kopv5")
+stream = ExtResource("12_ayscq")
 volume_db = 2.432
 max_distance = 1e+06
 
@@ -386,18 +348,106 @@ wait_time = 0.1
 
 [node name="warnTimer" type="Timer" parent="."]
 
-[node name="menuControl" parent="." instance=ExtResource("13_wbb4d")]
+[node name="menuControl" parent="." instance=ExtResource("13_gdnhf")]
 
-[node name="CanvasLayer" parent="." instance=ExtResource("14_xx81w")]
+[node name="CanvasLayer" parent="." instance=ExtResource("14_y3wqm")]
 
-[node name="大生" parent="." instance=ExtResource("15_cygv0")]
+[node name="大生" parent="." instance=ExtResource("15_l7glc")]
 position = Vector2(-512, 244)
 sprite_frames = SubResource("SpriteFrames_kvggm")
 npcName = "大生"
 
-[node name="Node2D" parent="." instance=ExtResource("17_43x42")]
-position = Vector2(674, 237)
+[node name="Node2D" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(49, 229)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D3" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(92, 192)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D5" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(522, 174)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D6" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(310, 68)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D7" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(352, 38)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D8" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(306, 43)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D9" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(352, 12)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D10" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(43, 201)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D11" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(207, 226)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D12" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(523, 146)
+id = "阴间货铺"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D2" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(1101, 251)
 id = "傲来药店"
+items = {
+"小还丹": 20
+}
+violencePointTreasure = true
+
+[node name="Node2D4" parent="." instance=ExtResource("17_d6knx")]
+position = Vector2(266, 179)
+id = "阴间货铺"
 items = {
 "小还丹": 20
 }
@@ -405,11 +455,14 @@ violencePointTreasure = true
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
-[node name="傲来药店老板" parent="." instance=ExtResource("15_cygv0")]
-position = Vector2(192, 217)
-sprite_frames = SubResource("SpriteFrames_vfbsn")
-itemSale = ["小还丹", "西瓜", "佛跳墙"]
-npcName = "傲来药店老板"
+[node name="白无常" parent="." instance=ExtResource("15_l7glc")]
+position = Vector2(342, 291)
+sprite_frames = SubResource("SpriteFrames_d8nhf")
+itemSale = ["万里追云", "高速之星", "黑魔冠", "夜魔披风", "小还丹", "西瓜", "佛跳墙"]
+npcName = "白无常"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.321569, 0.321569, 0.321569, 1)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

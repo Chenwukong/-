@@ -1018,6 +1018,10 @@ one_shot = true
 [node name="turnIdle" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="onPetAttackTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
 [connection signal="timeout" from="start" to="." method="_on_start_timeout"]
 [connection signal="timeout" from="turnIdle" to="." method="_on_turn_idle_timeout"]
+[connection signal="timeout" from="onPetAttackTimer" to="." method="_on_on_pet_attack_timer_timeout"]

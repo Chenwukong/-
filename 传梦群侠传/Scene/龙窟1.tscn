@@ -18,10 +18,10 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_4ecrp"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_o78x1"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_k2245"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="20_xufre"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_xufre"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="21_x8v2p"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="22_op26d"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="22_x6fd3"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="22_x6fd3"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(3439, -213, 3439, 2794, -1039, 2773, -1033, 1372, -1029, -240, -1033, 909)
@@ -131,7 +131,7 @@ texture = ExtResource("2_mqftu")
 
 [node name="player" parent="." instance=ExtResource("3_6ek0m")]
 z_index = 2
-position = Vector2(2572, 1981)
+position = Vector2(2599, 1971)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -307,14 +307,11 @@ frame_progress = 0.0
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("17_4ecrp")]
-position = Vector2(358, 1859)
+position = Vector2(1215, 1662)
 id = "神龙1"
 items = {
-"含沙射影": 3,
-"金疮药": 10
+"龙骨甲": 2
 }
-goldAmount = 10000
-gold = true
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-443, 295)
@@ -328,7 +325,7 @@ position = Vector2(2077, 524)
 id = "神龙1"
 
 [node name="Node2D2" parent="." instance=ExtResource("17_4ecrp")]
-position = Vector2(-223, 2632)
+position = Vector2(204, 2531)
 id = "傲来国1"
 items = {
 "佛手": 10,
@@ -350,6 +347,10 @@ toScene = "傲来钱庄"
 [node name="petFoodBall" parent="." instance=ExtResource("20_xufre")]
 position = Vector2(1327, 557)
 id = "神龙1"
+
+[node name="petFoodBall2" parent="." instance=ExtResource("20_xufre")]
+position = Vector2(1219, 1652)
+id = "神龙2"
 
 [node name="Node2D3" parent="." instance=ExtResource("17_4ecrp")]
 position = Vector2(-646, 743)

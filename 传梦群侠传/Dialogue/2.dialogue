@@ -1,5 +1,5 @@
 ~ 初见小二
-set Global.maxLevel = 20
+set Global.maxLevel = 25
 set Global.onTalk = true
 set Global.onHurry = false
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
@@ -1601,7 +1601,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 小星星: 我可以送你去六楼哦
 - 去
-	set Global.changeScene("锁妖塔1",Vector2(2174,1232))
+	set Global.changeScene("锁妖塔6",Vector2(2174,1232))
 - 不去
 set Global.onTalk = false
 => END
@@ -1690,10 +1690,11 @@ if Global.lost:
 	set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/猛男-刀.ogg")
 	set get_tree().current_scene.get_node("oneTimeSound").play()
 	
-	[next = 0.1]
+	[next=0.2]
 	set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/猛男 死.ogg")
 	set get_tree().current_scene.get_node("oneTimeSound").play()
-	set get_tree().current_scene.get_node("鹰孽大王/AnimationPlayer").play("turnRed")[next=0.1]
+	set get_tree().current_scene.get_node("鹰孽大王/AnimationPlayer").play("turnRed")
+	[next=0.1]
 	鹰孽大王: [speed=0.4]呃
 	
 	

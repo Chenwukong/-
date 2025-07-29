@@ -1,12 +1,13 @@
-[gd_scene load_steps=46 format=3 uid="uid://dfdy0adq1qgnc"]
+[gd_scene load_steps=47 format=3 uid="uid://dfdy0adq1qgnc"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_urs45"]
 [ext_resource type="Texture2D" uid="uid://ck4x1m4fcaons" path="res://panoramas2/大雁塔7.jpg" id="2_p6w6f"]
 [ext_resource type="Texture2D" uid="uid://bm4hmox6fevr1" path="res://panoramas2/大雁塔7_2.png" id="3_g2t4b"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_lrd7n"]
 [ext_resource type="AudioStream" uid="uid://lg6xtg85hjxd" path="res://Audio/BGM/#诡异之地.ogg" id="5_4nh75"]
-[ext_resource type="Texture2D" uid="uid://mxdi4nt4xhhg" path="res://Animations/鬼将-法术.png" id="15_57xbo"]
+[ext_resource type="Texture2D" uid="uid://ct2pab5o08nlj" path="res://Animations/鬼将-法术.png" id="15_57xbo"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_h0e2m"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="20_2g5h4"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="25_8qs8a"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="26_s8lk3"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="27_0h034"]
@@ -400,6 +401,13 @@ animation = &"左上"
 [node name="CanvasLayer" parent="." instance=ExtResource("19_h0e2m")]
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="." instance=ExtResource("20_2g5h4")]
+position = Vector2(2785, 1172)
+id = "锁妖塔7"
+items = {
+"小还丹": 5
+}
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

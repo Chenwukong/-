@@ -63,6 +63,7 @@ func _on_timer_timeout():
 		8:
 			get_tree().change_scene_to_file("res://Scene/"+"方寸山"+".tscn")	
 		9:
+			Global.dial = "菩提老祖"
 			Global.changeScene("灵台宫",Vector2(391,277))	
 		10:
 			Global.mapPlayerPos = Vector2(1995,1759)

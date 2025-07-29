@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_5t4pv"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_i11tu"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_hp38g"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_1w7ce"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_1w7ce"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_o3jgn"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_t5o77"]
 [ext_resource type="Script" path="res://Script/怨蛛.gd" id="22_mr04a"]
@@ -31,7 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://dvuwdd4kxvq6s" path="res://Pictures/scaryFace-removebg-preview.png" id="29_uxfr3"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="30_jxn5x"]
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="31_dmvv3"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="32_2yhi3"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="32_2yhi3"]
 [ext_resource type="Texture2D" uid="uid://b1ngu8a173pqm" path="res://Characters/野鬼.png" id="33_p4jao"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="34_ix21t"]
 [ext_resource type="Texture2D" uid="uid://brhiltco2lfuc" path="res://Animations/鬼司/Death.png" id="35_1ad27"]
@@ -607,7 +607,7 @@ position = Vector2(2253, 1958)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
-[node name="PointLight2D" parent="player" index="11"]
+[node name="PointLight2D" parent="player" index="12"]
 energy = 2.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
@@ -888,6 +888,9 @@ stream = ExtResource("24_qno5n")
 volume_db = 3.0
 autoplay = true
 
+[node name="enterFightTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
 [node name="ghostSounds" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="ghostSounds"]
@@ -1002,6 +1005,7 @@ autoplay = "default"
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_area_entered" flags=18]
+[connection signal="timeout" from="CharacterBody2D/enterFightTimer" to="." method="_on_enter_fight_timer_timeout"]
 [connection signal="area_entered" from="ghostSounds/Area2D" to="ghostSounds/Area2D" method="_on_area_entered" flags=18]
 [connection signal="area_entered" from="ghostSounds/Area2D2" to="ghostSounds/Area2D2" method="_on_area_entered" flags=18]
 [connection signal="area_entered" from="ghostSounds/Area2D3" to="ghostSounds/Area2D3" method="_on_area_entered" flags=18]

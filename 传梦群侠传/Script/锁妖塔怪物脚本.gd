@@ -11,6 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Global.onFight:
+		return
 	if randi_range(0,400) == 0:
 		changeDir()
 #	if $AnimatedSprite2D.animation_finished:

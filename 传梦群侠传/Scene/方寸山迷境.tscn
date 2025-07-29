@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://c2foiwbrx1gq6"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_yk08l"]
-[ext_resource type="Texture2D" uid="uid://4u1exe2xq6um" path="res://Panoramas/方寸山下.jpg" id="2_nn8n4"]
+[ext_resource type="Texture2D" uid="uid://dbxppwjyqbbvb" path="res://Panoramas/方寸山下.jpg" id="2_nn8n4"]
 [ext_resource type="Texture2D" uid="uid://cq2lr8wf3t47y" path="res://panoramas2/大唐官府_程府_2.PNG" id="3_2s10e"]
 [ext_resource type="Script" path="res://Script/mapCollider.gd" id="4_f700t"]
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_lxrqn"]
@@ -14,12 +14,12 @@
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="17_5buft"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_wpcwd"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="28_den3e"]
-[ext_resource type="PackedScene" path="res://Scene/方寸tp.tscn" id="29_4ao2p"]
+[ext_resource type="PackedScene" uid="uid://m2nxckxrrk01" path="res://Scene/方寸tp.tscn" id="29_4ao2p"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="32_7pc5c"]
-[ext_resource type="Texture2D" uid="uid://cxfxikjr3mrm1" path="res://Panoramas/方寸山中.jpg" id="32_a0sgb"]
+[ext_resource type="Texture2D" uid="uid://c6pobr2ky8j85" path="res://Panoramas/方寸山中.jpg" id="32_a0sgb"]
 [ext_resource type="Texture2D" uid="uid://bygig8xtfcuq8" path="res://cloud.png" id="32_uuc21"]
-[ext_resource type="Texture2D" uid="uid://d3t01aj7kfeu7" path="res://Panoramas/方寸山上.jpg" id="33_7necr"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="34_h7rrx"]
+[ext_resource type="Texture2D" uid="uid://ck4nc3mnl6hpy" path="res://Panoramas/方寸山上.jpg" id="33_7necr"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="34_h7rrx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kwa23"]
 vertices = PackedVector2Array(3594, 92, 3621, 3089, 32, 3080, 11, 1492, 9, 1337, 20, 95)
@@ -72,6 +72,10 @@ polygon = PackedVector2Array(-1197, -1711, -1246, -1195, -17, -1102, -19, -1741)
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
 polygon = PackedVector2Array(-151, -1472, -176, -863, 147, -788, 847, -931, 945, -1092, 792, -1424, 695, -1859, 491, -2009, -59, -1975)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PackedVector2Array(669, -669, 1486, -700, 1607, -952, 1955, -901, 1788, -1299, 2076, -1617, 2025, -1950, 1491, -1647, 1309, -1728, 1330, -1889, 1163, -1934, 1078, -1824, 614, -2136, -1528, -2216, 620, -1847)
 
 [node name="player" parent="." instance=ExtResource("5_lxrqn")]
 z_index = 1

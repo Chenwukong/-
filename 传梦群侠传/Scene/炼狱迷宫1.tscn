@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_ysero"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_6770p"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_qoo3r"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_3gjqn"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_3gjqn"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_jkvul"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="21_0wsoy"]
 [ext_resource type="PackedScene" uid="uid://dd1lhpctw2jww" path="res://Scene/姜韵.tscn" id="22_10i2s"]
@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://brl00xmx67cd" path="res://Characters/NPC孙悟空D4A10B10T.png" id="28_4ka15"]
 [ext_resource type="Texture2D" uid="uid://b5jy5m28ffw65" path="res://梦魂Animation/【孙悟空攻击】.png" id="29_wgx2f"]
 [ext_resource type="Texture2D" uid="uid://c2nh4w1qxh46p" path="res://Characters/小孩-女.png" id="30_t0c40"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="31_oxdn7"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="31_oxdn7"]
 [ext_resource type="Texture2D" uid="uid://pltj673ab6c4" path="res://Characters/幽灵.png" id="32_dme88"]
 [ext_resource type="Texture2D" uid="uid://baggl1ni7lqr5" path="res://梦魂Animation/【画魂施法】.png" id="33_u4urb"]
 
@@ -986,7 +986,7 @@ position = Vector2(787, 1684)
 monster_name = "牛魔"
 
 [node name="CharacterBody2D20" parent="monsters" instance=ExtResource("24_rtxdx")]
-position = Vector2(861, 1401)
+position = Vector2(1728, 1149)
 monster_name = "牛魔"
 
 [node name="CharacterBody2D10" parent="monsters" instance=ExtResource("24_rtxdx")]
@@ -1026,12 +1026,11 @@ position = Vector2(1459, 833)
 monster_name = "牛魔"
 
 [node name="CharacterBody2D19" parent="monsters" instance=ExtResource("24_rtxdx")]
-position = Vector2(530, 1251)
+position = Vector2(1013, 979)
 monster_name = "牛魔"
 
 [node name="炼狱迷宫1" parent="." instance=ExtResource("31_oxdn7")]
-visible = false
-position = Vector2(1562, 1647)
+position = Vector2(765, 1314)
 triggerEvent = "炼狱迷宫"
 
 [node name="魔画" parent="." instance=ExtResource("25_pa6wt")]

@@ -177,8 +177,6 @@ texture = ExtResource("5_d65gf")
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
 autoplay = "leftStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -304,7 +302,7 @@ offset_bottom = 804.0
 texture = ExtResource("13_4826i")
 
 [node name="teleportCircle" parent="." instance=ExtResource("14_nku6j")]
-position = Vector2(76, 731)
+position = Vector2(-2373, 680)
 toScene = "建邺城"
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("15_nclxo")]
@@ -387,8 +385,9 @@ items = {
 [node name="Node2D6" parent="." instance=ExtResource("23_dpyxh")]
 position = Vector2(-15, 614)
 id = "秘境5"
-goldAmount = 50000
-gold = true
+items = {
+"GM凤披": 1
+}
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 

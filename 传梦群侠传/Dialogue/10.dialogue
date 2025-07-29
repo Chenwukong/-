@@ -173,6 +173,15 @@ set get_tree().current_scene.bossFight("魔画","res://Audio/BGM/网易游戏 - 
 set Global.onTalk = false
 => END
 
+~ 熊猫商人
+set Global.onTalk = true
+熊猫商人: [speed=0.5]别开心得太早，我这里可不卖鱼哦
+熊猫商人: [speed=0.5]为了不损坏我历届的名声，我送你几条吧
+set Global.addItem("怪力鱼", "consume", "consumeItem", 5)
+set Global.addItem("娃娃鱼", "consume", "consumeItem", 5)
+set Global.addItem("鳊鱼", "consume", "consumeItem", 5)
+set Global.onTalk = false
+=> END
 
 
 ~ 炼狱迷宫2
@@ -239,7 +248,8 @@ set Global.onTalk = true
 凌若昭: [speed=0.5]啊
 时追云: [speed=0.5]...
 姜韵喜: [speed=0.5]不用担心，阴暗面不强的人所滋生出来的魔物我估计也不会太强，比如刚才的阎罗王，灵智都未开
-时追云: [speed=0.5]难道那老头不阴暗吗...(在地府战斗中的阎罗王打了个喷嚏)
+时追云: [speed=0.5]难道那老头不阴暗吗...
+: (在地府战斗中的阎罗王打了个喷嚏)
 
 
 set Global.onTalk = false
@@ -279,9 +289,10 @@ set Global.onTalk = false
 => END
 
 
-~ 魔妾
+~ 魔妾1
 set Global.onTalk = true
-set get_tree().current_scene.bossFight("魔妾","res://Audio/BGM/轩辕-战斗.mp3", "魔妾")
+set Global.changevis("炼狱迷宫5", "魔妾")
+set get_tree().current_scene.bossFight("魔妾","res://Audio/BGM/轩辕-战斗.mp3", null)
 set Global.onTalk = false
 => END
 
@@ -408,6 +419,7 @@ set Global.changebgm("res://Audio/BGM/大堂-急迫.ogg")
 时追云怒: [speed=0.5]之前是我们放过了你，这次由不得你逞凶了！
 小二: [speed=0.5]老大
 孙悟空: [speed=0.5]你们小心，他实力不弱！
+set FightScenePlayers.healAll()
 set get_tree().current_scene.bossFight("六耳猕猴","res://Audio/BGM/Hollow Knight OST - False Knight.mp3", "炼狱迷宫")
 
 
@@ -485,6 +497,7 @@ set Global.getnode("蚩尤").visible = false
 时追云: [speed=0.5]孙大圣，天庭封闭了通往天上的道路，你有办法上去吗
 孙悟空: [speed=0.5]俺老孙自有办法，不过你们确定要去吗，上面可是九死一生啊
 孙悟空: [speed=0.5]若在人间还有事未做，那就办了再来找俺老孙，我在花果山等你们
+set Global.maxLevel = 85
 set Global.getnode("孙悟空").visible = false
 set Global.changevis("水帘洞","孙悟空")
 时追云: [speed=0.5]...

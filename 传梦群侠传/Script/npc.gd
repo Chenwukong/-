@@ -3,6 +3,8 @@ extends AnimatedSprite2D
 @export var npcName = ""
 @export var audio = ""
 @export var animal = false
+var index = null
+var dialogues = ""
 var player
 var newStream
 var onChase = false
@@ -24,8 +26,21 @@ func _process(delta):
 	if talked:
 		visible = false
 		Global.npcVis.get(get_tree().current_scene.name)[name].visible = false	
+	if Global.npcs.has(npcName):
+		index = Global.npcs[npcName]["current_dialogue_index"]
+		dialogues = Global.npcs[npcName]["dialogues"]
 		
-		
+		if dialogues and index != null:
+			if index < dialogues.size():
+				if Global.npcs[npcName]["dialogues"][Global.npcs[npcName]["current_dialogue_index"]].unlocked == true:
+					$AnimatedSprite2D.visible = true
+				else:
+					$AnimatedSprite2D.visible = false
+			else:
+				$AnimatedSprite2D.visible = false
+					
+				
+				
 	if self.visible == false:
 		$npcBody/CollisionPolygon2D.disabled = true
 
@@ -100,11 +115,8 @@ func _on_button_mouse_entered():
 	var distance = self.position.distance_to(player.position)
 	if !Global.onFight:
 		Global.onButton = true
-	if !Global.onFight and distance < 130:
-		$AnimatedSprite2D.visible = true
-func _on_button_mouse_exited():
-	$AnimatedSprite2D.visible = false
-	Global.onButton = false
+
+
 
 func _on_button_button_down():
 	if talked or Global.onPet:

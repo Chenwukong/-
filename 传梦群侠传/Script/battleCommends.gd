@@ -14,6 +14,8 @@ func _ready():
 func _process(delta):
 	deltas = delta
 	for i in fightScenePlayer:
+		if !is_instance_valid(i):
+			return
 		if Global.onAttackingList and Global.onAttackingList[0] == i.name:
 			Global.currPlayer = i
 		

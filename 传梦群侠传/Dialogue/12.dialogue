@@ -123,6 +123,7 @@ set Global.onTalk = false
 => END
 
 ~ 挑战天道1
+set Global.canMenu = false
 set Global.onTalk = true
 时追云惊: [speed=0.5]这里是东海湾？？但是看起来又不太像
 姜韵: [speed=0.5]天道所在的空间，不可深究
@@ -511,6 +512,7 @@ set Global.onTalk = false
 
 ~ 挑战天道17
 set Global.onTalk = true
+set Global.canMenu = true
 set Global.onTeamPlayer.append("凌若昭")
 set Global.onTeamPlayer.append("小二")
 set Global.onTeamPet.append("白虎")
@@ -620,6 +622,7 @@ set Global.getnode("天道").play("施法")
 set Global.toggleballon()
 [next=2]
 set Global.toggleballon()
+set Global.canLose = true
 set get_tree().current_scene.bossFight("无敌天道","res://Audio/BGM/鬼哭無明 [TubeRipper.cc].ogg", "直面天道")
 
 set Global.onTalk = false
@@ -628,7 +631,7 @@ set Global.onTalk = false
 
 ~ 直面天道5
 set Global.onTalk = true
-
+set Global.canLose = false
 时追云怒: [speed=0.5]可恶，为什么杀不死他！
 小二真身: [speed=0.5]他好像是不死的！！！
 姜韵恐: [speed=0.5]可真是这样的话，为什么他刚才到现在一直在逃跑

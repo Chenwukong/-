@@ -1,5 +1,8 @@
 ~ 阴阳洞
 set Global.onTalk = true
+set Global.maxLevel = 50
+set Global.canMenu = true
+set Global.cantShow.erase("地府")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=5]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
@@ -249,7 +252,7 @@ set Global.onTalk = false
 
 ~ 重遇上官1
 set Global.onTalk = true
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(20.0)
+
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=1]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
@@ -269,10 +272,10 @@ set Global.onTalk = false
 
 ~ 重遇上官2
 set Global.onTalk = true
-#set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/BGM/【轮回之境】.mp3")
-#set get_tree().current_scene.get_node("oneTimeSound").play()
+set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/BGM/【轮回之境】.mp3")
+set get_tree().current_scene.get_node("oneTimeSound").play()
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
-#set get_tree().current_scene.get_node("oneTimeSound").seek(33.0)
+set get_tree().current_scene.get_node("oneTimeSound").seek(33.0)
 set get_tree().current_scene.get_node("player").position = Vector2(1198, 1347)
 [next=3]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
@@ -346,6 +349,7 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 [next=1]
 set Global.dial = "阎罗王"
 set Global.changeScene("森罗殿",Vector2(1155,1289))
+set Global.cantShow.append("轮回之门")
 set Global.onTalk = false
 => END
 
@@ -413,6 +417,19 @@ set Global.dial = null
 set Global.onTalk = false
 set Global.cantShow.erase("地府迷宫1")
 => END
+
+
+~ 白无常
+set Global.onTalk = true
+白无常: [speed=0.5]小黑最近打造了点装备，你要来点吗？
+白无常: [speed=0.5]嗯？你一直看着我的宝箱干什么，不会是想要偷吧
+set get_tree().current_scene.popShop()
+
+
+
+set Global.onTalk = false
+=> END
+
 	
 
 ~ 第一次遇鬼
@@ -782,14 +799,14 @@ set Global.onTalk = true
 set get_tree().current_scene.get_node("player/Camera2D").position = Vector2(-7, -10)
 小姜韵: 嘻嘻，婆婆今天不在
 小姜韵: 偷偷跑出去玩吧~
-小姜韵: 村口在西北fang
+小姜韵: 村口在西北方
 set Global.onTalk = false
 => END
 
 ~ 回忆1回2
 set Global.onTalk = true
 小姜韵: [speed=0.5]你，你是谁啊
-小姜韵: [speed=0.5]为什么躺在地上？
+小姜韵: [speed=0.5]为什么我们村里
 小男孩: [speed=0.5]好饿。。。
 小姜韵: [speed=0.5]你说什么？
 小男孩: [speed=0.5]肚子。。。好饿
@@ -1421,12 +1438,15 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云惊: [speed=0.5]在地府里面怎么会下雨！！？？
 姜韵恐: [speed=0.5]这恐怕不是雨...这是鬼气
 姜韵恐: [speed=0.5]如此恐怖的气息...和刚才完全不一样
+set Global.canLose = true
 set get_tree().current_scene.bossFight("骷刹","res://Audio/BGM/轩辕-战斗2.mp3", "地府决战")
 set Global.onTalk = false
 => END
 
 ~ 打败鬼将军2
 set Global.onTalk = true
+set Global.canLose = false
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 12
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/0妖族阴谋.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.5](糟糕，刚才对付鬼将军已经很吃力了，而这鬼王的实力更是深不可测)
@@ -1434,14 +1454,14 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云怒: [speed=0.5](怎么办，只能拼死了吗，但是实力相差过于悬殊了，这还不是我能够对付的级别)
 时追云惊: [speed=0.5]对了！
 set Engine.time_scale = 0.4
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/血肉果汁機 藝級玩家 - 打開太陽 打鬼PAGUI遊戲原聲帶 高音質動態歌詞Lyrics [TubeRipper.cc].ogg")
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(5)
+
 
 set get_tree().current_scene.get_node("AnimationPlayer").play("鬼王move")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=3]
-set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 12
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/血肉果汁機 藝級玩家 - 打開太陽 打鬼PAGUI遊戲原聲帶 高音質動態歌詞Lyrics [TubeRipper.cc].ogg")
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
+set get_tree().current_scene.get_node("AudioStreamPlayer2D").seek(5)
 set get_tree().current_scene.get_node("player/effects/道具").visible = true
 set get_tree().current_scene.get_node("player/effects/道具").play()
 set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/HEAL11.ogg")
@@ -1721,9 +1741,9 @@ set Global.onTalk = false
 	
 ~ 鬼医
 set Global.onTalk = true
-鬼医: 你需要治疗吗，只需要2000两一次哦魔鬼
+鬼医: 你需要治疗吗，只需要10000两一次哦魔鬼
 - 治疗
-	set Global.lostGold(2000)
+	set Global.lostGold(10000)
 	set FightScenePlayers.healAll()	
 - 算了
 set Global.onTalk = false

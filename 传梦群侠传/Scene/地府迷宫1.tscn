@@ -468,7 +468,7 @@ animation = &"左上"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("16_c6euu")]
@@ -626,6 +626,9 @@ stream = ExtResource("25_vh2ny")
 volume_db = 3.0
 autoplay = true
 
+[node name="enterFightTimer" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
 [node name="ghostSounds" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="ghostSounds"]
@@ -700,6 +703,7 @@ npcName = "鬼医"
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
 [connection signal="area_entered" from="CharacterBody2D/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="CharacterBody2D/enterFightTimer" to="." method="_on_enter_fight_timer_timeout"]
 [connection signal="area_entered" from="ghostSounds/Area2D" to="ghostSounds/Area2D" method="_on_area_entered"]
 [connection signal="area_entered" from="ghostSounds/Area2D2" to="ghostSounds/Area2D2" method="_on_area_entered"]
 [connection signal="area_entered" from="ghostSounds/Area2D3" to="ghostSounds/Area2D3" method="_on_area_entered"]

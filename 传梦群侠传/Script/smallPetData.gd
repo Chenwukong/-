@@ -12,6 +12,9 @@ func update_descriptions():
 	magics["甘露逢春"].description = "恢复生命最低的队友" + str(200 + currSmallPetData.get("小鹿").abilityPower ) + "点生命"
 	magics["水满金山"].description = "随机攻击五名敌人，造成" + str(200 + currSmallPetData.get("敖雨").abilityPower ) + "点伤害"
 
+
+
+
 # Magic definitions
 var magics = {
 	"甘露逢春": {
@@ -34,16 +37,16 @@ var magics = {
 		"type": "aoe",
 		"hitNum": 5,
 		"duration": 1,
-		"value": 400,
-		"description": ""
+		"value": 500,
+		"description": "逆天破！"
 	},
 	"战神念法": {
 		"name": "战神念法",
 		"type": "buff",
-		"hitNum": 5,
+		"hitNum": 0,
 		"duration": 1,
 		"value": 10,
-		"description": "fds"
+		"description": "每次释放之后按照当前仙力本场战斗永久叠加攻击力"
 	}		
 	
 	
@@ -56,30 +59,30 @@ var oriSmallPetData = {
 		"petAttackType": "melee",
 		"level": 1,
 		"str": 100,
-		"abilityPower": 0,
+		"abilityPower": 100,
 		"tempStr":0,
-		"hungry": 20000,
 		"hungryValue": 1,
+		"hungry": 20000,
 		"rage": 10,
 		"petMagic": magics.get("甘露逢春"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
-		"description": "方寸山长大的小鹿，认凌若昭为主，因生来便饮仙泉，吃仙果，浑身散发着一股仙气"
+		"description": "方寸山灵鹿"
 	},
 	"敖雨": {
 		"name": "敖雨",
 		"petAttackType": "melee",
 		"level": 1,
-		"str": 150,
+		"str": 100,
 		"abilityPower": 0,
 		"tempStr":0,
-		"hungry": 20000,
+		"hungry": 200,
 		"hungryValue": 3,
-		"rage": 7,
+		"rage": 100,
 		"petMagic": magics.get("水满金山"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
-		"description": "东海龙宫敖阳之妹,有着身为地方神的傲气与责任感,也有近似凡人的天真"
+		"description": "敖白之妹，有近乎凡人的天真"
 	},
 	"狐葬魂": {
 		"name": "狐葬魂",
@@ -90,26 +93,26 @@ var oriSmallPetData = {
 		"tempStr":0,
 		"hungry": 20000,
 		"hungryValue": 3,
-		"rage": 7,
+		"rage": 10,
 		"petMagic": magics.get("逆天破"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
-		"description": "西游奇缘2的男主狐葬魂"
+		"description": "西游奇缘2的男主狐葬魂摸样的假人"
 	},
 	"水无痕": {
 		"name": "水无痕",
 		"petAttackType": "melee",
 		"level": 1,
 		"str": 600,
-		"abilityPower": 0,
+		"abilityPower": 100,
 		"tempStr":0,
 		"hungry": 20000,
 		"hungryValue": 3,
-		"rage": 7,
+		"rage": 10,
 		"petMagic": magics.get("战神念法"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
-		"description": "梦幻群侠传2的男主水无痕"
+		"description": "梦幻群侠传2的男主水无痕摸样的假人"
 	}		
 	
 	
@@ -140,7 +143,7 @@ var currSmallPetData = {
 		"tempStr":0,
 		"hungry": 200,
 		"hungryValue": 3,
-		"rage": 10,
+		"rage": 100,
 		"petMagic": magics.get("水满金山"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null
@@ -154,7 +157,7 @@ var currSmallPetData = {
 		"tempStr":0,
 		"hungry": 20000,
 		"hungryValue": 3,
-		"rage": 80,
+		"rage": 10,
 		"petMagic": magics.get("逆天破"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,
@@ -165,11 +168,11 @@ var currSmallPetData = {
 		"petAttackType": "melee",
 		"level": 1,
 		"str": 600,
-		"abilityPower": 0,
+		"abilityPower": 100,
 		"tempStr":0,
 		"hungry": 20000,
 		"hungryValue": 3,
-		"rage": 100,
+		"rage": 10,
 		"petMagic": magics.get("战神念法"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null,

@@ -128,10 +128,13 @@ set Global.onTalk = false
 set Global.onTalk = true
 哪吒: 那边的，帮我一下！
 set Global.quests["天庭魔军"]["魔如意"] = true
+set Global.changevis("天宫","魔如意")
 set get_tree().current_scene.bossFight("魔如意","res://Audio/BGM/轩辕-战斗.mp3", null)
 
 set Global.onTalk = false
 => END
+
+
 
 
 ~ 魔巫1
@@ -226,6 +229,7 @@ set Global.onTalk = true
 if Global.checkTianTing():
 	太白金星: [speed=0.5]莫非你们就是从人间来的天命人！？
 	太白金星: [speed=0.5]各位请祝我们天庭一臂之力！
+	set Global.changevis("天宫","太白金星")
 	set Global.dial = "天庭之战"
 	set Global.changeScene("月宫",Vector2(2272,1920))
 else:
@@ -413,6 +417,8 @@ set Global.onTalk = false
 
 ~ 月宫之战12
 set Global.onTalk = true
+set Global.getnode("魔尊").play("左下")
+set Global.maxLevel = 100
 魔尊: [speed=0.5]你们的天命确实强悍，凭借这等修为也能闯到我面前。不过运气也该到此结束了。
 时追云: [speed=0.5]少说废话，解除他们的状态！
 魔尊: [speed=0.5]我很欣赏你，你们也将会获得此殊荣！
@@ -426,14 +432,22 @@ set Global.getnode("悟空杨戬").visible = false
 set Global.getnode("魔尊").visible = false
 set Global.getnode("妖皇").visible = false
 
-set get_tree().current_scene.bossFight("魔尊","res://Audio/BGM/仙剑全音乐.ogg", "月宫之战")
-
+set get_tree().current_scene.bossFight("悟空二郎神", "res://Audio/BGM/战斗-BOSS 正义.mp3", "月宫之战")
 
 set Global.onTalk = false
 => END
 
-
 ~ 月宫之战13
+set Global.onTalk = true
+set FightScenePlayers.healAll()
+魔尊: 你等携带天运，却为棘手
+魔尊: 妖皇，随我上
+妖皇: ...
+set get_tree().current_scene.bossFight("魔尊","res://Audio/BGM/仙剑全音乐.ogg", "月宫之战")
+set Global.onTalk = false
+=> END
+
+~ 月宫之战14
 set Global.onTalk = true
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
@@ -714,10 +728,11 @@ set Global.onTalk = true
 小二: [speed=0.5]禀玉帝，我想回到凡间，去点化那些妖怪，让他们成为善仙！
 凌若昭喜: [speed=0.5]小二，我和你一起
 玉帝: [speed=0.5]嗯，这也算积德行善呐，与三界也有大益
-玉帝: [speed=0.5]那时追云你呢？要回去砍妖怪的头吗？
+玉帝: [speed=0.5]那时追云你呢？要回去砍妖怪的头吗？还是回去捕鱼？
 if Global.quests.get("玉帝秘境").complete and Global.violencePoint >= 80 and Global.checkZhenMo():
 	时追云惊: [speed=0.5]！！！！！！！！！
 	玉帝: [speed=0.5]嗯，怎么了吗？
+	时追云: [speed=0.5]你一直在天上看着我...
 	时追云: [speed=0.5]玉帝...您到底是谁
 	玉帝: [speed=0.5]我？朕一直是朕啊，我还能是谁啊
 	时追云: [speed=0.5]...
@@ -764,6 +779,20 @@ else:
 	- 算了，这已经足够了
 		set get_tree().quit()
 
+
+set Global.onTalk = false
+=> END
+
+~ 没有更多可说的了
+set Global.onTalk = true
+{{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END
+
+~ 太上老君
+set Global.onTalk = true
+太上老君: 我这里什么都有
+set get_tree().current_scene.popShop()
 
 set Global.onTalk = false
 => END

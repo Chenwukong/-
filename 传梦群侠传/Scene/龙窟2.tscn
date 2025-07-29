@@ -296,18 +296,15 @@ animation = &"左上"
 [node name="effect" parent="小二/小二" index="2"]
 frame_progress = 0.0
 
-[node name="飞剑诀" parent="小二/小二/effects" index="1"]
+[node name="飞剑诀" parent="小二/小二/effects" index="4"]
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("16_0mf1r")]
 position = Vector2(940, 1326)
 id = "神龙2"
 items = {
-"含沙射影": 3,
-"金疮药": 10
+"龙鳞羽衣": 2
 }
-goldAmount = 10000
-gold = true
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
 position = Vector2(-145, 479)
@@ -341,8 +338,12 @@ position = Vector2(3355, 1275)
 toScene = "傲来钱庄"
 
 [node name="petFoodBall" parent="." instance=ExtResource("19_d5lj8")]
-position = Vector2(1474, 1612)
+position = Vector2(2058, 1790)
 id = "神龙2"
+
+[node name="petFoodBall2" parent="." instance=ExtResource("19_d5lj8")]
+position = Vector2(907, 1345)
+id = "神龙22"
 
 [node name="Node2D3" parent="." instance=ExtResource("16_0mf1r")]
 position = Vector2(-646, 743)

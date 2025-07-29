@@ -40,7 +40,7 @@ func _process(delta):
 func _on_area_2d_area_entered(area):
 	
 	if area.name == "triggerPlaceArea" and Global.triggerPlace.get(name).disable == false:
-		print(triggerEvent)
+		
 		var player = area.get_parent()
 		Global.triggerPlace.get(name).disable = true
 		match triggerEvent:

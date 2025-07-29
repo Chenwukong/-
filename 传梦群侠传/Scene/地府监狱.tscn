@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=3 uid="uid://ck2vc3grektu4"]
+[gd_scene load_steps=167 format=3 uid="uid://ck2vc3grektu4"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_s4ggv"]
 [ext_resource type="Texture2D" uid="uid://bc1oig20auj7d" path="res://panoramas2/魔界.jpg" id="2_ir2pm"]
@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_b13x0"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_0sgle"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_xdtn6"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_sr8p6"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_sr8p6"]
 [ext_resource type="Shader" path="res://shader/rain.gdshader" id="20_t0y1b"]
 [ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="21_4dnxj"]
 [ext_resource type="Script" path="res://Script/ghostSound.gd" id="22_iv1dm"]
@@ -29,7 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="27_ertit"]
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="28_qs1eh"]
 [ext_resource type="Texture2D" uid="uid://c3xo7qsfxwi2" path="res://梦魂Animation/【进阶鬼将】.png" id="29_s6y50"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="30_tv5p1"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="30_tv5p1"]
 [ext_resource type="Texture2D" uid="uid://boiq46ps3fkgv" path="res://SeparateAnimation/鬼帝/攻击.png" id="31_xtqeq"]
 [ext_resource type="Texture2D" uid="uid://d3oib0t4q1p3s" path="res://SeparateAnimation/骷刹/##黑山老妖.png" id="34_6wp6y"]
 [ext_resource type="Texture2D" uid="uid://bf6hbmwklksyo" path="res://SeparateAnimation/骷刹/##黑山老妖攻击.png" id="35_ull7t"]
@@ -576,6 +576,9 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5kna"]
+size = Vector2(147, 137.416)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dq8ns"]
 region = Rect2(0, 0, 800, 600)
@@ -1751,7 +1754,8 @@ position = Vector2(-269, 299)
 triggerEvent = "地府决战"
 
 [node name="CollisionShape2D" parent="地府决战/Area2D" index="0"]
-position = Vector2(93.5, 38.5)
+position = Vector2(115.5, 17.292)
+shape = SubResource("RectangleShape2D_r5kna")
 
 [node name="9-5" type="Sprite2D" parent="."]
 z_index = 55

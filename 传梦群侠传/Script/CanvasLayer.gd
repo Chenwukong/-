@@ -149,7 +149,7 @@ func _process(delta):
 		$"宠物列表/怒气/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].rage)
 		$"宠物列表/灵力/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].abilityPower)
 		$"宠物列表/Label".text = "X " + str(FightScenePlayers.petFoodBall)
-		
+		$"宠物列表/潜力进度/Label".text = str(Global.petPotentialProgress) + "/" + "50"
 		$"宠物列表/饱食度/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].hungry)
 		$"宠物列表/1bf2bc55/Label".text = "X " + str(FightScenePlayers.petFood)
 	
@@ -366,26 +366,31 @@ func _on_music_button_mouse_exited():
 
 
 func _on_system_button_button_down():
-		$system.play("click")
-		$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
-		$AudioStreamPlayer2D.play()	
-		Global.onButton = false
-		if $shadow:
-			$shadow.visible= false
-		$".".visible = false
-		get_tree().current_scene.onMap = false	
-		#$player.get_node("Camera2D").zoom = Vector2(1.1, 1.1)
-		$map.visible = false
-		get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
-		Global.menuOut = true
-		
-		get_tree().current_scene.get_node("menuControl").visible = true
+	if !Global.canMenu:
+		Global.showMsg("目前无法打开菜单！")
+		return
+	$system.play("click")
+	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
+	$AudioStreamPlayer2D.play()	
+	Global.onButton = false
+	if $shadow:
+		$shadow.visible= false
+	$".".visible = false
+	get_tree().current_scene.onMap = false	
+	#$player.get_node("Camera2D").zoom = Vector2(1.1, 1.1)
+	$map.visible = false
+	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
+	Global.menuOut = true
+	
+	get_tree().current_scene.get_node("menuControl").visible = true
 
 func _on_system_button_button_up():
 	$system.play("default")
 
 func _on_menut_button_button_down():
-	
+	if !Global.canMenu:
+		Global.showMsg("目前无法打开菜单！")
+		return	
 	$".".visible = false
 	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
 	Global.saveIndex = 0
@@ -417,6 +422,9 @@ func format_times(seconds):
 
 
 func _on_load_button_button_down():
+	if !Global.canMenu:
+		Global.showMsg("目前无法打开菜单！")
+		return
 	$".".visible = false
 	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
 	Global.saveIndex = 0
@@ -442,6 +450,9 @@ func _on_load_button_button_down():
 
 
 func _on_weapon_button_button_down():
+	if !Global.canMenu:
+		Global.showMsg("目前无法打开菜单！")
+		return
 	$".".visible = false
 	var characterIndex = 0
 	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
@@ -486,6 +497,9 @@ func _on_weapon_button_mouse_exited():
 
 
 func _on_item_button_button_down():
+	if !Global.canMenu:
+		Global.showMsg("目前无法打开菜单！")
+		return
 	$".".visible = false
 	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
 	get_tree().current_scene.get_node("menuControl/menuControl").buttonIndex = 0
@@ -901,7 +915,9 @@ func _on_button_button_down():
 	$"宠物列表/技能名字/Label".text = SmallPetData.currSmallPetData.get(Global.onTeamSmallPet[0]).petMagic.description
 
 func _on_pet_right_button_button_down():
+	
 	for i in Global.smallPets.size():
+		print(321)
 		if Global.onTeamSmallPet[0] == Global.smallPets[i]:
 			# 找到当前宠物位置，将其替换为下一个宠物
 			Global.onTeamSmallPet.erase(Global.onTeamSmallPet[0])
@@ -909,6 +925,7 @@ func _on_pet_right_button_button_down():
 			# 获取下一个宠物的位置，使用取余来循环回到开头
 			var next_index = (i + 1) % Global.smallPets.size()
 			Global.onTeamSmallPet.append(Global.smallPets[next_index])
+			print(Global.onTeamSmallPet)
 			$"宠物列表/petDescription".text = SmallPetData.oriSmallPetData.get(Global.onTeamSmallPet[0]).description
 			$"宠物列表/petAnimation".play(Global.onTeamSmallPet[0])
 			$"宠物列表/petName".text = Global.onTeamSmallPet[0]

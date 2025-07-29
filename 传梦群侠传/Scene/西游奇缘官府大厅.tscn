@@ -15,7 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="13_itlf0"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="14_vmfn8"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="15_h8flj"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="16_qv45u"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="16_qv45u"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_qddu3"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="18_sxdng"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="19_wasvf"]
@@ -435,8 +435,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"leftStand"
-frame = 0
-frame_progress = 0.0
 
 [node name="Camera2D" parent="player" index="3"]
 position = Vector2(-30.9092, 9.61548)
@@ -656,7 +654,7 @@ one_shot = true
 [node name="程咬金" parent="." instance=ExtResource("21_2th1p")]
 position = Vector2(933, 1092)
 sprite_frames = SubResource("SpriteFrames_tmgdb")
-npcName = "程咬金"
+script = null
 
 [node name="黄袍怪" parent="." instance=ExtResource("21_2th1p")]
 visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=200 format=3 uid="uid://b7m0e2bvanxoi"]
+[gd_scene load_steps=202 format=3 uid="uid://b7m0e2bvanxoi"]
 
 [ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="1_njpa6"]
 [ext_resource type="Texture2D" uid="uid://w4dov1c3r346" path="res://消息底图 (1).png" id="2_wncf6"]
@@ -55,7 +55,6 @@
 [ext_resource type="Texture2D" uid="uid://r87vgiee1du0" path="res://SeparateAnimation/敖雨/978-7.png" id="43_pnstr"]
 [ext_resource type="Texture2D" uid="uid://bx51d0l0fho7f" path="res://481ad2924ccd063412907f6dc0fdfa0197f016b1bbeb8-S3VwuI.png" id="43_v7ni5"]
 [ext_resource type="Texture2D" uid="uid://bkji7ktu77dqt" path="res://左.png" id="44_ap3nq"]
-[ext_resource type="Texture2D" uid="uid://dhif2lng23c62" path="res://蓝条.png" id="44_dbqnd"]
 [ext_resource type="Texture2D" uid="uid://b5keutwg7p6fy" path="res://SeparateAnimation/敖雨/978-8.png" id="44_lf2i7"]
 [ext_resource type="FontFile" uid="uid://dlrg8su1up2ff" path="res://SIMKAI.TTF" id="45_wpb3l"]
 [ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="46_6q5oi"]
@@ -83,6 +82,9 @@
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="62_lkti6"]
 [ext_resource type="Texture2D" uid="uid://bjexy8vuf58aj" path="res://宠物UI无字.png" id="66_o20tt"]
 [ext_resource type="Texture2D" uid="uid://br54nh7ksccf0" path="res://宠物加点/宠物UI宠物加点未弹起.png" id="70_gkjac"]
+[ext_resource type="Texture2D" uid="uid://c8mk3iuj07bqw" path="res://Pictures/底图.png" id="80_fbnlv"]
+[ext_resource type="Texture2D" uid="uid://ds5bf8akccgvl" path="res://Pictures/3层.png" id="81_un0v5"]
+[ext_resource type="Texture2D" uid="uid://ux5x2oyx1as2" path="res://Pictures/2ceng.png" id="82_hv8lo"]
 [ext_resource type="PackedScene" uid="uid://bbr8r2yqceilb" path="res://Scene/传梦者名.tscn" id="84_cqgn7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tvqb"]
@@ -2056,6 +2058,25 @@ position = Vector2(577, 369.498)
 scale = Vector2(1.13086, 0.886357)
 texture = ExtResource("66_o20tt")
 
+[node name="潜力进度" type="Label" parent="宠物列表"]
+offset_left = -34.4871
+offset_top = -205.897
+offset_right = 125.513
+offset_bottom = -154.897
+scale = Vector2(0.471343, 0.471343)
+theme_override_font_sizes/font_size = 40
+text = "潜力进度"
+
+[node name="Label" type="Label" parent="宠物列表/潜力进度"]
+layout_mode = 0
+offset_left = 24.3893
+offset_top = 59.8404
+offset_right = 132.389
+offset_bottom = 110.84
+scale = Vector2(1.01011, 1.24363)
+theme_override_font_sizes/font_size = 40
+text = "42/50"
+
 [node name="Label2" type="Label" parent="宠物列表"]
 offset_left = -26.5285
 offset_top = -254.41
@@ -2427,10 +2448,10 @@ texture = ExtResource("59_jssxc")
 
 [node name="天运" type="Label" parent="盟友列表"]
 self_modulate = Color(1, 1, 0, 1)
-offset_left = -265.285
-offset_top = 143.85
-offset_right = -169.285
-offset_bottom = 197.85
+offset_left = 1111.54
+offset_top = -177.691
+offset_right = 1207.54
+offset_bottom = -123.691
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 30
 text = "气运:"
@@ -2802,53 +2823,47 @@ text = "1:40"
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 244.0
-offset_top = 8.0
-offset_right = 816.0
-offset_bottom = 86.0
+offset_left = 288.0
+offset_top = -49.0
+offset_right = 860.0
+offset_bottom = 29.0
 metadata/_edit_use_anchors_ = true
+
+[node name="底图" type="Sprite2D" parent="violencePoint"]
+self_modulate = Color(1, 1, 1, 0.894118)
+position = Vector2(260, 87)
+scale = Vector2(1.3547, 1.08046)
+texture = ExtResource("80_fbnlv")
 
 [node name="TextureRect" type="TextureRect" parent="violencePoint"]
 self_modulate = Color(0, 1, 1, 1)
 layout_mode = 0
-offset_left = 437.0
-offset_top = 2.0
-offset_right = 464.0
-offset_bottom = 30.0
+offset_left = 436.0
+offset_top = -43.0
+offset_right = 463.0
+offset_bottom = -15.0
 scale = Vector2(5.10546, 2.87671)
 texture = ExtResource("43_v7ni5")
 expand_mode = 1
-
-[node name="Label" type="Label" parent="violencePoint/TextureRect"]
-layout_mode = 0
-offset_left = 6.07196
-offset_top = 11.1238
-offset_right = 312.072
-offset_bottom = 132.124
-scale = Vector2(0.144182, 0.107433)
-theme_override_constants/shadow_offset_x = 10
-theme_override_constants/shadow_offset_y = 10
-theme_override_constants/shadow_outline_size = 100
-theme_override_font_sizes/font_size = 50
-text = "仁德"
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="violencePoint"]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 48.0
-offset_right = 566.0
-offset_bottom = 104.0
+offset_right = 543.0
+offset_bottom = 105.0
+value = 50.0
 nine_patch_stretch = true
-texture_under = ExtResource("44_dbqnd")
-texture_progress = ExtResource("44_dbqnd")
-tint_under = Color(1, 1, 0, 1)
+texture_under = ExtResource("81_un0v5")
+texture_progress = ExtResource("82_hv8lo")
+texture_progress_offset = Vector2(0, 5)
 
 [node name="Label" type="Label" parent="violencePoint/TextureProgressBar"]
 layout_mode = 0
-offset_left = 232.0
-offset_top = 12.0
-offset_right = 336.0
-offset_bottom = 51.0
+offset_left = 211.0
+offset_top = 15.0
+offset_right = 315.0
+offset_bottom = 54.0
 theme_override_font_sizes/font_size = 30
 text = "95%"
 
@@ -2860,6 +2875,18 @@ offset_right = 613.0
 offset_bottom = 99.0
 theme_override_font_sizes/font_size = 30
 text = "+5"
+
+[node name="Label2" type="Label" parent="violencePoint"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 68.0
+offset_right = 87.0
+offset_bottom = 119.0
+scale = Vector2(0.433916, 0.433916)
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 40
+text = "道德"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

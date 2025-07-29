@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://tdgd7otfsjtc"]
+[gd_scene load_steps=100 format=3 uid="uid://tdgd7otfsjtc"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_32x7c"]
 [ext_resource type="Texture2D" uid="uid://n261yfjq70l8" path="res://Panoramas/门派_地府全景.jpg" id="2_bnwdg"]
@@ -547,6 +547,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv0lq"]
+bg_color = Color(0, 0.682353, 0.721569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8uq5"]
+bg_color = Color(0.376471, 0.584314, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.666667, 0.631373, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0k26"]
+bg_color = Color(0, 0.67451, 0.760784, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.890196, 0.670588, 0.968627, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fobdu"]
+bg_color = Color(0, 0.568627, 0.552941, 1)
+
 [node name="地府" type="Node2D"]
 script = ExtResource("1_32x7c")
 
@@ -581,7 +603,7 @@ script = ExtResource("6_cbtyx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(2556, 2358, 2200, 2171, 2067, 2127, 1334, 2392, 716, 2393, 709, 2231, 789, 2212, 924, 2247, 1439, 2039, 1382, 1904, 1209, 1767, 985, 1749, 693, 1587, 575, 1624, 285, 1671, 150, 1948, 75, 2004, 118, 2169, 95, 2219, -122, 2198, -304, 2064, -339, 1968, -365, 1907, -359, 1884, -319, 1861, -241, 1963, 6, 1936, 24, 1858, -92, 1776, 61, 1642, 189, 1546, -62, 1373, -398, 1262, -396, 1191, -387, 758, -183, 574, -65, 514, 52, 418, 163, 297, 189, 256, 216, 176, 237, 62, 403, 78, 396, 185, 624, 211, 755, 210, 814, 272, 1015, 293, 1083, 350, 1189, 371, 1423, 307, 1426, 201, 1635, 177, 1757, 307, 2003, 322, 2005, 519, 2158, 590, 2302, 589, 2375, 619, 2377, 670, 2462, 471, 2378, 393, 2200, 409, 2149, 341, 2154, 300, 2314, 270, 2409, 247, 2499, 154, 2633, 210, 2560, 359, 2749, 420, 2596, 565, 2491, 697, 2489, 790, 2332, 824, 2318, 848, 2428, 969, 2384, 1030, 2385, 1085, 2530, 1249, 2658, 1320, 2790, 1374, 2795, 1553, 2674, 1569, 2671, 1694, 2691, 1793, 2582, 1825, 2409, 1900, 2333, 1957, 2224, 2012, 2201, 2034, 2405, 2193, 2748, 2319, 2676, 2377)
+polygon = PackedVector2Array(2556, 2358, 2200, 2171, 2067, 2127, 1334, 2392, 716, 2393, 709, 2231, 789, 2212, 924, 2247, 1439, 2039, 1382, 1904, 1209, 1767, 985, 1749, 693, 1587, 575, 1624, 285, 1671, 150, 1948, 82, 2012, 118, 2169, 95, 2219, -122, 2198, -304, 2064, -351, 1979, -365, 1907, -359, 1884, -319, 1861, -225, 1946, 6, 1936, 24, 1858, -92, 1776, 61, 1642, 189, 1546, -62, 1373, -398, 1262, -396, 1191, -387, 758, -183, 574, -65, 514, 52, 418, 163, 297, 189, 256, 216, 176, 237, 62, 403, 78, 396, 185, 624, 211, 755, 210, 814, 272, 1015, 293, 1083, 350, 1189, 371, 1423, 307, 1426, 201, 1635, 177, 1757, 307, 2003, 322, 2005, 519, 2158, 590, 2302, 589, 2375, 619, 2377, 670, 2462, 471, 2378, 393, 2200, 409, 2149, 341, 2154, 300, 2314, 270, 2409, 247, 2499, 154, 2633, 210, 2560, 359, 2749, 420, 2596, 565, 2491, 697, 2489, 790, 2332, 824, 2318, 848, 2428, 969, 2384, 1030, 2385, 1085, 2530, 1249, 2658, 1320, 2790, 1374, 2795, 1553, 2674, 1569, 2671, 1694, 2691, 1793, 2582, 1825, 2409, 1900, 2333, 1957, 2224, 2012, 2201, 2034, 2405, 2193, 2748, 2319, 2676, 2377)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(-307, 1076, -280, 1036, 130, 828, 440, 965, 469, 1073, 417, 1122, 348, 1014, 320, 991, 212, 1037, 209, 980, 120, 1016, 129, 1077, 202, 1121, 263, 1199, 215, 1223, 104, 1219, 55, 1208, 0, 1237)
@@ -680,7 +702,7 @@ position = Vector2(311, 157)
 toScene = "地府迷宫1"
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("14_3crkb")]
-position = Vector2(-303, 1952)
+position = Vector2(-808, 1965)
 id = "地府1"
 
 [node name="AnimatedSprite2D3" parent="." instance=ExtResource("14_3crkb")]
@@ -926,7 +948,7 @@ npcName = "钟馗"
 
 [node name="teleportCircle4" parent="." instance=ExtResource("13_u2wmk")]
 position = Vector2(2660, 2326)
-toScene = "两界山"
+toScene = "沙雕结局"
 
 [node name="真离开地府" parent="." instance=ExtResource("30_01se8")]
 visible = false
@@ -1032,6 +1054,133 @@ polygon = PackedVector2Array(-258.381, -235.09, -263.381, -230.09, -275.381, -22
 [node name="斩击" parent="野鬼5/effects" index="3"]
 frame = 0
 frame_progress = 0.0
+
+[node name="shop" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Panel" type="Panel" parent="shop"]
+offset_left = -3.0
+offset_right = 1152.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hv0lq")
+
+[node name="shopTop" type="Panel" parent="shop/Panel"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 143.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_y8uq5")
+
+[node name="Button" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 79.0
+offset_right = 408.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "购买"
+
+[node name="Button2" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 79.0
+offset_right = 825.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "出售"
+
+[node name="golds" type="Label" parent="shop/Panel/shopTop"]
+layout_mode = 0
+offset_left = 827.0
+offset_top = 79.0
+offset_right = 1153.0
+offset_bottom = 142.0
+theme_override_font_sizes/font_size = 40
+text = "银两： 500"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="itemRight" type="Panel" parent="shop/Panel"]
+layout_mode = 0
+offset_left = 825.0
+offset_top = 144.0
+offset_right = 1155.0
+offset_bottom = 800.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_p0k26")
+
+[node name="itemLeft" type="Panel" parent="shop/Panel"]
+layout_mode = 0
+offset_top = 143.0
+offset_right = 826.0
+offset_bottom = 800.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="shop/Panel/itemLeft"]
+layout_mode = 0
+offset_right = 822.0
+offset_bottom = 659.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="shop/Panel/itemLeft/ScrollContainer"]
+layout_mode = 2
+
+[node name="description" type="Label" parent="shop/Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 1155.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_fobdu")
+text = "这是一个介绍"
+vertical_alignment = 1
+
+[node name="buyButton" type="Panel" parent="shop/Panel"]
+visible = false
+layout_mode = 0
+offset_left = 827.0
+offset_top = 714.0
+offset_right = 1154.0
+offset_bottom = 801.0
+
+[node name="cancel" type="Button" parent="shop/Panel/buyButton"]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 162.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="shop/Panel/buyButton/cancel"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 40
+text = "取消"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buy" type="Button" parent="shop/Panel/buyButton"]
+layout_mode = 0
+offset_left = 165.0
+offset_right = 329.0
+offset_bottom = 86.0
+
+[node name="Label" type="Label" parent="shop/Panel/buyButton/buy"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 86.0
+theme_override_font_sizes/font_size = 40
+text = "确定"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="close" type="Button" parent="shop"]
+offset_left = 1098.0
+offset_top = 12.0
+offset_right = 1151.0
+offset_bottom = 62.0
+theme_override_font_sizes/font_size = 30
+text = "X"
+
+[node name="teleportCircle6" parent="." instance=ExtResource("13_u2wmk")]
+position = Vector2(-280.109, 1966.22)
+toScene = "阴间货铺"
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

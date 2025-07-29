@@ -48,12 +48,10 @@ func _on_area_2d_body_entered(body):
 		body.get_node("AudioStreamPlayer2D").play()
 		queue_free()
 		Global.treasureBox.get(id).pickUp = true
-		if special == "柳大夫":
-			get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "柳生留: 有需要的人就拿去吧"
-			get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true	
-		if special == "鱼大爷":
-			get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "鱼大爷怎么遗落了他的帽子"
-			get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true	
+		if special:
+			Global.showMsg(special)
+			
+			
 		Global.canTake = false
 	
 func get_npc_dialogue(npc_id):

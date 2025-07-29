@@ -24,10 +24,10 @@ var magicInfo
 var players
 var targetFound = false
 # Called when the node enters the scene tree for the first time.
-var playerName = ["时追云", "凌若昭", "小二", "姜韵"]
+var playerName = ["时追云", "凌若昭", "小二", "姜韵","小二真身"]
 var rageFreq
 func _ready():
-	
+	scale = Vector2(0.6,0.6)
 	oriPosition = position
 	if Global.onTeamSmallPet.size()>0:
 		self.visible = true
@@ -72,7 +72,8 @@ func _process(delta):
 					target.get_node("逆天破").visible = true
 					target.get_node("逆天破/AnimationPlayer").play("show")
 			play(petName + magic)
-			
+			#Global.onPetAttack = true
+			$onPetAttackTimer.start()
 		elif state == autoAttack:
 			if aliveMonsters.size() > 0:
 				if !targetFound:
@@ -84,13 +85,16 @@ func _process(delta):
 				timerCalled = true
 				if canMove:
 					moveCharacter(delta)
-			
+				#Global.onPetAttack = true
+				$onPetAttackTimer.start()
 		if Global.onAttackingList:
 			if Global.onAttackingList[0] in playerName :
 				if Global.onAttacking or Global.onMagicAttacking:
 					if SmallPetData.currSmallPetData[petName].hungry >= SmallPetData.currSmallPetData[petName].hungryValue:
 						state = autoAttack
 		if rageBar >= 100:
+		#	Global.onPetAttack = true
+			$onPetAttackTimer.start()
 			state = magic
 			rageBar = 0 
 
@@ -116,11 +120,14 @@ func attack():
 
 	if is_instance_valid(target):
 		if target.canSee:
+			if target.currHp - (str + tempStr) <= 0:
+				return
 			target.get_node("Label").text = str(str + tempStr)
 			target.get_node("petHpAnimation").play("petHp")
 			target.currHp -= (str + tempStr)
-	
+	Global.onPetAttack = false
 func castMagic():
+	Global.onPetAttack = false
 	magicInfo = SmallPetData.currSmallPetData[petName].petMagic
 	if magicInfo.type == "healing":
 
@@ -152,7 +159,8 @@ func castMagic():
 		
 		
 func moveCharacter(delta):
-	
+	if petName == "狐葬魂":
+		return
 	var moveSpeed = 30
 	if is_instance_valid(target):
 		var newPosition = position.lerp(target.position, moveSpeed * 0.03)
@@ -193,3 +201,8 @@ func find_player_with_lowest_hp_percent(players):
 			lowest_hp_player = player
 	
 	return lowest_hp_player
+
+
+func _on_on_pet_attack_timer_timeout():
+	Global.onPetAttack = false
+	print("petAttackStart")

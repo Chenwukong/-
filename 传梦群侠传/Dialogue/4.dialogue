@@ -601,7 +601,7 @@ set Global.onTalk = false
 ~ 走出祭堂
 set Global.onTalk = true
 set get_tree().current_scene.get_node("player").position = Vector2(1612,591)
-
+set Global.baseChance = 800
 set Global.npcVis.get("傲来国").get("npcs").visible = true
 百姓: [speed=0.5]他出来了，他居然没有死
 百姓: [speed=0.5]他手上拿的是什么
@@ -627,6 +627,7 @@ set Global.onTalk = false
 ~ 花果山前
 set Global.onTalk = true
 set Global.dial = "system"
+set Global.maxLevel = 40
 set Global.npcVis.get("傲来国").get("npcs").visible = false
 set get_tree().current_scene.get_node("player").position = Vector2(3174,-152)
 set Global.cantShow.erase("花果山")
@@ -654,7 +655,7 @@ set Global.cantShow.erase("花果山")
 时追云: [speed=0.5]要拯救这支离破碎的苍生不是几个人的事，但我想成为冲在最前面的人
 时追云: [speed=0.5]哪怕倒在半路上，永远不能为我娘子复仇，但起码我杀了更多的妖怪，保护了更多的人，这样便值得了！
 敖雨: [speed=0.5]追云不用担心，有本姑娘在，一定能杀上去！
-敖白: [speed=0.5]我们身为地方神，活了几十年，决心和这信念却都不如你，不用担心我们，我们也不是贪生怕死之辈！
+敖白: [speed=0.5]我们身为地方神，活了几十年，不用担心我们，我们也不是贪生怕死之辈！
 时追云: [speed=0.5]能认识你们，我很荣幸
 凌若昭喜: [speed=0.5]我也是
 敖白: [speed=0.5]认识你们也是我的荣幸
@@ -667,7 +668,6 @@ set Global.onTalk = false
 ~ 初进花果山
 set Global.onTalk = true
 set Global.onHurry = true
-
 set get_tree().current_scene.get_node("player").position = Vector2(-290, 2216)
 
 大鹏: [speed=0.5]这次的食物送上来了嘛
@@ -939,7 +939,7 @@ set Global.onTalk = false
 
 ~ 等来支援
 set Global.onTalk = true
-
+set Global.canMenu = false
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/放吗过来.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
 敖白: [speed=0.5]外面是什么声音
@@ -960,6 +960,7 @@ set Global.onTalk = false
 ~ 洞外碰面
 set Global.onTalk = true
 set Global.baseChance = 800
+#set Global.canMenu = false
 set Global.countDownOn = true
 set get_tree().current_scene.get_node("AnimationPlayer").play("moveCamera")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
@@ -1585,6 +1586,7 @@ set Global.onTalk = false
 ~ 两界山
 set Global.onTalk = true
 set Global.questHint = "找到地府入口"
+set Global.canMenu = true
 时追云: [speed=0.5]地府就在这附近吗？
 时追云: [speed=0.5]还是不敢相信去地府的地方就在人间
 凌若昭: [speed=0.5]凡人是看不到的啦，但现在我们都算是半个仙人了，有灵力在身，也就能看到了以往看不到的东西
@@ -1595,6 +1597,7 @@ set Global.onTalk = false
 
 ~ 到地府入口
 set Global.onTalk = true
+set Global.baseChance = 0
 set Global.changevis("傲来国","npcs2")
 set Global.npcVis.get("两界山").get("小二").visible = true
 set Global.npcVis.get("两界山").get("凌若昭").visible = true
@@ -1634,6 +1637,7 @@ set Global.onTalk = false
 
 ~ 珍珠姐妹
 set Global.onTalk = true
+
 珍珠妹: [speed=0.5]哦你看纳姐姐，这不是人类吗
 珍珠姐: [speed=0.5]哦我看到了妹妹，他们是怕我们太饿了吧
 珍珠姐: [speed=0.5]大王叫我们看着这灵力丹，可不能让人类拿到了呢

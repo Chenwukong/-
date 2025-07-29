@@ -17,19 +17,19 @@
 [ext_resource type="AudioStream" uid="uid://bjwvf71kjrmp0" path="res://Audio/BGM/聂薇 - 宝象国.mp3" id="15_5f2se"]
 [ext_resource type="AudioStream" uid="uid://dg48w2u34bmg6" path="res://Audio/SE/096-Attack08.ogg" id="16_bb7y8"]
 [ext_resource type="AudioStream" uid="uid://cfn12n35h25v7" path="res://Audio/SE/098-Attack10.ogg" id="16_j4kjv"]
-[ext_resource type="PackedScene" path="res://Scene/敖阳.tscn" id="16_ujgvr"]
+[ext_resource type="PackedScene" uid="uid://ciwaf8gdlo05k" path="res://Scene/敖阳.tscn" id="16_ujgvr"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_nwscv"]
 [ext_resource type="AudioStream" uid="uid://cruk3iwhkad5o" path="res://Audio/SE/095-Attack07.ogg" id="17_vmjgy"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="18_vhhhx"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="19_bavut"]
 [ext_resource type="PackedScene" uid="uid://0elhamjou8p7" path="res://Scene/锁妖塔怪物.tscn" id="20_0rjkl"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="20_krxdd"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="20_krxdd"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_3oul4"]
 [ext_resource type="Texture2D" uid="uid://dsyav2oerp3it" path="res://Characters/大鹏.png" id="22_3pk1e"]
 [ext_resource type="Texture2D" uid="uid://c4pbcvjtkvu0m" path="res://梦魂Animation/0雷鸟人法术.png" id="23_qv5gy"]
 [ext_resource type="Texture2D" uid="uid://ddsvn32obk0hw" path="res://Characters/牛妖.png" id="24_5hhg2"]
 [ext_resource type="Texture2D" uid="uid://cei25ut2cuj56" path="res://Characters/蝙蝠 .png" id="24_438m4"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="25_ylfyb"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="25_ylfyb"]
 [ext_resource type="Texture2D" uid="uid://da4jf2vvihvb5" path="res://Characters/兔子怪.png" id="26_rive1"]
 [ext_resource type="Texture2D" uid="uid://dq85jh5ravc8i" path="res://Characters/蛤蟆怪.png" id="27_y7d84"]
 [ext_resource type="AudioStream" uid="uid://bmd12bgmqillw" path="res://Audio/SE/013-Move01.ogg" id="28_pxb0c"]
@@ -1963,7 +1963,7 @@ position = Vector2(-392, 13)
 [node name="CanvasLayer" parent="." instance=ExtResource("19_bavut")]
 
 [node name="potentialBall" parent="." instance=ExtResource("13_wu52b")]
-position = Vector2(2677, 1681)
+position = Vector2(2616, 1713)
 id = "花果山1"
 
 [node name="Node2D2" parent="." instance=ExtResource("17_nwscv")]
@@ -1993,7 +1993,7 @@ goldAmount = 8000
 gold = true
 
 [node name="potentialBall2" parent="." instance=ExtResource("13_wu52b")]
-position = Vector2(587, 290)
+position = Vector2(834, -218)
 id = "花果山2"
 
 [node name="群妖" type="Node2D" parent="."]
@@ -2259,12 +2259,18 @@ position = Vector2(-221.281, -12.5601)
 sprite_frames = SubResource("SpriteFrames_ysj3v")
 npcName = "上官冕"
 
+[node name="npcBody" parent="npcs/上官冕" index="0"]
+position = Vector2(-2262, 120)
+
 [node name="逆无邪" parent="npcs" instance=ExtResource("21_3oul4")]
 position = Vector2(-78.281, 103.44)
 rotation = 3.14159
 scale = Vector2(1, -1)
 sprite_frames = SubResource("SpriteFrames_onc0d")
 npcName = "逆无邪"
+
+[node name="npcBody" parent="npcs/逆无邪" index="0"]
+position = Vector2(1736, 42.9955)
 
 [node name="黑蝠3" parent="npcs" instance=ExtResource("21_3oul4")]
 position = Vector2(-172.281, 40.4399)
@@ -2744,6 +2750,13 @@ sprite_frames = SubResource("SpriteFrames_74s2i")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
+[node name="Node2D4" parent="." instance=ExtResource("17_nwscv")]
+position = Vector2(2495.86, 2323.49)
+id = "花果山右下"
+items = {
+"金香玉": 2
+}
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -2761,6 +2774,8 @@ sprite_frames = SubResource("SpriteFrames_74s2i")
 [editable path="黑蝠"]
 [editable path="黑蝠2"]
 [editable path="兵分两路"]
+[editable path="npcs/上官冕"]
+[editable path="npcs/逆无邪"]
 [editable path="再见奔霸"]
 [editable path="小二"]
 [editable path="小二/小二"]

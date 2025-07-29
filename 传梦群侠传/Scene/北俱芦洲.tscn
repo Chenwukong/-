@@ -107,7 +107,7 @@
 [ext_resource type="Texture2D" uid="uid://cm7y3fdc7ewfo" path="res://Pictures/Pictures/xz (8).png" id="103_7bg8g"]
 [ext_resource type="Texture2D" uid="uid://c0220luqqgwg3" path="res://Characters/雷鸟.png" id="103_m3ncp"]
 [ext_resource type="Texture2D" uid="uid://tkpgnpvn42ck" path="res://Icons/雪莲.png" id="103_nprxr"]
-[ext_resource type="PackedScene" path="res://Scene/messageLayer.tscn" id="105_a0n57"]
+[ext_resource type="PackedScene" uid="uid://by00hpivtwxba" path="res://Scene/messageLayer.tscn" id="105_a0n57"]
 [ext_resource type="Texture2D" uid="uid://c2itgi5mxwi77" path="res://CutScene/白虎俯视.png" id="107_siuq7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_owmq0"]
@@ -2779,7 +2779,7 @@ texture = ExtResource("2_va1q1")
 
 [node name="player" parent="." instance=ExtResource("3_l7hqn")]
 z_index = 2
-position = Vector2(838, 1574)
+position = Vector2(3216, 2135)
 scale = Vector2(1.1, 1.144)
 metadata/_edit_group_ = true
 
@@ -2788,6 +2788,7 @@ animation = &"left"
 
 [node name="Camera2D" parent="player" index="3"]
 visible = false
+zoom = Vector2(0.6, 0.6)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -2968,11 +2969,10 @@ frame_progress = 0.0
 frame = 4
 
 [node name="Node2D" parent="." instance=ExtResource("17_mlldp")]
-position = Vector2(1745, 212)
-id = "江南野外1"
+position = Vector2(1023, -444)
+id = "北俱芦洲1"
 items = {
-"含沙射影": 3,
-"金疮药": 10
+"金香玉": 5
 }
 
 [node name="MarkerLeft" type="Marker2D" parent="."]
@@ -2987,12 +2987,12 @@ position = Vector2(3356, 1017)
 id = "傲来国2"
 
 [node name="Node2D2" parent="." instance=ExtResource("17_mlldp")]
-position = Vector2(-223, 2632)
-id = "傲来国1"
+position = Vector2(-253, 2711)
+id = "北俱芦洲4"
 items = {
-"佛手": 10,
-"西瓜": 10
+"西瓜": 20
 }
+special = "为什么冬天雪地里会有西瓜"
 
 [node name="teleportCircle8" parent="." instance=ExtResource("12_oo4rj")]
 position = Vector2(725, -843)
@@ -3003,14 +3003,23 @@ position = Vector2(-1939, 777)
 toScene = "傲来钱庄"
 
 [node name="petFoodBall" parent="." instance=ExtResource("20_eyiw7")]
-position = Vector2(1081, 321)
-id = "傲来国1"
+position = Vector2(983, 404)
+id = "北俱芦洲1"
 
 [node name="Node2D3" parent="." instance=ExtResource("17_mlldp")]
-position = Vector2(-646, 743)
-id = "傲来国2"
-goldAmount = 3000
-gold = true
+position = Vector2(-652, 714)
+id = "北俱芦洲2"
+items = {
+"白龙冠": 3
+}
+
+[node name="Node2D4" parent="." instance=ExtResource("17_mlldp")]
+position = Vector2(3160, 2105)
+id = "北俱芦洲3"
+items = {
+"白龙冠": 1
+}
+special = "图里还有"
 
 [node name="potentialBall2" parent="." instance=ExtResource("13_nw5nb")]
 position = Vector2(-863.73, 1800.04)
@@ -3137,7 +3146,7 @@ animation = &"idle"
 autoplay = "default"
 
 [node name="npcBody" parent="白虎" index="0"]
-visible = false
+position = Vector2(-588.667, 167.5)
 
 [node name="斩击" parent="白虎/effects" index="3"]
 frame = 0
@@ -3158,6 +3167,9 @@ sprite_frames = SubResource("SpriteFrames_53nm8")
 animation = &"idle"
 autoplay = "default"
 
+[node name="npcBody" parent="白虎2" index="0"]
+position = Vector2(-349.833, 240)
+
 [node name="斩击" parent="白虎2/effects" index="3"]
 frame = 0
 frame_progress = 0.0
@@ -3174,7 +3186,7 @@ frame_progress = 0.494832
 script = null
 
 [node name="npcBody" parent="白虎3" index="0"]
-visible = false
+position = Vector2(-370.086, 172.207)
 
 [node name="斩击" parent="白虎3/effects" index="3"]
 frame = 0
@@ -3194,6 +3206,9 @@ sprite_frames = SubResource("SpriteFrames_53nm8")
 animation = &"run"
 autoplay = "default"
 script = null
+
+[node name="npcBody" parent="白虎4" index="0"]
+position = Vector2(-299.92, 221.04)
 
 [node name="斩击" parent="白虎4/effects" index="3"]
 frame = 0
@@ -3224,6 +3239,9 @@ animation = &"施法"
 autoplay = "default"
 script = null
 
+[node name="npcBody" parent="青龙" index="0"]
+position = Vector2(-1930.69, 234.205)
+
 [node name="斩击" parent="青龙/effects" index="3"]
 frame = 0
 frame_progress = 0.0
@@ -3240,6 +3258,9 @@ animation = &"施法"
 autoplay = "default"
 script = null
 
+[node name="npcBody" parent="青龙3" index="0"]
+position = Vector2(-2118.39, 0.497253)
+
 [node name="斩击" parent="青龙3/effects" index="3"]
 frame = 0
 frame_progress = 0.0
@@ -3255,6 +3276,9 @@ sprite_frames = SubResource("SpriteFrames_h4tmk")
 animation = &"人形"
 autoplay = "default"
 script = null
+
+[node name="npcBody" parent="青龙4" index="0"]
+position = Vector2(-1870, 170.06)
 
 [node name="斩击" parent="青龙4/effects" index="3"]
 frame = 0

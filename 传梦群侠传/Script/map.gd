@@ -27,7 +27,7 @@ var onItemPicked
 
 var onSellPicking
 var onSaleItemPicked
-
+var itemIndex2 
 
 var playerPosition
 var shopItems
@@ -59,6 +59,7 @@ func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
 
 
 func _ready():
+	
 	if not has_node("http"):
 		var httpRequest = HTTPRequest.new()
 		httpRequest.name = "http"
@@ -182,7 +183,7 @@ func _process(delta):
 				
 	shopItems = get_tree().get_nodes_in_group("shopItem")
 	if onShop:
-		if !onBuy and !Global.noKeyboard:
+		if !onBuy and !onSale and !Global.noKeyboard:
 			$shop/Panel/buyButton.visible = false
 			
 		if confirmButtonIndex == 0:
@@ -210,6 +211,7 @@ func _process(delta):
 				onItemPicking = false
 				onSellPicking = false
 				itemIndex = 0
+				itemIndex2 = itemIndex
 				for i in shopItems:
 					i.queue_free()				
 				
@@ -321,9 +323,8 @@ func _process(delta):
 							shopItems = get_tree().get_nodes_in_group("shopItem")					
 								
 		if onItemPicking:
-			if onItemPicking:
-				onSale = false
-				onBuy = false
+			onSale = false
+			onBuy = false
 				#$shop/Panel/buyButton.visible = false
 			if Input.is_action_just_pressed("ui_down") and !onItemPicked:
 				if itemIndex == shopItems.size() - 1:
@@ -332,7 +333,7 @@ func _process(delta):
 					itemIndex += 1		
 				shopItems[itemIndex].get_node("Button").grab_focus()	
 				$shop/Panel/description.text = shopItems[itemIndex].description
-				
+				itemIndex2 = itemIndex
 				
 			if Input.is_action_just_pressed("ui_up") and !onItemPicked:
 				if itemIndex == 0:
@@ -340,7 +341,8 @@ func _process(delta):
 				else:
 					itemIndex -= 1							
 				shopItems[itemIndex].get_node("Button").grab_focus()
-				$shop/Panel/description.text = shopItems[itemIndex].description								
+				$shop/Panel/description.text = shopItems[itemIndex].description				
+				itemIndex2 = itemIndex				
 			for i in shopItems:
 				if i.name == shopItems[itemIndex].name:
 					i.get_node("Label2").modulate = "0000002c"
@@ -354,7 +356,7 @@ func _process(delta):
 				shopItems[itemIndex].get_node("Control").visible = true
 				onItemPicked = true
 				onItemPicking = false
-				print(333333333)
+
 				$canPress.start()
 				canPress = false
 				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
@@ -375,7 +377,8 @@ func _process(delta):
 					if shopItems[x] == self:
 						itemIndex = x
 					else:
-						shopItems[x].get_node("Control").visible = false								
+						shopItems[x].get_node("Control").visible = false	
+				itemIndex2 = itemIndex							
 			if Input.is_action_just_pressed("ui_up") and !onSaleItemPicked:
 				if itemIndex == 0:
 					itemIndex = shopItems.size() - 1
@@ -387,7 +390,7 @@ func _process(delta):
 					else:
 						shopItems[x].get_node("Control").visible = false								
 				shopItems[itemIndex].get_node("Button").grab_focus()		
-				
+				itemIndex2 = itemIndex
 												
 			for i in shopItems: 
 				if i.name == shopItems[itemIndex].name:
@@ -464,6 +467,7 @@ func _process(delta):
 			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
 				onBuy = true
 				onItemPicked = false
+				itemIndex = itemIndex2
 				$shop/Panel/buyButton.visible = true
 				canPress = false
 				$canPress.start()				
@@ -661,13 +665,14 @@ func _process(delta):
 				if confirmButtonIndex == 1:
 					if shopItems.size() == 0:
 						return
-
+					
 					$subSound.stream = load("res://Audio/SE/006-System06.ogg")
 					$subSound.play()	
 					onSellPicking = true
 					onSale = false		
 					canPress = false										
 					$canPress.start()
+					
 					$shop/Panel/buyButton.visible = false
 					FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) + int(shopItems[itemIndex].get_node("golds").text) )* Global.enKey
 					FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number -= shopItems[itemIndex].buyAmount				
@@ -681,6 +686,7 @@ func _process(delta):
 							itemIndex -= 1
 						else:
 							itemIndex = 0
+						itemIndex2 = itemIndex
 					for i in shopItems:
 						if FightScenePlayers.bagArmorItem.get(i.name):
 							pass
@@ -695,6 +701,7 @@ func _process(delta):
 					$subSound.play()										
 					onSaleItemPicked = true
 					onSale = false			
+					
 					$shop/Panel/buyButton.visible = false
 					canPress = false										
 					$canPress.start()					
@@ -792,6 +799,10 @@ func _process(delta):
 	
 	
 	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and Global.menuOut == false and !get_node("battleField") and !onShop and canPress and !Global.onTalk and !Global.onFight:
+		if !Global.canMenu:
+			Global.showMsg("当前无法打开菜单！")
+			
+			return
 		if Global.onPet:
 			$CanvasLayer/宠物列表.visible = false
 			$CanvasLayer/msgBox.visible = true
@@ -1141,8 +1152,10 @@ func _on_button_pressed():
 	onItemPicking = true
 	onSellPicking = false	
 	itemIndex = 0
+	itemIndex2 = itemIndex
 func _on_button_2_pressed():
 	itemIndex = 0
+	itemIndex2 = itemIndex
 	if onSellPicking:
 		return
 	shopButtonIndex = 1
@@ -1180,7 +1193,7 @@ func _on_button_2_pressed():
 	onSellPicking = true
 	onItemPicking = false	
 	itemIndex = 0
-
+	itemIndex2 = itemIndex
 func _on_can_press_timeout():
 	canPress = true
 
@@ -1238,98 +1251,16 @@ func _on_cancel_pressed():
 	if onBuy or onItemPicked or onItemPicking:
 		onBuy = false
 		onItemPicked = true		
+	
 		$shop/Panel/buyButton.visible = false 	
 	if onSale or onSaleItemPicked or onSellPicking:
+	
 		onSale = false
 		onSaleItemPicked = true		
 		$shop/Panel/buyButton.visible = false 
 
 
-#func _on_buy_pressed():
 
-#	if onBuy or onItemPicked or onItemPicking:
-#		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
-#		$subSound.play()						
-#		onBuy = false
-#		onItemPicking = true		
-#		$shop/Panel/buyButton.visible = false
-#		FightScenePlayers.golds -= int(shopItems[itemIndex].get_node("golds").text) 	
-#		shopItems[itemIndex].get_node("Control").visible = false
-#		shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
-#		if FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name):
-#			FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number += shopItems[itemIndex].buyAmount
-#
-#		else:
-#			for i in ItemData.hat:
-#				if shopItems[itemIndex].name == i:
-#					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-#						"info": ItemData.hat.get(shopItems[itemIndex].name),
-#						"type": "hat",
-#						"number": shopItems[itemIndex].buyAmount,
-#						"added": false		
-#					}
-#
-#			for i in ItemData.weapon:
-#				if shopItems[itemIndex].name == i:
-#					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-#						"info": ItemData.weapon.get(shopItems[itemIndex].name),
-#						"type": "weapon",
-#						"number": shopItems[itemIndex].buyAmount ,
-#						"added": false		
-#					}								
-#			for i in ItemData.accessories:
-#				if shopItems[itemIndex].name == i:
-#					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-#						"info": ItemData.accessories.get(shopItems[itemIndex].name),
-#						"type": "accessories",
-#						"number": shopItems[itemIndex].buyAmount ,
-#						"added": false		
-#					}											
-#			for i in ItemData.shoes:
-#				if shopItems[itemIndex].name == i:
-#					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-#						"info": ItemData.shoes.get(shopItems[itemIndex].name),
-#						"type": "shoes",
-#						"number": shopItems[itemIndex].buyAmount ,
-#						"added": false		
-#					}											
-#			for i in ItemData.cloth:
-#				if shopItems[itemIndex].name == i:
-#					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-#						"info": ItemData.cloth.get(shopItems[itemIndex].name),
-#						"type": "cloth",
-#						"number": shopItems[itemIndex].buyAmount ,
-#						"added": false		
-#					}											
-#
-#
-#	if onSale or onSaleItemPicked or onSellPicking:
-#		$subSound.stream = load("res://Audio/SE/006-System06.ogg")
-#		$subSound.play()	
-#		onSellPicking = true
-#		onSale = false		
-#		canPress = false										
-#		$canPress.start()
-#		$shop/Panel/buyButton.visible = false
-#		FightScenePlayers.golds += int(shopItems[itemIndex].get_node("golds").text)
-#		FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number -= shopItems[itemIndex].buyAmount				
-#		shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
-#		shopItems[itemIndex].buyAmount = 1
-#		if FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number > 0:
-#			shopItems[itemIndex].get_node("itemNum").text = str(FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number)	
-#			shopItems[itemIndex].get_node("Control").visible = false				
-#		else:
-#			if itemIndex > 0:	
-#				itemIndex -= 1
-#			else:
-#				itemIndex = 0
-#		for i in shopItems:
-#			if FightScenePlayers.bagArmorItem.get(i.name):
-#				pass
-#			else:
-#				i.queue_free()
-#
-#		shopItems[itemIndex].get_node("Button").grab_focus()
 
 
 func _on_warn_timer_timeout():
@@ -1608,6 +1539,7 @@ func _on_menut_button_button_down():
 func _on_button_button_down():
 	onSale = false
 	onBuy = false
+	
 	$shop/Panel/buyButton.visible = false
 	$shop/Panel/description.text = ""
 	if onItemPicking:
@@ -1682,14 +1614,16 @@ func _on_button_button_down():
 	onItemPicking = true
 	onSellPicking = false	
 	itemIndex = 0
-
+	itemIndex2 = itemIndex
 
 func _on_button_2_button_down():
+	
 	$shop/Panel/buyButton.visible = false
 	onSale = false
 	onBuy = false
 	$shop/Panel/description.text = ""
 	itemIndex = 0
+	itemIndex2 = itemIndex
 	if onSellPicking:
 		return
 	shopButtonIndex = 1
@@ -1728,16 +1662,17 @@ func _on_button_2_button_down():
 	onSellPicking = true
 	onItemPicking = false	
 	itemIndex = 0
-
+	itemIndex2 = itemIndex
 
 func _on_cancel_button_down():
 	
 	if onBuy or onItemPicked or onItemPicking:
 		onBuy = false
 		onItemPicked = true		
-
+	
 		$shop/Panel/buyButton.visible = false 	
 	if onSale or onSaleItemPicked or onSellPicking:
+		
 		onSale = false
 		onSaleItemPicked = true		
 		$shop/Panel/buyButton.visible = false 
@@ -1750,7 +1685,7 @@ func _on_buy_button_down():
 		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
 		$subSound.play()						
 		onBuy = false
-	
+		
 		$shop/Panel/buyButton.visible = false
 		FightScenePlayers.golds =  (decrypt(FightScenePlayers.golds) - int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
 		Global.showMsg("购买到"+ shopItems[itemIndex].name)
@@ -1835,6 +1770,7 @@ func _on_buy_button_down():
 		canPress = false										
 		$canPress.start()
 		$shop/Panel/buyButton.visible = false
+		
 		FightScenePlayers.golds += int(shopItems[itemIndex].get_node("golds").text) * Global.enKey
 		FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number -= shopItems[itemIndex].buyAmount				
 		shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
@@ -1847,6 +1783,7 @@ func _on_buy_button_down():
 				itemIndex -= 1
 			else:
 				itemIndex = 0
+			itemIndex2 = itemIndex
 		for i in shopItems:
 			if FightScenePlayers.bagArmorItem.get(i.name):
 				pass
@@ -1935,8 +1872,8 @@ func remove_shader():
 func _on_area_2d_area_entered(area):
 
 	if area.name == "playerTouch":
-		$CharacterBody2D.position = Vector2(-3281,5605)
-		bossFight("怨蛛","res://Audio/BGM/战斗-生肖2.ogg",null)
+		$CharacterBody2D/enterFightTimer.start()
+
 
 func snowStorm():
 	$ColorRect.material.set_shader_parameter("wind_speed", 40)
@@ -1971,7 +1908,6 @@ func _on_魔尊_animation_looped():
 		Global.getnode("AnimationPlayer2").play("冲击波")
 
 func _on_sound_timer_timeout():
-
 	Global.playsound("res://Audio/SE/048-Explosion01.ogg")
 
 
@@ -2225,3 +2161,8 @@ func fetch_all_names():
 	var err = http.request(url, headers, HTTPClient.METHOD_GET)
 	if err != OK:
 		print("获取全部名字失败")
+
+
+func _on_enter_fight_timer_timeout():
+	$CharacterBody2D.position = Vector2(-3281,5605)	
+	bossFight("怨蛛","res://Audio/BGM/战斗-生肖2.ogg",null)

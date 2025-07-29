@@ -46,7 +46,8 @@ var shader_material: ShaderMaterial
 
 var deltas
 func _ready(): 
-	
+	if Global.noKeyboard:
+		$phoneControl.visible = true
 	shader_material = $battleFieldPicture/lastHit.material as ShaderMaterial
 	shader_material.set("play_once", false)
 	
@@ -81,7 +82,8 @@ func _ready():
 	Global.onAttacking = false
 	Global.monsterTarget = null
 	Global.onAttackPicking = false
-	
+	Global.allieSelectIndex = 0
+	Global.canBlock = false
 	randiTrans = randi_range(0,9)
 	
 	# Load the Character2D scene
@@ -98,11 +100,19 @@ func _ready():
 	
 	instantiatePlayers()
 	monsters = get_tree().get_nodes_in_group("monster")
+	
+	
 	for i in monsters:
 		totalExp += i.exp
 		totalGold += i.gold
 		totalHp += i.hp
-	print(totalGold)
+	if monsters[0].level >= Global.maxLevel:
+		Global.petPotentialProgress += monsters.size()
+		if Global.petPotentialProgress > 50:
+			Global.petPotentialProgress -= 50
+			FightScenePlayers.petFoodBall += 1
+		
+		
 	if monsters[0].name == "天道": 
 		$fightTime.start()
 		
@@ -111,7 +121,6 @@ func _ready():
 	
 	#FightScenePlayers.update_players_with_item_stats()
 	#随机
-	
 	$bgmTimer.start()
 	randomBgmIndex = randi() % Global.bgmList.size()
 #	get_parent().get_node("AudioStreamPlayer2D").stream = load(Global.bgmList[randomIndex])
@@ -162,9 +171,12 @@ func _process(delta):
 			for i in children:
 				i.visible = false
 			for i in players:
+				if !is_instance_valid(i):
+					return
 				if i.name == Global.onAttackingList[0]:
 				
 					for index in i.buffs.size():					
+						print(index,"buffindex")
 						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).visible = true
 						var icon
 						if i.buffs[index].keys()[0] == "onAttackBuff":
@@ -269,8 +281,10 @@ func _process(delta):
 	if Global.onAttackPicking or Global.onMagicAttackPicking:
 		if Global.target and monsters:
 			$battleFieldPicture/enemyInfo.visible = true
-		
-			$battleFieldPicture/enemyInfo/enemyName.text = str(monsters[Global.targetMonsterIdx].level) # remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
+			
+			$battleFieldPicture/enemyInfo/enemyName.text = str(monsters[Global.targetMonsterIdx].type) # remove_numbers_from_string(monsters[Global.targetMonsterIdx].name)
+			if monsters[Global.targetMonsterIdx].type == "":
+				$battleFieldPicture/enemyInfo/enemyName.text = "无"
 			$battleFieldPicture/enemyInfo/hpBar.max_value = monsters[Global.targetMonsterIdx].hp 
 			$battleFieldPicture/enemyInfo/hpBar.value = monsters[Global.targetMonsterIdx].currHp
 			$battleFieldPicture/enemyInfo/speedBar.value = monsters[Global.targetMonsterIdx].speedBar
@@ -517,6 +531,9 @@ func _process(delta):
 				i.currHp += (i.hp + decrypt(i.addHp) )/7
 				i.currMp += addMpAmount 
 				
+				if Global.wutongOn:
+					i.currHp = i.hp + i.addHp
+					FightScenePlayers.fightScenePlayerData.get("小二").currHp = FightScenePlayers.fightScenePlayerData.get("小二").hp + FightScenePlayers.fightScenePlayerData.get("小二").addHp
 				if i.currHp > i.hp:
 					i.currHp = i.hp
 					
@@ -599,7 +616,9 @@ func _process(delta):
 		
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = true
+		
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true
+		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").visible = true
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").text = str(totalExp)
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(totalGold)
 		
@@ -613,15 +632,14 @@ func _process(delta):
 		if !rewardAdded:
 			rewardAdded = true	
 			FightScenePlayers.golds += totalGold * Global.enKey
-			print("added")
 			for player_name in FightScenePlayers.fightScenePlayerData:
 				
 				if player_name in Global.onTeamPlayer or player_name in Global.onTeamPet:
 					var player = FightScenePlayers.fightScenePlayerData[player_name]
 					if player['level'] >= Global.maxLevel:
-						return
-					player["exp"] += totalExp * Global.enKey
-
+						pass
+					else:
+						player["exp"] += totalExp * Global.enKey
 		get_parent().get_parent().get_node("battleBgm").stop()
 		if !Global.onHurry:
 			get_parent().get_parent().get_node("AudioStreamPlayer2D").stream_paused = false
@@ -827,17 +845,17 @@ func _process(delta):
 		elif Global.onItemSelectPicking == true and Global.onItemUsePicking == false :
 			magicPanel = get_tree().get_nodes_in_group("magic")
 			if Input.is_action_just_pressed("ui_up"):
-				if Global.itemSelectIndex <= 1:
+				if Global.itemSelectIndex <= 2:
 					return
 				else:
-					Global.itemSelectIndex -= 2	
+					Global.itemSelectIndex -= 3
 				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_parent().get_node("subSound").play()						
 			if Input.is_action_just_pressed("ui_down"):
-				if Global.itemSelectIndex >= Global.itemList.size() - 2:
+				if Global.itemSelectIndex >= Global.itemList.size() - 3:
 					return
 				else:
-					Global.itemSelectIndex += 2	
+					Global.itemSelectIndex += 3
 				get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_parent().get_node("subSound").play()	
 
@@ -917,7 +935,7 @@ func instantiateMonster():
 	# Check if the current scene is in the array of easy levels
 	#if Global.currScene in easyLevels:
 	
-	numMonstersToSelect = randi_range(Global.dangerScene.get(get_tree().current_scene.name)-2, Global.dangerScene.get(get_tree().current_scene.name))  # Select 3 to 5 monsters for easy levels
+	numMonstersToSelect = Global.dangerScene.get(get_tree().current_scene.name)  # Select 3 to 5 monsters for easy levels
 
 	#已被选中加入战斗的怪物，以numMonsterToSelect的随机数加入相应数量的已选中怪物
 	selectedMonsters = []
@@ -974,7 +992,7 @@ func instantiateMonster():
 				posY = -40
 
 
-			if selectedMonsters[0].name == "青龙0":
+			if selectedMonsters[0].name == "青龙0" or selectedMonsters[0].name == "人形青龙0":
 				posX = -200
 				posY = -200
 		# Set the position of the character instance
@@ -1051,7 +1069,7 @@ func instantiateBoss():
 				posY = -40
 
 
-			elif selectedMonsters[0].name == "青龙":
+			elif selectedMonsters[0].name == "青龙" or selectedMonsters[0].name == "人形青龙":
 				posX = -200
 				posY = -200			
 			else:
@@ -1419,6 +1437,7 @@ func decrypt(value):
 
 func _on_big_magic_timer_timeout():
 	$battleFieldPicture/bigMagic.visible = false
+	
 
 func showLastHit():
 	pass
@@ -1444,11 +1463,13 @@ func play_effect_once():
 func _on_up_button_button_down():
 	if !Global.noKeyboard:
 		return
+	canPress = false
+	$canPressTimer.start()
 	var onBattleCommend = false
 	for i in players:
 		if i.get_node("battleCommends").visible:
 			onBattleCommend = true
-			
+	print(Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false)
 	if onBattleCommend:
 		if Global.battleButtonIndex == 0:
 			Global.battleButtonIndex = 4
@@ -1456,21 +1477,23 @@ func _on_up_button_button_down():
 		
 		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 		get_parent().get_parent().get_node("subSound").play()		
-		
+	
 	elif Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false:
 		magicPanel = get_tree().get_nodes_in_group("magic")
-		if Input.is_action_just_pressed("ui_up"):
-			if Global.magicSelectIndex <= 1:
-				return
-			else:
-				Global.magicSelectIndex -= 3	
-			get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-			get_parent().get_parent().get_node("subSound").play()						
+		if Global.magicSelectIndex <= 1:
+			return
+		else:
+			Global.magicSelectIndex -= 3	
+		
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_parent().get_node("subSound").play()						
 
 
 func _on_down_button_button_down():
 	if !Global.noKeyboard:
 		return
+	canPress = false
+	$canPressTimer.start()
 	var onBattleCommend = false
 	for i in players:
 		if i.get_node("battleCommends").visible:
@@ -1510,6 +1533,8 @@ func _on_down_button_button_down():
 func _on_right_button_button_down():
 	if !Global.noKeyboard:
 		return
+	canPress = false
+	$canPressTimer.start()
 	for i in players:
 		i.get_node("selectIndic").visible = false
 	players[Global.allieSelectIndex].get_node("selectIndic").visible = false		
@@ -1594,6 +1619,8 @@ func _on_right_button_button_down():
 func _on_left_button_button_down():
 	if !Global.noKeyboard:
 		return
+	canPress = false
+	$canPressTimer.start()
 	for i in players:
 		i.get_node("selectIndic").visible = false
 	players[Global.allieSelectIndex].get_node("selectIndic").visible = false
@@ -1657,8 +1684,9 @@ func _on_left_button_button_down():
 			
 
 func _on_accept_button_button_down():
-	if !Global.noKeyboard:
+	if !Global.noKeyboard or !canPress:
 		return
+
 	if Global.onAttackingList:
 		if Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false :
 			magicPanel = get_tree().get_nodes_in_group("magic")
@@ -1795,6 +1823,8 @@ func _on_accept_button_button_down():
 			currPlayer.currMp += currPlayer.mp/10
 			if currPlayer.currMp > currPlayer.mp:
 				currPlayer.currMp = currPlayer.mp
+				
+				
 			currPlayer.speedBar = 0
 			currPlayer.get_node("Control/speedBar").value = 0
 			currPlayer.play(currPlayer.playerName + "defend")

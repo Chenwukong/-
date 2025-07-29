@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://ccmjxaqy5ffv5"]
+[gd_scene load_steps=114 format=3 uid="uid://ccmjxaqy5ffv5"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_5wvsl"]
 [ext_resource type="Texture2D" uid="uid://22lwjp0yyjj3" path="res://panoramas2/大唐境外北.jpg" id="2_5yst4"]
@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="12_n3qna"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="13_hhqk2"]
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="14_o80w1"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="15_61uhq"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="15_61uhq"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="16_x4xof"]
 [ext_resource type="Texture2D" uid="uid://dxxjm7fq4e5l0" path="res://SeparateAnimation/李逍遥/480-9.png" id="17_x0xh1"]
 [ext_resource type="Texture2D" uid="uid://i340ug2mxj5u" path="res://SeparateAnimation/李逍遥/480-10.png" id="18_uxjs8"]
@@ -59,6 +59,7 @@
 [ext_resource type="Texture2D" uid="uid://24kb73ew6sxm" path="res://Characters/店小二.png" id="57_v2182"]
 [ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="58_sx2a7"]
 [ext_resource type="Texture2D" uid="uid://dgcm73rgu0nvk" path="res://Characters/烟儿.png" id="59_hsjnv"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="60_lt8yc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3kems"]
 
@@ -652,7 +653,7 @@ position = Vector2(98, -899)
 autoplay = ""
 
 [node name="player" parent="." instance=ExtResource("50_nm3mc")]
-position = Vector2(-461.112, -146.766)
+position = Vector2(1476, -66)
 
 [node name="teleportCircle" parent="." instance=ExtResource("51_jpjh2")]
 position = Vector2(1566.97, -167.653)
@@ -707,6 +708,20 @@ sprite_frames = SubResource("SpriteFrames_q4efq")
 visible = false
 position = Vector2(1442, 13)
 sprite_frames = SubResource("SpriteFrames_7wumu")
+
+[node name="Node2D" parent="." instance=ExtResource("60_lt8yc")]
+position = Vector2(-193, 790)
+id = "大唐境外武器"
+items = {
+"红丝缠": 1
+}
+
+[node name="Node2D2" parent="." instance=ExtResource("60_lt8yc")]
+position = Vector2(382, -11)
+id = "大唐境外衣服"
+items = {
+"抽丝断茧": 1
+}
 
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]

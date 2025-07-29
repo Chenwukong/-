@@ -19,7 +19,7 @@ set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.append("小二")
 set Global.onTeamPlayer.append("凌若昭")
-
+set Global.onTeamPet.erase("大海龟")
 set FightScenePlayers.learnMagic("凌若昭", "万符归元")
 set FightScenePlayers.learnMagic("凌若昭", "风雨雷电")
 
@@ -215,7 +215,9 @@ set get_tree().current_scene.get_node("戒色").visible =true
 小二: [speed=0.5]说人话
 戒色: [speed=0.5]你是个好人
 小二: [speed=0.5]就当你是在夸我吧。。。带路吧
+set Global.dial = "凌若昭回忆"
 set Global.changeScene("金山室内", null)
+
 
 set Global.onTalk = false
 => END
@@ -223,7 +225,7 @@ set Global.onTalk = false
 
 ~ 凌若昭回忆9
 set Global.onTalk = true
-set Global.changevis("金山室内","戒色")
+
 set get_tree().current_scene.get_node("player").visible = false
 set Global.npcVis.get("金山室内").get("小二").visible = true
 set Global.npcVis.get("金山室内").get("凌若昭").visible = true
@@ -521,6 +523,7 @@ set Global.onTalk = true
 set Global.getnode("player").visible = false
 set Global.getnode("shadow").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = false
+set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("噬天虎").visible = false
 set Global.getnode("player").visible = false
 凌若昭: [speed=0.5]居然一下子就把他灭杀了！！！
@@ -626,6 +629,7 @@ set Global.onTeamPlayer.erase("凌若昭")
 set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.append("姜韵")
 set Global.onTeamPlayer.append("凌若昭")
+set Global.onTeamPet.append("大海龟")
 set FightScenePlayers.healAll()
 set get_tree().current_scene.bossFight("噬天虎","res://Audio/BGM/蓄勢 ～GEAR UP～.ogg", "寻找小二")
 set Global.onTalk = false
@@ -690,7 +694,7 @@ set Global.changevis("大唐国境边缘","梧桐")
 set Global.getnode("姜韵").visible = true
 set Global.getnode("姜韵").play("left")
 set Global.changevis("大唐官府大厅","凌若昭")
-set Global.changevis("大唐官府大厅","小二")
+set Global.changevis("方寸山","凌若昭")
 set Global.changevis("方寸山","小二")
 程咬金: [speed=0.5]总算是解决他们了
 时追云: [speed=0.5]得把他们杀到怕
@@ -761,6 +765,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.changevis("方寸山","提毗")
 set Global.changevis("方寸山","菩提老祖")
+set Global.canMenu = false
 姜韵喜: [speed=0.5]这里就是方寸山吗？好漂亮啊
 梧桐: [speed=0.5]不愧是人间圣地
 凌若昭喜: [speed=0.5]快走吧快走吧，我师傅肯定知道小二在哪里
@@ -774,12 +779,12 @@ set Global.onTalk = false
 
 ~ 寻找小二5
 set Global.onTalk = true
-set Global.changevis("灵台宫","菩提老祖")
 set Global.getnode("player").position = Vector2(414,267)
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
 set Global.changevis("灵台宫","凌若昭")
+set Global.changevis("灵台宫","菩提老祖")
 set Global.getnode("姜韵").visible= true
 时追云: [speed=0.5]菩提祖师，我回来了
 凌若昭喜: [speed=0.5]师傅，我也回来了
@@ -845,7 +850,7 @@ set Global.getnode("姜韵").visible= true
 凌若昭: [speed=0.5]那师傅你知道小二现在哪吗？
 菩提老祖: [speed=0.5]再去多看看这个世界吧，小二就在枯骨山！
 set Global.cantShow.erase("大唐境外")
-set Global.addStuff()
+set Global.canMenu = true
 set Global.changeScene("大唐国境边缘",Vector2(1861,666))
 
 set Global.onTalk = false
@@ -857,8 +862,11 @@ set Global.onTalk = false
 
 ~ 寻找小二6
 set Global.onTalk = true
+set Global.wutongOn = true
+set Global.cantShow.erase("大唐境外")
 时追云: [speed=0.5]枯骨山貌似是在大唐境外的西南面，我们走吧
 凌若昭喜: [speed=0.5]我来过这里，这里就由我带路吧
+梧桐: [speed=0.5]我来给你们疗伤
 时追云: [speed=0.5]好
 set Global.dial = null
 set Global.onTalk = false
@@ -1337,22 +1345,25 @@ set Global.changebgm("res://Audio/BGM/兵凶.ogg")
 set Global.toggleballon()
 时追云惊: 小二
 青面兽: 这妖力。。。原来你就是那个天命人！
+小二真身: 如若能除尽你们这些邪魔，那也不算侮辱了这把神兵
 小二真身: 玉箍棒!来！
 set Global.playsound("res://Audio/SE/134-Wind03.ogg")
 set Global.getnode("金箍棒").visible = true
 set Global.getnode("AnimationPlayer").play("金箍棒来")
 set Global.toggleballon()
 [next=2.6]
+
 set Global.toggleballon()
 set Global.getnode("金箍棒").visible = false
 小二真身: 老大若昭，帮我杀了他！
 set FightScenePlayers.fightScenePlayerData["小二"].item.weapon = ItemData.weapon.get("玉箍棒")
 时追云怒: 好！
 凌若昭怒: 嗯！
-小二真身: [speed=0.5]我明白了，明白我为什么会有这种力量
+小二真身: [speed=0.5]我明白了，我为什么会有这种力量
 小二真身: [speed=0.5]上天既然赐给我这种力量就意味着有我必须去做的事
 小二真身: [speed=0.5]我若放任你等活着，就是对不起所有被你们残害之人！
 小二真身: [speed=0.5]道归道，魔归魔，而我是我，任何人都不能决定我的命运！
+set FightScenePlayers.learnMagic("小二真身","棍舞")
 set Global.onHurry = true
 set Global.changebgm("res://Audio/BGM/仙劍奇俠傳-逆天而行 [TubeRipper.cc].ogg")
 set Global.onTeamPlayer.append("小二真身")

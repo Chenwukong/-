@@ -492,6 +492,13 @@ animation = &"rightStand"
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(1.6, 1.6)
 
+[node name="Node2D4" parent="." instance=ExtResource("16_pmy6h")]
+position = Vector2(33, 747)
+id = "凤巢1"
+items = {
+"踏雪无痕": 4
+}
+
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]

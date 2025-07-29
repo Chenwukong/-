@@ -1,6 +1,6 @@
 ~ 寻四方1
 set Global.onTalk = true
-
+set Global.getnode("ColorRect").visible = false
 时追云惊: [speed=0.5]菩提祖师，你在干什么？
 白虎: [speed=0.5]好强大的魔气！
 玄武: [speed=0.5]这里面是什么？？
@@ -72,7 +72,8 @@ set Global.onTalk = true
 玄武: [speed=0.5]他现在很像事情没有发生之前的样子，真怀念那时候啊，那时我都觉得当个海龟也没什么
 时追云: [speed=0.5](如果什么都没发生，现在的我会是什么样的呢？)
 set Global.turnDark()
-set Global.changeScene("大唐境外",null)
+set Global.changeScene("大唐境外",Vector2(-461,-146))
+set FightScenePlayers.healAll()
 set Global.dial = "寻四方"
 set Global.onTalk = false
 => END
@@ -112,7 +113,7 @@ set Global.onTalk = false
 
 ~ 关重七1
 set Global.onTalk = true
-
+set FightScenePlayers.healAll()
 凌若昭: [speed=0.5]这位姐姐怎么满脸愁容啊
 水云仙: [speed=0.5]你们是？
 小二: [speed=0.5]我们是来这里寻观音大士的
@@ -392,7 +393,7 @@ set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 观音菩萨: [speed=0.5]好，那就拜托你们了
 set Global.showMsg("姜韵防御增加！")
 set Global.getnode("姜韵").visible = false
-
+set Global.canMenu = false
 set Global.dial = "初见观音"
 set Global.onTalk = false
 => END
@@ -400,6 +401,7 @@ set Global.onTalk = false
 
 ~ 初见观音3
 set Global.onTalk = true
+set Global.canMenu = true
 时追云: [speed=0.5]你们知道五庄观在何处吗
 凌若昭: [speed=0.5]我知道，应该在大唐境外的东边！
 小二: [speed=0.5]那走吧
@@ -602,8 +604,8 @@ set Global.onTalk = true
 小二: [speed=0.5]这应该就是人参果树了吧
 凌若昭: [speed=0.5]那我们要给它除虫吗？
 - 除虫
-	set get_tree().current_scene.bossFight("人参果虫","res://Audio/BGM/新手上路.ogg", "除虫")	
 	凌若昭: 小虫子受死！
+	set get_tree().current_scene.bossFight("人参果虫","res://Audio/BGM/新手上路.ogg", "除虫")	
 - 不除虫
 	set Global.npcs.get("除虫").current_dialogue_index = 0
  
@@ -619,7 +621,7 @@ set Global.onTalk = true
 姜韵哀: [speed=0.5]吃人参果长大的虫子，着实不一般
 凌若昭: [speed=0.5]怪不得人参果这么珍贵
 set Global.showMsg("获得可食用人参果！")
-set Global.addItem("人参果", "consume", "consumeItem", 1)
+set Global.addItem("可食用人参果", "consume", "consumeItem", 1)
 时追云: [speed=0.5]打斗的过程中貌似又掉了颗人参果
 凌若昭: [speed=0.5]那我们岂不是多了一颗吗
 时追云: [speed=0.5]应该要还回去的吧
@@ -667,6 +669,7 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 姜韵: [speed=0.5]对了菩萨，您知道弥勒佛现在何处吗？
 观音菩萨: [speed=0.5]他现在应该在这里往西的地方，所在之地皆是风沙，具体在哪我不确定，你们可往那去寻
 姜韵喜: [speed=0.5]好，谢谢菩萨！
+set Global.cantShow.erase("西行之路")
 set Global.changebgm("res://panoramas2/普陀山.jpg")
 set FightScenePlayers.learnMagic("姜韵","净瓶仙露")
 set Global.showMsg("姜韵学会净瓶仙露技能！")
@@ -835,6 +838,7 @@ set Global.onTalk = true
 老板: [speed=0.5]本来得找国主的，但这两天是升仙大会，国主不见人，所以你们可能得等两天了
 小二: [speed=0.5]啊，那咋办
 时追云: [speed=0.5]没办法，只能等了，顺便看看这升仙大会是怎么回事
+set FightScenePlayers.healAll()
 set Global.turnDark()
 [next=1]
 set Global.dial = "朱紫国旅馆老板"
@@ -867,7 +871,7 @@ set Global.onTalk = false
 
 ~ 朱紫国药铺老板
 set Global.onTalk = true
-朱紫国药铺老板: 来点药吧
+朱紫国药铺老板: 我这里什么都卖
 set get_tree().current_scene.popShop()
 
 set Global.onTalk = false
@@ -930,7 +934,7 @@ set Global.onTalk = true
 老方: [speed=0.5]可我还没找到女儿呢，你不知道，之前根本就没有人信我的话，现在终于遇到肯信我的了，你，你们可别走啊
 姜韵喜: [speed=0.5]你放心，我们不会走，一定会帮你找到女儿的消息的，你先去歇息，等我们找到消息了再告诉你，你也不希望见到女儿之前自己先跨了吧
 老方: [speed=0.5]啊。。。好吧，那我先去睡一觉，你们要小心啊
-set Global.changevis("朱紫国","老方")
+set Global.changevis("朱紫国","方大爷")
 姜韵: [speed=0.5]...
 时追云: [speed=0.5]娘子，现在可以说了吧
 凌若昭: [speed=0.5]啊？姐姐刚才是故意支开他的吗？
@@ -1012,13 +1016,14 @@ set Global.getnode("罗非").visible = false
 
 时追云惊: [speed=0.5]有人把他救走了！
 凌若昭怒: [speed=0.5]我能追踪他们的气息，大家跟我来！
-老二: [speed=0.5]老大，你刚才犹豫了吧
+小二: [speed=0.5]老大，你刚才犹豫了吧
 时追云: [speed=0.5]对，我犹豫了，我不知道该不该杀他，但在他逃走的一瞬间我想明白了
 set Global.changebgm("res://Audio/BGM/#绝望.ogg")
 set Global.getnode("鬼魂").visible = true
 时追云: [speed=0.5]不必想什么之后的事情，如果我放任这种东西活在世上，所有惨死之人都将永不瞑目！这里的冤魂将永世盯着我！
 set Global.toggleballon()
 [next=15]
+set Global.maxLevel = 65
 set Global.dial = "追杀"
 set Global.changeScene("小西天",null)
 
@@ -1108,10 +1113,12 @@ set Global.toggleballon()
 小二: [speed=0.5]你怎么会突然来帮我们啊
 金翅大鹏: [speed=0.5]送你们走后我思来想去，还是不能这么没有义气，所以壮着胆子来这里看看
 小二: [speed=0.5]你到底在害怕什么东西啊？
-金翅大鹏: [speed=0.5]说不清楚，但我生物的本能劝我不要靠近这里
+金翅大鹏: [speed=0.5]他...是我们的大师兄，实力诡谲，自从师父和如来佛死了后他就疯疯癫癫的
+金翅大鹏: [speed=0.5]我怕有更多人入了他的魔爪，所以这几年一直阻止别人来西域
 金翅大鹏: [speed=0.5]接下来，我真不能陪你了，我虽然也想做好事，但...
 小二: [speed=0.5]嗯我理解，你这些年已经做得够多了，不需要自责
 金翅大鹏: [speed=0.5]那祝你好运吧，再见
+金翅大鹏: [speed=0.5]一定要活着回来！
 小二: [speed=0.5]再见~
 set Global.getnode("大鹏").visible = false
 set Global.changebgm("res://Audio/BGM/聂薇 - 朱紫国.mp3")
@@ -1120,7 +1127,19 @@ set Global.changebgm("res://Audio/BGM/聂薇 - 朱紫国.mp3")
 set Global.onTalk = false
 => END
 
+~ 绿狸
+set Global.onTalk = true
+绿狸: 哎不要打我不要打我，我是好人呐
+绿狸: 只要给钱就能帮你疗伤哦，只要五万银子
+小二: 你敲诈啊！
+绿狸: 是啊
+- 交钱
+	set Global.lostGold(50000)
+	set FightScenePlayers.healAll()	
+- 算了
 
+set Global.onTalk = false
+=> END
 
 ~ 追杀4
 set Global.onTalk = true
@@ -1289,6 +1308,8 @@ set Global.toggleballon()
 姜韵喜: [speed=0.5]放心吧，我在他的尸体上找到了，应该就是我们所需要的
 小二: [speed=0.5]是什么啊？
 姜韵喜: [speed=0.5]金刚经！
+set FightScenePlayers.learnMagic("姜韵","金刚经")
+
 set Global.dial = "黄眉"
 set Global.changeScene("朱紫国旅馆",null)
 set Global.onTalk = false
@@ -1301,7 +1322,7 @@ set Global.onTalk = true
 set Global.getnode("player/Sprite2D").visible = false
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
-set Global.getnode("老方").visible = true
+set Global.getnode("方大爷").visible = true
 set Global.getnode("姜韵").visible = true
 姜韵喜: [speed=0.5]老人家，我们回来了
 老方: [speed=0.5]哎哟，可急死我了，宫里的人没拿你们怎么样吧
@@ -1326,7 +1347,7 @@ set Global.toggleballon()
 老方: [speed=0.5]好吧，既然是这样那我就放心了，嘿我女儿成神仙了
 姜韵喜: [speed=0.5]这里还有一点盘缠，您尽快回家吧，路上遇到黑色的鸟仙，可叫他带你一程
 老方: [speed=0.5]好好好，谢谢你们了！
-set Global.getnode("老方").visible = false
+set Global.getnode("方大爷").visible = false
 set Global.toggleballon()
 [next=2]
 set Global.toggleballon()
@@ -1462,9 +1483,21 @@ set Global.playsound("res://Audio/SE/050-Explosion03.ogg")
 set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
 朱雀: ...
 [next=1]
+set Global.npcs.get("菩提老祖").dialogues[7].unlocked = true
 set Global.current_chapter_id = 9
 set Global.changeScene("chapterPreview",null)
-set Global.dial = "菩提老祖"
+
+set Global.onTalk = false
+=> END
+
+~ 鹿飞
+set Global.onTalk = true
+鹿飞: 这都被你找到了,没办法了，只好把这个给你了
+鹿飞: 答应我，拿到它后要好好对待他啊！
+鹿飞: 哦！我的牌子！我的牌子，没有你我可怎么活啊！
+set Global.showMsg("获得路字牌!")
+set Global.addItem("路字牌", "keyItem", "keyItem", 1)
+
 
 set Global.onTalk = false
 => END

@@ -130,8 +130,17 @@ func useItem():
 						i.visible = false				
 			if item.info.effect == "special":
 				
-				if item.info.name == "人参果":
+				if item.info.name == "可食用人参果":
 					FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addHp += 500 * Global.enKey	
+				
+				if item.info.name == "怪力鱼":
+					FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addStr += 5 * Global.enKey						
+				
+				if item.info.name == "鳊鱼":
+					FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addAbilityPower += 5 * Global.enKey	
+				
+				if item.info.name == "娃娃鱼":
+					FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addMp += 50 * Global.enKey	
 				updateStatus()	
 				item.number -= 1
 				for i in menuItems:
