@@ -241,7 +241,8 @@ func _on_button_button_up():
 
 
 func _on_close_button_button_down():
-	
+	$onUiTimer.start()
+	Global.onUi = true
 	Global.onPet = false
 	$宠物列表.visible = false
 	$msgBox.visible = true
@@ -278,11 +279,14 @@ func _on_author_button_mouse_entered():
 	$"制作人/Label".visible = true
 	$"制作人".play("mouseEnter")
 	Global.onMouse = false
+	Global.onUi = true
+	
 
 func _on_author_button_mouse_exited():
 	$"制作人".play("default")	
 	$"制作人/Label".visible = false
 	Global.onMouse = true
+	Global.onUi = false
 
 func _on_author_button_button_down():
 	$"制作人".play("click")
@@ -324,17 +328,19 @@ func _on_friend_button_button_up():
 func _on_friend_button_mouse_entered():
 	$"好友/Label".visible = true
 	$"好友".play("mouseEnter")
-
+	Global.onUi = true
 	if Global.noMouse:
 		noMouse = true
 		Global.noMouse = false
 func _on_friend_button_mouse_exited():
+	Global.onUi = false
 	$"好友/Label".visible = false
 	$"好友".play("default")
 	if noMouse:
 		Global.noMouse = true
 
 func _on_梦单close_button_button_down():
+	
 	$"其他梦单".visible = false
 	get_tree().current_scene.get_node("player").canMove = true
 
@@ -354,10 +360,12 @@ func _on_music_button_button_down():
 #	$"音乐"
 
 func _on_music_button_mouse_entered():
+	Global.onUi = true
 	$"音乐/音乐".visible = true
 	$"音乐".play("moustEnter")
 	
 func _on_music_button_mouse_exited():
+	Global.onUi =false
 	$"音乐/音乐".visible = false
 	if Global.musicOn:
 		$"音乐".play("default")
@@ -476,19 +484,23 @@ func _on_weapon_button_button_down():
 
 
 func _on_load_button_mouse_entered():
+	Global.onUi = true
 	$loadButton/Label.visible = true
 
 
 func _on_load_button_mouse_exited():
+	Global.onUi = false
 	$loadButton/Label.visible = false
 
 
 func _on_weapon_button_mouse_entered():
+	Global.onUi = true
 	$weaponButton.play("mouseEnter")
 	$weaponButton/Label.visible = true
 
 
 func _on_weapon_button_mouse_exited():
+	Global.onUi = false
 	$weaponButton.play("default")
 	$weaponButton/Label.visible = false
 
@@ -511,20 +523,25 @@ func _on_item_button_button_down():
 	$AudioStreamPlayer2D.play()		
 
 func _on_item_button_mouse_entered():
+	Global.onUi = true
+	
 	$"物品/Label".visible = true
 
 
 func _on_item_button_mouse_exited():
+	Global.onUi = false
 	$"物品/Label".visible = false
 
 
 
 
 func _on_map_button_mouse_entered():
+	Global.onUi = true
 	$"地图/Label".visible = true
 
 
 func _on_map_button_mouse_exited():
+	Global.onUi = false
 	$"地图/Label".visible = false
 	
 
@@ -579,10 +596,12 @@ func _on_shop_button_button_up():
 
 func _on_shop_button_mouse_entered():
 	$"交易/Label".visible = true
+	Global.onUi = true
 
 
 
 func _on_shop_button_mouse_exited():
+	Global.onUi = false
 	$"交易/Label".visible = false
 
 
@@ -884,7 +903,9 @@ func _on_右上_pressed():
 
 
 func _on_坐标button_button_down():
+	print(321)
 	get_tree().current_scene.get_node("player").position = get_tree().current_scene.playerPosition
+	
 func _on_hash_timer_timeout():
 	pass
 	
@@ -956,9 +977,10 @@ func _on_team_button_button_down():
 	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
 	$AudioStreamPlayer2D.play()		
 	swapFriend()
-	
+	$onUiTimer.start()
 
 func _on_friend_close_button_button_down():
+	Global.onUi = true
 	friendIndex = 0
 	$盟友列表.visible = false
 	$msgBox.visible = true
@@ -967,7 +989,7 @@ func _on_friend_close_button_button_down():
 	get_tree().current_scene.get_node("player").canMove = true
 	$AudioStreamPlayer2D.stream = load("res://Audio/SE/002-System02.ogg")
 	$AudioStreamPlayer2D.play()
-
+	$onUiTimer.start()
 
 func _on_friend_right_button_button_down():
 	if friendIndex < Global.onTeamPet.size() - 1:
@@ -995,10 +1017,12 @@ func swapFriend():
 	$"盟友列表/潜力/Label".text = str(FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential)
 
 func _on_team_button_mouse_entered():
+	Global.onUi = true
 	$"队伍/Label".visible = true
 
 
 func _on_team_button_mouse_exited():
+	Global.onUi = false
 	$"队伍/Label".visible = false
 
 
@@ -1096,3 +1120,21 @@ func get_all_hbox_containers(parent_node: Node) -> Array:
 		hboxes += get_all_hbox_containers(child)
 	
 	return hboxes
+
+
+func _on_button_base_button_mouse_entered():
+	Global.onUi = true
+
+func _on_button_base_button_mouse_exited():
+	Global.onUi = false
+
+
+
+
+
+
+func _on_on_ui_timer_timeout():
+	print(111)
+	Global.onUi = false
+
+

@@ -148,6 +148,7 @@ func _process(delta):
 	
 	if Global.onAttackingList.size() > 0:
 		if Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet:
+			
 			if currPlayer:
 				$battleFieldPicture/currPlayer.visible = true
 				$battleFieldPicture/currPlayer/Panel/currPlayerName.text = Global.onAttackingList[0]
@@ -159,7 +160,6 @@ func _process(delta):
 				$battleFieldPicture/currPlayer/Panel/background/hpBar.max_value = currPlayer.totalHp
 				$battleFieldPicture/currPlayer/Panel/background/manaBar/Label2.text = str(currPlayer.currMp) + "/"+str(currPlayer.totalMp)	
 				$battleFieldPicture/currPlayer/Panel/background/manaBar.max_value = currPlayer.totalMp
-				
 					
 				decrease_value_over_time_player(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currMp, 0.07, "mp")
 				decrease_value_over_time_player(FightScenePlayers.fightScenePlayerData.get(Global.onAttackingList[0]).currHp, 0.07, "hp")
@@ -204,7 +204,7 @@ func _process(delta):
 						elif i.buffs[index].keys()[0] == "onTireDebuff":
 							icon = 	"res://Icons/629.png"													
 						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).texture = load(icon)	
-					
+						
 		else:
 			$battleFieldPicture/currPlayer.visible = false
 	else:
@@ -341,6 +341,42 @@ func _process(delta):
 		$battleFieldPicture/allyInfo/manaBar/Label2.text = str(players[Global.allieSelectIndex].currMp) + "/" + str(players[Global.allieSelectIndex].totalMp)
 		
 		var allyBuffSlot =  $battleFieldPicture/allyInfo/buffs.get_children()
+		
+		for x in allyBuffSlot:
+			x.visible = false
+		for index in players[Global.allieSelectIndex].buffs.size():	
+			var i = players[Global.allieSelectIndex]
+			get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).visible = true	
+		
+			var icon
+			if i.buffs[index].keys()[0] == "onAttackBuff":
+				icon = "res://Icons/317.png"
+			elif i.buffs[index].keys()[0] == "onSpeedBuff":
+				icon = "res://Icons/645.png"
+			elif i.buffs[index].keys()[0] == "onMagicDefenseBuff":
+				icon = "res://Icons/641.png"
+			elif i.buffs[index].keys()[0] == "onPhysicDefenseBuff":
+				icon = "res://Icons/307.png"
+			elif i.buffs[index].keys()[0] == "onMagicBuff":
+				icon = "res://Icons/311.png"
+			elif i.buffs[index].keys()[0] == "onHealBuff":
+				icon = "res://Icons/631.png"									
+			elif i.buffs[index].keys()[0] == "onPoisonDebuff":
+				icon = "res://Icons/319.png"
+			elif i.buffs[index].keys()[0] == "onSleepDebuff":
+				icon = "res://Icons/320.png"
+			elif i.buffs[index].keys()[0] == "onIceDebuff":
+				icon = "res://Icons/621.png"
+			elif i.buffs[index].keys()[0] == "onSpeedDebuff":
+				icon = 	"res://Icons/633.png"
+			elif i.buffs[index].keys()[0] == "onMagicDisableDebuff":
+				icon = 	"res://Icons/305.png"											
+			elif i.buffs[index].keys()[0] == "onTireDebuff":
+				icon = 	"res://Icons/629.png"													
+									
+			get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).texture = load(icon)	
+			
+			
 		for buff in players[Global.allieSelectIndex].buffs:
 			pass
 
@@ -432,6 +468,8 @@ func _process(delta):
 					icon = 	"res://Icons/629.png"													
 										
 				get_node("battleFieldPicture/allyInfo/buffs/buff"+str(index+1)).texture = load(icon)	
+				
+				
 			for buff in players[Global.allieSelectIndex].buffs:
 				pass
 	if Global.onAttackingList:
@@ -502,7 +540,8 @@ func _process(delta):
 				var chapterNum = dialogue_entry.chapter
 				DialogueManager.show_chat(load("res://Dialogue/"+str(chapterNum)+".dialogue"),get_npc_dialogue(dialogue))
 			get_parent().get_parent().get_node("shadow").visible = true
-			get_parent().get_parent().get_node("CanvasLayer").visible = true
+			if Global.haveUi:
+				get_parent().get_parent().get_node("CanvasLayer").visible = true
 			get_parent().get_parent().get_node("battleBgm").stop()
 			if !Global.onHurry:
 				get_parent().get_parent().get_node("AudioStreamPlayer2D").stream_paused = false				
@@ -611,7 +650,8 @@ func _process(delta):
 			DialogueManager.show_chat(load("res://Dialogue/"+str(chapterNum)+".dialogue"),get_npc_dialogue(dialogue))
 	
 		get_parent().get_parent().get_node("shadow").visible = true
-		get_parent().get_parent().get_node("CanvasLayer").visible = true
+		if Global.haveUi:
+			get_parent().get_parent().get_node("CanvasLayer").visible = true
 		#战后结算经验和金币
 		
 		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false

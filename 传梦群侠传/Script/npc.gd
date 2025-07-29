@@ -32,7 +32,7 @@ func _process(delta):
 		
 		if dialogues and index != null:
 			if index < dialogues.size():
-				if Global.npcs[npcName]["dialogues"][Global.npcs[npcName]["current_dialogue_index"]].unlocked == true:
+				if Global.npcs[npcName]["dialogues"][Global.npcs[npcName]["current_dialogue_index"]].unlocked == true and !Global.onTalk:
 					$AnimatedSprite2D.visible = true
 				else:
 					$AnimatedSprite2D.visible = false
@@ -160,3 +160,7 @@ func _on_button_button_down():
 func playAnimation(animationName):
 	$effect.visible = true
 	$effect.play(animationName)
+
+
+func _on_button_mouse_exited():
+	Global.onButton = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5482 format=3 uid="uid://c0tdp6n7u1830"]
+[gd_scene load_steps=5479 format=3 uid="uid://c0tdp6n7u1830"]
 
 [ext_resource type="Texture2D" uid="uid://c7afo2n2fa4ua" path="res://Animations/@@@@狐狸精攻击.png" id="1_6lpcr"]
 [ext_resource type="Texture2D" uid="uid://ctprvvab7b7og" path="res://梦魂Animation/@@@@兔子怪攻击.png" id="1_8rmnv"]
@@ -3489,18 +3489,6 @@ region = Rect2(384, 576, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_1c22g"]
 atlas = ExtResource("38_bp3ul")
 region = Rect2(576, 576, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0fxyj"]
-atlas = ExtResource("1_xjkk6")
-region = Rect2(192, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xrfib"]
-atlas = ExtResource("1_xjkk6")
-region = Rect2(384, 192, 192, 192)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_go47t"]
-atlas = ExtResource("1_xjkk6")
-region = Rect2(576, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6bgr"]
 atlas = ExtResource("1_xjkk6")
@@ -19754,15 +19742,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0fxyj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xrfib")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_go47t")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c6bgr")
 }, {
@@ -37759,7 +37738,7 @@ animations = [{
 z_index = 2
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_8tral")
-animation = &"new_animation_1"
+animation = &"大海龟autoAttack"
 script = ExtResource("1_avwje")
 delay_timer = NodePath("DelayTimer")
 shader_material = ExtResource("1_lbfo5")

@@ -1138,7 +1138,7 @@ func _process(delta):
 	
 	##下面设置按钮选中的时候变绿色,并且设置按钮效果
 	if attackButton.has_focus() and Global.onMultiHit == 0:
-		attackButton.modulate = "#00f2e9"
+		attackButton.modulate = "blue"
 		commanButtonIndex = 1
 		magicButton.modulate = "#ffffff"
 		defenseButton.modulate = "#ffffff"
@@ -1167,7 +1167,7 @@ func _process(delta):
 	
 	
 	elif magicButton.has_focus() and Global.onMultiHit == 0:
-		magicButton.modulate = "#00f2e9"
+		magicButton.modulate = "blue"
 		commanButtonIndex = 2
 		attackButton.modulate = "#ffffff"
 		defenseButton.modulate = "#ffffff"
@@ -1216,7 +1216,7 @@ func _process(delta):
 								get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)
 		
 	elif defenseButton.has_focus() and Global.onMultiHit == 0:
-		defenseButton.modulate = "#00f2e9"
+		defenseButton.modulate = "blue"
 		
 		attackButton.modulate = "#ffffff"
 		magicButton.modulate = "#ffffff"
@@ -1266,7 +1266,7 @@ func _process(delta):
 					
 								
 	elif itemButton.has_focus() and Global.onMultiHit == 0:
-		itemButton.modulate = "#00f2e9"
+		itemButton.modulate = "blue"
 		commanButtonIndex = 4
 		attackButton.modulate = "#ffffff"
 		magicButton.modulate = "#ffffff"

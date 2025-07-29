@@ -802,7 +802,7 @@ set get_tree().current_scene.get_node("小二").position = Vector2(875,107)
 set get_tree().current_scene.get_node("小二/小二").play("左上")
 set get_tree().current_scene.get_node("凌若昭").position = Vector2(1015, 49)
 set get_tree().current_scene.get_node("凌若昭").play("左上")
-
+set Global.cantShow.append("灵台宫")
 set Global.triggerPlace.get("方寸夜晚小二谈恋爱2").disable = false
 
 set Global.onTalk = false
@@ -844,7 +844,7 @@ set Global.triggerPlace.get("方寸夜晚小二谈恋爱2").disable = true
 小二: [speed=0.4]若昭我...羞涩
 凌若昭: [speed=0.4]怎么啦？ 
 小二: [speed=0.4]额，没什么，看星星吧
-
+set Global.cantShow.erase("灵台宫")
 set get_tree().current_scene.get_node("AnimationPlayer2D").("turnDark")
 [next=4]
 

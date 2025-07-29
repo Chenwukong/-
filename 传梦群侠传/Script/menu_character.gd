@@ -89,8 +89,12 @@ func _on_menu_player_but_4_button_down():
 	useItem()
 	
 func useItem():
-	if Global.currMenuItem in ItemData.consume:
+	if Global.currMenuItem in ItemData.consume or Global.currMenuItem in ItemData.battleConsume:
 		var item = FightScenePlayers.consumeItem.get(Global.currMenuItem)
+		if item == null:
+			FightScenePlayers.battleItem.get(Global.currMenuItem)
+			item = FightScenePlayers.battleItem.get(Global.currMenuItem)
+		print(item)
 		if item == null:
 			return
 		if item.number > 0:
@@ -163,12 +167,15 @@ func useItem():
 			if Global.onSkipFight == true:
 				Global.baseChance = 0
 				Global.onSkipFight = false
+				Global.showMsg("能遇到妖怪了！")
 			else:
 				Global.baseChance= 800
 				Global.onSkipFight = true
+				Global.showMsg("遇不到妖怪了！")
 		if Global.currMenuItem == "洗髓丹":
 			for i in FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).item.keys():
 				if FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).item[i] != null:
+					Global.showMsg("请脱掉装备")
 					return
 			item.number -= 1
 			for i in menuItems:

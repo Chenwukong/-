@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 300
+var speed = 1000
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
@@ -90,11 +90,12 @@ func _process(delta):
 						$Sprite2D.texture = frames[current_frame]
 		#velocity = Vector2(0,0)		
 		
-		if canMouseMove  and !Global.onTalk and canMove  and target and global_position.distance_to(target) > arrival_threshold:
+
+		if canMouseMove  and !Global.onTalk and canMove  and target and global_position.distance_to(target) > arrival_threshold and !Global.onUi:
 			var direction = (agent.get_next_path_position() - global_position).normalized()
 			velocity = direction * speed
 			move_and_slide()
-			
+		
 			if  !get_tree().current_scene.name == "北俱战场" and get_parent().onFight == false and get_parent().canEnterFight == true and !Global.menuOut and Global.dangerScene.get(get_tree().current_scene.name) :
 				get_parent().check_enter_fight_scene()
 				Global.onFight = get_parent().onFight
@@ -105,15 +106,16 @@ func _process(delta):
 	#	elif Input.is_action_pressed("ui_down") == false and Input.is_action_pressed("ui_up") == false and Input.is_action_pressed("ui_left") == false and Input.is_action_pressed("ui_right") == false:
 	#		velocity = Vector2.ZERO 
 
-		if velocity != Vector2.ZERO:
+		if velocity != Vector2.ZERO :
 			$AnimatedSprite2D.play(directions)
 		else:
+			
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false
 			$AnimatedSprite2D.stop()
 
 		
-		if Input.is_action_pressed("leftClick")  and !Global.onTalk and !Global.onButton and !onArrowButton :
+		if Input.is_action_pressed("leftClick")  and !Global.onTalk and !Global.onButton and !onArrowButton and !Global.onUi:
 			if Global.menuOut:
 				return
 			var mouse_pos = get_global_mouse_position()  # Get the global mouse position
@@ -193,7 +195,7 @@ func _input(event):
 		onRight = false
 func _physics_process(delta):
 	# Reset velocity to zero before processing new input
-	if !Global.onTalk:
+	if !Global.onTalk and !Global.menuOut:
 		var xyPos = get_parent().get_node("CanvasLayer/position/xyLabel")
 		if get_tree().current_scene.name != "北俱战场":
 			xyPos.text = str("x: " + str(int(self.position.x /10)) + "   " + "y: " + str(int(self.position.y/10)))

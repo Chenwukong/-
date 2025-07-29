@@ -736,18 +736,19 @@ func _process(delta):
 		
 		
 		
-	elif haveUi and !Global.onTalk and !Global.menuOut and !Global.onFight and !onShop:
+	elif Global.haveUi and !Global.onTalk and !Global.menuOut and !Global.onFight and !onShop:
 	
 		if get_tree().current_scene.name == "仙缘洞天":
 			return
 		$CanvasLayer.visible = true
 		$CanvasLayer2.visible = false
 	if Input.is_action_just_pressed("tab") and !onMap:
-		if haveUi:
-			haveUi = false
+		if Global.haveUi:
+			Global.haveUi = false
+			
 			get_node("CanvasLayer").visible = false
 		else:
-			haveUi = true
+			Global.haveUi = true
 			if get_tree().current_scene.name == "仙缘洞天":
 				return			
 			get_node("CanvasLayer").visible = true
@@ -845,7 +846,7 @@ func _process(delta):
 		if $shadow:
 			$shadow.visible= true
 		get_node("CanvasLayer").visible = true
-		haveUi = true
+		Global.haveUi = true
 		$menuControl/menuAnimationPlayer.play("menuClose")
 		Global.menuOut = false
 		Global.onButton = false
@@ -1300,7 +1301,7 @@ func _on_close_button_pressed():
 		if $shadow:
 			$shadow.visible= true
 		get_node("CanvasLayer").visible = true
-		haveUi = true
+		Global.haveUi = true
 		$menuAnimationPlayer.play("menuClose")
 		Global.menuOut = false
 
@@ -1500,7 +1501,7 @@ func _on_close_button_button_down():
 		if $shadow:
 			$shadow.visible= true
 		get_node("CanvasLayer").visible = true
-		haveUi = true
+		Global.haveUi = true
 		$menuAnimationPlayer.play("menuClose")
 		Global.menuOut = false
 

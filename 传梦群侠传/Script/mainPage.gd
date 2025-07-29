@@ -317,6 +317,8 @@ func _on_can_press_timeout():
 
 
 func _on_open_scene_animation_finished(anim_name):
+	Global.resetGlobal()
+	Global.resetPlayer()
 	get_tree().change_scene_to_file("res://Scene/"+"新手村"+".tscn")
 
 

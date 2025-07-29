@@ -751,7 +751,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_ghwms")
 }],
 "loop": true,
-"name": &"敖阳",
+"name": &"敖白",
 "speed": 4.0
 }, {
 "frames": [{
@@ -1540,14 +1540,6 @@ text = "东海湾"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="坐标button" type="TextureButton" parent="position"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.01
-anchor_bottom = 1.015
-offset_right = -452.4
-offset_bottom = -404.2
-
 [node name="Label" type="Label" parent="position"]
 layout_mode = 0
 offset_left = 22.0
@@ -1565,6 +1557,12 @@ theme_override_fonts/font = ExtResource("8_gi1g1")
 theme_override_font_sizes/font_size = 60
 text = "传
 梦"
+
+[node name="坐标button" type="Button" parent="position"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 161.0
 
 [node name="phoneButtons" type="Control" parent="."]
 layout_mode = 3
@@ -2353,7 +2351,7 @@ texture = ExtResource("57_443lk")
 position = Vector2(-129.99, -56.9725)
 scale = Vector2(1.45768, 1.04703)
 sprite_frames = SubResource("SpriteFrames_o6d5k")
-animation = &"小鹿"
+animation = &"敖白"
 autoplay = "小鹿"
 
 [node name="petName" type="Label" parent="盟友列表"]
@@ -3168,6 +3166,10 @@ theme_override_constants/shadow_outline_size = 0
 theme_override_font_sizes/font_size = 40
 text = "传梦者"
 
+[node name="onUiTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
 [connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]
@@ -3250,5 +3252,6 @@ text = "传梦者"
 [connection signal="timeout" from="countDownTimer" to="." method="_on_count_down_timer_timeout"]
 [connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
 [connection signal="button_down" from="传梦者列表/AnimatedSprite2D/传梦者列表button" to="." method="_on_传梦者列表button_button_down"]
+[connection signal="timeout" from="onUiTimer" to="." method="_on_on_ui_timer_timeout"]
 
 [editable path="importantMsg"]

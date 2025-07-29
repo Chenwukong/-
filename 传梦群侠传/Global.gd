@@ -6,7 +6,7 @@ var monsterIdx = -1
 var monsterRemain = false
 var playerIdx = -1
 var easyLevels = ["东海湾", "easy_level_2", "easy_level_3"]
-var dangerScene = {"东海湾":3, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":5, "东海海道2":5,"东海海道3":5,"花果山":8,"海底迷宫1":8 
+var dangerScene = {"东海湾":2, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3":4,"锁妖塔4":4,"锁妖塔6":5, "东海海道":5, "东海海道2":5,"东海海道3":5,"花果山":8,"海底迷宫1":8 
 ,"海底迷宫2":8 ,"海底迷宫3":8 ,"海底迷宫4":8 ,"海底迷宫5":8 , "地府迷宫1":4,"地府迷宫2":4,"地府迷宫3":4,"地府迷宫4":4,"地府监狱":4, "大唐国境边缘": 4,"大唐境外":5,"小西天":6, "北俱芦洲":6,
 "龙窟1": 3,"龙窟2": 4,"龙窟3": 4,"龙窟4": 4,"龙窟5": 4,"龙窟6": 4,"龙窟7": 4,
 "凤巢1": 3,"凤巢2": 3,"凤巢3": 3,"凤巢4": 3,"凤巢5": 3,"凤巢6": 3,"龙凤巢7": 4,
@@ -160,9 +160,9 @@ var currPlayer
 var currScene
 var noLimit = true
 
-var onTeamPlayer = ["时追云",]
-var onTeamPet = []
-var onTeamSmallPet = []
+var onTeamPlayer = ["时追云","姜韵"]
+var onTeamPet = ["大海龟"]
+var onTeamSmallPet = ["小鹿"]
 var smallPets = []
 var currPlayerPos
 var currNpc = null
@@ -171,6 +171,7 @@ var petTarget
 var systemMsg = [
 	
 ]
+var onUi = false
 var onXiaoErZhenShen = false
 var onPet = false
 var onSkipFight = false
@@ -190,7 +191,7 @@ var chapters = {
 	"chapter2": {"completed": false, "tasks": {"task3": false}},
 	# 直到 chapter10
 }
-
+var haveUi = true
 var tempValue = 0
 var arDark = false
 var current_chapter_id = 1
@@ -1175,7 +1176,7 @@ var npcs = {
 					{"chapter": 2, "dialogue": "传送方寸", "unlocked": false, "bgm":null,"trigger":false},
 					{"chapter": 3, "dialogue": "假方寸", "unlocked": false, "bgm":null,"trigger":false},				
 					{"chapter": 3, "dialogue": "真方寸山", "unlocked": true, "bgm":null,"trigger":false},
-					{"chapter": 9, "dialogue": "若昭移动", "unlocked": true, "bgm":null,"trigger":false},			
+					{"chapter": 9, "dialogue": "若昭移动", "unlocked": false, "bgm":null,"trigger":false},			
 					{"chapter": 10, "dialogue": "若昭传送", "unlocked": true, "bgm":null,"trigger":false},							
 				],
 		"current_dialogue_index": 0,	
@@ -2822,7 +2823,7 @@ func _ready():
 var deltas
 
 var noMouse = true
-var noKeyboard = true
+var noKeyboard = false
 
 func _process(delta):
 	

@@ -329,7 +329,7 @@ func _process(delta):
 			get_parent().get_node("subSound").play()				
 		for i in menuItems.size():
 			if menuItems[i].name == menuItems[itemTypeIndex].name:
-				menuItems[i].modulate = "00ffff"			
+				menuItems[i].modulate = "red"			
 			else:
 				menuItems[i].modulate =  "ffffff"
 		if Input.is_action_just_pressed("ui_accept") and !Global.onItemSelect and !Global.onMenuItemUsing and canPress and !Global.noKeyboard:	
@@ -367,7 +367,10 @@ func _process(delta):
 					return 
 				Global.itemPlayerIndex = 0
 				Global.itemPlayers = []
-
+				if bagMenuItems[itemSelectIndex].get_node("itemName").text in FightScenePlayers.battleItem:
+					Global.onItemSelect = false
+					Global.onMenuItemUsing = true
+					$"道具页面/角色表".visible = true
 				if bagMenuItems[itemSelectIndex].get_node("itemName").text in FightScenePlayers.consumeItem:
 					Global.onItemSelect = false
 					Global.onMenuItemUsing = true
@@ -407,7 +410,7 @@ func _process(delta):
 			if bagMenuItems.size()>0:				
 				for i in bagMenuItems:
 					if i == bagMenuItems[itemSelectIndex]:
-						i.get_node("itemName").modulate = "00ffff"
+						i.get_node("itemName").modulate = "red"
 					else:
 						i.get_node("itemName").modulate = "ffffff"
 		if Global.onMenuItemUsing:
@@ -591,7 +594,7 @@ func _process(delta):
 			
 			for i in bagArmorItems:
 				if bagArmorItems[BagArmorItemIndex] == i:
-					i.self_modulate = "00ffff"
+					i.self_modulate = "red"
 				else:
 					i.self_modulate = "ffffff"
 			if armorItemSelectIndex == 0:
@@ -1387,7 +1390,7 @@ func _process(delta):
 
 		for i in skillButtons: 
 			if i.name == skillButtons[skillIndex].name:
-				i.get_node("加点文本").modulate = "00ffff"
+				i.get_node("加点文本").modulate = "red"
 			else:
 				i.get_node("加点文本").modulate = "ffffff"
 		if (Input.is_action_just_pressed("esc") or  Input.is_action_just_pressed("rightClick") )and !Global.noKeyboard:
@@ -1443,7 +1446,7 @@ func _process(delta):
 			$"加点页面/介绍区/Label".text = "暴击概率0.25点"
 			$"加点页面/介绍区/Label2".text = "格挡概率0.25点"						
 		if skillIndex == 3:
-			$"加点页面/介绍区/Label".text = "最大敏捷0.6点"
+			$"加点页面/介绍区/Label".text = "最大敏捷1点"
 			$"加点页面/介绍区/Label2".text = ""					
 		if skillIndex == 4:
 			$"加点页面/介绍区/Label".text = "灵力1点"
@@ -1501,7 +1504,7 @@ func _process(delta):
 				if pointOnSpeed  >0:
 					$"加点页面/属性区/敏捷/value/changedValue".modulate = "ff0000"					
 				$"加点页面/属性区/敏捷/value/changedValue"	
-				$"加点页面/属性区/敏捷/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnSpeed) * 0.6) + ")"
+				$"加点页面/属性区/敏捷/value/changedValue/increaseValue".text = "(+ " + str(decrypt(pointOnSpeed) * 1) + ")"
 				$"加点页面/属性区/敏捷/value/changedValue/increaseValue".visible = true
 			elif skillIndex == 4 and currPlayer.potential > 0:	
 				pointOnMagic += 1 * Global.enKey
@@ -2964,7 +2967,7 @@ func bagButton():
 			if canPress and armorItemSelectIndex == 0:
 				#如果选中的背包位子不是空的，并且武器不是空的
 				if $"装备页面/装备栏/items/button1/itemType/icon/itemName".text != "":
-					print(bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text)
+					
 					if bagArmorItems[BagArmorItemIndex].get_node("itemImage/item").text == "梦澹":
 						Global.gai = true
 					if FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].item.weapon.name == "梦澹":
