@@ -128,6 +128,7 @@ func _ready():
 #	get_parent().get_node("AudioStreamPlayer2D").play()
 	
 func _process(delta):
+	$Label/Label2.text = Engine.get_frames_per_second()
 	deltas = delta
 	get_tree().current_scene.get_node("player").canMove = false
 	#var players = get_tree().get_nodes_in_group("fightScenePlayer")

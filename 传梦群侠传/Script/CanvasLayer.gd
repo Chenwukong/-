@@ -100,6 +100,8 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$Label/Label2.text = Engine.get_frames_per_second()
+	
 	deltas = delta
 	if get_tree().current_scene.name != "方寸山迷阵":
 		$questHint.visible = false

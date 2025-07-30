@@ -2674,9 +2674,6 @@ func move_读取页面_to_top():
 
 func _on_常规物品_button_down():
 	
-	if Global.noKeyboard:
-		return
-	
 #	if FightScenePlayers.consumeItem.size() ==0:
 #		return
 	canPress = false
@@ -2705,8 +2702,6 @@ func _on_常规物品_button_down():
 
 	
 func _on_战斗物品_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()	
 	itemSelectIndex = 0
@@ -2732,8 +2727,6 @@ func _on_战斗物品_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_武器_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2759,8 +2752,6 @@ func _on_武器_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_足护_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()		
 	itemSelectIndex = 0
@@ -2786,8 +2777,6 @@ func _on_足护_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_头饰_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2813,8 +2802,6 @@ func _on_头饰_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_衣甲_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2840,8 +2827,6 @@ func _on_衣甲_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_饰品_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0
@@ -2867,8 +2852,6 @@ func _on_饰品_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_特殊道具_button_down():
-	if Global.noKeyboard:
-		return
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0

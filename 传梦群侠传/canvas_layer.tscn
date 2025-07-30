@@ -3170,6 +3170,19 @@ text = "传梦者"
 wait_time = 0.3
 one_shot = true
 
+[node name="Label" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 167.0
+offset_right = 58.0
+offset_bottom = 186.0
+text = "FPS:"
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 37.0
+offset_right = 77.0
+offset_bottom = 19.0
+
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
 [connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]

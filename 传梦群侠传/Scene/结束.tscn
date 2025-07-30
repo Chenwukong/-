@@ -306,25 +306,6 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1xmg2"]
-resource_name = "结束"
-length = 30.0
-
-[sub_resource type="Animation" id="Animation_fa28m"]
-resource_name = "解除误会"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("敖阳:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(815.347, 1825.22), Vector2(490, 2043)]
-}
-
 [sub_resource type="Animation" id="Animation_rp88y"]
 resource_name = "结局"
 length = 120.0
@@ -579,6 +560,25 @@ tracks/20/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_1xmg2"]
+resource_name = "结束"
+length = 30.0
+
+[sub_resource type="Animation" id="Animation_fa28m"]
+resource_name = "解除误会"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("敖阳:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(815.347, 1825.22), Vector2(490, 2043)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
@@ -970,10 +970,10 @@ visible = false
 [node name="mapName" parent="CanvasLayer/position" index="3"]
 visible = false
 
-[node name="坐标button" parent="CanvasLayer/position" index="4"]
+[node name="Label" parent="CanvasLayer/position" index="4"]
 visible = false
 
-[node name="Label" parent="CanvasLayer/position" index="5"]
+[node name="坐标button" parent="CanvasLayer/position" index="5"]
 visible = false
 
 [node name="phoneButtons" parent="CanvasLayer" index="5"]

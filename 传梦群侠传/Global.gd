@@ -2823,7 +2823,7 @@ func _ready():
 var deltas
 
 var noMouse = true
-var noKeyboard = false
+var noKeyboard = true
 
 func _process(delta):
 	

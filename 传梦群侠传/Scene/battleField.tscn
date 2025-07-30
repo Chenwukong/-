@@ -2656,6 +2656,21 @@ texture = ExtResource("39_4p0ol")
 
 [node name="fightTime" type="Timer" parent="."]
 
+[node name="Label" type="Label" parent="."]
+z_index = 300
+offset_left = -452.475
+offset_top = 160.396
+offset_right = -412.475
+offset_bottom = 182.396
+text = "FPS:"
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 35.6436
+offset_top = 0.990112
+offset_right = 75.6436
+offset_bottom = 19.9901
+
 [connection signal="button_down" from="battleFieldPicture/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="battleFieldPicture/blockButton/blockButton" to="." method="_on_block_button_button_down"]
 [connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
