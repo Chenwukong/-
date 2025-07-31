@@ -100,13 +100,10 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Label/Label2.text = Engine.get_frames_per_second()
+	$Label/Label2.text = str(Engine.get_frames_per_second())
 	
 	deltas = delta
-	if get_tree().current_scene.name != "方寸山迷阵":
-		$questHint.visible = false
-	else:
-		$questHint.visible = true
+
 	$"position/限制".text = "限制:" + str(Global.maxLevel)
 	if Global.onSkipFight:
 		$"避".visible = true
@@ -116,7 +113,6 @@ func _process(delta):
 	$violencePoint/TextureProgressBar.value = Global.violencePoint
 	if sceneName == "方寸山迷境":
 		$currState.visible = true
-		$questHint.visible = true	
 	if !Global.musicOn:
 		for i in all_nodes:
 			i.volume_db = -80
@@ -306,6 +302,8 @@ func _on_author_button_button_up():
 
 
 func _on_texture_button_button_down():
+	Global.onUi = true
+	$onUiTimer.start()
 	get_tree().current_scene.get_node("player").canMove = true
 	$"制作人列表".visible = false
 
@@ -342,7 +340,8 @@ func _on_friend_button_mouse_exited():
 		Global.noMouse = true
 
 func _on_梦单close_button_button_down():
-	
+	Global.onUi = true
+	$onUiTimer.start()
 	$"其他梦单".visible = false
 	get_tree().current_scene.get_node("player").canMove = true
 
@@ -572,6 +571,8 @@ func _on_map_button_button_down():
 func _on_map_small_button_button_down():
 	get_tree().current_scene.get_node("player").canMove = true
 	get_tree().current_scene.onMap = false
+	Global.onUi = true
+	$onUiTimer.start()
 	$map.visible = false
 	var mapName = get_tree().current_scene.name
 	if is_instance_valid(get_node("map/"+mapName)):
@@ -608,6 +609,8 @@ func _on_shop_button_mouse_exited():
 
 
 func _on_灵宠商店button_button_down():
+	Global.onUi = true
+	$onUiTimer.start()
 	$"宠物食物商店".visible = false
 	get_tree().current_scene.get_node("player").canMove = true
 
@@ -905,7 +908,8 @@ func _on_右上_pressed():
 
 
 func _on_坐标button_button_down():
-	print(321)
+	Global.onUi = true
+	$onUiTimer.start()
 	get_tree().current_scene.get_node("player").position = get_tree().current_scene.playerPosition
 	
 func _on_hash_timer_timeout():
@@ -1136,7 +1140,6 @@ func _on_button_base_button_mouse_exited():
 
 
 func _on_on_ui_timer_timeout():
-	print(111)
 	Global.onUi = false
 
 

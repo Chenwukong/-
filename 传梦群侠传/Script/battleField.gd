@@ -34,6 +34,7 @@ var sceneName
 var rewardAdded = false
 var dialogued = false
 var fightTime = 0
+var itemIndex = 0
 func areAllPlayersDead() -> bool:
 	for player in players:
 		if player.alive:
@@ -50,7 +51,10 @@ func _ready():
 		$phoneControl.visible = true
 	shader_material = $battleFieldPicture/lastHit.material as ShaderMaterial
 	shader_material.set("play_once", false)
-	
+	if !Global.onFightDoubleSpeed:
+		Engine.time_scale = 1.0
+	else:
+		Engine.time_scale = 2.0
 	dialogued = false
 	
 	
@@ -128,7 +132,7 @@ func _ready():
 #	get_parent().get_node("AudioStreamPlayer2D").play()
 	
 func _process(delta):
-	$Label/Label2.text = Engine.get_frames_per_second()
+	$Label/Label2.text = str(Engine.get_frames_per_second())
 	deltas = delta
 	get_tree().current_scene.get_node("player").canMove = false
 	#var players = get_tree().get_nodes_in_group("fightScenePlayer")
@@ -525,6 +529,7 @@ func _process(delta):
 			Global.currAttacker = ""
 			Global.onAttackPicking = false
 			queue_free()
+			Engine.time_scale = 1.0
 			Global.onXiaoErZhenShen = false
 			
 			if Global.onXiaoErZhenShen:
@@ -693,7 +698,7 @@ func _process(delta):
 			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp	
 
 		if Global.onBoss:
-			
+			Engine.time_scale = 1.0
 			queue_free()
 			totalExp = 0
 			Global.onBoss = false		
@@ -1488,6 +1493,7 @@ func _on_queue_free_timeout():
 	Global.onAttackPicking = false
 	Global.targetMonsterIdx = 0
 	queue_free()
+	Engine.time_scale = 1.0
 	totalExp = 0
 
 			
@@ -1510,7 +1516,7 @@ func _on_up_button_button_down():
 	for i in players:
 		if i.get_node("battleCommends").visible:
 			onBattleCommend = true
-	print(Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false)
+	
 	if onBattleCommend:
 		if Global.battleButtonIndex == 0:
 			Global.battleButtonIndex = 4
@@ -1528,8 +1534,13 @@ func _on_up_button_button_down():
 		
 		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 		get_parent().get_parent().get_node("subSound").play()						
-
-
+	elif Global.onItemSelectPicking:
+		if Global.itemSelectIndex <= 2:
+			return
+		else:
+			Global.itemSelectIndex -= 3
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_parent().get_node("subSound").play()	
 func _on_down_button_button_down():
 	if !Global.noKeyboard:
 		return
@@ -1545,7 +1556,20 @@ func _on_down_button_button_down():
 
 		Global.battleButtonIndex += 1
 		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
-		get_parent().get_parent().get_node("subSound").play()				
+		get_parent().get_parent().get_node("subSound").play()		
+	elif Global.onItemSelectPicking:
+		
+		
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_parent().get_node("subSound").play()			
+		
+		if Global.itemSelectIndex >= Global.itemList.size() - 3:
+			return
+		else:
+			Global.itemSelectIndex += 3		
+	
+			
+				
 	elif Global.onMagicSelectPicking == true and Global.onMagicAttackPicking == false:
 		magicPanel = get_tree().get_nodes_in_group("magic")
 		if Global.magicSelectIndex >= magicPanel.size() - 3:
@@ -1574,6 +1598,10 @@ func _on_down_button_button_down():
 func _on_right_button_button_down():
 	if !Global.noKeyboard:
 		return
+
+		
+		
+		
 	canPress = false
 	$canPressTimer.start()
 	for i in players:
@@ -1627,7 +1655,16 @@ func _on_right_button_button_down():
 			
 			
 			
-								
+	elif Global.onItemSelectPicking:
+		
+		
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_parent().get_node("subSound").play()			
+		
+		if Global.itemSelectIndex >= Global.currPlayer.itemList.size() - 1:
+			return
+		else:
+			Global.itemSelectIndex += 1							
 	#道具用在谁身上				
 	if Global.onItemUsePicking:
 		if Global.currUsingItem.info.effect == "damage":
@@ -1706,6 +1743,14 @@ func _on_left_button_button_down():
 		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/064-Swing03.ogg")
 		get_parent().get_parent().get_node("subSound").play()		
 	
+	elif Global.onItemSelectPicking:
+		get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
+		get_parent().get_parent().get_node("subSound").play()			
+		
+		if Global.itemSelectIndex <1:
+			return
+		else:
+			Global.itemSelectIndex -= 1		
 	#道具用在谁身上				
 	if Global.onItemUsePicking:
 		#if Global.currPlayerMagic.size()>0:
@@ -1725,6 +1770,7 @@ func _on_left_button_button_down():
 			
 
 func _on_accept_button_button_down():
+	
 	if !Global.noKeyboard or !canPress:
 		return
 
@@ -1799,11 +1845,17 @@ func _on_accept_button_button_down():
 				return
 	if Global.onItemUsePicking and  Global.onItemSelectPicking == false and Global.onAttackingList and currPlayer.playerName == Global.onAttackingList[0] and currPlayer.itemList.size() > 0:
 		if Global.currUsingItem.info.effect == "hp":
-			get_parent().get_node("allyInfo").visible = true
+			$battleFieldPicture/allyInfo.visible = true
 			
 		Global.target = players[Global.allieSelectIndex]
 		currPlayer.useItem(Global.currUsingItem, Global.target, "keyboard") 	
 		Global.onItemUsePicking = false
+	
+	if Global.onItemSelectPicking:
+		Global.onItemSelectPicking = false
+		Global.onItemUsePicking = true
+		Global.currUsingItem = Global.currPlayer.itemList[Global.itemSelectIndex]
+	
 	
 	if currPlayer.commanButtonIndex == 1 and Global.onMultiHit == 0:
 		currPlayer.attackButton.modulate = "#00f2e9"
@@ -1884,10 +1936,9 @@ func _on_accept_button_button_down():
 				if Global.onItemSelectPicking == false and Global.onItemUsePicking == false and Global.onItemUsing == false and currPlayer.playerName == Global.onAttackingList[0]:
 					currPlayer.get_node("battleCommends").visible = false
 					Global.onItemSelectPicking = true
-					get_parent().get_node("magicDescription").visible = true
-					get_parent().get_node("magicSelection").visible = true
-					get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-					get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()				
+					$battleFieldPicture/magicDescription.visible = true
+					$battleFieldPicture/magicSelection.visible = true
+					Global.playsound("res://Audio/SE/002-System02.ogg")			
 					for i in currPlayer.itemList:
 						currPlayer.magicScene = preload("res://Scene/itemButton.tscn")
 						#magicScene = preload("res://Scene/itemSelection.tscn")
@@ -1896,7 +1947,7 @@ func _on_accept_button_button_down():
 						magicSceneInstance.get_node("Button/name").text = i.info.name
 						magicSceneInstance.get_node("Button/amount").text = ""
 						magicSceneInstance.get_node("Button/icon").texture = load(i.info.icon)
-						get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)		
+						get_node("battleFieldPicture/magicSelection/GridBoxContainer").add_child(magicSceneInstance)		
 	
 
 
@@ -1912,3 +1963,15 @@ func seconds_to_hms(total_seconds: int) -> String:
 
 func setFightTime():
 	Global.fightTime = seconds_to_hms(75)
+
+
+func _on_speed_button_button_down():
+	if !Global.onFightDoubleSpeed:
+		Global.onFightDoubleSpeed = true
+		Engine.time_scale = 2.0
+		$speedButton.text = "X2"
+	else:
+		Global.onFightDoubleSpeed = false
+		Engine.time_scale = 1.0
+		$speedButton.text = "X1"
+		

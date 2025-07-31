@@ -1,6 +1,6 @@
 ~ 寻四方1
 set Global.onTalk = true
-set Global.getnode("ColorRect").visible = false
+set Global.getnode("ColorRect").visible = true
 时追云惊: [speed=0.5]菩提祖师，你在干什么？
 白虎: [speed=0.5]好强大的魔气！
 玄武: [speed=0.5]这里面是什么？？
@@ -87,6 +87,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.dial = null
 set Global.cantShow.erase("普陀山")
+set Global.questHint = "前往普陀山"
 凌若昭: [speed=0.5]观世音菩萨所在的普陀山应该就在西边！
 时追云: [speed=0.5]好，那我们走吧
 
@@ -391,6 +392,7 @@ set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 凌若昭: [speed=0.5]交给我们吧
 姜韵喜: [speed=0.5]菩萨放心，我们一定会把人参果带回来的
 观音菩萨: [speed=0.5]好，那就拜托你们了
+set Global.questHint = "前往五庄观"
 set Global.showMsg("姜韵防御增加！")
 set Global.getnode("姜韵").visible = false
 set Global.canMenu = false
@@ -475,7 +477,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]之前察觉到的仙气就是从这里来的吧
 姜韵喜: [speed=0.5]我们快去拜访这里的主人吧
 时追云: [speed=0.5]理应如此
-
+set Global.questHint = "去拜见五庄观主人"
 
 set Global.onTalk = false
 => END
@@ -586,7 +588,7 @@ set Global.changevis("五庄观","清风")
 镇元大仙: [speed=0.5]回观音菩萨那去吧
 镇元大仙: [speed=0.5]如果有闲心，也可帮老道除一下人参果树上的虫子，没空也无妨
 时追云: [speed=0.5]好
-
+set Global.questHint = "回去找观音菩萨"
 set Global.damageReward1 += 0.1
 set Global.showMsg("因兵器附着灵力，全队伤害永久提升一成！")
 
@@ -669,6 +671,7 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 姜韵: [speed=0.5]对了菩萨，您知道弥勒佛现在何处吗？
 观音菩萨: [speed=0.5]他现在应该在这里往西的地方，所在之地皆是风沙，具体在哪我不确定，你们可往那去寻
 姜韵喜: [speed=0.5]好，谢谢菩萨！
+set Global.questHint = "前往大唐境外最西南方"
 set Global.cantShow.erase("西行之路")
 set Global.changebgm("res://panoramas2/普陀山.jpg")
 set FightScenePlayers.learnMagic("姜韵","净瓶仙露")
@@ -811,6 +814,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]看起来像是在庆祝什么事情
 小二: [speed=0.5]累死了，先去找客栈吧
 时追云: [speed=0.5]嗯，先休息一晚吧，顺便和老板打听一下情况
+set Global.questHint = "去旅馆找老板"
 set Global.npcs.get("朱紫国旅馆老板").dialogues[0].unlocked = true
 
 set Global.onTalk = false
@@ -841,6 +845,7 @@ set Global.onTalk = true
 set FightScenePlayers.healAll()
 set Global.turnDark()
 [next=1]
+
 set Global.dial = "朱紫国旅馆老板"
 set Global.changeScene("朱紫国旅馆", Vector2(461,877))
 set Global.onTalk = false
@@ -850,6 +855,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.dial = null
 set Global.changevis("朱紫国","方大爷")
+set Global.questHint = "街上仔细逛一逛！！！街上仔细逛一逛！！！街上仔细逛一逛！！！"
 时追云: [speed=0.5]闲来无事，不如去城里逛一逛吧
 姜韵: 嗯
 
@@ -969,6 +975,7 @@ set Global.changebgm("res://Audio/BGM/0情况危机.ogg")
 时追云: [speed=0.5]只要找出宫廷之外最奇怪的地方，有人把守的地方，就能找到灵力的储存点了
 姜韵: [speed=0.5]对，就是这样！
 时追云: [speed=0.5]那我们四处看看吧，找到有人把守的怪异建筑
+set Global.questHint = "寻找可疑的地方"
 set Global.npcs.get("怪僧").dialogues[1].unlocked = true
 
 set Global.onTalk = false
@@ -1035,6 +1042,7 @@ set Global.onTalk = false
 
 ~ 追杀3
 set Global.onTalk = true
+set Global.questHint = "前往前方奇怪的建筑"
 时追云: [speed=0.5]他的气息就在这吗
 凌若昭: [speed=0.5]嗯！我在战斗中就偷偷锁定了他的气息了，他跑不掉的！
 时追云: [speed=0.5]前方那个建筑很可疑，如果他要藏，应该会在那里
@@ -1146,7 +1154,8 @@ set Global.onTalk = true
 不知名声音: [speed=0.5]殿下之人可是我的信徒啊
 不知名声音: [speed=0.5]上前来吧
 小二: [speed=0.5]怎么办？
-时追云: [speed=0.5]过去看看怎么回事吧
+时追云: [speed=0.5]过去看看怎么回事
+
 set Global.dial = null
 set Global.onTalk = false
 => END
@@ -1215,6 +1224,7 @@ set Global.getnode("黄眉2").visible = false
 set Global.getnode("风沙").visible = false
 时追云: [speed=0.5]又是这招，之前救走那人的果然是他！
 姜韵: [speed=0.5]追上他！
+set Global.questHint = "追杀至地下宫殿"
 set Global.changevis("雷音寺","小二")
 set Global.changevis("雷音寺","凌若昭")
 set Global.getnode("姜韵").visible = false
@@ -1483,6 +1493,7 @@ set Global.playsound("res://Audio/SE/050-Explosion03.ogg")
 set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
 朱雀: ...
 [next=1]
+set Global.questHint = "去见菩提祖师"
 set Global.npcs.get("菩提老祖").dialogues[7].unlocked = true
 set Global.current_chapter_id = 9
 set Global.changeScene("chapterPreview",null)

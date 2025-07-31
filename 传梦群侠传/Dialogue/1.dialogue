@@ -37,16 +37,18 @@ set Global.isNewPlayer()
 set FightScenePlayers.healAll()
 传梦: 如果在游戏中被npc或者建筑卡住，可按r或者点击左上角的坐标图急救
 传梦: 你的包内有装备记得穿上
-传梦: 十里坡剑神并不存在，玩家无法高于当前剧情等级，具体请看ui左上角
+传梦: 玩家无法高于当前剧情等级，具体请看ui左上角
 
 
 
 if !Global.onPhone:
 	传梦: 鼠标和键盘大部分时候不可共用，请选择游玩方式
+	传梦: 建议选了就坚定用哪一种
 	- 键盘
 
 	- 鼠标
 		set Global.noKeyboard = true
+	
 传梦: 好了再多说一句就要惹人烦了，通过后面这个传送点开始游戏吧😎
 set Global.triggerPlace.get("新手警告").disable = true
 
@@ -1105,7 +1107,7 @@ set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云喜: [speed=0.8]好了，我要走了娘子，等我回来
 时追云喜: [speed=0.8]等一切都解决完，我就来陪你了
-时追云: [speed=0.8]走了小乌，去长安
+时追云: [speed=0.8]是时候离开这里去打听那家伙的消息了，小乌，和我走
 大海龟: ...
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
 set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp

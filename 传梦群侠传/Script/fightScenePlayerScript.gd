@@ -1273,9 +1273,12 @@ func _process(delta):
 		defenseButton.modulate = "#ffffff"
 	
 		if get_parent().get_parent().canPress:
+			if Global.noKeyboard:
+				return
 			if Global.onAttackingList and itemList.size()>0:
 				if Global.onItemSelectPicking == false and Global.onItemUsePicking == false and Global.onItemUsing == false and self.playerName == Global.onAttackingList[0]:
-					if (Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick")) and !Global.noKeyboard :
+					
+					if (Input.is_action_just_released("ui_accept") or Input.is_action_just_released("leftClick")) :
 						$battleCommends.visible = false
 						Global.onItemSelectPicking = true
 						get_parent().get_node("magicDescription").visible = true
@@ -1721,7 +1724,8 @@ func castMagic(delta, magic, target, type, onLastMagic):
 							if magicControlType == "keyboard":
 								buffTarget.set(i, buffTarget.get(i) + magic.value)
 							elif magicControlType == "mouse":
-								buffTarget.set(i, target.get(i) + magic.value)
+								
+								buffTarget.set(i, buffTarget.get(i) + magic.value)
 							if buffTarget.currMp > buffTarget.mp + buffTarget.addMp:
 								buffTarget.currMp = 	buffTarget.mp + buffTarget.addMp
 								
@@ -2184,7 +2188,24 @@ func _on_defense_button_button_down():
 
 func _on_item_button_button_down():
 	Global.battleButtonIndex = 3
+	if Global.noKeyboard:
+		get_parent().get_parent().canPress = false
+		get_parent().get_parent().get_node("canPressTimer").start()
+		$battleCommends.visible = false
+		Global.onItemSelectPicking = true
+		get_parent().get_node("magicDescription").visible = true
+		get_parent().get_node("magicSelection").visible = true
+		get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+		get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()				
+		for i in itemList:
+			magicScene = preload("res://Scene/itemButton.tscn")
+			#magicScene = preload("res://Scene/itemSelection.tscn")
+			var magicSceneInstance = magicScene.instantiate()
 
+			magicSceneInstance.get_node("Button/name").text = i.info.name
+			magicSceneInstance.get_node("Button/amount").text = ""
+			magicSceneInstance.get_node("Button/icon").texture = load(i.info.icon)
+			get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)	
 func _on_can_select_timeout():
 	canSelect = true
 
@@ -2200,6 +2221,8 @@ func _on_button_button_down():
 		else:
 			return
 	elif Global.onMagicAttackPicking:
+		if Global.currUsingMagic.attackType != "buff":
+			return
 		castMagic(currDelta ,Global.currUsingMagic, self, "mouse",false)
 		
 func display_damage(damage, type):

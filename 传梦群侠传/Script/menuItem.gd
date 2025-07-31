@@ -31,10 +31,11 @@ func _on_button_button_down():
 #		Global.itemPlayers.append($"../../../../角色表".get_node("itemPlayer"+str(i+1)))	
 #		get_node("../../../../角色表/itemPlayer"+str(i+1)+"/hpText/hpBar/hpValue").text = str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).currHp) +"/"+str(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[i]).hp)
 			
-	if $itemName.text in FightScenePlayers.consumeItem:
+	if $itemName.text in FightScenePlayers.consumeItem or $itemName.text in FightScenePlayers.battleItem:
 		Global.onItemSelect = false
 		Global.onMenuItemUsing = true
 		$"../../../../角色表".visible = true
+		
 	if $itemName.text in FightScenePlayers.keyItem:
 		if FightScenePlayers.keyItem.get($itemName.text).info.effect != null:
 			Global.onItemSelect = false

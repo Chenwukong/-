@@ -3539,7 +3539,14 @@ func _on_back_button_button_down():
 				$"道具页面/介绍/Label".text = ""
 			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
 			get_parent().get_node("subSound").play()
-			Global.onItemSelect = false			
+			Global.onItemSelect = false	
+		if Global.onMenuItemUsing:
+			get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")
+			get_parent().get_node("subSound").play()
+			$"道具页面/角色表".visible = false	
+			Global.onItemSelect = true
+			Global.onMenuItemUsing = false	
+					
 	if Global.onMagicPage:
 		get_node("系统信息").visible = true
 		get_parent().get_node("subSound").stream = load("res://Audio/SE/003-System03.ogg")

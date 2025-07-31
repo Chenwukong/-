@@ -34,10 +34,10 @@ var keyItem = {
 		"info": ItemData.keyItem.get("洗髓丹"),
 		"number": 9999
 	},
-	"避祸香囊":{
-		"info": ItemData.keyItem.get("避祸香囊"),
-		"number": 9999
-	},
+#	"避祸香囊":{
+#		"info": ItemData.keyItem.get("避祸香囊"),
+#		"number": 9999
+#	},
 }
 var consumeItem = {
 #	"佛手":{
@@ -64,15 +64,18 @@ var battleItem = {
 		"info": ItemData.battleConsume.get("金疮药"),
 		"number": 5
 	},
-
+#	"月饼":{
+#		"info": ItemData.battleConsume.get("月饼"),
+#		"number": 10
+#	},
 #	"老君仙丹":{
 #		"info": ItemData.battleConsume.get("老君仙丹"),
 #		"number": 5
 #	},
-	"含沙射影":{
-		"info": ItemData.battleConsume.get("含沙射影"),
-		"number": 10
-	}
+#	"含沙射影":{
+#		"info": ItemData.battleConsume.get("含沙射影"),
+#		"number": 10
+#	}
 }
 
 var questItem = {

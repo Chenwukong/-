@@ -759,13 +759,14 @@ func _process(delta):
 		if circleGroup:
 			for i in circleGroup:
 				i.queue_free()
-	if onFight == false and Global.menuOut == false and Input.is_action_just_pressed("leftClick") and !Global.onButton:
+	if onFight == false and Global.menuOut == false and Input.is_action_just_pressed("leftClick") and !Global.onButton and !Global.onUi:
 		$circleTimer.stop()
 		$circleTimer.start()
 		circleGroup = get_tree().get_nodes_in_group("circle")
 		if circleGroup:
 			for i in circleGroup:
 				i.queue_free()
+		
 		var pos = get_global_mouse_position()
 		var sprite = Sprite2D.new()
 		sprite.name = "circle"
@@ -799,10 +800,9 @@ func _process(delta):
 	
 	
 	
-	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and Global.menuOut == false and !get_node("battleField") and !onShop and canPress and !Global.onTalk and !Global.onFight:
+	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and Global.menuOut == false and !get_node("battleField") and !onShop and canPress and !Global.onTalk and !Global.onFight and !Global.noKeyboard:
 		if !Global.canMenu:
 			Global.showMsg("当前无法打开菜单！")
-			
 			return
 		if Global.onPet:
 			$CanvasLayer/宠物列表.visible = false
@@ -842,7 +842,7 @@ func _process(delta):
 					FightScenePlayers.fightScenePlayerData[player_name].alive = true
 					FightScenePlayers.fightScenePlayerData[player_name].currHp = player["hp"]/10
 			
-	elif (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0"))  and Global.menuOut and !Global.onMenuSelectCharacter  and !Global.onStatusPage and !Global.onMagicPage and !Global.onQuitMenu and !Global.onArmorItemPage  and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemSelect and !Global.onItemPage :
+	elif (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0"))  and Global.menuOut and !Global.onMenuSelectCharacter  and !Global.onStatusPage and !Global.onMagicPage and !Global.onQuitMenu and !Global.onArmorItemPage  and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemSelect and !Global.onItemPage and !Global.noKeyboard:
 		if $shadow:
 			$shadow.visible= true
 		get_node("CanvasLayer").visible = true

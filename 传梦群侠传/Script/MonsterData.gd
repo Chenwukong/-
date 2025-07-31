@@ -1258,7 +1258,7 @@ var monsters = {
 			"magicDefense":5,
 			"physicDefense": 30,
 			"attackDmg": 150,
-			"magicDmg": 170,
+			"magicDmg": 150,
 			"hp": calculate_monster_hp(16),
 			"exp": calculate_monster_exp(calculate_monster_hp(16)),
 			"luck": 10,

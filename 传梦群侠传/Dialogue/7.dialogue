@@ -68,6 +68,7 @@ set Global.onTalk = false
 
 ~ 寻四圣2
 set Global.onTalk = true
+set Global.questHint = "四处看看，问问人"
 时追云: [speed=0.5]这里应该就是北俱芦洲了吧
 姜韵: [speed=0.5]这气候好不寻常
 凌若昭: [speed=0.5]真的耶，感觉一半是冬天一半是夏天
@@ -98,6 +99,7 @@ set Global.onTalk = true
 百足虫: [speed=0.5]这里最近结了一朵千年雪莲，我想得到它，你们若是能帮我找来，也算了却我一心愿
 时追云: [speed=0.5]好，我们去帮你找
 百足虫: [speed=0.5]爽快，爽快啊，那你们快去快回啊
+set Global.questHint = "寻找雪莲"
 set Global.changevis("北俱芦洲", "红鸟")
 set Global.questItemShow.get("雪莲").visible = true
 set Global.onTalk = false
@@ -120,6 +122,7 @@ set Global.onTalk = true
 set Global.changevis("北俱芦洲", "红鸟")
 时追云: [speed=0.5]把雪莲拿回去给他吧
 姜韵: [speed=0.5]嗯...
+set Global.questHint = "回去找百足虫"
 set Global.onTalk = false
 => END
 
@@ -242,6 +245,7 @@ set Global.changebgm("res://Audio/BGM/北济芦洲.mp3")
 凌若昭: [speed=0.5]嗯！
 梧桐: [speed=0.5]小二，我来给你带路
 set Global.dial = null
+set Global.questHint = "去龙窟"
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 时追云: [speed=0.5]龙窟的位置刚才已经已经看到了，我们先走一步，你们注意安全
@@ -258,6 +262,7 @@ set Global.getnode("player").position = Vector2(756,1355)
 set Global.getnode("player/AnimatedSprite2D").play("upStand")
 set Global.getnode("player/AnimatedSprite2D").visible = true
 set Global.getnode("player/Sprite2D").visible = false
+set Global.questHint = "龙窟凤巢各自走到底"
 时追云: [speed=0.5]这壁画上貌似写有字
 时追云: 生死由来一念间，孤身独断万龙巢。纵使此去身成土，也要人间无恶蛟！
 姜韵: [speed=0.5]莫不是前人斩杀恶龙的决志
@@ -804,6 +809,7 @@ set Global.triggerPlace.get("方寸山之魔").disable = false
 set Global.changevis("方寸山","菩提老祖2")
 set Global.changevis("灵台宫","菩提老祖")
 set Global.changevis("灵台宫","凌若昭")
+set Global.questHint = "菩提祖师不在灵台宫，山上找找"
 set Global.current_chapter_id = 8
 set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
 

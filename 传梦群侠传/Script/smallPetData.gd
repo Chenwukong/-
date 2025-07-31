@@ -11,9 +11,8 @@ func  _process(delta):
 func update_descriptions():
 	magics["甘露逢春"].description = "恢复生命最低的队友" + str(200 + currSmallPetData.get("小鹿").abilityPower ) + "点生命"
 	magics["水满金山"].description = "随机攻击五名敌人，造成" + str(200 + currSmallPetData.get("敖雨").abilityPower ) + "点伤害"
-
-
-
+	magics["逆天破"].description = "随机攻击五名敌人，造成" + str(800 + currSmallPetData.get("狐葬魂").abilityPower ) + "点伤害"
+	magics["战神念法"].description = "每次释放之后按照当前仙力本场战斗永久叠加" + str(SmallPetData.currSmallPetData["水无痕"].abilityPower/4) + "点攻击力"
 
 # Magic definitions
 var magics = {
@@ -37,7 +36,7 @@ var magics = {
 		"type": "aoe",
 		"hitNum": 5,
 		"duration": 1,
-		"value": 500,
+		"value": 800,
 		"description": "逆天破！"
 	},
 	"战神念法": {
@@ -143,7 +142,7 @@ var currSmallPetData = {
 		"tempStr":0,
 		"hungry": 200,
 		"hungryValue": 3,
-		"rage": 100,
+		"rage": 10,
 		"petMagic": magics.get("水满金山"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null

@@ -1737,7 +1737,7 @@ offset_left = -402.0
 offset_top = -300.0
 offset_right = -204.4
 offset_bottom = -174.0
-scale = Vector2(1.42865, 1.02335)
+scale = Vector2(1.1, 0.787)
 texture = ExtResource("5_p5lxw")
 
 [node name="Label" type="Label" parent="battleFieldPicture/Panel"]
@@ -1785,10 +1785,10 @@ vertical_alignment = 1
 [node name="enemyInfo" type="TextureRect" parent="battleFieldPicture"]
 self_modulate = Color(1, 1, 1, 0.968627)
 z_index = 150
-offset_left = -190.781
-offset_top = -289.551
-offset_right = 859.219
-offset_bottom = -179.55
+offset_left = -240.0
+offset_top = -308.0
+offset_right = 810.0
+offset_bottom = -198.0
 scale = Vector2(0.4612, 1.04482)
 texture = ExtResource("7_wxfmt")
 
@@ -1922,6 +1922,7 @@ texture = ExtResource("4_gagfs")
 expand_mode = 1
 
 [node name="allyInfo" type="TextureRect" parent="battleFieldPicture"]
+visible = false
 z_index = 150
 offset_left = -299.701
 offset_top = 212.712
@@ -2671,6 +2672,23 @@ offset_top = 0.990112
 offset_right = 75.6436
 offset_bottom = 19.9901
 
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 580
+offset_left = 537.0
+offset_top = 36.0
+offset_right = 616.0
+offset_bottom = 115.0
+color = Color(1, 1, 0, 1)
+
+[node name="speedButton" type="Button" parent="."]
+z_index = 590
+offset_left = 536.634
+offset_top = 35.6436
+offset_right = 616.634
+offset_bottom = 115.644
+theme_override_font_sizes/font_size = 30
+text = "X1"
+
 [connection signal="button_down" from="battleFieldPicture/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="battleFieldPicture/blockButton/blockButton" to="." method="_on_block_button_button_down"]
 [connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
@@ -2685,5 +2703,6 @@ offset_bottom = 19.9901
 [connection signal="button_down" from="phoneControl/leftButton" to="." method="_on_left_button_button_down"]
 [connection signal="button_down" from="phoneControl/acceptButton" to="." method="_on_accept_button_button_down"]
 [connection signal="timeout" from="fightTime" to="." method="_on_fight_time_timeout"]
+[connection signal="button_down" from="speedButton" to="." method="_on_speed_button_button_down"]
 
 [editable path="battleFieldPicture/青龙影"]

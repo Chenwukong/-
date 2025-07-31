@@ -21,7 +21,7 @@ var currAttacker = ""
 var wait
 var target = null
 var monsterTarget = null
-var onPhone = true
+var onPhone = false
 var onButton = false
 var bgmTimer = 0
 var levelLimit = 10
@@ -34,6 +34,7 @@ var playersAppended = false
 var onMagicAttacking = false
 var onAttacking = false
 var names = []
+var onFightDoubleSpeed = false
 var onHitPlayer = []
 var alivePlayers = []
 var selectedTarget = false
@@ -160,9 +161,9 @@ var currPlayer
 var currScene
 var noLimit = true
 
-var onTeamPlayer = ["时追云","姜韵"]
-var onTeamPet = ["大海龟"]
-var onTeamSmallPet = ["小鹿"]
+var onTeamPlayer = ["时追云"]
+var onTeamPet = []
+var onTeamSmallPet = []
 var smallPets = []
 var currPlayerPos
 var currNpc = null
@@ -2823,7 +2824,7 @@ func _ready():
 var deltas
 
 var noMouse = true
-var noKeyboard = true
+var noKeyboard = false
 
 func _process(delta):
 	

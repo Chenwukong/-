@@ -5,7 +5,7 @@
 ~ 创界山1
 set Global.onTalk = true
 set Global.dial = null
-
+set Global.questHint = "探寻蚩尤踪迹"
 时追云: [speed=0.5]大家都小心一点，这里的气息很令人不安
 姜韵: [speed=0.5]这也说明我们来对了地方
 时追云: [speed=0.5]只要找到蚩尤，击杀他之后魔尊的实力就会下降一大截
@@ -155,7 +155,7 @@ set Global.onTalk = false
 
 ~ 炼狱迷宫1
 set Global.onTalk = true
-
+set Global.questHint = "杀下去！"
 凌若昭: [speed=0.5]这里的空间，貌似有点错乱
 小二: [speed=0.5]空间错乱？
 凌若昭: [speed=0.5]也就是说，有可能我们一直向下走，然后就会突然回到上面去
@@ -526,6 +526,7 @@ set Global.onTalk = false
 ~ 若昭传送
 set Global.onTalk = true
 set Global.npcs.get("凌若昭").current_dialogue_index = 6
+set Global.questHint = "凡间的事情都做好了的话就和若昭对话去花果山吧，大圣会直接迅雷不及掩耳将你们送去天宫"
 凌若昭: 接下来要去哪里？
 - 普陀山	
 	set Global.changeScene("普陀山",Vector2(1529,1428))

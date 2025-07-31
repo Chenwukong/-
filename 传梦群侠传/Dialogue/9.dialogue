@@ -771,6 +771,7 @@ set Global.onTalk = true
 凌若昭: [speed=0.5]不知道啊
 小二: [speed=0.5]那就去问问当地人吧
 时追云: [speed=0.5]嗯
+set Global.questHint = "到处问问"
 set Global.dial = null
 set Global.onTalk = false
 => END
@@ -859,6 +860,7 @@ set Global.changevis("长寿村","墨兮")
 姜韵: [speed=0.5]方才我见大部分村民都面有苦色，想必是有什么事情困扰着他们
 姜韵: [speed=0.5]我想，如果能帮助他们的话，或许村长就会认可我们吧
 时追云: [speed=0.5]酒楼的消息最流通，不如去问问酒楼的掌柜吧
+set Global.questHint = "去问问酒楼展柜"
 set Global.triggerPlace.get("长寿村酒楼掌柜").disable = false
 	
 set Global.onTalk = false
@@ -883,6 +885,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]这不会也和神庙有关吧
 长寿村酒楼掌柜: [speed=0.5]那就不知道了
 时追云: [speed=0.5]我们去解决那只蝎霸王吧！
+set Global.questHint = "去长寿郊外寻找蝎霸王"
 set Global.changevis("长寿郊外", "蝎霸王")
 set Global.onTalk = false
 => END
@@ -920,6 +923,7 @@ set Global.onTalk = true
 蝎霸王: [speed=0.5]那我不知道，我从来没进去长寿村过
 时追云: [speed=0.5]我们去和村长说，如果你说的是真的话，这里就危险了...
 蝎霸王: [speed=0.5]速去速回啊，我知道消息已经是几天前的事情了！
+set Global.questHint = "回去找村长"
 set Global.npcs.get("村长").dialogues[3].unlocked = true
 
 set Global.onTalk = false
@@ -947,6 +951,7 @@ set Global.changevis("长寿郊外", "蝎霸王")
 村长: [speed=0.5]但神庙内部的东西，我也不知道该怎么拿出来
 村长: [speed=0.5]如果里面的东西真的属于你们，你们就自己拿出来吧
 时追云: [speed=0.5]好，多谢老人家！
+set Global.questHint = "去神庙"
 set Global.cantShow.erase("神庙")
 set Global.onTalk = false
 => END
@@ -1025,6 +1030,7 @@ set Global.onTalk = false
 
 ~ 幻境1
 set Global.onTalk = true
+set Global.questHint = "一路到底"
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
