@@ -1,4 +1,4 @@
-[gd_scene load_steps=2045 format=3 uid="uid://jvqq00koml8d"]
+[gd_scene load_steps=2050 format=3 uid="uid://jvqq00koml8d"]
 
 [ext_resource type="Texture2D" uid="uid://b308rjoqo3odw" path="res://梦魂Animation/0燕子攻击.png" id="1_1urxn"]
 [ext_resource type="Texture2D" uid="uid://c5q3chqbs0c4j" path="res://Animations/0乌龟攻击.png" id="1_go0bl"]
@@ -2287,6 +2287,26 @@ region = Rect2(768, 192, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_cmle3"]
 atlas = ExtResource("103_7rxl6")
 region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0holc"]
+atlas = ExtResource("98_06eij")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trufx"]
+atlas = ExtResource("98_06eij")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1eewf"]
+atlas = ExtResource("98_06eij")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dskw"]
+atlas = ExtResource("98_06eij")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwpms"]
+atlas = ExtResource("98_06eij")
+region = Rect2(768, 192, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6avr5"]
 atlas = ExtResource("25_h55kr")
@@ -4738,6 +4758,26 @@ animations = [{
 }],
 "loop": false,
 "name": &"白虎magic",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0holc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trufx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1eewf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dskw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwpms")
+}],
+"loop": false,
+"name": &"白虎magicAutoAttack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -14363,7 +14403,7 @@ material = SubResource("ShaderMaterial_34ucj")
 position = Vector2(283, 338)
 scale = Vector2(0.683333, 0.7)
 sprite_frames = SubResource("SpriteFrames_i76mx")
-animation = &"小二idle"
+animation = &"白虎magicAutoAttack"
 script = ExtResource("3_sqqwh")
 delay_timer = NodePath("DelayTimer")
 

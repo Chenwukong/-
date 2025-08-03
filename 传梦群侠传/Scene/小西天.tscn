@@ -1,4 +1,4 @@
-[gd_scene load_steps=210 format=3 uid="uid://dgh634du2tiua"]
+[gd_scene load_steps=213 format=3 uid="uid://dgh634du2tiua"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ocboi"]
 [ext_resource type="Material" uid="uid://n0cqjc18mar0" path="res://shader/shake.tres" id="2_dkb4m"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="27_8dsjr"]
 [ext_resource type="Texture2D" uid="uid://bylbkuc1okp7y" path="res://SeparateAnimation/沙狸/待机.png" id="28_rngi8"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="29_tqciv"]
+[ext_resource type="Shader" path="res://shader/小西天.gdshader" id="30_i8syh"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(26, 1188, 17, 63, 4289, 54, 1949, 2661, 175, 2619, 20, 1489)
@@ -115,6 +116,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1359, 1876)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("黄沙:material:shader_parameter/progress")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
 }
 
 [sub_resource type="Animation" id="Animation_eg635"]
@@ -298,6 +311,21 @@ tracks/2/keys = {
 "values": [false]
 }
 
+[sub_resource type="Animation" id="Animation_bvouj"]
+resource_name = "黄沙"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("黄沙:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.5]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n3778"]
 _data = {
 "RESET": SubResource("Animation_wd1ow"),
@@ -307,7 +335,8 @@ _data = {
 "沙暴移动": SubResource("Animation_1fvra"),
 "移动主角": SubResource("Animation_g8nsq"),
 "解除误会": SubResource("Animation_fa28m"),
-"金箍棒": SubResource("Animation_15bs8")
+"金箍棒": SubResource("Animation_15bs8"),
+"黄沙": SubResource("Animation_bvouj")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rui6d"]
@@ -1443,6 +1472,15 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ge8h8"]
+shader = ExtResource("30_i8syh")
+shader_parameter/progress = 1.5
+shader_parameter/sand_color = Color(0.901961, 0.8, 0, 1)
+shader_parameter/noise_scale = 60.0
+shader_parameter/grain_intensity = 0.6
+shader_parameter/blur_width = 0.05
+shader_parameter/swirl_speed = 20.0
+
 [node name="小西天" type="Node2D"]
 script = ExtResource("1_ocboi")
 shader = ExtResource("2_dkb4m")
@@ -1832,6 +1870,14 @@ id = "小西天"
 items = {
 "西瓜": 10
 }
+
+[node name="黄沙" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ge8h8")
+offset_left = -91.0
+offset_top = 687.0
+offset_right = 1495.0
+offset_bottom = 1962.0
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

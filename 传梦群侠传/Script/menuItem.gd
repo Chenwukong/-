@@ -22,6 +22,12 @@ func _process(delta):
 func _on_button_button_down():
 	if Global.onMenuItemUsing:
 		return 
+	var menuItems = get_tree().get_nodes_in_group("bagMenuItem")
+	for i in menuItems.size():
+		menuItems[i].get_node("itemName").modulate =  "ffffff"
+		print(get_parent().get_parent().get_parent().get_parent())
+		get_parent().get_parent().get_parent().get_parent().get_node("介绍/Label").text = description
+	get_node("itemName").modulate = "red"
 	Global.itemPlayerIndex = 0
 	Global.itemPlayers = []
 	for i in $"../../../../..".bagMenuItems.size():

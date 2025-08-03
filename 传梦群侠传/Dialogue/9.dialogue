@@ -12,6 +12,15 @@ Nathan: For more information see the online documentation.
 
 => END
 
+~ 女娲雕像
+set Global.onTalk = true
+此地的泉水清甜可口
+set Global.showMsg("全队伤害增加一成！")
+set Global.damageReward1 += 0.1
+
+set Global.onTalk = false
+=> END
+
 ~ 长寿药店大夫
 set Global.onTalk = true
 set get_tree().current_scene.popShop()
@@ -961,7 +970,7 @@ set Global.onTalk = true
 set Global.changevis("神庙","凌若昭")
 set Global.changevis("神庙","小二")
 set Global.getnode("姜韵").visible = true
-
+set Global.cantShow.append("神庙")
 时追云: [speed=0.5]这里很干净，除了这个雕像之外都找遍了
 凌若昭: [speed=0.5]应该是有结界的吧，可惜我们没有这里主人的随身物品，没有办法破开
 set Global.changevis("神庙","墨兮")
@@ -1478,6 +1487,7 @@ set Global.onTalk = false
 
 ~ 女娲神迹1
 set Global.onTalk = true
+set Global.dial = null
 时追云: [speed=0.5]看来已经脱离幻境了，这里神庙真正所隐藏的地方吧
 时追云: [speed=0.5]这里貌似一个人都没有，只能到处找找看了
 set Global.onTalk = false
@@ -1797,6 +1807,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.getnode("六耳").visible = true
 set Global.getnode("player").visible = false
+set Global.cantShow.append("创界山")
 六耳猕猴: [speed=0.5]妖.......仙？
 六耳猕猴: 无聊至极！只有无上的武力才是真的！
 set Global.toggleballon()
@@ -1866,4 +1877,3 @@ set Global.changeScene("五庄观",Vector2(909,578))
 
 set Global.onTalk = false
 => END
-

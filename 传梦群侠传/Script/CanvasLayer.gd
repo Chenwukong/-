@@ -462,6 +462,8 @@ func _on_weapon_button_button_down():
 	if !Global.canMenu:
 		Global.showMsg("目前无法打开菜单！")
 		return
+	Global.onUi = true
+	$onUiTimer.start()	
 	$".".visible = false
 	var characterIndex = 0
 	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
@@ -910,6 +912,8 @@ func _on_右上_pressed():
 func _on_坐标button_button_down():
 	Global.onUi = true
 	$onUiTimer.start()
+	if Global.onHurry:
+		return
 	get_tree().current_scene.get_node("player").position = get_tree().current_scene.playerPosition
 	
 func _on_hash_timer_timeout():
@@ -1035,15 +1039,24 @@ func _on_team_button_mouse_exited():
 func _on_力量加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return	
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addStr += 1
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	if Input.is_action_pressed("shift") and FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential >9 :
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addStr += 10
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 10			
+	else:
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addStr += 1
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
 
 func _on_血量加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return	
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addHp += 10
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	if Input.is_action_pressed("shift") and FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential >9 :
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addHp += 100
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 10	
+	else:		
+		
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addHp += 10
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
 func _on_气运加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
@@ -1056,6 +1069,7 @@ func _on_灵力加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 1
+	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addMp += 10
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
 

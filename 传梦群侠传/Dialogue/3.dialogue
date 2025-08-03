@@ -386,7 +386,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.5]敢问前辈大名
 菩提老祖: [speed=0.3]一沙一世界，一花一天堂，一树一菩提，一叶一如来
 菩提老祖: [speed=0.5]叫我菩提即可
-小二: [speed=0.5]哎，那可不敢，看你向个老祖宗，还是叫你菩提老祖吧
+小二: [speed=0.5]哎，那可不敢，看你像个老祖宗，还是叫你菩提老祖吧
 菩提老祖: [speed=0.5]哈哈哈哈，倒是有许多人这么叫我
 菩提老祖: [speed=0.5]那我是不是也得叫你烤鸡小友呢哈哈哈哈
 小二: [speed=0.5]额，这你都知道了
@@ -1055,6 +1055,7 @@ else:
 	黑山: [speed=0.5]我可没教你什么，都是你自己练的点赞
 	凌若昭: [speed=0.5]我们去告诉师父吧
 	set Global.questHint = "去告诉菩提祖师吧！"
+	set Global.npcVis.get("方寸山").get("黑山").visible = false
 	set Global.npcs.get("菩提老祖").dialogues[6].unlocked = true
 	
 
@@ -1242,7 +1243,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.dial = null
 set Global.canMenu = true
-set Global.npcVis.get("方寸山").get("黑山").visible = false
+
 set Global.triggerPlace.get("黑山送剑").disable = false
 set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
 set Global.npcVis.get("灵台宫").get("小二").visible = true

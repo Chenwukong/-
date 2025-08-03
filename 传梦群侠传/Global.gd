@@ -79,6 +79,7 @@ var itemPlayerIndex
 var canAttack = false
 var prevScene = ""
 var petPotentialProgress = 0
+var difficulty = "hard"
 func connectAutoAttackSignal(enemy_instance):
 	enemy_instance.connect('autoAttackSignal', self, '_on_auto_attack')
 var noSounds = false
@@ -161,8 +162,8 @@ var currPlayer
 var currScene
 var noLimit = true
 
-var onTeamPlayer = ["时追云"]
-var onTeamPet = []
+var onTeamPlayer = ["时追云","姜韵","凌若昭","小二"]
+var onTeamPet = ["白虎",]
 var onTeamSmallPet = []
 var smallPets = []
 var currPlayerPos
@@ -213,7 +214,7 @@ var sameBigScene = {
 	"海底迷宫":["海底迷宫1","海底迷宫2","海底迷宫3","海底迷宫4","海底迷宫5","东海沉船","东海沉船内",],
 	"东海海道":["东海海道","东海海道2","东海海道3"],
 	"锁妖塔":["锁妖塔1","锁妖塔2","锁妖塔3","锁妖塔4","锁妖塔5","锁妖塔6","锁妖塔7"],
-	"朱紫国":["朱紫国","灵力储存场","朱紫国旅馆"],
+	"朱紫国":["朱紫国","灵力储存场","朱紫国旅馆","朱紫国杂货店"],
 	
 }
 
@@ -706,8 +707,10 @@ var musicOn = true
 var enKey = 1
 
 var quests ={
+	"锁妖塔":{"6":false,"7":false,},
 	"方寸罗师兄":{"小师弟":0, "complete":false},
 	"传梦之路":{"传":false,"梦":false,"之":false,"路":false},
+	
 	"抓鬼":{"野鬼":0, "complete":false},
 	"镇魔地":{"镇魔地1":false,"镇魔地2":false,"镇魔地3":false,},
 	"玉帝秘境":{"complete": false},
@@ -2440,7 +2443,14 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},	
-	
+	"女娲雕像":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "女娲雕像", "unlocked": true, "bgm":null,"trigger":false},																																																		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
 	"画魔":{
 		"dialogues": [
 				#0
@@ -2573,7 +2583,7 @@ var npcs = {
 					{"chapter": 11, "dialogue": "月宫之战11", "unlocked": true, "bgm":null,"trigger":false},	
 					{"chapter": 11, "dialogue": "月宫之战12", "unlocked": true, "bgm":null,"trigger":false},	
 					{"chapter": 11, "dialogue": "月宫之战13", "unlocked": true, "bgm":null,"trigger":false},						
-					
+					{"chapter": 11, "dialogue": "月宫之战14", "unlocked": true, "bgm":null,"trigger":false},							
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	

@@ -167,6 +167,8 @@ func _process(delta):
 	if Global.mcVisible == false:
 		get_tree().current_scene.get_node("player").visible = false
 	if Input.is_action_just_pressed("r") and !Global.onFight and !Global.onTalk and !Global.menuOut:
+		if Global.onHurry:
+			return
 		get_node("player").position = playerPosition
 		#get_tree().change_scene_to_file("res://Scene/"+get_tree().current_scene.name+".tscn")
 	
@@ -183,6 +185,8 @@ func _process(delta):
 				
 	shopItems = get_tree().get_nodes_in_group("shopItem")
 	if onShop:
+		shopButtons[0].focus_mode = Control.FOCUS_ALL
+		shopButtons[1].focus_mode = Control.FOCUS_ALL
 		if !onBuy and !onSale and !Global.noKeyboard:
 			$shop/Panel/buyButton.visible = false
 			
@@ -195,7 +199,10 @@ func _process(delta):
 				
 	if onShop and canPress:
 		if shopItems.size()>0:
-			$shop/Panel/description.text = shopItems[itemIndex].description
+			if itemIndex == null:
+				itemIndex = 0
+			
+			$shop/Panel/description.text = shopItems[itemIndex].description 
 		
 		get_node("player").canMove = false
 		$shop/Panel/shopTop/golds.text = str(decrypt(FightScenePlayers.golds))
@@ -223,7 +230,7 @@ func _process(delta):
 				canPress = false
 				$canPress.start()
 		if !onItemPicking and !onItemPicked and !onBuy and !onSale and !onSaleItemPicked and !onSellPicking:
-	
+			
 			if Input.is_action_just_pressed("ui_right"):
 				if shopButtonIndex == 0:
 					shopButtonIndex += 1
@@ -234,10 +241,8 @@ func _process(delta):
 					shopButtonIndex -= 1
 				else:
 					shopButtonIndex = 1		
-			if shopButtonIndex == 0 :
-				shopButtons[0].modulate = "000000"
-				shopButtons[1].modulate = "ffffff"
-				shopButtons[1].modulate.a = 0.5
+			if shopButtonIndex == 0 and !Global.noKeyboard:
+				shopButtons[0].grab_focus()
 				if Input.is_action_just_pressed("ui_accept") and !onItemPicking and !Global.noKeyboard:
 					onItemPicking = true
 					canPress = false
@@ -299,9 +304,8 @@ func _process(delta):
 						shopItems = get_tree().get_nodes_in_group("shopItem")
 #
 			else:
-				shopButtons[0].modulate = "ffffff"
-				shopButtons[0].modulate.a = 0.5
-				shopButtons[1].modulate = "000000"
+				if !Global.noKeyboard:
+					shopButtons[1].grab_focus()
 #
 				if Input.is_action_just_pressed("ui_accept") and !onSellPicking and !Global.noKeyboard:
 #					for x in shopItems:
@@ -309,6 +313,8 @@ func _process(delta):
 					onSellPicking = true			
 					canPress = false
 					$canPress.start()
+					$subSound.stream = load("res://Audio/SE/002-System02.ogg")
+					$subSound.play()
 					for i in FightScenePlayers.bagArmorItem:
 						if FightScenePlayers.bagArmorItem[i].info.key == false:
 							var instance = load("res://Scene/shopItem.tscn").instantiate()
@@ -325,6 +331,8 @@ func _process(delta):
 		if onItemPicking:
 			onSale = false
 			onBuy = false
+			shopButtons[0].focus_mode = Control.FOCUS_NONE
+			shopButtons[1].focus_mode = Control.FOCUS_NONE
 				#$shop/Panel/buyButton.visible = false
 			if Input.is_action_just_pressed("ui_down") and !onItemPicked:
 				if itemIndex == shopItems.size() - 1:
@@ -367,6 +375,8 @@ func _process(delta):
 		if onSellPicking and shopItems.size() == 0:
 			onSellPicking = false		
 		if onSellPicking and shopItems.size()>0  :
+			shopButtons[0].focus_mode = Control.FOCUS_NONE
+			shopButtons[1].focus_mode = Control.FOCUS_NONE
 			if Input.is_action_just_pressed("ui_down") and !onSaleItemPicked:
 				if itemIndex == shopItems.size() - 1:
 					itemIndex = 0
@@ -413,6 +423,8 @@ func _process(delta):
 		if onItemPicked and shopButtonIndex == 0 :
 			onSale = false
 			onBuy = false
+			shopButtons[0].focus_mode = Control.FOCUS_NONE
+			shopButtons[1].focus_mode = Control.FOCUS_NONE
 			#$shop/Panel/buyButton.visible = false
 			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :	
 				$shop/Panel/buyButton.visible = false	
@@ -478,7 +490,8 @@ func _process(delta):
 				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
 				$subSound.play()			
 		if onSaleItemPicked and shopButtonIndex == 1:	
-			
+			shopButtons[0].focus_mode = Control.FOCUS_NONE
+			shopButtons[1].focus_mode = Control.FOCUS_NONE			
 			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :	
 				$shop/Panel/buyButton.visible = false	
 				onBuy = false
@@ -536,10 +549,13 @@ func _process(delta):
 				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
 				$subSound.play()							
 		if onBuy:
+			shopButtons[0].focus_mode = Control.FOCUS_NONE
+			shopButtons[1].focus_mode = Control.FOCUS_NONE
 			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :
 				onBuy = false
 				onItemPicked = true
 				onItemPicking = false	
+				shopItems[itemIndex].get_node("Control").visible = false
 				$shop/Panel/buyButton.visible = false 
 				canPress = false
 				$canPress.start()
@@ -555,6 +571,7 @@ func _process(delta):
 					$shop/Panel/buyButton/buy.modulate = "ffffff"
 					$shop/Panel/buyButton/cancel.modulate = "000000"
 			if Input.is_action_just_pressed("ui_left"):
+				print(333)
 				if confirmButtonIndex == 0:
 					confirmButtonIndex = 1
 					$shop/Panel/buyButton/buy.grab_focus()		
@@ -572,7 +589,8 @@ func _process(delta):
 					onItemPicked = false
 					onItemPicking = true	
 					$shop/Panel/buyButton.visible = false 	
-					
+				
+					shopItems[itemIndex].get_node("Control").visible = false
 					$subSound.stream = load("res://Audio/SE/003-System03.ogg")
 					$subSound.play()					
 				if confirmButtonIndex == 1:	
@@ -634,9 +652,12 @@ func _process(delta):
 	
 	
 		if onSale:
+			shopButtons[0].focus_mode = Control.FOCUS_NONE
+			shopButtons[1].focus_mode = Control.FOCUS_NONE
 			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :
 				onSale = false
-				onSaleItemPicked = true		
+				onSaleItemPicked = true	
+				shopItems[itemIndex].get_node("Control").visible = false
 				$shop/Panel/buyButton.visible = false 
 			if Input.is_action_just_pressed("ui_right"):
 				if confirmButtonIndex == 1:
@@ -800,7 +821,7 @@ func _process(delta):
 	
 	
 	
-	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and Global.menuOut == false and !get_node("battleField") and !onShop and canPress and !Global.onTalk and !Global.onFight and !Global.noKeyboard:
+	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and Global.menuOut == false and !get_node("battleField") and !onShop and canPress and !Global.onTalk and !Global.onFight:
 		if !Global.canMenu:
 			Global.showMsg("当前无法打开菜单！")
 			return
@@ -842,7 +863,7 @@ func _process(delta):
 					FightScenePlayers.fightScenePlayerData[player_name].alive = true
 					FightScenePlayers.fightScenePlayerData[player_name].currHp = player["hp"]/10
 			
-	elif (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0"))  and Global.menuOut and !Global.onMenuSelectCharacter  and !Global.onStatusPage and !Global.onMagicPage and !Global.onQuitMenu and !Global.onArmorItemPage  and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemSelect and !Global.onItemPage and !Global.noKeyboard:
+	elif (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0"))  and Global.menuOut and !Global.onMenuSelectCharacter  and !Global.onStatusPage and !Global.onMagicPage and !Global.onQuitMenu and !Global.onArmorItemPage  and !Global.onSkillPointPage and !Global.onSavePage and !Global.onLoadPage and !Global.onItemSelect and !Global.onItemPage:
 		if $shadow:
 			$shadow.visible= true
 		get_node("CanvasLayer").visible = true
@@ -1146,9 +1167,7 @@ func _on_button_pressed():
 					instance.description =  ItemData.shoes.get(shoes).description
 			$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
 			shopItems = get_tree().get_nodes_in_group("shopItem")	
-	$shop/Panel/shopTop/Button.modulate = "000000"
-	$shop/Panel/shopTop/Button2.modulate = "ffffff"
-	$shop/Panel/shopTop/Button2.modulate.a = 0.5
+
 	shopButtonIndex = 0
 	onItemPicking = true
 	onSellPicking = false	
@@ -1160,13 +1179,8 @@ func _on_button_2_pressed():
 	if onSellPicking:
 		return
 	shopButtonIndex = 1
-	$shop/Panel/shopTop/Button.modulate = "ffffff"
-	$shop/Panel/shopTop/Button2.modulate = "000000"
-	$shop/Panel/shopTop/Button.modulate.a = 0.5
+	shopButtons[1].grab_focus()
 
-	shopButtons[0].modulate = "ffffff"
-	shopButtons[0].modulate.a = 0.5
-	shopButtons[1].modulate = "000000"
 		
 #	for x in shopItems:
 
@@ -1248,14 +1262,16 @@ func complete_task(chapter_id, task_id):
 
 
 func _on_cancel_pressed():
-
+	
 	if onBuy or onItemPicked or onItemPicking:
+		
+		shopItems[itemIndex].get_node("Control").visible = false
 		onBuy = false
 		onItemPicked = true		
-	
+		
 		$shop/Panel/buyButton.visible = false 	
 	if onSale or onSaleItemPicked or onSellPicking:
-	
+		shopItems[itemIndex].get_node("Control").visible = false
 		onSale = false
 		onSaleItemPicked = true		
 		$shop/Panel/buyButton.visible = false 
@@ -1540,7 +1556,7 @@ func _on_menut_button_button_down():
 func _on_button_button_down():
 	onSale = false
 	onBuy = false
-	
+	print(1233)
 	$shop/Panel/buyButton.visible = false
 	$shop/Panel/description.text = ""
 	if onItemPicking:
@@ -1608,9 +1624,7 @@ func _on_button_button_down():
 					instance.description =  ItemData.shoes.get(shoes).description
 			$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
 			shopItems = get_tree().get_nodes_in_group("shopItem")	
-	$shop/Panel/shopTop/Button.modulate = "000000"
-	$shop/Panel/shopTop/Button2.modulate = "ffffff"
-	$shop/Panel/shopTop/Button2.modulate.a = 0.5
+	shopButtons[0].grab_focus()
 	shopButtonIndex = 0
 	onItemPicking = true
 	onSellPicking = false	
@@ -1628,13 +1642,10 @@ func _on_button_2_button_down():
 	if onSellPicking:
 		return
 	shopButtonIndex = 1
-	$shop/Panel/shopTop/Button.modulate = "ffffff"
-	$shop/Panel/shopTop/Button2.modulate = "000000"
-	$shop/Panel/shopTop/Button.modulate.a = 0.5
-
-	shopButtons[0].modulate = "ffffff"
-	shopButtons[0].modulate.a = 0.5
-	shopButtons[1].modulate = "000000"
+	
+	$subSound.stream = load("res://Audio/SE/002-System02.ogg")
+	$subSound.play()
+	shopButtons[1].grab_focus()
 	onBuy = false
 	onItemPicked = false
 	onItemPicking = false
@@ -1670,10 +1681,10 @@ func _on_cancel_button_down():
 	if onBuy or onItemPicked or onItemPicking:
 		onBuy = false
 		onItemPicked = true		
-	
+		shopItems[itemIndex].get_node("Control").visible = false
 		$shop/Panel/buyButton.visible = false 	
 	if onSale or onSaleItemPicked or onSellPicking:
-		
+		shopItems[itemIndex].get_node("Control").visible = false
 		onSale = false
 		onSaleItemPicked = true		
 		$shop/Panel/buyButton.visible = false 

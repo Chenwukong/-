@@ -49,7 +49,7 @@ set Global.getnode("ColorRect").visible = true
 小二: [speed=0.5]我也是这么想的
 凌若昭: [speed=0.5]那那些魔物又有什么目的呢
 姜韵: [speed=0.5]现在已知他们和天庭是对立的，而三年前他们对天庭各路仙家发动了袭击，之后就因为某种事故和天庭僵持着，并且两边都没法出现在人界
-玄武: [speed=0.5]说起来，他们当时好像特别争对我们。尽管我们不知道他们是从哪里冒出来的，也不知道他们有多少，但是能感觉得到，他们当时是非常迫切想要将我们四个杀死的。
+玄武: [speed=0.5]说起来，他们当时好像特别针对我们。尽管我们不知道他们是从哪里冒出来的，也不知道他们有多少，但是能感觉得到，他们当时是非常迫切想要将我们四个杀死的。
 小二: [speed=0.5]我听梧桐大叔说你们是掌管四季的吧，没有了你们，世界就会四季失常，这也是为什么这几年为什么有这么多古怪气候
 姜韵: [speed=0.5]如此说来，他们的目的之一是要让人间失去四季，可是为什么呢...对他们有什么用呢
 菩提老祖: [speed=0.5]你们没有白去这一趟，你们离真相已经很接近了
@@ -1083,8 +1083,11 @@ set Global.getnode("沙暴怪").position = Vector2(688,1283)
 set Global.getnode("沙暴怪").visible = true
 
 set Global.playsound("res://Audio/SE/妖怪-哈~.ogg")
+set Global.getnode("黄沙").visible = true
+set Global.getnode("AnimationPlayer").play("黄沙")
 [next=0.5]
 set get_tree().current_scene.bossFight("沙暴","res://Audio/BGM/打沙暴.ogg", "沙暴")
+set Global.getnode("黄沙").visible = false
 set Global.onTalk = false
 => END
 
@@ -1508,7 +1511,7 @@ set Global.onTalk = true
 鹿飞: 哦！我的牌子！我的牌子，没有你我可怎么活啊！
 set Global.showMsg("获得路字牌!")
 set Global.addItem("路字牌", "keyItem", "keyItem", 1)
-
+#set Global.changeQuest("传梦之路","路","boolean", true)
 
 set Global.onTalk = false
 => END

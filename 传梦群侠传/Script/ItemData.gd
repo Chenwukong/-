@@ -277,13 +277,13 @@ var battleConsume ={
 		"key":false,
 		"gold": 0
 	},		
-		"人参":{
+	"人参":{
 		"name": "人参",
 		"effect": "mp",
 		"value": 500 ,
 		"icon": "res://Icons/人参.png",
 		"picture":"res://Icons/百年人参.png",
-		"description": "恢复少量仙能",
+		"description": "恢复500仙能",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
 		"gold": 10000

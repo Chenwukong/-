@@ -750,11 +750,11 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 梧桐: [speed=0.5]你师傅是谁？
 凌若昭: [speed=0.5]他叫菩提
 梧桐: [speed=0.5]！！！
-师爷: [speed=0.5]说起来，戒色大师貌似还在战斗中...
-程咬金: [speed=0.5]这么拼？不行，按老程可不能给他比下去了，拿我斧来！
-时追云: [speed=0.5]我们会尽快回来
-师爷: [speed=0.5]不用担心我们，实在不行，我们还有锁妖塔！
-凌若昭: [speed=0.5]那闭上眼，准备飞咯！
+凌若昭: [speed=0.5]我要去买点朱砂，时大哥你准备好了之后来城中央汇合吧
+时追云: [speed=0.5]嗯
+set Global.getnode("姜韵").visible = false
+
+
 set Global.changevis("大唐官府大厅","梧桐")
 set Global.changeScene("方寸山", null)
 set Global.onTalk = false
@@ -1442,5 +1442,18 @@ set Global.onTalk = false
 ~ 没有更多可说的了
 set Global.onTalk = true
 {{Global.currNpc}}: 没有更多可说的了
+set Global.onTalk = false
+=> END
+
+
+~ 听闻砍头
+set Global.onTalk = true
+兵甲: 嘿，你听说了吗，有个人连砍了当铺老板十几刀，那老板当场就死了
+兵乙: 那当然了，这事可传遍了，没想到这年头没死在妖怪手里，死在人手里了
+兵甲: 听说那人是还不上当铺老板的钱，所以恶向胆边生
+兵乙: 他现在怎么样了来着
+兵甲: 听说今天早些时候已经被斩头了
+兵乙: 啧啧啧，这世道，要不是妖怪横行，加上叛军造反，也不至于这么苦
+兵甲: 唉，谁说不是呢
 set Global.onTalk = false
 => END

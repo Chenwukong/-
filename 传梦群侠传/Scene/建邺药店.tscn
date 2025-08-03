@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://ok7eted7xbty"]
+[gd_scene load_steps=67 format=3 uid="uid://ok7eted7xbty"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_hop2b"]
 [ext_resource type="Texture2D" uid="uid://shin3so33xlo" path="res://panoramas2/建邺_回春堂分店.jpg" id="2_2m4p0"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="6_xsbq4"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_4f6pp"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_m84ej"]
+[ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="18_65moq"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="18_801sp"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="19_1k820"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="20_m1lgv"]
@@ -383,28 +384,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yk4j2"]
-bg_color = Color(0, 0.682353, 0.721569, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dweqa"]
-bg_color = Color(0.376471, 0.584314, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.666667, 0.631373, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_trm80"]
-bg_color = Color(0, 0.67451, 0.760784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.890196, 0.670588, 0.968627, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1l41"]
-bg_color = Color(0, 0.568627, 0.552941, 1)
-
 [node name="建邺药店" type="Node2D"]
 script = ExtResource("1_hop2b")
 
@@ -547,130 +526,6 @@ scale = Vector2(1.23214, 1.23214)
 sprite_frames = SubResource("SpriteFrames_3okkl")
 npcName = "王姨"
 
-[node name="shop" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Panel" type="Panel" parent="shop"]
-offset_left = -3.0
-offset_right = 1152.0
-offset_bottom = 800.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_yk4j2")
-
-[node name="shopTop" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_right = 1155.0
-offset_bottom = 143.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_dweqa")
-
-[node name="Button" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 79.0
-offset_right = 408.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "购买"
-
-[node name="Button2" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
-layout_mode = 0
-offset_left = 409.0
-offset_top = 79.0
-offset_right = 825.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "出售"
-
-[node name="golds" type="Label" parent="shop/Panel/shopTop"]
-layout_mode = 0
-offset_left = 827.0
-offset_top = 79.0
-offset_right = 1153.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "银两： 500"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="itemRight" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 825.0
-offset_top = 144.0
-offset_right = 1155.0
-offset_bottom = 800.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_trm80")
-
-[node name="itemLeft" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_top = 143.0
-offset_right = 826.0
-offset_bottom = 800.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="shop/Panel/itemLeft"]
-layout_mode = 0
-offset_right = 822.0
-offset_bottom = 659.0
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="shop/Panel/itemLeft/ScrollContainer"]
-layout_mode = 2
-
-[node name="description" type="Label" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 2.0
-offset_right = 1155.0
-offset_bottom = 78.0
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_q1l41")
-text = "这是一个介绍"
-vertical_alignment = 1
-
-[node name="buyButton" type="Panel" parent="shop/Panel"]
-visible = false
-layout_mode = 0
-offset_left = 827.0
-offset_top = 714.0
-offset_right = 1154.0
-offset_bottom = 801.0
-
-[node name="cancel" type="Button" parent="shop/Panel/buyButton"]
-layout_mode = 0
-offset_left = -2.0
-offset_right = 162.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="shop/Panel/buyButton/cancel"]
-layout_mode = 0
-offset_right = 161.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 40
-text = "取消"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="buy" type="Button" parent="shop/Panel/buyButton"]
-layout_mode = 0
-offset_left = 165.0
-offset_right = 329.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="shop/Panel/buyButton/buy"]
-layout_mode = 0
-offset_right = 161.0
-offset_bottom = 86.0
-theme_override_font_sizes/font_size = 40
-text = "确定"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="close" type="Button" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 1098.0
-offset_top = 12.0
-offset_right = 1151.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 30
-text = "X"
-
 [node name="addNumTimer" type="Timer" parent="."]
 wait_time = 0.1
 
@@ -688,6 +543,8 @@ items = {
 }
 special = "柳大夫"
 
+[node name="shop" parent="." instance=ExtResource("18_65moq")]
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -698,11 +555,6 @@ special = "柳大夫"
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout"]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
-[connection signal="button_down" from="shop/Panel/shopTop/Button" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="shop/Panel/shopTop/Button2" to="." method="_on_button_2_button_down"]
-[connection signal="button_down" from="shop/Panel/buyButton/cancel" to="." method="_on_cancel_button_down"]
-[connection signal="button_down" from="shop/Panel/buyButton/buy" to="." method="_on_buy_button_down"]
-[connection signal="button_down" from="shop/Panel/close" to="." method="_on_close_button_down"]
 
 [editable path="player"]
 [editable path="柳老"]

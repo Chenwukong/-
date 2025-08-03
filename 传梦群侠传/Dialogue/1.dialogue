@@ -425,6 +425,7 @@ set Global.onTalk = true
 时追云喜: [speed=0.6]知道了王姨您快走吧 
 王姨: [speed=0.6]行行行，这就走
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
+set Global.getnode("王姨").play("右下")
 set get_tree().current_scene.get_node("AnimationPlayer").play("wangyiMove")
 [next=7]
 set Global.npcVis.get("东海湾").get("王姨").visible = false
@@ -628,6 +629,7 @@ if Global.npcs.get("柳老").dialogues[0].trigger == false:
 	时追云: 没办法，生计所迫，最近的动荡使得我们入不敷出，我不能让我娘子跟着我遭罪
 	柳老: 你这，唉。罢了罢了，不过切记千万不能大幅运动
 	时追云喜: 好的
+	set Global.changevis("李善人家1","管家")
 	set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp + FightScenePlayers.fightScenePlayerData.get("时追云").addHp
 	set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp	
 	set Global.questHint = "继续捕鱼去吧"
@@ -717,11 +719,12 @@ set Global.addGold(200)
 时追云: [speed=0.4] 追云不懂
 鱼叟: [speed=0.4]时候到了自然会懂，我也该动身了，只望你将来再次遇见我时不会怨我才好
 时追云: [speed=0.4]大爷何出此言，晚辈万万不敢！
-时追云: [speed=0.4]我们夫妻二人五年前搬到这里，举目无亲，这些年有您的帮助才能勉强维持生计，虽然您从不曾告诉我您的姓名，但是我们二人已经帮您当作亲人看待了
+时追云: [speed=0.4]我们夫妻二人五年前搬到这里，举目无亲，这些年有您的帮助才能勉强维持生计，虽然您从不曾告诉我您的姓名，但是我们二人已经把您当作亲人看待了
 时追云: [speed=0.4]如今您执意要走，不肯告知去向，晚辈不便多留，但请受追云一拜！
 鱼叟: [speed=0.4]好孩子，快些回去吧，别又让你娘子等急了
 时追云: [speed=0.4]您。。多保重！
 set Global.npcs.get("姜韵").dialogues[2].unlocked = true
+set Global.triggerPlace.get("玉帝物品事件").disable = false
 set Global.questHint = "回家"
 set Global.currNpc = null
 set Global.onTalk = false
@@ -1107,7 +1110,7 @@ set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云喜: [speed=0.8]好了，我要走了娘子，等我回来
 时追云喜: [speed=0.8]等一切都解决完，我就来陪你了
-时追云: [speed=0.8]是时候离开这里去打听那家伙的消息了，小乌，和我走
+时追云: [speed=0.8]自从那件事后已经过去了三年，是时候离开这里去打听那家伙的消息了，小乌，和我走
 大海龟: ...
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
 set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp
@@ -1150,6 +1153,7 @@ set Global.baseChance = 900
 set Global.onTalk = true
 时追云: 一群畜生，碍事
 set Global.baseChance = 0
+set Global.onHurry = false
 set FightScenePlayers.learnMagic("时追云","飞剑决")
 #set get_tree().current_scene.get_node("AnimationPlayer").play("斩妖")
 set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/男-剑.ogg")

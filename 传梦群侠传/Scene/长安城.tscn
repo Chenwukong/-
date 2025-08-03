@@ -1,4 +1,4 @@
-[gd_scene load_steps=134 format=3 uid="uid://3ae56ae6pv0p"]
+[gd_scene load_steps=131 format=3 uid="uid://3ae56ae6pv0p"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2w755"]
 [ext_resource type="Shader" path="res://shader/turnWhite.gdshader" id="1_a0moi"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://vlojij7vqbpm" path="res://Characters/云燕儿.png" id="41_slju3"]
 [ext_resource type="Texture2D" uid="uid://yddrmtw5hsgt" path="res://Characters/鬼将.png" id="42_vwxnf"]
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="43_7lnfg"]
+[ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="43_rqqg3"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="44_fgjcg"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="44_n74ua"]
 [ext_resource type="Texture2D" uid="uid://dq1dbwq01s8i2" path="res://Pictures/Pictures/0如花.JPG" id="45_x0gj3"]
@@ -101,28 +102,6 @@ _data = {
 "RESET": SubResource("Animation_o8nmx"),
 "城主走开": SubResource("Animation_5d8hn")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2owjn"]
-bg_color = Color(0, 0.682353, 0.721569, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xfnm7"]
-bg_color = Color(0.376471, 0.584314, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.666667, 0.631373, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsgsq"]
-bg_color = Color(0, 0.67451, 0.760784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.890196, 0.670588, 0.968627, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e2ppb"]
-bg_color = Color(0, 0.568627, 0.552941, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5lwui"]
 atlas = ExtResource("32_p6eoh")
@@ -934,131 +913,6 @@ libraries = {
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(603, 488)
 
-[node name="shop" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Panel" type="Panel" parent="shop"]
-offset_left = -3.0
-offset_right = 1152.0
-offset_bottom = 800.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_2owjn")
-
-[node name="shopTop" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_right = 1155.0
-offset_bottom = 143.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_xfnm7")
-
-[node name="Button" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 79.0
-offset_right = 408.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "购买"
-
-[node name="Button2" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
-layout_mode = 0
-offset_left = 409.0
-offset_top = 79.0
-offset_right = 825.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "出售"
-
-[node name="golds" type="Label" parent="shop/Panel/shopTop"]
-layout_mode = 0
-offset_left = 827.0
-offset_top = 79.0
-offset_right = 1153.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "银两： 500"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="itemRight" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 825.0
-offset_top = 144.0
-offset_right = 1155.0
-offset_bottom = 800.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_nsgsq")
-
-[node name="itemLeft" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_top = 143.0
-offset_right = 826.0
-offset_bottom = 800.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="shop/Panel/itemLeft"]
-layout_mode = 0
-offset_right = 822.0
-offset_bottom = 659.0
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="shop/Panel/itemLeft/ScrollContainer"]
-layout_mode = 2
-
-[node name="description" type="Label" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 2.0
-offset_right = 1155.0
-offset_bottom = 78.0
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_e2ppb")
-text = "这是一个介绍"
-vertical_alignment = 1
-
-[node name="buyButton" type="Panel" parent="shop/Panel"]
-visible = false
-layout_mode = 0
-offset_left = 827.0
-offset_top = 714.0
-offset_right = 1154.0
-offset_bottom = 801.0
-
-[node name="cancel" type="Button" parent="shop/Panel/buyButton"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 0
-offset_left = -2.0
-offset_right = 162.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="shop/Panel/buyButton/cancel"]
-layout_mode = 0
-offset_right = 161.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 40
-text = "取消"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="buy" type="Button" parent="shop/Panel/buyButton"]
-modulate = Color(0, 1, 0, 1)
-layout_mode = 0
-offset_left = 165.0
-offset_right = 329.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="shop/Panel/buyButton/buy"]
-layout_mode = 0
-offset_right = 161.0
-offset_bottom = 86.0
-theme_override_font_sizes/font_size = 40
-text = "确定"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="close" type="Button" parent="shop"]
-offset_left = 1098.0
-offset_top = 12.0
-offset_right = 1151.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 30
-text = "X"
-
 [node name="addNumTimer" type="Timer" parent="."]
 wait_time = 0.1
 
@@ -1505,6 +1359,11 @@ position = Vector2(1805.76, 959.314)
 frame_progress = 0.798339
 npcName = "凌若昭"
 
+[node name="凌若昭2" parent="." instance=ExtResource("51_bceq2")]
+position = Vector2(5097, 917)
+frame_progress = 0.798339
+npcName = "凌若昭2"
+
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
 volume_db = 4.552
 
@@ -1564,6 +1423,8 @@ visible = false
 position = Vector2(1858, 1043)
 sprite_frames = SubResource("SpriteFrames_a7bgs")
 
+[node name="shop" parent="." instance=ExtResource("43_rqqg3")]
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -1574,11 +1435,6 @@ sprite_frames = SubResource("SpriteFrames_a7bgs")
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
-[connection signal="button_down" from="shop/Panel/shopTop/Button" to="." method="_on_button_button_down" flags=18]
-[connection signal="button_down" from="shop/Panel/shopTop/Button2" to="." method="_on_button_2_button_down" flags=18]
-[connection signal="button_down" from="shop/Panel/buyButton/cancel" to="." method="_on_cancel_button_down" flags=18]
-[connection signal="button_down" from="shop/Panel/buyButton/buy" to="." method="_on_buy_button_down" flags=18]
-[connection signal="button_down" from="shop/close" to="." method="_on_close_button_down" flags=18]
 [connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
 
 [editable path="player"]

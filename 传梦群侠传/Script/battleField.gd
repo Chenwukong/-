@@ -115,7 +115,7 @@ func _ready():
 		if Global.petPotentialProgress > 50:
 			Global.petPotentialProgress -= 50
 			FightScenePlayers.petFoodBall += 1
-		
+			FightScenePlayers.totalPetFoodBall += 1
 		
 	if monsters[0].name == "天道": 
 		$fightTime.start()
@@ -181,7 +181,6 @@ func _process(delta):
 				if i.name == Global.onAttackingList[0]:
 				
 					for index in i.buffs.size():					
-						print(index,"buffindex")
 						get_node("battleFieldPicture/currPlayer/Panel/background/buffs/buff"+str(index+1)).visible = true
 						var icon
 						if i.buffs[index].keys()[0] == "onAttackBuff":
@@ -692,8 +691,8 @@ func _process(delta):
 		for i in Global.onTeamPet:
 			for player in players:
 				if player.name == i:
-					player.currHp = FightScenePlayers.fightScenePlayerData.get(i).hp
-					player.currMp = FightScenePlayers.fightScenePlayerData.get(i).mp
+					player.currHp = FightScenePlayers.fightScenePlayerData.get(i).hp + FightScenePlayers.fightScenePlayerData.get(i).addHp
+					player.currMp = FightScenePlayers.fightScenePlayerData.get(i).mp + FightScenePlayers.fightScenePlayerData.get(i).addMp
 			FightScenePlayers.fightScenePlayerData.get(i).currHp = 	FightScenePlayers.fightScenePlayerData.get(i).hp
 			FightScenePlayers.fightScenePlayerData.get(i).currMp = 	FightScenePlayers.fightScenePlayerData.get(i).mp	
 
@@ -992,6 +991,7 @@ func instantiateMonster():
 	
 	# Create instances of Character2D for selected monsters
 	for monsterData in selectedMonsters:
+		
 		var enemySceneInstance = enemyScene.instantiate()
 		enemySceneInstance.add_to_group("monster")
 		# Set properties for the character instance
@@ -1863,6 +1863,8 @@ func _on_accept_button_button_down():
 		currPlayer.defenseButton.modulate = "#ffffff"
 		currPlayer.itemButton.modulate = "#ffffff"
 		if currPlayer.get_parent().get_parent().canPress:
+			if Global.onItemUsePicking or Global.onItemUsing or Global.onMagicAttacking or Global.onMagicAttackPicking:
+				return
 			if Global.onAttackPicking == false and currPlayer.canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
 				if currPlayer.canAttack:
 					Global.onAttackPicking = true

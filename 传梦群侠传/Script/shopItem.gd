@@ -10,7 +10,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	scale = Vector2(0.5,0.5)
+	
 	$Control/num.text = str(buyAmount)	
 	shopItems = get_tree().get_nodes_in_group("shopItem")
 	

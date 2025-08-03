@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://cfos8g64alocw"]
+[gd_scene load_steps=74 format=3 uid="uid://cfos8g64alocw"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_g0yxi"]
 [ext_resource type="Texture2D" uid="uid://dyxey4vsnrxb7" path="res://panoramas2/大唐官府唯美.jpg" id="2_62kjh"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://df27hfaa6t17d" path="res://SeparateAnimation/程咬金/659-18.png" id="34_7f5vh"]
 [ext_resource type="Texture2D" uid="uid://bywt1uo0fw8i1" path="res://SeparateAnimation/程咬金/659-39.png" id="34_mjl7e"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="34_mjpyg"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="35_h6kok"]
 [ext_resource type="Texture2D" uid="uid://wlsq0l37tv17" path="res://SeparateAnimation/程咬金/659-40.png" id="35_ycd33"]
 [ext_resource type="Texture2D" uid="uid://dwa75n6n2pdus" path="res://SeparateAnimation/程咬金/659-41.png" id="36_8kycx"]
 [ext_resource type="Texture2D" uid="uid://b7gf8v4fwrokk" path="res://SeparateAnimation/程咬金/659-42.png" id="37_053c6"]
@@ -376,6 +377,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htwuo"]
+size = Vector2(1055.64, 141)
+
 [node name="大唐官府" type="Node2D"]
 script = ExtResource("1_g0yxi")
 
@@ -397,7 +401,6 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
 animation = &"upStand"
-frame_progress = 0.0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -575,10 +578,21 @@ npcName = "守门兵甲"
 [node name="CollisionPolygon2D" parent="守门兵甲/npcBody" index="1"]
 polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -247, -215, -244, -231, -239, -245, -243, -262, -254, -272, -258, -282, -266, -280)
 
+[node name="守门兵甲2" parent="." instance=ExtResource("30_d6vqx")]
+position = Vector2(2240, 2041)
+sprite_frames = SubResource("SpriteFrames_5jfmo")
+
+[node name="CollisionPolygon2D" parent="守门兵甲2/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -247, -215, -244, -231, -239, -245, -243, -262, -254, -272, -258, -282, -266, -280)
+
 [node name="守门兵乙" parent="." instance=ExtResource("30_d6vqx")]
 position = Vector2(3086, 1638)
 sprite_frames = SubResource("SpriteFrames_sh040")
 npcName = "守门兵乙"
+
+[node name="守门兵乙2" parent="." instance=ExtResource("30_d6vqx")]
+position = Vector2(2452, 1945)
+sprite_frames = SubResource("SpriteFrames_sh040")
 
 [node name="potentialBall" parent="." instance=ExtResource("33_7mxth")]
 position = Vector2(1212, 549)
@@ -608,6 +622,16 @@ sprite_frames = SubResource("SpriteFrames_x2ocw")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
+[node name="听闻砍头" parent="." instance=ExtResource("35_h6kok")]
+visible = false
+position = Vector2(2959, 1665)
+triggerEvent = "红花"
+
+[node name="CollisionShape2D" parent="听闻砍头/Area2D" index="0"]
+position = Vector2(-201.064, 226.947)
+rotation = -0.477459
+shape = SubResource("RectangleShape2D_htwuo")
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
@@ -618,4 +642,6 @@ sprite_frames = SubResource("SpriteFrames_x2ocw")
 
 [editable path="player"]
 [editable path="守门兵甲"]
+[editable path="守门兵甲2"]
 [editable path="npc2"]
+[editable path="听闻砍头"]

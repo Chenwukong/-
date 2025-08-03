@@ -436,6 +436,7 @@ func _process(delta):
 		#选择普攻目标阶段
 		if Global.onAttackPicking and Global.onAttackingList[0] == playerName:
 			
+			
 			if monsters:
 				if self.playerName != "朱雀":
 					Global.target = monsters[Global.targetMonsterIdx]
@@ -461,7 +462,7 @@ func _process(delta):
 				if Global.target or target and canAttack == true:
 					attack(Global.target, "keyboard")
 					if playerName != '姜韵' and playerName != "狐葬魂":
-						
+						print(321133)
 						moveCharacter(delta)    #重点，把移动和攻击分开，这样就算onAttacking = true 不能重复按之后也能移动
 					canSelect = false
 				else:
@@ -914,6 +915,7 @@ func _process(delta):
 					if Global.onAttackPicking == false and canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
 							if canAttack:
 								Global.battleButtonIndex = 0
+							
 								Global.onAttackPicking = true
 								get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 								get_tree().current_scene.get_node("subSound").play()		
@@ -922,14 +924,14 @@ func _process(delta):
 				if get_parent().get_parent().canPress:
 					if Global.onAttackingList:
 						if Global.onMagicSelectPicking == false and Global.onMagicAttackPicking == false and Global.onMagicAttacking == false and self.playerName == Global.onAttackingList[0]:
-								Global.battleButtonIndex = 0
 								$battleCommends.visible = false
 								Global.onMagicSelectPicking = true
+								Global.magicSelectIndex = 0
 								get_parent().get_node("magicDescription").visible = true
 								get_parent().get_node("magicSelection").visible = true
-								get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
-								get_tree().current_scene.get_node("subSound").play()							
-							
+								get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
+								get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()							
+
 								for i in playerMagic:
 									magicScene = preload("res://Scene/magic_selection.tscn")
 									var magicSceneInstance = magicScene.instantiate()
@@ -1145,9 +1147,10 @@ func _process(delta):
 		itemButton.modulate = "#ffffff"
 		if get_parent().get_parent().canPress:
 			if Global.onAttackPicking == false and canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
+				if Global.onMagicSelectPicking or Global.onMagicAttackPicking:
+					return
 				if Global.noKeyboard:
-					if Input.is_action_just_released("leftClick"): #重点 用pressed的话在按压过程中就触发代码了，所以按的同时会触发之后的判断条件，所以要改成released
-				
+					if Input.is_action_just_released("leftClick") and !Global.onMagicAttackPicking and !Global.onMagicAttacking and !Global.onItemUsePicking and !Global.onItemUsing: #重点 用pressed的话在按压过程中就触发代码了，所以按的同时会触发之后的判断条件，所以要改成released		
 						if canAttack:
 							Global.onAttackPicking = true
 							get_parent().get_node("enemyInfo").visible = false
@@ -1362,6 +1365,7 @@ func attack(target, type):
 
 
 func castMagic(delta, magic, target, type, onLastMagic):
+	Global.onTeamPlayer.erase(self.playerName1)
 	if Global.onMultiHit <= 1:			
 		for i in players:
 			if i.name == Global.onAttackingList[0]:
@@ -2187,7 +2191,11 @@ func _on_defense_button_button_down():
 	Global.battleButtonIndex = 2
 
 func _on_item_button_button_down():
+	
+	
 	Global.battleButtonIndex = 3
+	if itemList.size() <= 0:
+		return
 	if Global.noKeyboard:
 		get_parent().get_parent().canPress = false
 		get_parent().get_parent().get_node("canPressTimer").start()
@@ -2345,7 +2353,7 @@ func cast_magic_multiple_times(delta, magic, target, input_type, times):
 		delay_timer.one_shot = true
 		delay_timer.start()
 		await delay_timer.timeout
-		if !is_instance_valid(target):
+		if !is_instance_valid(target) and monsters.size()>0:
 			target = monsters[0]		
 
 

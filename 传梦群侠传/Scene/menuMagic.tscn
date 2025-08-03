@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://py5altk2nppw"]
+[gd_scene load_steps=4 format=3 uid="uid://py5altk2nppw"]
 
 [ext_resource type="Texture2D" uid="uid://cbc6ar3e3lhay" path="res://Icons/●图标 (67).png" id="1_0a1f7"]
+[ext_resource type="Texture2D" uid="uid://bx4mr1tvrhatm" path="res://Pictures/菜单/技能底图.png" id="1_akiom"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_32ikt"]
 bg_color = Color(0, 0, 0, 0.584314)
@@ -19,7 +20,13 @@ offset_bottom = 89.4
 scale = Vector2(0.634527, 0.368069)
 metadata/_edit_use_anchors_ = true
 
+[node name="技能底图" type="Sprite2D" parent="."]
+position = Vector2(283.676, 70.6389)
+scale = Vector2(1.35631, 1.76788)
+texture = ExtResource("1_akiom")
+
 [node name="Button" type="Panel" parent="." groups=["menuMagic"]]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_left = 53.116
 offset_top = 5.40361
@@ -30,11 +37,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_32ikt")
 
 [node name="name" type="Label" parent="Button"]
 layout_mode = 2
-offset_left = 2.0
-offset_right = 1502.0
-offset_bottom = 682.0
+offset_left = 2.55115
+offset_top = 0.00177002
+offset_right = 1502.55
+offset_bottom = 682.002
 scale = Vector2(0.00161699, 0.0106651)
-theme_override_font_sizes/font_size = 500
+theme_override_font_sizes/font_size = 400
 text = "破空剑"
 horizontal_alignment = 1
 vertical_alignment = 1

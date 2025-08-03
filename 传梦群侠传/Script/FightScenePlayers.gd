@@ -1,7 +1,7 @@
 extends Node
 var hashTable = {}
 var gold = 0
-var golds = 0 * Global.enKey
+var golds = 3000000 * Global.enKey
 var seconds = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -60,10 +60,10 @@ var consumeItem = {
 }
 
 var battleItem = {
-	"金疮药":{
-		"info": ItemData.battleConsume.get("金疮药"),
-		"number": 5
-	},
+#	"月饼":{
+#		"info": ItemData.battleConsume.get("月饼"),
+#		"number": 10
+#	},
 #	"月饼":{
 #		"info": ItemData.battleConsume.get("月饼"),
 #		"number": 10
@@ -81,8 +81,8 @@ var battleItem = {
 var questItem = {
 	
 }
-var totalPetFoodBall =0
-var petFoodBall = 0
+var totalPetFoodBall = 0
+var petFoodBall = 500
 var petFood = 10
 var bagArmorItem = {
 	"大剑":{
@@ -177,7 +177,7 @@ var bagArmorItem = {
 #		"number": 2,	
 #		"added": false	
 #	},	
-
+#
 
 
 }
@@ -398,7 +398,7 @@ var fightScenePlayerData2= {
 				"attackType": "buff",
 				"buffEffect": ["currHp",], 
 				"value": 1000,
-				"cost": 10,
+				"cost": 40,
 				"description": "回复血量",	
 				"effectArea": "single",
 				"effectingNum": 1,
@@ -414,7 +414,7 @@ var fightScenePlayerData2= {
 				"attackType": "range",
 				"damageSource": "AD",
 				"value": 20000,
-				"cost": 200,
+				"cost": 170,
 				"description": "对魔类敌人造成固定高额伤害",	
 				"effectArea": "single",
 				"animationArea":"enemy",
@@ -698,10 +698,10 @@ var fightScenePlayerData2= {
 			"autoAttackSound": "res://Audio/SE/女-攻击-哈.ogg",
 			"attackOnEnemySound": null,
 			"item":{
-				"weapon":ItemData.weapon.get("竹节双剑"),
-				"cloth": ItemData.cloth.get("锦衣"),
-				"hat":ItemData.hat.get("面具"),
-				"shoes":ItemData.shoes.get("皮鞋"),
+				"weapon":null,
+				"cloth": null,
+				"hat": null,
+				"shoes": null,
 				"accessories":null
 			},
 			"buff":["speed","strength","accuracy","defense"]		
@@ -1198,7 +1198,7 @@ var fightScenePlayerData2= {
 					"needExp": 300,
 					"attackType": "range",
 					"multiHitTimes": 4,
-					"effectingNum": 1,
+					"effectingNum": 5,
 					"damageSource": "AP",
 					"duration": 1,
 					"value": 8, 
@@ -1276,6 +1276,24 @@ var fightScenePlayerData2= {
 				"audio":"res://Audio/SE/082-Monster04.ogg",
 				"icon":"res://Icons/●图标 (77).png",
 			},			
+			{
+				"name": "连环击(4)",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 4,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1.5, 
+				"cost": 50,
+				"description": "连续攻击4次，休息一回合",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/野兽怒.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},					
+			
 			
 			# Add more magic spells as needed
 			],
@@ -1505,7 +1523,7 @@ var fightScenePlayerData = {
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 1,
+			"level": 99,
 			"exp": 0,
 			"needExp":100 ,
 			"magicDeense": 5,
@@ -1523,7 +1541,7 @@ var fightScenePlayerData = {
 			"mp": 100,
 			"currHp": 200,
 			"currMp": 100,
-			"potential": 0,
+			"potential": 100,
 			"idle": "时追云idle",
 			"autoAttack":'时追云autoAttack',
 			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
@@ -2492,7 +2510,23 @@ var fightScenePlayerData = {
 				"duration": 4,
 				"audio":"res://Audio/SE/082-Monster04.ogg",
 				"icon":"res://Icons/●图标 (77).png",
-			},			
+			},	{
+				"name": "连环击(4)",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 4,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1.5, 
+				"cost": 50,
+				"description": "连续攻击4次，休息一回合",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/野兽怒.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},					
 			
 			# Add more magic spells as needed
 			],

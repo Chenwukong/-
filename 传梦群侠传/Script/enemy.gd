@@ -1133,6 +1133,12 @@ func moveCharacter(delta):
 func _on_button_button_down():
 	if !Global.noKeyboard:
 		return
+	if Global.currUsingMagic and Global.currUsingMagic.attackType == "buff":
+		return
+	if Global.onItemUsePicking:
+		if Global.currUsingItem.info.effect == "mp" or Global.currUsingItem.info.effect == "hp":
+			return
+		
 	Global.target = self
 
 	if monsters.size() > 0 and Global.onAttackPicking and Global.currPlayer.canAttack == true:

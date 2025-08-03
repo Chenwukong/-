@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dmj4s426vg7oh"]
+[gd_scene load_steps=30 format=3 uid="uid://dmj4s426vg7oh"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ydkgc"]
 [ext_resource type="Texture2D" uid="uid://ojewlstasmtl" path="res://panoramas2/长寿村服装店.jpg" id="2_uop5n"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_8b8nd"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_ln6t5"]
 [ext_resource type="Texture2D" uid="uid://cfoy3rq4clth1" path="res://Characters/裁缝.png" id="19_urrdc"]
+[ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="20_vf75l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
@@ -31,28 +32,6 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-53, 16, -52, 615, 9, 1
 gradient = SubResource("Gradient_k3l1b")
 fill = 1
 fill_from = Vector2(1, 0.612536)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xtjsw"]
-bg_color = Color(0, 0.682353, 0.721569, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxelm"]
-bg_color = Color(0.376471, 0.584314, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(1, 0.666667, 0.631373, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_byih7"]
-bg_color = Color(0, 0.67451, 0.760784, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.890196, 0.670588, 0.968627, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ee7n4"]
-bg_color = Color(0, 0.568627, 0.552941, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idfxp"]
 atlas = ExtResource("15_bp2h2")
@@ -224,129 +203,6 @@ stream = ExtResource("12_somqy")
 volume_db = 2.432
 max_distance = 1e+06
 
-[node name="shop" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="Panel" type="Panel" parent="shop"]
-offset_left = -3.0
-offset_right = 1152.0
-offset_bottom = 800.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_xtjsw")
-
-[node name="shopTop" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_right = 1155.0
-offset_bottom = 143.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_kxelm")
-
-[node name="Button" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
-layout_mode = 0
-offset_left = 2.0
-offset_top = 79.0
-offset_right = 408.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "购买"
-
-[node name="Button2" type="Button" parent="shop/Panel/shopTop" groups=["shopButton"]]
-layout_mode = 0
-offset_left = 409.0
-offset_top = 79.0
-offset_right = 825.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "出售"
-
-[node name="golds" type="Label" parent="shop/Panel/shopTop"]
-layout_mode = 0
-offset_left = 827.0
-offset_top = 79.0
-offset_right = 1153.0
-offset_bottom = 142.0
-theme_override_font_sizes/font_size = 40
-text = "银两： 500"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="itemRight" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 825.0
-offset_top = 144.0
-offset_right = 1155.0
-offset_bottom = 800.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_byih7")
-
-[node name="itemLeft" type="Panel" parent="shop/Panel"]
-layout_mode = 0
-offset_top = 143.0
-offset_right = 826.0
-offset_bottom = 800.0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="shop/Panel/itemLeft"]
-layout_mode = 0
-offset_right = 822.0
-offset_bottom = 659.0
-follow_focus = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="shop/Panel/itemLeft/ScrollContainer"]
-layout_mode = 2
-
-[node name="description" type="Label" parent="shop/Panel"]
-layout_mode = 0
-offset_left = 2.0
-offset_right = 1155.0
-offset_bottom = 78.0
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = SubResource("StyleBoxFlat_ee7n4")
-text = "这是一个介绍"
-vertical_alignment = 1
-
-[node name="buyButton" type="Panel" parent="shop/Panel"]
-visible = false
-layout_mode = 0
-offset_left = 827.0
-offset_top = 714.0
-offset_right = 1154.0
-offset_bottom = 801.0
-
-[node name="cancel" type="Button" parent="shop/Panel/buyButton"]
-layout_mode = 0
-offset_left = -2.0
-offset_right = 162.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="shop/Panel/buyButton/cancel"]
-layout_mode = 0
-offset_right = 161.0
-offset_bottom = 84.0
-theme_override_font_sizes/font_size = 40
-text = "取消"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="buy" type="Button" parent="shop/Panel/buyButton"]
-layout_mode = 0
-offset_left = 165.0
-offset_right = 329.0
-offset_bottom = 86.0
-
-[node name="Label" type="Label" parent="shop/Panel/buyButton/buy"]
-layout_mode = 0
-offset_right = 161.0
-offset_bottom = 86.0
-theme_override_font_sizes/font_size = 40
-text = "确定"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="close" type="Button" parent="shop"]
-offset_left = 1098.0
-offset_top = 12.0
-offset_right = 1151.0
-offset_bottom = 62.0
-theme_override_font_sizes/font_size = 30
-text = "X"
-
 [node name="addNumTimer" type="Timer" parent="."]
 wait_time = 0.1
 
@@ -393,6 +249,8 @@ sprite_frames = SubResource("SpriteFrames_qrjru")
 itemSale = ["七宝天衣", "死亡斗篷", "水晶帽", "金丝逐日履"]
 npcName = "长寿布店老板"
 
+[node name="shop" parent="." instance=ExtResource("20_vf75l")]
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
@@ -403,11 +261,6 @@ npcName = "长寿布店老板"
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
 [connection signal="timeout" from="canPress" to="." method="_on_can_press_timeout" flags=18]
 [connection signal="timeout" from="Timer" to="player" method="_on_timer_timeout" flags=18]
-[connection signal="button_down" from="shop/Panel/shopTop/Button" to="." method="_on_button_button_down" flags=18]
-[connection signal="button_down" from="shop/Panel/shopTop/Button2" to="." method="_on_button_2_button_down" flags=18]
-[connection signal="button_down" from="shop/Panel/buyButton/cancel" to="." method="_on_cancel_button_down" flags=18]
-[connection signal="button_down" from="shop/Panel/buyButton/buy" to="." method="_on_buy_button_down" flags=18]
-[connection signal="button_down" from="shop/close" to="." method="_on_close_button_down" flags=18]
 [connection signal="timeout" from="addNumTimer" to="." method="_on_add_num_timer_timeout" flags=18]
 [connection signal="timeout" from="warnTimer" to="." method="_on_warn_timer_timeout" flags=18]
 

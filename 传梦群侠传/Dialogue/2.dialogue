@@ -769,6 +769,7 @@ set Global.onTalk = true
 	if FightScenePlayers.golds/Global.enKey < 500:
 		擂台管理: 你钱不够啊，带够银两再来吧！
 	else:
+		set Global.showMsg("失去500两")
 		牛冠军: 来吧！
 		时追云: [speed=0.4]小二，只是切磋而已，不要用全力
 		小二: [speed=0.4]哦好
@@ -787,6 +788,7 @@ set Global.onTalk = true
 
 set get_tree().current_scene.get_node("battleBgm").stop()
 if Global.lost == false:
+	set Global.showMsg("获得1000两")
 	牛冠军: 啊嘞嘞，你也太强了，佩服佩服
 	#set FightScenePlayers.golds += 1000
 else:
@@ -909,8 +911,8 @@ set get_tree().current_scene.get_node("小二").visible = true
 小二: [speed=0.4]啊，连你们也帮不上忙吗
 师爷: [speed=0.4]如果大唐境内有妖魔占山为王大肆屠戮，那我们肯定是会有消息的
 师爷: [speed=0.4]但要是它跑到了别国境内，或者不闹出大动静，以我们的手段，想找到他们也是绝无可能
-师爷: [speed=0.4]我们要妖魔的了解还是太少了，唉
-师爷: [speed=0.4]当初要是我们找点得到消息，建邺也不至于。。。
+师爷: [speed=0.4]我们对妖魔的了解还是太少了，唉
+师爷: [speed=0.4]当初要是我们早点得到消息，建邺也不至于。。。
 时追云: [speed=0.4]...
 师爷: [speed=0.4]抱歉了时少侠
 时追云: [speed=0.4]没事，我会自己找到它的
@@ -964,7 +966,7 @@ set get_tree().current_scene.get_node("小二").visible = true
 时追云: [speed=0.4]嗯
 时追云: [speed=0.4]小二你呢，要去吗？
 小二: [speed=0.4]唉，你们都这么说了我不去岂不是显得我贪生怕死
-小二: [speed=0.4]我可不想以后只能再妖魔领地生活
+小二: [speed=0.4]我可不想以后只能在妖魔领地生活
 时追云: [speed=0.4]不用担心，如果真遇到了危险就躲我身后吧
 小二: [speed=0.4]啊哈，那怎么好意思呢哈哈哈
 师爷: [speed=0.4]那就拜托几位了，我替天下百姓谢谢你们
@@ -1068,7 +1070,7 @@ set Global.onTalk = true
 金甲: [speed=0.4]那。。。就好
 金甲: [speed=0.4]...
 时追云: [speed=0.4]怎么了，有何难言之隐吗？
-金甲: [speed=0.4]是。。关于。遮儿的事
+金甲: [speed=0.4]是。。关于。嫬儿的事
 小二: [speed=0.4]她怎么了？疑惑
 金甲: [speed=0.4]她。。。她没事。
 金甲: [speed=0.4]只是。。
@@ -1078,9 +1080,9 @@ set Global.onTalk = true
 金甲: [speed=0.4]塔内。。。封印着。。一只妖怪
 金甲: [speed=0.4]他似乎。。能复原自己。身体
 金甲: [speed=0.4]如果能。。拿到他的妖魔内核。。。也就是心脏
-金甲: [speed=0.4]或许。。。遮儿能。。能
+金甲: [speed=0.4]或许。。。嫬儿能。。能
 时追云: [speed=0.4]那不是很好吗，去塔顶的路上顺道把那只妖怪宰了吧
-小二: [speed=0.4]太好了。这样遮儿以后就可以重新走路了
+小二: [speed=0.4]太好了。这样嫬儿以后就可以重新走路了
 金甲: [speed=0.4]会。。让我们。。这次。更危险
 时追云: [speed=0.4]如果害怕危险我们本身就不会来了，怕这怕那只会让自己陷入绝境
 小二: [speed=0.4]都已经走到这了。是死是活听天由命了
@@ -1447,7 +1449,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.4](此人非人，但却不像妖，着实古怪)
 蒙面人: [speed=0.4]你们知道妖盟购买东西也是要花银子的吧
 时追云: [speed=0.4]是又如何？
-蒙面人: [speed=0.4]那还不明显吗，给我两万俩银子，我就放你们过去，互不打扰，如何？
+蒙面人: [speed=0.4]那还不明显吗，给我两千俩银子，我就放你们过去，互不打扰，如何？
 小二: [speed=0.4]我靠，两万俩银子，你敲诈啊！教训
 蒙面人: [speed=0.4]哎，话不能这么说
 蒙面人: [speed=0.4]前面那些家伙虽然没对你们造成什么实质性伤害，但是一路到这里身体也快受不了了吧
@@ -1466,6 +1468,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 蒙面人: [speed=0.4]选吧，交钱还是和我交手
 - 交钱
 	if FightScenePlayers.golds/Global.enKey < 2000:
+	
 		蒙面人: 呵呵呵呵，你们好像没这么多钱啊，那我可不能放你们过去了
 		set get_tree().current_scene.bossFight("蒙面人","res://Audio/BGM/轩辕-战斗2.mp3", "蒙面人")
 		set Global.onFight = true
@@ -1483,6 +1486,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 		金甲: 那将军！有危险！
 		时追云: 我们赶紧走！
 - 懒得听你废话，受死
+	
 	蒙面人: 呵呵呵呵
 	set get_tree().current_scene.bossFight("蒙面人","res://Audio/BGM/轩辕-战斗2.mp3", "蒙面人")
 	set Global.onFight = true
@@ -1570,7 +1574,7 @@ set Global.onTalk = true
 set Global.npcVis.get("锁妖塔6").get("千年树").visible = false
 	
 	
-金甲: [speed=0.4]正是此物，只要把这颗妖魔内核给遮儿吃了，她就能重新走路了！开心
+金甲: [speed=0.4]正是此物，只要把这颗妖魔内核给嫬儿吃了，她就能重新走路了！开心
 小二: [speed=0.4]太好了
 时追云: [speed=0.4]不要高兴的太早, 我们还得解决塔顶的那家伙
 小二: [speed=0.4]老大你真扫兴
@@ -1722,8 +1726,7 @@ if Global.lost:
 else
 	if Global.isDead.get("塔5boss"):
 		set Global.damageReward1 += 0.1
-		set get_tree().current_scene.get_node("CanvasLayer/importantMsg/Panel/ImportantMsg").text = "击败全部首领，全队伤害提升一成！"
-		set get_tree().current_scene.get_node("CanvasLayer/importantMsg").visible = true
+		set Global.showMsg("击败全部首领，全队伤害提升一成！")
 	鹰孽大王: [speed=0.4]咳。。。可恶，你们这群虫子，居然敢把我逼到这种地步
 	鹰孽大王: [speed=0.4]这是你们逼我的！
 	鹰孽大王: [speed=0.4]在此为誓！永拥我神！以我之魄！佑我渡劫！
@@ -1892,7 +1895,7 @@ set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("left")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").stream = load("res://Audio/BGM/Hollow Knight OST - False Knight.mp3")
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 金甲: [speed=0.4]剩下的是属于我的战斗了，你们快走吧！我会用我的法力将你们送出去
-金甲: [speed=0.4]吾友们，请让遮儿重新站起来，一定要把将军带回来，他是人类的希望...
+金甲: [speed=0.4]吾友们，请让嫬儿重新站起来，一定要把将军带回来，他是人类的希望...
 金甲: [speed=0.4]还有帮我告诉师爷，金甲感谢多年的栽培之恩！
 set get_tree().current_scene.get_node("金甲2").play("金甲magic")
 set get_tree().current_scene.get_node("player/effect").visible = true
@@ -1951,7 +1954,7 @@ set get_tree().current_scene.get_node("oneTimeSound").play()
 小二: [speed=0.4]自己一个人逞什么能
 小二: [speed=0.4]明明一路上都需要我们帮忙，一个大将军居然打架能力就比我强点
 小二: [speed=0.4]你不是说了，活着比什么都重要吗！
-小二: [speed=0.4]你让遮儿和那些被你帮助过的人怎么办！大哭
+小二: [speed=0.4]你让嫬儿和那些被你帮助过的人怎么办！大哭
 凌若昭哀: [speed=0.4]他就是为了，不让这些人受到伤害，才毅然决然的留在塔内吧大哭
 小二: [speed=0.4]...
 时追云: [speed=0.4].........
@@ -2282,7 +2285,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.4]我也体会过了绝望，但这股绝望，我会让他也体会到！
 程咬金: [speed=0.4]那你有办法找到他吗
 时追云: [speed=0.4]若昭的师傅貌似有神通能预知人的位置，我会去寻他
-时追云: [speed=0.4]等遮儿身体好了，我就准备出发了
+时追云: [speed=0.4]等嫬儿身体好了，我就准备出发了
 程咬金: [speed=0.4]你说的是金甲照顾的那个丫头吧
 时追云: [speed=0.4]是，金甲在塔内找到了妖魔核心，让她有办法慢慢生长出双腿了，而他自己为了百姓，回归塔灵的身份了
 时追云: [speed=0.4]也是他千叮万嘱，要我们去救你
@@ -2314,7 +2317,7 @@ set get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("upStand")
 set get_tree().current_scene.get_node("player/Sprite2D").visible = false
 set Global.npcs.get("凌若昭").dialogues[2].unlocked = true
-时追云: [speed=0.4]金甲，我不知道你还能不能听见，但我想和你说，将军安全地回来了，遮儿的腿也长出来了
+时追云: [speed=0.4]金甲，我不知道你还能不能听见，但我想和你说，将军安全地回来了，嫬儿的腿也长出来了
 
 小二: [speed=0.4]唉，本来还在塔里说好和他一起去吃饭呢
 凌若昭哀: [speed=0.4] ...
