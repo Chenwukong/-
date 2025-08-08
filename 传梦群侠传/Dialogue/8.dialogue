@@ -325,7 +325,7 @@ set Global.getnode("水云仙").play("右下")
 水云仙: [speed=0.5]只要我一直在那里，我就一定能再见到他！
 姜韵喜: [speed=0.5]那里叫什么啊？
 水云仙: [speed=0.5]丰渔村
-set Global.violencePoint += 10
+set Global.violencePoint += 15
 set Global.showViolence("positive",10)
 set Global.showMsg("获得之字牌!10点道德值！")
 set Global.addItem("之字牌", "keyItem", "keyItem", 1)
@@ -442,8 +442,8 @@ set Global.onTalk = true
 - 杀了他，获得功力加成
 	set Global.violencePoint -= 10
 	set Global.showViolence("negative",20)
-	set Global.damageReward1 += 0.1
-	set Global.showMsg("全队伤害永久提升一成！")
+	set Global.damageReward1 += 0.05
+	set Global.showMsg("全队伤害永久提升半成！")
 - 不像是恶兽,行事诡异，制服他即可
 	set Global.violencePoint += 10
 	set Global.showViolence("positive",10)
@@ -589,8 +589,8 @@ set Global.changevis("五庄观","清风")
 镇元大仙: [speed=0.5]如果有闲心，也可帮老道除一下人参果树上的虫子，没空也无妨
 时追云: [speed=0.5]好
 set Global.questHint = "回去找观音菩萨"
-set Global.damageReward1 += 0.1
-set Global.showMsg("因兵器附着灵力，全队伤害永久提升一成！")
+set Global.damageReward1 += 0.05
+set Global.showMsg("因兵器附着灵力，全队伤害永久提升半成！")
 
 
 set Global.addItem("人参果", "keyItem", "keyItem", 1)
@@ -878,7 +878,6 @@ set Global.onTalk = false
 ~ 朱紫国药铺老板
 set Global.onTalk = true
 朱紫国药铺老板: 我这里什么都卖
-set get_tree().current_scene.popShop()
 
 set Global.onTalk = false
 => END

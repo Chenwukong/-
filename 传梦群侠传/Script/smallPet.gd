@@ -7,6 +7,8 @@ var petName
 var idle = "idle"
 var magic = "magic"
 var autoAttack = "autoAttack"
+var digit_sprite = null
+var digit_image_path =  "res://数字/"
 
 var state = idle
 var rageBar = 0
@@ -135,8 +137,14 @@ func castMagic():
 		for i in players:
 			if i.currHp>=0:
 				alivePlayer.append(i)
-		if find_player_with_lowest_hp_percent(alivePlayer):
+		if is_instance_valid(find_player_with_lowest_hp_percent(alivePlayer)):
 			find_player_with_lowest_hp_percent(alivePlayer).currHp += magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower
+			var disDamage = display_damage(round(magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower),"heal")
+			find_player_with_lowest_hp_percent(alivePlayer).get_node("hpControl").add_child(disDamage)
+			find_player_with_lowest_hp_percent(alivePlayer).get_node("hpControl/hpLabel").modulate= "88ff00"
+			find_player_with_lowest_hp_percent(alivePlayer).get_node("AnimationPlayer").play("hpControl")
+
+
 	if magicInfo.type == "ice":
 		for target in targets:
 			if is_instance_valid(target):
@@ -199,10 +207,44 @@ func find_player_with_lowest_hp_percent(players):
 		if hp_percentage < lowest_hp_percentage:
 			lowest_hp_percentage = hp_percentage
 			lowest_hp_player = player
-	
+	print(lowest_hp_player)
 	return lowest_hp_player
 
 
 func _on_on_pet_attack_timer_timeout():
 	Global.onPetAttack = false
-	print("petAttackStart")
+	
+func display_damage(damage, type):
+	if is_instance_valid(target):
+		for child in target.get_node("hpControl").get_children():
+			if child.name != "hpLabel":
+				child.queue_free()	
+	if is_instance_valid(Global.target):
+		for child in Global.target.get_node("hpControl").get_children():
+			if child.name != "hpLabel":
+				child.queue_free()				
+			
+	var damage_str = str(damage)
+	
+	var offset_x = 0
+	var damage_node = Node2D.new()
+	
+	for digit in damage_str:
+		digit_sprite = Sprite2D.new()
+		if type == "normal":
+			digit_sprite.texture = load(digit_image_path + "23-" + str(int(digit) + 1) + ".png")
+			digit_sprite.scale = Vector2(0.6, 0.6)
+			
+		elif type == "crit":
+			digit_sprite.texture = load(digit_image_path + "22-" + str(int(digit) + 1) + ".png")
+			digit_sprite.scale = Vector2(0.6, 0.6)
+			offset_x += 0
+		elif type == "heal":
+		
+			
+			digit_sprite.texture = load(digit_image_path + "21-" + str(int(digit) + 1) + ".png")
+			digit_sprite.scale = Vector2(0.6, 0.6)
+		digit_sprite.position.x = offset_x
+		damage_node.add_child(digit_sprite)
+		offset_x += digit_sprite.texture.get_width()-10# Adjust this value as needed
+	return damage_node

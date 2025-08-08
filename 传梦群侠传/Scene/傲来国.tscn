@@ -942,6 +942,18 @@ npcName = "凌若昭"
 [node name="MarkerRight2" type="Marker2D" parent="."]
 position = Vector2(1232, 659)
 
+[node name="Node2D4" parent="." instance=ExtResource("17_fi5u7")]
+position = Vector2(418, 542)
+id = "傲来布店"
+items = {
+"乾坤帽": 2,
+"抽丝断茧": 1,
+"江湖夜雨": 3,
+"狐媚面具": 1,
+"追星踏月": 3,
+"金刚甲": 2
+}
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

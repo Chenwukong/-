@@ -15,6 +15,12 @@ set Global.onTeamPlayer.append("小二")
 
 => END
 
+~ 战斗员
+set Global.onTalk = true
+set get_tree().current_scene.bossFight("鬼将军","res://Audio/BGM/战斗-BOSS 正义.mp3", "王姨")
+set Global.onTalk = false
+=> END
+
 
 ~ 宝箱质问
 set Global.onTalk = true
@@ -22,8 +28,9 @@ set Global.onTalk = true
 ·
 - 就拿
 	set Global.canTake = true
-	set Global.violencePoint -= 5
-	set Global.showViolence("negative",5)
+	set Global.violencePoint -= 10
+	set Global.showViolence("negative",10)
+	set Global.showMsg("失去十点仁德值")
 - 算了
 
 set Global.onTalk = false
@@ -31,7 +38,6 @@ set Global.onTalk = false
 
 ~ 新手警告
 set Global.onTalk = true
-
 set Global.isNewPlayer()
 传梦: 这是传梦之路试玩版，目前还有许多的bug。
 set FightScenePlayers.healAll()
@@ -41,13 +47,14 @@ set FightScenePlayers.healAll()
 
 
 
-if !Global.onPhone:
-	传梦: 鼠标和键盘大部分时候不可共用，请选择游玩方式
-	传梦: 建议选了就坚定用哪一种
-	- 键盘
+#if !Global.onPhone:
+#	传梦: 鼠标和键盘大部分时候不可共用
+#	传梦: 鼠标模式没办法用键盘的快捷键如alt+q,alt+w等
+#	传梦: 接下来请选择游玩方式
+#	- 键盘
 
-	- 鼠标
-		set Global.noKeyboard = true
+#	- 鼠标
+#		set Global.noKeyboard = true
 	
 传梦: 好了再多说一句就要惹人烦了，通过后面这个传送点开始游戏吧😎
 set Global.triggerPlace.get("新手警告").disable = true
@@ -561,11 +568,10 @@ set Global.onTalk = true
 蒙布郎: 追云啊，来看看，我最近刚进了一批上好的布料
 时追云喜: 好的蒙大叔
 if Global.npcs.get("蒙布郎").dialogues[0].trigger == false:
-	蒙布郎: [speed=0.4]对了，这匹布料你拿去吧，你们很久没有买新衣服了吧
+	蒙布郎: [speed=0.4]对了，这些衣服你拿去吧，你们很久没有买新衣服了吧
 	时追云: [speed=0.4]这怎么可以，我怎么能白拿您一匹布料惊讶
 	蒙布郎: [speed=0.4]都街坊邻居的，客气这个干啥啊，以后有空多来照顾我们生意就是了
 	时追云喜: [speed=0.4]这。好吧，多谢蒙大叔了
-set get_tree().current_scene.popShop()
 set Global.npcs.get("蒙布郎").dialogues[0].trigger = true
 set Global.onTalk = false
 set Global.currNpc = null
@@ -575,7 +581,6 @@ set Global.currNpc = null
 set Global.onTalk = true
 王大锤: 追云来买点吧，都是上好的兵器
 时追云喜: 好微笑
-set get_tree().current_scene.popShop()
 set Global.npcs.get("蒙布郎").dialogues[0].trigger = true
 set Global.onTalk = false
 set Global.currNpc = null
@@ -637,8 +642,7 @@ if Global.npcs.get("柳老").dialogues[0].trigger == false:
 	set Global.npcs.get("管家").dialogues[0].unlocked = true
 	set Global.npcVis.get("建邺城").get("管家").visible = true
 	set Global.triggerPlace.get("管家请求").disable = false
-else:
-	set get_tree().current_scene.popShop()
+
 set Global.currNpc = null
 set Global.onTalk = false
 => END

@@ -34,6 +34,8 @@ func _on_area_2d_body_entered(body):
 				pass
 			if Global.canTake == false:
 				return
+				
+				
 		#FightScenePlayers.fightScenePlayerData.get(i).potential += 5
 
 		if gold:

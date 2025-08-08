@@ -1,9 +1,10 @@
-[gd_scene load_steps=255 format=3 uid="uid://b1uenf280qwkv"]
+[gd_scene load_steps=256 format=3 uid="uid://b1uenf280qwkv"]
 
 [ext_resource type="Script" path="res://Script/battleField.gd" id="1_lq0d5"]
 [ext_resource type="Texture2D" uid="uid://1dxnu5vbd5lj" path="res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png" id="2_tenfk"]
 [ext_resource type="Material" uid="uid://dhxnral6tugrp" path="res://shader/battleField.tres" id="2_yx76r"]
 [ext_resource type="Texture2D" uid="uid://cddclg043crea" path="res://梦魂Animation/0天麒攻击.png" id="3_kin0l"]
+[ext_resource type="Texture2D" uid="uid://cj3w1i7vlfluk" path="res://Pictures/菜单/2.png" id="3_xeuxp"]
 [ext_resource type="Texture2D" uid="uid://dhmi3utawug6b" path="res://Icons/319.png" id="4_f171q"]
 [ext_resource type="Texture2D" uid="uid://ctll0vsae61qt" path="res://梦魂Animation/龙卷.png" id="4_g6a1e"]
 [ext_resource type="Texture2D" uid="uid://c0md4rvqqv7xo" path="res://Icons/320.png" id="4_gagfs"]
@@ -12,11 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cspnfha3q6dyk" path="res://总血量背景.png" id="5_p5lxw"]
 [ext_resource type="Texture2D" uid="uid://ev64yuqvo42t" path="res://Icons/316.png" id="5_rureb"]
 [ext_resource type="Texture2D" uid="uid://pb2du0fcdiyq" path="res://Icons/317.png" id="6_75kbo"]
-[ext_resource type="Texture2D" uid="uid://c8d0u73bmiu6p" path="res://战斗技能-背景.png" id="6_gq547"]
 [ext_resource type="Texture2D" uid="uid://dm383s3hsp8r5" path="res://总血量血条.png" id="6_v4kv4"]
-[ext_resource type="Texture2D" uid="uid://btdtfxmdqaadm" path="res://战斗技能-描述.png" id="7_h1g86"]
+[ext_resource type="Texture2D" uid="uid://blfdmc106qgfl" path="res://Pictures/菜单/下.png" id="7_dq2dj"]
 [ext_resource type="Texture2D" uid="uid://drn80h5vgysk1" path="res://战斗总览gai1.png" id="7_wxfmt"]
 [ext_resource type="Texture2D" uid="uid://malhfxkw02b2" path="res://战斗敌人血条.png" id="8_o0apn"]
+[ext_resource type="Texture2D" uid="uid://dehptjwoc2qj2" path="res://Pictures/菜单/上.png" id="8_qtmq1"]
 [ext_resource type="Texture2D" uid="uid://0d3mrvkex2er" path="res://战斗敌人黄条.png" id="9_23fcm"]
 [ext_resource type="Texture2D" uid="uid://bj7p0x6cmc0o0" path="res://Pictures/Pictures/1.png" id="9_rfjnd"]
 [ext_resource type="Texture2D" uid="uid://b5rdorp32obpg" path="res://按钮贝.png" id="12_jfokn"]
@@ -1624,6 +1625,12 @@ position = Vector2(75, 398)
 scale = Vector2(1.43625, 1.32667)
 texture = ExtResource("2_tenfk")
 
+[node name="2" type="Sprite2D" parent="battleFieldPicture"]
+visible = false
+position = Vector2(371.74, -273.879)
+scale = Vector2(0.696258, 0.753767)
+texture = ExtResource("3_xeuxp")
+
 [node name="screenMagic" type="AnimatedSprite2D" parent="battleFieldPicture"]
 visible = false
 self_modulate = Color(1, 1, 1, 0.788235)
@@ -1690,23 +1697,22 @@ offset_top = -197.756
 offset_right = 753.72
 offset_bottom = 385.244
 scale = Vector2(0.691398, 0.627614)
-texture = ExtResource("6_gq547")
+texture = ExtResource("7_dq2dj")
 metadata/_edit_group_ = true
 
 [node name="GridBoxContainer" type="GridContainer" parent="battleFieldPicture/magicSelection"]
 layout_mode = 0
-offset_left = 107.682
-offset_top = 49.9427
-offset_right = 1131.68
-offset_bottom = 191.943
+offset_left = 108.0
+offset_top = 50.0
+offset_right = 1197.0
+offset_bottom = 192.0
 scale = Vector2(0.910183, 3.41143)
-theme_override_constants/h_separation = 370
+theme_override_constants/h_separation = 410
 theme_override_constants/v_separation = 30
 columns = 3
 
 [node name="magicDescription" type="TextureRect" parent="battleFieldPicture"]
 visible = false
-self_modulate = Color(0, 0.486275, 0.854902, 1)
 z_index = 150
 anchors_preset = -1
 anchor_right = 0.004
@@ -1716,16 +1722,17 @@ offset_top = -294.029
 offset_right = 748.452
 offset_bottom = -110.629
 scale = Vector2(0.693477, 0.556821)
-texture = ExtResource("7_h1g86")
+texture = ExtResource("8_qtmq1")
 
 [node name="Label" type="Label" parent="battleFieldPicture/magicDescription"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 61.0
-offset_top = 36.0
-offset_right = 10053.0
-offset_bottom = 313.0
-scale = Vector2(0.103236, 0.421449)
-theme_override_font_sizes/font_size = 200
+offset_left = 10.9345
+offset_top = 22.7853
+offset_right = 23135.9
+offset_bottom = 745.785
+scale = Vector2(0.048952, 0.199841)
+theme_override_font_sizes/font_size = 600
 text = "攻击单个敌人，使其速度降低"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -2578,6 +2585,7 @@ one_shot = true
 position = Vector2(-116.832, -76.2376)
 
 [node name="phoneControl" type="Node2D" parent="."]
+visible = false
 z_index = 300
 position = Vector2(-422.772, 491.089)
 scale = Vector2(1.41484, 1.46612)
@@ -2670,23 +2678,6 @@ offset_left = 35.6436
 offset_top = 0.990112
 offset_right = 75.6436
 offset_bottom = 19.9901
-
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = 580
-offset_left = 537.0
-offset_top = 36.0
-offset_right = 616.0
-offset_bottom = 115.0
-color = Color(1, 1, 0, 1)
-
-[node name="speedButton" type="Button" parent="."]
-z_index = 590
-offset_left = 536.634
-offset_top = 35.6436
-offset_right = 616.634
-offset_bottom = 115.644
-theme_override_font_sizes/font_size = 30
-text = "X1"
 
 [connection signal="button_down" from="battleFieldPicture/Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="battleFieldPicture/blockButton/blockButton" to="." method="_on_block_button_button_down"]

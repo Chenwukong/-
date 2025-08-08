@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="5_7amwe"]
 [ext_resource type="AudioStream" uid="uid://opb5la41xrhy" path="res://Audio/BGM/建业.mp3" id="6_ivf4w"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="16_e2opc"]
-[ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="17_ukith"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_i0fey"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="18_bsgr7"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="19_rx2a4"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="20_f8g44"]
@@ -93,7 +93,7 @@ polygon = PackedVector2Array(-37, 65, 68, 128, 107, 108, 160, 91, 208, 98, 492, 
 
 [node name="player" parent="." instance=ExtResource("5_7amwe")]
 z_index = 1
-position = Vector2(264, 308)
+position = Vector2(272, 387)
 scale = Vector2(0.903555, 0.940031)
 
 [node name="Camera2D" parent="player" index="3"]
@@ -188,17 +188,12 @@ one_shot = true
 position = Vector2(711, 470)
 
 [node name="蒙布郎" parent="." instance=ExtResource("28_s5fci")]
-position = Vector2(371, 228)
+position = Vector2(224, 324)
+scale = Vector2(1.35897, 1.35897)
 sprite_frames = SubResource("SpriteFrames_i3h8o")
 autoplay = "default"
 itemSale = ["方巾", "面具", "布衣", "锦衣", "草鞋", "皮鞋"]
 npcName = "蒙布郎"
-
-[node name="effect" parent="蒙布郎" index="2"]
-frame_progress = 0.0
-
-[node name="飞剑诀" parent="蒙布郎/effects" index="4"]
-frame = 4
 
 [node name="nightBgm" type="AudioStreamPlayer2D" parent="."]
 visible = false
@@ -215,7 +210,14 @@ wait_time = 0.1
 
 [node name="CanvasLayer" parent="." instance=ExtResource("16_e2opc")]
 
-[node name="shop" parent="." instance=ExtResource("17_ukith")]
+[node name="Node2D" parent="." instance=ExtResource("17_i0fey")]
+position = Vector2(492, 317)
+id = "建邺布店"
+items = {
+"皮鞋": 1,
+"锦衣": 1,
+"面具": 1
+}
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -231,4 +233,3 @@ wait_time = 0.1
 [connection signal="timeout" from="warnTimer" to="." method="_on_warn_timer_timeout"]
 
 [editable path="player"]
-[editable path="蒙布郎"]

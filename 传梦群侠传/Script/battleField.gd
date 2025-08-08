@@ -46,14 +46,30 @@ var preValue = 0
 var shader_material: ShaderMaterial
 
 var deltas
-func _ready(): 
+var all_nodes = []
+func get_all_audio_stream_player2D():
+	var audio_players = []
+	var all_nodes = get_tree().current_scene.get_children()
+
+	for node in all_nodes:
+		if node is AudioStreamPlayer2D:
+			audio_players.append(node)
+
+	return audio_players
+
+
+func _ready():
+
+	Global.onButton = false
 	if Global.noKeyboard:
 		$phoneControl.visible = true
 	shader_material = $battleFieldPicture/lastHit.material as ShaderMaterial
 	shader_material.set("play_once", false)
 	if !Global.onFightDoubleSpeed:
 		Engine.time_scale = 1.0
+		$"battleFieldPicture/2".visible = false
 	else:
+		$"battleFieldPicture/2".visible = true
 		Engine.time_scale = 2.0
 	dialogued = false
 	
@@ -68,7 +84,7 @@ func _ready():
 		$battleFieldPicture.texture = load("res://Battlebacks/东海湾.jpg")
 	elif sceneName == "黑暗空间":
 		$battleFieldPicture.texture = load("res://panoramas2/蜈蚣精.jpg")
-	elif sceneName == "小西天":
+	elif sceneName == "小西天" or sceneName == "大唐国境":
 		$battleFieldPicture.texture = load("res://Battlebacks/黄沙.jpg")
 	else:
 		$battleFieldPicture.texture = load ("res://Battlebacks/W99HX7R)91UPJ_XET%6Z3XL_tmb.png")
@@ -149,7 +165,15 @@ func _process(delta):
 		get_parent().get_parent().get_node("battleBgm").volume_db = -80
 	else:
 		get_parent().get_parent().get_node("battleBgm").volume_db = 5
-	
+
+	if !Global.musicOn:
+		all_nodes = get_all_audio_stream_player2D()
+		for i in all_nodes:
+			
+			i.volume_db = -80
+	else:
+		for i in all_nodes:
+			i.volume_db = 6	
 	
 	if Global.onAttackingList.size() > 0:
 		if Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet:
@@ -492,8 +516,16 @@ func _process(delta):
 				if i.currHp <= 0:
 					i.alive = true
 					i.currHp = (i.hp + i.addHp )/7
-				
-				
+				if i.name == "小二" or i.name == "小二真身":
+					if Global.haveQianJi:
+						FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1])
+						FightScenePlayers.eraseMagic("小二","千机变")
+						FightScenePlayers.learnMagic("小二","千机变")
+						FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1])
+						FightScenePlayers.eraseMagic("小二真身","千机变")
+						FightScenePlayers.learnMagic("小二真身","千机变")
+						
+						
 				
 			Global.lost = true
 			get_parent().get_parent().get_node("player").visible = true
@@ -517,10 +549,11 @@ func _process(delta):
 			if Global.atNight:
 				get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			else:
-				if !Global.onHurry:
-					get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4
-				elif Global.onHurry:
-					get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5			
+				if Global.musicOn:
+					if !Global.onHurry:
+						get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4
+					elif Global.onHurry:
+						get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5			
 			get_parent().get_parent().get_node("battleBgm").stop()
 			Global.onMultiHit = 0
 			Global.target = null
@@ -534,6 +567,10 @@ func _process(delta):
 			if Global.onXiaoErZhenShen:
 				Global.onTeamPlayer.erase("小二真身")
 				Global.onTeamPlayer.append("小二")
+			
+					
+				
+				
 			
 			totalExp = 0
 			FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData.duplicate(true)
@@ -569,7 +606,15 @@ func _process(delta):
 			manaAdded = true
 			Global.onFight = false
 			for i in players:
-				
+				if i.name == "小二" or i.name == "小二真身":
+					if Global.haveQianJi:
+						FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1].name)
+						FightScenePlayers.eraseMagic("小二","千机变")
+						FightScenePlayers.learnMagic("小二","千机变")
+						
+						FightScenePlayers.eraseMagic("小二真身",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1].name)
+						FightScenePlayers.eraseMagic("小二真身","千机变")
+						FightScenePlayers.learnMagic("小二真身","千机变")
 				var addMpAmount = (i.mp + decrypt(i.addMp)) /7
 				
 				i.currHp += (i.hp + decrypt(i.addHp) )/7
@@ -633,10 +678,13 @@ func _process(delta):
 			get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5	
 		else:
-			if !Global.onHurry:
-				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 3
-			elif Global.onHurry:
-				get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
+			if Global.musicOn:
+				if !Global.onHurry:
+					get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4
+				elif Global.onHurry:
+					get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5		
+				
+				
 		Global.onMultiHit = 0
 		Global.currAttacker = ""
 		
@@ -658,19 +706,19 @@ func _process(delta):
 		if Global.haveUi:
 			get_parent().get_parent().get_node("CanvasLayer").visible = true
 		#战后结算经验和金币
-		
-		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false
-		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = true
-		
-		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true
-		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").visible = true
-		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").text = str(totalExp)
-		get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(totalGold)
-		
-		
+		if !Global.lost:
+			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false
+			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = true
+			
+			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true
+			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").visible = true
+			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").text = str(totalExp)
+			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(totalGold)
 		
 		
-		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
+		
+		
+			get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 		
 		
 	
@@ -1222,7 +1270,7 @@ func instantiatePlayers():
 			posY = -(playerIdx) * 倾斜度 + 150
 		else:
 			# Back row positions with a slight slant
-			posX = (playerIdx) * -50 + 300
+			posX = (playerIdx) * - 50 + 300
 			posY = (playerIdx) * 倾斜度 -170
 	
 		fightScenePlayerSceneInstance.position.x = posX

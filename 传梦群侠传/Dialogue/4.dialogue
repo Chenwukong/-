@@ -52,7 +52,10 @@ set get_tree().current_scene.get_node("近海恶蛟/effects/飞剑诀").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/096-Attack08.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
 敖白惊: [speed=0.5]！！？
-set get_tree().current_scene.get_node("近海恶蛟/").visible = false
+set Global.changevis("东海沉船","近海恶蛟")
+set get_tree().current_scene.get_node("近海恶蛟").visible = false
+
+
 敖雨: [speed=0.5]你怎么突然就动手了
 小二: [speed=0.5](唉，老大真是越来越强了，我可不能拖他后腿)
 .
@@ -130,7 +133,6 @@ set Global.onTalk = false
 ~ 傲来药店老板
 set Global.onTalk = true
 傲来药店老板: [speed=0.5]毒不死你的...
-set get_tree().current_scene.popShop()
 set Global.onTalk = false
 => END 
 
@@ -152,15 +154,14 @@ set Global.onTalk = true
 
 傲来布店老板:[speed=0.5] 给我钱，给我钱！！快点给我钱！！！！
 小二: [speed=0.5]这里的人都疯疯癫癫的
-set get_tree().current_scene.popShop()
+
 
 set Global.onTalk = false
 => END 
 
 ~ 傲来武器铺老板
 set Global.onTalk = true
-傲来武器铺老板: 买完赶紧走。。。
-set get_tree().current_scene.popShop()
+傲来武器铺老板: 赶紧走。。。
 
 set Global.onTalk = false
 => END 
@@ -322,6 +323,8 @@ set Global.onTalk = false
 set Global.onTalk = true
 
 if Global.questItem.has("双头斧"):
+	set Global.violencePoint += 10
+	set Global.showViolence("positive",10)
 	set Global.questItemShow.get("双头斧").visible = false
 	锦纹: [speed=0.5]谢谢你们，这是给你们的酬劳
 	set Global.addItem("飞蝗石", "battleConsume", "battleItem", 10)
@@ -389,7 +392,7 @@ set Global.npcVis.get("女儿村").get("逆无邪").visible = false
 上官冕: [speed=0.5]而他们的头领，是个蓝皮红发海怪
 时追云怒: [speed=0.5]是奔霸！
 上官冕: [speed=0.5]怎么，你认识他？
-时追云怒: [speed=0.5]3年前，它也屠杀了我所在的小镇
+时追云怒: [speed=0.5]三年前，它也屠杀了我所在的小镇
 上官冕: [speed=0.5]那我们的经历倒是蛮相似的
 上官冕: [speed=0.5]不同的是，之后国王和妖魔达成了协议
 敖白惊: [speed=0.5]和妖魔达成协议？
@@ -421,7 +424,7 @@ set Global.npcVis.get("女儿村").get("逆无邪").visible = false
 上官冕: [speed=0.5]就在傲来国花果山！
 小二: [speed=0.5]什么？那不就在孙大圣的地盘
 上官冕: [speed=0.5]我不知道孙大圣是谁，但那座山好像一直是空着的，只是偶尔能看到成群的猴子
-上官冕: [speed=0.5]那些妖怪们自从攻下傲来国后就一只占据着那里，不怎么下来
+上官冕: [speed=0.5]那些妖怪们自从攻下傲来国后就一直占据着那里，不怎么下来
 时追云: [speed=0.5]那被贡献的人呢，他们派人下来抓吗
 上官冕: [speed=0.5]并不是，有几只妖怪驻扎在傲来国的祭堂里，平常就是他们在抓人，也是由他们把人带到山上去
 敖雨: [speed=0.5]我说那祭堂怎么不让进呢，原来是有妖怪在里边
@@ -473,7 +476,7 @@ set get_tree().current_scene.get_node("player/Sprite2D").visible = false
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").visible = true
 set get_tree().current_scene.get_node("player/AnimatedSprite2D").play("rightStand")
 
-时追云: [speed=0.5]前方这么聚集了这么多人
+时追云: [speed=0.5]前方怎么聚集了这么多人
 百姓: [speed=0.5]真是惨啊，这估计是被妖怪报复了吧
 百姓: [speed=0.5]全家都死了。。。
 小二: [speed=0.5]这。。。这不是老李头吗惊愕
@@ -557,7 +560,7 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 敖白惊: [speed=0.5]龟千岁，是你！
 敖雨: [speed=0.5]你个叛徒！！
 龟丞相: [speed=0.5]哼，叛徒又怎样，不叛徒又怎样，难道跟着你们一起死
-龟丞相: [speed=0.5]天庭已经没救了，不如乘早投入妖盟，念在昔日主仆一场，我倒是可以留你们一条性命
+龟丞相: [speed=0.5]天庭已经没救了，不如趁早投入妖盟，念在昔日主仆一场，我倒是可以留你们一条性命
 敖白怒: [speed=0.5]你妄想！！！你这个败类！怒喝 
 龟丞相: [speed=0.5]哼，还是一样幼稚
 龟丞相: [speed=0.5]这位上仙，你不会也和他们一样吧
@@ -610,7 +613,7 @@ set Global.npcVis.get("傲来国").get("npcs").visible = true
 时追云: [speed=0.5]你们看到了！怒喝
 时追云: [speed=0.5]这就是侵犯人类领土的妖怪的下场！
 时追云怒: [speed=0.5]他们并不是无敌的！
-时追云: [speed=0.5]我知道他们之前把你们打怕了，但如果一直不反抗，一直屈服与他们手下，总有一天你们的亲人，你们所爱之人也会被他们伤害！
+时追云: [speed=0.5]我知道他们之前把你们打怕了，但如果一直不反抗，一直屈服于他们手下，总有一天你们的亲人，你们所爱之人也会被他们伤害！
 时追云: [speed=0.5]而他们将会站在山顶踩着你们亲人的身体，咀嚼他们的血肉，你们甘心吗！
 百姓: [speed=0.5]这。。。
 百姓: [speed=0.5]我们当然不愿意！
@@ -1163,7 +1166,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 
 时追云怒: 敖雨！！！！
 敖雨: [speed=0.5]咳咳
-时追云怒: [speed=0.5]你替我档什么！！
+时追云怒: [speed=0.5]你替我挡什么！！
 敖雨: [speed=0.5]他刚才用了损耗灵魂的力量，咳，你没反应过来。。
 时追云怒: [speed=0.5]这是我的事情，你
 敖雨: [speed=0.5]建邺。。。始终算是我们的失职，咳咳

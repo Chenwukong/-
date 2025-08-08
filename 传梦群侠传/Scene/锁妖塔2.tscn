@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://31vlt6wxgfuk"]
+[gd_scene load_steps=31 format=3 uid="uid://31vlt6wxgfuk"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_jqp23"]
 [ext_resource type="Texture2D" uid="uid://0g5q47stll1v" path="res://panoramas2/大雁塔2.jpg" id="2_cr2cr"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3dtk2snxdgij" path="res://Scene/player.tscn" id="4_gtfv8"]
 [ext_resource type="AudioStream" uid="uid://lg6xtg85hjxd" path="res://Audio/BGM/#诡异之地.ogg" id="5_a43gm"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_c10bx"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="19_e87iq"]
 [ext_resource type="PackedScene" uid="uid://dvh00u3eljhxv" path="res://Scene/reward.tscn" id="24_24e3d"]
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="25_8maib"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="26_ph40d"]
@@ -95,7 +96,7 @@ texture = ExtResource("3_u3gb3")
 
 [node name="player" parent="." instance=ExtResource("4_gtfv8")]
 z_index = 1
-position = Vector2(2137, 1700)
+position = Vector2(2069, 693)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -310,6 +311,20 @@ id = "锁妖塔2"
 [node name="CanvasLayer" parent="." instance=ExtResource("18_c10bx")]
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="." instance=ExtResource("19_e87iq")]
+position = Vector2(1587, 1457)
+id = "锁妖塔2"
+items = {
+"黄金剑": 1
+}
+
+[node name="Node2D2" parent="." instance=ExtResource("19_e87iq")]
+position = Vector2(998, 1218)
+id = "锁妖塔22"
+items = {
+"五色飞石": 3
+}
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

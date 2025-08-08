@@ -72,6 +72,8 @@ func _ready():
 	all_nodes = get_all_audio_stream_player2D()
 	if sceneName == "方寸山迷境":
 		$currState.visible = true
+		
+		
 
 	$position/mapName.text = get_tree().current_scene.name
 	saveSlots = get_tree().get_nodes_in_group("saveSlot")
@@ -100,8 +102,16 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	$Label/Label2.text = str(Engine.get_frames_per_second())
 	
+	$"position/伤害加成/伤害加成value".text = str(Global.damageReward1)
+	$Label/Label2.text = str(Engine.get_frames_per_second())
+	if Input.is_action_just_pressed("o"):
+		if Global.noKeyboard:
+			Global.noKeyboard = false
+		else:
+			Global.noKeyboard = true	
+		
+		$Node2D.visible = true
 	deltas = delta
 
 	$"position/限制".text = "限制:" + str(Global.maxLevel)
@@ -113,6 +123,19 @@ func _process(delta):
 	$violencePoint/TextureProgressBar.value = Global.violencePoint
 	if sceneName == "方寸山迷境":
 		$currState.visible = true
+		if Global.fangCunState == 1:
+			$currState.text = "一"
+		elif Global.fangCunState == 2:
+			$currState.text = "二"
+		elif Global.fangCunState == 3:
+			$currState.text = "三"
+		elif Global.fangCunState == 4:
+			$currState.text = "四"
+		elif Global.fangCunState == 5:
+			$currState.text = "五"
+		
+		
+		
 	if !Global.musicOn:
 		for i in all_nodes:
 			i.volume_db = -80
@@ -1157,3 +1180,9 @@ func _on_on_ui_timer_timeout():
 	Global.onUi = false
 
 
+
+
+
+func _on_move_place_button_button_down():
+	Global.getnode("player").position = Vector2(int($Node2D/TextEdit.text),int($Node2D/TextEdit2.text))
+	$Node2D.visible = false

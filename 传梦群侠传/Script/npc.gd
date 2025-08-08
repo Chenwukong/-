@@ -121,11 +121,6 @@ func _on_button_mouse_entered():
 func _on_button_button_down():
 	if talked or Global.onPet:
 		return
-	if name == "小师弟" or name == "小师弟2" or name == "小师弟3" or name == "野鬼1"or name == "野鬼2"or name == "野鬼3"or name == "野鬼4"or name == "野鬼5":
-		talked = true
-	
-		
-		
 		
 	if Global.onTalk or Global.onFight :
 		return	
@@ -137,12 +132,14 @@ func _on_button_button_down():
 		return
 	if Global.onTalk:
 		return
+	if name == "小师弟" or name == "小师弟2" or name == "小师弟3" or name == "野鬼1"or name == "野鬼2"or name == "野鬼3"or name == "野鬼4"or name == "野鬼5":
+		talked = true
 	if audio != "":
 		get_parent().get_node("npcAudio").stream = load(newStream)
 		get_parent().get_node("npcAudio").play()
 		
 	if Global.npcs.has(npcName):
-		
+		print("havename")
 		var npc = Global.npcs[npcName]
 		#DialogueManager.show_chat(load("res://Dialogue/main.dialogue"),get_npc_dialogue(npcName))
 		var dialogue_index = npc["current_dialogue_index"]	
@@ -157,7 +154,7 @@ func _on_button_button_down():
 		get_tree().current_scene.get_node("player")
 		if itemSale.size() > 0:
 			Global.currShopItem = itemSale
-func playAnimation(animationName):
+func tion(animationName):
 	$effect.visible = true
 	$effect.play(animationName)
 

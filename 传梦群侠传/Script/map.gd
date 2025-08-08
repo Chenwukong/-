@@ -1,6 +1,6 @@
 extends Node2D
 
-var FIGHT_SCENE_TRIGGER_PROBABILITY = 700
+var FIGHT_SCENE_TRIGGER_PROBABILITY = 450
 @export var baseChance = 0
 var canEnterFight = false
 @export var onFight = false
@@ -60,6 +60,12 @@ func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
 
 func _ready():
 	
+	if has_node("shop"):
+		Global.getnode("shop").connect("buy_signal", Callable(self, "_on_buy_signal"))
+		Global.getnode("shop").connect("sell_signal", Callable(self, "_on_sell_signal"))
+		Global.getnode("shop").connect("confirm_cancel_signal", Callable(self, "_on_confirm_cancel_signal"))		
+		Global.getnode("shop").connect("confirm_buy_signal", Callable(self, "_on_confirm_buy_signal"))		
+		
 	if not has_node("http"):
 		var httpRequest = HTTPRequest.new()
 		httpRequest.name = "http"
@@ -144,7 +150,7 @@ func _ready():
 
 func _process(delta):
 
-
+	
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -182,557 +188,7 @@ func _process(delta):
 			for i in foShou:
 				if i.itemName == "佛手":
 					i.visible = false
-				
-	shopItems = get_tree().get_nodes_in_group("shopItem")
-	if onShop:
-		shopButtons[0].focus_mode = Control.FOCUS_ALL
-		shopButtons[1].focus_mode = Control.FOCUS_ALL
-		if !onBuy and !onSale and !Global.noKeyboard:
-			$shop/Panel/buyButton.visible = false
-			
-		if confirmButtonIndex == 0:
-			$shop/Panel/buyButton/cancel.modulate = "red"
-			$shop/Panel/buyButton/buy.modulate = "000000"
-		else:
-			$shop/Panel/buyButton/buy.modulate = "green"
-			$shop/Panel/buyButton/cancel.modulate = "000000"		
-				
-	if onShop and canPress:
-		if shopItems.size()>0:
-			if itemIndex == null:
-				itemIndex = 0
-			
-			$shop/Panel/description.text = shopItems[itemIndex].description 
-		
-		get_node("player").canMove = false
-		$shop/Panel/shopTop/golds.text = str(decrypt(FightScenePlayers.golds))
-		
-		if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and !onItemPicked and !onBuy and !onSaleItemPicked and !onSale:
-			onBuy = false
-			onSale = false	
-			$shop/Panel/buyButton.visible = false			
-			$shop/Panel/description.text = ""
-			$subSound.stream = load("res://Audio/SE/003-System03.ogg")
-			$subSound.play()
-			if onItemPicking or onSellPicking:
-				onItemPicking = false
-				onSellPicking = false
-				itemIndex = 0
-				itemIndex2 = itemIndex
-				for i in shopItems:
-					i.queue_free()				
-				
-			
-			else:
-				onShop = false
-				$shop.visible = false
-				get_node("player").canMove = true
-				canPress = false
-				$canPress.start()
-		if !onItemPicking and !onItemPicked and !onBuy and !onSale and !onSaleItemPicked and !onSellPicking:
-			
-			if Input.is_action_just_pressed("ui_right"):
-				if shopButtonIndex == 0:
-					shopButtonIndex += 1
-				else:
-					shopButtonIndex = 0	
-			if Input.is_action_just_pressed("ui_left"):
-				if shopButtonIndex == 1:
-					shopButtonIndex -= 1
-				else:
-					shopButtonIndex = 1		
-			if shopButtonIndex == 0 and !Global.noKeyboard:
-				shopButtons[0].grab_focus()
-				if Input.is_action_just_pressed("ui_accept") and !onItemPicking and !Global.noKeyboard:
-					onItemPicking = true
-					canPress = false
-					$canPress.start()
-					$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-					$subSound.play()
-					for x in shopItems:
-						x.queue_free()	
-					for i in Global.currShopItem.size():				
-						var instance = load("res://Scene/shopItem.tscn").instantiate()
-						instance.name = Global.currShopItem[i]
-						instance.get_node("itemName").text = Global.currShopItem[i]
-						instance.add_to_group("shopItem")
-						for battleConsume in ItemData.battleConsume:
-							if Global.currShopItem[i] == battleConsume:
-								instance.get_node("golds").text = str(ItemData.battleConsume.get(battleConsume).gold)
-								instance.gold = ItemData.battleConsume.get(battleConsume).gold
-								instance.texture = load(ItemData.battleConsume.get(battleConsume).picture)
-								instance.description = ItemData.battleConsume.get(battleConsume).description
-						for consume in ItemData.consume:
-							if Global.currShopItem[i] == consume:
-								instance.get_node("golds").text = str(ItemData.consume.get(consume).gold)
-								instance.gold = ItemData.consume.get(consume).gold
-								instance.texture = load(ItemData.consume.get(consume).picture)
-								instance.description = ItemData.consume.get(consume).description							
-						for weapon in ItemData.weapon:
-							if Global.currShopItem[i] == weapon:
 
-								instance.get_node("golds").text = str(ItemData.weapon.get(weapon).gold)
-								instance.gold = ItemData.weapon.get(weapon).gold
-								instance.texture = load(ItemData.weapon.get(weapon).picture)
-								instance.description = ItemData.weapon.get(weapon).description
-						for hat in ItemData.hat:
-							if Global.currShopItem[i] == hat:
-								instance.get_node("golds").text = str(ItemData.hat.get(hat).gold)
-								instance.gold = ItemData.hat.get(hat).gold
-								instance.texture = load(ItemData.hat.get(hat).picture)	
-								instance.description = 	ItemData.hat.get(hat).description	
-						for accessories in ItemData.accessories:
-							if Global.currShopItem[i] == accessories:
-								instance.get_node("golds").text = str(ItemData.accessories.get(accessories).gold	)	
-								instance.gold = ItemData.accessories.get(accessories).gold
-								instance.texture = load(ItemData.accessories.get(accessories).picture)	
-								instance.description = ItemData.accessories.get(accessories).description		
-						for cloth in ItemData.cloth:
-							if Global.currShopItem[i] == cloth:
-								instance.get_node("golds").text = str(ItemData.cloth.get(cloth).gold)	
-								instance.gold = ItemData.cloth.get(cloth).gold
-								instance.texture = load(ItemData.cloth.get(cloth).picture)	
-								instance.description = ItemData.cloth.get(cloth).description						
-						for shoes in ItemData.shoes:
-							if Global.currShopItem[i] == shoes:
-								instance.get_node("golds").text = str(ItemData.shoes.get(shoes).gold)	
-								instance.gold = ItemData.shoes.get(shoes).gold
-								instance.texture = load(ItemData.shoes.get(shoes).picture)	
-								instance.description = ItemData.shoes.get(shoes).description						
-
-						$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
-						shopItems = get_tree().get_nodes_in_group("shopItem")
-#
-			else:
-				if !Global.noKeyboard:
-					shopButtons[1].grab_focus()
-#
-				if Input.is_action_just_pressed("ui_accept") and !onSellPicking and !Global.noKeyboard:
-#					for x in shopItems:
-#						x.queue_free()													
-					onSellPicking = true			
-					canPress = false
-					$canPress.start()
-					$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-					$subSound.play()
-					for i in FightScenePlayers.bagArmorItem:
-						if FightScenePlayers.bagArmorItem[i].info.key == false:
-							var instance = load("res://Scene/shopItem.tscn").instantiate()
-							instance.name = i
-							instance.get_node("itemName").text = i
-							instance.get_node("itemNum").visible = true
-							instance.get_node("itemNum").text = str(FightScenePlayers.bagArmorItem[i].number)
-							instance.texture = load(FightScenePlayers.bagArmorItem[i].info.picture)	
-							instance.get_node("golds").text = str(FightScenePlayers.bagArmorItem[i].info.gold * 0.7)	
-							instance.gold = FightScenePlayers.bagArmorItem[i].info.gold * 0.7
-							$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
-							shopItems = get_tree().get_nodes_in_group("shopItem")					
-								
-		if onItemPicking:
-			onSale = false
-			onBuy = false
-			shopButtons[0].focus_mode = Control.FOCUS_NONE
-			shopButtons[1].focus_mode = Control.FOCUS_NONE
-				#$shop/Panel/buyButton.visible = false
-			if Input.is_action_just_pressed("ui_down") and !onItemPicked:
-				if itemIndex == shopItems.size() - 1:
-					itemIndex = 0
-				else:
-					itemIndex += 1		
-				shopItems[itemIndex].get_node("Button").grab_focus()	
-				$shop/Panel/description.text = shopItems[itemIndex].description
-				itemIndex2 = itemIndex
-				
-			if Input.is_action_just_pressed("ui_up") and !onItemPicked:
-				if itemIndex == 0:
-					itemIndex = shopItems.size() - 1
-				else:
-					itemIndex -= 1							
-				shopItems[itemIndex].get_node("Button").grab_focus()
-				$shop/Panel/description.text = shopItems[itemIndex].description				
-				itemIndex2 = itemIndex				
-			for i in shopItems:
-				if i.name == shopItems[itemIndex].name:
-					i.get_node("Label2").modulate = "0000002c"
-				else:
-					i.get_node("Label2").modulate = "ffffff2c"
-			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
-				if decrypt(FightScenePlayers.golds) < shopItems[itemIndex].gold:
-					$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-					$subSound.play()							
-					return 
-				shopItems[itemIndex].get_node("Control").visible = true
-				onItemPicked = true
-				onItemPicking = false
-
-				$canPress.start()
-				canPress = false
-				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-				$subSound.play()				
-				#onItemPicking = false	
-				
-				
-		if onSellPicking and shopItems.size() == 0:
-			onSellPicking = false		
-		if onSellPicking and shopItems.size()>0  :
-			shopButtons[0].focus_mode = Control.FOCUS_NONE
-			shopButtons[1].focus_mode = Control.FOCUS_NONE
-			if Input.is_action_just_pressed("ui_down") and !onSaleItemPicked:
-				if itemIndex == shopItems.size() - 1:
-					itemIndex = 0
-				else:
-					itemIndex += 1		
-				shopItems[itemIndex].get_node("Button").grab_focus()	
-				for x in shopItems.size():
-					if shopItems[x] == self:
-						itemIndex = x
-					else:
-						shopItems[x].get_node("Control").visible = false	
-				itemIndex2 = itemIndex							
-			if Input.is_action_just_pressed("ui_up") and !onSaleItemPicked:
-				if itemIndex == 0:
-					itemIndex = shopItems.size() - 1
-				else:
-					itemIndex -= 1							
-				for x in shopItems.size():
-					if shopItems[x] == self:
-						itemIndex = x
-					else:
-						shopItems[x].get_node("Control").visible = false								
-				shopItems[itemIndex].get_node("Button").grab_focus()		
-				itemIndex2 = itemIndex
-												
-			for i in shopItems: 
-				if i.name == shopItems[itemIndex].name:
-					i.get_node("Label2").modulate = "0000002c"
-				else:
-					i.get_node("Label2").modulate = "ffffff2c"
-					
-					
-			if Input.is_action_just_pressed("ui_accept") and canPress and shopItems.size() > 0 and !Global.noKeyboard:
-				
-				shopItems[itemIndex].get_node("Control").visible = true
-				onSaleItemPicked = true
-				onSellPicking = false
-				$canPress.start()
-				canPress = false				
-				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-				$subSound.play()				
-				
-				
-		if onItemPicked and shopButtonIndex == 0 :
-			onSale = false
-			onBuy = false
-			shopButtons[0].focus_mode = Control.FOCUS_NONE
-			shopButtons[1].focus_mode = Control.FOCUS_NONE
-			#$shop/Panel/buyButton.visible = false
-			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :	
-				$shop/Panel/buyButton.visible = false	
-				onBuy = false
-				onSale = false
-				onItemPicked = false
-				onItemPicking = true
-				
-				shopItems[itemIndex].get_node("Control").visible = false
-				shopItems[itemIndex].buyAmount = 1
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
-				$subSound.stream = load("res://Audio/SE/008-System08.ogg")
-				$subSound.play()	
-			if Input.is_action_pressed("ui_up") and canAdd:
-				if (shopItems[itemIndex].buyAmount + 10) * shopItems[itemIndex].gold >  decrypt(FightScenePlayers.golds):
-					var canUseGold = decrypt(FightScenePlayers.golds) - shopItems[itemIndex].buyAmount * shopItems[itemIndex].gold
-					var canBuyAmount = canUseGold / shopItems[itemIndex].gold
-					shopItems[itemIndex].buyAmount += int(floor(canBuyAmount))
-			
-				else:
-					shopItems[itemIndex].buyAmount += 10
-					
-					
-					
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)	
-				canAdd = false	
-				$addNumTimer.start()
-			if Input.is_action_pressed("ui_down") and canAdd:
-				if shopItems[itemIndex].buyAmount - 10 < 1:
-					shopItems[itemIndex].buyAmount = 1
-				else:
-					shopItems[itemIndex].buyAmount -= 10		
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
-				canAdd = false	
-				$addNumTimer.start()				
-			if Input.is_action_pressed("ui_right") and canAdd:
-				if (shopItems[itemIndex].buyAmount + 1) * shopItems[itemIndex].gold >  decrypt(FightScenePlayers.golds):
-					return
-				else:
-					shopItems[itemIndex].buyAmount += 1		
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
-				canAdd = false	
-				$addNumTimer.start()						
-			if Input.is_action_pressed("ui_left") and canAdd:
-				if shopItems[itemIndex].buyAmount - 1 < 1:
-					shopItems[itemIndex].buyAmount = 1
-				else:
-					shopItems[itemIndex].buyAmount -= 1		
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
-				canAdd = false	
-				$addNumTimer.start()	
-			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
-				onBuy = true
-				onItemPicked = false
-				itemIndex = itemIndex2
-				$shop/Panel/buyButton.visible = true
-				canPress = false
-				$canPress.start()				
-				$shop/Panel/buyButton/buy.grab_focus()
-				$shop/Panel/buyButton/buy.modulate = "ffffff"
-				$shop/Panel/buyButton/cancel.modulate = "000000"				
-				confirmButtonIndex = 1
-				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-				$subSound.play()			
-		if onSaleItemPicked and shopButtonIndex == 1:	
-			shopButtons[0].focus_mode = Control.FOCUS_NONE
-			shopButtons[1].focus_mode = Control.FOCUS_NONE			
-			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :	
-				$shop/Panel/buyButton.visible = false	
-				onBuy = false
-				onSale = false	
-				onSaleItemPicked = false
-				onSellPicking = true
-				if shopItems.size() == 0:
-					return
-				shopItems[itemIndex].get_node("Control").visible = false
-				shopItems[itemIndex].buyAmount = 1
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
-			if Input.is_action_pressed("ui_up") and canAdd:
-				if shopItems[itemIndex].buyAmount + 10 > FightScenePlayers.bagArmorItem[shopItems[itemIndex].name].number:
-					shopItems[itemIndex].buyAmount = FightScenePlayers.bagArmorItem[shopItems[itemIndex].name].number
-				else:
-					shopItems[itemIndex].buyAmount += 10
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)	
-				canAdd = false	
-				$addNumTimer.start()
-			if Input.is_action_pressed("ui_down") and canAdd:
-				if shopItems[itemIndex].buyAmount - 10 < 1:
-					shopItems[itemIndex].buyAmount = 1
-				else:
-					shopItems[itemIndex].buyAmount -= 10		
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
-				canAdd = false	
-				$addNumTimer.start()				
-			if Input.is_action_pressed("ui_right") and canAdd:
-				if shopItems[itemIndex].buyAmount + 10 > FightScenePlayers.bagArmorItem[shopItems[itemIndex].name].number:
-					shopItems[itemIndex].buyAmount = FightScenePlayers.bagArmorItem[shopItems[itemIndex].name].number
-				else:
-					shopItems[itemIndex].buyAmount += 1		
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
-				canAdd = false	
-				$addNumTimer.start()						
-			if Input.is_action_pressed("ui_left") and canAdd:
-				if shopItems[itemIndex].buyAmount - 1 < 1:
-					shopItems[itemIndex].buyAmount = 1
-				else:
-					shopItems[itemIndex].buyAmount -= 1		
-				shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold * shopItems[itemIndex].buyAmount)
-				canAdd = false	
-				$addNumTimer.start()	
-			if Input.is_action_pressed("ui_accept") and canPress and !Global.noKeyboard:
-				onSale = true
-				onSaleItemPicked = false
-				$shop/Panel/buyButton.visible = true
-				canPress = false
-			
-				$canPress.start()				
-				$shop/Panel/buyButton/buy.grab_focus()
-				$shop/Panel/buyButton/buy.modulate = "ffffff"
-				$shop/Panel/buyButton/cancel.modulate = "000000"				
-				confirmButtonIndex = 1			
-				$subSound.stream = load("res://Audio/SE/002-System02.ogg")
-				$subSound.play()							
-		if onBuy:
-			shopButtons[0].focus_mode = Control.FOCUS_NONE
-			shopButtons[1].focus_mode = Control.FOCUS_NONE
-			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :
-				onBuy = false
-				onItemPicked = true
-				onItemPicking = false	
-				shopItems[itemIndex].get_node("Control").visible = false
-				$shop/Panel/buyButton.visible = false 
-				canPress = false
-				$canPress.start()
-			if Input.is_action_just_pressed("ui_right"):
-				if confirmButtonIndex == 1:
-					confirmButtonIndex = 0
-					$shop/Panel/buyButton/cancel.grab_focus()
-					$shop/Panel/buyButton/cancel.modulate = "ffffff"
-					$shop/Panel/buyButton/buy.modulate = "000000"
-				elif confirmButtonIndex == 0:
-					confirmButtonIndex = 1
-					$shop/Panel/buyButton/buy.grab_focus()
-					$shop/Panel/buyButton/buy.modulate = "ffffff"
-					$shop/Panel/buyButton/cancel.modulate = "000000"
-			if Input.is_action_just_pressed("ui_left"):
-				print(333)
-				if confirmButtonIndex == 0:
-					confirmButtonIndex = 1
-					$shop/Panel/buyButton/buy.grab_focus()		
-					$shop/Panel/buyButton/buy.modulate = "ffffff"	
-					$shop/Panel/buyButton/cancel.modulate = "000000"		
-				elif confirmButtonIndex == 1:
-					confirmButtonIndex = 0		
-					$shop/Panel/buyButton/cancel.grab_focus()	
-					$shop/Panel/buyButton/cancel.modulate = "ffffff"
-					$shop/Panel/buyButton/buy.modulate = "000000"
-				#询问确认购买
-			if Input.is_action_pressed("ui_accept") and canPress and !Global.noKeyboard:
-				if confirmButtonIndex == 0:
-					onBuy = false
-					onItemPicked = false
-					onItemPicking = true	
-					$shop/Panel/buyButton.visible = false 	
-				
-					shopItems[itemIndex].get_node("Control").visible = false
-					$subSound.stream = load("res://Audio/SE/003-System03.ogg")
-					$subSound.play()					
-				if confirmButtonIndex == 1:	
-					$subSound.stream = load("res://Audio/SE/005-System05.ogg")
-					$subSound.play()						
-					onBuy = false
-					onItemPicked = false
-					onItemPicking = true		
-	
-					$shop/Panel/buyButton.visible = false
-					FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) -int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
-					shopItems[itemIndex].get_node("Control").visible = false
-					shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
-					if FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name):
-						FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number += shopItems[itemIndex].buyAmount
-						
-					else:
-						for i in ItemData.hat:
-							if shopItems[itemIndex].name == i:
-								FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-									"info": ItemData.hat.get(shopItems[itemIndex].name),
-									"type": "hat",
-									"number": shopItems[itemIndex].buyAmount,
-									"added": false		
-								}
-						
-						for i in ItemData.weapon:
-							if shopItems[itemIndex].name == i:
-								FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-									"info": ItemData.weapon.get(shopItems[itemIndex].name),
-									"type": "weapon",
-									"number": shopItems[itemIndex].buyAmount ,
-									"added": false		
-								}								
-						for i in ItemData.accessories:
-							if shopItems[itemIndex].name == i:
-								FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-									"info": ItemData.accessories.get(shopItems[itemIndex].name),
-									"type": "accessories",
-									"number": shopItems[itemIndex].buyAmount ,
-									"added": false		
-								}											
-						for i in ItemData.shoes:
-							if shopItems[itemIndex].name == i:
-								FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-									"info": ItemData.shoes.get(shopItems[itemIndex].name),
-									"type": "shoes",
-									"number": shopItems[itemIndex].buyAmount ,
-									"added": false		
-								}											
-						for i in ItemData.cloth:
-							if shopItems[itemIndex].name == i:
-								FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
-									"info": ItemData.cloth.get(shopItems[itemIndex].name),
-									"type": "cloth",
-									"number": shopItems[itemIndex].buyAmount ,
-									"added": false		
-								}									
-	
-	
-		if onSale:
-			shopButtons[0].focus_mode = Control.FOCUS_NONE
-			shopButtons[1].focus_mode = Control.FOCUS_NONE
-			if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) :
-				onSale = false
-				onSaleItemPicked = true	
-				shopItems[itemIndex].get_node("Control").visible = false
-				$shop/Panel/buyButton.visible = false 
-			if Input.is_action_just_pressed("ui_right"):
-				if confirmButtonIndex == 1:
-					confirmButtonIndex = 0
-					$shop/Panel/buyButton/cancel.grab_focus()
-					$shop/Panel/buyButton/cancel.modulate = "ffffff"
-					$shop/Panel/buyButton/buy.modulate = "000000"
-				elif confirmButtonIndex == 0:
-					confirmButtonIndex = 1
-					$shop/Panel/buyButton/buy.grab_focus()
-					$shop/Panel/buyButton/buy.modulate = "ffffff"
-					$shop/Panel/buyButton/cancel.modulate = "000000"
-			if Input.is_action_just_pressed("ui_left"):
-				if confirmButtonIndex == 0:
-					confirmButtonIndex = 1
-					$shop/Panel/buyButton/buy.grab_focus()		
-					$shop/Panel/buyButton/buy.modulate = "ffffff"	
-					$shop/Panel/buyButton/cancel.modulate = "000000"		
-				elif confirmButtonIndex == 1:
-					confirmButtonIndex = 0		
-					$shop/Panel/buyButton/cancel.grab_focus()	
-					$shop/Panel/buyButton/cancel.modulate = "ffffff"
-					$shop/Panel/buyButton/buy.modulate = "000000"
-				#询问确认售卖					
-			if Input.is_action_just_pressed("ui_accept") and canPress and !Global.noKeyboard:
-				if confirmButtonIndex == 1:
-					if shopItems.size() == 0:
-						return
-					
-					$subSound.stream = load("res://Audio/SE/006-System06.ogg")
-					$subSound.play()	
-					onSellPicking = true
-					onSale = false		
-					canPress = false										
-					$canPress.start()
-					
-					$shop/Panel/buyButton.visible = false
-					FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) + int(shopItems[itemIndex].get_node("golds").text) )* Global.enKey
-					FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number -= shopItems[itemIndex].buyAmount				
-					shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
-					shopItems[itemIndex].buyAmount = 1
-					if FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number > 0:
-						shopItems[itemIndex].get_node("itemNum").text = str(FightScenePlayers.bagArmorItem.get(shopItems[itemIndex].name).number)	
-						shopItems[itemIndex].get_node("Control").visible = false				
-					else:
-						if itemIndex > 0:	
-							itemIndex -= 1
-						else:
-							itemIndex = 0
-						itemIndex2 = itemIndex
-					for i in shopItems:
-						if FightScenePlayers.bagArmorItem.get(i.name):
-							pass
-						else:
-							i.queue_free()
-							
-					shopItems[itemIndex].get_node("Button").grab_focus()
-					
-					
-				else:
-					$subSound.stream = load("res://Audio/SE/003-System03.ogg")
-					$subSound.play()										
-					onSaleItemPicked = true
-					onSale = false			
-					
-					$shop/Panel/buyButton.visible = false
-					canPress = false										
-					$canPress.start()					
-					
-	if onShop and shopButtonIndex == 1:
-		for i in shopItems:
-			if FightScenePlayers.bagArmorItem.get(i.name):
-				pass
-			else:
-				i.queue_free()														
 	if $".".modulate.r < 1 and blackAlready == false:
 		$".".modulate.r += 0.02
 		$".".modulate.g += 0.02
@@ -938,9 +394,10 @@ func _process(delta):
 		#battleField.scale.y = 1.64
 	if Global.finishingBattle == true:
 		Global.finishingBattle = false
-		if !Global.canLose:
-			$BattleReward/BattleReward/CanvasLayer.visible = true	
-			$battleRewardGone.start()
+		if Global.lost:
+			return
+		$BattleReward/BattleReward/CanvasLayer.visible = true	
+		$battleRewardGone.start()
 	#$menuControl.global_position = Global.currPlayerPos
 	
 	if is_instance_valid($player):
@@ -1166,7 +623,10 @@ func _on_button_pressed():
 					instance.texture = load(ItemData.shoes.get(shoes).picture)								
 					instance.description =  ItemData.shoes.get(shoes).description
 			$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
-			shopItems = get_tree().get_nodes_in_group("shopItem")	
+			var shopItemsList = get_tree().get_nodes_in_group("shopItem")
+			for x in shopItemsList:
+				shopItems.append(x.get_node("itemName").text)
+
 
 	shopButtonIndex = 0
 	onItemPicking = true
@@ -1556,7 +1016,7 @@ func _on_menut_button_button_down():
 func _on_button_button_down():
 	onSale = false
 	onBuy = false
-	print(1233)
+
 	$shop/Panel/buyButton.visible = false
 	$shop/Panel/description.text = ""
 	if onItemPicking:
@@ -1623,7 +1083,10 @@ func _on_button_button_down():
 					instance.texture = load(ItemData.shoes.get(shoes).picture)								
 					instance.description =  ItemData.shoes.get(shoes).description
 			$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
-			shopItems = get_tree().get_nodes_in_group("shopItem")	
+			var shopItemsList = get_tree().get_nodes_in_group("shopItem")
+			for x in shopItemsList:
+				shopItems.append(x.get_node("itemName").text)
+
 	shopButtons[0].grab_focus()
 	shopButtonIndex = 0
 	onItemPicking = true
@@ -1647,6 +1110,7 @@ func _on_button_2_button_down():
 	$subSound.play()
 	shopButtons[1].grab_focus()
 	onBuy = false
+
 	onItemPicked = false
 	onItemPicking = false
 #	for x in shopItems:
@@ -1680,6 +1144,7 @@ func _on_cancel_button_down():
 	
 	if onBuy or onItemPicked or onItemPicking:
 		onBuy = false
+
 		onItemPicked = true		
 		shopItems[itemIndex].get_node("Control").visible = false
 		$shop/Panel/buyButton.visible = false 	
@@ -1697,7 +1162,7 @@ func _on_buy_button_down():
 		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
 		$subSound.play()						
 		onBuy = false
-		
+	
 		$shop/Panel/buyButton.visible = false
 		FightScenePlayers.golds =  (decrypt(FightScenePlayers.golds) - int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
 		Global.showMsg("购买到"+ shopItems[itemIndex].name)
@@ -1810,6 +1275,7 @@ func _on_close_button_down():
 	get_tree().current_scene.get_node("CanvasLayer").visible = true
 	$shop.visible = false
 	onBuy = false
+	
 	onSale = false
 	onItemPicked = false
 	onItemPicking = false
@@ -2177,4 +1643,191 @@ func fetch_all_names():
 
 func _on_enter_fight_timer_timeout():
 	$CharacterBody2D.position = Vector2(-3281,5605)	
+	if Global.onFight:
+		return
 	bossFight("怨蛛","res://Audio/BGM/战斗-生肖2.ogg",null)
+# 返回值为 1 ~ 6 的整数，受 luck（0~100）影响
+
+func _on_buy_signal():
+	shopButtonIndex == 0
+	onItemPicking = true
+	canPress = false
+	$canPress.start()
+	$subSound.stream = load("res://Audio/SE/002-System02.ogg")
+	$subSound.play()
+	for x in shopItems:
+		x.queue_free()	
+	for i in Global.currShopItem.size():				
+		var instance = load("res://Scene/shopItem.tscn").instantiate()
+		instance.name = Global.currShopItem[i]
+		instance.get_node("itemName").text = Global.currShopItem[i]
+		instance.add_to_group("shopItem")
+		for battleConsume in ItemData.battleConsume:
+			if Global.currShopItem[i] == battleConsume:
+				instance.get_node("golds").text = str(ItemData.battleConsume.get(battleConsume).gold)
+				instance.gold = ItemData.battleConsume.get(battleConsume).gold
+				instance.texture = load(ItemData.battleConsume.get(battleConsume).picture)
+				instance.description = ItemData.battleConsume.get(battleConsume).description
+		for consume in ItemData.consume:
+			if Global.currShopItem[i] == consume:
+				instance.get_node("golds").text = str(ItemData.consume.get(consume).gold)
+				instance.gold = ItemData.consume.get(consume).gold
+				instance.texture = load(ItemData.consume.get(consume).picture)
+				instance.description = ItemData.consume.get(consume).description							
+		for weapon in ItemData.weapon:
+			if Global.currShopItem[i] == weapon:
+
+				instance.get_node("golds").text = str(ItemData.weapon.get(weapon).gold)
+				instance.gold = ItemData.weapon.get(weapon).gold
+				instance.texture = load(ItemData.weapon.get(weapon).picture)
+				instance.description = ItemData.weapon.get(weapon).description
+		for hat in ItemData.hat:
+			if Global.currShopItem[i] == hat:
+				instance.get_node("golds").text = str(ItemData.hat.get(hat).gold)
+				instance.gold = ItemData.hat.get(hat).gold
+				instance.texture = load(ItemData.hat.get(hat).picture)	
+				instance.description = 	ItemData.hat.get(hat).description	
+		for accessories in ItemData.accessories:
+			if Global.currShopItem[i] == accessories:
+				instance.get_node("golds").text = str(ItemData.accessories.get(accessories).gold	)	
+				instance.gold = ItemData.accessories.get(accessories).gold
+				instance.texture = load(ItemData.accessories.get(accessories).picture)	
+				instance.description = ItemData.accessories.get(accessories).description		
+		for cloth in ItemData.cloth:
+			if Global.currShopItem[i] == cloth:
+				instance.get_node("golds").text = str(ItemData.cloth.get(cloth).gold)	
+				instance.gold = ItemData.cloth.get(cloth).gold
+				instance.texture = load(ItemData.cloth.get(cloth).picture)	
+				instance.description = ItemData.cloth.get(cloth).description						
+		for shoes in ItemData.shoes:
+			if Global.currShopItem[i] == shoes:
+				instance.get_node("golds").text = str(ItemData.shoes.get(shoes).gold)	
+				instance.gold = ItemData.shoes.get(shoes).gold
+				instance.texture = load(ItemData.shoes.get(shoes).picture)	
+				instance.description = ItemData.shoes.get(shoes).description						
+
+		$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
+		var shopItemsList = get_tree().get_nodes_in_group("shopItem")
+		for x in shopItemsList:
+			shopItems.append(x.get_node("itemName").text)
+
+
+
+func _on_sell_signal():
+	onBuy = false
+	onSale = false	
+	$shop/Panel/buyButton.visible = false			
+	$shop/Panel/description.text = ""
+	$subSound.stream = load("res://Audio/SE/003-System03.ogg")
+	$subSound.play()
+	if onItemPicking or onSellPicking:
+		onItemPicking = false
+		onSellPicking = false
+		itemIndex = 0
+		itemIndex2 = itemIndex
+		for i in shopItems:
+			i.queue_free()				
+		
+	
+	else:
+		onShop = false
+		$shop.visible = false
+		get_node("player").canMove = true
+		canPress = false
+		$canPress.start()
+	
+	shopButtonIndex == 1
+	onSellPicking = true			
+	canPress = false
+	$canPress.start()
+	$subSound.stream = load("res://Audio/SE/002-System02.ogg")
+	$subSound.play()
+	for i in FightScenePlayers.bagArmorItem:
+		if FightScenePlayers.bagArmorItem[i].info.key == false:
+			var instance = load("res://Scene/shopItem.tscn").instantiate()
+			instance.name = i
+			instance.get_node("itemName").text = i
+			instance.get_node("itemNum").visible = true
+			instance.get_node("itemNum").text = str(FightScenePlayers.bagArmorItem[i].number)
+			instance.texture = load(FightScenePlayers.bagArmorItem[i].info.picture)	
+			instance.get_node("golds").text = str(FightScenePlayers.bagArmorItem[i].info.gold * 0.7)	
+			instance.gold = FightScenePlayers.bagArmorItem[i].info.gold * 0.7
+			$shop/Panel/itemLeft/ScrollContainer/VBoxContainer.add_child(instance)
+			var shopItemsList = get_tree().get_nodes_in_group("shopItem")
+			for x in shopItemsList:
+				shopItems.append(x.get_node("itemName").text)
+				
+
+func _on_confirm_buy_signal():
+	var shopItemsList = get_tree().get_nodes_in_group("shopItem")
+	var shopItemsName = []
+	for x in shopItemsList:
+		shopItemsName.append(x.get_node("itemName").text)
+
+	if onBuy and Global.onPhone:
+		$subSound.stream = load("res://Audio/SE/005-System05.ogg")
+		$subSound.play()						
+		onBuy = false
+		onItemPicked = false
+		onItemPicking = true		
+
+		$shop/Panel/buyButton.visible = false
+		FightScenePlayers.golds = (decrypt(FightScenePlayers.golds) -int(shopItems[itemIndex].get_node("golds").text)) * Global.enKey
+		shopItems[itemIndex].get_node("Control").visible = false
+		shopItems[itemIndex].get_node("golds").text = str(shopItems[itemIndex].gold)
+		if FightScenePlayers.bagArmorItem.get(shopItemsName[itemIndex]):
+			FightScenePlayers.bagArmorItem.get(shopItemsName[itemIndex]).number += shopItems[itemIndex].buyAmount
+		
+		else:
+			for i in ItemData.hat:
+				if shopItems[itemIndex].name == i:
+					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
+						"info": ItemData.hat.get(shopItems[itemIndex].name),
+						"type": "hat",
+						"number": shopItems[itemIndex].buyAmount,
+						"added": false		
+					}
+			
+			for i in ItemData.weapon:
+				if shopItems[itemIndex].name == i:
+					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
+						"info": ItemData.weapon.get(shopItems[itemIndex].name),
+						"type": "weapon",
+						"number": shopItems[itemIndex].buyAmount ,
+						"added": false		
+					}								
+			for i in ItemData.accessories:
+				if shopItems[itemIndex].name == i:
+					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
+						"info": ItemData.accessories.get(shopItems[itemIndex].name),
+						"type": "accessories",
+						"number": shopItems[itemIndex].buyAmount ,
+						"added": false		
+					}											
+			for i in ItemData.shoes:
+				if shopItems[itemIndex].name == i:
+					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
+						"info": ItemData.shoes.get(shopItems[itemIndex].name),
+						"type": "shoes",
+						"number": shopItems[itemIndex].buyAmount ,
+						"added": false		
+					}											
+			for i in ItemData.cloth:
+				if shopItems[itemIndex].name == i:
+					FightScenePlayers.bagArmorItem[shopItems[itemIndex].name] = {
+						"info": ItemData.cloth.get(shopItems[itemIndex].name),
+						"type": "cloth",
+						"number": shopItems[itemIndex].buyAmount ,
+						"added": false		
+					}			
+func _on_confirm_cancel_signal():
+	if onBuy:
+		onBuy = false
+		
+		onItemPicked = false
+		onItemPicking = true	
+		$shop/Panel/buyButton.visible = false 	
+
+		shopItems[itemIndex].get_node("Control").visible = false
+		$subSound.stream = load("res://Audio/SE/003-System03.ogg")
+		$subSound.play()		

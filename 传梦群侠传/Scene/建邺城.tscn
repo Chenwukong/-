@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="17_hvtnb"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="18_pj1kb"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="22_a4sg2"]
-[ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="23_5b1ye"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="23_0yir4"]
 [ext_resource type="Texture2D" uid="uid://qsun3rkj0cvc" path="res://Panoramas/建业左.jpg" id="26_017fr"]
 [ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="27_6h578"]
 [ext_resource type="Texture2D" uid="uid://rolwilrgc1b3" path="res://Panoramas/建业左_2.png" id="27_sdh7q"]
@@ -521,7 +521,12 @@ position = Vector2(3110, 324)
 
 [node name="CanvasLayer" parent="." instance=ExtResource("22_a4sg2")]
 
-[node name="shop" parent="." instance=ExtResource("23_5b1ye")]
+[node name="Node2D" parent="." instance=ExtResource("23_0yir4")]
+position = Vector2(355.346, 1077.85)
+id = "建业城"
+items = {
+"精钢剑": 1
+}
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

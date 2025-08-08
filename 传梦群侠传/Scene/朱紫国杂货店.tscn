@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://716l03xbjppr"]
+[gd_scene load_steps=34 format=3 uid="uid://716l03xbjppr"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_neix7"]
 [ext_resource type="Texture2D" uid="uid://cip7du1p2e77s" path="res://panoramas2/长安药店.jpg" id="2_k4a2h"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://co7r4dli8q52v" path="res://Characters/铁匠-肥.png" id="19_j0nrf"]
 [ext_resource type="Texture2D" uid="uid://ktiu5pt2cg4f" path="res://Characters/大胡子.png" id="20_e2h8f"]
 [ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="21_7h5h5"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="22_f8cg6"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
@@ -274,6 +275,18 @@ itemSale = ["金香玉", "人参", "西瓜", "佛跳墙", "墨玉双剑", "踏�
 npcName = "朱紫国药铺老板"
 
 [node name="shop" parent="." instance=ExtResource("21_7h5h5")]
+
+[node name="Node2D" parent="." instance=ExtResource("22_f8cg6")]
+position = Vector2(2122, 365)
+id = "朱紫国杂货店"
+items = {
+"八卦指环": 4,
+"墨玉双剑": 1,
+"白龙冠": 4,
+"踏雪无痕": 4,
+"龙骨甲": 2,
+"龙鳞羽衣": 2
+}
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

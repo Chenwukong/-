@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://ckoctxrc8v4jx"]
+[gd_scene load_steps=32 format=3 uid="uid://ckoctxrc8v4jx"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_skig0"]
 [ext_resource type="Texture2D" uid="uid://cts7r2olg0xgy" path="res://panoramas2/大雁塔4.jpg" id="2_rj5st"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://du1cnt61ci3gw" path="res://Characters/1暴力熊.png" id="16_p4clg"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_bbs5n"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_eaxe8"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="19_8c6gg"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(518, 1334, 511, 172, 3802, 175, 3811, 2247, 525, 1514, 527, 2240)
@@ -473,6 +474,21 @@ npcName = "黑熊王"
 [node name="CanvasLayer" parent="." instance=ExtResource("18_eaxe8")]
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D" parent="." instance=ExtResource("19_8c6gg")]
+position = Vector2(1266, 1045)
+id = "锁妖塔4"
+items = {
+"神行靴": 3,
+"锁子甲": 2
+}
+
+[node name="Node2D2" parent="." instance=ExtResource("19_8c6gg")]
+position = Vector2(2440, 1344)
+id = "锁妖塔42"
+items = {
+"天香披肩": 1
+}
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

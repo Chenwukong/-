@@ -127,8 +127,8 @@ var currSmallPetData = {
 		"abilityPower": 100,
 		"tempStr":0,
 		"hungryValue": 1,
-		"hungry": 20000,
-		"rage": 10,
+		"hungry": 200,
+		"rage": 100,
 		"petMagic": magics.get("甘露逢春"),
 		"autoAttackSound": "res://Audio/SE/男-剑.ogg",
 		"attackOnEnemySound": null

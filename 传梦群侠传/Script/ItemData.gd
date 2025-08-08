@@ -7,7 +7,9 @@ extends Node
 #4傲来
 #5地府
 #6北俱芦洲
-	
+
+func _ready():
+	add_items_to_addItemInfo()	
 
 var keyItem = {
 	"避祸香囊":{
@@ -120,7 +122,18 @@ var keyItem = {
 		"useAble":true,
 		"gold": 0	
 	},
-				
+	"筋斗云":{
+		"name": "筋斗云",
+		"effect": "special",
+		"value": 100,
+		"icon": "res://cloud.png",
+		"picture":"res://cloud.png",
+		"description": "可让角色走路速度加快，再次使用关闭",
+		"audio": "res://Audio/SE/056-Right02.ogg",
+		"key":true,
+		"useAble":true,
+		"gold": 0	
+	},				
 	
 	
 }
@@ -1054,105 +1067,7 @@ var hat = {
 
 
 var addItemInfo ={
-	"辟尘分光履":{
-		"name": "辟尘分光履",
-		"type": "shoes",
-		"bagPlace": "bagArmorItem"
-	},			
-	
-	"蝉翼金丝甲":{
-		"name": "蝉翼金丝甲",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},			
-	
-	"鎏金浣月衣":{
-		"name": "鎏金浣月衣",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},		
-	"乾坤玉佩":{
-		"name": "乾坤玉佩",
-		"type": "accessories",
-		"bagPlace": "bagArmorItem"
-	},		
-	
-	
-	"金凤尾冠":{
-		"name": "金凤尾冠",
-		"type": "hat",
-		"bagPlace": "bagArmorItem"
-	},	
-	"GM头盔":{
-		"name": "GM头盔",
-		"type": "hat",
-		"bagPlace": "bagArmorItem"
-	},	
-	"GM战靴":{
-		"name": "GM战靴",
-		"type": "shoes",
-		"bagPlace": "bagArmorItem"
-	},	
-	"GM凤披":{
-		"name": "GM凤披",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},	
-	"GM战甲":{
-		"name": "GM战甲",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},	
-	"GM奖牌":{
-		"name": "GM奖牌",
-		"type": "accessories",
-		"bagPlace": "bagArmorItem"
-	},	
-	"白龙冠":{
-		"name": "白龙冠",
-		"type": "hat",
-		"bagPlace": "bagArmorItem"
-	},	
-	"墨玉双剑":{
-		"name": "墨玉双剑",
-		"type": "weapon",
-		"bagPlace": "bagArmorItem"
-	},	
-	"阴阳双剑":{
-		"name": "阴阳双剑",
-		"type": "weapon",
-		"bagPlace": "bagArmorItem"
-	},	
-	"青冥双剑":{
-		"name": "青冥双剑",
-		"type": "weapon",
-		"bagPlace": "bagArmorItem"
-	},		
-	"红丝缠":{
-		"name": "红丝缠",
-		"type": "weapon",
-		"bagPlace": "bagArmorItem"
-	},
-	"踏雪无痕":{
-		"name": "踏雪无痕",
-		"type": "shoes",
-		"bagPlace": "bagArmorItem"
-	},	
-	"抽丝断茧":{
-		"name": "抽丝断茧",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},	
-	"龙鳞羽衣":{
-		"name": "龙鳞羽衣",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},	
-	"龙骨甲":{
-		"name": "龙骨甲",
-		"type": "cloth",
-		"bagPlace": "bagArmorItem"
-	},	
+
 	"金疮药":{
 		"name": "金疮药",
 		"type": "battleConsume",
@@ -1248,3 +1163,31 @@ var addItemInfo ={
 	},				
 	
 }
+
+# 假设 accessories / hat / cloth / shoes 这些字典都已定义
+
+func add_items_to_addItemInfo():
+	var categories = {
+		"accessories": accessories,
+		"hat": hat,
+		"cloth": cloth, # 如果有的话就取消注释
+		"shoes": shoes,
+		"weapon": weapon,
+	}
+	
+	for category_name in categories.keys():
+		var category_dict = categories[category_name]
+		
+		for item_name in category_dict.keys():
+			# 如果 addItemInfo 已经有这个物品名，就跳过
+			if addItemInfo.has(item_name):
+				continue
+			
+			# 否则添加进去
+			addItemInfo[item_name] = {
+				"name": item_name,
+				"type": category_name,
+				"bagPlace": "bagArmorItem"
+			}
+
+

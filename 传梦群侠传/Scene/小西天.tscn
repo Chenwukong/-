@@ -1498,7 +1498,7 @@ texture = ExtResource("4_4sgn2")
 
 [node name="player" parent="." instance=ExtResource("5_3ay4n")]
 z_index = 1
-position = Vector2(990.525, 1613.18)
+position = Vector2(1260, 1932)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
 
@@ -1878,6 +1878,18 @@ offset_left = -91.0
 offset_top = 687.0
 offset_right = 1495.0
 offset_bottom = 1962.0
+
+[node name="Node2D2" parent="." instance=ExtResource("29_tqciv")]
+position = Vector2(1252, 534)
+id = "朱紫国杂货店"
+items = {
+"八卦指环": 4,
+"墨玉双剑": 1,
+"白龙冠": 4,
+"踏雪无痕": 4,
+"龙骨甲": 2,
+"龙鳞羽衣": 2
+}
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

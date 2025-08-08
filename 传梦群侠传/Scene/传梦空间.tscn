@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://br214w1c8rvex"]
+[gd_scene load_steps=135 format=3 uid="uid://br214w1c8rvex"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_jgnfh"]
 [ext_resource type="Texture2D" uid="uid://dr6ri1nlcyc55" path="res://panoramas2/传梦空间.jpg" id="2_rvkgg"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://0uei0mkmg6ta" path="res://Characters/关重七.png" id="34_qoobe"]
 [ext_resource type="Texture2D" uid="uid://bx0w1o30r7i6e" path="res://Characters/巡游.png" id="35_gr1yy"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="36_r66bw"]
+[ext_resource type="Texture2D" uid="uid://boxgtmk6wv3q3" path="res://Characters/帐房.png" id="37_o0y8b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5e4p"]
 
@@ -773,6 +774,21 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jp7d"]
+atlas = ExtResource("37_o0y8b")
+region = Rect2(0, 0, 66, 97)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4d6vk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jp7d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="传梦空间" type="Node2D"]
 material = SubResource("ShaderMaterial_e5e4p")
 script = ExtResource("1_jgnfh")
@@ -1111,6 +1127,19 @@ npcName = "汤姆"
 [node name="teleportCircle" parent="." instance=ExtResource("36_r66bw")]
 position = Vector2(-189, 246)
 toScene = "长寿村"
+
+[node name="桥" parent="." instance=ExtResource("25_3vp4l")]
+position = Vector2(2094, 1696)
+sprite_frames = SubResource("SpriteFrames_4d6vk")
+npcName = "桥"
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_left = 1015.0
+offset_top = 999.0
+offset_right = 2589.0
+offset_bottom = 2328.0
+color = Color(0, 0, 0, 1)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]

@@ -12,32 +12,49 @@ Nathan: For more information see the online documentation.
 
 => END
 
+~ 桥
+set Global.onTalk = true
+桥: [speed=0.5]传梦，我又给你找到了50个bug,我手上的是bug清单你看一瞎
+桥: [speed=0.5]嗯？你不是传梦啊，哦我妄了，他看到我手中的清单已经两眼一黑了
+桥: [speed=0.5]他的错别字之力还在影响着我，还有，他的bug！！他的bug又出来了！
+set Global.getnode("ColorRect2").visible = true
+桥: [speed=0.5]糟糕，黑屏了都，这货怎么修的代码
+桥: [speed=0.5]好了好了弄好了
+set Global.getnode("ColorRect2").visible = false
+桥: [speed=0.5]吓到你了，给你这个收收惊
+set Global.addItem("GM奖牌", "accessories", "bagArmorItem", 1)
+
+
+set Global.onTalk = false
+=> END
+
+
 ~ 女娲雕像
 set Global.onTalk = true
 此地的泉水清甜可口
-set Global.showMsg("全队伤害增加一成！")
-set Global.damageReward1 += 0.1
+set Global.showMsg("全队伤害增加半成！")
+set Global.damageReward1 += 0.05
 
 set Global.onTalk = false
 => END
 
 ~ 长寿药店大夫
 set Global.onTalk = true
-set get_tree().current_scene.popShop()
+
 
 set Global.onTalk = false
 => END
 
 ~ 长寿布店老板
 set Global.onTalk = true
-set get_tree().current_scene.popShop()
+
 
 set Global.onTalk = false
 => END
 
 ~ 长寿铁匠
 set Global.onTalk = true
-set get_tree().current_scene.popShop()
+
 
 set Global.onTalk = false
 => END
@@ -100,7 +117,7 @@ set Global.onTalk = true
 狼叔: [speed=0.5]忙死我了忙死我了，今天帮传梦做Godot插件，明天帮清风老寒做GGE功能，自己的游戏都耽搁了
 狼叔: [speed=0.5]你要来玩我的游戏嘛？梦5Q群: 240703671
 狼叔: [speed=0.5]话说这么多，送你点装备吧
-set Global.addItem("GM之靴", "shoes", "bagArmorItem", 1)
+set Global.addItem("GM战靴", "shoes", "bagArmorItem", 1)
 
 set Global.onTalk = false
 => END
@@ -249,6 +266,7 @@ set Global.onTalk = false
 
 ~ 西游遗憾1
 set Global.onTalk = true
+set FightScenePlayers.healAll()
 程咬金: [speed=0.5]你说什么？！有人要在我们长安水源下毒？！
 刘长源: [speed=0.5]没错！此事千真万确！请大人立马派人保护水源，警示百姓！
 程咬金: [speed=0.5]我凭什么相信你？！
@@ -272,13 +290,14 @@ set Global.getnode("火").visible = false
 程咬金: [speed=0.5]什么？！
 set Global.getnode("程咬金").play("左上")
 黄袍怪: [speed=0.5]既然如此，我就先解决了你们！！
-set get_tree().current_scene.bossFight("弥勒佛","res://Audio/BGM/战斗-仙剑.mp3", "西游遗憾")
+set get_tree().current_scene.bossFight("黄袍怪","res://Audio/BGM/战斗-仙剑.mp3", "西游遗憾")
 
 set Global.onTalk = false
 => END
 
 ~ 西游遗憾2
 set Global.onTalk = true
+set FightScenePlayers.healAll()
 set Global.getnode("九狐").visible = true
 九狐: [speed=0.5]黄袍怪！
 黄袍怪: [speed=0.5]什么！？九狐！你怎么会在这里！
@@ -1322,7 +1341,8 @@ set Global.removeshader("shadow")
 set Global.toggleballon()
 #set FightScenePlayers.learnMagic("小二真身", "火域")
 set FightScenePlayers.learnMagic("小二真身", "滔天")
-
+set FightScenePlayers.eraseMagic("小二真身","千机变")
+set FightScenePlayers.learnMagic("小二真身","千机变")
 夜护法: [speed=0.5]怎。。。怎么可能，你一个半人半妖血统不纯的家伙，妖力怎会如此可怕！
 夜护法: [speed=0.5]全部人都跟我上！不要留手，一定要在这里杀了他，他会成为我们之后总攻的威胁！
 set Global.getnode("蝎军").visible = true

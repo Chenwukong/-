@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ftuuaj13kouf"]
+[gd_scene load_steps=27 format=3 uid="uid://ftuuaj13kouf"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_ekqpn"]
 [ext_resource type="Texture2D" uid="uid://caaohs1uivmvw" path="res://panoramas2/地府-大殿2.jpg" id="2_p6ggs"]
@@ -18,7 +18,6 @@
 [ext_resource type="Texture2D" uid="uid://cikd0gev1w1p1" path="res://Characters/樵夫.png" id="16_ps8bn"]
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="17_d6knx"]
 [ext_resource type="Texture2D" uid="uid://dv0tfoifr1y1o" path="res://Characters/小白.png" id="18_f30dt"]
-[ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="19_s1h0a"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
@@ -230,12 +229,11 @@ items = {
 violencePointTreasure = true
 
 [node name="Node2D5" parent="." instance=ExtResource("17_d6knx")]
-position = Vector2(522, 174)
-id = "阴间货铺"
+position = Vector2(539, 327)
+id = "阴间货铺2"
 items = {
-"小还丹": 20
+"高速之星": 4
 }
-violencePointTreasure = true
 
 [node name="Node2D6" parent="." instance=ExtResource("17_d6knx")]
 position = Vector2(310, 68)
@@ -286,12 +284,11 @@ items = {
 violencePointTreasure = true
 
 [node name="Node2D12" parent="." instance=ExtResource("17_d6knx")]
-position = Vector2(523, 146)
+position = Vector2(475, 294)
 id = "阴间货铺"
 items = {
-"小还丹": 20
+"万里追云": 4
 }
-violencePointTreasure = true
 
 [node name="Node2D2" parent="." instance=ExtResource("17_d6knx")]
 position = Vector2(1101, 251)
@@ -302,26 +299,24 @@ items = {
 violencePointTreasure = true
 
 [node name="Node2D4" parent="." instance=ExtResource("17_d6knx")]
-position = Vector2(266, 179)
-id = "阴间货铺"
+position = Vector2(312, 376)
+id = "阴间货铺3"
 items = {
-"小还丹": 20
+"夜魔披风": 2,
+"黑魔冠": 4
 }
-violencePointTreasure = true
 
 [node name="oneTimeSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="白无常" parent="." instance=ExtResource("15_l7glc")]
-position = Vector2(342, 291)
+position = Vector2(2079, -446)
+scale = Vector2(0.794514, 0.939717)
 sprite_frames = SubResource("SpriteFrames_d8nhf")
 itemSale = ["万里追云", "高速之星", "黑魔冠", "夜魔披风", "小还丹", "西瓜", "佛跳墙"]
 npcName = "白无常"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.321569, 0.321569, 0.321569, 1)
-
-[node name="shop" parent="." instance=ExtResource("19_s1h0a")]
-visible = false
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
@@ -337,4 +332,3 @@ visible = false
 [connection signal="timeout" from="warnTimer" to="." method="_on_warn_timer_timeout" flags=18]
 
 [editable path="player"]
-[editable path="shop"]

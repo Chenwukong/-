@@ -1,4 +1,4 @@
-[gd_scene load_steps=202 format=3 uid="uid://b7m0e2bvanxoi"]
+[gd_scene load_steps=208 format=3 uid="uid://b7m0e2bvanxoi"]
 
 [ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="1_njpa6"]
 [ext_resource type="Texture2D" uid="uid://w4dov1c3r346" path="res://消息底图 (1).png" id="2_wncf6"]
@@ -42,7 +42,6 @@
 [ext_resource type="Texture2D" uid="uid://mt3m8nkmntv3" path="res://1BF2BC55.png" id="37_aoug8"]
 [ext_resource type="Texture2D" uid="uid://dgfb15fhuphsm" path="res://SeparateAnimation/敖雨/978-1.png" id="37_pr2yf"]
 [ext_resource type="Texture2D" uid="uid://knfeifc0y7q" path="res://SeparateAnimation/敖雨/978-2.png" id="38_djj0g"]
-[ext_resource type="Texture2D" uid="uid://iffkiuw5myt4" path="res://背景.png" id="39_hjx83"]
 [ext_resource type="Texture2D" uid="uid://cg65c7iysdh5q" path="res://SeparateAnimation/敖雨/978-3.png" id="39_isqou"]
 [ext_resource type="Texture2D" uid="uid://iypemk2hsl5s" path="res://加点按钮.png" id="39_r2b75"]
 [ext_resource type="Texture2D" uid="uid://d3lfptn6rdyqi" path="res://SeparateAnimation/敖雨/978-4.png" id="40_fi0bu"]
@@ -82,10 +81,17 @@
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="62_lkti6"]
 [ext_resource type="Texture2D" uid="uid://bjexy8vuf58aj" path="res://宠物UI无字.png" id="66_o20tt"]
 [ext_resource type="Texture2D" uid="uid://br54nh7ksccf0" path="res://宠物加点/宠物UI宠物加点未弹起.png" id="70_gkjac"]
+[ext_resource type="Texture2D" uid="uid://stxd1yl2h77b" path="res://Pictures/菜单/宠物食物背景.png" id="72_sgiqk"]
+[ext_resource type="Texture2D" uid="uid://btnllngd3gp3h" path="res://Pictures/菜单/宠物食物按钮.png" id="73_rwrn5"]
+[ext_resource type="Texture2D" uid="uid://cj3w1i7vlfluk" path="res://Pictures/菜单/2.png" id="77_i41ag"]
+[ext_resource type="Texture2D" uid="uid://b8fjtlpfuc15t" path="res://Pictures/菜单/2选中.png" id="78_a8mir"]
 [ext_resource type="Texture2D" uid="uid://c8mk3iuj07bqw" path="res://Pictures/底图.png" id="80_fbnlv"]
+[ext_resource type="Texture2D" uid="uid://bax113k6h8tn5" path="res://Pictures/菜单/1.png" id="81_mvfmb"]
 [ext_resource type="Texture2D" uid="uid://ds5bf8akccgvl" path="res://Pictures/3层.png" id="81_un0v5"]
+[ext_resource type="Texture2D" uid="uid://ddu3giobleslx" path="res://Pictures/菜单/1选中.png" id="82_cly6t"]
 [ext_resource type="Texture2D" uid="uid://ux5x2oyx1as2" path="res://Pictures/2ceng.png" id="82_hv8lo"]
 [ext_resource type="PackedScene" uid="uid://bbr8r2yqceilb" path="res://Scene/传梦者名.tscn" id="84_cqgn7"]
+[ext_resource type="FontFile" uid="uid://pnau5vpfj34k" path="res://Pictures/菜单/179729f5654cecd8b961ac82b8b7d048.ttf" id="92_lnjxp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tvqb"]
 atlas = ExtResource("11_guwxw")
@@ -1496,6 +1502,27 @@ texture = ExtResource("6_uw7qh")
 expand_mode = 1
 stretch_mode = 4
 
+[node name="伤害加成" type="Label" parent="position"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 89.0
+offset_right = 392.0
+offset_bottom = 164.0
+scale = Vector2(0.29187, 0.29187)
+theme_override_fonts/font = ExtResource("92_lnjxp")
+theme_override_font_sizes/font_size = 60
+text = "伤害倍数:"
+
+[node name="伤害加成value" type="Label" parent="position/伤害加成"]
+layout_mode = 0
+offset_left = 267.242
+offset_top = 17.1309
+offset_right = 467.242
+offset_bottom = 80.1309
+scale = Vector2(0.787342, 0.951771)
+theme_override_font_sizes/font_size = 50
+text = "伤害加成"
+
 [node name="限制" type="Label" parent="position"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 1
@@ -2677,15 +2704,25 @@ scale = Vector2(0.888661, 1.73857)
 texture = ExtResource("36_b4trb")
 
 [node name="TextureRect" type="TextureRect" parent="宠物食物商店"]
-offset_left = -285.823
-offset_top = -71.3228
-offset_right = 104.177
-offset_bottom = 173.677
+offset_left = -335.336
+offset_top = -55.2178
+offset_right = 121.664
+offset_bottom = 194.782
 scale = Vector2(1.49246, 0.667871)
-texture = ExtResource("39_hjx83")
+texture = ExtResource("72_sgiqk")
+
+[node name="宠物食物按钮" type="Sprite2D" parent="宠物食物商店"]
+position = Vector2(-172.169, 74.1989)
+scale = Vector2(1.12529, 0.575185)
+texture = ExtResource("73_rwrn5")
+
+[node name="宠物食物按钮2" type="Sprite2D" parent="宠物食物商店"]
+position = Vector2(194.675, 74.7741)
+scale = Vector2(1.12529, 0.575185)
+texture = ExtResource("73_rwrn5")
 
 [node name="五龙丹" type="Sprite2D" parent="宠物食物商店"]
-position = Vector2(-110.278, 10.3533)
+position = Vector2(-121.531, 12.6541)
 scale = Vector2(1.09947, 0.561988)
 texture = ExtResource("37_aoug8")
 
@@ -2696,10 +2733,10 @@ scale = Vector2(1.16606, 0.596026)
 texture = ExtResource("37_1jmee")
 
 [node name="cost" type="Label" parent="宠物食物商店"]
-offset_left = -138.411
-offset_top = 46.0147
-offset_right = -69.4107
-offset_bottom = 97.0147
+offset_left = -178.921
+offset_top = 53.4922
+offset_right = -109.921
+offset_bottom = 104.492
 scale = Vector2(0.787737, 0.787737)
 theme_override_font_sizes/font_size = 40
 text = "0"
@@ -2713,7 +2750,7 @@ offset_bottom = 89.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_csmn4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="宠物食物商店"]
-position = Vector2(218.306, -52.3418)
+position = Vector2(290.324, -33.3608)
 scale = Vector2(2.18637, 1.11755)
 sprite_frames = SubResource("SpriteFrames_l0x8k")
 
@@ -2726,10 +2763,10 @@ offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="宠物食物商店"]
-offset_left = 83.2714
-offset_top = 50.6162
-offset_right = 203.272
-offset_bottom = 124.616
+offset_left = 155.29
+offset_top = 60.3945
+offset_right = 275.29
+offset_bottom = 134.394
 scale = Vector2(0.798164, 0.381525)
 theme_override_font_sizes/font_size = 60
 text = "购买"
@@ -2742,6 +2779,7 @@ offset_right = 161.0
 offset_bottom = 72.0
 
 [node name="Label3" type="Label" parent="宠物食物商店"]
+visible = false
 offset_left = -40.5103
 offset_top = -44.2892
 offset_right = 119.49
@@ -2752,31 +2790,35 @@ text = "宠物食物
 "
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="宠物食物商店"]
-position = Vector2(39.3851, 36.8118)
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(70.8932, 48.3156)
 scale = Vector2(1.51768, 0.886944)
 sprite_frames = SubResource("SpriteFrames_ii2wu")
 autoplay = "default"
 
-[node name="addButton" type="Button" parent="宠物食物商店/AnimatedSprite2D2"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -9.0
-offset_top = -9.0
-offset_right = 9.0
-offset_bottom = 10.0
+[node name="addButton" type="TextureButton" parent="宠物食物商店/AnimatedSprite2D2"]
+offset_left = -8.15601
+offset_top = -11.0245
+offset_right = 26.844
+offset_bottom = 15.9755
+texture_normal = ExtResource("77_i41ag")
+texture_hover = ExtResource("78_a8mir")
 metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="宠物食物商店"]
-position = Vector2(-27.0069, 36.2366)
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-54.0138, 47.7404)
 scale = Vector2(1.50298, 0.915945)
 sprite_frames = SubResource("SpriteFrames_a163w")
 autoplay = "default"
 
-[node name="minButton" type="Button" parent="宠物食物商店/AnimatedSprite2D3"]
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -9.0
-offset_top = -9.0
-offset_right = 10.0
-offset_bottom = 9.0
+[node name="minButton" type="TextureButton" parent="宠物食物商店/AnimatedSprite2D3"]
+offset_left = -20.2151
+offset_top = -11.3035
+offset_right = 14.7849
+offset_bottom = 15.6965
+texture_normal = ExtResource("81_mvfmb")
+texture_hover = ExtResource("82_cly6t")
 
 [node name="buyAmount" type="Label" parent="宠物食物商店"]
 offset_left = 113.654
@@ -3183,6 +3225,37 @@ offset_left = 37.0
 offset_right = 77.0
 offset_bottom = 19.0
 
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="TextEdit" type="TextEdit" parent="Node2D"]
+offset_left = 488.0
+offset_top = 294.0
+offset_right = 553.0
+offset_bottom = 324.0
+placeholder_text = "X"
+
+[node name="TextEdit2" type="TextEdit" parent="Node2D"]
+offset_left = 566.0
+offset_top = 295.0
+offset_right = 631.0
+offset_bottom = 325.0
+placeholder_text = "Y"
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 536.0
+offset_top = 255.0
+offset_right = 786.0
+offset_bottom = 303.0
+text = "移动到"
+
+[node name="movePlaceButton" type="Button" parent="Node2D"]
+offset_left = 642.0
+offset_top = 296.0
+offset_right = 707.0
+offset_bottom = 329.0
+text = "发送"
+
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
 [connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]
@@ -3266,5 +3339,6 @@ offset_bottom = 19.0
 [connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
 [connection signal="button_down" from="传梦者列表/AnimatedSprite2D/传梦者列表button" to="." method="_on_传梦者列表button_button_down"]
 [connection signal="timeout" from="onUiTimer" to="." method="_on_on_ui_timer_timeout"]
+[connection signal="button_down" from="Node2D/movePlaceButton" to="." method="_on_move_place_button_button_down"]
 
 [editable path="importantMsg"]

@@ -52,7 +52,7 @@ var dialogue_line: DialogueLine:
 					
 		elif dialogue_line.character == "姜韵喜" or dialogue_line.character == "姜韵" or dialogue_line.character == "姜韵怒" or dialogue_line.character == "姜韵哀" or dialogue_line.character == "姜韵恐" or dialogue_line.character == "姜韵哭":
 			character_label.text = "姜韵"
-		elif dialogue_line.character == "敖白怒" or dialogue_line.character == "敖白"  or dialogue_line.character == "敖白哀":
+		elif dialogue_line.character == "敖白怒" or dialogue_line.character == "敖白"  or dialogue_line.character == "敖白哀"  or dialogue_line.character == "敖白惊":
 			character_label.text = "敖白"			
 		elif dialogue_line.character == "凌若昭哭" or dialogue_line.character == "凌若昭哀"  or dialogue_line.character == "凌若昭怒" or dialogue_line.character == "凌若昭喜" :
 			character_label.text = "凌若昭"				

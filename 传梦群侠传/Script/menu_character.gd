@@ -4,6 +4,7 @@ var playerIndex = 0
 var menuItems
 var appended = false
 var updated = false
+var itemUseFlag = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -14,6 +15,7 @@ func _process(delta):
 	menuItems = get_tree().get_nodes_in_group("bagMenuItem")
 	
 	if Global.onMenuItemUsing:
+		
 		updateStatus()
 		if !updated:
 			updated = true
@@ -59,13 +61,28 @@ func _process(delta):
 			Global.onMenuItemUsing = false
 			appended = false
 			Global.onItemSelect = true
+			
+			
+			
 			$".".visible = false
 			for i in menuItems:
 				if i.get_node("itemNum").text == "0":
 					$"../..".itemSelectIndex = 0
-					i.queue_free()			
-		if Input.is_action_just_released("ui_accept") and !Global.noKeyboard:	
-			pass
+					i.queue_free()		
+					
+#		if Input.is_action_just_pressed("ui_accept") and !Global.noKeyboard:	
+#			if itemUseFlag:
+#				itemUseFlag = false
+#
+#			else:
+#				visible = true
+#				itemUseFlag = true
+#				return
+#
+#			useItem()
+			
+			
+			
 		for i in Global.itemPlayers:
 			if i == Global.itemPlayers[Global.itemPlayerIndex]:
 				i.self_modulate = "ffffff"
@@ -89,12 +106,13 @@ func _on_menu_player_but_4_button_down():
 	useItem()
 	
 func useItem():
+	itemUseFlag = false
 	if Global.currMenuItem in ItemData.consume or Global.currMenuItem in ItemData.battleConsume:
 		var item = FightScenePlayers.consumeItem.get(Global.currMenuItem)
 		if item == null:
 			FightScenePlayers.battleItem.get(Global.currMenuItem)
 			item = FightScenePlayers.battleItem.get(Global.currMenuItem)
-		print(item)
+	
 		if item == null:
 			return
 		if item.number > 0:
@@ -162,7 +180,15 @@ func useItem():
 		$"../../../subSound".stream = load("res://Audio/SE/056-Right02.ogg")
 		$"../../../subSound".play()
 		Global.onMenuItemUsing = false
-		Global.onItemSelect = true		
+		Global.onItemSelect = true	
+		if Global.currMenuItem == "筋斗云":
+			if Global.playerSpeed == 300:
+				Global.playerSpeed = 500
+				Global.showMsg("移动速度加快！")
+			else:
+				Global.playerSpeed = 300
+				Global.showMsg("移动速度恢复正常！")
+			
 		if Global.currMenuItem == "避祸香囊":
 			if Global.onSkipFight == true:
 				Global.baseChance = 0
@@ -177,6 +203,7 @@ func useItem():
 				if FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).item[i] != null:
 					Global.showMsg("请脱掉装备")
 					return
+			Global.showMsg(FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).name + "已洗髓")		
 			item.number -= 1
 			for i in menuItems:
 				if i.get_node("itemName").text == Global.currMenuItem:

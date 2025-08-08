@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8cngx76f2bqk"]
+[gd_scene load_steps=5 format=3 uid="uid://c8cngx76f2bqk"]
 
 [ext_resource type="Texture2D" uid="uid://cbc6ar3e3lhay" path="res://Icons/●图标 (67).png" id="1_hw7us"]
 [ext_resource type="Script" path="res://Script/magic_selectionss.gd" id="1_isroo"]
-[ext_resource type="Texture2D" uid="uid://chjm618o70fed" path="res://战斗技能-技能.png" id="2_38hpc"]
-[ext_resource type="Texture2D" uid="uid://co6jrblk2hrnt" path="res://战斗技能-技能未选中.png" id="2_ccex8"]
-[ext_resource type="Texture2D" uid="uid://cfd11s0uy132x" path="res://战斗技能-技能选中.png" id="2_y2wt4"]
+[ext_resource type="Texture2D" uid="uid://cv08kc4dgpft5" path="res://Pictures/菜单/样式1.png" id="2_gegjo"]
+[ext_resource type="FontFile" uid="uid://pnau5vpfj34k" path="res://Pictures/菜单/179729f5654cecd8b961ac82b8b7d048.ttf" id="3_mlial"]
 
 [node name="Magic" type="Button" groups=["magic"]]
 self_modulate = Color(1, 1, 1, 0)
@@ -27,7 +26,7 @@ offset_right = 318.0
 offset_bottom = 109.0
 scale = Vector2(1.80309, 0.816277)
 mouse_filter = 2
-texture = ExtResource("2_y2wt4")
+texture = ExtResource("2_gegjo")
 
 [node name="技能未选中" type="TextureRect" parent="."]
 layout_mode = 0
@@ -37,17 +36,17 @@ offset_right = 307.014
 offset_bottom = 110.352
 scale = Vector2(1.84882, 0.807188)
 mouse_filter = 2
-texture = ExtResource("2_ccex8")
+texture = ExtResource("2_gegjo")
 
 [node name="技能" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = -142.0
-offset_top = -29.0
-offset_right = 473.0
-offset_bottom = 97.0
+offset_left = -121.986
+offset_top = -26.0801
+offset_right = 493.014
+offset_bottom = 99.9199
 scale = Vector2(1.28875, 0.926961)
 mouse_filter = 2
-texture = ExtResource("2_38hpc")
+texture = ExtResource("2_gegjo")
 
 [node name="Button" type="Button" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -64,33 +63,35 @@ anchor_left = -0.178
 anchor_top = -0.039
 anchor_right = 1.212
 anchor_bottom = 0.634
-offset_left = 0.424
-offset_top = 0.39
-offset_right = 386.304
-offset_bottom = 52.66
+offset_left = 0.957035
+offset_top = -0.997769
+offset_right = 386.837
+offset_bottom = 67.2722
 scale = Vector2(0.0206555, 0.172003)
-theme_override_font_sizes/font_size = 30
+theme_override_fonts/font = ExtResource("3_mlial")
+theme_override_font_sizes/font_size = 50
 text = "破空剑
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="cost" type="Label" parent="Button"]
-self_modulate = Color(0, 1, 1, 1)
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
 layout_mode = 2
 offset_left = 6.45969
-offset_top = 2.62476
-offset_right = 57.4597
-offset_bottom = 47.6248
+offset_top = 3.6279
+offset_right = 74.4597
+offset_bottom = 77.6279
 scale = Vector2(0.0180935, 0.0802489)
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 40
 text = "40
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="icon" type="Sprite2D" parent="Button"]
-position = Vector2(-1.35762, 4.6702)
+position = Vector2(-0.723509, 5.63416)
 scale = Vector2(0.0748249, 0.409961)
 texture = ExtResource("1_hw7us")
 

@@ -34,6 +34,10 @@ var keyItem = {
 		"info": ItemData.keyItem.get("洗髓丹"),
 		"number": 9999
 	},
+#	"筋斗云":{
+#		"info": ItemData.keyItem.get("筋斗云"),
+#		"number": 9999
+#	},
 #	"避祸香囊":{
 #		"info": ItemData.keyItem.get("避祸香囊"),
 #		"number": 9999
@@ -64,25 +68,25 @@ var battleItem = {
 #		"info": ItemData.battleConsume.get("月饼"),
 #		"number": 10
 #	},
-#	"月饼":{
-#		"info": ItemData.battleConsume.get("月饼"),
-#		"number": 10
-#	},
-#	"老君仙丹":{
-#		"info": ItemData.battleConsume.get("老君仙丹"),
-#		"number": 5
-#	},
-#	"含沙射影":{
-#		"info": ItemData.battleConsume.get("含沙射影"),
-#		"number": 10
-#	}
+	"月饼":{
+		"info": ItemData.battleConsume.get("月饼"),
+		"number": 10
+	},
+	"老君仙丹":{
+		"info": ItemData.battleConsume.get("老君仙丹"),
+		"number": 5
+	},
+	"含沙射影":{
+		"info": ItemData.battleConsume.get("含沙射影"),
+		"number": 10
+	}
 }
 
 var questItem = {
 	
 }
 var totalPetFoodBall = 0
-var petFoodBall = 500
+var petFoodBall = 0
 var petFood = 10
 var bagArmorItem = {
 	"大剑":{
@@ -159,18 +163,24 @@ var bagArmorItem = {
 #		"number": 1,	
 #		"added": false	
 #	},
-#	"面具":{
-#		"info": ItemData.hat.get("面具"),
-#		"type": "hat",
-#		"number": 1,
-#		"added": false
-#	},
-#	"珍珠头带":{
-#		"info": ItemData.hat.get("珍珠头带"),
-#		"type": "hat",
-#		"number": 1,
-#		"added": false
-#	},	
+	"面具":{
+		"info": ItemData.hat.get("面具"),
+		"type": "hat",
+		"number": 1,
+		"added": false
+	},
+	"黑魔冠":{
+		"info": ItemData.hat.get("黑魔冠"),
+		"type": "hat",
+		"number": 1,
+		"added": false
+	},
+	"白龙冠":{
+		"info": ItemData.hat.get("白龙冠"),
+		"type": "hat",
+		"number": 1,
+		"added": false
+	},	
 #	"皮鞋":{
 #		"info": ItemData.shoes.get("皮鞋"),
 #		"type": "shoes",
@@ -222,15 +232,6 @@ var fightScenePlayerData2= {
 		"magicAutoAttack": "",
 		"playerMagic": [
 			{
-				"name": "千机变",
-				"attackType": "special",
-				"value": 2,				
-				"cost": 10,
-				"animationArea": "enemy",
-				"description": "小二模仿并释放上一次队友使用的技能",	
-				"icon": "res://Icons/●图标 (91).png",
-			},
-			{
 				"name": "黑炎焱燚",
 				"level": 1,
 				"currExp": 0,
@@ -262,7 +263,15 @@ var fightScenePlayerData2= {
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/093-Attack05.ogg",
 				"icon": "res://Icons/●图标 (23).png"
-			},	
+			},			{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"animationArea": "enemy",
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},
 		],
 		"autoAttackSound": "res://Audio/SE/090-Attack02.ogg",
 		"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
@@ -341,7 +350,7 @@ var fightScenePlayerData2= {
 					"duration": 8,
 					"audio": "res://Audio/SE/123-Thunder01.ogg",
 					"icon":"res://Icons/●图标 (77).png",
-			},		
+			},
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
@@ -408,14 +417,13 @@ var fightScenePlayerData2= {
 				"icon":"res://Icons/●图标 (16).png",
 			},{
 				"name": "初始之力",
-				"level": 1,
 				"currExp": 0,
 				"needExp": 50,
 				"attackType": "range",
 				"damageSource": "AD",
 				"value": 20000,
 				"cost": 170,
-				"description": "对魔类敌人造成固定高额伤害",	
+				"description": "造成固定伤害，对魔类敌人伤害更高",	
 				"effectArea": "single",
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/魔音.ogg",
@@ -428,7 +436,7 @@ var fightScenePlayerData2= {
 				"needExp": 50,
 				"attackType": "buff",
 				"buffEffect": ["currPlayerSpeed"], 
-				"value": 70,
+				"value": 100,
 				"cost": 10,
 				"description": "提升速度",	
 				"effectArea": "aoe",
@@ -1114,7 +1122,7 @@ var fightScenePlayerData2= {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 5, 
+					"value": 5.5, 
 					"cost": 200,
 					"description": "攻击全体敌人",
 					"effectArea": "aoe",
@@ -1457,15 +1465,6 @@ var fightScenePlayerData = {
 		"magicAutoAttack": "",
 		"playerMagic": [
 			{
-				"name": "千机变",
-				"attackType": "special",
-				"value": 2,				
-				"cost": 10,
-				"animationArea": "enemy",
-				"description": "小二模仿并释放上一次队友使用的技能",	
-				"icon": "res://Icons/●图标 (91).png",
-			},
-			{
 				"name": "黑炎焱燚",
 				"level": 1,
 				"currExp": 0,
@@ -1497,7 +1496,15 @@ var fightScenePlayerData = {
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/093-Attack05.ogg",
 				"icon": "res://Icons/●图标 (23).png"
-			},	
+			},			{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"animationArea": "enemy",
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},
 		],
 		"autoAttackSound": "res://Audio/SE/090-Attack02.ogg",
 		"attackOnEnemySound": "res://Audio/SE/打击1.ogg",
@@ -1522,7 +1529,7 @@ var fightScenePlayerData = {
 			"critChance": 0,
 			"addCritChance": 0,
 			"blockChance":1,
-			"addBlockChance": 0,
+			"addBlockChance": 100,
 			"level": 99,
 			"exp": 0,
 			"needExp":100 ,
@@ -1576,7 +1583,68 @@ var fightScenePlayerData = {
 					"duration": 8,
 					"audio": "res://Audio/SE/123-Thunder01.ogg",
 					"icon":"res://Icons/●图标 (77).png",
-			},		
+			},{
+				"name": "横扫千军",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 3,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 0.9, 
+				"cost": 50,
+				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},{
+					"name": "高等炼体术",
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "passive",
+					"buffEffect": ["currPhysicDefense", "currMagicDefense","currPlayerSpeed","currStr"], 
+					"value": 150,
+					"cost": 0,
+					"description": "被动提高双抗，力量，速度，血量，仙能。",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 4,
+					"duration": 3,
+					"audio": "res://Icons/●图标 (89).png",
+					"icon":"res://Icons/●图标 (85).png"
+				},{
+				"name": "开阳",
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "special",
+				"multiHitTimes": 8,
+				"effectingNum": 8,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1.6, 
+				"cost": 50,
+				"description": "让所有鬼怪无所遁形",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/HEAL13.ogg",
+				"icon": "res://Icons/●图标 (8).png",
+			},		{
+				"name": "破暗",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "melee",
+				"damageSource": "AD",
+				"value": 2,
+				"cost": 40,
+				"description": "对鬼怪敌人造成额外伤害",	
+				"effectArea": "single",
+				"animationArea":"screen",
+				"audio": "res://Audio/SE/男-剑.ogg",
+				"icon": "res://Icons/●图标 (23).png"
+			},
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/男-剑.ogg",
@@ -1643,7 +1711,6 @@ var fightScenePlayerData = {
 				"icon":"res://Icons/●图标 (16).png",
 			},{
 				"name": "初始之力",
-				"level": 1,
 				"currExp": 0,
 				"needExp": 50,
 				"attackType": "range",
@@ -1796,10 +1863,10 @@ var fightScenePlayerData = {
 			"playerSpeed": 20,
 			"addPlayerSpeed": 0,
 			"critChance": 1,
-			"addCritChance":0,
+			"addCritChance": 100,
 			"blockChance":0,
 			"addBlockChance": 0,
-			"level": 10,
+			"level": 60,
 			"exp": 0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1837,7 +1904,24 @@ var fightScenePlayerData = {
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/鸟语花香.ogg",
 				"icon": "res://Icons/●图标 (14).png"
-			},			
+			},	
+				{
+				"name": "真身现世",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"animationArea": "enemy",
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},		{
+				"name": "千机变",
+				"attackType": "special",
+				"value": 2,				
+				"cost": 10,
+				"animationArea": "enemy",
+				"description": "小二模仿并释放上一次队友使用的技能",	
+				"icon": "res://Icons/●图标 (91).png",
+			},		
 
 			# Add more magic spells as needed
 			],
@@ -2656,7 +2740,8 @@ func get_真身数据():
 	"playerAttackType": "melee",	
 	"playerSpeed": fightScenePlayerData['小二'].playerSpeed +  fightScenePlayerData['小二'].addPlayerSpeed + 200,
 	"magicDefense": fightScenePlayerData['小二'].magicDefense +  fightScenePlayerData['小二'].addMagicDefense + 100,		
-	"physicDefense": fightScenePlayerData['小二'].magicDefense +  fightScenePlayerData['小二'].addPhysicDefense + 100,		
+	"physicDefense": fightScenePlayerData['小二'].magicDefense +  fightScenePlayerData['小二'].addPhysicDefense + 100,	
+	"critChance": fightScenePlayerData['小二'].critChance +  fightScenePlayerData['小二'].addCritChance,		
 	"str": fightScenePlayerData['小二'].str +  fightScenePlayerData['小二'].addStr + 500,		
 	"abilityPower": fightScenePlayerData['小二'].abilityPower +  fightScenePlayerData['小二'].addAbilityPower + 500,		
 	"hp": fightScenePlayerData['小二'].hp +  fightScenePlayerData['小二'].addHp + 1000,		
@@ -3056,7 +3141,7 @@ var unLearnMagic = {
 				"multiHitTimes": 3,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 1.3, 
+				"value": 0.9, 
 				"cost": 50,
 				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
 				"effectArea": "single",
@@ -3078,22 +3163,7 @@ var unLearnMagic = {
 				"animationArea":"screen",
 				"audio": "res://Audio/SE/男-剑.ogg",
 				"icon": "res://Icons/●图标 (23).png"
-			},
-			"初始之力":{
-				"name": "初始之力",
-				"level": 1,
-				"currExp": 0,
-				"needExp": 50,
-				"attackType": "melee",
-				"damageSource": "AD",
-				"value": 15000,
-				"cost": 30,
-				"description": "对魔类敌人造成固定高额伤害",	
-				"effectArea": "single",
-				"animationArea":"screen",
-				"audio": "res://Audio/SE/魔音.ogg",
-				"icon": "res://Icons/●图标 (23).png"
-			},				
+			},			
 			"千机变":{
 				"name": "千机变",
 				"attackType": "special",
@@ -3359,7 +3429,204 @@ var unLearnMagic = {
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/法术-气势强.ogg",
 				"icon": "res://Icons/●图标 (15).png",
+			},	
+			"调息法":{
+				"name": "调息法",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currHp","currMp",], 
+				"value": 260,
+				"cost": 50,
+				"description": "调息周身运转，恢复状态",	
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea":"allie",
+				"audio": "res://Audio/SE/HEAL9.ogg",
+				"duration": 3,
+				"icon":"res://Icons/●图标 (64).png",
 			},				
+			"回春术":{
+				"name": "回春术",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currHp",], 
+				"value": 1000,
+				"cost": 40,
+				"description": "回复血量",	
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea":"allie",
+				"audio": "res://Audio/SE/108-Heal04.ogg",
+				"duration": 3,
+				"icon":"res://Icons/●图标 (16).png",
+			},
+			"初始之力":{
+				"name": "初始之力",
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "range",
+				"damageSource": "AD",
+				"value": 20000,
+				"cost": 170,
+				"description": "对魔类敌人造成固定高额伤害",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/魔音.ogg",
+				"icon": "res://Icons/●图标 (23).png"
+			},
+			"一苇渡江":{
+				"name": "一苇渡江",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currPlayerSpeed"], 
+				"value": 100,
+				"cost": 10,
+				"description": "提升速度",	
+				"effectArea": "aoe",
+				"animationArea":"allie",
+				"effectingNum": 2,
+				"duration": 4,
+				"audio": "res://Audio/SE/133-Wind02.ogg",
+				"icon":"res://Icons/●图标 (77).png",
+			},
+			"回魂术":{
+				"name": "回魂术",
+				"attackType": "buff",
+				"buffEffect": ["alive"], 
+				"cost": 100,
+				"description": "复活一个友军",	
+				"effectArea": "single",
+				"animationArea":"allie",
+				"effectingNum": 1,
+				"duration": 2,
+				"audio": "res://Audio/SE/法术5.ogg",
+				"icon":"res://Icons/●图标 (84).png"
+			},
+			"抽丝断魂":{
+				"name": "抽丝断魂",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 4000,				
+				"cost": 50,
+				"description": "在地府学会的法术，造成固定伤害",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"effectingNum": 1,
+				"audio":"res://Audio/SE/法术12.ogg",
+				"icon": "res://Icons/水攻.png",
+			},
+			"神风燎火":{
+					"name": "神风燎火",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 300,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 8,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 3, 
+					"cost": 300,
+					"description": "朱雀圣火！",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/119-Fire03.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},
+				"龙怒":{
+					"name": "龙怒",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 300,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 1,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 6, 
+					"cost": 200,
+					"description": "龙族法术",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/法术16.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},			
+				"灭世雷劫":{
+					"name": "灭世雷劫",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 300,
+					"attackType": "range",
+					"multiHitTimes": 4,
+					"effectingNum": 5,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 8, 
+					"cost": 1000,
+					"description": "灭世之雷！",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/061-Thunderclap01.ogg",
+					"icon": "res://Icons/●图标 (15).png",
+				},				
+				"水龙吟":{
+					"name": "水龙吟",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "range",
+					"multiHitTimes": 8,
+					"effectingNum": 8,
+					"damageSource": "AP",
+					"duration": 1,
+					"value": 5.5, 
+					"cost": 200,
+					"description": "攻击全体敌人",
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"audio": "res://Audio/SE/128-Water03.ogg",
+					"icon": "res://Icons/龙卷雨击.png",
+				},			
+				"虎啸":{
+				"name": "虎啸",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "buff",
+				"buffEffect": ["currStr"], 
+				"value": 200,
+				"cost": 100,
+				"description": "提升全队力量！",	
+				"effectArea": "aoe",
+				"animationArea":"allie",
+				"effectingNum": 8,
+				"duration": 4,
+				"audio":"res://Audio/SE/082-Monster04.ogg",
+				"icon":"res://Icons/●图标 (77).png",
+			},			
+			"连环击(4)":{
+				"name": "连环击(4)",
+				"level": 1,
+				"currExp": 0,
+				"needExp": 50,
+				"attackType": "multi",
+				"multiHitTimes": 4,
+				"damageSource": "AD",
+				"duration": 1,
+				"value": 1.5, 
+				"cost": 50,
+				"description": "连续攻击4次，休息一回合",
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"audio": "res://Audio/SE/野兽怒.ogg",
+				"icon": "res://Icons/●图标 (11).png",
+			},								
 }
 func learnMagic(character, magicName):
 	var magicList = fightScenePlayerData.get(character).playerMagic
@@ -3368,8 +3635,9 @@ func learnMagic(character, magicName):
 func eraseMagic(character, magicName):
 	var magicList = fightScenePlayerData.get(character).playerMagic
 	for i in range(magicList.size()):
-		if magicList[i].get("name") == "凝气":
+		if magicList[i].get("name") == magicName:
 			magicList.remove_at(i)
+			
 			break  # 找到后删除并退出循环
 	fightScenePlayerData.get(character).playerMagic.erase(magicName)
 

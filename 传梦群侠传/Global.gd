@@ -27,6 +27,7 @@ var bgmTimer = 0
 var levelLimit = 10
 var battleButtonIndex = 0
 var maxLevel = 10
+var playerSpeed = 300
 var onPetAttack = false
 var onAttackPicking = false #是否在选择攻击对象
 var onMagicAttackPicking = false
@@ -45,6 +46,7 @@ var magicSelectIndex = 0
 var currUsingMagic = null
 var killedAmount = 0
 var gameRound = 1
+var haveGao = false
 signal autoAttackSignal
 var helperName = ""
 var helperMsg = ""
@@ -161,10 +163,10 @@ var currentCamera
 var currPlayer
 var currScene
 var noLimit = true
-
-var onTeamPlayer = ["时追云","姜韵","凌若昭","小二"]
-var onTeamPet = ["白虎",]
-var onTeamSmallPet = []
+var haveQianJi = false
+var onTeamPlayer = ["时追云","小二"]
+var onTeamPet = ["敖白"]
+var onTeamSmallPet = ["小鹿"]
 var smallPets = []
 var currPlayerPos
 var currNpc = null
@@ -467,7 +469,12 @@ var npcVis = {
 		"敖阳": {"visible":true},
 		"敖雨": {"visible":true},
 
-	},		
+	},	
+	"东海沉船":{
+		"近海恶蛟": {"visible":true},
+
+
+	},			
 	
 	"傲来国":{
 		"老李头": {"visible":true},
@@ -759,6 +766,14 @@ var npcs = {
 		"current_dialogue_index": 0,
 		"constNpc": false
 	},
+	"战斗员": {
+		"dialogues": [ 
+			#0
+			{"chapter": 1, "dialogue": "战斗员", "unlocked": true, "bgm":null, "trigger":false},
+		],
+		"current_dialogue_index": 0,
+		"constNpc": false
+	},
 	"骑迹行者": {
 		"dialogues": [ 
 			#0
@@ -925,7 +940,7 @@ var npcs = {
 				{"chapter": 1, "dialogue": "白龙救场", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "安葬", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 1, "dialogue": "斩妖", "unlocked": true, "bgm":null,"trigger":false},
-				
+				#9
 				{"chapter": 2, "dialogue": "初见小二", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "解释抢钱", "unlocked": true, "bgm":null,"trigger":false}, #10
 				
@@ -937,9 +952,11 @@ var npcs = {
 				{"chapter": 2, "dialogue": "起床找金甲", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "传出塔外", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 2, "dialogue": "首入国境", "unlocked": true, "bgm":null,"trigger":false},
+				#19
 				{"chapter": 3, "dialogue": "破甲术", "unlocked": true, "bgm":null,"trigger":false},
 				{"chapter": 3, "dialogue": "又失眠", "unlocked": true, "bgm":null,"trigger":false}, #20
 				{"chapter": 3, "dialogue": "听见异响", "unlocked": true, "bgm":"res://Audio/BGM/0妖族阴谋.mp3","trigger":false},
+				
 				{"chapter": 3, "dialogue": "离山", "unlocked": true, "bgm":null ,"trigger":false},
 				{"chapter": 3, "dialogue": "重回建邺", "unlocked": true, "bgm":null ,"trigger":false},
 				{"chapter": 3, "dialogue": "东海海道", "unlocked": true, "bgm":null ,"trigger":false}, #23
@@ -1797,6 +1814,22 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},
+	"红花":{
+		"dialogues": [
+				#0
+					{"chapter": 6, "dialogue": "听闻砍头", "unlocked": true, "bgm": null ,"trigger":false},				
+					{"chapter": 6, "dialogue": "寻找小二2", "unlocked": true, "bgm": null ,"trigger":false},	
+					{"chapter": 6, "dialogue": "寻找小二3", "unlocked": true, "bgm": null ,"trigger":false},	
+					{"chapter": 6, "dialogue": "寻找小二4", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 6, "dialogue": "寻找小二5", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 6, "dialogue": "寻找小二6", "unlocked": true, "bgm": null ,"trigger":false},						
+					{"chapter": 6, "dialogue": "寻找小二7", "unlocked": true, "bgm": null ,"trigger":false},						
+					
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	
 	"凌若昭回忆":{
 		"dialogues": [
 				#0
@@ -2308,6 +2341,14 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},	
+	"桥":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "桥", "unlocked": true, "bgm":null,"trigger":false},																																																	
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},
 	"白泽":{
 		"dialogues": [
 				#0
@@ -2794,7 +2835,8 @@ var triggerPlace ={
 	"回忆3": {"trigger":false, "disable": false},    
 	"地府决战": {"trigger":false, "disable": false},    
 	"凌若昭回忆": {"trigger":false, "disable": false},    
-	"凌若昭回忆2": {"trigger":false, "disable": true},                         
+	"凌若昭回忆2": {"trigger":false, "disable": true}, 
+	"听闻砍头": {"trigger":false, "disable": true},                          
 	"再见小二": {"trigger":false, "disable": false},    
 	"寻四圣2": {"trigger":false, "disable": false},    
 	"寻四圣3": {"trigger":false, "disable": false},    
@@ -2994,6 +3036,7 @@ func addGold(goldAmount):
 	FightScenePlayers.gold = FightScenePlayers.golds
 	
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(goldAmount)
+	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = false
 	FightScenePlayers.golds += enKey * goldAmount
 	FightScenePlayers.golds *= enKey
 	FightScenePlayers.golds = decrypt(FightScenePlayers.golds)
@@ -3009,7 +3052,7 @@ func addGold(goldAmount):
 
 func lostGold(goldAmount):
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold/goldValue").text = str(-goldAmount)
-	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp/expValue").visible = false
+	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = false
 	FightScenePlayers.golds = ( decrypt(FightScenePlayers.golds) - goldAmount ) * enKey 
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer").visible = true	
 	get_tree().current_scene.get_node("BattleReward/BattleReward/CanvasLayer/Panel/gold").visible = true	

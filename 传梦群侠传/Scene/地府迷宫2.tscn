@@ -994,6 +994,15 @@ scale = Vector2(2.41899, 2.41899)
 sprite_frames = SubResource("SpriteFrames_ij3td")
 autoplay = "default"
 
+[node name="Node2D4" parent="." instance=ExtResource("16_5t4pv")]
+position = Vector2(545, 716)
+id = "地府迷宫21"
+items = {
+"踏雪无痕": 1,
+"黑魔冠": 1,
+"龙骨甲": 1
+}
+
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="player" method="_on_static_body_2d_mouse_entered" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

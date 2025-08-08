@@ -41,6 +41,7 @@ func _on_play_time_timeout():
 	FightScenePlayers.seconds = time_played_seconds
 
 func _process(delta):
+	speed = Global.playerSpeed
 	if Global.onTalk:
 		if Global.playerDirection == "":
 			return
@@ -118,6 +119,7 @@ func _process(delta):
 		if Input.is_action_pressed("leftClick")  and !Global.onTalk and !Global.onButton and !onArrowButton and !Global.onUi:
 			if Global.menuOut:
 				return
+			
 			var mouse_pos = get_global_mouse_position()  # Get the global mouse position
 			var char_pos = position  # Get the character's position
 			var vector_to_mouse = mouse_pos - char_pos
@@ -185,7 +187,7 @@ func _process(delta):
 				return
 			if !onDown and !onUp and !onLeft and !onRight:
 				onArrowButton = false
-				speed = 200
+				speed = 300
 			
 func _input(event):
 	if !event.is_pressed():
@@ -215,10 +217,10 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_down") and !Global.onTalk:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false			
-			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "down":
-				return
-				
-			lastMove = "down"	
+#			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "down":
+#				return
+#
+#			lastMove = "down"	
 			canMouseMove = false
 			velocity.y += 1
 			velocity.x -= 1
@@ -241,10 +243,10 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_up") and !Global.onTalk:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false	
-			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "up":
-				return		
-
-			lastMove = "up"
+#			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "up":
+#				return		
+#
+#			lastMove = "up"
 			canMouseMove = false
 			velocity.y -= 1
 			velocity.x += 1
@@ -266,10 +268,10 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_left") and !Global.onTalk:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false				
-			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "left":
-				return		
-				
-			lastMove = "left"				
+#			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "left":
+#				return		
+#
+#			lastMove = "left"				
 			
 			canMouseMove = false
 			$RayCast2D.enabled = true
@@ -294,10 +296,10 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_right") and !Global.onTalk:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false				
-			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "right":
-				return		
-		
-			lastMove = "right"				
+#			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "right":
+#				return		
+#
+#			lastMove = "right"				
 			
 			
 			canMouseMove = false
@@ -375,6 +377,7 @@ func _unhandled_input(event):
 			
 				if raycast.get_collider().get_parent().name == "小师弟"  or raycast.get_collider().get_parent().name == "小师弟2" or raycast.get_collider().get_parent().name == "小师弟3":
 					raycast.get_collider().get_parent().talked = true
+				
 				if raycast.get_collider().get_parent().name == "野鬼1"  or raycast.get_collider().get_parent().name == "野鬼2" or raycast.get_collider().get_parent().name == "野鬼3" or raycast.get_collider().get_parent().name == "野鬼4" or raycast.get_collider().get_parent().name == "野鬼5":
 					raycast.get_collider().get_parent().talked = true					
 					raycast.get_collider().get_parent().visible = false

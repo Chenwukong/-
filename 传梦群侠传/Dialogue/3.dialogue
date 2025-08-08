@@ -19,7 +19,7 @@ set FightScenePlayers.healAll()
 小二: [speed=0.5] 哎哟我去，这也太高了吧，这是飞起来的岛吗！！
 凌若昭: [speed=0.5]嘻嘻，厉害吧墨镜
 时追云: [speed=0.5]壮观倒是很壮观。。但怎么
-小二: [speed=0.5]感觉有点阴生生的
+小二: [speed=0.5]感觉有点阴森森的
 凌若昭喜: [speed=0.5]嘿嘿嘿，这是秘密
 小二: [speed=0.5]怎么都到这了还这么多秘密=_=
 凌若昭喜: [speed=0.5]没办法嘛，师傅交待过我了，要你们自己找上山的道路
@@ -313,6 +313,7 @@ set Global.npcVis.get("方寸山").get("黑山").visible = false
 时追云: [speed=0.5]...
 时追云: [speed=0.5]走吧
 小二: [speed=0.5]总算能见到他了，真不容易
+set Global.questHint = "去见师傅"
 set Global.npcVis.get("灵台宫").get("菩提老祖").visible = true
 set Global.onTalk = false
 => END
@@ -340,11 +341,11 @@ set Global.npcVis.get("灵台宫").get("小二").visible = true
 时追云: [speed=0.5]恕晚辈冒昧，我们似乎不曾见过吧？为何你早就认识我一样，还准确的知道我的行踪
 菩提老祖: [speed=0.5]你我二人是未曾见过，但我以另一种方式"见"过你了，而且我的一位老友也经常和我提起你
 时追云惊: [speed=0.5]你的老友？是谁？
-菩提老祖: [speed=0.5]呵呵呵呵，既然他还未想你表明身份，那我也不便越俎代庖。
+菩提老祖: [speed=0.5]呵呵呵呵，既然他还未向你表明身份，那我也不便越俎代庖。
 菩提老祖: [speed=0.5]等你能走到那一步，自然就会知道了
 时追云: [speed=0.5]...
 菩提老祖: [speed=0.5]我想你大老远跑来也不是为了此事吧？
-时追云: [speed=0.5]对，3年前，有只妖怪屠杀了建邺满城的人，你可知道他现在的位子
+时追云: [speed=0.5]对，三年前，有只妖怪屠杀了建邺满城的人，你可知道他现在的位子
 菩提老祖: [speed=0.5]我知道！
 时追云怒: [speed=0.5]他在何处！！！
 菩提老祖: [speed=0.5]...
@@ -453,7 +454,7 @@ set get_tree().current_scene.get_node("凌若昭").play("左下")
 菩提老祖: [speed=0.5]人的知识受周围所影响，人的阅历受经历所影响，时小友，你了解这个世界吗？
 时追云: [speed=0.5]我有过很多猜疑，但苦于无法证实
 菩提老祖: [speed=0.5]哦？我或许可以解答一二！
-时追云: [speed=0.5]这些年我见过不要妖怪，大部分都是我见过的普通之物修行而成
+时追云: [speed=0.5]这些年我见过不少妖怪，大部分都是我见过的普通之物修行而成
 时追云: [speed=0.5]如果草木飞虫走兽皆能修炼成妖，那么人为什么没有修炼到那种地步，如果有。。那么
 菩提老祖: [speed=0.5]不错，凡人修炼，即为仙！也称为仙人！
 时追云: [speed=0.5]恐怕前辈并不止于仙人之列吧
@@ -510,7 +511,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/SE/男-剑.ogg")
 set get_tree().current_scene.get_node("oneTimeSound").play()
 set FightScenePlayers.learnMagic("时追云", "高等炼体术")
-
+set Global.haveGao = true
 set get_tree().current_scene.get_node("clouds/Cloud").moveCloud()
 
 set get_tree().current_scene.get_node("player/隐龙").visible = true
@@ -575,6 +576,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 菩提老祖: [speed=0.5]此技，名曰千机变，乃天地间至妙之法，万法归一，千象万变
 菩提老祖: [speed=0.5]千机变者，通天悟地，能以无上心境感知他人术法，瞬息之间便可如己所用。无论剑法、掌法、咒法，或是任何奇技异术，皆可借力化形，施于敌前。”
 小二: [speed=0.5]千机变...
+set Global.haveQianJi = true
 [next=2]
 set FightScenePlayers.learnMagic("小二", "千机变")
 set Global.atDark = true
@@ -650,7 +652,7 @@ set get_tree().current_scene.get_node("黑山2").visible = true
 小二: [speed=0.5]打住啊老大，我可不想听那一套罗里吧嗦的
 小二: [speed=0.5]如果不是你，我估计早就成了那牛妖和羊妖的粪便了，我虽然读的书不多，但也知道瑕疵必报的道理
 凌若昭喜: [speed=0.5]小二，瑕疵必报不是这么用的啦，不过我也是！
-凌若昭哀: [speed=0.5]若昭在这山上没有什么朋友，我不希望你们任何人出事，你们要独创妖魔领地，我绝对不会坐地起价的！
+凌若昭哀: [speed=0.5]若昭在这山上没有什么朋友，我不希望你们任何人出事，你们要独闯妖魔领地，我绝对不会坐地起价的！
 黑山: [speed=0.5]坐地起价也不是这么用的吧。。。
 黑山: [speed=0.5]还有老夫好歹也算半个朋友吧...
 凌若昭喜: [speed=0.5]略略略
@@ -797,7 +799,7 @@ set Global.canMenu = false
 set Global.questHint = "山上随便逛逛"
 set Global.npcVis.get("方寸山").get("小二").visible = true
 set Global.npcVis.get("方寸山").get("凌若昭").visible = true
-
+set Global.npcVis.get("方寸山").get("提毗").visible = false
 set get_tree().current_scene.get_node("小二").position = Vector2(875,107)
 set get_tree().current_scene.get_node("小二/小二").play("左上")
 set get_tree().current_scene.get_node("凌若昭").position = Vector2(1015, 49)
@@ -810,6 +812,7 @@ set Global.onTalk = false
 
 ~ 方寸夜晚小二谈恋爱2
 set Global.onTalk = true
+set Global.npcVis.get("方寸山").get("提毗").visible = true
 set Global.triggerPlace.get("方寸夜晚小二谈恋爱2").disable = true
 小二: [speed=0.4]那个，若昭啊，你以后有没有什么梦想啊
 凌若昭: [speed=0.4]嗯，每天能不饿肚子，顺便杀点妖魔就好了
@@ -979,7 +982,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 黑山: [speed=0.5]还有一种嘛，如果你的灵力不敌，那么为何不集中在一点，凝聚之后再出招呢教训
 时追云惊: [speed=0.5]聚集于一点
 黑山: [speed=0.5]你小子学东西是很快，但对灵力的经验还是太少了。
-黑山: [speed=0.5]我敢说用这个方法，配送祖师传给你的高等联体法，天下少有能抵挡得住你的攻击的生物了
+黑山: [speed=0.5]我敢说用这个方法，配和祖师传给你的高等联体法，天下少有能抵挡得住你的攻击的生物了
 时追云: [speed=0.5]可这是你的保命之法吧，你把他的破解方法说出来...
 黑山: [speed=0.5]哪有那么严重，比老夫强的不需要用这一招，比老夫弱的也不需要身体硬抗，再说了在这山上能遇到什么人
 黑山: [speed=0.5]老夫可不是那种知道了方法之后就能随便击败的人，你们，还得练
@@ -1006,6 +1009,7 @@ set get_tree().current_scene.get_node("player").position = Vector2(2199, 138)
 set get_tree().current_scene.get_node("AnimationPlayer").play("破甲术")
 set FightScenePlayers.learnMagic("时追云", "破甲术")
 [next=2]
+set Global.getnode("机关人/effect").visible = false
 时追云: [speed=0.5]总算练成了
 小二: [speed=0.5]恭喜啊老大，这下我们说不定就能打败黑山了！
 时追云: [speed=0.5]嗯！再去找他试试！
@@ -1072,7 +1076,7 @@ set Global.onTalk = true
 小二: [speed=0.5]祖师你这能力真是有点恐怖了，到底能听多远啊，一直在听吗
 菩提老祖: [speed=0.5]你这滑头，还想打探我能力不成
 小二: [speed=0.5]嘿嘿嘿
-时追云: [speed=0.5]祖师，既然我们已经打赢黑山了。。。恳请告知我那畜生的位子
+时追云: [speed=0.5]祖师，既然我们已经打赢黑山了。。。恳请告知我那畜生的位置
 菩提老祖: [speed=0.5]他现在就在傲来国！而具体在哪，需要你们自己去找。
 时追云: [speed=0.5]傲来国...好，我们这就动身
 小二: [speed=0.5]额，这么着急啊
@@ -1116,7 +1120,7 @@ set Global.onTalk = true
 set Global.dial = null
 set get_tree().current_scene.get_node("player").visible = false
 
-北海龙王: [speed=0.5]考虑的怎么样了贤侄，也该考虑直接让出这四海之主的位置了吧，何必还要举行海权祭呢
+北海龙王: [speed=0.5]贤侄，考虑的怎么样了？直接让出四海之主的位置皆大欢喜，何必还要举行海权祭呢
 
 西海龙王: [speed=0.5]是啊，毕竟三年前你的虾兵蟹将们可是被带走了大半啊
 南海龙王: [speed=0.5]我们也是为你好啊，现在已经不比当年了，随便来个妖群部落就能让这里死伤大半了吧
@@ -1168,6 +1172,7 @@ set Global.onTalk = true
 set Global.atDark = true
 set Global.atNight = true
 set Global.canMenu = false
+
 时追云: [speed=0.5]又失眠了，我最近这是怎么了月亮
 时追云: [speed=0.5]难道是因为终于快要结束这一切了吗
 时追云: [speed=0.5]心里隐隐感觉有些不安
@@ -1211,7 +1216,7 @@ set Global.onTalk = false
 
 ~ 吸魂
 set Global.onTalk = true
-敖白: [speed=0.5]唉，不知道父亲的宝库里有没有什么能帮得上我得宝物
+敖白: [speed=0.5]唉，不知道父亲的宝库里有没有什么能帮得上我的宝物
 敖白: [speed=0.5]人间已经很乱了，要是他们这些家伙再添乱，百姓永不得安宁
 敖白: [speed=0.5]当音儿清醒之后，我不希望她看到的是被摧毁的世界...
 set get_tree().current_scene.get_node("npc").visible = true
@@ -1294,7 +1299,7 @@ set get_tree().current_scene.get_node("AnimationPlayer").play("黑山送剑")
 黑山: [speed=0.5]这把剑从我修行起就没离开过我，已经有了些许灵气
 黑山: [speed=0.5]你带着它，给你的娘子报仇！别给我们方寸山丢脸！
 小二: [speed=0.5]呜呜呜呜呜，黑山你这老大叔果然还是来送我们了大哭
-黑山: [speed=0.5]呜哇啊啊啊啊啊，你们这些臭小子赶紧办完事赶紧回来
+黑山: [speed=0.5]呜哇啊啊啊啊啊，你们这些臭小子赶紧办完事回来
 时追云喜: [speed=0.5]哈哈哈哈哈，多谢黑山大哥了，我们会尽快回来的
 凌若昭喜: [speed=0.5]再见啦大大师兄~
 黑山: [speed=0.5]呜哇啊啊啊啊啊啊大哭
@@ -1398,7 +1403,7 @@ set get_tree().current_scene.get_node("敖阳").play("default")
 时追云惊: [speed=0.5]什么！？
 敖白: [speed=0.5]三年前局势动荡，神佛和妖魔打的不分上下，之后有一天又突然停止了，但所有人都知道，妖魔族群还会卷土重来
 敖白: [speed=0.5]所以有一些人见妖魔突然变得如此之强，萌生了降敌一派
-敖白怒: [speed=0.5]而那奔霸就是投降一派！他本是我们东海龙宫的大将军，实力比龙王都强，又手握兵权，所以更是带走了一堆带有投降念头的虾兵蟹将
+敖白: [speed=0.5]而那奔霸就是投降一派！他本是我们东海龙宫的大将军，实力不容小觑，同时又手握兵权，深得手下们的拥戴，所以他叛逃时还带走了一批有投降念头的虾兵蟹将
 敖白: [speed=0.5]而那天他们似乎走的很匆忙，像是要执行什么命令一般，全部跑去了建邺。而当时我还在闭关修炼，当我得知的时候。。已经。。。
 凌若昭怒: [speed=0.5]仙佛怎么会和妖魔打的不分上下呢，不是说一直以来不都是天庭掌管三界吗，为什么妖怪们突然变得这么厉害了
 敖白: [speed=0.5]具体的我也不清楚，当时我并没有在第一线战斗，而是我父亲，但他现在也已经失踪了
@@ -1436,6 +1441,11 @@ set Global.onTalk = true
 set Global.questHint = "和敖雨对话"
 set Global.npcVis.get("东海龙宫").get("敖阳").visible = false
 set Global.npcVis.get("东海龙宫").get("敖雨").visible = false
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+
+
 敖白: [speed=0.5]抱歉，让你们看笑话了
 时追云: [speed=0.5]恩公你怎么会伤的这么重
 敖白: [speed=0.5]你也别叫我恩公恩公的了，我也没帮上你什么
@@ -1453,12 +1463,12 @@ set Global.npcVis.get("东海龙宫").get("敖雨").visible = false
 时追云: [speed=0.5]那他们又为何来偷袭恩公？
 敖雨: [speed=0.5]肯定是为了海权祭！
 时追云: [speed=0.5]海权祭是干什么的？
-敖雨: [speed=0.5]我们四海每50年就会举行一次海权祭，四大海派出各自的代表进行比试
-敖雨: [speed=0.5]而赢到了最后的一方，最后就会成为四海之主，四海所有人皆以他为首，而最重要的是
+敖雨: [speed=0.5]我们四海每五十年就会举行一次海权祭，各家会分别派出最有实力的代表进行比试
+敖雨: [speed=0.5]在比试中赢到最后的一方，就会成为四海之主，而最重要的是
 小二: [speed=0.5]单这一点不足以让他们大费周章吧
 敖雨: [speed=0.5]对！四海之主的头衔是一方面，另一方面就是四海之主能够拥有使用龙泉的权力
-敖雨: [speed=0.5]龙泉是海族至宝，可以调动四大海域所有海洋，等于拥有了它就等于掌握了全部的大海
-敖雨: [speed=0.5]而他们估计就是想以此增加投降妖怪的时候的筹码！
+敖雨: [speed=0.5]龙泉是海族至宝，一声号令，四大海域莫敢不从，拥有了它就等于掌控了世上所有的海洋之力
+敖雨: [speed=0.5]估计他们是想抢夺此宝，当做向妖怪投降时的筹码！
 时追云怒: [speed=0.5]有这种东西不想着去剿灭妖魔，反而是拿来投降，真是蠢到家了 
 敖雨: [speed=0.5]对！我和我哥就是想着绝对不能把龙泉交给他们！
 小二: [speed=0.5]那你们不举行这个海权祭不就行了吗，把龙泉掌握在手里，他们硬来你们就用这个力量威慑他们
@@ -1515,7 +1525,7 @@ set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 小二: [speed=0.5]话说这海权祭是以什么形式进行的？
 敖雨: [speed=0.5]擂台制，由前任四海之主先守擂，最后站在场上的一方就赢了
-敖雨: [speed=0.5]不过你们不用担心，每一方最多派出五个人，我想他们大概率是两四个手下和自己亲自上场
+敖雨: [speed=0.5]不过你们不用担心，每一方最多派出五个人，我想他们大概率是四个手下和自己亲自上场
 小二: [speed=0.5]东道主先守擂我倒是理解，但谁会先来挑战呢，先出手的人不是会被消耗吗
 敖雨: [speed=0.5]如果一直没人应战那么就是东道主赢了，而先挑战的人也有好处，那就是会获得一部分龙泉之力提升
 敖雨: [speed=0.5]而守擂的人赢了的话，也会获得一部分暂时的龙泉之力，如果站到最后的话，就会获得永久的一小部分龙泉之力
@@ -1809,7 +1819,7 @@ set get_tree().current_scene.get_node("敖阳").play("左上")
 敖白: [speed=0.5]时少侠，放他们走吧
 时追云: [speed=0.5]你确定吗？
 敖白: [speed=0.5]嗯，几位龙王越了底线，杀了也无妨，真要闹到天庭上去他们也是死罪
-敖白: [speed=0.5]但要是把其他龙宫的全杀了，没人管理海，那临海城市的百姓就要遭殃了
+敖白: [speed=0.5]但要是把其他龙宫的主事人全杀了，大海将缺失一部分的平衡，如果发生海难，那临海城市的百姓就要遭殃了
 时追云: [speed=0.5]好，那就放了他们
 敖白怒: [speed=0.5]你们给我听着，以后不许再动凡人一根汗毛，不然下场就和你们的主子一样！
 敖白怒: [speed=0.5]过阵子我会派人过去管理，在那之前给我好好待在深海内反省！怒喝
@@ -1984,7 +1994,7 @@ set Global.onTeamPet.append("敖白")
 敖白: [speed=0.5]傲来国在仙界也算有名了，毕竟是孙大圣居住的地方
 凌若昭: [speed=0.5]师兄居住的地方？疑惑
 敖白: [speed=0.5]嗯，他就住在傲来国花果山水帘洞
-敖白: [speed=0.5]传说它藏在一片奔腾的瀑布之后，洞口被水流掩盖， 但其实洞内别有洞天，晶莹的石壁如同宝石一般闪耀，水流在洞中回响，
+敖白: [speed=0.5]传说它藏在一片奔腾的瀑布之后，洞口被水流掩盖，但其实洞内别有洞天，晶莹的石壁如同宝石一般闪耀，水流在洞中回响
 小二: [speed=0.5]哇，这么神奇
 凌若昭喜: [speed=0.5]我们之后一起去看看吧
 时追云: [speed=0.5]还是得先找到奔霸再说，毕竟我们在明，他们在暗

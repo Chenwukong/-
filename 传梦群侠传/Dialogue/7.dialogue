@@ -38,7 +38,7 @@ set Global.onTalk = true
 if Global.questItem.has("拐杖"):
 	梦老: [speed=0.5]真是太谢谢你了，我把这送给你吧
 	set Global.questItemShow.get("拐杖").visible = false
-	set Global.violencePoint += 10
+	set Global.violencePoint += 15
 	set Global.showViolence("positive",10)
 	set Global.showMsg("获得梦字牌!")
 	set Global.addItem("梦字牌", "keyItem", "keyItem", 1)
@@ -68,6 +68,7 @@ set Global.onTalk = false
 
 ~ 寻四圣2
 set Global.onTalk = true
+set Global.dial = null
 set Global.questHint = "四处看看，问问人"
 时追云: [speed=0.5]这里应该就是北俱芦洲了吧
 姜韵: [speed=0.5]这气候好不寻常

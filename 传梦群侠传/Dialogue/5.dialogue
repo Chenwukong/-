@@ -72,7 +72,7 @@ set Global.triggerPlace.get("初见孟婆").disable = true
 时追云: [speed=0.5]老婆婆你是？
 孟婆: [speed=0.5]别人称我为孟婆，负责给每个路过这座桥的人发碗汤
 时追云: [speed=0.5]什么汤
-孟婆: [speed=0.5]此汤以为我名，唤作孟婆汤
+孟婆: [speed=0.5]此汤以我为名，唤作孟婆汤
 孟婆: [speed=0.5]那些爱过的人，那些无法放下的事，那些滚滚红尘中数不清的悲欢离合都只会随着孟婆汤的缓缓入喉，永远凝固于奈何桥上
 孟婆: [speed=0.5]充盈泪水的黯然回眸间，化做缥缈云烟，淡然散去。是一世匆匆的悔恨。是阴阳永隔的遗憾。还是挥刀斩袖的决别，都已然不再重要了。
 孟婆: [speed=0.5]因为在饮过这孟婆汤后，一切都已淡然。
@@ -272,6 +272,7 @@ set Global.onTalk = false
 
 ~ 重遇上官2
 set Global.onTalk = true
+set Global.getnode("PointLight2D8").visible = true
 set get_tree().current_scene.get_node("oneTimeSound").stream = load("res://Audio/BGM/【轮回之境】.mp3")
 set get_tree().current_scene.get_node("oneTimeSound").play()
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
@@ -413,6 +414,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.5]如果我死在这里也省的你们到阳间去收魂了
 判官: [speed=0.5]唉，不可啊，你，唉
 时追云: [speed=0.5]多谢！
+set Global.questHint = "寻找地府深处入口"
 set Global.dial = null
 set Global.onTalk = false
 set Global.cantShow.erase("地府迷宫1")
@@ -423,8 +425,6 @@ set Global.cantShow.erase("地府迷宫1")
 set Global.onTalk = true
 白无常: [speed=0.5]小黑最近打造了点装备，你要来点吗？
 白无常: [speed=0.5]嗯？你一直看着我的宝箱干什么，不会是想要偷吧
-set get_tree().current_scene.popShop()
-
 
 
 set Global.onTalk = false
@@ -499,7 +499,7 @@ set Global.changeDirection("upStand")
 钟馗: [speed=0.5]由里面的地藏菩萨暂且封印他们，等待轮回时机
 时追云: [speed=0.5]地藏菩萨？
 钟馗: [speed=0.5]你应该已经见过了，地藏菩萨常年待在轮回司里，他曾经发誓，地狱不空，永不成佛
-时追云: [speed=0.5]我没见过，我早里面没见到有人
+时追云: [speed=0.5]我没见过，我在里面没见到有人
 钟馗: [speed=0.5]怎么可能，他平常一般不会离开那里
 时追云: [speed=0.5]确实不曾见过
 钟馗: [speed=0.5]那算了，言归正传，除了安心前往轮回司的鬼魂之外，也有不少不想投胎想重返人间的鬼魂，他们挣脱了阴差的引导，但又出不去，他们就会游荡在地府
@@ -542,12 +542,12 @@ set get_tree().current_scene.get_node("堕逝鬼魂").visible = true
 时追云: [speed=0.5]地狱深处。。。鬼帝吗，那东西很强吗？
 钟馗: [speed=0.5]那是我见过最邪门的东西，很强。我见过的鬼比我见过的人还多，但那东西，我只是远远瞥了一眼便已经心胆俱裂了。
 钟馗: [speed=0.5]据地藏菩萨说那玩意无法被消灭，只能关押在那封眠
-钟馗: [speed=0.5]但如果是我，阎君，地藏菩萨其中一个进去，那他估计会感知到并且醒来，恐怕又会引发大战，所以我们索性放弃那一段区域
+钟馗: [speed=0.5]但如果是我，阎君，地藏菩萨其中一个进去，那他估计会感知道并且醒来，恐怕又会引发大战，所以我们索性放弃那一段区域
 钟馗: [speed=0.5]这是一种危险的制衡状态。
 时追云: [speed=0.5]那你们也联系不到天庭吗？
 钟馗: [speed=0.5]天庭，情况应该和我们相似，但是情况应该更糟糕，连一点消息都没有
 时追云惊: [speed=0.5]那群妖怪那么强吗？
-钟馗: [speed=0.5]说是妖怪，但其实我们也并不知到，天庭在对付着什么
+钟馗: [speed=0.5]说是妖怪，但其实我们也并不知道，天庭在对付着什么
 钟馗: [speed=0.5]只知道三年前天庭突然聚集各种仙家，并且封锁了前往天庭的路，只留下必须在人间的神职人员
 时追云: [speed=0.5]事情居然严重到这种地步了
 钟馗: [speed=0.5]索性事情还没有到最糟糕的地步，起码我们目前没有见到有东西从天上下来
@@ -846,7 +846,7 @@ set Global.onTalk = true
 小男孩: [speed=0.5]因为我不喜说话，村民们都叫我阿悶
 小姜韵: [speed=0.5]啊，那怎么行呢，还难听啊！
 小男孩: [speed=0.5]我对这世界来说，可有可无，我确实没有取名字的必要...
-小姜韵: [speed=0.5]我家里长辈和我说，人生来这世间都是第一无二的，他们也都会有自己的使命，只是大多数人没有发现而已
+小姜韵: [speed=0.5]我家里长辈和我说，人生来这世间都是独一无二的，他们也都会有自己的使命，只是大多数人没有发现而已
 小姜韵: [speed=0.5]这世界上说不定也有等着你去完成的事情呢？
 小男孩: [speed=0.5]等着我完成的事...?
 小姜韵: [speed=0.5]嘻嘻，不如我来给你取个名字吧！
@@ -878,7 +878,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 时追云: [speed=0.5]娘子...是你给我起的名字，也是你给了我人生的意义
 时追云: [speed=0.5]我马上就来找你了...等着我
-
+set Global.dial = null
 set Global.onTalk = false
 => END
 
@@ -902,7 +902,7 @@ set get_tree().current_scene.get_node("player").visible = false
 小姜韵: [speed=0.5]我没胡闹，他很可怜的，他没有家人了
 婆婆: [speed=0.5]...村规不可破！
 小姜韵: [speed=0.5]哼，就知道村规村规的，既然这么守村规，那为什么不遵守救死扶伤的规矩！
-婆婆: [speed=0.5]他的性命此时以并无大碍
+婆婆: [speed=0.5]他的性命此时已并无大碍
 小姜韵: [speed=0.5]可如果让他一个人的话他迟早还是会饿死啊
 婆婆: [speed=0.5]生死轮转，乃天意。
 婆婆: [speed=0.5]就连我们的祖先也没能逃过
@@ -1164,7 +1164,7 @@ set Global.onTeamSmallPet.append("小鹿")
 set Global.onTeamSmallPet.append("敖雨")
 set Global.onTeamPlayer.append("时追云")
 时追云: [speed=0.5]婆婆当年到底和你说了什么呢？
-时追云: [speed=0.5]而这和为什么我们离开村子有关吗？
+时追云: [speed=0.5]这与我们为什么离开村子有关吗？
 时追云: [speed=0.5]为什么你后来就性格大变，不再活泼了呢?
 set Global.dial = null
 set Global.onTalk = false
@@ -1308,7 +1308,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 姜韵: [speed=0.5]上古有三皇五帝，他们皆为中华文明做出了不同的贡献
 姜韵: [speed=0.5]而我，我们村，是上古三皇之一，神农炎帝，姜氏的后裔！
 时追云惊: [speed=0.5]什么！惊愕
-时追云惊: [speed=0.5]那你们又为什么会隐居在一个小山村里
+时追云惊: [speed=0.5]那你们为什么会隐居在一个小山村里
 姜韵: [speed=0.5]炎黄两族虽融合，击败蚩尤，创建华夏文明，但黄帝不会允许神农直系后人大摇大摆的在世人面前
 姜韵: [speed=0.5]所以我们便一直在那里隐居，安居乐业，直到那一天，我们迎来了末日
 时追云: [speed=0.5]当初我昏迷了，醒来便与娘子在荒郊野外了，而你也再没提起过仙缘村的事情
@@ -1316,7 +1316,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 姜韵: [speed=0.5]其实，我们一直隐居在世外，还有一个原因
 姜韵: [speed=0.5]我们能传承初始之力
 时追云: [speed=0.5]什么是初始之力？
-姜韵: [speed=0.5]自从盘古开天之后，这世界上便有了天与地，随之诞生的还有一股滂湃的能量
+姜韵: [speed=0.5]自从盘古开天之后，这世界上便有了天与地，随之诞生的还有一股澎湃的能量
 姜韵: [speed=0.5]由女娲和伏羲为始，三皇五帝皆获取到了一部分初始之力，而理论上，只要随着自己的死亡，初始之力便会离开身体，重返世间
 姜韵: [speed=0.5]但我们神农族是例外...我们死了之后...可以将自己的灵力化形为七彩鱼，包括初始之力！
 时追云惊: [speed=0.5]那些在村里水流的鱼？？
@@ -1327,7 +1327,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 时追云: [speed=0.5]可我不曾见到你携带那么多七彩鱼啊
 姜韵: [speed=0.5]我...有些特殊
 姜韵: [speed=0.5]我天生就能把灵力分离出来，不用完全分解自己的灵力，也不需要献祭
-时追云惊: [speed=0.5]那我的一身修为都来自与娘子你！？
+时追云惊: [speed=0.5]那我的一身修为都来自于娘子你！？
 时追云哀: [speed=0.5]你怎么这么傻，要是没把灵力给我的话，你就不会有事了
 姜韵喜: [speed=0.5]如果你出事了，我还要这些灵力干什么？而你现在不也证明了你没有愧对这份力量吗
 时追云: [speed=0.5]...
@@ -1476,7 +1476,7 @@ set Engine.time_scale = 1
 时追云惊: [speed=0.5]钟前辈！莫非这锦囊
 
 钟馗: [speed=0.5]哈哈哈哈，很有趣的法术吧，传闻是一名叫逆天魔的人所创的
-钟馗: [speed=0.5]贸然进来肯定会在中途被鬼帝发现，所以我一直藏匿身形与保命锦囊跟随你进来
+钟馗: [speed=0.5]贸然进来肯定会在中途被鬼帝发现，所以我一直藏匿身形于保命锦囊跟随你进来
 骷刹: [speed=0.5]钟馗，是你！
 钟馗: [speed=0.5]欺负小辈，你也堕落了啊
 骷刹: [speed=0.5]我的眼里只有鬼帝的敌人

@@ -72,10 +72,10 @@ var tempStr = 0
 var tempAbilityPower = 0
 var tempPhysicDefense = 0
 var tempMagicDefense = 0
-
+var dmgRation = 1
 var healBuffAmount = 0
 var poisonDebuffAmount = 0
-var 真身round = 6
+var 真身round = 1
 
 var itemList = []
 var magicPanel
@@ -101,7 +101,7 @@ var currDelta
 var controlType = ""
 var magicControlType = ''
 var itemControlType = ""
-
+var haveGao = false
 
 var digit_image_path = "res://数字/"
 var digit_sprite
@@ -114,12 +114,15 @@ var buffs = []
 
 var multiCanCulate = true
 var critChance 
-var haveGao = false
+
 var commanButtonIndex = 0
 func _ready():
+	$Control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$battleCommends.visible = false
 	if self.playerName == "时追云":
 		#$".".z_index = 1
+		if Global.haveGao:
+			haveGao = true
 		if Global.gai:
 			idle = "时追云改idle"
 			autoAttack = "时追云改autoAttack"
@@ -140,7 +143,7 @@ func _ready():
 	itemButton = get_node("battleCommends/itemButton")
 	
 	hp = FightScenePlayers.fightScenePlayerData.get(playerName).hp + decrypt(FightScenePlayers.fightScenePlayerData.get(playerName).addHp)
-	critChance =  FightScenePlayers.fightScenePlayerData.get(playerName).critChance
+	critChance =  FightScenePlayers.fightScenePlayerData.get(playerName).critChance + FightScenePlayers.fightScenePlayerData.get(playerName).addCritChance
 	players = get_tree().get_nodes_in_group("fightScenePlayers")
 	
 	currHp = FightScenePlayers.fightScenePlayerData.get(playerName).currHp
@@ -172,14 +175,16 @@ func _ready():
 	currPhysicDefense = decrypt(addPhysicDefense) + physicDefense
 	currMagicDefense = decrypt(addMagicDefense) + magicDefense
 	
-	if player_data.name == "时追云":
+	if player_data.name == "时追云":	
 		var magic_names = []
 		for magic in playerMagic:
 			magic_names.append(magic["name"])
 				
 		var names =  magic_names
 		for name in names:
-			if name == "高等炼体术":
+			if name == "高等炼体术":		
+					
+		#if haveGao:
 				haveGao = true
 				currStr += 100
 				currPlayerSpeed += 70
@@ -239,8 +244,16 @@ func _process(delta):
 	if get_node("buffArea").is_playing() == false:
 		get_node("buffArea").visible = false
 	if Global.onAttackingList and playerName == Global.onAttackingList[0]:
+#		var magic_names = []
+#		for magic in playerMagic:
+#			magic_names.append(magic["name"])
+#
+#		var names =  magic_names
+#		for name in names:
+#			if name == "高等炼体术":	
+		playerMagic = playerMagic.filter(func(skill): return skill.get("name", "") != "高等炼体术")
 		Global.playerMagicList = playerMagic
-
+		
 
 	#在人物信息里面更新当前血量，方便之后的战斗获取
 	FightScenePlayers.fightScenePlayerData.get(playerName).currHp = currHp
@@ -416,7 +429,7 @@ func _process(delta):
 				
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()						
-			if Input.is_action_pressed("alt") and Input.is_action_pressed("q"):
+			if Input.is_action_pressed("alt") and Input.is_action_pressed("q") and !Global.noKeyboard:
 				if castLastMagic.magicInfo == null:
 					return
 				if castLastMagic.magicInfo.name == "真身现世":
@@ -462,7 +475,7 @@ func _process(delta):
 				if Global.target or target and canAttack == true:
 					attack(Global.target, "keyboard")
 					if playerName != '姜韵' and playerName != "狐葬魂":
-						print(321133)
+					
 						moveCharacter(delta)    #重点，把移动和攻击分开，这样就算onAttacking = true 不能重复按之后也能移动
 					canSelect = false
 				else:
@@ -512,9 +525,9 @@ func _process(delta):
 			else:
 				var damage_to_deduct = self.currStr * 1.2  * float(target.physicDefense)/1000   +  decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)
 				if target.onIce:
-					Global.dealtDmg = (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2 
+					Global.dealtDmg = (self.currStr * 1.8 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2 
 				else:
-					Global.dealtDmg = ( self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1
+					Global.dealtDmg = ( self.currStr * 1.8 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1
 				
 				if target.currHp - round(Global.dealtDmg) <= 0:
 					target.currHp = 0
@@ -556,9 +569,9 @@ func _process(delta):
 			else:
 				var damage_to_deduct = self.currStr * 1.2  * float(Global.target.physicDefense)/1000  
 				if Global.target.onIce:
-					Global.dealtDmg = (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2 
+					Global.dealtDmg = (self.currStr * 1.8 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2 
 				else:
-					Global.dealtDmg =  (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1
+					Global.dealtDmg =  (self.currStr * 1.8 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1
 
 				if Global.target.canSee == false:
 					Global.dealtDmg = 0					
@@ -611,9 +624,8 @@ func _process(delta):
 		
 		var crit = "normal"
 		var disDamage 
-		if randi_range(0,100) < FightScenePlayers.fightScenePlayerData.get(playerName).critChance + FightScenePlayers.fightScenePlayerData.get(playerName).addCritChance:
+		if randi_range(0,100) < critChance:
 			crit = "crit"
-			
 		if controlType == "mouse" and is_instance_valid(target):
 		#计算伤害
 			if crit == "normal":
@@ -627,9 +639,9 @@ func _process(delta):
 			else:
 				var damage_to_deduct = self.currStr * 1.2  * float(target.physicDefense)/1000 
 				if target.onIce:
-					Global.dealtDmg = (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2
+					Global.dealtDmg = (self.currStr * 1.8 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 /2
 				else:
-					Global.dealtDmg =  (self.currStr * 2.4 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 
+					Global.dealtDmg =  (self.currStr * 1.8 - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg)) * Global.damageReward1 
 					target.currHp -= round(Global.dealtDmg)
 					
 			if target.currHp <= 0 and Global.onAttackingList and Global.onAttackingList[0] == target.name: #重要：如果对方血量低于0就要移除出攻击列表
@@ -724,8 +736,7 @@ func _process(delta):
 		
 		
 	#法术施展完毕后
-	if self.is_playing() == false and self.animation != (playerName + "idle") and self.animation!=(playerName + "hurt")  and self.animation!=(playerName + "defend") and self.animation!=("时追云改defend")   and Global.onAttackingList and self.playerName == Global.onAttackingList[0]:
-		
+	if self.is_playing() == false and self.animation != (playerName + "idle") and self.animation!=(playerName + "hurt")  and self.animation!=(playerName + "defend") and self.animation!=("时追云改defend")   and Global.onAttackingList and self.playerName == Global.onAttackingList[0]:	
 		if playerName == "朱雀":
 			get_parent().get_node("朱雀影").visible = false		
 		if playerName == "青龙":
@@ -775,9 +786,11 @@ func _process(delta):
 							
 					else:
 						target.currHp -= round(Global.dealtDmg * Global.damageReward1)
+						
 						#target.get_node("hpControl/hpLabel").text = str(round(Global.dealtDmg * Global.damageReward1))
 				
 				target.get_node("hpControl").visible = true
+			
 				target.get_node("hpAnimation").play("hpDrop")
 				target.self_modulate = "#ffffff"
 				target.get_node("getHitEffect").visible = false
@@ -866,7 +879,15 @@ func _process(delta):
 								target.onPhysicDefenseDebuff = Global.currUsingMagic.duration
 								target.buffs.append({"onPhysicDefenseDebuff":  Global.currUsingMagic.duration})	
 								
-								
+#		if is_instance_valid(target):
+#			for child in target.get_node("hpControl").get_children():
+#				if child.name != "hpLabel":
+#					child.queue_free()	
+#
+#		if is_instance_valid(Global.target):
+#			for child in Global.target.get_node("hpControl").get_children():
+#				if child.name != "hpLabel":
+#					child.queue_free()								
 								
 		get_parent().get_node("magicName").visible = false
 		get_parent().get_node("magicDescription").visible = false
@@ -910,7 +931,7 @@ func _process(delta):
 			#$battleCommends.set_process_input(true)
 			
 			#快捷攻击
-			if Input.is_key_pressed(KEY_A) and Input.is_key_pressed(KEY_ALT):
+			if Input.is_key_pressed(KEY_A) and Input.is_key_pressed(KEY_ALT) and !Global.noKeyboard and !Global.onMagicAttacking  and !Global.onMagicAttackPicking and !Global.onMagicSelectPicking and !Global.onMagicSelectPicking and !Global.onItemSelectPicking and !Global.onItemUsePicking and !Global.onItemUsing:
 				if get_parent().get_parent().canPress:
 					if Global.onAttackPicking == false and canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
 							if canAttack:
@@ -920,7 +941,7 @@ func _process(delta):
 								get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 								get_tree().current_scene.get_node("subSound").play()		
 			#快捷法术
-			if Input.is_key_pressed(KEY_W) and Input.is_key_pressed(KEY_ALT):
+			if Input.is_key_pressed(KEY_W) and Input.is_key_pressed(KEY_ALT) and !Global.noKeyboard:
 				if get_parent().get_parent().canPress:
 					if Global.onAttackingList:
 						if Global.onMagicSelectPicking == false and Global.onMagicAttackPicking == false and Global.onMagicAttacking == false and self.playerName == Global.onAttackingList[0]:
@@ -942,7 +963,7 @@ func _process(delta):
 										magicSceneInstance.get_node("Button").modulate.a = 0.4
 									get_parent().get_node("magicSelection/GridBoxContainer").add_child(magicSceneInstance)
 			#快捷防御						
-			if Input.is_key_pressed(KEY_D) and Input.is_key_pressed(KEY_ALT):
+			if Input.is_key_pressed(KEY_D) and Input.is_key_pressed(KEY_ALT) and !Global.noKeyboard and !Global.onMagicAttacking  and !Global.onMagicAttackPicking and !Global.onMagicSelectPicking and !Global.onMagicSelectPicking and !Global.onItemSelectPicking and !Global.onItemUsePicking and !Global.onItemUsing and !Global.onAttackPicking :
 				Global.battleButtonIndex = 0
 				if canDefense:
 					canDefense = false
@@ -961,7 +982,7 @@ func _process(delta):
 					self.get_node("battleCommends").visible = false
 					get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 					get_tree().current_scene.get_node("subSound").play()				
-			if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_E):
+			if Input.is_key_pressed(KEY_ALT) and Input.is_key_pressed(KEY_E) and !Global.noKeyboard and !Global.onMagicAttacking  and !Global.onMagicAttackPicking and !Global.onMagicSelectPicking and !Global.onMagicSelectPicking and !Global.onItemSelectPicking and !Global.onItemUsePicking and !Global.onItemUsing and !Global.onAttackPicking:
 				Global.battleButtonIndex = 0
 				
 				if get_parent().get_parent().canPress:
@@ -1149,9 +1170,11 @@ func _process(delta):
 			if Global.onAttackPicking == false and canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
 				if Global.onMagicSelectPicking or Global.onMagicAttackPicking:
 					return
+			
 				if Global.noKeyboard:
 					if Input.is_action_just_released("leftClick") and !Global.onMagicAttackPicking and !Global.onMagicAttacking and !Global.onItemUsePicking and !Global.onItemUsing: #重点 用pressed的话在按压过程中就触发代码了，所以按的同时会触发之后的判断条件，所以要改成released		
 						if canAttack:
+							
 							Global.onAttackPicking = true
 							get_parent().get_node("enemyInfo").visible = false
 							get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
@@ -1192,6 +1215,7 @@ func _process(delta):
 							for i in playerMagic:
 								magicScene = preload("res://Scene/magic_selection.tscn")
 								var magicSceneInstance = magicScene.instantiate()
+								
 								magicSceneInstance.get_node("Button/name").text = i.name
 								magicSceneInstance.get_node("Button/cost").text = str(i.cost)
 								magicSceneInstance.get_node("Button/icon").texture = load(i.icon)
@@ -1232,10 +1256,10 @@ func _process(delta):
 					canDefense = false
 					$canDefense.start()
 					
-					currHp += hp /10
-					currMp += mp/10
-					if currMp > mp:
-						currMp = mp
+					currHp += hp /7
+					currMp += mp/7
+					if currMp > mp + self.addMp:
+						currMp = mp + self.addMp
 					speedBar = 0
 					$Control/speedBar.value = 0
 					if playerName == "时追云" and Global.gai:
@@ -1365,7 +1389,24 @@ func attack(target, type):
 
 
 func castMagic(delta, magic, target, type, onLastMagic):
-	Global.onTeamPlayer.erase(self.playerName1)
+	
+	
+	if Global.haveQianJi and playerName != "小二" and playerName != "小二真身":
+		FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1].name)
+		FightScenePlayers.learnMagic("小二",magic.name)
+		FightScenePlayers.eraseMagic("小二真身",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1].name)
+		FightScenePlayers.learnMagic("小二真身",magic.name)		
+		for i in players:
+			if i.playerName == "小二":
+				i.playerMagic = FightScenePlayers.fightScenePlayerData["小二"].playerMagic 
+			if i.playerName == "小二真身":
+				i.playerMagic = FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic 				
+	
+	
+	
+#	if !is_instance_valid(target):
+#		target = monsters[0]
+	
 	if Global.onMultiHit <= 1:			
 		for i in players:
 			if i.name == Global.onAttackingList[0]:
@@ -1374,9 +1415,8 @@ func castMagic(delta, magic, target, type, onLastMagic):
 	Global.target = target
 	if magic.name == "六月飞雪":
 		Global.onHitEnemy = []
-	if randi_range(0,100) < FightScenePlayers.fightScenePlayerData.get(playerName).critChance + FightScenePlayers.fightScenePlayerData.get(playerName).addCritChance :
+	if randi_range(0,100) <= critChance :
 		crit = "crit"		
-		
 	if playerName == "朱雀":
 		get_parent().get_node("朱雀影").visible = true
 		get_parent().get_node("朱雀影").play("法术")
@@ -1396,9 +1436,12 @@ func castMagic(delta, magic, target, type, onLastMagic):
 		Global.lastMagic.target = target	
 		Global.lastMagic.type =  type
 	
+	
 	if magic.has("magicInfo"):
 		Global.currUsingMagic = magic.magicInfo
+	
 	else:
+		
 		Global.currUsingMagic = magic
 
 
@@ -1482,9 +1525,10 @@ func castMagic(delta, magic, target, type, onLastMagic):
 						var ranTarget = monsters[randi_range(0, monsters.size() - 1)]
 						if !Global.onHitEnemy.has(ranTarget):
 							Global.onHitEnemy.append(ranTarget)
-							
+				remove_duplicates_in_place(Global.onHitEnemy)		
 				for targets in Global.onHitEnemy:
 					if is_instance_valid(targets):
+						
 						targets.get_node("getHitEffect").visible = true
 						
 						targets.get_node("getHitEffect").play(magic.name)
@@ -1501,9 +1545,10 @@ func castMagic(delta, magic, target, type, onLastMagic):
 							Global.dealtDmg = round((currStr  * magic.value - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg))*Global.damageReward1)							
 						
 						Global.dealtDmg *= checkIncreaseDmg(magic)
-						
 						var disDamage = display_damage(round(Global.dealtDmg),"normal")
 						targets.get_node("hpControl").add_child(disDamage)
+						
+
 			elif magic.effectArea == "single":
 				if onLastMagic:
 					Global.target = castLastMagic.target 
@@ -1539,8 +1584,9 @@ func castMagic(delta, magic, target, type, onLastMagic):
 						elif  magic.name == "抽丝断魂":
 								Global.dealtDmg = magic.value
 
-						Global.dealtDmg *= checkIncreaseDmg(magic)		
+						Global.dealtDmg *= checkIncreaseDmg(magic)
 						var disDamage = display_damage(round(Global.dealtDmg),"normal")
+						
 						targets.get_node("hpControl").visible = true
 						targets.get_node("hpControl").add_child(disDamage)				
 						targets.get_node("hpAnimation").play("hpDrop")
@@ -1576,10 +1622,11 @@ func castMagic(delta, magic, target, type, onLastMagic):
 					damage_to_deduct = self.currStr * magic.value * float(Global.target.physicDefense)/1000 
 					Global.dealtDmg =  (self.currStr * magic.value - damage_to_deduct + decrypt(FightScenePlayers.fightScenePlayerData.get(self.name).additionDmg))* Global.damageReward1
 					Global.dealtDmg *= checkIncreaseDmg(magic)
-		
-					
-					
-					var disDamage = display_damage(round(Global.dealtDmg),"normal")
+					var disDamage
+					if crit == "crit":
+						disDamage = display_damage(round(Global.dealtDmg * 1.5),"crit")
+					else:
+						disDamage = display_damage(round(Global.dealtDmg),"normal")
 					Global.target.get_node("hpControl").add_child(disDamage)
 					Global.target.get_node("hpControl/hpLabel").modulate= "88ff00"
 					Global.target.get_node("AnimationPlayer").play("hpControl")	
@@ -1597,8 +1644,10 @@ func castMagic(delta, magic, target, type, onLastMagic):
 				
 				Global.dealtDmg *= checkIncreaseDmg(magic)
 				
-				
-				var disDamage = display_damage(round(Global.dealtDmg),"normal")
+				if crit == "crit":
+					var disDamage = display_damage(round(Global.dealtDmg * 1.5),"crit")
+				else:
+					var disDamage = display_damage(round(Global.dealtDmg),"normal")
 				target.get_node("hpControl").add_child(disDamage)
 				target.get_node("hpControl/hpLabel").modulate= "88ff00"
 				target.get_node("AnimationPlayer").play("hpControl")	
@@ -1996,6 +2045,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 				currPhysicDefense = 真身数据.physicDefense
 				currMagicDefense = 真身数据.magicDefense
 				currStr = 真身数据.str
+				critChance = 真身数据.critChance
 				currMagicDmg = 真身数据.abilityPower
 				totalHp = 真身数据.hp
 				totalMp = 真身数据.mp
@@ -2011,11 +2061,11 @@ func castMagic(delta, magic, target, type, onLastMagic):
 		Global.onMagicAttacking = true
 
 		if crit == "crit":
-			Global.dealtDmg *= 2
-
+			Global.dealtDmg *= 1.5
+			
 	
 	for i in FightScenePlayers.fightScenePlayerData.get(self.name).playerMagic:
-	
+		
 		if i.name == Global.currUsingMagic.name and i.has("needExp"):
 			i.currExp += 1
 #	for child in target.get_node("hpControl").get_children():
@@ -2029,7 +2079,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 		target.get_node("hpControl").add_child(disDamage)
 		target.get_node("hpAnimation").play("hpDrop")
 		target.play(remove_numbers_from_string(target.name) + "idle")		
-			
+		
 			
 func useItem(item, target, type):
 	get_parent().get_parent().canPress = false
@@ -2189,6 +2239,7 @@ func _on_magic_button_button_down():
 
 func _on_defense_button_button_down():
 	Global.battleButtonIndex = 2
+	
 
 func _on_item_button_button_down():
 	
@@ -2234,14 +2285,17 @@ func _on_button_button_down():
 		castMagic(currDelta ,Global.currUsingMagic, self, "mouse",false)
 		
 func display_damage(damage, type):
-	if is_instance_valid(target):
-		for child in target.get_node("hpControl").get_children():
-			if child.name != "hpLabel":
-				child.queue_free()	
-	if is_instance_valid(Global.target):
-		for child in Global.target.get_node("hpControl").get_children():
-			if child.name != "hpLabel":
-				child.queue_free()				
+#	if is_instance_valid(target):
+#		for child in target.get_node("hpControl").get_children():
+#			if child.name != "hpLabel":
+#				child.queue_free()	
+#
+#	if is_instance_valid(Global.target):
+#		for child in Global.target.get_node("hpControl").get_children():
+#			if child.name != "hpLabel":
+#				child.queue_free()
+				
+	
 			
 	var damage_str = str(damage)
 	var offset_x = 0
@@ -2254,6 +2308,7 @@ func display_damage(damage, type):
 			digit_sprite.scale = Vector2(0.6, 0.6)
 			
 		elif type == "crit":
+		
 			digit_sprite.texture = load(digit_image_path + "22-" + str(int(digit) + 1) + ".png")
 			digit_sprite.scale = Vector2(0.6, 0.6)
 			offset_x += 0
@@ -2389,3 +2444,25 @@ func _on_area_2d_area_entered(area):
 
 func _on_can_attack_after_multi_timeout():
 	canAttack = true
+func roll_dice_with_luck(luck: int) -> int:
+	# 保证 luck 范围在 0~100
+	luck = clamp(luck, 0, 100)
+
+	# 使用带偏向的指数插值：0 趋近 0，100 趋近 1
+	# 可调节 power 参数控制倾斜程度（越大越陡）
+	var power = 4
+	var bias = pow(float(luck) / 100.0, power)
+
+	# 生成一个偏斜的随机数，0~1 之间
+	var r = randf()
+	var skewed = lerp(r, 1.0, bias)
+
+	# 转换为 1~6 点
+	return clamp(int(floor(skewed * 6.0)) + 1, 1, 6) 
+func remove_duplicates_in_place(arr: Array):
+	var i = 0
+	while i < arr.size():
+		if arr.count(arr[i]) > 1:
+			arr.remove_at(i)
+		else:
+			i += 1

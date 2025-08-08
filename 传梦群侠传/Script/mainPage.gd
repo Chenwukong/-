@@ -328,6 +328,8 @@ func _on_button_button_down():
 
 
 func _on_button_pressed():
+	SmallPetData.currSmallPetData =  SmallPetData.oriSmallPetData
+	
 	$openScene.play("openScene")
 	$AudioStreamPlayer2D.stream = load("res://Audio/BGM/欢乐家园.mp3")
 	$AudioStreamPlayer2D.play()

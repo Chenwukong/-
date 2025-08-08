@@ -20,6 +20,7 @@ func _process(delta):
 	pass
 				
 func _on_button_button_down():
+	
 	if Global.onMenuItemUsing:
 		return 
 	var menuItems = get_tree().get_nodes_in_group("bagMenuItem")
