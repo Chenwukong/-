@@ -11,8 +11,22 @@ var onChase = false
 @export var talked = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if name == "天道":
+		if Global.tianDaoMoved == 1:
+			position = Vector2(-685,581)
+		elif Global.tianDaoMoved == 2:
+			position = Vector2(2576,62)
+			scale = Vector2(-1,1)
+		elif Global.tianDaoMoved == 3:
+			position = Vector2(430,150)			
+			
+	
 	newStream =  audio.substr(1, audio.length() - 2)
 	for i in Global.npcVis:
+		if Global.currScene == "玄天幻化":
+			return
+		if get_tree().current_scene.name == "玄天幻化":
+			return
 		if self.name in Global.npcVis.get(i):	
 			if Global.npcVis.get(i).get(self.name).visible == false:
 				self.visible = false
@@ -42,6 +56,8 @@ func _process(delta):
 				
 				
 	if self.visible == false:
+		if get_tree().current_scene.name == "玄天幻化":
+			return
 		$npcBody/CollisionPolygon2D.disabled = true
 
 	for i in Global.npcVis:
@@ -51,13 +67,15 @@ func _process(delta):
 				if Global.npcVis.get(i).get(self.name).visible == false:
 					
 					self.visible = false
-					get_node("npcBody/npcShape").disabled = true
-					$npcBody/CollisionPolygon2D.disabled = true
+					if get_tree().current_scene.name != "玄天幻化":
+						get_node("npcBody/npcShape").disabled = true
+						$npcBody/CollisionPolygon2D.disabled = true
 				else:
 				
 					self.visible = true
-					get_node("npcBody/npcShape").disabled = false
-					$npcBody/CollisionPolygon2D.disabled = false
+					if get_tree().current_scene.name != "玄天幻化":
+						get_node("npcBody/npcShape").disabled = false
+						$npcBody/CollisionPolygon2D.disabled = false
 
 func _on_button_pressed():
 

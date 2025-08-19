@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=3 uid="uid://d1d7xnhx3bc76"]
+[gd_scene load_steps=100 format=3 uid="uid://d1d7xnhx3bc76"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_l5254"]
 [ext_resource type="Texture2D" uid="uid://bhae423yyyatb" path="res://Panoramas/shanding.jpg" id="2_0ph88"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://klncldkpxbst" path="res://梦魂Animation/circle.png" id="26_qteay"]
 [ext_resource type="AudioStream" uid="uid://bwt1iemoxp8ai" path="res://Audio/SE/SWD 战斗开始.mp3" id="27_hrvl2"]
 [ext_resource type="Texture2D" uid="uid://dnmi653uf1d0y" path="res://Pictures/@《神迹》电影式对话.png" id="28_emtct"]
+[ext_resource type="Texture2D" uid="uid://dyuvyd6ufnvi5" path="res://梦魂Animation/回复-血-大.png" id="29_alumx"]
 [ext_resource type="AudioStream" uid="uid://7d6auv5upl7p" path="res://Audio/BGM/轩辕-鬼域.mp3" id="29_o52ss"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="30_j47ag"]
 [ext_resource type="Texture2D" uid="uid://ddbdl7bxwcvq3" path="res://梦魂Animation/@@@@九头蛇攻击.png" id="31_motuj"]
@@ -53,18 +54,6 @@ fill_from = Vector2(1, 0.612536)
 
 [sub_resource type="Animation" id="Animation_o8nmx"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_lrpc3"]
 resource_name = "warSkip"
@@ -82,15 +71,138 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_kmoya"]
+resource_name = "回忆"
+length = 26.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("旅游:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 6, 7, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("成为堕逝:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 15, 16, 19, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("初次见面:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("分离:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 10, 11, 14, 15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("建业左:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(21, 23),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(23, 25.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_5d8hn"]
 resource_name = "城主走开"
 length = 5.0
+
+[sub_resource type="Animation" id="Animation_c27da"]
+resource_name = "太阳"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.215686, 0.215686, 0.215686, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5c4nm"]
+resource_name = "跳崖"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("挽琴:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1791, 991), Vector2(1725, 934), Vector2(1521, 1515)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("挽琴:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(0.1, 0.1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
 _data = {
 "RESET": SubResource("Animation_o8nmx"),
 "warSkip": SubResource("Animation_lrpc3"),
-"城主走开": SubResource("Animation_5d8hn")
+"回忆": SubResource("Animation_kmoya"),
+"城主走开": SubResource("Animation_5d8hn"),
+"太阳": SubResource("Animation_c27da"),
+"跳崖": SubResource("Animation_5c4nm")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7tuji"]
@@ -449,14 +561,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7cics"]
-region = Rect2(576, 0, 192, 153)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yax7e"]
+atlas = ExtResource("29_alumx")
+region = Rect2(192, 192, 192, 192)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmedm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_7cics")
+"texture": SubResource("AtlasTexture_yax7e")
 }],
 "loop": true,
 "name": &"default",
@@ -763,8 +876,8 @@ polygon = PackedVector2Array(2045.66, 985.518, 2045.66, 1055.82, 2030.24, 1080.4
 volume_db = 4.552
 
 [node name="teleportCircle" parent="." instance=ExtResource("33_scl5m")]
-position = Vector2(2557, 1268)
-toScene = "大唐国境"
+position = Vector2(2549, 1269)
+toScene = "国境南"
 
 [node name="sounds" type="Node2D" parent="."]
 script = ExtResource("45_qq0nd")

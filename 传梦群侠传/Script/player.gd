@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 300
+var speed = 900
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
@@ -26,6 +26,10 @@ var onRight = false
 var lastMove = ""
 
 func _ready():
+	if Global.onWalkDoubleSpeed:
+		Global.playerSpeed = 500
+	else:
+		Global.playerSpeed = 900
 	canMouseMove = true
 	raycast = $RayCast2D3
 	raycast2 =  $RayCast2D2
@@ -116,7 +120,7 @@ func _process(delta):
 			$AnimatedSprite2D.stop()
 
 		
-		if Input.is_action_pressed("leftClick")  and !Global.onTalk and !Global.onButton and !onArrowButton and !Global.onUi:
+		if Input.is_action_pressed("leftClick")  and !Global.onTalk and !Global.onButton and !onArrowButton and !Global.onUi and Global.canMove:
 			if Global.menuOut:
 				return
 			
@@ -214,7 +218,7 @@ func _physics_process(delta):
 			
 			#velocity = Vector2(0, 0)
 			
-		if Input.is_action_pressed("ui_down") and !Global.onTalk:
+		if Input.is_action_pressed("ui_down") and !Global.onTalk and Global.canMove:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false			
 #			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "down":
@@ -240,7 +244,7 @@ func _physics_process(delta):
 				  ]
 			if canMove and !collide and Global.menuOut == false:	
 				update_animation(delta)
-		elif Input.is_action_pressed("ui_up") and !Global.onTalk:
+		elif Input.is_action_pressed("ui_up") and !Global.onTalk   and Global.canMove:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false	
 #			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D" and lastMove == "up":
@@ -265,7 +269,7 @@ func _physics_process(delta):
 				  ]	
 			if canMove and !collide and Global.menuOut == false:
 				update_animation(delta)
-		elif Input.is_action_pressed("ui_left") and !Global.onTalk:
+		elif Input.is_action_pressed("ui_left") and !Global.onTalk  and Global.canMove:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false				
 #			if  $RayCast2D4.is_colliding()  and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "left":
@@ -293,7 +297,7 @@ func _physics_process(delta):
 				  ]	
 			if canMove and !collide and Global.menuOut == false:
 				update_animation(delta)
-		elif Input.is_action_pressed("ui_right") and !Global.onTalk:
+		elif Input.is_action_pressed("ui_right") and !Global.onTalk  and Global.canMove:
 			$Sprite2D.visible = true
 			$AnimatedSprite2D.visible = false				
 #			if $RayCast2D4.is_colliding() and $RayCast2D4.get_collider() != null and $RayCast2D4.get_collider().name == "StaticBody2D"  and lastMove == "right":

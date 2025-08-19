@@ -14,14 +14,11 @@ Nathan: For more information see the online documentation.
 
 ~ 桥
 set Global.onTalk = true
-桥: [speed=0.5]传梦，我又给你找到了50个bug,我手上的是bug清单你看一瞎
-桥: [speed=0.5]嗯？你不是传梦啊，哦我妄了，他看到我手中的清单已经两眼一黑了
-桥: [speed=0.5]他的错别字之力还在影响着我，还有，他的bug！！他的bug又出来了！
-set Global.getnode("ColorRect2").visible = true
-桥: [speed=0.5]糟糕，黑屏了都，这货怎么修的代码
-桥: [speed=0.5]好了好了弄好了
-set Global.getnode("ColorRect2").visible = false
-桥: [speed=0.5]吓到你了，给你这个收收惊
+桥: [speed=0.5]嗯？你是哪儿来的生面孔？自我介绍一下，我是游戏作者亲自认证的“王牌测试员”，在试玩阶段写了近20000字的反馈日志，你也可以称我为“BUG之王”。
+桥: [speed=0.5]ps:这么帅的头像当然是我自己选的，作者说了自己审美为零，指望不上
+桥: [speed=0.5]说实话，我很佩服本作作者「传梦」，在游戏爆炸的互联网时代，没有他咬牙坚持的打磨死磕，就不会有这款情怀拉满的新梦单，你也不会看到我的这些话。虽然有点矫情，但我还是想说一声：“谢谢传梦！
+桥: [speed=0.5]时隔二十余年，没想到当初沉迷梦单的傻小子，也能成为致敬梦3彩蛋空间中的一员。江湖路远，山高水长。即使我们有时会被生活里的各种BOSS给打趴，但只要“决不放弃”，带着热爱走下去，人的梦想，就永远不会断传。
+桥: [speed=0.5]期待传梦2，我们再相见！
 set Global.addItem("GM奖牌", "accessories", "bagArmorItem", 1)
 
 
@@ -107,7 +104,7 @@ set Global.onTalk = false
 ~ 白泽
 set Global.onTalk = true
 白泽: [speed=0.5]这地图挺大的，让我给你加速一阵子吧！
-set Global.getnode("player").speed = 700
+set Global.playerSpeed = 700
 set Global.getnode("speedTimer").start()
 set Global.onTalk = false
 => END
@@ -700,7 +697,7 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 菩提老祖: 大海！四季！信仰！光亮！还有全部初始之力！这就是为什么魔尊和妖皇一直在派人杀姜韵和四圣！
 菩提老祖: 所以，你们一定要保护好她！
 姜韵恐: 果然是他们一直想杀我!
-玄武: [speed=0.5]而我那时。。正好也在建业
+玄武: [speed=0.5]而我那时。。正好也在建邺
 菩提老祖: [speed=0.5]咳咳咳！
 
 set Global.changebgm("res://Audio/BGM/#沧桑叹.ogg")
@@ -731,6 +728,7 @@ set Global.getnode("天道").play()
 set Global.playsound("res://Audio/SE/法术-气势强.ogg")
 [next=2]
 set Global.npcVis.get("灵台宫").get("菩提老祖").visible = false
+set Global.getnode("天道").visible = false
 时追云惊: 祖师！！！
 小二: !!!!
 凌若昭哭: 师傅！！！ 
@@ -746,6 +744,7 @@ set Global.npcVis.get("灵台宫").get("菩提老祖").visible = false
 小二: [speed=0.5]可长寿村在哪啊，没听过啊
 凌若昭哀: [speed=0.5]我去过，师父在我很小的时候带我去过那里，所以我可以用符飞过去
 凌若昭哀: [speed=0.5]等要走了就告诉我一声吧
+set Global.questHint = "准备走了就和若昭对话吧"
 set Global.npcs.get("凌若昭").dialogues[5].unlocked = true
 set Global.cantShow.erase("镇魔地1")
 set Global.cantShow.erase("镇魔地2")
@@ -865,7 +864,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]算是听懂了吧，那两位墨兄知道如何找到梦澹(dan)吗
 墨兮: [speed=0.5]他就在这个村子里的神庙内
 时追云: [speed=0.5]神庙？
-墨兮: [speed=0.5]嗯，这里的村民世世代代都在守护这个神庙，而里面则就放着梦澹(dan)
+墨兮: [speed=0.5]嗯，这里的村民世世代代都在守护这个神庙，而里面就放着梦澹(dan)
 小二: [speed=0.5]你怎么知道的这么清楚
 寒天云: [speed=0.5]我干嘛要告诉你
 小二: [speed=0.5]。。。
@@ -888,7 +887,7 @@ set Global.changevis("长寿村","墨兮")
 姜韵: [speed=0.5]方才我见大部分村民都面有苦色，想必是有什么事情困扰着他们
 姜韵: [speed=0.5]我想，如果能帮助他们的话，或许村长就会认可我们吧
 时追云: [speed=0.5]酒楼的消息最流通，不如去问问酒楼的掌柜吧
-set Global.questHint = "去问问酒楼展柜"
+set Global.questHint = "去问问酒楼掌柜"
 set Global.triggerPlace.get("长寿村酒楼掌柜").disable = false
 	
 set Global.onTalk = false
@@ -943,7 +942,7 @@ set Global.onTalk = true
 时追云: [speed=0.5]可这里有神庙守护，妖盟准备怎么应对？
 蝎霸王: [speed=0.5]那个神庙啊，我也知道，之前确实是很强大
 姜韵: [speed=0.5]之前？
-蝎霸王: [speed=0.5]是啊，神庙之前确实是很强大的，但随着时间过去，貌似越来越弱了
+蝎霸王: [speed=0.5]是啊，神庙之前确实是很强大的，但随着时间流逝，貌似越来越弱了
 凌若昭: [speed=0.5]世界上没有一个物品和建筑能够永远具有仙力的，都会随着时间慢慢削减
 蝎霸王: [speed=0.5]每次驱逐一次怪物都会消耗它的灵力，这几年要不是我们暗中保护他们，他们早就被打烂了
 蝎霸王: [speed=0.5]自从那次魔尊出来，它抵挡了一次魔尊的攻击后，它本就不多的灵力就已经快散尽了，不过还好他没有停留多久就走了
@@ -1067,7 +1066,7 @@ set Global.onTeamPet.erase("朱雀")
 set Global.onTeamPet.erase("玄武")
 set Global.onTeamPet.erase("白虎")
 时追云惊: [speed=0.5]这是...长安？不对，长安哪有这么阴森？
-时追云: [speed=0.5街上的摊贩怎么一个人都没有？
+时追云: [speed=0.5]街上的摊贩怎么一个人都没有？
 时追云: [speed=0.5]这种感觉。。。像是梦
 时追云: [speed=0.5]神庙的内部绝对不可能如此邪气，莫非...这里是类似幻境之类的地方
 set Global.onTalk = false
@@ -1080,7 +1079,7 @@ set Global.onTalk = true
 奔霸: [speed=0.5]我当然在这里，我已经带领妖怪占领了这里
 奔霸: [speed=0.5]这里的人，都被我吃了
 时追云怒: [speed=0.5]什么！？
-奔霸: [speed=0.5]就和，当初的建业一样哈哈哈哈哈哈哈哈，啊哈哈哈哈哈哈哈哈哈！
+奔霸: [speed=0.5]就和，当初的建邺一样哈哈哈哈哈哈哈哈，啊哈哈哈哈哈哈哈哈哈！
 奔霸: [speed=0.5]当初那些被我杀死的人，他们死的的时候的样子我都记得，太美妙了！
 奔霸: [speed=0.5]有个老头子跪地求饶，说愿意做任何事，只求多活一天,哈哈哈哈哈
 时追云怒: [speed=0.5]真是杀死你几遍都不够！
@@ -1245,7 +1244,7 @@ set Global.toggleballon()
 夜护法: [speed=0.5]呵呵呵呵呵，我会让你求生不得，求死不能的
 夜护法: [speed=0.5]都给我上！把这村子里的人全杀了！把那破神庙也摧毁！里面的东西会阻碍我们的大业！
 set Global.onTeamPlayer.erase("时追云")
-
+set FightScenePlayers.healAll()
 set get_tree().current_scene.bossFight("妖盟","res://Audio/BGM/战斗-急凑.mp3", "妖盟入侵")
 set Global.onTalk = false
 => END
@@ -1339,7 +1338,7 @@ set Global.getnode("火力场").play()
 set Global.removeshader("建业左")
 set Global.removeshader("shadow")
 set Global.toggleballon()
-#set FightScenePlayers.learnMagic("小二真身", "火域")
+set FightScenePlayers.learnMagic("小二真身", "火域")
 set FightScenePlayers.learnMagic("小二真身", "滔天")
 set FightScenePlayers.eraseMagic("小二真身","千机变")
 set FightScenePlayers.learnMagic("小二真身","千机变")
@@ -1466,9 +1465,9 @@ set Global.onTalk = false
 set Global.onTalk = true
 时追云惊: [speed=0.5]娘子！？
 时追云: [speed=0.5]不对，她不可能在这里，你是谁
-姜韵: [speed=0.5]夫君，你连我都认不出来了吗？我是烟儿啊
-时追云: [speed=0.5]烟儿...
-时追云: [speed=0.5]烟儿....你怎么会在...这里
+姜韵: [speed=0.5]夫君，你连我都认不出来了吗？我是韵儿啊
+时追云: [speed=0.5]韵儿...
+时追云: [speed=0.5]韵儿....你怎么会在...这里
 姜韵: [speed=0.5]夫君，我们不要再战斗了好吗？
 时追云: [speed=0.5]我。。。绝对不会再逃避了
 姜韵: [speed=0.5]哪怕我再次死在你面前吗？
@@ -1508,7 +1507,7 @@ set Global.onTalk = false
 ~ 女娲神迹1
 set Global.onTalk = true
 set Global.dial = null
-时追云: [speed=0.5]看来已经脱离幻境了，这里神庙真正所隐藏的地方吧
+时追云: [speed=0.5]看来已经脱离幻境了，这是神庙真正所隐藏的地方吧
 时追云: [speed=0.5]这里貌似一个人都没有，只能到处找找看了
 set Global.onTalk = false
 => END
@@ -1526,7 +1525,7 @@ set Global.getnode("墨兮").visible = true
 墨兮: [speed=0.5]我明白了，你应该是碰见了我的转世
 时追云: [speed=0.5]什么。。。意思？
 墨兮: [speed=0.5]寻常修仙之人自然是不能转世的，我用了某种方法...完成了转世
-墨兮: [speed=0.5]而现在在这里的我，只是一律残念罢了
+墨兮: [speed=0.5]而现在在这里的我，只是一缕残念罢了
 时追云: [speed=0.5]那你当初为什么要舍弃一身修为和记忆去转世？
 墨兮: [speed=0.5]因为我发现，我引以自豪的法力成为了束缚，我旧有的一身修为全来自于它，而既然来自于它，自然也没法对抗它...我只能另寻他法
 时追云: [speed=0.5]它是谁？
@@ -1574,14 +1573,22 @@ set Global.toggleballon()
 时追云: [speed=0.5]我会接着守护这个世界
 set Global.toggleballon()
 [next=2]
-set Global.dial = "妖盟入侵"
-set Global.changeScene("黑暗空间",null)
-
-
+set Global.questHint = "建议保存，还有把梦澹换上再出去"
+set Global.addItem("梦澹", "weapon", "bagArmorItem", 1)
 
 
 set Global.onTalk = false
 => END
+
+~ 切换入侵
+set Global.onTalk = true
+
+set Global.dial = "妖盟入侵"
+set Global.changeScene("黑暗空间",null)
+
+set Global.onTalk = false
+=> END
+
 
 ~ 妖盟入侵8
 set Global.onTalk = true
@@ -1737,7 +1744,7 @@ set Global.getnode("player/AnimatedSprite2D").play("时追云改idle")
 小二: [speed=0.5]这样才对嘛老大！
 凌若昭喜: [speed=0.5]嗯！
 寒天云: [speed=0.5]本大爷打的有点累了，你们加油吧
-set FightScenePlayers.fightScenePlayerData["时追云"].item.weapon = ItemData.weapon.get("梦澹")
+
 set get_tree().current_scene.bossFight("鬼帝","res://Audio/BGM/曲刃亂影 [TubeRipper.cc].ogg", "妖盟入侵")
 set Global.getnode("黑象").visible = false
 
@@ -1858,7 +1865,7 @@ set Global.onTalk = false
 ~ 弑天魔2
 set Global.onTalk = true
 set Global.cantShow.append("镇魔地1")
-set Global.quests["镇魔地"]["镇魔地1"] = true
+set Global.quests["镇魔地"]["镇魔地1"]= true
 set Global.changeScene("方寸山",Vector2(1548,175))
 
 set Global.onTalk = false
@@ -1875,7 +1882,7 @@ set Global.onTalk = false
 ~ 炎魔神2
 set Global.onTalk = true
 set Global.cantShow.append("镇魔地2")
-set Global.quests["镇魔地"]["镇魔地2"] = true
+set Global.quests["镇魔地"]["镇魔地2"]= true
 set Global.changeScene("普陀山",Vector2(1442,1060))
 set Global.onTalk = false
 => END
@@ -1891,7 +1898,7 @@ set Global.onTalk = false
 ~ 冲天魔2
 set Global.onTalk = true
 set Global.cantShow.append("镇魔地3")
-set Global.quests["镇魔地"]["镇魔地3"] = true
+set Global.quests["镇魔地"]["镇魔地3"]= true
 set Global.changeScene("五庄观",Vector2(909,578))
 
 

@@ -948,6 +948,28 @@ one_shot = true
 [node name="避" parent="CanvasLayer" index="37"]
 z_index = 998
 
+[node name="golds" parent="CanvasLayer/随身商店" index="0"]
+offset_left = 350.116
+offset_right = 656.116
+
+[node name="Label3" parent="CanvasLayer/随身商店" index="1"]
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 459.169
+offset_top = -261.152
+offset_right = 745.755
+offset_bottom = -187.152
+
+[node name="costValue" parent="CanvasLayer/随身商店/items/cost" index="0"]
+layout_mode = 0
+offset_left = 1.43481
+offset_top = 61.7008
+offset_right = 291.435
+offset_bottom = 143.701
+
 [node name="长寿村过场图" type="Sprite2D" parent="CanvasLayer"]
 visible = false
 z_index = 999
@@ -1038,8 +1060,7 @@ scale = Vector2(0.432927, 0.432927)
 toScene = "长寿村村长家"
 
 [node name="六耳" parent="." instance=ExtResource("22_bf5aa")]
-visible = false
-position = Vector2(2007, 782)
+position = Vector2(-847, 699)
 sprite_frames = SubResource("SpriteFrames_b0lho")
 frame_progress = 0.628823
 
@@ -1226,7 +1247,7 @@ sprite_frames = SubResource("SpriteFrames_7tdwl")
 npcName = "墨兮"
 
 [node name="CollisionPolygon2D" parent="墨兮/npcBody" index="1"]
-polygon = PackedVector2Array(-270, -284, -293, -282, -340.489, -241.979, -293, -217, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
+polygon = PackedVector2Array(-275.808, -333.894, -293, -282, -376.234, -228.362, -293, -217, -276, -215, -260, -215, -247, -216, -228, -216, -225, -234, -225, -251, -224, -281, -238, -280, -206.021, -293.043, -231.553, -318.574)
 
 [node name="petFoodBall" parent="." instance=ExtResource("35_hlpe2")]
 position = Vector2(1278.65, -28.5143)

@@ -469,7 +469,7 @@ texture = ExtResource("4_iqkqi")
 
 [node name="player" parent="." instance=ExtResource("5_75v07")]
 z_index = 1
-position = Vector2(-56, -92)
+position = Vector2(1199, 1634)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
@@ -784,6 +784,18 @@ position = Vector2(1853, 408)
 sprite_frames = SubResource("SpriteFrames_rjm1w")
 npcName = "女娲雕像"
 
+[node name="切换入侵" parent="." instance=ExtResource("29_6gko8")]
+visible = false
+position = Vector2(-625, -219)
+triggerEvent = "切换入侵"
+
+[node name="CollisionShape2D" parent="切换入侵/Area2D" index="0"]
+position = Vector2(81.718, 30.792)
+
+[node name="teleportCircle" parent="." instance=ExtResource("12_uhjh4")]
+position = Vector2(-554, -161)
+scale = Vector2(1.29588, 1.29588)
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
@@ -795,3 +807,4 @@ npcName = "女娲雕像"
 
 [editable path="player"]
 [editable path="女娲神迹"]
+[editable path="切换入侵"]

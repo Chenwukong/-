@@ -59,7 +59,8 @@ func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
 
 
 func _ready():
-	
+	print(get_tree().current_scene.name)
+	Global.uniqueId = OS.get_unique_id()
 	if has_node("shop"):
 		Global.getnode("shop").connect("buy_signal", Callable(self, "_on_buy_signal"))
 		Global.getnode("shop").connect("sell_signal", Callable(self, "_on_sell_signal"))
@@ -149,8 +150,6 @@ func _ready():
 		#DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 
 func _process(delta):
-
-	
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -278,6 +277,7 @@ func _process(delta):
 	
 	
 	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and Global.menuOut == false and !get_node("battleField") and !onShop and canPress and !Global.onTalk and !Global.onFight:
+		Global.canMove = true
 		if !Global.canMenu:
 			Global.showMsg("当前无法打开菜单！")
 			return
@@ -1376,7 +1376,12 @@ func _on_黑龙吼_animation_finished():
 
 
 func _on_speed_timer_timeout():
-	$player.speed = 300
+	if Global.onWalkDoubleSpeed:
+		$player.speed = 700
+		Global.playerSpeed = 700
+	else:	
+		Global.playerSpeed = 300
+		$player.speed = 300
 
 
 func _on_魔尊_animation_looped():
@@ -1421,19 +1426,19 @@ func send_id(name: String, message: String) -> void:
 		"apikey: " + api_key,
 		"Authorization: Bearer " + api_key
 	]
-	var id = ""
+	var id = Global.uniqueId
 	var body = {
 		"name": name,
 		"message": message,
 		"readed": false,
-		#"id": id
+		"uniqueId": id
 	}
 	var json_body = JSON.stringify(body)
 
 	var err = http.request(url, headers, HTTPClient.METHOD_POST, json_body)
 	if err != OK:
 		print("请求发送失败，错误码：", err)
-
+	
 
 func get_all_ids():
 	var url = supabase_url + "/rest/v1/shareDream?select=name"
@@ -1831,3 +1836,7 @@ func _on_confirm_cancel_signal():
 		shopItems[itemIndex].get_node("Control").visible = false
 		$subSound.stream = load("res://Audio/SE/003-System03.ogg")
 		$subSound.play()		
+
+
+func _on_星辰timer_timeout():
+	Global.getnode("ColorRect").visible = false

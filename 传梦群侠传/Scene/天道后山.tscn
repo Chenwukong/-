@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="17_qtgxv"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="18_cnlli"]
 [ext_resource type="Texture2D" uid="uid://b6rv33sy85g7j" path="res://Pictures/四圣change.jpg" id="19_mg2m7"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="20_ypvlf"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="20_ypvlf"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="23_8qcfa"]
 [ext_resource type="Texture2D" uid="uid://kxjwjrk0gmie" path="res://SeparateAnimation/天道/行动二.png" id="24_60v7x"]
 [ext_resource type="Texture2D" uid="uid://kjk2xrs237c3" path="res://SeparateAnimation/天道/待机.png" id="24_algqh"]
@@ -670,6 +670,7 @@ scale = Vector2(2.334, 2.18533)
 texture = ExtResource("19_mg2m7")
 
 [node name="挑战天道2" parent="." instance=ExtResource("20_ypvlf")]
+visible = false
 position = Vector2(816, 866)
 triggerEvent = "挑战天道"
 

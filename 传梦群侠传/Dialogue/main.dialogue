@@ -971,7 +971,7 @@ set Global.npcVis.get("建邺城").get("乞丐2").visible = false
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=61]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-时追云哀: 娘子，我已经把全部乡亲都安葬好了
+时追云哀: 娘子，我已经把全部乡亲都...安葬好了
 时追云哀: 你们不会在外面受冻了，天冷
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=2]
@@ -1024,11 +1024,12 @@ set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云喜: [speed=0.8]好了，我要走了娘子，等我回来
 时追云喜: [speed=0.8]等一切都解决完，我就来陪你了
-时追云: [speed=0.8]走了小乌，去长安
+时追云: [speed=0.8]自从那件事后已经过去了三年，是时候离开这里去打听那家伙的消息了，小乌，和我走
 大海龟: ...
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
 set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp
-set Global.questHint = "去没去过的地方"
+set Global.questHint = "去没走过的地方看看"
+set Global.cantShow.erase("江南野外")
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 [next=2]
@@ -1057,7 +1058,7 @@ set Global.npcVis.get("建邺城右").get("妖魔尸体15").visible = true
 set Global.npcVis.get("建邺城右").get("妖魔尸体16").visible = true
 set Global.npcVis.get("建邺城右").get("妖魔尸体17").visible = true
 set Global.npcVis.get("建邺城右").get("妖魔尸体18").visible = true
-
+set Global.baseChance = 900
 
 
 => END
@@ -1065,6 +1066,11 @@ set Global.npcVis.get("建邺城右").get("妖魔尸体18").visible = true
 ~ 斩妖
 set Global.onTalk = true
 时追云: 一群畜生，碍事
+set Global.baseChance = 0
+set Global.onSkipFight = false
+
+set Global.onHurry = false
+set FightScenePlayers.learnMagic("时追云","飞剑决")
 #set get_tree().current_scene.get_node("AnimationPlayer").play("斩妖")
 set get_tree().current_scene.get_node("subSound").stream = load("res://Audio/SE/男-剑.ogg")
 set get_tree().current_scene.get_node("subSound").play()
@@ -1081,7 +1087,13 @@ set Global.npcVis.get("建邺城右").get("堆积妖魔4").visible = false
 set Global.npcVis.get("建邺城右").get("堆积妖魔5").visible = false
 set Global.triggerPlace.get("斩妖").disable = true
 set get_tree().current_scene.get_node("teleportCircle2").visible = true
-set get_tree().current_scene.get_node("teleportCircle2/area2D/CollisionShape2D").disable = false
+set get_tree().current_scene.get_node("teleportCircle2/area2D/CollisionShape2D").disabled = false
+set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
+set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp
+set FightScenePlayers.fightScenePlayerData.get("大海龟").currHp = FightScenePlayers.fightScenePlayerData.get("大海龟").hp
+set FightScenePlayers.fightScenePlayerData.get("大海龟").currMp = FightScenePlayers.fightScenePlayerData.get("大海龟").mp
+set Global.current_chapter_id = 2
+set Global.maxLevel = 25
 set Global.onTalk =  false
 => END
 #set get_tree().current_scene.get_node("player/Sprite2D").visible = false

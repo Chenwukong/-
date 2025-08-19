@@ -74,7 +74,7 @@ var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3},
 var bigMagics ={
 	"水漫金山":{
 		"name": "水漫金山",
-		"damage": 1.2,
+		"damage": 2,
 		"attackType": "range",
 		"effectingNum":8,
 		"animationArea": "enemy",
@@ -152,7 +152,7 @@ var bigMagics ={
 	"雷龙腾":{
 		"name": "雷龙腾",
 		"attackType": "range",
-		"damage": 3, 
+		"damage": 3.2, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -174,7 +174,7 @@ var bigMagics ={
 	"黑象之力":{
 		"name": "黑象之力",
 		"attackType": "range",
-		"damage": 3, 
+		"damage": 7, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -185,7 +185,7 @@ var bigMagics ={
 	"炼狱真火":{
 		"name": "炼狱真火",
 		"attackType": "range",
-		"damage": 2.2, 
+		"damage": 5, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
@@ -196,23 +196,23 @@ var bigMagics ={
 	"裂":{
 		"name": "裂",
 		"attackType": "range",
-		"damage": 3, 
+		"damage": 8, 
 		"cost": 50,
 		"description": "群体法术",
 		"effectArea": "single",
-		"effectingNum": 3,
+		"effectingNum": 4,
 		"animationArea":"enemy",
 		"audio": "res://Audio/SE/131-Earth03.ogg"
 	},		
 		"星辰陨落":{
 		"name": "星辰陨落",
 		"attackType": "range",
-		"damage": 3, 
+		"damage": 5.8, 
 		"cost": 50,
 		"duration": 2,
 		"description": "群体法术",
 		"effectArea": "aoe",
-		"effectingNum": 8,
+		"effectingNum": 7,
 		"animationArea":"enemy",
 		"audio": "res://Audio/SE/050-Explosion03.ogg"
 	},					
@@ -466,6 +466,7 @@ func _process(delta):
 	#结束攻击后恢复原状,计算伤害
 		if Global.monsterTarget != null and Global.onAttackingList[0] == name and randi == 0:
 			playAutoSound()		
+			
 			magicSoundPlayed = false
 			if self.name == "千年树0" and treeHealed == false:
 			
@@ -539,7 +540,7 @@ func _process(delta):
 					
 				
 		elif Global.monsterTarget != null or Global.onHitPlayer.size()>0 and Global.onAttackingList[0] == name and randi == 1 and monsterMagicList.size() > 0:
-		
+			
 			if monsterMagicList.size()>0 and monsterMagicList[magicRandi].attackType == "range":
 				if monsterMagicList.size() > 0 and monsterMagicList[magicRandi].effectArea == "single":
 					if Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").animation == monsterMagicList[magicRandi].name and Global.alivePlayers[Global.monsterTarget].get_node("getHitEffect").is_playing() == false:
@@ -758,7 +759,7 @@ func _process(delta):
 				$"攻击间隔".start()						
 				
 		elif Global.monsterTarget != null or Global.onHitPlayer.size()>0 and Global.onAttackingList[0] == name and randi == 2:
-
+			
 			
 			if monsterMagicList.size()>0 and magicInfo.attackType == "range":
 				if monsterMagicList.size() > 0 and magicInfo.effectingNum == 1:
@@ -919,7 +920,7 @@ func _process(delta):
 			elif monsterMagicList.size()>0 and monsterMagicList[magicRandi].attackType == "debuff":
 				pass
 				
-				
+			#Global.getnode("ColorRect").visible = false			
 	##给远程写的，如果是被打的目标就受伤动画，打完恢复idle
 	if Global.onHitEnemy.has(self):
 		self.play(monsterName + "hurt")
@@ -1239,7 +1240,12 @@ func _on_can_attack_timeout():
 
 
 func useBigMagic():
-
+	print(monsterName)
+	if monsterName == "无敌天道" or monsterName == "天道" or monsterName == "残血天道":
+		Global.getnode("ColorRect").visible = true
+		$"星辰timer".start()
+	
+	
 	round = monsterAndMagic.get(monsterName).round
 	get_parent().get_node("roundCountDown").text = str(round)
 	get_parent().get_parent().get_node("bigMagicTimer").start()
@@ -1313,3 +1319,7 @@ func _on_hp_animation_finished():
 
 
 
+
+
+func _on_星辰timer_timeout():
+	Global.getnode("ColorRect").visible = false

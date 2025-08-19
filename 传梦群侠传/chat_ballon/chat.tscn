@@ -1,4 +1,4 @@
-[gd_scene load_steps=433 format=3 uid="uid://d1psa2w4drbnv"]
+[gd_scene load_steps=434 format=3 uid="uid://d1psa2w4drbnv"]
 
 [ext_resource type="Script" path="res://chat_ballon/chatBalloon.gd" id="1_l52tu"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="2_065px"]
@@ -7,16 +7,17 @@
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="3_86jyl"]
 [ext_resource type="Texture2D" uid="uid://bd2fn3qdbl3sv" path="res://Pictures/Pictures/¤黑熊精.png" id="3_iuf66"]
 [ext_resource type="Texture2D" uid="uid://c14hfppuwn757" path="res://Pictures/框.png" id="3_kxjc0"]
-[ext_resource type="Texture2D" uid="uid://cpca6fhr8vf2x" path="res://portrait/小二喜.png" id="4_fv7cx"]
 [ext_resource type="Texture2D" uid="uid://cyioyogkn5inj" path="res://portrait/妖皇.png" id="4_y4eqr"]
+[ext_resource type="Texture2D" uid="uid://clrxtdmx1jlq7" path="res://portrait/姜韵.png" id="5_su7bd"]
 [ext_resource type="Texture2D" uid="uid://bxy5krj1dmfmi" path="res://portrait/时追云红眼.png" id="5_vlhgy"]
 [ext_resource type="Texture2D" uid="uid://cmfn37ywpor7w" path="res://portrait/传梦.png" id="5_w6xcj"]
 [ext_resource type="Texture2D" uid="uid://b3da5qpqi63d2" path="res://portrait/时追云.png" id="6_s1hvm"]
-[ext_resource type="Texture2D" uid="uid://v3o6ktxlb0v1" path="res://portrait/魔尊.png" id="7_5vwce"]
 [ext_resource type="Texture2D" uid="uid://b1swkwvj21vgc" path="res://portrait/敖雨.png" id="7_byoll"]
 [ext_resource type="FontFile" uid="uid://chjrjt643xgk1" path="res://Aa剑豪体.ttf" id="7_f5hwo"]
 [ext_resource type="Texture2D" uid="uid://b7wylylxkcc82" path="res://b2392dc59bd8c465deb69c2265ec0fddd7a0ceb847ae-x67mVP.png" id="7_k3mrf"]
+[ext_resource type="Texture2D" uid="uid://bdbrdsj2iw6ce" path="res://portrait/虎范.png" id="7_umd4v"]
 [ext_resource type="FontFile" uid="uid://br3sd2jmwtvyi" path="res://方正少儿_GBK.ttf" id="9_a2iv6"]
+[ext_resource type="Texture2D" uid="uid://7vywmax3gjj1" path="res://portrait/桥.png" id="9_p5n8j"]
 [ext_resource type="Texture2D" uid="uid://c4q58x8xhypv8" path="res://Animations/表情87.png" id="10_flcg5"]
 [ext_resource type="Texture2D" uid="uid://0rcc1eg7mi7o" path="res://Animations/表情0.png" id="10_twj2a"]
 [ext_resource type="Texture2D" uid="uid://cwkumude62stu" path="res://Animations/表情1.png" id="10_vbxru"]
@@ -2934,9 +2935,10 @@ offset_top = -208.283
 offset_right = 981.573
 offset_bottom = 365.717
 scale = Vector2(0.630088, 0.584083)
-texture = ExtResource("4_fv7cx")
+texture = ExtResource("5_su7bd")
 
 [node name="TextureRect5" type="TextureRect" parent="Balloon"]
+visible = false
 z_index = -1
 layout_mode = 0
 offset_left = -522.97
@@ -2949,12 +2951,22 @@ texture = ExtResource("6_s1hvm")
 visible = false
 z_index = -1
 layout_mode = 0
-offset_left = 571.748
-offset_top = -177.307
-offset_right = 891.748
-offset_bottom = 324.693
-scale = Vector2(0.630088, 0.584083)
-texture = ExtResource("4_fv7cx")
+offset_left = 501.0
+offset_top = -166.0
+offset_right = 1525.0
+offset_bottom = 858.0
+scale = Vector2(0.303971, 0.281777)
+texture = ExtResource("7_umd4v")
+
+[node name="姜韵rect" type="TextureRect" parent="Balloon"]
+z_index = -1
+layout_mode = 0
+offset_left = 543.761
+offset_top = -239.258
+offset_right = 1595.76
+offset_bottom = 1526.74
+scale = Vector2(0.227332, 0.210734)
+texture = ExtResource("5_su7bd")
 
 [node name="敖雨rect" type="TextureRect" parent="Balloon"]
 visible = false
@@ -2976,7 +2988,7 @@ offset_top = -233.917
 offset_right = 1123.96
 offset_bottom = 790.083
 scale = Vector2(0.279068, 0.342219)
-texture = ExtResource("4_y4eqr")
+texture = ExtResource("9_p5n8j")
 
 [node name="真小二rect" type="TextureRect" parent="Balloon"]
 visible = false
@@ -2986,7 +2998,7 @@ offset_top = -234.985
 offset_right = 1539.77
 offset_bottom = 789.015
 scale = Vector2(0.279068, 0.342219)
-texture = ExtResource("5_w6xcj")
+texture = ExtResource("9_p5n8j")
 
 [node name="传梦rect" type="TextureRect" parent="Balloon"]
 visible = false
@@ -2996,7 +3008,7 @@ offset_top = -271.302
 offset_right = 1331.96
 offset_bottom = 876.698
 scale = Vector2(0.279068, 0.342219)
-texture = ExtResource("7_5vwce")
+texture = ExtResource("5_su7bd")
 expand_mode = 1
 
 [node name="CharacterLabel" type="RichTextLabel" parent="Balloon"]

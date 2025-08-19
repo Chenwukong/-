@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var 敖雨portrait = $"Balloon/敖雨rect"
 @onready var 墨兮portrait = $"Balloon/墨兮rect"
 @onready var 真小二portrait = $"Balloon/真小二rect"
+@onready var 姜韵portrait = $"Balloon/姜韵rect"
 
 
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
@@ -50,7 +51,7 @@ var dialogue_line: DialogueLine:
 		elif dialogue_line.character == "柳烟儿"  or dialogue_line.character == "柳烟儿喜"  or dialogue_line.character == "柳烟儿哀":
 			character_label.text = "柳烟儿"					
 					
-		elif dialogue_line.character == "姜韵喜" or dialogue_line.character == "姜韵" or dialogue_line.character == "姜韵怒" or dialogue_line.character == "姜韵哀" or dialogue_line.character == "姜韵恐" or dialogue_line.character == "姜韵哭":
+		elif dialogue_line.character == "姜韵喜" or dialogue_line.character == "姜韵羞怒" or dialogue_line.character == "姜韵" or dialogue_line.character == "姜韵怒" or dialogue_line.character == "姜韵哀" or dialogue_line.character == "姜韵恐" or dialogue_line.character == "姜韵哭"   :
 			character_label.text = "姜韵"
 		elif dialogue_line.character == "敖白怒" or dialogue_line.character == "敖白"  or dialogue_line.character == "敖白哀"  or dialogue_line.character == "敖白惊":
 			character_label.text = "敖白"			
@@ -77,8 +78,9 @@ var dialogue_line: DialogueLine:
 		var name = dialogue_line.character.to_lower()
 	
 	
-		if  name == "云燕儿" or name == "魔金刚" or name == "狼叔" or name == "清风柒" or name == "九狐" or name == "孙悟空"  or name == "孙悟空怒"  or name == "无痕" or name == "程绣红" or name == "程绣红喜"  or name == "狐葬魂" or name == "狐葬魂怒" or name == "狐葬魂喜" or name == "关重七" or name == "玄武" or name == "小姜韵" or name == "小男孩" or name == "小追云"or name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕" or name == "水云仙"  or name == "水云仙哀"  or name == "水云仙哭" or name == "水云仙死" or name == "凌天麒" or name == "凌天麒喜" or name == "柳烟儿" or name == "柳烟儿喜" or name == "柳烟儿哀"                                                   :
+		if  name == "云燕儿" or name == "魔金刚" or name == "狼叔" or name == "清风柒" or name == "九狐" or name == "孙悟空"  or name == "孙悟空怒"  or name == "无痕" or name == "程绣红" or name == "程绣红喜"  or name == "狐葬魂" or name == "狐葬魂怒" or name == "狐葬魂喜" or name == "关重七" or name == "玄武" or name == "小姜韵" or name == "小男孩" or name == "小追云"or name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕" or name == "水云仙"  or name == "水云仙哀"  or name == "水云仙哭" or name == "水云仙死" or name == "凌天麒" or name == "凌天麒喜" or name == "柳烟儿" or name == "柳烟儿喜" or name == "柳烟儿哀"                                                   :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			姜韵portrait.visible =  false
 			mainPortrait.visible = true
 			mainPortrait.texture = load(portraitPath)
 			portrait.visible = false
@@ -89,7 +91,21 @@ var dialogue_line: DialogueLine:
 			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598,80)
-		elif  name == "虎范"  :
+		elif name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "小姜韵" or name == "姜韵羞怒" :
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			mainPortrait.visible = false
+			姜韵portrait.visible =  true
+			姜韵portrait.texture = load(portraitPath)
+			portrait.visible = false
+			敖雨portrait.visible = false
+			小二portrait.visible = false
+			$"Balloon/传梦rect".visible = false
+			墨兮portrait.visible = false
+			真小二portrait.visible = false
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(598,80)			
+		elif  name == "虎范"  or name == "骑迹行者"  :
+			姜韵portrait.visible =  false
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = false
 			小二portrait.visible = true
@@ -102,6 +118,7 @@ var dialogue_line: DialogueLine:
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)
 		elif name == "朱雀":
+			姜韵portrait.visible =  false
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			敖雨portrait.visible = true
 			敖雨portrait.texture = load(portraitPath)
@@ -115,6 +132,7 @@ var dialogue_line: DialogueLine:
 			%CharacterLabel.position = Vector2(598, 80)			
 
 		elif name == "墨兮"or name == "寒天云" or name == "鬼帝" or name == "老寒" or name == "罗非" or name == "魔尊" or name == "妖皇":
+			姜韵portrait.visible =  false
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			墨兮portrait.texture = load(portraitPath)
 			墨兮portrait.visible = true
@@ -126,7 +144,8 @@ var dialogue_line: DialogueLine:
 			$"Balloon/传梦rect".visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)
-		elif name == "小二" or name == "小二真身" or name == "小二喜" or name == "小二悲" or name == "敖雨":
+		elif name == "小二" or name == "小二真身" or name == "小二喜" or name == "小二悲" or name == "敖雨" or name == "桥":
+			姜韵portrait.visible =  false
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			真小二portrait.texture = load(portraitPath)
 			墨兮portrait.visible = false
@@ -138,7 +157,8 @@ var dialogue_line: DialogueLine:
 			$"Balloon/传梦rect".visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598, 80)	
-		elif name == '传梦' or name == "白虎" :
+		elif name == '传梦' or name == "白虎"  :
+			姜韵portrait.visible =  false
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			$"Balloon/传梦rect".texture = load(portraitPath)
 			墨兮portrait.visible = false
@@ -153,6 +173,7 @@ var dialogue_line: DialogueLine:
 		
 		else:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"
+			姜韵portrait.visible =  false
 			portrait.visible = true
 			portrait.texture = load(portraitPath)
 			敖雨portrait.visible = false
@@ -203,6 +224,7 @@ func _ready() -> void:
 
 func _process(delta):
 	if Global.onBigPicture:
+		姜韵portrait.visible = false
 		mainPortrait.visible = false
 		portrait.visible = false
 		敖雨portrait.visible = false

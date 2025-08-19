@@ -3019,7 +3019,7 @@ id = "北俱芦洲3"
 items = {
 "白龙冠": 1
 }
-special = "图里还有"
+special = "当前地图还有其它装备宝箱"
 
 [node name="potentialBall2" parent="." instance=ExtResource("13_nw5nb")]
 position = Vector2(-863.73, 1800.04)
@@ -3048,6 +3048,9 @@ autoplay = "default"
 frame = 29
 frame_progress = 1.0
 script = null
+
+[node name="npcBody" parent="青龙2" index="0"]
+position = Vector2(-1170.57, 173.847)
 
 [node name="Camera2D" type="Camera2D" parent="青龙2"]
 
@@ -3414,6 +3417,7 @@ texture = ExtResource("107_siuq7")
 [editable path="小二/小二"]
 [editable path="CanvasLayer"]
 [editable path="CanvasLayer/importantMsg"]
+[editable path="青龙2"]
 [editable path="白虎"]
 [editable path="白虎2"]
 [editable path="白虎3"]

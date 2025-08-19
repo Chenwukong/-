@@ -352,10 +352,6 @@ toScene = "东海海道3"
 stream = ExtResource("13_xf46f")
 volume_db = 4.552
 
-[node name="potentialBall" parent="." instance=ExtResource("14_j4y53")]
-position = Vector2(3701, -170)
-id = "方寸山1"
-
 [node name="shake" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_j25iq")
@@ -395,11 +391,12 @@ libraries = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
 script = ExtResource("19_ujpi5")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 build_mode = 1
-polygon = PackedVector2Array(783, 1115, 865, 1228, 1632, 1214, 1807, 1165, 2083, 849, 1765, 548, 909, 535, 545, 866, 679, 1030, 598, 1083, 658, 1155)
+polygon = PackedVector2Array(783, 1115, 865, 1228, 1632, 1214, 1807, 1165, 2083, 849, 1765, 548, 909, 535, 545, 866, 679, 1030, 598, 1083, 658, 1155, 692.54, 1143.95)
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 

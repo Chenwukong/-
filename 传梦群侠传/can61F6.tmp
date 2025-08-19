@@ -1,0 +1,3831 @@
+[gd_scene load_steps=214 format=3 uid="uid://b7m0e2bvanxoi"]
+
+[ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="1_njpa6"]
+[ext_resource type="Texture2D" uid="uid://w4dov1c3r346" path="res://消息底图 (1).png" id="2_wncf6"]
+[ext_resource type="Texture2D" uid="uid://bdrr5ngfvt5tf" path="res://Icons/提醒背景2.png" id="3_njpko"]
+[ext_resource type="Texture2D" uid="uid://b7egkgo0edvu5" path="res://panoramas2/门派_女儿村全景.jpg" id="4_jevgb"]
+[ext_resource type="Texture2D" uid="uid://d01t8wubtgj3t" path="res://%U[PB4TP~_3Y(001OWPGWG4.png" id="6_a1r2l"]
+[ext_resource type="Texture2D" uid="uid://b1p1snxgyumfm" path="res://坐标图1 拷贝.png" id="6_uw7qh"]
+[ext_resource type="Texture2D" uid="uid://jh6kol06yfx7" path="res://Icons/85-1.png" id="7_flr44"]
+[ext_resource type="Texture2D" uid="uid://br6b5v7xd1l3t" path="res://Icons/80-1.png" id="8_44mgw"]
+[ext_resource type="FontFile" uid="uid://chjrjt643xgk1" path="res://Aa剑豪体.ttf" id="8_gi1g1"]
+[ext_resource type="Texture2D" uid="uid://dvp7n1h7huk34" path="res://c6277344a9cd22bd9a84b152e3694890e1eca95984e96-n5kahh.png" id="9_t5u4b"]
+[ext_resource type="Texture2D" uid="uid://gumconrk3ue6" path="res://Pictures/Pictures/任务.png" id="10_7albm"]
+[ext_resource type="Texture2D" uid="uid://bi62omrrtf82v" path="res://Pictures/Pictures/宠物.png" id="11_guwxw"]
+[ext_resource type="Texture2D" uid="uid://cdu5kr2eacm8f" path="res://smallPets/小鹿/idle/419-17.png" id="12_u4de8"]
+[ext_resource type="Texture2D" uid="uid://dtc47ciw4h66i" path="res://底图按钮.png" id="12_uyo51"]
+[ext_resource type="Texture2D" uid="uid://dhvffeyyk31ia" path="res://smallPets/小鹿/idle/419-18.png" id="13_2jart"]
+[ext_resource type="Texture2D" uid="uid://dha177fc62i5h" path="res://smallPets/小鹿/idle/419-19.png" id="14_nwftp"]
+[ext_resource type="Texture2D" uid="uid://duquniomd56bg" path="res://Pictures/Pictures/背景提示框改.png" id="15_6xmfw"]
+[ext_resource type="Texture2D" uid="uid://cupdjn4eongmv" path="res://smallPets/小鹿/idle/419-20.png" id="15_frdya"]
+[ext_resource type="Texture2D" uid="uid://dfa0mtu32mo0y" path="res://smallPets/小鹿/idle/419-21.png" id="16_ukjjm"]
+[ext_resource type="Texture2D" uid="uid://pa4m46xlnh8a" path="res://smallPets/小鹿/idle/419-22.png" id="17_0crh3"]
+[ext_resource type="Texture2D" uid="uid://cxxj285470uje" path="res://smallPets/小鹿/idle/419-23.png" id="18_tcywp"]
+[ext_resource type="Texture2D" uid="uid://bbkxd6b7fhlnk" path="res://smallPets/小鹿/idle/419-24.png" id="19_ywupy"]
+[ext_resource type="AudioStream" uid="uid://lld2y0qxwvqb" path="res://Audio/SE/002-System02.ogg" id="21_77b2d"]
+[ext_resource type="Texture2D" uid="uid://vvirs6cuafcs" path="res://动作.png" id="21_bueql"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="21_ycq5q"]
+[ext_resource type="Texture2D" uid="uid://dwao24qd67m88" path="res://帮派.png" id="22_omuv7"]
+[ext_resource type="Texture2D" uid="uid://bx6f10r7uga1x" path="res://当前底图.png" id="23_gmhob"]
+[ext_resource type="Texture2D" uid="uid://c7igi8h10esrl" path="res://好友.png" id="23_iidoh"]
+[ext_resource type="Texture2D" uid="uid://duthnmbsa6l7s" path="res://叉.png" id="24_pdap6"]
+[ext_resource type="Texture2D" uid="uid://cj11c3i6tmfgc" path="res://系统 - 副本.png" id="25_vtgfk"]
+[ext_resource type="Texture2D" uid="uid://bfocgg8ae65bi" path="res://攻击啊.png" id="26_wc8tu"]
+[ext_resource type="Texture2D" uid="uid://ygxdprak5gmw" path="res://快捷.png" id="27_7w6wd"]
+[ext_resource type="Texture2D" uid="uid://cgg6ajt66m4p6" path="res://物品.png" id="28_novdw"]
+[ext_resource type="Texture2D" uid="uid://dxcxkivbwx4i3" path="res://队伍.png" id="29_73aa6"]
+[ext_resource type="Texture2D" uid="uid://uad2tqo7ejan" path="res://交易.png" id="30_7pmcc"]
+[ext_resource type="Texture2D" uid="uid://bgl0wvh4easqw" path="res://Battlers/大海龟.png" id="31_l4bn2"]
+[ext_resource type="Texture2D" uid="uid://dk1yml4ctpu2h" path="res://7F81BBA5.png" id="35_u0gvg"]
+[ext_resource type="Texture2D" uid="uid://dc6cqobens48y" path="res://信息框.png" id="36_b4trb"]
+[ext_resource type="Texture2D" uid="uid://bjrflpp6g0i" path="res://战斗-道具界面.png" id="37_1jmee"]
+[ext_resource type="Texture2D" uid="uid://mt3m8nkmntv3" path="res://1BF2BC55.png" id="37_aoug8"]
+[ext_resource type="Texture2D" uid="uid://dgfb15fhuphsm" path="res://SeparateAnimation/敖雨/978-1.png" id="37_pr2yf"]
+[ext_resource type="Texture2D" uid="uid://knfeifc0y7q" path="res://SeparateAnimation/敖雨/978-2.png" id="38_djj0g"]
+[ext_resource type="Texture2D" uid="uid://cg65c7iysdh5q" path="res://SeparateAnimation/敖雨/978-3.png" id="39_isqou"]
+[ext_resource type="Texture2D" uid="uid://iypemk2hsl5s" path="res://加点按钮.png" id="39_r2b75"]
+[ext_resource type="Texture2D" uid="uid://d3lfptn6rdyqi" path="res://SeparateAnimation/敖雨/978-4.png" id="40_fi0bu"]
+[ext_resource type="Texture2D" uid="uid://bch0sf2pfxu86" path="res://Characters/小白龙.png" id="40_oq2nl"]
+[ext_resource type="Texture2D" uid="uid://bqig48gxqim4a" path="res://减点按钮.png" id="40_tdy6y"]
+[ext_resource type="Texture2D" uid="uid://dllhi2i50fsl8" path="res://SeparateAnimation/敖雨/978-5.png" id="41_ggoip"]
+[ext_resource type="Texture2D" uid="uid://dyyquvuc8b4ek" path="res://SeparateAnimation/敖雨/978-6.png" id="42_iu2kr"]
+[ext_resource type="PackedScene" uid="uid://dw2xa4a3g20j6" path="res://Scene/importantMsg.tscn" id="42_ng58e"]
+[ext_resource type="Texture2D" uid="uid://bdssrhbygo17s" path="res://右.png" id="42_s62c7"]
+[ext_resource type="Texture2D" uid="uid://r87vgiee1du0" path="res://SeparateAnimation/敖雨/978-7.png" id="43_pnstr"]
+[ext_resource type="Texture2D" uid="uid://bx51d0l0fho7f" path="res://481ad2924ccd063412907f6dc0fdfa0197f016b1bbeb8-S3VwuI.png" id="43_v7ni5"]
+[ext_resource type="Texture2D" uid="uid://bkji7ktu77dqt" path="res://左.png" id="44_ap3nq"]
+[ext_resource type="Texture2D" uid="uid://b5keutwg7p6fy" path="res://SeparateAnimation/敖雨/978-8.png" id="44_lf2i7"]
+[ext_resource type="FontFile" uid="uid://dlrg8su1up2ff" path="res://SIMKAI.TTF" id="45_wpb3l"]
+[ext_resource type="FontFile" uid="uid://bpo6qkjdmliv2" path="res://AaJianMingShouShu-2.ttf" id="46_6q5oi"]
+[ext_resource type="Texture2D" uid="uid://8od3fmys6b18" path="res://Pictures/右.png" id="46_gxkk8"]
+[ext_resource type="Texture2D" uid="uid://bte5xckityhi3" path="res://Pictures/左.png" id="47_2lskr"]
+[ext_resource type="Texture2D" uid="uid://c16hl3y6vgu2p" path="res://Battlers/凤凰.png" id="49_m8ce2"]
+[ext_resource type="Texture2D" uid="uid://ceo1l7nl25x2i" path="res://Characters/无痕.png" id="50_5yh3e"]
+[ext_resource type="Texture2D" uid="uid://bmid6vqhwwv3o" path="res://梦魂Animation/龙龟/王八/待战【敌】2.png" id="50_8xemg"]
+[ext_resource type="Texture2D" uid="uid://wq1gylyoaek1" path="res://Battlers/老虎.png" id="50_72kg1"]
+[ext_resource type="Texture2D" uid="uid://b6jkhjkk3ay0c" path="res://梦魂Animation/龙龟/王八/待战【敌】3.png" id="51_48x41"]
+[ext_resource type="Texture2D" uid="uid://cycof33kov4lo" path="res://Battlers/#狐葬魂◆.png" id="51_dtrjq"]
+[ext_resource type="Texture2D" uid="uid://dxpf7eexdnq0t" path="res://Battlers/鬼将.png" id="51_ej3pe"]
+[ext_resource type="Texture2D" uid="uid://cfq2aearmntue" path="res://Battlers/蛟龙.png" id="52_4u0v0"]
+[ext_resource type="Texture2D" uid="uid://uf6nbfff2228" path="res://梦魂Animation/龙龟/王八/待战【敌】4.png" id="52_yhrs3"]
+[ext_resource type="Texture2D" uid="uid://by2w15cmc52e5" path="res://梦魂Animation/龙龟/王八/待战【敌】5.png" id="53_4tuue"]
+[ext_resource type="Texture2D" uid="uid://bxw44v23qrhg" path="res://梦魂Animation/龙龟/王八/待战【敌】6.png" id="54_6p5a6"]
+[ext_resource type="Texture2D" uid="uid://yplj61bg2ybb" path="res://梦魂Animation/龙龟/王八/待战【敌】7.png" id="55_a4jfp"]
+[ext_resource type="Texture2D" uid="uid://bfi8sla7a4ke" path="res://梦魂Animation/龙龟/王八/待战【敌】8.png" id="56_f5ah4"]
+[ext_resource type="Texture2D" uid="uid://drd35rv24fk1j" path="res://宠物加点/加点默认.png" id="57_7wo8k"]
+[ext_resource type="Texture2D" uid="uid://ym5gj7xgnkf6" path="res://宠物加点/宠物加点小窗口.png" id="57_443lk"]
+[ext_resource type="Texture2D" uid="uid://dcxpwe0rbc6do" path="res://梦魂Animation/龙龟/王八/待战【敌】9.png" id="57_qjxf6"]
+[ext_resource type="Texture2D" uid="uid://c3yjgqxpscp5c" path="res://梦魂Animation/龙龟/王八/待战【敌】10.png" id="58_mnk7x"]
+[ext_resource type="AudioStream" uid="uid://cstonxdr2mwvg" path="res://Audio/SE/064-Swing03.ogg" id="58_xu00w"]
+[ext_resource type="Texture2D" uid="uid://s3ovwtx5sody" path="res://宠物加点/减点默认.png" id="59_jssxc"]
+[ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="62_lkti6"]
+[ext_resource type="Texture2D" uid="uid://bjexy8vuf58aj" path="res://宠物UI无字.png" id="66_o20tt"]
+[ext_resource type="Texture2D" uid="uid://u1rvb3v4xcc8" path="res://Pictures/菜单/友军背景.png" id="69_tyu8x"]
+[ext_resource type="Texture2D" uid="uid://br54nh7ksccf0" path="res://宠物加点/宠物UI宠物加点未弹起.png" id="70_gkjac"]
+[ext_resource type="Texture2D" uid="uid://stxd1yl2h77b" path="res://Pictures/菜单/宠物食物背景.png" id="72_sgiqk"]
+[ext_resource type="Texture2D" uid="uid://btnllngd3gp3h" path="res://Pictures/菜单/宠物食物按钮.png" id="73_rwrn5"]
+[ext_resource type="Texture2D" uid="uid://cj3w1i7vlfluk" path="res://Pictures/菜单/2.png" id="77_i41ag"]
+[ext_resource type="Texture2D" uid="uid://b8fjtlpfuc15t" path="res://Pictures/菜单/2选中.png" id="78_a8mir"]
+[ext_resource type="Texture2D" uid="uid://c8mk3iuj07bqw" path="res://Pictures/底图.png" id="80_fbnlv"]
+[ext_resource type="Texture2D" uid="uid://bax113k6h8tn5" path="res://Pictures/菜单/1.png" id="81_mvfmb"]
+[ext_resource type="Texture2D" uid="uid://ds5bf8akccgvl" path="res://Pictures/3层.png" id="81_un0v5"]
+[ext_resource type="Texture2D" uid="uid://ddu3giobleslx" path="res://Pictures/菜单/1选中.png" id="82_cly6t"]
+[ext_resource type="Texture2D" uid="uid://ux5x2oyx1as2" path="res://Pictures/2ceng.png" id="82_hv8lo"]
+[ext_resource type="PackedScene" uid="uid://bbr8r2yqceilb" path="res://Scene/传梦者名.tscn" id="84_cqgn7"]
+[ext_resource type="FontFile" uid="uid://pnau5vpfj34k" path="res://Pictures/菜单/179729f5654cecd8b961ac82b8b7d048.ttf" id="92_lnjxp"]
+[ext_resource type="Texture2D" uid="uid://gkqsvysnjnrs" path="res://Pictures/商店/商店背景.png" id="94_p65nd"]
+[ext_resource type="Script" path="res://Script/miniShopItem.gd" id="95_6xso6"]
+[ext_resource type="Texture2D" uid="uid://bjh21dolt23te" path="res://Icons/佛手.png" id="96_7h6gv"]
+[ext_resource type="Texture2D" uid="uid://cwk3h21o6wsbc" path="res://Pictures/商店/购买.png" id="97_bsesd"]
+[ext_resource type="Texture2D" uid="uid://dx03lwhftohb3" path="res://Pictures/商店/购买选中.png" id="98_fbor2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tvqb"]
+atlas = ExtResource("11_guwxw")
+region = Rect2(50, 44, 25, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a262g"]
+atlas = ExtResource("11_guwxw")
+region = Rect2(0, 44, 25, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tt0mw"]
+atlas = ExtResource("11_guwxw")
+region = Rect2(25, 44, 25, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c4ml0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tvqb")
+}],
+"loop": false,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a262g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tt0mw")
+}],
+"loop": false,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbmeq"]
+atlas = ExtResource("10_7albm")
+region = Rect2(50, 44, 25, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m2ml"]
+atlas = ExtResource("10_7albm")
+region = Rect2(0, 44, 25, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvb6c"]
+atlas = ExtResource("10_7albm")
+region = Rect2(50, 44, 25, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vqkpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbmeq")
+}],
+"loop": false,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m2ml")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvb6c")
+}],
+"loop": false,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1svp4"]
+atlas = ExtResource("25_vtgfk")
+region = Rect2(50, 33, 25, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qq1u"]
+atlas = ExtResource("25_vtgfk")
+region = Rect2(0, 33, 25, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x1w1u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1svp4")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qq1u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7scps"]
+atlas = ExtResource("26_wc8tu")
+region = Rect2(50, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k18or"]
+atlas = ExtResource("26_wc8tu")
+region = Rect2(0, 0, 25, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdmkk"]
+atlas = ExtResource("26_wc8tu")
+region = Rect2(25, 0, 25, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dntqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7scps")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k18or")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdmkk")
+}],
+"loop": true,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfvdk"]
+atlas = ExtResource("27_7w6wd")
+region = Rect2(50, 30, 25, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akbts"]
+atlas = ExtResource("27_7w6wd")
+region = Rect2(0, 30, 25, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_88o3v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfvdk")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akbts")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dg737"]
+atlas = ExtResource("28_novdw")
+region = Rect2(50, 33, 25, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10m5e"]
+atlas = ExtResource("28_novdw")
+region = Rect2(0, 33, 25, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_407e2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dg737")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10m5e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6t86"]
+atlas = ExtResource("29_73aa6")
+region = Rect2(50, 33, 25, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcefd"]
+atlas = ExtResource("29_73aa6")
+region = Rect2(0, 33, 25, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ha0qb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6t86")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcefd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrera"]
+atlas = ExtResource("30_7pmcc")
+region = Rect2(0, 30, 25, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rypfj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yrera")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp6xr"]
+atlas = ExtResource("21_bueql")
+region = Rect2(48, 0, 24, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul43a"]
+atlas = ExtResource("21_bueql")
+region = Rect2(0, 0, 24, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jma03"]
+atlas = ExtResource("21_bueql")
+region = Rect2(24, 0, 24, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jerap"]
+atlas = ExtResource("21_bueql")
+region = Rect2(72, 0, 24, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s6px6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp6xr")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul43a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jma03")
+}],
+"loop": true,
+"name": &"moustEnter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jerap")
+}],
+"loop": true,
+"name": &"muted",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lfku"]
+atlas = ExtResource("22_omuv7")
+region = Rect2(50, 0, 25, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87yxv"]
+atlas = ExtResource("22_omuv7")
+region = Rect2(0, 0, 25, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gl80"]
+atlas = ExtResource("22_omuv7")
+region = Rect2(25, 0, 25, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3mqf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lfku")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87yxv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gl80")
+}],
+"loop": true,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0b5ad"]
+atlas = ExtResource("23_iidoh")
+region = Rect2(50, 0, 25, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwkmf"]
+atlas = ExtResource("23_iidoh")
+region = Rect2(0, 0, 25, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pylxc"]
+atlas = ExtResource("23_iidoh")
+region = Rect2(25, 0, 25, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uubvs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0b5ad")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwkmf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pylxc")
+}],
+"loop": true,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbrpl"]
+atlas = ExtResource("31_l4bn2")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_652mj"]
+atlas = ExtResource("31_l4bn2")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b50b5"]
+atlas = ExtResource("31_l4bn2")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad0ui"]
+atlas = ExtResource("31_l4bn2")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxpf2"]
+atlas = ExtResource("12_u4de8")
+region = Rect2(0, 0, 58, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7636d"]
+atlas = ExtResource("13_2jart")
+region = Rect2(0, 0, 61, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omy6n"]
+atlas = ExtResource("14_nwftp")
+region = Rect2(0, 0, 67, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3h2k"]
+atlas = ExtResource("15_frdya")
+region = Rect2(0, 0, 71, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjhmr"]
+atlas = ExtResource("16_ukjjm")
+region = Rect2(0, 0, 60, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lofsw"]
+atlas = ExtResource("17_0crh3")
+region = Rect2(0, 0, 55, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggo7r"]
+atlas = ExtResource("18_tcywp")
+region = Rect2(0, 0, 60, 107)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfvn8"]
+atlas = ExtResource("19_ywupy")
+region = Rect2(0, 0, 63, 107)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8ai2"]
+atlas = ExtResource("40_oq2nl")
+region = Rect2(0, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqynk"]
+atlas = ExtResource("40_oq2nl")
+region = Rect2(92, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyv3u"]
+atlas = ExtResource("40_oq2nl")
+region = Rect2(184, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghwms"]
+atlas = ExtResource("40_oq2nl")
+region = Rect2(276, 0, 92, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_daaki"]
+atlas = ExtResource("37_pr2yf")
+region = Rect2(0, 0, 64, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvydm"]
+atlas = ExtResource("38_djj0g")
+region = Rect2(0, 0, 63, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37uvl"]
+atlas = ExtResource("39_isqou")
+region = Rect2(0, 0, 63, 102)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_106xh"]
+atlas = ExtResource("40_fi0bu")
+region = Rect2(0, 0, 64, 103)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcfnp"]
+atlas = ExtResource("41_ggoip")
+region = Rect2(0, 0, 73, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6jd0"]
+atlas = ExtResource("42_iu2kr")
+region = Rect2(0, 0, 72, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6ecu"]
+atlas = ExtResource("43_pnstr")
+region = Rect2(0, 0, 65, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t2ts"]
+atlas = ExtResource("44_lf2i7")
+region = Rect2(0, 0, 64, 104)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_seq8b"]
+atlas = ExtResource("49_m8ce2")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_562ra"]
+atlas = ExtResource("49_m8ce2")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkfu5"]
+atlas = ExtResource("49_m8ce2")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm33f"]
+atlas = ExtResource("49_m8ce2")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7t8s"]
+atlas = ExtResource("50_5yh3e")
+region = Rect2(0, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kh8g6"]
+atlas = ExtResource("50_5yh3e")
+region = Rect2(67, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vje8w"]
+atlas = ExtResource("50_5yh3e")
+region = Rect2(134, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjenx"]
+atlas = ExtResource("50_5yh3e")
+region = Rect2(201, 0, 67, 91)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdy3u"]
+atlas = ExtResource("51_dtrjq")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isega"]
+atlas = ExtResource("51_dtrjq")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_as5du"]
+atlas = ExtResource("51_dtrjq")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew3yp"]
+atlas = ExtResource("51_dtrjq")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucsos"]
+atlas = ExtResource("50_8xemg")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwhto"]
+atlas = ExtResource("51_48x41")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eb1h1"]
+atlas = ExtResource("52_yhrs3")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jlxfc"]
+atlas = ExtResource("53_4tuue")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_800ma"]
+atlas = ExtResource("54_6p5a6")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fhfk"]
+atlas = ExtResource("55_a4jfp")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xby1s"]
+atlas = ExtResource("56_f5ah4")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgt8l"]
+atlas = ExtResource("57_qjxf6")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c544y"]
+atlas = ExtResource("58_mnk7x")
+region = Rect2(0, 0, 230, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vrlk"]
+atlas = ExtResource("50_72kg1")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24i6u"]
+atlas = ExtResource("50_72kg1")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sj8ii"]
+atlas = ExtResource("50_72kg1")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5evbp"]
+atlas = ExtResource("50_72kg1")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prxnp"]
+atlas = ExtResource("51_ej3pe")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_38p47"]
+atlas = ExtResource("51_ej3pe")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvcyb"]
+atlas = ExtResource("51_ej3pe")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_clgyj"]
+atlas = ExtResource("51_ej3pe")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmmcr"]
+atlas = ExtResource("52_4u0v0")
+region = Rect2(0, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksvlb"]
+atlas = ExtResource("52_4u0v0")
+region = Rect2(280, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gd661"]
+atlas = ExtResource("52_4u0v0")
+region = Rect2(560, 0, 280, 222)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbmml"]
+atlas = ExtResource("52_4u0v0")
+region = Rect2(840, 0, 280, 222)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o6d5k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbrpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_652mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b50b5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad0ui")
+}],
+"loop": true,
+"name": &"大海龟",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxpf2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7636d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omy6n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3h2k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjhmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lofsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggo7r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfvn8")
+}],
+"loop": true,
+"name": &"小鹿",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8ai2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqynk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyv3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghwms")
+}],
+"loop": true,
+"name": &"敖白",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_daaki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvydm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37uvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_106xh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcfnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6jd0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6ecu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t2ts")
+}],
+"loop": true,
+"name": &"敖雨",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_seq8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_562ra")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkfu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm33f")
+}],
+"loop": true,
+"name": &"朱雀",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y7t8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kh8g6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vje8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjenx")
+}],
+"loop": true,
+"name": &"水无痕",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gdy3u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_isega")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_as5du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ew3yp")
+}],
+"loop": true,
+"name": &"狐葬魂",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucsos")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwhto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eb1h1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jlxfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_800ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fhfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xby1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgt8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c544y")
+}],
+"loop": true,
+"name": &"玄武",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vrlk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24i6u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sj8ii")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5evbp")
+}],
+"loop": true,
+"name": &"白虎",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prxnp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_38p47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvcyb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_clgyj")
+}],
+"loop": true,
+"name": &"金甲",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmmcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksvlb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gd661")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbmml")
+}],
+"loop": true,
+"name": &"青龙",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jcpml"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y17ww"]
+atlas = ExtResource("24_pdap6")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n5ld"]
+atlas = ExtResource("24_pdap6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js4ed"]
+atlas = ExtResource("24_pdap6")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v31wy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y17ww")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n5ld")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_js4ed")
+}],
+"loop": true,
+"name": &"mouseEnter",
+"speed": 5.0
+}]
+
+[sub_resource type="Theme" id="Theme_nsbx1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_csmn4"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tskf"]
+atlas = ExtResource("24_pdap6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0x8k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tskf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw8ts"]
+atlas = ExtResource("39_r2b75")
+region = Rect2(38, 0, 19, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ii2wu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw8ts")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("42_s62c7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34tru"]
+atlas = ExtResource("40_tdy6y")
+region = Rect2(38, 0, 19, 19)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a163w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34tru")
+}],
+"loop": true,
+"name": &"click",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("44_ap3nq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ipml6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("violencePoint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("宠物列表/petAnimation:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-124.684, -61.4854)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("宠物列表/petAnimation:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_16mac"]
+resource_name = "changePet"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("宠物列表/petAnimation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-124.684, -61.4854), Vector2(-124.684, 0), Vector2(-124.684, -61.485)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("宠物列表/petAnimation:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_f8apv"]
+resource_name = "showViolence"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("violencePoint:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pt2ya"]
+_data = {
+"RESET": SubResource("Animation_ipml6"),
+"changePet": SubResource("Animation_16mac"),
+"showViolence": SubResource("Animation_f8apv")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmus2"]
+shader = ExtResource("62_lkti6")
+shader_parameter/sand_color = Color(0.760784, 0.698039, 0.498039, 0.709804)
+shader_parameter/dust_color = Color(0.82, 0.78, 0.65, 1)
+shader_parameter/storm_speed = 1.0
+shader_parameter/storm_strength = 1.0
+shader_parameter/storm_density = 1.0
+shader_parameter/turbulence = 1.0
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_njpa6")
+
+[node name="msgBox" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.666667)
+layout_direction = 2
+anchors_preset = -1
+anchor_left = 0.617
+anchor_top = 0.739
+anchor_right = 0.993
+anchor_bottom = 0.994
+offset_left = -740.784
+offset_top = 52.8
+offset_right = 250.064
+offset_bottom = 380.8
+grow_vertical = 0
+scale = Vector2(0.269756, 0.268582)
+mouse_filter = 2
+texture = ExtResource("2_wncf6")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.045
+anchor_right = 0.984
+anchor_bottom = 0.771
+offset_left = -51.6
+offset_top = 622.0
+offset_right = -773.568
+offset_bottom = 154.2
+scale = Vector2(0.939563, 0.951735)
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "sdfsdf"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+text = "sdfsdf"
+vertical_alignment = 1
+
+[node name="gameTitle" type="TextureRect" parent="."]
+visible = false
+offset_left = 912.0
+offset_top = 17.0
+offset_right = 1233.0
+offset_bottom = 156.0
+scale = Vector2(0.670483, 0.479338)
+texture = ExtResource("3_njpko")
+
+[node name="Label" type="Label" parent="gameTitle"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_right = 321.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 60
+text = "传梦之路"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="map" type="TextureRect" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0.933333)
+offset_left = 257.0
+offset_top = 144.0
+offset_right = 4344.0
+offset_bottom = 2538.0
+scale = Vector2(0.172794, 0.182853)
+texture = ExtResource("4_jevgb")
+expand_mode = 2
+
+[node name="东海湾" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 15.7036
+offset_top = 598.528
+offset_right = 195.704
+offset_bottom = 672.528
+theme_override_font_sizes/font_size = 60
+text = "建邺城
+"
+
+[node name="东海海道" type="Label" parent="map/东海湾"]
+layout_mode = 0
+offset_left = 3335.1
+offset_top = 150.706
+offset_right = 3575.1
+offset_bottom = 224.706
+theme_override_font_sizes/font_size = 60
+text = "东海海道"
+
+[node name="mapSmallButton" type="TextureButton" parent="map"]
+layout_mode = 0
+offset_left = 3987.4
+offset_top = 6.10352e-05
+offset_right = 4027.4
+offset_bottom = 40.0001
+scale = Vector2(3.62382, 5.02057)
+texture_normal = ExtResource("35_u0gvg")
+
+[node name="建邺城" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/建邺城"]
+layout_mode = 0
+offset_left = 2690.37
+offset_top = -429.607
+offset_right = 2840.37
+offset_bottom = -366.607
+theme_override_font_sizes/font_size = 50
+text = "东海湾"
+
+[node name="建邺城右2" type="Label" parent="map/建邺城"]
+layout_mode = 0
+offset_left = 329.178
+offset_top = 1741.53
+offset_right = 529.178
+offset_bottom = 1804.53
+theme_override_font_sizes/font_size = 50
+text = "建邺城右"
+
+[node name="建邺城右" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/建邺城右"]
+layout_mode = 0
+offset_left = 1585.01
+offset_top = -473.358
+offset_right = 1785.01
+offset_bottom = -347.358
+theme_override_font_sizes/font_size = 50
+text = "建邺城左
+ "
+
+[node name="建邺城右2" type="Label" parent="map/建邺城右"]
+layout_mode = 0
+offset_left = -1138.51
+offset_top = 1186.27
+offset_right = -938.509
+offset_bottom = 1249.27
+theme_override_font_sizes/font_size = 50
+text = "江南野外"
+
+[node name="江南野外" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/江南野外"]
+layout_mode = 0
+offset_left = 2707.73
+offset_top = 664.166
+offset_right = 2907.73
+offset_bottom = 790.166
+theme_override_font_sizes/font_size = 50
+text = "建邺城"
+
+[node name="建邺城右2" type="Label" parent="map/江南野外"]
+layout_mode = 0
+offset_left = -793.544
+offset_top = -522.578
+offset_right = -593.544
+offset_bottom = -459.578
+theme_override_font_sizes/font_size = 50
+text = "长安北"
+
+[node name="长安北" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/长安北"]
+layout_mode = 0
+offset_left = 919.476
+offset_top = 1730.59
+offset_right = 1119.48
+offset_bottom = 1856.59
+theme_override_font_sizes/font_size = 50
+text = "长安城"
+
+[node name="建邺城右4" type="Label" parent="map/长安北"]
+layout_mode = 0
+offset_left = 1828.07
+offset_top = 330.565
+offset_right = 2028.07
+offset_bottom = 456.565
+theme_override_font_sizes/font_size = 50
+text = "锁妖塔 "
+
+[node name="建邺城右2" type="Label" parent="map/长安北"]
+layout_mode = 0
+offset_left = -972.948
+offset_top = -506.862
+offset_right = -772.948
+offset_bottom = -443.862
+theme_override_font_sizes/font_size = 50
+text = "大唐官府"
+
+[node name="建邺城右3" type="Label" parent="map/长安北"]
+layout_mode = 0
+offset_left = 1451.9
+offset_top = -517.109
+offset_right = 1651.9
+offset_bottom = -454.109
+theme_override_font_sizes/font_size = 50
+text = "江南野外"
+
+[node name="长安城" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/长安城"]
+layout_mode = 0
+offset_left = -1117.63
+offset_top = 1462.62
+offset_right = -917.628
+offset_bottom = 1588.62
+theme_override_font_sizes/font_size = 50
+text = "大唐国境"
+
+[node name="建邺城右2" type="Label" parent="map/长安城"]
+layout_mode = 0
+offset_left = -938.225
+offset_top = -314.761
+offset_right = -738.225
+offset_bottom = -251.761
+theme_override_font_sizes/font_size = 50
+text = "大唐官府"
+
+[node name="建邺城右3" type="Label" parent="map/长安城"]
+layout_mode = 0
+offset_left = 178.71
+offset_top = -533.516
+offset_right = 378.71
+offset_bottom = -470.516
+theme_override_font_sizes/font_size = 50
+text = "长安北"
+
+[node name="大唐官府" type="Label" parent="map"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/大唐官府"]
+layout_mode = 0
+offset_left = 1336.16
+offset_top = 1763.41
+offset_right = 1536.16
+offset_bottom = 1889.41
+theme_override_font_sizes/font_size = 50
+text = "长安城"
+
+[node name="建邺城右2" type="Label" parent="map/大唐官府"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 2771.39
+offset_top = 1681.38
+offset_right = 2971.39
+offset_bottom = 1744.38
+theme_override_font_sizes/font_size = 50
+text = "长安北"
+
+[node name="建邺城右3" type="Label" parent="map/大唐官府"]
+layout_mode = 0
+offset_left = 178.71
+offset_top = -533.516
+offset_right = 378.71
+offset_bottom = -470.516
+theme_override_font_sizes/font_size = 50
+text = "长安北"
+
+[node name="方寸山" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/方寸山"]
+layout_mode = 0
+offset_left = -1100.27
+offset_top = 1336.84
+offset_right = -900.267
+offset_bottom = 1462.84
+theme_override_font_sizes/font_size = 50
+text = "长安城 "
+
+[node name="傲来国" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/傲来国"]
+layout_mode = 0
+offset_left = 2626.71
+offset_top = -511.64
+offset_right = 2826.71
+offset_bottom = -385.64
+theme_override_font_sizes/font_size = 50
+text = "花果山"
+
+[node name="建邺城右2" type="Label" parent="map/傲来国"]
+layout_mode = 0
+offset_left = -1082.91
+offset_top = -413.2
+offset_right = -882.905
+offset_bottom = -350.2
+theme_override_font_sizes/font_size = 50
+text = "女儿村"
+
+[node name="女儿村" type="Label" parent="map"]
+visible = false
+layout_mode = 0
+offset_left = 1158.14
+offset_top = 555.391
+offset_right = 1198.14
+offset_bottom = 574.391
+
+[node name="建邺城右" type="Label" parent="map/女儿村"]
+layout_mode = 0
+offset_left = 2661.43
+offset_top = 1686.84
+offset_right = 2861.43
+offset_bottom = 1812.84
+theme_override_font_sizes/font_size = 50
+text = "傲来国"
+
+[node name="position" type="TextureRect" parent="."]
+z_index = 3
+offset_left = 1.0
+offset_right = 273.0
+offset_bottom = 215.0
+mouse_filter = 2
+texture = ExtResource("6_uw7qh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="伤害加成" type="Label" parent="position"]
+layout_mode = 0
+offset_left = 137.0
+offset_top = 89.0
+offset_right = 392.0
+offset_bottom = 164.0
+scale = Vector2(0.29187, 0.29187)
+theme_override_fonts/font = ExtResource("92_lnjxp")
+theme_override_font_sizes/font_size = 60
+text = "伤害加成:"
+
+[node name="伤害加成value" type="Label" parent="position/伤害加成"]
+layout_mode = 0
+offset_left = 267.242
+offset_top = 17.1309
+offset_right = 467.242
+offset_bottom = 80.1309
+scale = Vector2(0.787342, 0.951771)
+theme_override_font_sizes/font_size = 50
+text = "伤害加成"
+
+[node name="限制" type="Label" parent="position"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.386
+anchor_right = 0.386
+anchor_bottom = 0.019
+offset_left = 0.00799561
+offset_top = 4.0
+offset_right = 2495.01
+offset_bottom = 500.915
+scale = Vector2(0.0592241, 0.0587485)
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 400
+text = "限制:10"
+
+[node name="_u[pb4tp~3y(001owpgwg4" type="Sprite2D" parent="position"]
+visible = false
+z_index = -1
+position = Vector2(100, 61.5)
+scale = Vector2(0.0540166, 0.063541)
+texture = ExtResource("6_a1r2l")
+
+[node name="xyLabel" type="Label" parent="position"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.1
+anchor_bottom = 0.097
+offset_left = 101.0
+offset_top = 62.0
+offset_right = 216.0
+offset_bottom = 67.44
+text = "x: 30   y:40"
+
+[node name="mapName" type="Label" parent="position"]
+layout_mode = 0
+offset_left = 81.0
+offset_top = 30.0
+offset_right = 224.0
+offset_bottom = 55.0
+text = "东海湾"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="position"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 156.0
+scale = Vector2(0.492488, 0.476557)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 10
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("8_gi1g1")
+theme_override_font_sizes/font_size = 60
+text = "传
+梦"
+
+[node name="坐标button" type="Button" parent="position"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 161.0
+
+[node name="phoneButtons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="右上" type="Button" parent="phoneButtons"]
+layout_mode = 0
+offset_left = 158.0
+offset_top = 506.0
+offset_right = 228.0
+offset_bottom = 551.0
+rotation = 0.698132
+scale = Vector2(1.2, 1.2)
+text = "↑"
+
+[node name="左上" type="Button" parent="phoneButtons"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 563.0
+offset_right = 79.0
+offset_bottom = 607.0
+rotation = -0.698132
+scale = Vector2(1.2, 1.2)
+text = "↑"
+
+[node name="左下" type="Button" parent="phoneButtons"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 609.0
+offset_right = 120.0
+offset_bottom = 655.0
+rotation = 0.698132
+scale = Vector2(1.2, 1.2)
+text = "↓
+"
+
+[node name="右下" type="Button" parent="phoneButtons"]
+layout_mode = 0
+offset_left = 125.0
+offset_top = 664.0
+offset_right = 197.0
+offset_bottom = 710.0
+rotation = -0.698132
+scale = Vector2(1.2, 1.2)
+text = "↓"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_77b2d")
+volume_db = 2.0
+max_distance = 1e+07
+
+[node name="currMsg" type="TextureRect" parent="."]
+offset_top = 690.0
+offset_right = 275.0
+offset_bottom = 774.0
+scale = Vector2(1.31015, 1.31015)
+texture = ExtResource("23_gmhob")
+
+[node name="buttonBase" type="TextureRect" parent="."]
+offset_left = 704.0
+offset_top = 716.0
+offset_right = 1152.0
+offset_bottom = 787.0
+texture = ExtResource("12_uyo51")
+
+[node name="menutButton" type="TextureButton" parent="."]
+offset_left = 1032.0
+offset_top = 761.0
+offset_right = 1136.0
+offset_bottom = 856.0
+scale = Vector2(0.202318, 0.2411)
+texture_normal = ExtResource("7_flr44")
+texture_pressed = ExtResource("8_44mgw")
+texture_hover = ExtResource("8_44mgw")
+ignore_texture_size = true
+
+[node name="Label2" type="Label" parent="menutButton"]
+visible = false
+layout_mode = 0
+offset_left = -19.7701
+offset_top = -95.3964
+offset_right = 180.23
+offset_bottom = 25.6036
+scale = Vector2(0.810198, 0.822099)
+theme_override_font_sizes/font_size = 100
+text = "保存
+"
+
+[node name="宠物" type="AnimatedSprite2D" parent="."]
+position = Vector2(1072, 774)
+scale = Vector2(1.04119, 1.04119)
+sprite_frames = SubResource("SpriteFrames_c4ml0")
+autoplay = "default"
+
+[node name="Button" type="Button" parent="宠物"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -6.72304
+offset_top = -13.4461
+offset_right = 15.277
+offset_bottom = 9.55389
+
+[node name="Label" type="Label" parent="宠物"]
+visible = false
+offset_left = -16.3271
+offset_top = -34.5757
+offset_right = 183.673
+offset_bottom = 86.4243
+scale = Vector2(0.191019, 0.178018)
+theme_override_font_sizes/font_size = 100
+text = "灵宠"
+
+[node name="questHint" type="Sprite2D" parent="."]
+position = Vector2(968.642, 89.6232)
+scale = Vector2(1.25649, 1.18671)
+texture = ExtResource("15_6xmfw")
+
+[node name="Label" type="Label" parent="questHint"]
+modulate = Color(1, 0.376471, 0.305882, 1)
+offset_left = -37.0
+offset_top = -58.0
+offset_right = 763.0
+offset_bottom = 199.0
+scale = Vector2(0.108333, 0.0873911)
+theme_override_font_sizes/font_size = 200
+text = "任务提示"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="questHint"]
+offset_left = -128.096
+offset_top = -35.7512
+offset_right = 135.904
+offset_bottom = 69.2488
+theme_override_font_sizes/font_size = 15
+text = "奇迹行者是2货
+桥是3货"
+autowrap_mode = 3
+
+[node name="hintButton" type="AnimatedSprite2D" parent="."]
+position = Vector2(1101, 773)
+scale = Vector2(1.31243, 1.19389)
+sprite_frames = SubResource("SpriteFrames_vqkpt")
+animation = &"mouseEnter"
+
+[node name="hintButton" type="Button" parent="hintButton"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = 0.18
+anchor_top = 0.091
+anchor_right = 0.94
+anchor_bottom = 0.955
+offset_left = -12.5
+offset_top = -11.002
+offset_right = -12.5
+offset_bottom = -11.01
+text = " "
+
+[node name="Label" type="Label" parent="hintButton"]
+visible = false
+offset_left = -10.6675
+offset_top = -29.3159
+offset_right = 189.333
+offset_bottom = 91.6841
+scale = Vector2(0.155241, 0.172997)
+theme_override_font_sizes/font_size = 90
+text = "传梦者"
+
+[node name="loadButton" type="Sprite2D" parent="."]
+position = Vector2(1011, 774)
+scale = Vector2(0.242499, 0.242499)
+texture = ExtResource("8_44mgw")
+
+[node name="Label" type="Label" parent="loadButton"]
+visible = false
+offset_left = -82.4741
+offset_top = -144.331
+offset_right = 117.526
+offset_bottom = -23.3308
+theme_override_font_sizes/font_size = 80
+text = "读取"
+
+[node name="loadButton" type="Button" parent="loadButton"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -49.0
+offset_top = -62.0
+offset_right = 58.0
+offset_bottom = 62.0
+
+[node name="system" type="AnimatedSprite2D" parent="."]
+position = Vector2(1134, 773)
+sprite_frames = SubResource("SpriteFrames_x1w1u")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="system"]
+visible = false
+offset_left = -22.0
+offset_top = -34.0
+offset_right = 178.0
+offset_bottom = 87.0
+scale = Vector2(0.187896, 0.183587)
+theme_override_font_sizes/font_size = 100
+text = "系统"
+
+[node name="systemButton" type="Button" parent="system"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -12.0
+offset_right = 9.0
+offset_bottom = 11.0
+
+[node name="weaponButton" type="AnimatedSprite2D" parent="."]
+position = Vector2(981, 771)
+scale = Vector2(1.14, 1.14)
+sprite_frames = SubResource("SpriteFrames_dntqv")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="weaponButton"]
+visible = false
+offset_left = -19.2983
+offset_top = -29.8245
+offset_right = 180.702
+offset_bottom = 91.1755
+scale = Vector2(0.167725, 0.175384)
+theme_override_font_sizes/font_size = 100
+text = "装备"
+
+[node name="weaponButton" type="Button" parent="weaponButton"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -11.0
+offset_top = -11.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="地图" type="AnimatedSprite2D" parent="."]
+position = Vector2(950, 771)
+scale = Vector2(1.16918, 1.16918)
+sprite_frames = SubResource("SpriteFrames_88o3v")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="地图"]
+visible = false
+offset_left = -15.3955
+offset_top = -29.9353
+offset_right = 184.604
+offset_bottom = 91.0647
+scale = Vector2(0.150569, 0.176717)
+theme_override_font_sizes/font_size = 100
+text = "商店
+"
+
+[node name="mapButton" type="Button" parent="地图"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 13.0
+
+[node name="物品" type="AnimatedSprite2D" parent="."]
+position = Vector2(920, 770)
+scale = Vector2(1.06, 1.06)
+sprite_frames = SubResource("SpriteFrames_407e2")
+animation = &"click"
+autoplay = "default"
+
+[node name="Label" type="Label" parent="物品"]
+visible = false
+offset_left = -12.2642
+offset_top = -33.9622
+offset_right = 187.736
+offset_bottom = 87.0378
+scale = Vector2(0.134424, 0.196843)
+theme_override_font_sizes/font_size = 100
+text = "物品"
+
+[node name="itemButton" type="Button" parent="物品"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 13.0
+offset_bottom = 13.0
+
+[node name="队伍" type="AnimatedSprite2D" parent="."]
+position = Vector2(893, 772)
+sprite_frames = SubResource("SpriteFrames_ha0qb")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="队伍"]
+visible = false
+offset_left = -20.0
+offset_top = -35.0
+offset_right = 180.0
+offset_bottom = 86.0
+scale = Vector2(0.189727, 0.197737)
+theme_override_font_sizes/font_size = 100
+text = "队伍"
+
+[node name="teamButton" type="Button" parent="队伍"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -11.0
+offset_top = -14.0
+offset_right = 10.0
+offset_bottom = 14.0
+
+[node name="交易" type="AnimatedSprite2D" parent="."]
+position = Vector2(862, 771)
+scale = Vector2(1.18, 1.2)
+sprite_frames = SubResource("SpriteFrames_rypfj")
+
+[node name="Label" type="Label" parent="交易"]
+visible = false
+offset_left = -16.9492
+offset_top = -29.1667
+offset_right = 183.051
+offset_bottom = 91.8333
+scale = Vector2(0.151021, 0.167107)
+theme_override_font_sizes/font_size = 100
+text = "灵宠店"
+
+[node name="shopButton" type="Button" parent="交易"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 10.0
+offset_bottom = 12.0
+
+[node name="音乐" type="AnimatedSprite2D" parent="."]
+position = Vector2(831, 774)
+scale = Vector2(1.125, 1.125)
+sprite_frames = SubResource("SpriteFrames_s6px6")
+autoplay = "default"
+
+[node name="音乐" type="Label" parent="音乐"]
+visible = false
+offset_left = -17.0
+offset_top = -33.0
+offset_right = 196.0
+offset_bottom = 96.0
+scale = Vector2(0.148718, 0.166093)
+theme_override_font_sizes/font_size = 100
+text = "音乐"
+
+[node name="musicButton" type="Button" parent="音乐"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -11.0
+offset_top = -12.0
+offset_right = 11.0
+offset_bottom = 10.0
+
+[node name="制作人" type="AnimatedSprite2D" parent="."]
+position = Vector2(796, 773)
+scale = Vector2(1.18227, 1.18227)
+sprite_frames = SubResource("SpriteFrames_n3mqf")
+animation = &"mouseEnter"
+autoplay = "default"
+
+[node name="Label" type="Label" parent="制作人"]
+visible = false
+offset_left = -16.917
+offset_top = -32.1414
+offset_right = 283.083
+offset_bottom = 88.8586
+scale = Vector2(0.128331, 0.154592)
+theme_override_font_sizes/font_size = 100
+text = "制作人"
+
+[node name="authorButton" type="Button" parent="制作人"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -9.0
+offset_top = -14.0
+offset_right = 11.0
+offset_bottom = 11.0
+
+[node name="好友" type="AnimatedSprite2D" parent="."]
+position = Vector2(763, 774)
+scale = Vector2(1.16667, 1.16667)
+sprite_frames = SubResource("SpriteFrames_uubvs")
+animation = &"mouseEnter"
+autoplay = "default"
+
+[node name="Label" type="Label" parent="好友"]
+visible = false
+offset_left = -12.8569
+offset_top = -30.8574
+offset_right = 187.143
+offset_bottom = 90.1426
+scale = Vector2(0.130375, 0.155335)
+theme_override_font_sizes/font_size = 100
+text = "梦单
+"
+
+[node name="friendButton" type="Button" parent="好友"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_left = -0.44
+anchor_top = -0.541667
+anchor_right = 0.16
+anchor_bottom = 0.0833333
+offset_right = 8.0
+offset_bottom = 8.0
+metadata/_edit_use_anchors_ = true
+
+[node name="其他梦单" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(565.908, 375)
+scale = Vector2(0.636513, 0.648026)
+texture = ExtResource("9_t5u4b")
+
+[node name="closeButton" type="Sprite2D" parent="其他梦单"]
+position = Vector2(584.853, -229.929)
+scale = Vector2(1.01777, 1.01777)
+texture = ExtResource("35_u0gvg")
+
+[node name="梦单closeButton" type="Button" parent="其他梦单/closeButton"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 14.0
+offset_bottom = 15.0
+
+[node name="Label" type="Label" parent="其他梦单"]
+offset_left = -566.335
+offset_top = -212.954
+offset_right = 87.665
+offset_bottom = -91.9543
+scale = Vector2(0.505901, 0.616457)
+theme_override_font_sizes/font_size = 80
+text = "                                          其他梦单群
+梦仙梦魂： 310201519             梦幻5：240703671
+梦幻群侠传4： 326508471         
+梦游战记：82326195
+西游奇缘： 185399519 
+
+"
+
+[node name="制作人列表" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(567, 373)
+scale = Vector2(0.634868, 0.634868)
+texture = ExtResource("9_t5u4b")
+
+[node name="Label" type="Label" parent="制作人列表"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+offset_left = -103.959
+offset_top = -214.218
+offset_right = 96.0414
+offset_bottom = -163.218
+theme_override_font_sizes/font_size = 40
+text = "制作人名单"
+
+[node name="Label2" type="Label" parent="制作人列表"]
+offset_left = -567.0
+offset_top = -142.0
+offset_right = 567.0
+offset_bottom = -97.0
+theme_override_font_sizes/font_size = 35
+text = "剧情代码：传梦 
+美工UI: 老寒 加班 "
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label3" type="Label" parent="制作人列表"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -44.275
+offset_top = -22.0518
+offset_right = 144.725
+offset_bottom = 28.9482
+theme_override_font_sizes/font_size = 40
+text = "鸣谢"
+
+[node name="Label4" type="Label" parent="制作人列表"]
+offset_left = -556.021
+offset_top = 37.5026
+offset_right = 569.979
+offset_bottom = 246.503
+theme_override_font_sizes/font_size = 30
+text = "所有梦单前辈    入您  橙子色の橘子    阿栋       飞仔    YUAN    Smile    АДЛИН    Tom
+清风柒"
+
+[node name="TextureButton" type="TextureButton" parent="制作人列表"]
+offset_left = 568.622
+offset_top = -248.871
+offset_right = 608.622
+offset_bottom = -208.871
+texture_normal = ExtResource("35_u0gvg")
+
+[node name="宠物列表" type="Sprite2D" parent="."]
+visible = false
+z_as_relative = false
+position = Vector2(577, 369.498)
+scale = Vector2(1.13086, 0.886357)
+texture = ExtResource("66_o20tt")
+
+[node name="潜力进度" type="Label" parent="宠物列表"]
+offset_left = -34.4871
+offset_top = -205.897
+offset_right = 125.513
+offset_bottom = -154.897
+scale = Vector2(0.471343, 0.471343)
+theme_override_font_sizes/font_size = 40
+text = "潜力进度"
+
+[node name="Label" type="Label" parent="宠物列表/潜力进度"]
+layout_mode = 0
+offset_left = 24.3893
+offset_top = 59.8404
+offset_right = 132.389
+offset_bottom = 110.84
+scale = Vector2(1.01011, 1.24363)
+theme_override_font_sizes/font_size = 40
+text = "42/50"
+
+[node name="Label2" type="Label" parent="宠物列表"]
+offset_left = -26.5285
+offset_top = -254.41
+offset_right = 33.4715
+offset_bottom = -215.41
+theme_override_font_sizes/font_size = 30
+text = "灵宠"
+
+[node name="1bf2bc55" type="Sprite2D" parent="宠物列表"]
+position = Vector2(-1183.17, -23.1261)
+scale = Vector2(0.411532, 0.594207)
+texture = ExtResource("37_aoug8")
+
+[node name="Label" type="Label" parent="宠物列表/1bf2bc55"]
+offset_left = 55.8677
+offset_top = -20.8856
+offset_right = 162.868
+offset_bottom = 45.1144
+scale = Vector2(1.65409, 1.0285)
+theme_override_font_sizes/font_size = 40
+text = "X 1"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="宠物列表"]
+offset_left = -328.953
+offset_top = 10.7203
+offset_right = -236.953
+offset_bottom = 61.7203
+scale = Vector2(0.687182, 0.580827)
+theme_override_font_sizes/font_size = 40
+text = " X 0"
+
+[node name="petFoodBall" parent="宠物列表" instance=ExtResource("21_ycq5q")]
+position = Vector2(-352.979, 23.6951)
+scale = Vector2(0.558049, 0.744157)
+script = null
+
+[node name="petAnimation" type="AnimatedSprite2D" parent="宠物列表"]
+position = Vector2(-124.684, -61.4854)
+scale = Vector2(2.10994, 1.51554)
+sprite_frames = SubResource("SpriteFrames_o6d5k")
+animation = &"敖雨"
+autoplay = "小鹿"
+
+[node name="petName" type="Label" parent="宠物列表"]
+offset_left = 136.18
+offset_top = -203.64
+offset_right = 287.18
+offset_bottom = -121.64
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.819608, 0.819608, 0.819608, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 19
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("45_wpb3l")
+theme_override_font_sizes/font_size = 50
+text = "小鹿"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="伤害" type="Label" parent="宠物列表"]
+self_modulate = Color(1, 0, 0, 1)
+offset_left = -366.978
+offset_top = 99.8492
+offset_right = -270.978
+offset_bottom = 153.849
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 40
+text = "力量:"
+
+[node name="Label" type="Label" parent="宠物列表/伤害"]
+layout_mode = 0
+offset_left = 102.577
+offset_top = 8.93762
+offset_right = 153.577
+offset_bottom = 47.9376
+theme_override_font_sizes/font_size = 30
+text = "200"
+
+[node name="伤害button" type="Button" parent="宠物列表/伤害"]
+layout_mode = 0
+offset_left = -23.8756
+offset_top = 4.51288
+offset_right = 25.1244
+offset_bottom = 91.5129
+scale = Vector2(0.513949, 0.481987)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jcpml")
+text = "+"
+
+[node name="怒气" type="Label" parent="宠物列表"]
+self_modulate = Color(1, 1, 0, 1)
+offset_left = -270.591
+offset_top = 178.824
+offset_right = -174.59
+offset_bottom = 232.824
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 40
+text = "怒气:"
+
+[node name="Label" type="Label" parent="宠物列表/怒气"]
+layout_mode = 0
+offset_left = 90.1971
+offset_top = 8.43158
+offset_right = 196.197
+offset_bottom = 47.4316
+theme_override_font_sizes/font_size = 30
+text = "10/次"
+
+[node name="怒气button" type="Button" parent="宠物列表/怒气"]
+layout_mode = 0
+offset_left = -21.2228
+offset_top = -1.12823
+offset_right = 27.7772
+offset_bottom = 88.8718
+scale = Vector2(0.513949, 0.481987)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jcpml")
+text = "+"
+
+[node name="灵力" type="Label" parent="宠物列表"]
+self_modulate = Color(0.286275, 0.498039, 1, 1)
+offset_left = -162.708
+offset_top = 103.234
+offset_right = -66.708
+offset_bottom = 157.234
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 40
+text = "灵力:"
+
+[node name="Label" type="Label" parent="宠物列表/灵力"]
+layout_mode = 0
+offset_left = 103.461
+offset_top = 7.66083
+offset_right = 154.461
+offset_bottom = 46.6608
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="灵力button" type="Button" parent="宠物列表/灵力"]
+layout_mode = 0
+offset_left = -22.107
+offset_top = 2.2182
+offset_right = 26.893
+offset_bottom = 89.2182
+scale = Vector2(0.513949, 0.481987)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jcpml")
+text = "+"
+
+[node name="饱食度" type="Label" parent="宠物列表"]
+self_modulate = Color(0.286275, 0.654902, 0, 1)
+offset_left = -1205.28
+offset_top = 237.491
+offset_right = -1109.28
+offset_bottom = 291.491
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 40
+text = "饱食:"
+
+[node name="Label" type="Label" parent="宠物列表/饱食度"]
+layout_mode = 0
+offset_left = 90.1966
+offset_top = 9.96692
+offset_right = 141.197
+offset_bottom = 48.9669
+theme_override_font_sizes/font_size = 30
+text = "100"
+
+[node name="饱食button" type="Button" parent="宠物列表/饱食度"]
+layout_mode = 0
+offset_left = -24.7599
+offset_top = 5.64111
+offset_right = 24.2401
+offset_bottom = 92.6411
+scale = Vector2(0.513949, 0.481987)
+theme_override_font_sizes/font_size = 50
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jcpml")
+text = "+"
+
+[node name="技能名字" type="Label" parent="宠物列表"]
+self_modulate = Color(0.54902, 1, 1, 1)
+offset_left = 126.452
+offset_top = 85.1824
+offset_right = 286.452
+offset_bottom = 136.182
+scale = Vector2(1.18978, 1.22816)
+theme_override_font_sizes/font_size = 30
+text = "甘露逢春"
+
+[node name="Label" type="Label" parent="宠物列表/技能名字"]
+layout_mode = 0
+offset_left = -78.7825
+offset_top = 45.0125
+offset_right = 345.217
+offset_bottom = 137.012
+scale = Vector2(0.76071, 0.953618)
+theme_override_fonts/font = ExtResource("45_wpb3l")
+theme_override_font_sizes/font_size = 25
+text = "治疗百分比生命最低的角色200血"
+
+[node name="closeButton" type="Button" parent="宠物列表"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 389.084
+offset_top = -255.538
+offset_right = 433.084
+offset_bottom = -210.538
+theme_override_font_sizes/font_size = 30
+
+[node name="close" type="AnimatedSprite2D" parent="宠物列表/closeButton"]
+position = Vector2(22.67, 21.5186)
+scale = Vector2(2.74588, 3.05803)
+sprite_frames = SubResource("SpriteFrames_v31wy")
+autoplay = "default"
+
+[node name="petRightButton" type="TextureButton" parent="宠物列表"]
+offset_left = -72.5112
+offset_top = 3.95101
+offset_right = -13.5112
+offset_bottom = 74.951
+texture_normal = ExtResource("46_gxkk8")
+stretch_mode = 4
+
+[node name="petLeftButton" type="TextureButton" parent="宠物列表"]
+offset_left = -1501.51
+offset_top = 580.468
+offset_right = -1442.51
+offset_bottom = 651.468
+texture_normal = ExtResource("47_2lskr")
+stretch_mode = 4
+
+[node name="petDescription" type="Label" parent="宠物列表"]
+modulate = Color(0.603922, 0.603922, 0.603922, 1)
+offset_left = 44.0
+offset_top = -118.0
+offset_right = 404.0
+offset_bottom = 70.0
+theme_override_fonts/font = ExtResource("45_wpb3l")
+theme_override_font_sizes/font_size = 30
+text = "东海龙宫敖阳之妹,有着身为神的傲气与责任感,也有近似凡人的天真"
+autowrap_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="宠物列表"]
+offset_left = -404.117
+offset_top = -187.845
+offset_right = -235.117
+offset_bottom = -132.845
+color = Color(0, 0, 0, 1)
+
+[node name="resetButton" type="Button" parent="宠物列表"]
+offset_left = -404.117
+offset_top = -187.845
+offset_right = -236.117
+offset_bottom = -131.845
+theme = SubResource("Theme_nsbx1")
+theme_override_font_sizes/font_size = 25
+text = "重置加点"
+
+[node name="盟友列表" type="Sprite2D" parent="."]
+visible = false
+z_as_relative = false
+position = Vector2(577, 369.498)
+scale = Vector2(1.13086, 0.886357)
+texture = ExtResource("69_tyu8x")
+
+[node name="宠物加点小窗口" type="Sprite2D" parent="盟友列表"]
+visible = false
+position = Vector2(230.798, -48.2641)
+scale = Vector2(1.06737, 2.1048)
+texture = ExtResource("57_443lk")
+
+[node name="petAnimation" type="AnimatedSprite2D" parent="盟友列表"]
+position = Vector2(-154.749, -76.1521)
+scale = Vector2(1.45768, 1.04703)
+sprite_frames = SubResource("SpriteFrames_o6d5k")
+animation = &"敖白"
+autoplay = "小鹿"
+
+[node name="petName" type="Label" parent="盟友列表"]
+offset_left = -412.96
+offset_top = -202.512
+offset_right = -261.96
+offset_bottom = -94.5121
+scale = Vector2(0.644144, 0.644144)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.819608, 0.819608, 0.819608, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 19
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("45_wpb3l")
+theme_override_font_sizes/font_size = 50
+text = "敖阳"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="伤害" type="Label" parent="盟友列表"]
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -421.803
+offset_top = 71.6431
+offset_right = -325.803
+offset_bottom = 125.643
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 30
+text = "力量:"
+
+[node name="Label" type="Label" parent="盟友列表/伤害"]
+layout_mode = 0
+offset_left = 106.998
+offset_top = 11.2829
+offset_right = 157.998
+offset_bottom = 50.2829
+theme_override_font_sizes/font_size = 20
+text = "200"
+
+[node name="加点默认" type="Sprite2D" parent="盟友列表/伤害"]
+position = Vector2(-14.1485, 16.9232)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("57_7wo8k")
+
+[node name="力量加点" type="Button" parent="盟友列表/伤害/加点默认"]
+offset_left = -6.48474
+offset_top = -6.76929
+offset_right = 7.51526
+offset_bottom = 7.23071
+
+[node name="减点默认" type="Sprite2D" parent="盟友列表/伤害"]
+visible = false
+position = Vector2(152.097, 16.9232)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("59_jssxc")
+
+[node name="怒气" type="Label" parent="盟友列表"]
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -221.955
+offset_top = 71.6431
+offset_right = -125.955
+offset_bottom = 125.643
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 30
+text = "血量:"
+
+[node name="Label" type="Label" parent="盟友列表/怒气"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 10.0
+offset_right = 198.0
+offset_bottom = 39.0
+theme_override_font_sizes/font_size = 20
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="加点默认" type="Sprite2D" parent="盟友列表/怒气"]
+position = Vector2(213.997, 22.565)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("57_7wo8k")
+
+[node name="血量加点" type="Button" parent="盟友列表/怒气/加点默认"]
+offset_left = -6.48474
+offset_top = -6.76929
+offset_right = 7.51526
+offset_bottom = 7.23071
+
+[node name="减点默认" type="Sprite2D" parent="盟友列表/怒气"]
+visible = false
+position = Vector2(149.064, 17.641)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("59_jssxc")
+
+[node name="天运" type="Label" parent="盟友列表"]
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = 1046.1
+offset_top = -207.025
+offset_right = 1142.1
+offset_bottom = -153.025
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 30
+text = "气运:"
+
+[node name="Label" type="Label" parent="盟友列表/天运"]
+layout_mode = 0
+offset_left = 71.6269
+offset_top = 5.64105
+offset_right = 177.627
+offset_bottom = 44.6411
+theme_override_font_sizes/font_size = 20
+text = "100"
+
+[node name="加点默认" type="Sprite2D" parent="盟友列表/天运"]
+position = Vector2(-12.3799, 14.6669)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("57_7wo8k")
+
+[node name="气运加点" type="Button" parent="盟友列表/天运/加点默认"]
+offset_left = -6.48474
+offset_top = -6.76929
+offset_right = 7.51526
+offset_bottom = 7.23071
+
+[node name="减点默认" type="Sprite2D" parent="盟友列表/天运"]
+visible = false
+position = Vector2(149.064, 17.641)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("59_jssxc")
+
+[node name="灵力" type="Label" parent="盟友列表"]
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -422.687
+offset_top = 157.388
+offset_right = -326.687
+offset_bottom = 211.388
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 30
+text = "灵力:"
+
+[node name="Label" type="Label" parent="盟友列表/灵力"]
+layout_mode = 0
+offset_left = 107.882
+offset_top = -2.25644
+offset_right = 158.882
+offset_bottom = 36.7436
+theme_override_font_sizes/font_size = 20
+text = "100"
+
+[node name="加点默认" type="Sprite2D" parent="盟友列表/灵力"]
+position = Vector2(-13.2642, 15.7951)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("57_7wo8k")
+
+[node name="灵力加点" type="Button" parent="盟友列表/灵力/加点默认"]
+offset_left = -6.48474
+offset_top = -6.76929
+offset_right = 7.51526
+offset_bottom = 7.23071
+
+[node name="减点默认" type="Sprite2D" parent="盟友列表/灵力"]
+visible = false
+position = Vector2(150.832, 18.7693)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("59_jssxc")
+
+[node name="饱食度" type="Label" parent="盟友列表"]
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -222.839
+offset_top = 158.516
+offset_right = -126.839
+offset_bottom = 212.516
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 30
+text = "敏捷:"
+
+[node name="Label" type="Label" parent="盟友列表/饱食度"]
+layout_mode = 0
+offset_left = 136.179
+offset_top = -4.51269
+offset_right = 187.18
+offset_bottom = 34.4873
+theme_override_font_sizes/font_size = 20
+text = "100"
+
+[node name="加点默认" type="Sprite2D" parent="盟友列表/饱食度"]
+position = Vector2(214.881, 6.76942)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("57_7wo8k")
+
+[node name="敏捷加点" type="Button" parent="盟友列表/饱食度/加点默认"]
+offset_left = -6.48474
+offset_top = -6.76929
+offset_right = 7.51526
+offset_bottom = 7.23071
+
+[node name="减点默认" type="Sprite2D" parent="盟友列表/饱食度"]
+visible = false
+position = Vector2(148.179, 18.7693)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("59_jssxc")
+
+[node name="技能名字" type="Label" parent="盟友列表"]
+self_modulate = Color(0.54902, 1, 1, 1)
+offset_left = 158.287
+offset_top = 56.9771
+offset_right = 318.287
+offset_bottom = 107.977
+scale = Vector2(1.18978, 1.22816)
+theme_override_font_sizes/font_size = 30
+text = "龙卷雨击"
+
+[node name="Label" type="Label" parent="盟友列表/技能名字"]
+layout_mode = 0
+offset_left = -73.5798
+offset_top = 42.2566
+offset_right = 290.42
+offset_bottom = 134.257
+scale = Vector2(0.76071, 0.953618)
+theme_override_fonts/font = ExtResource("45_wpb3l")
+theme_override_font_sizes/font_size = 25
+text = "治疗百分比生命最低的角色200血"
+horizontal_alignment = 1
+
+[node name="friendCloseButton" type="Button" parent="盟友列表"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 418.266
+offset_top = -210.41
+offset_right = 462.266
+offset_bottom = -165.41
+theme_override_font_sizes/font_size = 30
+
+[node name="close" type="AnimatedSprite2D" parent="盟友列表/friendCloseButton"]
+position = Vector2(20.3384, 22.5643)
+scale = Vector2(2.74588, 3.05803)
+sprite_frames = SubResource("SpriteFrames_v31wy")
+autoplay = "default"
+
+[node name="friendRightButton" type="TextureButton" parent="盟友列表"]
+offset_left = -51.2884
+offset_top = -50.2032
+offset_right = 7.71165
+offset_bottom = 20.7968
+texture_normal = ExtResource("46_gxkk8")
+stretch_mode = 4
+
+[node name="friendLeftButton" type="TextureButton" parent="盟友列表"]
+offset_left = -319.226
+offset_top = -53.5879
+offset_right = -260.226
+offset_bottom = 17.4121
+texture_normal = ExtResource("47_2lskr")
+stretch_mode = 4
+
+[node name="等级" type="Label" parent="盟友列表"]
+self_modulate = Color(1, 1, 0, 0)
+offset_left = 46.867
+offset_top = -164.153
+offset_right = 136.867
+offset_bottom = -113.153
+theme_override_font_sizes/font_size = 40
+text = "等级:"
+
+[node name="Label" type="Label" parent="盟友列表/等级"]
+layout_mode = 0
+offset_left = 98.1553
+offset_top = 5.64084
+offset_right = 444.155
+offset_bottom = 44.6408
+theme_override_font_sizes/font_size = 30
+text = "40"
+vertical_alignment = 1
+
+[node name="经验" type="Label" parent="盟友列表"]
+self_modulate = Color(1, 1, 0, 0)
+offset_left = 48.6356
+offset_top = -102.101
+offset_right = 138.636
+offset_bottom = -51.101
+theme_override_font_sizes/font_size = 40
+text = "经验:"
+
+[node name="Label" type="Label" parent="盟友列表/经验"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 8.0
+offset_right = 284.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 15
+text = "40/50"
+vertical_alignment = 1
+
+[node name="潜力" type="Label" parent="盟友列表"]
+self_modulate = Color(1, 1, 0, 0)
+offset_left = 48.6355
+offset_top = -40.0493
+offset_right = 138.636
+offset_bottom = 10.9507
+theme_override_font_sizes/font_size = 40
+text = "潜力:"
+
+[node name="Label" type="Label" parent="盟友列表/潜力"]
+layout_mode = 0
+offset_left = 96.3868
+offset_top = 7.89746
+offset_right = 360.387
+offset_bottom = 46.8975
+theme_override_font_sizes/font_size = 30
+text = "15"
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="盟友列表"]
+offset_left = -49.5198
+offset_top = -204.768
+offset_right = 30.4802
+offset_bottom = -153.768
+theme_override_font_sizes/font_size = 30
+text = "盟友"
+
+[node name="宠物食物商店" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(572, 371)
+scale = Vector2(0.888661, 1.73857)
+texture = ExtResource("36_b4trb")
+
+[node name="TextureRect" type="TextureRect" parent="宠物食物商店"]
+offset_left = -335.336
+offset_top = -55.2178
+offset_right = 121.664
+offset_bottom = 194.782
+scale = Vector2(1.49246, 0.667871)
+texture = ExtResource("72_sgiqk")
+
+[node name="宠物食物按钮" type="Sprite2D" parent="宠物食物商店"]
+position = Vector2(-172.169, 74.1989)
+scale = Vector2(1.12529, 0.575185)
+texture = ExtResource("73_rwrn5")
+
+[node name="宠物食物按钮2" type="Sprite2D" parent="宠物食物商店"]
+position = Vector2(194.675, 74.7741)
+scale = Vector2(1.12529, 0.575185)
+texture = ExtResource("73_rwrn5")
+
+[node name="五龙丹" type="Sprite2D" parent="宠物食物商店"]
+position = Vector2(-121.531, 12.6541)
+scale = Vector2(1.09947, 0.561988)
+texture = ExtResource("37_aoug8")
+
+[node name="战斗-道具界面" type="Sprite2D" parent="宠物食物商店"]
+visible = false
+position = Vector2(5.24731, -2.38409)
+scale = Vector2(1.16606, 0.596026)
+texture = ExtResource("37_1jmee")
+
+[node name="cost" type="Label" parent="宠物食物商店"]
+offset_left = -178.921
+offset_top = 53.4922
+offset_right = -109.921
+offset_bottom = 104.492
+scale = Vector2(0.787737, 0.787737)
+theme_override_font_sizes/font_size = 40
+text = "0"
+
+[node name="Panel" type="Panel" parent="宠物食物商店"]
+visible = false
+offset_left = -6.0
+offset_top = 60.0
+offset_right = -3.0
+offset_bottom = 89.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_csmn4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="宠物食物商店"]
+position = Vector2(290.324, -33.3608)
+scale = Vector2(2.18637, 1.11755)
+sprite_frames = SubResource("SpriteFrames_l0x8k")
+
+[node name="灵宠商店button" type="Button" parent="宠物食物商店/AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 11.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="宠物食物商店"]
+offset_left = 155.29
+offset_top = 60.3945
+offset_right = 275.29
+offset_bottom = 134.394
+scale = Vector2(0.798164, 0.381525)
+theme_override_font_sizes/font_size = 60
+text = "购买"
+
+[node name="buyButton" type="Button" parent="宠物食物商店/Label2"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -48.0
+offset_right = 161.0
+offset_bottom = 72.0
+
+[node name="Label3" type="Label" parent="宠物食物商店"]
+visible = false
+offset_left = -40.5103
+offset_top = -44.2892
+offset_right = 119.49
+offset_bottom = 6.71085
+scale = Vector2(0.469926, 0.469926)
+theme_override_font_sizes/font_size = 40
+text = "宠物食物
+"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="宠物食物商店"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(70.8932, 48.3156)
+scale = Vector2(1.51768, 0.886944)
+sprite_frames = SubResource("SpriteFrames_ii2wu")
+autoplay = "default"
+
+[node name="addButton" type="TextureButton" parent="宠物食物商店/AnimatedSprite2D2"]
+offset_left = -8.15601
+offset_top = -11.0245
+offset_right = 26.844
+offset_bottom = 15.9755
+texture_normal = ExtResource("77_i41ag")
+texture_hover = ExtResource("78_a8mir")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="宠物食物商店"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-54.0138, 47.7404)
+scale = Vector2(1.50298, 0.915945)
+sprite_frames = SubResource("SpriteFrames_a163w")
+autoplay = "default"
+
+[node name="minButton" type="TextureButton" parent="宠物食物商店/AnimatedSprite2D3"]
+offset_left = -20.2151
+offset_top = -11.3035
+offset_right = 14.7849
+offset_bottom = 15.6965
+texture_normal = ExtResource("81_mvfmb")
+texture_hover = ExtResource("82_cly6t")
+
+[node name="buyAmount" type="Label" parent="宠物食物商店"]
+offset_left = 113.654
+offset_top = -13.2292
+offset_right = 159.654
+offset_bottom = 37.7708
+theme_override_font_sizes/font_size = 40
+text = "50"
+
+[node name="currState" type="Label" parent="."]
+visible = false
+self_modulate = Color(1, 0, 0, 1)
+offset_left = 450.0
+offset_top = 7.0
+offset_right = 635.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 40
+text = "一"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hashTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="importantMsg" parent="." instance=ExtResource("42_ng58e")]
+position = Vector2(323, 122)
+
+[node name="countDown" type="Label" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 1)
+offset_left = 490.0
+offset_top = 13.0
+offset_right = 576.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 40
+text = "1:40"
+
+[node name="countDownTimer" type="Timer" parent="."]
+
+[node name="violencePoint" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 288.0
+offset_top = -49.0
+offset_right = 860.0
+offset_bottom = 29.0
+metadata/_edit_use_anchors_ = true
+
+[node name="底图" type="Sprite2D" parent="violencePoint"]
+self_modulate = Color(1, 1, 1, 0.894118)
+position = Vector2(260, 87)
+scale = Vector2(1.3547, 1.08046)
+texture = ExtResource("80_fbnlv")
+
+[node name="TextureRect" type="TextureRect" parent="violencePoint"]
+self_modulate = Color(0, 1, 1, 1)
+layout_mode = 0
+offset_left = 436.0
+offset_top = -43.0
+offset_right = 463.0
+offset_bottom = -15.0
+scale = Vector2(5.10546, 2.87671)
+texture = ExtResource("43_v7ni5")
+expand_mode = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="violencePoint"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 48.0
+offset_right = 543.0
+offset_bottom = 105.0
+value = 50.0
+nine_patch_stretch = true
+texture_under = ExtResource("81_un0v5")
+texture_progress = ExtResource("82_hv8lo")
+texture_progress_offset = Vector2(0, 5)
+
+[node name="Label" type="Label" parent="violencePoint/TextureProgressBar"]
+layout_mode = 0
+offset_left = 211.0
+offset_top = 15.0
+offset_right = 315.0
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 30
+text = "95%"
+
+[node name="Label" type="Label" parent="violencePoint"]
+layout_mode = 0
+offset_left = 573.0
+offset_top = 60.0
+offset_right = 613.0
+offset_bottom = 99.0
+theme_override_font_sizes/font_size = 30
+text = "+5"
+
+[node name="Label2" type="Label" parent="violencePoint"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_left = 7.0
+offset_top = 68.0
+offset_right = 87.0
+offset_bottom = 119.0
+scale = Vector2(0.433916, 0.433916)
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 40
+text = "道德"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pt2ya")
+}
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("58_xu00w")
+volume_db = 4.0
+max_distance = 999999.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 100
+material = SubResource("ShaderMaterial_fmus2")
+offset_left = -5.0
+offset_top = 1.0
+offset_right = 4083.0
+offset_bottom = 2342.0
+
+[node name="避" type="Label" parent="."]
+z_index = 999
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.143
+anchor_right = 0.085
+anchor_bottom = 0.183
+offset_left = -0.12001
+offset_top = -0.400002
+offset_right = 471.08
+offset_bottom = 592.6
+scale = Vector2(0.0518989, 0.0514021)
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("46_6q5oi")
+theme_override_font_sizes/font_size = 500
+text = "避"
+
+[node name="宠物ui宠物加点未弹起" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(555, 459)
+texture = ExtResource("70_gkjac")
+
+[node name="bgmTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="传梦者列表" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(619, 405)
+scale = Vector2(0.720395, 0.720395)
+texture = ExtResource("9_t5u4b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="传梦者列表"]
+position = Vector2(576.073, -233.206)
+scale = Vector2(2.56807, 1.86015)
+sprite_frames = SubResource("SpriteFrames_l0x8k")
+
+[node name="传梦者列表button" type="Button" parent="传梦者列表/AnimatedSprite2D"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 11.0
+offset_bottom = 10.0
+metadata/_edit_use_anchors_ = true
+
+[node name="BoxContainer" type="BoxContainer" parent="传梦者列表"]
+offset_left = -561.0
+offset_top = -153.0
+offset_right = 561.0
+offset_bottom = 200.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="传梦者列表"]
+offset_left = -563.58
+offset_top = -154.082
+offset_right = 565.42
+offset_bottom = 216.918
+
+[node name="VBoxContainer" type="VBoxContainer" parent="传梦者列表/ScrollContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer2" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer3" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer4" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer5" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer6" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer7" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer8" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer9" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer9" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="传梦者列表/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label2" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label3" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label4" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="Label5" parent="传梦者列表/ScrollContainer/VBoxContainer/HBoxContainer10" instance=ExtResource("84_cqgn7")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="传梦者列表"]
+offset_left = -80.5114
+offset_top = -216.548
+offset_right = 78.4886
+offset_bottom = -159.548
+color = Color(0, 0, 0, 0.533333)
+
+[node name="Label" type="Label" parent="传梦者列表/ColorRect"]
+layout_mode = 0
+offset_left = 20.822
+offset_top = 4.16437
+offset_right = 140.822
+offset_bottom = 55.1644
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 40
+text = "传梦者"
+
+[node name="onUiTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 167.0
+offset_right = 58.0
+offset_bottom = 186.0
+text = "FPS:"
+
+[node name="Label2" type="Label" parent="Label"]
+layout_mode = 0
+offset_left = 37.0
+offset_right = 77.0
+offset_bottom = 19.0
+
+[node name="Node2D" type="Node2D" parent="."]
+visible = false
+
+[node name="TextEdit" type="TextEdit" parent="Node2D"]
+offset_left = 488.0
+offset_top = 294.0
+offset_right = 553.0
+offset_bottom = 324.0
+placeholder_text = "X"
+
+[node name="TextEdit2" type="TextEdit" parent="Node2D"]
+offset_left = 566.0
+offset_top = 295.0
+offset_right = 631.0
+offset_bottom = 325.0
+placeholder_text = "Y"
+
+[node name="Label" type="Label" parent="Node2D"]
+offset_left = 536.0
+offset_top = 255.0
+offset_right = 786.0
+offset_bottom = 303.0
+text = "移动到"
+
+[node name="movePlaceButton" type="Button" parent="Node2D"]
+offset_left = 642.0
+offset_top = 296.0
+offset_right = 707.0
+offset_bottom = 329.0
+text = "发送"
+
+[node name="cycle" type="Label" parent="."]
+self_modulate = Color(1, 1, 0, 1)
+offset_left = 256.0
+offset_top = 3.0
+offset_right = 309.0
+offset_bottom = 25.0
+scale = Vector2(0.296021, 0.296021)
+theme_override_font_sizes/font_size = 60
+text = "轮回数:"
+
+[node name="cycleValue" type="Label" parent="cycle"]
+layout_mode = 0
+offset_left = 199.31
+offset_top = 3.37814
+offset_right = 394.31
+offset_bottom = 77.3781
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="随身商店" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(590, 385)
+scale = Vector2(0.696911, 0.696911)
+texture = ExtResource("94_p65nd")
+
+[node name="golds" type="Label" parent="随身商店"]
+modulate = Color(1, 1, 0, 1)
+offset_left = 338.637
+offset_top = -259.717
+offset_right = 644.637
+offset_bottom = -185.717
+scale = Vector2(0.566104, 0.566104)
+theme_override_font_sizes/font_size = 60
+text = "120000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="随身商店"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = -1
+anchor_left = 0.969
+anchor_top = 0.171
+anchor_right = 0.984
+anchor_bottom = 0.223
+offset_left = -664.648
+offset_top = -394.978
+offset_right = -375.778
+offset_bottom = -362.11
+scale = Vector2(0.566104, 0.566104)
+theme_override_font_sizes/font_size = 60
+text = "两
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="items" type="Node2D" parent="随身商店"]
+position = Vector2(-578.266, -394.598)
+
+[node name="Label" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 18.6537
+offset_top = 136.316
+offset_right = 268.654
+offset_bottom = 199.316
+theme_override_font_sizes/font_size = 50
+text = "战斗外食品："
+
+[node name="Label2" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 20.0887
+offset_top = 324.288
+offset_right = 270.089
+offset_bottom = 387.288
+theme_override_font_sizes/font_size = 50
+text = "战斗药品： "
+
+[node name="Label3" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 15.7839
+offset_top = 559.612
+offset_right = 279.784
+offset_bottom = 622.612
+theme_override_font_sizes/font_size = 50
+text = "暗器:"
+
+[node name="Label4" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 15.7839
+offset_top = 670.1
+offset_right = 279.784
+offset_bottom = 733.1
+theme_override_font_sizes/font_size = 50
+text = "特殊:"
+
+[node name="HScrollBar" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 15.7839
+offset_top = 190.842
+offset_right = 818.784
+offset_bottom = 246.842
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "佛手"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "佛跳墙"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "狗不理包子"
+alignment = 2
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar2" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 17.2188
+offset_top = 256.848
+offset_right = 820.219
+offset_bottom = 312.848
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar2" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "西瓜"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar2/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar3" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 15.7839
+offset_top = 380.249
+offset_right = 818.784
+offset_bottom = 436.249
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar3" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "金疮药"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar3/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar3" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "小还丹"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar3/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar3" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "金香玉"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar3/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar4" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 17.2188
+offset_top = 440.515
+offset_right = 820.219
+offset_bottom = 496.515
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar4" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "老君仙丹"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar4/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar4" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "仙狐涎"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar4/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar4" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "人参"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar4/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar5" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 17.2188
+offset_top = 499.346
+offset_right = 820.219
+offset_bottom = 555.346
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar5" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "蛇蝎美人"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar5/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar6" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 12.9141
+offset_top = 615.573
+offset_right = 815.914
+offset_bottom = 671.573
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar6" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "含沙射影"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar6/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar6" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "飞蝗石"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar6/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar6" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "魔睛子"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar6/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar7" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 14.349
+offset_top = 727.496
+offset_right = 817.349
+offset_bottom = 783.496
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar7" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "圣兽洗髓"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar7/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="cost" type="Label" parent="随身商店/items"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 850.898
+offset_top = 208.061
+offset_right = 963.898
+offset_bottom = 290.061
+scale = Vector2(0.796363, 0.796363)
+theme_override_font_sizes/font_size = 50
+text = "价格:
+"
+
+[node name="costValue" type="Label" parent="随身商店/items/cost"]
+layout_mode = 1
+offset_left = 2.86975
+offset_top = 64.5706
+offset_right = 292.87
+offset_bottom = 127.571
+theme_override_font_sizes/font_size = 50
+text = "1111111111"
+
+[node name="bagAmount" type="Label" parent="随身商店/items"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 850.898
+offset_top = 406.078
+offset_right = 1013.9
+offset_bottom = 469.078
+scale = Vector2(0.741504, 0.741504)
+theme_override_font_sizes/font_size = 50
+text = "已拥有:"
+
+[node name="bagAmountValue" type="Label" parent="随身商店/items/bagAmount"]
+layout_mode = 1
+offset_left = 2.86975
+offset_top = 64.5706
+offset_right = 292.87
+offset_bottom = 127.571
+theme_override_font_sizes/font_size = 50
+text = "1111111111"
+
+[node name="miniShopBuy" type="TextureButton" parent="随身商店"]
+offset_left = 424.732
+offset_top = 319.983
+offset_right = 543.732
+offset_bottom = 378.983
+texture_normal = ExtResource("97_bsesd")
+texture_pressed = ExtResource("98_fbor2")
+
+[node name="Label2" type="Label" parent="随身商店"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 431.906
+offset_top = 269.762
+offset_right = 694.906
+offset_bottom = 422.762
+scale = Vector2(0.468687, 0.468687)
+theme_override_font_sizes/font_size = 40
+text = "长按SHIFT
+数量+10"
+autowrap_mode = 3
+
+[node name="closeShopButton" type="Button" parent="随身商店"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 519.435
+offset_top = -387.424
+offset_right = 563.435
+offset_bottom = -342.424
+theme_override_font_sizes/font_size = 30
+
+[node name="close" type="AnimatedSprite2D" parent="随身商店/closeShopButton"]
+position = Vector2(22.67, 21.5186)
+scale = Vector2(2.74588, 3.05803)
+sprite_frames = SubResource("SpriteFrames_v31wy")
+autoplay = "default"
+
+[node name="description" type="Label" parent="随身商店"]
+offset_left = -555.0
+offset_top = -385.0
+offset_right = 248.0
+offset_bottom = -274.0
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="随身商店"]
+offset_left = 344.377
+offset_top = 331.463
+offset_right = 388.377
+offset_bottom = 355.463
+scale = Vector2(1.6108, 1.82005)
+
+[node name="Label" type="Label" parent="随身商店/CheckButton"]
+layout_mode = 0
+offset_left = -45.4309
+offset_top = 0.788391
+offset_right = 2.56909
+offset_bottom = 22.7884
+text = "买十个"
+
+[connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
+[connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
+[connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]
+[connection signal="mouse_entered" from="phoneButtons/右上" to="." method="_on_右上_mouse_entered"]
+[connection signal="mouse_exited" from="phoneButtons/右上" to="." method="_on_右上_mouse_exited"]
+[connection signal="pressed" from="phoneButtons/右上" to="." method="_on_右上_pressed"]
+[connection signal="button_down" from="phoneButtons/左上" to="." method="_on_左上_button_down"]
+[connection signal="button_down" from="phoneButtons/左下" to="." method="_on_左下_button_down"]
+[connection signal="button_down" from="phoneButtons/右下" to="." method="_on_右下_button_down"]
+[connection signal="button_down" from="menutButton" to="." method="_on_menut_button_button_down"]
+[connection signal="mouse_entered" from="menutButton" to="." method="_on_menut_button_mouse_entered"]
+[connection signal="mouse_exited" from="menutButton" to="." method="_on_menut_button_mouse_exited"]
+[connection signal="button_down" from="宠物/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="宠物/Button" to="." method="_on_button_button_up"]
+[connection signal="mouse_entered" from="宠物/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="宠物/Button" to="." method="_on_button_mouse_exited"]
+[connection signal="button_down" from="hintButton/hintButton" to="." method="_on_hint_button_button_down"]
+[connection signal="button_up" from="hintButton/hintButton" to="." method="_on_hint_button_button_up"]
+[connection signal="mouse_entered" from="hintButton/hintButton" to="." method="_on_hint_button_mouse_entered"]
+[connection signal="mouse_exited" from="hintButton/hintButton" to="." method="_on_hint_button_mouse_exited"]
+[connection signal="button_down" from="loadButton/loadButton" to="." method="_on_load_button_button_down"]
+[connection signal="mouse_entered" from="loadButton/loadButton" to="." method="_on_load_button_mouse_entered"]
+[connection signal="mouse_exited" from="loadButton/loadButton" to="." method="_on_load_button_mouse_exited"]
+[connection signal="button_down" from="system/systemButton" to="." method="_on_system_button_button_down"]
+[connection signal="button_up" from="system/systemButton" to="." method="_on_system_button_button_up"]
+[connection signal="mouse_entered" from="system/systemButton" to="." method="_on_system_button_mouse_entered"]
+[connection signal="mouse_exited" from="system/systemButton" to="." method="_on_system_button_mouse_exited"]
+[connection signal="button_down" from="weaponButton/weaponButton" to="." method="_on_weapon_button_button_down"]
+[connection signal="mouse_entered" from="weaponButton/weaponButton" to="." method="_on_weapon_button_mouse_entered"]
+[connection signal="mouse_exited" from="weaponButton/weaponButton" to="." method="_on_weapon_button_mouse_exited"]
+[connection signal="button_down" from="地图/mapButton" to="." method="_on_map_button_button_down"]
+[connection signal="mouse_entered" from="地图/mapButton" to="." method="_on_map_button_mouse_entered"]
+[connection signal="mouse_exited" from="地图/mapButton" to="." method="_on_map_button_mouse_exited"]
+[connection signal="button_down" from="物品/itemButton" to="." method="_on_item_button_button_down"]
+[connection signal="mouse_entered" from="物品/itemButton" to="." method="_on_item_button_mouse_entered"]
+[connection signal="mouse_exited" from="物品/itemButton" to="." method="_on_item_button_mouse_exited"]
+[connection signal="button_down" from="队伍/teamButton" to="." method="_on_team_button_button_down"]
+[connection signal="mouse_entered" from="队伍/teamButton" to="." method="_on_team_button_mouse_entered"]
+[connection signal="mouse_exited" from="队伍/teamButton" to="." method="_on_team_button_mouse_exited"]
+[connection signal="button_down" from="交易/shopButton" to="." method="_on_shop_button_button_down"]
+[connection signal="button_up" from="交易/shopButton" to="." method="_on_shop_button_button_up"]
+[connection signal="mouse_entered" from="交易/shopButton" to="." method="_on_shop_button_mouse_entered"]
+[connection signal="mouse_exited" from="交易/shopButton" to="." method="_on_shop_button_mouse_exited"]
+[connection signal="button_down" from="音乐/musicButton" to="." method="_on_music_button_button_down"]
+[connection signal="button_up" from="音乐/musicButton" to="." method="_on_music_button_button_up"]
+[connection signal="mouse_entered" from="音乐/musicButton" to="." method="_on_music_button_mouse_entered"]
+[connection signal="mouse_exited" from="音乐/musicButton" to="." method="_on_music_button_mouse_exited"]
+[connection signal="button_down" from="制作人/authorButton" to="." method="_on_author_button_button_down"]
+[connection signal="button_up" from="制作人/authorButton" to="." method="_on_author_button_button_up"]
+[connection signal="mouse_entered" from="制作人/authorButton" to="." method="_on_author_button_mouse_entered"]
+[connection signal="mouse_exited" from="制作人/authorButton" to="." method="_on_author_button_mouse_exited"]
+[connection signal="button_down" from="好友/friendButton" to="." method="_on_friend_button_button_down"]
+[connection signal="button_up" from="好友/friendButton" to="." method="_on_friend_button_button_up"]
+[connection signal="mouse_entered" from="好友/friendButton" to="." method="_on_friend_button_mouse_entered"]
+[connection signal="mouse_exited" from="好友/friendButton" to="." method="_on_friend_button_mouse_exited"]
+[connection signal="button_down" from="其他梦单/closeButton/梦单closeButton" to="." method="_on_梦单close_button_button_down"]
+[connection signal="button_down" from="制作人列表/TextureButton" to="." method="_on_texture_button_button_down"]
+[connection signal="button_down" from="宠物列表/伤害/伤害button" to="." method="_on_伤害button_button_down"]
+[connection signal="button_down" from="宠物列表/怒气/怒气button" to="." method="_on_怒气button_button_down"]
+[connection signal="button_down" from="宠物列表/灵力/灵力button" to="." method="_on_灵力button_button_down"]
+[connection signal="button_down" from="宠物列表/饱食度/饱食button" to="." method="_on_饱食button_button_down"]
+[connection signal="button_down" from="宠物列表/closeButton" to="." method="_on_close_button_button_down"]
+[connection signal="button_down" from="宠物列表/petRightButton" to="." method="_on_pet_right_button_button_down"]
+[connection signal="button_down" from="宠物列表/resetButton" to="." method="_on_reset_button_button_down"]
+[connection signal="button_down" from="盟友列表/伤害/加点默认/力量加点" to="." method="_on_力量加点_button_down"]
+[connection signal="button_down" from="盟友列表/怒气/加点默认/血量加点" to="." method="_on_血量加点_button_down"]
+[connection signal="button_down" from="盟友列表/天运/加点默认/气运加点" to="." method="_on_气运加点_button_down"]
+[connection signal="button_down" from="盟友列表/灵力/加点默认/灵力加点" to="." method="_on_灵力加点_button_down"]
+[connection signal="button_down" from="盟友列表/饱食度/加点默认/敏捷加点" to="." method="_on_敏捷加点_button_down"]
+[connection signal="button_down" from="盟友列表/friendCloseButton" to="." method="_on_friend_close_button_button_down"]
+[connection signal="button_down" from="盟友列表/friendRightButton" to="." method="_on_friend_right_button_button_down"]
+[connection signal="button_down" from="盟友列表/friendLeftButton" to="." method="_on_friend_left_button_button_down"]
+[connection signal="button_down" from="宠物食物商店/AnimatedSprite2D/灵宠商店button" to="." method="_on_灵宠商店button_button_down"]
+[connection signal="button_down" from="宠物食物商店/Label2/buyButton" to="." method="_on_buy_button_button_down"]
+[connection signal="button_down" from="宠物食物商店/AnimatedSprite2D2/addButton" to="." method="_on_add_button_button_down"]
+[connection signal="button_up" from="宠物食物商店/AnimatedSprite2D2/addButton" to="." method="_on_add_button_button_up"]
+[connection signal="button_down" from="宠物食物商店/AnimatedSprite2D3/minButton" to="." method="_on_min_button_button_down"]
+[connection signal="button_up" from="宠物食物商店/AnimatedSprite2D3/minButton" to="." method="_on_min_button_button_up"]
+[connection signal="timeout" from="hashTimer" to="." method="_on_hash_timer_timeout"]
+[connection signal="timeout" from="countDownTimer" to="." method="_on_count_down_timer_timeout"]
+[connection signal="timeout" from="bgmTimer" to="." method="_on_bgm_timer_timeout"]
+[connection signal="button_down" from="传梦者列表/AnimatedSprite2D/传梦者列表button" to="." method="_on_传梦者列表button_button_down"]
+[connection signal="timeout" from="onUiTimer" to="." method="_on_on_ui_timer_timeout"]
+[connection signal="button_down" from="Node2D/movePlaceButton" to="." method="_on_move_place_button_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar/shopItem" to="随身商店/items/HScrollBar/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar/shopItem2" to="随身商店/items/HScrollBar/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar/shopItem3" to="随身商店/items/HScrollBar/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar2/shopItem" to="随身商店/items/HScrollBar2/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar3/shopItem" to="随身商店/items/HScrollBar3/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar3/shopItem2" to="随身商店/items/HScrollBar3/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar3/shopItem3" to="随身商店/items/HScrollBar3/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar4/shopItem" to="随身商店/items/HScrollBar4/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar4/shopItem2" to="随身商店/items/HScrollBar4/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar4/shopItem3" to="随身商店/items/HScrollBar4/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar5/shopItem" to="随身商店/items/HScrollBar5/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar6/shopItem" to="随身商店/items/HScrollBar6/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar6/shopItem2" to="随身商店/items/HScrollBar6/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar6/shopItem3" to="随身商店/items/HScrollBar6/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar7/shopItem" to="随身商店/items/HScrollBar7/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/miniShopBuy" to="." method="_on_mini_shop_buy_button_down"]
+[connection signal="button_down" from="随身商店/closeShopButton" to="." method="_on_close_shop_button_button_down"]
+[connection signal="button_down" from="随身商店/CheckButton" to="." method="_on_check_button_button_down"]
+
+[editable path="importantMsg"]

@@ -753,6 +753,9 @@ set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 凌若昭: [speed=0.5]我要去买点朱砂，时大哥你准备好了之后来城中央汇合吧
 时追云: [speed=0.5]嗯
 set Global.getnode("姜韵").visible = false
+set Global.changevis("大唐官府大厅","凌若昭")
+set Global.dial = null
+set Global.triggerPlace.get("姜韵来方寸").disable = false
 set Global.questHint = "事情办完了就去找提毗传送去方寸山"
 set Global.triggerPlace.get("听闻砍头").disable = false
 set Global.changevis("大唐官府大厅","梧桐")
@@ -777,6 +780,7 @@ set Global.canMenu = false
 凌若昭喜: [speed=0.5]是啊，我师傅能知道天下事
 时追云: [speed=0.5]走吧娘子，以后再带你好好逛逛这里
 姜韵喜: [speed=0.5]嗯
+set Global.dial = "寻找小二"
 set Global.onTalk = false
 => END
 
@@ -1069,9 +1073,9 @@ set Global.onTalk = true
 小二: [speed=0.5]嗯，我相信你们
 远处.........
 时追云: [speed=0.5]他们怎么不见了，我去找找
-姜韵怒: [speed=0.5]夫君你什么时候变得这般憨傻了
+姜韵羞怒: [speed=0.5]夫君你什么时候变得这般憨傻了
 时追云: [speed=0.5]我怎么了
-姜韵怒: [speed=0.5]就在这待着，不要去打扰他们！
+姜韵羞怒: [speed=0.5]就在这待着，不要去打扰他们！
 时追云: [speed=0.5]哦
 梧桐: [speed=0.5]哈哈哈哈，问世间情为何物啊
 set Global.changeScene("枯骨洞",null)
@@ -1278,7 +1282,7 @@ set Global.playsound("res://Audio/SE/017-Jump03.ogg")
 虎范: [speed=0.5]你什么意思！
 青面兽: [speed=0.5]这是妖盟对你的警告，你的女儿将会被我带走监管，保证你对妖盟的绝对忠心
 青面兽: [speed=0.5]你身为妖盟的妖王，居然敢和人类结亲，呸
-青面兽: [speed=0.5]赶紧杀了他，不然你女儿也不是非活不可
+青面兽: [speed=0.5]赶紧杀了他，不然你女儿的性命就难保了！
 小二: [speed=0.5]卑鄙
 虎范: [speed=0.5]你！！！
 熊大: [speed=0.5]吼！
@@ -1387,6 +1391,9 @@ set Global.onTalk = false
 ~ 再见小二7
 set Global.onTalk = true
 set Global.onHurry = false
+青面兽: 在此为誓！永拥我神！以我之魄！佑我渡劫！
+时追云惊: 又是这招！
+青面兽: 啊！！
 set Global.changebgm("res://Audio/BGM/【时光流逝】.ogg")
 set Global.playsound("res://Audio/SE/049-Explosion02.ogg")
 set Global.getnode("青面兽/effects/爆炸").visible = true
@@ -1397,6 +1404,7 @@ set Global.getnode("青面兽").visible = false
 set Global.changebgm("res://Audio/BGM/SWD5 无奈.mp3")
 
 set Global.getnode("梧桐").position = Vector2(2299,527)
+时追云: 看来是失败了
 凌若昭怒: [speed=0.5]居然这么强，我们一起打他都这么勉强
 姜韵怒: [speed=0.5]妖王确实不好对付
 时追云: [speed=0.5]原来这就是你妖化的样子小二
@@ -1438,6 +1446,8 @@ set Global.onTeamPlayer.append("小二")
 set Global.dial = "寻四圣"
 set Global.current_chapter_id = 7
 set FightScenePlayers.learnMagic("小二", "真身现世")
+set FightScenePlayers.eraseMagic("小二","千机变")
+set FightScenePlayers.learnMagic("小二","千机变")
 set get_tree().change_scene_to_file("res://Scene/"+"chapterPreview"+".tscn")
 
 
@@ -1454,14 +1464,393 @@ set Global.onTalk = false
 
 ~ 听闻砍头
 set Global.onTalk = true
-兵甲: 嘿，你听说了吗，有个人连砍了当铺老板十几刀，那老板当场就死了
-兵乙: 那当然了，这事可传遍了，没想到这年头没死在妖怪手里，死在人手里了
-兵甲: 听说那人是还不上当铺老板的钱，所以恶向胆边生
-兵乙: 他现在怎么样了来着
-兵甲: 听说今天早些时候已经被斩头了
-兵乙: 啧啧啧，这世道，要不是妖怪横行，加上叛军造反，也不至于这么苦
-兵甲: 唉，谁说不是呢
-兵甲: 听说现在还有人在城内祭拜他呢
 
+
+
+兵甲: [speed=0.5]嘿，你听说了吗，有个人连砍了当铺老板十几刀，那老板当场就死了
+兵乙: [speed=0.5]那当然了，这事可传遍了，没想到这年头没死在妖怪手里，死在人手里了
+兵甲: [speed=0.5]听说那人是还不上当铺老板的钱，所以恶向胆边生
+兵乙: [speed=0.5]他现在怎么样了来着
+兵甲: [speed=0.5]听说今天早些时候已经被斩头了，尸首凉了一整天，也没家人来收尸
+兵乙: [speed=0.5]啧啧啧，这世道，要不是妖怪横行，加上叛军造反，也不至于这么苦
+兵甲: [speed=0.5]唉，谁说不是呢
+set Global.changevis("长安城","兰虎")
+set Global.onTalk = false
+=> END
+
+~ 兰虎1
+set Global.onTalk = true
+
+兰虎: [speed=0.5]哎这位客官，来吃点面吧
+时追云: [speed=0.5]好，你这里有什么？
+兰虎: [speed=0.5]我有一手绝活面！全部人吃了都赞不绝口！
+兰虎: [speed=0.5]怎么样，客官要来两碗吗？
+时追云: [speed=0.5]好，那就来两碗吧
+兰虎: 好嘞，客官请稍等！
+set Global.getnode("AnimationPlayer2").play("turnDark")
+[next=1]
+set Global.getnode("player").position = Vector2(3141,1255)
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+set Global.changevis("长安城","打更人")
+set Global.changevis("长安城","挽琴")
+set Global.getnode("AudioStreamPlayer2D").stream = load("res://Audio/BGM/大堂-诗情2.ogg")
+set Global.getnode("AudioStreamPlayer2D").play()
+打更人: [speed=0.5]老兰，今天你这面可是有点干啊
+兰虎: [speed=0.5]哦，还真是，这就给您加上汤！
+打更人: [speed=0.5]哎，你们听说了最近的那个事了吗？
+挽琴: [speed=0.5]发生什么事了吗？
+打更人: [speed=0.5]我跟你们说啊，开当铺的那两口子，那老吴，前两天大半夜全让人给杀了
+兰虎: [speed=0.5]有这事啊？！
+打更人: [speed=0.5]嗯，听说是先抹了脖子，然后还被砍了十几刀，那血溅的是满屋子都是，之后还放火烧了整个铺子，来往的票据，那些当票也给烧里头了
+挽琴: [speed=0.5]听花楼里的姐们说，现场挺可怕的
+打更人: [speed=0.5]是啊...咳咳咳
+兰虎: [speed=0.5]哎，你怎么也开始咳嗽的，你媳妇的病怎么样了，好些了吗
+打更人: [speed=0.5]唉。。托您的福，好些了
+打更人: [speed=0.5]得，不说她了。老兰，听说你女儿要出嫁了，你到时候再讨个老婆呗
+兰虎: [speed=0.5]哎哟哟嘿嘿嘿，就我这年纪还上哪去找啊
+打更人: [speed=0.5]可别这么说，这人呐还是要有个伴，不然这日子真没法过。要不我给你找个？
+兰虎: [speed=0.5]嘿哟哟，再说吧再说吧
+挽琴: [speed=0.5]老兰，今天应该是我最后一次来吃你的面了，今晚过后我便要离开这里了
+兰虎: [speed=0.5]怎么了这是？
+挽琴: [speed=0.5]只是怕你们嫌我絮叨
+兰虎: [speed=0.5]夜还长着呢，可让我们知晓一二啊
+挽琴: [speed=0.5]说起找伴，我也找了个如意郎君，不日，我就要嫁给他了
+兰虎: [speed=0.5]是正房吗？
+挽琴: [speed=0.5]他未曾娶亲
+兰虎: [speed=0.5]嘿哟哟，那可真是天大的喜事
+挽琴: [speed=0.5]我自懂事起，便被卖入了青楼。自那之后我便烧香拜佛，无一日中断，只求脱离这苦海
+挽琴: [speed=0.5]半年前，我遇到了他。他愿意花大笔价格赎我，而我也终于找到了依托。现在看来，佛菩萨还真是灵验了呢
+打更人: [speed=0.5]佛菩萨要真管用，我娘子也不会得这病了唉
+打更人: [speed=0.5]得，到这个点了，我得打更去了。老兰这是面钱，给你放桌上了
+兰虎: [speed=0.5]好嘞，你慢走，注意保养身体
+打更人: [speed=0.5]好，回见
+[next=0.5]
+set Global.changevis("长安城","打更人")
+[next=0.5]
+挽琴: [speed=0.5]老兰，一把细面，半碗高汤，一杯清水，五钱猪油，一勺清酱，再烫上两颗挺阔脆爽的小白菜，你的面是这样做的吧
+兰虎: [speed=0.5]正是！
+挽琴: [speed=0.5]可我怎么做不出这样的味道
+兰虎: [speed=0.5]我用的啊，是我店里的清酱
+挽琴: [speed=0.5]原来是有秘方
+兰虎: [speed=0.5]秘方说不上...这样，你一会走的时候，我送你一瓶
+挽琴: [speed=0.5]那可真是谢谢你了
+set Global.dial = "兰虎"
+set Global.changeScene("更夫家",Vector2(2237,1168))
+
+
+
+set Global.onTalk = false
+=> END
+
+~ 兰虎2
+set Global.onTalk = true
+打更人: [speed=0.5]媳妇，我回来了
+打更人: [speed=0.5]你睡了啊媳妇
+打更人: [speed=0.5]今天可累死我了，都不敢走到那菜市场去，生怕遇着点不干净的东西，听说那些被砍头的人，都会回来找自己的头
+打更人: [speed=0.5]今天又挣到了两钱，明天就拿去买鸡煲汤给你养养身体
+打更人: ......
+打更人: [speed=0.5]唉，你说我们这日子怎么就过得这么苦呢
+set Global.playsound("res://Audio/SE/Ghost_scream_2.mp3")
+set Global.changebgm("res://Audio/BGM/临敌.ogg")
+[next=1]
+打更人: [speed=0.5]什。。。什么声音？？
+打更人: [speed=0.5]娘子，你听见了吗，刚才那是什么声音！！？
+打更人: [speed=0.5]鬼。。。是鬼叫声？？
+set Global.getnode("AnimationPlayer2").play("鬼来")
+[next=3.4]
+打更人: 啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+打更人: [speed=0.5]这些是什么鬼东西，媳妇你快起来媳妇，快跟我跑
+打更人: [speed=0.5]你快起来啊媳妇，他们来要我们命来了
+打更人: [speed=0.5]我。。我背着你跑，你抱紧我
+打更人: 啊啊啊啊啊啊
+set Global.getnode("姜韵2").visible = true
+姜韵: 冤魂，收！
+set Global.getnode("野鬼").visible = false
+set Global.playsound("res://Audio/SE/Ghost_scream_2.mp3")
+[next=2]
+set Global.getnode("更夫").play("右下")
+打更人: [speed=0.5]你。。。你，你是谁
+打更人: [speed=0.5]你怎么是飘着的。。。你也是鬼！！！
+打更人: 饶命啊，饶命啊！我还不想死！
+姜韵: [speed=0.5]你娘子...
+打更人: [speed=0.5]什么..不，不行！只有我媳妇，你不能带走她！！
+打更人: [speed=0.5]你要杀..就杀我吧，我和你走。我求求你不要动我媳妇，她嫁给我之后没过过多少好日子。现在她好不容易身体好了些了
+姜韵哀: [speed=0.5]你娘子，她早就已经死了
+打更人: [speed=0.5]你。。。你在说什么，你在说什么啊！！
+打更人: [speed=0.5]我媳妇她怎么可能死了呢，她这不好端端的在这呢
+set Global.getnode("更夫").play("default")
+set Global.changebgm("res://Audio/BGM/0地狱少女.mp3")
+打更人: [speed=0.5]媳妇，你快起来，你快告诉她你没死
+打更人: [speed=0.5]媳妇...你这身上怎么有这么多虫子啊，啊，我给你拍掉
+打更人: [speed=0.5]媳妇，你别吓我啊媳妇！
+打更人: [speed=0.5]我带你去吃老兰家的面，你还没吃过呢。。
+打更人: [speed=0.5]媳妇。。。你留我一个人在世上我可怎么活啊
+姜韵哀: [speed=0.5]你。。。也已经死了
+打更人: [speed=0.5]我。。。死了？？怎么。。可能啊
+姜韵哀: [speed=0.5]你仔细看看，躺在那床上的，除了你的妻子，不还有你吗
+set Global.getnode("AnimationPlayer2").play("尸体出现")
+[next=1.5]
+打更人: ...
+打更人: [speed=0.5]呵呵呵呵，哈哈哈哈哈哈哈哈哈
+打更人: [speed=0.5]原来是这样啊，我也早就死了啊，怪不得，我看到了那些鬼
+打更人: [speed=0.5]媳妇。。。她早就因病而死了。。。我抱着她，也死在了床上
+打更人: [speed=0.5]我忙了大半辈子...是为了什么啊
+姜韵哀: [speed=0.5]你该起身去地府了，再滞留下去，你就该沦为孤魂野鬼了
+打更人: [speed=0.5]那我。。我还能见到我媳妇吗
+姜韵哀: [speed=0.5]如果你动作快点的话，兴许还能在地府见她最后一面
+打更人: [speed=0.5]好。。那好，我这就走
+姜韵哀: [speed=0.5]唉...
+set Global.changeScene("长安城", Vector2(3141,1255))
+set Global.onTalk = false
+=> END
+
+
+~ 兰虎3
+set Global.onTalk = true
+set Global.getnode("CanvasModulate").color = "000000"
+set Global.getnode("建业左").modulate = "4a4a4a"
+set Global.getnode("PointLight2D11").energy = 1.2
+set Global.getnode("AudioStreamPlayer2D").stream = null
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("rightStand")
+[next=0.5]
+挽琴: [speed=0.5]时候也不早了，我也该去寻我的郎君了
+兰虎: [speed=0.5]唉，你可要好好保重身体啊
+挽琴: [speed=0.5]你也是
+[next=1]
+兰虎: [speed=0.5]哎，姑娘，你等等
+挽琴: [speed=0.5]怎么了？
+兰虎: [speed=0.5]这瓶清酱你拿着。我没什么东西可以送你，这个就当作你结婚的贺礼吧
+挽琴: [speed=0.5]好，那我便谢过兰老板了，您珍重
+兰虎: [speed=0.5]好好好，慢走
+[next=1]
+set Global.changevis("长安城","挽琴")
+兰虎: [speed=0.5]唉，十来年的老主顾了，真替她感到开心啊
+时追云: [speed=0.5]夜间冷了，该收摊了
+兰虎: [speed=0.5]是啊，也该收摊了
+时追云: [speed=0.5]我等你办完
+兰虎: [speed=0.5]好
+set Global.toggleballon()
+[next=4]
+set Global.toggleballon()
+set Global.changebgm("res://Audio/BGM/旅愁.ogg")
+时追云: [speed=0.5]砍头疼吗
+兰虎: ...
+时追云: [speed=0.5]被砍头，疼吗
+兰虎: ...
+兰虎: [speed=0.5]是挺疼的，但一想到我的闺女就要出嫁了，我就不疼了，哈哈哈
+时追云: [speed=0.5]你很缺钱吗？
+兰虎: [speed=0.5]作为一个面馆厨子，我不缺钱
+兰虎: [speed=0.5]但作为一个父亲，我需要钱，很多很多的钱！
+兰虎: [speed=0.5]我女儿出嫁，我需要给她准备嫁妆！很贵的嫁妆！
+时追云: [speed=0.5]哪怕嫁妆少点呢？
+兰虎: [speed=0.5]不行！我女儿她身体不好，嫁过去之后无法照顾公婆，所以我给的嫁妆必须足够的多，这样她嫁过去才不会被欺负！
+时追云: [speed=0.5]可你赔上了一条命
+兰虎: [speed=0.5]我不后悔！！
+兰虎: [speed=0.5]明明只是借了没多久的债务，要还的钱却是每日水涨船高！我每日起早贪黑，[speed=1]我一点一点的还，但怎么都填不起这个窟窿！
+兰虎: [speed=0.5]我没办法,我只好去找他们求情，求他们多给我些日子。我一进去，我就看到他们大口吃着肉，大口喝着酒！我一看到他们。。。我，我就恶心！
+兰虎: [speed=0.5]他们说，我的女儿天生就是拿来卖的！他们要把我的，我的宝贝女儿卖去青楼！
+时追云: [speed=0.5]...
+兰虎: 我求他们，他们不肯，我求他们，他们不肯，我求他们，他们不肯！！！
+兰虎: [speed=0.5]然后我就，我就！这样！杀！另一边，杀！我抹了他们两个人的脖子后，我又戳，戳！戳！这时候我才知道，他们的血，居然也是红色的！
+兰虎: [speed=0.5]我一把火，把他们烧了，把他们烧的灰飞烟灭，我连着那些票据，一起烧了！就是这些东西，害的多少人卖儿卖女！害的多少人妻离子散！
+兰虎: [speed=0.5]就一把火，把他们的尸体和罪恶都烧干净了！可是少侠你说，这个世界上，还有多少个他们啊？
+时追云: [speed=0.5]我不清楚
+兰虎: [speed=0.5]我是不是，得走了
+时追云: [speed=0.5]你让自己的灵魂封印在这份躯壳之内，比起正在腐烂的身体，你的灵魂受的伤反而更严重
+时追云: [speed=0.5]我会送你去一个往生者该去的地方
+兰虎: [speed=0.5]我赶不上我女儿的婚礼了吗？
+时追云: [speed=0.5]为了你好，为了你的下一世能健全，我不能让你待过今晚，但你放心，我保你在地府安然无恙
+兰虎: [speed=0.5]我明白了...多谢少侠了
+兰虎: [speed=0.5]只是，我能求求你，明日去看看我的女儿吗？她一个人出嫁，我不放心，你就，替我看一眼就好，她的名字叫凤蝶
+时追云: [speed=0.5]...
+时追云: [speed=0.5]我答应你
+兰虎: [speed=0.5]兰虎，拜谢少侠！
+set Global.toggleballon()
+[next=2]
+
+set Global.getnode("AnimationPlayer2").play("turnDark2")
+[next=1]
+set Global.changevis("长安城","兰虎")
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("upStand")
+set Global.getnode("player").position = Vector2(3239,1349)
+[next=3]
+set Global.toggleballon()
+时追云: [speed=0.5]不知道这世间还有多少惨剧，敌人真的只有妖怪吗？
+时追云: [speed=0.5]烛光暖我心，只惜暗未消，心若长明，何惧千重夜！
+#set Global.getnode("player/Camera2D").queue_free()
+set Global.toggleballon()
+set Global.getnode("player/AnimatedSprite2D").play("up")
+set Global.getnode("AnimationPlayer2").play("男主走")
+[next=11]
+set Global.changeScene("平定峰2",Vector2(1910,1074))
+set Global.onTalk = false
+=> END
+
+
+~ 兰虎4
+set Global.onTalk = true
+set Global.toggleballon()
+[next=2]
+set Global.toggleballon()
+挽琴: [speed=0.5]你...不是说好要娶我，要带我离开这的吗？[next=4.5]
+挽琴: [speed=0.5]你可知道，我盼望着脱离苦海，有多久了吗[next=4.5]
+挽琴: [speed=0.5]你可知道，我期待着你带我走，有多久了吗？[next=4.5]
+挽琴: [speed=0.5]郎君...为什么要离开我，一个人先走[next=4.5]
+挽琴: [speed=0.5]你为什么，要去干这些事，这些大逆不道的事[next=4.5]
+挽琴: [speed=0.5]骗子...你这个骗子...[next=4.5]
+挽琴:  [speed=0.5]你说好...带我走的[next=4.5]
+挽琴:  [speed=0.5]可你大半年前，死在了这里[next=4.5]
+挽琴:  [speed=0.5]虽说，这也是你谋反的下场[next=4.5]
+挽琴:  [speed=0.5]可我不明白，你为什么要这样...[next=4.]
+挽琴:  [speed=0.5]难道仅仅是因为那日，我和你说，我不想被人看不起吗[next=6.5]
+挽琴:  [speed=0.5]郎君，不管别人怎么看你，你始终是我的英雄，是你把我从深渊里解放了出来[next=7.5]
+挽琴:  [speed=0.5]一个人在这世上，孤单[next=5]
+set Global.getnode("AnimationPlayer").play("太阳")
+[next=3]
+挽琴:  [speed=0.5]这么美的景色，为什么要在这里打打杀杀呢[next=4]
+set Global.toggleballon()
+set Global.getnode("AnimationPlayer2").playback_speed = 0.1
+set Global.getnode("AnimationPlayer2").play("跳崖")
+[next=1]
+set Global.getnode("AnimationPlayer").playback_speed = 10.0
+set Global.getnode("AnimationPlayer").play("回忆")
+[next=17]
+set Global.getnode("成为堕逝/堕逝").play("堕落")
+[next=22.5]
+set Global.changeScene("兰虎家", Vector2(1839,1402))
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 兰虎5
+set Global.onTalk = true
+凤蝶: [speed=0.5]是谁？
+时追云: [speed=0.5]你是凤蝶吗？
+凤蝶: [speed=0.5]是我
+时追云: [speed=0.5]我是你爹的朋友，他叫我来看看你
+凤蝶: [speed=0.5]哦，原来是爹的朋友啊，快请坐！
+时追云: [speed=0.5]你的眼睛？
+凤蝶: [speed=0.5]哦，我从小眼睛就看不见，平常也都是爹一直在照顾我
+时追云: [speed=0.5]...
+时追云: [speed=0.5]今天不是你出嫁的日子吗？
+凤蝶: [speed=0.5]嫁妆，都被退了回来
+凤蝶: [speed=0.5]他们说我爹杀了人，不能娶这样人家的闺女
+时追云: [speed=0.5]那你以后怎么办？
+时追云: [speed=0.5]你恨你爹吗？
+凤蝶: [speed=0.5]虽然我的眼睛看不见，但我明白他都是为了我好
+凤蝶: [speed=0.5]而且他烧的那些票子，应该帮了很多人。那些人知道了，也会感谢他的
+时追云: [speed=0.5]...
+凤蝶: [speed=0.5]公子，你能带我去一趟城外吗？
+时追云: [speed=0.5]为何？
+凤蝶: [speed=0.5]我想去城外看一下花，我爹在我小时候就和我说过，凤蝶就应该在花丛中飞舞
+时追云: [speed=0.5]好，我带你去
+set Global.changeScene("江南野外",Vector2(518,514))
+set Global.onTalk = false
+=> END
+
+~ 兰虎6
+set Global.onTalk = true
+set Global.getnode("凤蝶").visible = true
+时追云: [speed=0.5]到了，对面的山坡上全是花
+凤蝶: [speed=0.5]是什么样的花呢
+时追云: [speed=0.5]红的，白的，绿的，蓝的，紫的。漫山遍野
+凤蝶: [speed=0.5]噗，哪有这种颜色的花啊
+凤蝶: [speed=0.5]这些花，真的好美
+时追云: [speed=0.5]是吗
+凤蝶: [speed=0.5]漫山遍野
+时追云: [speed=0.5]心里有花，便见得着
+凤蝶: [speed=0.5]...
+凤蝶: [speed=0.5]公子，你能再送我去一个地方吗？
+时追云: [speed=0.5]什么地方
+凤蝶: [speed=0.5]我听说有一个地方，只要女人出卖身体，就能活下去
+时追云惊: [speed=0.5]！！！
+凤蝶: [speed=0.5]能不能把我送到那里去呢？
+凤蝶: [speed=0.5]我是个瞎子，我这个样子，一个人是活不下去的
+凤蝶: [speed=0.5]死的话很容易，但是我爹希望我活下去
+凤蝶: [speed=0.5]如果能活下去的话，总有一天这个世界会变好的吧
+时追云: [speed=0.5]会的，这个世界会变好的，只要活下去
+时追云: [speed=0.5]我走南闯北，有些许盘缠,你
+凤蝶: [speed=0.5]公子，你还记得刚才的我家里的那个孩子嘛？
+时追云: [speed=0.5]嗯，我未曾听你爹提起过你有个弟弟
+凤蝶: [speed=0.5]那是被杀的那户人家的孩子，当时他在睡觉，我爹也不知道他的存在，他在大火中侥幸逃了出来
+时追云: [speed=0.5]...
+凤蝶: [speed=0.5]他父母的罪恶已经偿还了，他是无辜的
+凤蝶: [speed=0.5]我决定以后好好抚养他，让他快乐的长大
+凤蝶: [speed=0.5]无论公子给我多少钱，我都会用作他身上的，这也算是我，对他的偿还了
+时追云: [speed=0.5]...
+凤蝶: [speed=0.5]公子能帮我一时，但能帮我一世吗？
+凤蝶: [speed=0.5]公子，没有光明的人，她的感知的能力会更强
+凤蝶: [speed=0.5]你...不是一般人吧
+时追云: [speed=0.5]我...确实有一些不常见的能力
+凤蝶: [speed=0.5]比起帮凤蝶，我更希望你能帮助这天下的百姓,我更希望...百姓能不受这妖乱之苦
+凤蝶: [speed=0.5]凤蝶，也只是这芸芸众生之下的一个人罢了
+时追云: [speed=0.5]...
+set Global.changeScene("妓院",Vector2(1935,1505))
+
+
+set Global.onTalk = false
+=> END
+
+
+~ 兰虎7
+set Global.onTalk = true
+老鸨: [speed=0.5]这里便是我们留春阁了，你以后就在这里安心服侍客人
+老鸨: [speed=0.5]哎，刚说完就来了位客人，你和我学学如何接待客人
+老鸨: [speed=0.5]这位客人可是第一次来我们留香阁啊？
+老鸨: [speed=0.5]嘻嘻嘻嘻，这位客人怎么满脸愁容
+老鸨: [speed=0.5]您不是一直很喜欢进来吗，我听说您还到处寻找这里呢
+老鸨: [speed=0.5]怎么这会儿看起来的不喜欢了呢？
+老鸨: [speed=0.5]你说这位新姑娘？嘿嘿嘿嘿，如果没有你们的需求，她怎么会来呢？
+老鸨: [speed=0.5]哎客官不要走啊客官，这不是您想要的地方吗？
+老鸨: [speed=0.5]什么，您说您认识这个女孩
+老鸨: [speed=0.5]嘿嘿嘿嘿，来这里的姑娘哪一个没有认识的人呢
+老鸨: [speed=0.5]嘻嘻嘻嘻,希望您再来啊
+set Global.changeScene("长安城",Vector2(1927,1111))
+set Global.onTalk = false
+=> END
+
+~ 兰虎8
+set Global.onTalk = true
+set Global.getnode("姜韵").visible = true
+姜韵: [speed=0.5]人都送走了吗
+时追云: [speed=0.5]都送走了
+姜韵哀: [speed=0.5]那个女孩，最后怎么样了？
+时追云: [speed=0.5]...
+时追云: [speed=0.5]我还是没法做到亲手将她送去青楼这种事，我拜托程将军，给她在官府里找了个洗碗的活
+姜韵: [speed=0.5]如此，甚好
+时追云: [speed=0.5]但这世界上，还有多少像兰老板，凤蝶，更夫这类的人呢
+姜韵: [speed=0.5]夫君，如果你想的话。以后我们一起，守护这个世间
+时追云: [speed=0.5]知我者，唯娘子也
+set Global.changeScene("妓院",Vector2(1935,1505))
+
+set Global.onTalk = false
+=> END
+
+~ 兰虎9
+set Global.onTalk = true
+set Global.getnode("书生").visible = false
+老鸨: 红花啊，准备干活去吧
+红花: 是，客官请这边来
+
+set Global.changeScene("长安城",Vector2(1927,1111))
+
+set Global.onTalk = false
+=> END
+
+~ 兰虎10
+set Global.onTalk = true
+
+set Global.violencePoint += 30
+set Global.showViolence("positive",30)
+
+set Global.dial = null
 set Global.onTalk = false
 => END

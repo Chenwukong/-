@@ -5,13 +5,15 @@ var added = false
 func _ready():
 
 	if get_tree().current_scene.name == "灵力储存场":
-		id = randf_range(0,10000)
-	
+		var index = 0
+		for child in get_parent().get_children():
+			if child is AnimatedSprite2D and child.id == "":
+				index += 1
+				id = "灵力场" + str(index)
 	if id in Global.potentialBalls:
 		pass
 	else:
 		Global.potentialBalls[id] = {"pickUp": false}
-		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

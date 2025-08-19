@@ -91,7 +91,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 1, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
+"values": [Color(0, 0.509804, 1, 1), Color(0, 1, 0, 1), Color(0, 0.509804, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_qal5x"]
@@ -107,7 +107,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 1, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
+"values": [Color(0, 0.509804, 1, 1), Color(0, 1, 0, 1), Color(0, 0.509804, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_jnsye"]
@@ -123,7 +123,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 1, 1), Color(0, 1, 0, 1), Color(0, 0, 1, 1)]
+"values": [Color(0, 0.509804, 1, 1), Color(0, 1, 0, 1), Color(0, 0.509804, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_1iyjc"]
@@ -162,7 +162,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 1, 0, 1)]
+"values": [Color(0, 0.509804, 1, 1)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -174,7 +174,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(0, 0, 1, 1)]
+"values": [Color(0, 0.509804, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_fsmxr"]
@@ -463,7 +463,6 @@ _data = {
 }
 
 [node name="menuControl" type="CanvasLayer"]
-visible = false
 metadata/_edit_horizontal_guides_ = []
 
 [node name="menuControl" type="Control" parent="."]
@@ -523,10 +522,11 @@ scale = Vector2(0.7, 0.7)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="menuControl/status/Player1"]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 228.0
-offset_right = 545.0
-offset_bottom = 268.0
+offset_left = 240.302
+offset_top = 214.515
+offset_right = 543.302
+offset_bottom = 254.515
+scale = Vector2(1.57335, 1.7613)
 value = 50.0
 texture_under = ExtResource("3_ba4l0")
 texture_progress = ExtResource("6_4cxdu")
@@ -543,12 +543,15 @@ text = "经验:"
 
 [node name="expValue" type="Label" parent="menuControl/status/Player1/expText"]
 layout_mode = 0
-offset_left = 89.5523
-offset_top = 58.1583
-offset_right = 427.552
-offset_bottom = 116.158
-theme_override_font_sizes/font_size = 20
+offset_left = 1.15283
+offset_top = 48.1172
+offset_right = 339.153
+offset_bottom = 106.117
+scale = Vector2(1.17978, 0.859235)
+theme_override_font_sizes/font_size = 26
 text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="name" type="Label" parent="menuControl/status/Player1"]
 layout_mode = 0
@@ -652,9 +655,9 @@ visible = false
 self_modulate = Color(0, 0.509804, 1, 1)
 layout_mode = 0
 offset_left = 1300.34
-offset_top = 930.0
+offset_top = 922.754
 offset_right = 2482.34
-offset_bottom = 1210.0
+offset_bottom = 1202.75
 theme_override_styles/panel = SubResource("StyleBoxFlat_jyw1c")
 
 [node name="长条" type="Sprite2D" parent="menuControl/status/Player2"]
@@ -678,10 +681,11 @@ scale = Vector2(0.7, 0.7)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="menuControl/status/Player2"]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 228.0
-offset_right = 545.0
-offset_bottom = 268.0
+offset_left = 240.302
+offset_top = 214.515
+offset_right = 543.302
+offset_bottom = 254.515
+scale = Vector2(1.57335, 1.7613)
 value = 50.0
 texture_under = ExtResource("3_ba4l0")
 texture_progress = ExtResource("6_4cxdu")
@@ -698,12 +702,15 @@ text = "经验:"
 
 [node name="expValue" type="Label" parent="menuControl/status/Player2/expText"]
 layout_mode = 0
-offset_left = 89.5523
-offset_top = 58.1583
-offset_right = 427.552
-offset_bottom = 116.158
-theme_override_font_sizes/font_size = 20
+offset_left = 1.15283
+offset_top = 48.1172
+offset_right = 339.153
+offset_bottom = 106.117
+scale = Vector2(1.17978, 0.859235)
+theme_override_font_sizes/font_size = 26
 text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="name" type="Label" parent="menuControl/status/Player2"]
 layout_mode = 0
@@ -799,17 +806,17 @@ horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_top = -10.0
-offset_right = 1187.0
+offset_right = 1185.0
 offset_bottom = 287.0
 
 [node name="Player3" type="Panel" parent="menuControl/status" groups=["PlayerStatus"]]
 visible = false
-self_modulate = Color(0, 1, 0, 1)
+self_modulate = Color(0, 0.509804, 1, 1)
 layout_mode = 0
 offset_left = 1300.34
-offset_top = 1260.0
+offset_top = 1247.47
 offset_right = 2482.34
-offset_bottom = 1540.0
+offset_bottom = 1527.47
 theme_override_styles/panel = SubResource("StyleBoxFlat_jyw1c")
 
 [node name="长条" type="Sprite2D" parent="menuControl/status/Player3"]
@@ -833,10 +840,11 @@ scale = Vector2(0.7, 0.7)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="menuControl/status/Player3"]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 228.0
-offset_right = 545.0
-offset_bottom = 268.0
+offset_left = 240.302
+offset_top = 214.515
+offset_right = 543.302
+offset_bottom = 254.515
+scale = Vector2(1.57335, 1.7613)
 value = 50.0
 texture_under = ExtResource("3_ba4l0")
 texture_progress = ExtResource("6_4cxdu")
@@ -853,12 +861,15 @@ text = "经验:"
 
 [node name="expValue" type="Label" parent="menuControl/status/Player3/expText"]
 layout_mode = 0
-offset_left = 89.5523
-offset_top = 58.1583
-offset_right = 427.552
-offset_bottom = 116.158
-theme_override_font_sizes/font_size = 20
+offset_left = 1.15283
+offset_top = 48.1172
+offset_right = 339.153
+offset_bottom = 106.117
+scale = Vector2(1.17978, 0.859235)
+theme_override_font_sizes/font_size = 26
 text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="name" type="Label" parent="menuControl/status/Player3"]
 layout_mode = 0
@@ -954,17 +965,17 @@ horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_top = -10.0
-offset_right = 1182.0
+offset_right = 1185.0
 offset_bottom = 287.0
 
 [node name="Player4" type="Panel" parent="menuControl/status" groups=["PlayerStatus"]]
 visible = false
-self_modulate = Color(0, 0, 1, 1)
+self_modulate = Color(0, 0.509804, 1, 1)
 layout_mode = 0
-offset_left = 1300.34
-offset_top = 1590.0
-offset_right = 2482.34
-offset_bottom = 1870.0
+offset_left = 1303.33
+offset_top = 1570.57
+offset_right = 2485.33
+offset_bottom = 1850.57
 theme_override_styles/panel = SubResource("StyleBoxFlat_jyw1c")
 
 [node name="长条" type="Sprite2D" parent="menuControl/status/Player4"]
@@ -988,10 +999,11 @@ scale = Vector2(0.7, 0.7)
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="menuControl/status/Player4"]
 layout_mode = 0
-offset_left = 242.0
-offset_top = 228.0
-offset_right = 545.0
-offset_bottom = 268.0
+offset_left = 240.302
+offset_top = 214.515
+offset_right = 543.302
+offset_bottom = 254.515
+scale = Vector2(1.57335, 1.7613)
 value = 50.0
 texture_under = ExtResource("3_ba4l0")
 texture_progress = ExtResource("6_4cxdu")
@@ -1008,12 +1020,15 @@ text = "经验:"
 
 [node name="expValue" type="Label" parent="menuControl/status/Player4/expText"]
 layout_mode = 0
-offset_left = 89.5523
-offset_top = 58.1583
-offset_right = 427.552
-offset_bottom = 116.158
-theme_override_font_sizes/font_size = 20
+offset_left = 1.15283
+offset_top = 48.1172
+offset_right = 339.153
+offset_bottom = 106.117
+scale = Vector2(1.17978, 0.859235)
+theme_override_font_sizes/font_size = 26
 text = "100/100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="name" type="Label" parent="menuControl/status/Player4"]
 layout_mode = 0
@@ -1109,7 +1124,7 @@ horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_top = -10.0
-offset_right = 1184.0
+offset_right = 1185.0
 offset_bottom = 287.0
 
 [node name="menuButton" type="TextureRect" parent="menuControl"]
@@ -2081,9 +2096,10 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_6oc6r")
 
 [node name="description" type="Label" parent="menuControl/装备页面/装备介绍"]
 layout_mode = 0
-offset_left = 80.0
-offset_right = 580.0
-offset_bottom = 200.0
+offset_left = 124.0
+offset_top = 58.0
+offset_right = 1540.0
+offset_bottom = 132.0
 theme_override_font_sizes/font_size = 40
 text = "[30 攻击】 【+30防御力】"
 vertical_alignment = 1
@@ -2325,10 +2341,10 @@ expand_mode = 2
 
 [node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button1/itemType/icon"]
 layout_mode = 0
-offset_left = 85.2909
-offset_top = 3.08856
-offset_right = 125.291
-offset_bottom = 58.0886
+offset_left = 85.0
+offset_top = 7.0
+offset_right = 125.0
+offset_bottom = 58.0
 theme_override_font_sizes/font_size = 40
 
 [node name="weaponBut" type="Button" parent="menuControl/装备页面/装备栏/items/button1/itemType"]
@@ -2368,6 +2384,7 @@ expand_mode = 2
 [node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button2/itemType/icon"]
 layout_mode = 0
 offset_left = 80.0
+offset_top = 7.0
 offset_right = 120.0
 offset_bottom = 55.0
 theme_override_font_sizes/font_size = 40
@@ -2411,8 +2428,9 @@ expand_mode = 2
 [node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button3/itemType/icon"]
 layout_mode = 0
 offset_left = 80.0
+offset_top = 8.0
 offset_right = 120.0
-offset_bottom = 55.0
+offset_bottom = 61.0
 theme_override_font_sizes/font_size = 40
 
 [node name="hatBut" type="Button" parent="menuControl/装备页面/装备栏/items/button3/itemType"]
@@ -2450,6 +2468,7 @@ expand_mode = 2
 [node name="itemName" type="Label" parent="menuControl/装备页面/装备栏/items/button4/itemType/icon"]
 layout_mode = 0
 offset_left = 80.0
+offset_top = 7.0
 offset_right = 120.0
 offset_bottom = 55.0
 theme_override_font_sizes/font_size = 40
@@ -4496,6 +4515,7 @@ theme_override_font_sizes/font_size = 40
 text = "X"
 
 [node name="backButton" type="TextureButton" parent="menuControl" groups=["phoneButton"]]
+visible = false
 z_index = 4096
 layout_mode = 0
 offset_left = 10.4478
@@ -4584,15 +4604,22 @@ libraries = {
 [node name="canItem" type="Timer" parent="."]
 one_shot = true
 
+[node name="canMove" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="value_changed" from="menuControl/status/Player1/TextureProgressBar" to="menuControl" method="_on_texture_progress_bar_value_changed"]
 [connection signal="button_down" from="menuControl/status/Player1/player1Button" to="menuControl" method="_on_player_1_button_button_down"]
 [connection signal="mouse_entered" from="menuControl/status/Player1/player1Button" to="menuControl" method="_on_player_1_button_mouse_entered"]
+[connection signal="value_changed" from="menuControl/status/Player2/TextureProgressBar" to="menuControl" method="_on_texture_progress_bar_value_changed"]
 [connection signal="button_down" from="menuControl/status/Player2/player2Button" to="menuControl" method="_on_player_2_button_button_down"]
-[connection signal="mouse_entered" from="menuControl/status/Player2/player2Button" to="menuControl" method="_on_player_2_button_mouse_entered"]
+[connection signal="mouse_entered" from="menuControl/status/Player2/player2Button" to="menuControl" method="_on_player_1_button_mouse_entered"]
+[connection signal="value_changed" from="menuControl/status/Player3/TextureProgressBar" to="menuControl" method="_on_texture_progress_bar_value_changed"]
 [connection signal="button_down" from="menuControl/status/Player3/player3Button" to="menuControl" method="_on_player_3_button_button_down"]
-[connection signal="mouse_entered" from="menuControl/status/Player3/player3Button" to="menuControl" method="_on_player_3_button_mouse_entered"]
+[connection signal="mouse_entered" from="menuControl/status/Player3/player3Button" to="menuControl" method="_on_player_1_button_mouse_entered"]
+[connection signal="value_changed" from="menuControl/status/Player4/TextureProgressBar" to="menuControl" method="_on_texture_progress_bar_value_changed"]
 [connection signal="button_down" from="menuControl/status/Player4/player4Button" to="menuControl" method="_on_player_4_button_button_down"]
-[connection signal="mouse_entered" from="menuControl/status/Player4/player4Button" to="menuControl" method="_on_player_4_button_mouse_entered"]
+[connection signal="mouse_entered" from="menuControl/status/Player4/player4Button" to="menuControl" method="_on_player_1_button_mouse_entered"]
 [connection signal="button_down" from="menuControl/menuButton/道具" to="menuControl" method="_on_道具_button_down"]
 [connection signal="button_down" from="menuControl/menuButton/法术" to="menuControl" method="_on_法术_button_down"]
 [connection signal="button_down" from="menuControl/menuButton/装备" to="menuControl" method="_on_装备_button_down"]
@@ -4654,3 +4681,4 @@ one_shot = true
 [connection signal="button_down" from="menuControl/phoneControl/downButton" to="menuControl" method="_on_down_button_button_down"]
 [connection signal="timeout" from="canPress" to="menuControl" method="_on_can_press_timeout"]
 [connection signal="timeout" from="canItem" to="menuControl" method="_on_can_item_timeout"]
+[connection signal="timeout" from="canMove" to="menuControl" method="_on_can_move_timeout"]

@@ -388,7 +388,7 @@ set Global.getnode("AnimationPlayer2").play("getWhite")
 set Global.toggleballon()
 [next=1.8]
 
-
+set Global.dial = "挑战天道"
 set Engine.time_scale = 1
 set Global.changeScene("无边虚空",Vector2(1730,1552))
 
@@ -514,6 +514,11 @@ set Global.onTalk = false
 ~ 挑战天道17
 set Global.onTalk = true
 set Global.canMenu = true
+set Global.dial = null
+set Global.getnode("姜韵").visible = true
+set Global.getnode("小二").visible = true
+set Global.getnode("凌若昭").visible = true
+
 set Global.onTeamPlayer.append("凌若昭")
 set Global.onTeamPlayer.append("小二")
 set Global.onTeamPet.append("白虎")
@@ -528,6 +533,7 @@ set Global.onTeamPet.append("玄武")
 时追云怒: [speed=0.5]天道，接受制裁吧！！！
 set Global.getnode("天道").play("施法")
 set Global.getnode("怪物组1").visible = true
+
 时追云惊: [speed=0.5]这些妖怪，难道是
 set Global.getnode("天道").play("default")
 小二真身: [speed=0.5]看来我们一直在处于他的监视之下
@@ -539,6 +545,7 @@ set Global.getnode("天道").play("default")
 set Global.changebgm("res://Audio/BGM/0众志成城.mp3")
 时追云惊: [speed=0.5]这是恩公的声音！？[next=2]
 set Global.getnode("敖白").visible = true
+set Global.changevis("玄天幻化", "敖白")
 时追云: [speed=0.5]恩公，你怎么会在这里？
 敖白: [speed=0.5]我父亲在大战结束之后回了趟龙宫，告诉我了一切
 敖白: [speed=0.5]我曾经因为要保护天庭而亲手伤了我的朋友，我一直在想为何世道会如此
@@ -550,6 +557,8 @@ set Global.getnode("青龙朱雀").visible = false
 set Global.getnode("姜韵").visible = false
 set Global.changevis("玄天幻化","小二")
 set Global.changevis("玄天幻化","凌若昭")
+set Global.npcVis["玄天幻化"]["小二"].visible = false
+set Global.npcVis["玄天幻化"]["凌若昭"].visible = false
 
 set Global.onTalk = false
 => END
@@ -557,6 +566,7 @@ set Global.onTalk = false
 ~ 直面天道1
 set Global.onTalk = true
 set Global.getnode("AnimationPlayer2").play("后退1")
+set Global.tianDaoMoved = 1
 时追云: [speed=0.5]他跑了，看来确实是没法故技重施了
 小二真身: [speed=0.5]我们追！
 
@@ -577,6 +587,7 @@ set Global.getnode("天道").play("default")
 小二真身: [speed=0.5]他们虽然看起来没有思想，但是实力都被拉高了
 时追云: [speed=0.5]把他们全砍了，我看他能召唤几次！
 金甲: [speed=0.5]让我来对付他们！
+set Global.changevis("玄天幻化", "金甲")
 set Global.getnode("金甲").visible = true
 凌若昭喜: [speed=0.5]金甲大哥！
 小二真身: [speed=0.5]！！！
@@ -587,6 +598,7 @@ set Global.getnode("金甲").visible = true
 金甲: [speed=0.5]你们一定要此时杀了天道，不然等他报复起来，就糟糕了！
 时追云: [speed=0.5]好!
 set Global.getnode("AnimationPlayer2").play("后退2")
+set Global.tianDaoMoved = 2
 时追云怒: [speed=0.5]他又跑了！
 姜韵: [speed=0.5]他这几次都没离开这个空间，他最后也是无处可逃！
 set Global.getnode("天道").scale = Vector2(-1,1)
@@ -651,6 +663,9 @@ set Global.getnode("雷暴").visible = true
 set Global.playAllSound()
 set Global.getnode("player/Camera2D").zoom = Vector2(0.3,0.3)
 set Global.toggleballon()
+set Global.changevis("玄天幻化","怪物组1")
+set Global.changevis("玄天幻化","怪物组2")
+set Global.changevis("玄天幻化","怪物组3")
 set Global.getnode("孙悟空").play("左下")
 [next=2]
 set Global.getnode("天道").play("default")
@@ -714,6 +729,7 @@ set Global.getnode("AnimationPlayer2").play("女孩消失")
 set Global.toggleballon()
 [next=0.5]
 set Global.toggleballon()
+set Global.changevis("玄天幻化", "小女孩")
 set Global.getnode("player/Camera2D").position = Vector2(-886,286)
 set Global.getnode("player/Camera2D").zoom = Vector2(0.5,0.5)
 六耳猕猴: [speed=0.5]小孩！！！！！
@@ -756,6 +772,7 @@ set Global.toggleballon()
 六耳猕猴: [speed=0.5]一定要，杀死他[next=auto]
 孙悟空: [speed=0.5]六耳猕猴！
 孙悟空: [speed=0.5]为什么会搞成这样...
+set Global.changevis("玄天幻化","六耳")
 set Global.getnode("悟空六耳").visible = true
 set Global.getnode("天道").position = Vector2(524,262)
 孙悟空: [speed=0.5]你一直都想着替代我，模仿我的能力，想证明你比我强
@@ -773,24 +790,58 @@ set Global.getnode("金甲").position = Vector2(280,443)
 set Global.triggerPlace.get("直面天道5").disable = false
 
 set Global.getnode("subSound").volume_db = 0
-
+set Global.tianDaoMoved = 3
 
 set Global.onTalk = false
 => END
 
 ~ 直面天道6
 set Global.onTalk = true
+set FightScenePlayers.healAll()
 set get_tree().current_scene.bossFight("天道","res://Audio/BGM/鬼哭無明 [TubeRipper.cc].ogg", "直面天道")
-
+set Global.canLose = true
 set Global.onTalk = false
 => END
 
 
 ~ 直面天道7
 set Global.onTalk = true
-set Global.changevis("玄天幻化","小二")
-set Global.changevis("玄天幻化","凌若昭")
+set Global.canLose = false
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
+
+if Global.lost:
+	set Global.getnode("AnimationPlayer2").play("getDark")
+	set Global.toggleballon()
+	[next=2]
+	set Global.toggleballon()
+	传梦: [speed=0.5]恭喜你达成结局3:"血战到底"
+	传梦: [speed=0.5]时追云他们能否在天道如此逆天的能力之下打败他呢？
+	传梦: [speed=0.5]我不知道
+	传梦: [speed=0.5]总之现在你也没什么可做的了，你要重头试试吗？
+	- 以更强的的样子重新开始传梦之路
+		set Global.resetPlayer()
+		if Global.violencePoint <= 0
+			set Global.resetGlobal()
+			set Global.violencePoint = -10
+		else:
+			set Global.resetGlobal()			
+		set Global.gameRound += 1
+		set Global.changeScene("新手村",null)
+		
+		
+	- 算了，这已经足够了
+		set get_tree().quit()
+
+set Global.lost = false
+
 set Global.getnode("姜韵").visible = true
+set Global.getnode("小二").visible = true
+set Global.getnode("凌若昭").visible = true
+
+
+
 set Global.getnode("小二").position = Vector2(580,525)
 set Global.getnode("凌若昭").position = Vector2(612,547)
 set Global.getnode("姜韵").position = Vector2(850,627)
@@ -844,11 +895,15 @@ if "洗髓丹" in FightScenePlayers.keyItem:
 	set Global.onTeamPlayer = []
 	set Global.onTeamPlayer.append("时追云")
 	set Global.onTeamPet = []
+	set Global.onTeamSmallPet = []
+	set Global.smallPets = []
+	set Global.haveGao = false
 	set Global.resetPlayer()
+	set FightScenePlayers.healAll()
 	set get_tree().current_scene.bossFight("残血天道","res://Audio/BGM/BGM  逆天而行  天地劫手遊 X 仙劍奇俠傳  Kalpa of Universe_ Mobile.mp3", "直面天道")
 else:
 	时追云: [speed=0.5]可惜，洗髓丹已经用完了，事到如今只能血战了！
-	set Global.getnode("getDark")
+	set Global.getnode("AnimationPlayer2").play("getDark")
 	set Global.toggleballon()
 	[next=2]
 	set Global.toggleballon()
@@ -858,8 +913,14 @@ else:
 	传梦: [speed=0.5]总之现在你也没什么可做的了，你要重头试试吗？
 	- 以更强的的样子重新开始传梦之路
 		set Global.resetPlayer()
-		set Global.resetGlobal()
+		if Global.violencePoint <= 0
+			set Global.resetGlobal()
+			set Global.violencePoint = -10
+		else:
+			set Global.resetGlobal()			
+		set Global.gameRound += 1
 		set Global.changeScene("新手村",null)
+		
 	- 算了，这已经足够了
 		set get_tree().quit()
 
@@ -969,41 +1030,51 @@ set Global.getnode("神秘人").visible = false
 set Global.changebgm("res://Audio/BGM/0愤怒反击.mp3")
 set Global.getnode("AnimationPlayer2").play("恐惧后退1")
 时追云: [speed=0.5]你是在恐惧一个没有丝毫灵力的凡人吗
+set Global.getnode("player/Sprite2D").visible = false
+set Global.getnode("player/AnimatedSprite2D").visible = true
+set Global.getnode("player/AnimatedSprite2D").play("拔剑")
+
 
 set Global.getnode("AnimationPlayer2").play("击杀1")
 set Global.playsound("res://Audio/SE/男-剑.ogg")
 set Global.getnode("天道").play("挨打")
 set Global.toggleballon()
 [next=0.3]
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 set Global.toggleballon()
 set Global.getnode("天道").play("default")
 set Global.getnode("player").position = Vector2(722,452)
 时追云: [speed=0.5]这一剑，斩尽天下不公！
+set Global.getnode("player/AnimatedSprite2D").play("拔剑")
 set Global.getnode("AnimationPlayer2").play("击杀1")
 set Global.playsound("res://Audio/SE/男-剑.ogg")
 set Global.getnode("天道").play("挨打")
 set Global.toggleballon()
 [next=0.3]
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 set Global.toggleballon()
 set Global.getnode("天道").play("default")
 set Global.getnode("player").position = Vector2(722,452)
 时追云: [speed=0.5]这一剑，斩尽纷争之源！
+set Global.getnode("player/AnimatedSprite2D").play("拔剑")
 set Global.getnode("AnimationPlayer2").play("击杀1")
 set Global.playsound("res://Audio/SE/男-剑.ogg")
 set Global.getnode("天道").play("挨打")
 set Global.toggleballon()
 [next=0.3]
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 set Global.toggleballon()
 set Global.getnode("天道").play("default")
 set Global.getnode("player").position = Vector2(722,452)
 时追云: [speed=0.5]这一剑，斩尽妖魔源头！
 时追云: 而这最后一剑，乃是为了报复你害死了亿万的无辜生命！
+set Global.getnode("player/AnimatedSprite2D").play("拔剑")
 set Global.getnode("AnimationPlayer2").play("击杀1")
 set Global.playsound("res://Audio/SE/男-剑.ogg")
 set Global.getnode("天道").play("挨打")
 set Global.toggleballon()
 [next=0.3]
-
+set Global.getnode("player/AnimatedSprite2D").play("leftStand")
 set Global.getnode("天道").play("default")
 set Global.getnode("player").position = Vector2(722,452)
 set Global.getnode("爆炸").visible = true
@@ -1013,7 +1084,8 @@ set Global.getnode("天道").play("dead")
 [next=3]
 set Global.changebgm()
 set Global.getnode("爆炸").visible = false
-set Global.getnode("小女孩").position = Vector2(444,290)
+set Global.getnode("复活").position = Vector2(550,350)
+set Global.getnode("小女孩").position = Vector2(550,350)
 set Global.toggleballon()
 set Global.changebgm("res://Audio/BGM/仙劍奇俠傳插曲輯-慶功版電視原聲帶-06仙劍奇緣 [TubeRipper.cc].ogg")
 时追云: [speed=0.5]他这下是真的死了吗
@@ -1030,6 +1102,9 @@ set Global.toggleballon()
 set Global.getnode("AnimationPlayer2").play("复活")
 set Global.getnode("小女孩").play("天机")
 [next=2]
+set Global.changevis("玄天幻化","小女孩")
+set Global.getnode("小女孩").visible= true
+
 set Global.toggleballon()
 set get_tree().current_scene.fetch_first_unread()
 时追云惊: [speed=0.5]这是？？？
@@ -1265,7 +1340,7 @@ set Global.getnode("player/Sprite2D").visible = false
 凌天麒: [speed=0.5]曾经的我也是受了前来者的恩惠吗
 天机娃娃: [speed=0.5]没有现在的你去帮助，曾经的你怎么会获得帮助呢
 凌天麒: [speed=0.5]...我明白了
-天机娃娃: [speed=0.5]那你要怎么做？
+天机娃娃: [speed=0.5]那你要怎么做？[next=2]
 - 回去救助"后来者"并且留言(需要联网)
 	凌天麒: [speed=0.5]让我去完成这个闭环吧
 	天机娃娃: 不能用原名，要有个代称哦
@@ -1314,8 +1389,8 @@ set Global.getnode("CanvasLayer4").visible = true
 set Global.getnode("AnimationPlayer").play("结局")
 set Global.getnode("CanvasLayer4").turnVisible()
 set Global.getnode("CanvasLayer4/家务").modulate = "ffffff"
-
-
+[next=140]
+set get_tree().quit()
 
 set Global.onTalk = false
 => END

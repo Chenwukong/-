@@ -1,4 +1,4 @@
-[gd_scene load_steps=131 format=3 uid="uid://3ae56ae6pv0p"]
+[gd_scene load_steps=148 format=3 uid="uid://3ae56ae6pv0p"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_2w755"]
 [ext_resource type="Shader" path="res://shader/turnWhite.gdshader" id="1_a0moi"]
@@ -32,12 +32,16 @@
 [ext_resource type="Texture2D" uid="uid://yddrmtw5hsgt" path="res://Characters/鬼将.png" id="42_vwxnf"]
 [ext_resource type="Texture2D" uid="uid://cdw8nauxy5q1c" path="res://Characters/天麒.png" id="43_7lnfg"]
 [ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="43_rqqg3"]
+[ext_resource type="Texture2D" uid="uid://c7uq5a4bdj6wi" path="res://Characters/猪头工人.png" id="44_7jono"]
 [ext_resource type="PackedScene" uid="uid://dr5ht7is51voy" path="res://Scene/小二.tscn" id="44_fgjcg"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="44_n74ua"]
+[ext_resource type="Texture2D" uid="uid://bvghcqgn8keyf" path="res://Characters/使女.png" id="45_2dk83"]
 [ext_resource type="Texture2D" uid="uid://dq1dbwq01s8i2" path="res://Pictures/Pictures/0如花.JPG" id="45_x0gj3"]
 [ext_resource type="Texture2D" uid="uid://wouitibtjke3" path="res://Characters/戒色.png" id="46_frtpb"]
+[ext_resource type="Texture2D" uid="uid://bx181d3b4srhs" path="res://light.png" id="46_vjk1l"]
 [ext_resource type="Texture2D" uid="uid://bupu4rfvow0ka" path="res://Characters/7死人2.png" id="47_0jgq5"]
 [ext_resource type="Texture2D" uid="uid://dsp7clle17vkc" path="res://Characters/卫兵.png" id="47_nigjj"]
+[ext_resource type="Texture2D" uid="uid://cixntcrqo8geh" path="res://Characters/驿站兵.png" id="47_su7th"]
 [ext_resource type="Texture2D" uid="uid://gniqeect40oq" path="res://Battlers/0狐美人.png" id="49_ilx64"]
 [ext_resource type="Texture2D" uid="uid://408asfro5ci7" path="res://Characters/铁匠-瘦.png" id="50_bgeup"]
 [ext_resource type="PackedScene" uid="uid://cb88fi556u5i7" path="res://Scene/凌若昭.tscn" id="51_bceq2"]
@@ -93,6 +97,46 @@ fill_from = Vector2(1, 0.612536)
 [sub_resource type="Animation" id="Animation_o8nmx"]
 length = 0.001
 
+[sub_resource type="Animation" id="Animation_j5yt2"]
+resource_name = "turnDark"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("建业左:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.290196, 0.290196, 0.290196, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D11:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.2]
+}
+
 [sub_resource type="Animation" id="Animation_5d8hn"]
 resource_name = "城主走开"
 length = 5.0
@@ -100,6 +144,7 @@ length = 5.0
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tex1a"]
 _data = {
 "RESET": SubResource("Animation_o8nmx"),
+"turnDark": SubResource("Animation_j5yt2"),
 "城主走开": SubResource("Animation_5d8hn")
 }
 
@@ -654,6 +699,174 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_x33rd"]
+atlas = ExtResource("44_7jono")
+region = Rect2(0, 82, 88, 82)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nk46w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x33rd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vygw"]
+atlas = ExtResource("45_2dk83")
+region = Rect2(0, 285, 102, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tmxwj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vygw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_p7s2l"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_bge1f"]
+resource_name = "lightOff"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D11:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.2, 1.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("建业左:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.290196, 0.290196, 0.290196, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5hb8a"]
+resource_name = "turnDark"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("建业左:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.290196, 0.290196, 0.290196, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D11:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.2]
+}
+
+[sub_resource type="Animation" id="Animation_wkmq2"]
+resource_name = "turnDark2"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D11:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.2, 0.0, 0.0, 1.2]
+}
+
+[sub_resource type="Animation" id="Animation_g3aef"]
+resource_name = "男主走"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PointLight2D11:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.2, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player/AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(381.825, -243.609)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avkso"]
+_data = {
+"RESET": SubResource("Animation_p7s2l"),
+"lightOff": SubResource("Animation_bge1f"),
+"turnDark": SubResource("Animation_5hb8a"),
+"turnDark2": SubResource("Animation_wkmq2"),
+"男主走": SubResource("Animation_g3aef")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_na61u"]
+atlas = ExtResource("47_su7th")
+region = Rect2(0, 285, 58, 95)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ssgyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_na61u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="长安城" type="Node2D"]
 material = SubResource("ShaderMaterial_nrdq2")
 script = ExtResource("1_2w755")
@@ -703,7 +916,7 @@ polygon = PackedVector2Array(1002, 1293, 947, 1425, 1094, 1476, 1140, 1545, 1103
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(333, -644)
-polygon = PackedVector2Array(1073, 1429, 1023, 1492, 999, 1587, 1060, 1591, 1103, 1601, 1177, 1594, 1259, 1608, 1351, 1563, 1413, 1508, 1470, 1465, 1432, 1396, 1344, 1364, 1225, 1340)
+polygon = PackedVector2Array(1073, 1429, 1023, 1492, 999, 1587, 1060, 1591, 1103, 1601, 1177, 1594, 1239, 1587, 1307, 1546, 1255, 1485, 1311, 1450, 1413, 1508, 1470, 1465, 1432, 1396, 1344, 1364, 1225, 1340)
 
 [node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
 position = Vector2(809.912, -438.207)
@@ -793,9 +1006,15 @@ polygon = PackedVector2Array(-817, 558, -935, 725, -955, 831, -1036, 871, -1048,
 
 [node name="player" parent="." instance=ExtResource("5_ipaw6")]
 z_index = 1
-position = Vector2(1957.23, 1066.63)
+position = Vector2(524, 297)
 scale = Vector2(0.903555, 0.940031)
 metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" parent="player" index="1"]
+animation = &"up"
+
+[node name="Camera2D" parent="player" index="3"]
+position = Vector2(-55.3369, 17.0208)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="player"]
 
@@ -879,7 +1098,7 @@ position = Vector2(206, 201)
 toScene = "大唐官府"
 
 [node name="teleportCircle3" parent="." instance=ExtResource("29_wpbs3")]
-position = Vector2(155, 1262)
+position = Vector2(-1961, 1330)
 toScene = "长安镖局"
 
 [node name="addChild" type="Timer" parent="."]
@@ -911,7 +1130,9 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(603, 488)
+position = Vector2(3075, 1352)
+scale = Vector2(0.861388, -2.01609)
+zoom = Vector2(1.1, 1.1)
 
 [node name="addNumTimer" type="Timer" parent="."]
 wait_time = 0.1
@@ -1088,9 +1309,6 @@ visible = false
 position = Vector2(3886, 1943)
 sprite_frames = SubResource("SpriteFrames_at1r2")
 npcName = "金甲"
-
-[node name="Camera2D2" type="Camera2D" parent="."]
-position = Vector2(3750, 1849)
 
 [node name="battleBgm" type="AudioStreamPlayer" parent="."]
 volume_db = 2.0
@@ -1320,13 +1538,10 @@ frame_progress = 0.0
 frame = 4
 
 [node name="周周" parent="." instance=ExtResource("31_ablms")]
-position = Vector2(1070, 2105)
+position = Vector2(1841, 2553)
 sprite_frames = SubResource("SpriteFrames_wrtsn")
 itemSale = ["羊角盔", "珍珠头带", "锁子甲", "天香披肩", "神行靴", "五色飞石"]
 npcName = "周周"
-
-[node name="Camera2D3" type="Camera2D" parent="."]
-position = Vector2(1750, 1030)
 
 [node name="铁匠" parent="." instance=ExtResource("31_ablms")]
 position = Vector2(4060, 1285)
@@ -1399,11 +1614,11 @@ position = Vector2(1281, 32)
 sprite_frames = SubResource("SpriteFrames_ir8he")
 
 [node name="大唐4" parent="." instance=ExtResource("31_ablms")]
-position = Vector2(183, 1702)
+position = Vector2(69, 1743)
 sprite_frames = SubResource("SpriteFrames_ir8he")
 
 [node name="大唐5" parent="." instance=ExtResource("31_ablms")]
-position = Vector2(497, 1876)
+position = Vector2(356, 1937)
 sprite_frames = SubResource("SpriteFrames_y1ba5")
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
@@ -1424,6 +1639,38 @@ position = Vector2(1858, 1043)
 sprite_frames = SubResource("SpriteFrames_a7bgs")
 
 [node name="shop" parent="." instance=ExtResource("43_rqqg3")]
+
+[node name="兰虎" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(3191, 1305)
+sprite_frames = SubResource("SpriteFrames_nk46w")
+npcName = "兰虎"
+
+[node name="挽琴" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(3069, 1354)
+sprite_frames = SubResource("SpriteFrames_tmxwj")
+
+[node name="PointLight2D11" type="PointLight2D" parent="."]
+position = Vector2(3101, 1265)
+scale = Vector2(0.69005, 0.570204)
+energy = 0.0
+texture = ExtResource("46_vjk1l")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_avkso")
+}
+
+[node name="打更人" parent="." instance=ExtResource("31_ablms")]
+position = Vector2(3117, 1313)
+sprite_frames = SubResource("SpriteFrames_ssgyj")
+
+[node name="Camera2D2" type="Camera2D" parent="."]
+position = Vector2(3737, 1803)
+
+[node name="Camera2D3" type="Camera2D" parent="."]
+position = Vector2(1370, 958)
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

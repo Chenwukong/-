@@ -183,9 +183,11 @@ func useItem():
 		Global.onItemSelect = true	
 		if Global.currMenuItem == "筋斗云":
 			if Global.playerSpeed == 300:
+				Global.onWalkDoubleSpeed = true
 				Global.playerSpeed = 500
 				Global.showMsg("移动速度加快！")
 			else:
+				Global.onWalkDoubleSpeed = false
 				Global.playerSpeed = 300
 				Global.showMsg("移动速度恢复正常！")
 			
@@ -216,7 +218,25 @@ func useItem():
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addCritChance = 0
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).addBlockChance = 0
 			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).potential = (FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).level - 1 + Global.totalPotentialBall) * 5 * Global.enKey
-
+			FightScenePlayers.fightScenePlayerData.get(Global.onTeamPlayer[Global.itemPlayerIndex]).potential +=  50 * ( Global.gameRound -1 )
+		if Global.currMenuItem == "圣兽洗髓":
+			Global.showMsg("全部盟友已洗髓")		
+			item.number -= 1
+			for i in menuItems:
+				if i.get_node("itemName").text == Global.currMenuItem:
+					i.get_node("itemNum").text = str(int(i.get_node("itemNum").text) - 1)		
+			for i in Global.onTeamPet.size():		
+				
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).addStr = 500	
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).addAbilityPower = 500	
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).addPlayerSpeed = 0
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).addHp = 0
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).addMp = 0
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).potential = (FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i]).level - 1 + Global.totalPotentialBall) * 5 * Global.enKey
+				FightScenePlayers.fightScenePlayerData.get(Global.onTeamPet[i-1]).potential += 50 * (Global.gameRound - 1)
+	
+	
+	
 	
 	for key in FightScenePlayers.consumeItem.keys():
 		if FightScenePlayers.consumeItem[key]["number"] == 0:

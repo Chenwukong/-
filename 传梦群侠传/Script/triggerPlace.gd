@@ -174,6 +174,8 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("回忆"))													
 			"进回忆":
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("进回忆"))	
+			"切换入侵":
+				DialogueManager.show_chat(load("res://Dialogue/9.dialogue"),get_npc_dialogue("切换入侵"))				
 			"进回忆2":
 				DialogueManager.show_chat(load("res://Dialogue/5.dialogue"),get_npc_dialogue("进回忆"))					
 			"进回忆3":
@@ -188,7 +190,8 @@ func _on_area_2d_area_entered(area):
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("凌若昭回忆"))		
 			"听闻砍头":
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("红花"))						
-				
+			"姜韵来方寸":
+				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("寻找小二"))						
 									
 			"再见小二":
 				DialogueManager.show_chat(load("res://Dialogue/6.dialogue"),get_npc_dialogue("再见小二"))		

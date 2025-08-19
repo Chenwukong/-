@@ -1,4 +1,4 @@
-[gd_scene load_steps=2050 format=3 uid="uid://jvqq00koml8d"]
+[gd_scene load_steps=2057 format=3 uid="uid://jvqq00koml8d"]
 
 [ext_resource type="Texture2D" uid="uid://b308rjoqo3odw" path="res://梦魂Animation/0燕子攻击.png" id="1_1urxn"]
 [ext_resource type="Texture2D" uid="uid://c5q3chqbs0c4j" path="res://Animations/0乌龟攻击.png" id="1_go0bl"]
@@ -39,6 +39,7 @@
 [ext_resource type="Texture2D" uid="uid://kdfsdo57byjg" path="res://Animations/治疗/tile002.png" id="22_0rbni"]
 [ext_resource type="Texture2D" uid="uid://6857njegk7ml" path="res://Animations/治疗/tile003.png" id="23_6trne"]
 [ext_resource type="Texture2D" uid="uid://chr1838jqi8yq" path="res://Animations/治疗/tile004.png" id="24_6r0uj"]
+[ext_resource type="Texture2D" uid="uid://dsf4ivksqfgy5" path="res://梦魂Animation/0赌徒攻击.png" id="24_7ha2s"]
 [ext_resource type="Texture2D" uid="uid://dc2nr06t8oxkw" path="res://SeparateAnimation/童子/攻击我.png" id="24_hm3lm"]
 [ext_resource type="Texture2D" uid="uid://cmcdursl4oiy6" path="res://梦魂Animation/0无痕小攻击.png" id="24_ur03q"]
 [ext_resource type="Texture2D" uid="uid://d1rd7e1dhs8rx" path="res://梦魂Animation/破碎无双+敖白.png" id="25_2rh0g"]
@@ -181,6 +182,7 @@
 [ext_resource type="Texture2D" uid="uid://bdsovukix14kx" path="res://梦魂Animation/我青龙/挨打.png" id="119_h1s60"]
 [ext_resource type="Texture2D" uid="uid://7o2dy1jptwk0" path="res://梦魂Animation/！血煞幽微.png" id="119_hnw1o"]
 [ext_resource type="Texture2D" uid="uid://bjdkn8p0dgnl4" path="res://梦魂Animation/我青龙/待机.png" id="120_nm2tt"]
+[ext_resource type="Texture2D" uid="uid://gs7ejiu44j0p" path="res://梦魂Animation/我青龙/死亡.png" id="124_cb3q4"]
 [ext_resource type="Texture2D" uid="uid://bes8bjccrs7mb" path="res://梦魂Animation/——龙怒.png" id="130_na00b"]
 [ext_resource type="Texture2D" uid="uid://b116sgsqxkuy1" path="res://梦魂Animation/#龙怒.png" id="133_bnai1"]
 [ext_resource type="Texture2D" uid="uid://27v3f444uicq" path="res://梦魂Animation/法术-三味真火.png" id="139_6uwu3"]
@@ -847,6 +849,26 @@ region = Rect2(192, 384, 192, 192)
 [sub_resource type="AtlasTexture" id="AtlasTexture_2scap"]
 atlas = ExtResource("18_lgkur")
 region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_757uq"]
+atlas = ExtResource("24_7ha2s")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c83qh"]
+atlas = ExtResource("24_7ha2s")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mphir"]
+atlas = ExtResource("24_7ha2s")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxyog"]
+atlas = ExtResource("24_7ha2s")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ghd8l"]
+atlas = ExtResource("24_7ha2s")
+region = Rect2(384, 576, 192, 192)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y3oj3"]
 atlas = ExtResource("24_hm3lm")
@@ -2452,6 +2474,10 @@ region = Rect2(2736, 462, 304, 231)
 atlas = ExtResource("117_il5oo")
 region = Rect2(3040, 462, 304, 231)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_slsm5"]
+atlas = ExtResource("124_cb3q4")
+region = Rect2(1080, 384, 216, 192)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_v121d"]
 atlas = ExtResource("118_43fd2")
 region = Rect2(0, 288, 175, 144)
@@ -3201,6 +3227,26 @@ animations = [{
 "loop": false,
 "name": &"小二magic",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_757uq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c83qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mphir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxyog")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ghd8l")
+}],
+"loop": false,
+"name": &"小二magicAutoAttack",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -4957,6 +5003,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_slsm5")
+}],
+"loop": false,
+"name": &"青龙dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_v121d")
 }, {
 "duration": 1.0,
@@ -6126,17 +6180,13 @@ region = Rect2(0, 2304, 384, 384)
 atlas = ExtResource("162_40yvs")
 region = Rect2(384, 2304, 384, 384)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8fng2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtnbh"]
 atlas = ExtResource("162_40yvs")
 region = Rect2(0, 2688, 384, 384)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jc7p2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqkml"]
 atlas = ExtResource("162_40yvs")
 region = Rect2(0, 3072, 384, 384)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_goh83"]
-atlas = ExtResource("162_40yvs")
-region = Rect2(384, 3072, 384, 384)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpkkd"]
 atlas = ExtResource("109_3cgp1")
@@ -10081,17 +10131,80 @@ animations = [{
 "texture": SubResource("AtlasTexture_eupwt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8fng2")
+"texture": SubResource("AtlasTexture_5k0va")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jc7p2")
+"texture": SubResource("AtlasTexture_70h1s")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_goh83")
+"texture": SubResource("AtlasTexture_223jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhglr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3vkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k0va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70h1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_223jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhglr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3vkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k0va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70h1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_223jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nhglr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3vkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k0va")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70h1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_223jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xk6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtnbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqkml")
 }],
 "loop": false,
-"name": &"星辰爆",
-"speed": 5.0
+"name": &"星辰陨落",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -14403,7 +14516,7 @@ material = SubResource("ShaderMaterial_34ucj")
 position = Vector2(283, 338)
 scale = Vector2(0.683333, 0.7)
 sprite_frames = SubResource("SpriteFrames_i76mx")
-animation = &"青龙idle"
+animation = &"小二magicAutoAttack"
 script = ExtResource("3_sqqwh")
 delay_timer = NodePath("DelayTimer")
 
@@ -14605,9 +14718,7 @@ max_distance = 1e+12
 visible = false
 position = Vector2(-2.34146, -8.57144)
 sprite_frames = SubResource("SpriteFrames_djvij")
-animation = &"雾中花"
-frame = 24
-frame_progress = 1.0
+animation = &"星辰陨落"
 
 [node name="attackWaitTime" type="Timer" parent="."]
 wait_time = 2.0
@@ -14711,17 +14822,18 @@ offset_bottom = 708.714
 [node name="火域" type="AnimatedSprite2D" parent="."]
 visible = false
 z_index = -10
-position = Vector2(184.39, -77.1429)
-scale = Vector2(6.61586, 5.42411)
+position = Vector2(355.532, 147.828)
+rotation = -0.51325
+scale = Vector2(6.98178, -3.42629)
 sprite_frames = SubResource("SpriteFrames_naqlo")
 autoplay = "default"
-frame_progress = 0.196664
+frame_progress = 0.747437
 script = ExtResource("190_sivha")
 
 [node name="Area2D" type="Area2D" parent="火域"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="火域/Area2D"]
-polygon = PackedVector2Array(26.3226, -60.1811, 59.1832, -23.3847, 39.4554, 63.2763, -45.0919, 64.6519, -81.7291, 49.5206, -80.7373, 6.71604, -24.9954, -30.0247)
+polygon = PackedVector2Array(27.6498, -56.6255, 59.1832, -23.3847, 36.1297, 134.271, -51.8911, 130.07, -93.6645, 127.793, -75.2073, 18.1728, -18.5806, -21.3333)
 
 [node name="canAttackAfterMulti" type="Timer" parent="."]
 wait_time = 2.0

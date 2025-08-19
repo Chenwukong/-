@@ -91,15 +91,6 @@ func scratch_at_position(pos: Vector2):
 	# 更新纹理
 	mask_texture.update(mask_image)
 
-# 重置刮刮乐（用于测试）
-func reset_scratch():
-	mask_image.fill(Color.BLACK)
-	mask_texture.update(mask_image)
 
 # 输入处理（用于测试）
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		match event.keycode:
-			KEY_R:  # R键重置
-				reset_scratch()
-				print("刮刮乐已重置")
+

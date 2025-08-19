@@ -2315,6 +2315,11 @@ offset_right = 1594.0
 offset_bottom = 452.0
 color = Color(1, 0, 1, 1)
 
+[node name="姜韵来方寸" parent="." instance=ExtResource("41_yvotq")]
+visible = false
+position = Vector2(1881, 1347)
+triggerEvent = "姜韵来方寸"
+
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]

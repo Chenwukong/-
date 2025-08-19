@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="16_2ff63"]
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="17_3eudb"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="18_a6dif"]
-[ext_resource type="PackedScene" path="res://Scene/pet_food_ball.tscn" id="19_10i8b"]
+[ext_resource type="PackedScene" uid="uid://cx6bkyx00q0av" path="res://Scene/pet_food_ball.tscn" id="19_10i8b"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="20_upmyx"]
 [ext_resource type="Shader" path="res://shader/冰雹.gdshader" id="21_srpq7"]
 [ext_resource type="Script" path="res://main character/凌若昭脚本/凌若昭player.gd" id="22_663hn"]
@@ -429,7 +429,9 @@ position = Vector2(-77, 479)
 [node name="CanvasLayer" parent="." instance=ExtResource("18_a6dif")]
 
 [node name="potentialBall" parent="." instance=ExtResource("12_7t8s7")]
-position = Vector2(2241, 1605)
+modulate = Color(1, 1, 0, 1)
+position = Vector2(2043, 1323)
+scale = Vector2(1.92151, 2.56233)
 id = "凤巢31"
 
 [node name="Node2D2" parent="." instance=ExtResource("16_2ff63")]
@@ -445,7 +447,7 @@ position = Vector2(2212, 534)
 toScene = "凤巢6"
 
 [node name="petFoodBall" parent="." instance=ExtResource("19_10i8b")]
-position = Vector2(273, 1598)
+position = Vector2(271, 1631)
 id = "凤巢41"
 
 [node name="Node2D3" parent="." instance=ExtResource("16_2ff63")]

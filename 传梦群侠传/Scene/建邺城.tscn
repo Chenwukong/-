@@ -475,6 +475,9 @@ position = Vector2(883, 599)
 sprite_frames = SubResource("SpriteFrames_avrit")
 npcName = "管家"
 
+[node name="CollisionPolygon2D" parent="管家/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -293, -217, -276, -215, -260, -215, -247, -216, -252, -229, -249, -245, -253, -254, -252, -267, -253, -273, -258, -282, -266, -280)
+
 [node name="王大锤" parent="." instance=ExtResource("30_elurk")]
 position = Vector2(212, 1074)
 sprite_frames = SubResource("SpriteFrames_w4snu")
@@ -543,5 +546,6 @@ items = {
 [editable path="teleportCircle2"]
 [editable path="城主施舍"]
 [editable path="管家请求"]
+[editable path="管家"]
 [editable path="王大锤2"]
 [editable path="乞丐2"]

@@ -59,7 +59,6 @@ set Global.cantShow.append("两界山")
 时追云: [speed=0.5](嗯？怎么娘子给我的这盏灯到地府自动就发亮了，到了地府居然都能亮吗)
 set Global.dial = null
 if !Global.smallPets.has("敖雨"):
-	set Global.onTeamSmallPet.append("敖雨")
 	set Global.smallPets.append("敖雨")
 set Global.onTalk = false
 => END
@@ -221,7 +220,7 @@ set get_tree().current_scene.get_node("player/effect").visible = false
 时追云: [speed=0.5]...
 set get_tree().current_scene.get_node("player/effect").visible = false
 时追云: [speed=0.5]这里就是轮回司吗
-时追云: [speed=0.5]这里怎么有怎么多瓶瓶罐罐...
+时追云: [speed=0.5]这里怎么有这么多瓶瓶罐罐...
 时追云: [speed=0.5]钟前辈说把鬼魂从轮回司带走，难道说...这里是关住鬼魂的地方
 时追云: [speed=0.5]那边那个瓶子写着人，或许....
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
@@ -529,10 +528,12 @@ set get_tree().current_scene.get_node("堕逝鬼魂").visible = true
 钟馗: [speed=0.5]你会这么想倒也正常
 钟馗: [speed=0.5]的确，他这一生几乎没做过什么好事，甚至险些酿成大货，生灵涂炭
 钟馗: [speed=0.5]可他前九世都是绝世大善人，帮助过的人可能比你都多，甚至有几次是为了救人而牺牲了自己。这一世他本该享福，所以被安排投胎到了富豪之家。
-钟馗: [speed=0.5]哪知朝廷动乱，官府无力，被山贼抢光家产，无奈落草为寇，最终堕落如此。
+钟馗: [speed=0.5]哪知朝廷动乱，官府无力，被山贼抢光家产，又为了心爱之人，落草为寇，最终堕落如此。
 钟馗: [speed=0.5]如果一个人九世为善，一世为恶，你觉得他应该泯灭灵魂，永不入轮回吗？
 时追云: [speed=0.5]这...
 钟馗: [speed=0.5]所以我们地府神职人员，不能感情用事，如果我按照喜恶来做事，起码有五成的鬼魂会被我当场灭杀，所以一切按照规矩来办是最理性最正确的。
+钟馗: [speed=0.5]你要记住，你的道德再好，也不会延续到下一次轮回
+钟馗: [speed=0.5]如果你的道德很差，下一世也将深受影响
 时追云: [speed=0.5]我明白了
 钟馗: [speed=0.5]好了，把他敲晕带走
 时追云: [speed=0.5]我现在能触碰到他了吗？
@@ -580,6 +581,7 @@ set get_tree().current_scene.get_node("鬼火").visible = false
 钟馗: [speed=0.5]我再教你一技，名为破暗
 钟馗: [speed=0.5]此技对鬼怪有奇效，你且看好了
 钟馗: [speed=0.5]破晓金光裂夜寒，一剑驱邪破幽暗！
+set get_tree().current_scene.get_node("堕逝鬼魂").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark")
 set FightScenePlayers.learnMagic("时追云","破暗")
 set FightScenePlayers.learnMagic("时追云","开阳")

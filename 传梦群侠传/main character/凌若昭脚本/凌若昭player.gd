@@ -39,6 +39,11 @@ func _on_play_time_timeout():
 	FightScenePlayers.seconds = time_played_seconds
 
 func _process(delta):
+	if Global.onWalkDoubleSpeed:
+		speed = 500
+	else:
+		speed = 300	
+	
 	if Global.onTalk:
 		if Global.playerDirection == "":
 			return

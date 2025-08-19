@@ -88,7 +88,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 镰魔: [speed=0.5]养虎为患...本来想培养你们削弱妖盟的，但没想到你们成长到这种地步了
 镰魔: [speed=0.5]魔尊...会把你们都杀了的！
-set Global.getnode("镰魔").visible = false
+set Global.changevis("创界山","镰魔")
 小二喜: [speed=0.5]惹到我们老大，你魔尊的头也得被砍下来当球踢
 时追云: [speed=0.5]我没那么暴力吧。。。
 姜韵喜: [speed=0.5]没有吗嘻嘻 
@@ -331,7 +331,7 @@ set Global.onTalk = true
 set Global.changevis("炼狱迷宫7","蛟魔王")
 时追云: [speed=0.5]他似乎很确信我们杀不死蚩尤
 姜韵: [speed=0.5]可能他们还有什么手段吧
-凌若昭: [speed=0.5]我能感觉到，前面就是重点了
+凌若昭: [speed=0.5]我能感觉到，前面就是终点了
 小二: [speed=0.5]那我们快走吧，不然一会六耳也到了
 	
 set Global.onTalk = false
@@ -341,7 +341,7 @@ set Global.onTalk = false
 ~ 炼狱迷宫7
 set Global.onTalk = true
 时追云惊: [speed=0.5]这是？
-姜韵惊: [speed=0.5]看这副打扮，孙大圣？ 
+姜韵恐: [speed=0.5]看这副打扮，孙大圣？ 
 小二: [speed=0.5]啊？孙大圣？那蚩尤呢？
 凌若昭: [speed=0.5]师兄！！？？？
 孙悟空: [speed=0.5]咳，咳咳
@@ -383,7 +383,7 @@ set Global.getnode("蚩尤").visible = true
 蚩尤: [speed=0.5]哈哈哈哈哈，孙悟空，我又活了，我们继续来战斗！这次我已经让那些魔都滚出去了！
 set Global.getnode("孙悟空").play("右上")
 孙悟空怒: [speed=0.5]蚩尤！
-姜韵惊: [speed=0.5]！！！
+姜韵恐: [speed=0.5]！！！
 小二: [speed=0.5]！？？
 凌若昭怒: [speed=0.5]你就是蚩尤！
 时追云惊: [speed=0.5]竟然真的能这样凭空复活
@@ -393,7 +393,7 @@ set Global.getnode("孙悟空").play("右上")
 凌若昭: [speed=0.5]难怪师兄看起来这么累，你要连番和他打
 孙悟空: [speed=0.5]我看你们也都不弱，你们帮我拖一会，我调息片刻！
 姜韵: [speed=0.5]小声: 夫君，我一直在想，妖盟和魔尊为什么会那么怕我的族群
-姜韵: [speed=0.5]小声: 我猜，初始之力不仅可以对魔物造成致命伤，对同样拥有初始之力的人，也同样有起效！但是我需要在战斗中验证一下！
+姜韵: [speed=0.5]小声: 我猜，初始之力不仅可以对魔物造成致命伤，对拥有初始之力的人，也同样有奇效！但是我需要在战斗中验证一下！
 时追云: [speed=0.5]小声: 好，我明白了
 set get_tree().current_scene.bossFight("蚩尤","res://Audio/BGM/战斗-Y.mp3", "炼狱迷宫")
 
@@ -502,6 +502,7 @@ set Global.getnode("孙悟空").visible = false
 set Global.changevis("水帘洞","孙悟空")
 时追云: [speed=0.5]...
 凌若昭: [speed=0.5]大家有什么想去的地方吗？
+set Global.questHint = "办完人间事吧"
 set Global.changevis("水帘洞","孙悟空")
 set Global.changevis("五庄观","凌若昭")
 set Global.changevis("普陀山","凌若昭")

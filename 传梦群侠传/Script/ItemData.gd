@@ -122,6 +122,20 @@ var keyItem = {
 		"useAble":true,
 		"gold": 0	
 	},
+	"圣兽洗髓":{
+		"name": "圣兽洗髓",
+		"effect": "special",
+		"value": 100,
+		"icon": "res://Icons/紫金丹.png",
+		"picture":"res://Icons/紫金丹.png",
+		"description": "会重置全部盟友的加点！",
+		"audio": "res://Audio/SE/056-Right02.ogg",
+		"key":true,
+		"useAble":true,
+		"gold": 6000000	
+	},	
+	
+	
 	"筋斗云":{
 		"name": "筋斗云",
 		"effect": "special",
@@ -178,7 +192,7 @@ var consume = {
 		"value": 300,
 		"icon": "res://Icons/西瓜.png",
 		"picture":"res://Icons/西瓜.png",
-		"description": "恢复300体力",
+		"description": "食用后可快速恢复自身300血量",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
 		"gold": 300		
@@ -253,7 +267,7 @@ var battleConsume ={
 		"description": "恢复600生命值",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
-		"gold": 600
+		"gold": 1000
 	},	
 	"金香玉":{
 		"name": "金香玉",
@@ -276,7 +290,7 @@ var battleConsume ={
 		"description": "恢复2400生命值",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
-		"gold": 20000
+		"gold": 30000
 	},		
 	
 	"月饼":{
@@ -296,18 +310,29 @@ var battleConsume ={
 		"value": 500 ,
 		"icon": "res://Icons/人参.png",
 		"picture":"res://Icons/百年人参.png",
-		"description": "恢复500仙能",
+		"description": "恢复500仙力",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
 		"gold": 10000
-	},	
+	},
+	"仙狐涎":{
+		"name": "仙狐涎",
+		"effect": "mp",
+		"value": 200 ,
+		"icon": "res://Icons/仙狐涎.png",
+		"picture":  "res://Icons/仙狐涎.png",
+		"description": "恢复200仙力",
+		"audio": "res://Audio/SE/HEAL11.ogg",
+		"key":false,
+		"gold": 1000
+	},		
 	"蛇蝎美人":{
 		"name": "蛇蝎美人",
 		"effect": "mp",
 		"value": 1200 ,
 		"icon": "res://Icons/蛇蝎美人.png",
 		"picture": "res://Icons/蛇蝎美人.png",
-		"description": "恢复少量仙能",
+		"description": "恢复1200仙力",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
 		"gold": 20000
@@ -337,13 +362,13 @@ var battleConsume ={
 	"魔睛子":{
 		"name": "魔睛子",
 		"effect": "damage",
-		"value": 2500,
+		"value": 3000,
 		"icon": "res://Icons/魔睛子.png",
 		"picture": "res://Icons/魔睛子.png",
 		"description": "造成2500伤害",
 		"key":false,
 		"audio": "res://Audio/SE/094-Attack06.ogg",
-		"gold": 3000
+		"gold": 5000
 	}		
 	
 }
@@ -420,8 +445,8 @@ var weapon = {
 		"user": "时追云",
 		"icon": "res://SeparateAnimation/梦澹/梦澹icon(1).png",
 		"picture": "res://SeparateAnimation/梦澹/梦澹icon(1).png",
-		"value": {"additionDmg": 1500* Global.enKey, "addHp": 1500 * Global.enKey},
-		"description": "时追云专属武器，伤害+1500",
+		"value": {"additionDmg": 1800* Global.enKey},
+		"description": "时追云专属武器，伤害+1800",
 		"key":true,
 		"added": false,
 		"gold": 10000
@@ -498,8 +523,8 @@ var weapon = {
 		"user": "小二",
 		"icon": "res://Pictures/Pictures/ba.png",
 		"picture": "res://Pictures/Pictures/ba.png",
-		"value": {"additionDmg": 1000 * Global.enKey},
-		"description": "小二专属武器，伤害+1000，金箍棒的孪生武器",
+		"value": {"additionDmg": 1400 * Global.enKey},
+		"description": "小二专属武器，伤害+1400，金箍棒的孪生武器",
 		"key":false,
 		"added": false,
 		"gold": 20000
@@ -634,7 +659,7 @@ var cloth = {
 		"icon":  "res://Pictures/Pictures/ny (4).png",
 		"picture": "res://Pictures/Pictures/ny (4).png",
 		"value": {"addPhysicDefense": 251 * Global.enKey,"addMagicDefense": 251 * Global.enKey},
-		"description": "男用，物理防御+250+1，模仿防御+250+1，龙骨所制！",
+		"description": "男用，物理防御+250+1，魔法防御+250+1，龙骨所制！",
 		"key":false, #龙窟
 		"added":false,
 		"gold": 25000
@@ -645,7 +670,7 @@ var cloth = {
 		"icon":  "res://Pictures/ni (4).png",
 		"picture": "res://Pictures/ni (4).png",
 		"value": {"addPhysicDefense": 251 * Global.enKey,"addMagicDefense": 251 * Global.enKey},
-		"description": "女用，物理防御+220，模仿防御+251，龙鳞所制！",
+		"description": "女用，物理防御+220，魔法防御+251，龙鳞所制！",
 		"key":false, #龙窟
 		"added":false,
 		"gold": 25000
@@ -656,7 +681,7 @@ var cloth = {
 		"icon":  "res://Pictures/Pictures/ny (5).png",
 		"picture": "res://Pictures/Pictures/ny (5).png",
 		"value": {"addPhysicDefense": 300 * Global.enKey,"addMagicDefense": 300 * Global.enKey},
-		"description": "男用，物理防御+300，模仿防御+300，死亡斗篷",
+		"description": "男用，物理防御+300，魔法防御+300，死亡斗篷",
 		"key":false, #长寿村
 		"added":false,
 		"gold": 50000
@@ -667,7 +692,7 @@ var cloth = {
 		"icon":  "res://Pictures/ni (6).png",
 		"picture": "res://Pictures/ni (6).png",
 		"value": {"addPhysicDefense": 300 * Global.enKey,"addMagicDefense": 300 * Global.enKey},
-		"description": "女用，物理防御+300，模仿防御+300，镶嵌了七颗宝石",
+		"description": "女用，物理防御+300，魔法防御+300，镶嵌了七颗宝石",
 		"key":false, #长寿村
 		"added":false,
 		"gold": 50000
@@ -678,7 +703,7 @@ var cloth = {
 		"icon":  "res://Pictures/Pictures/ny.png",
 		"picture": "res://Pictures/Pictures/ny.png",
 		"value": {"addPhysicDefense": 350 * Global.enKey,"addMagicDefense": 350 * Global.enKey},
-		"description": "男用，物理防御+350，模仿防御+350，月宫桂树上的灵蝉身上的蝉翼辅以金丝编织而成的铠甲。绝非寻常仙家之物。",
+		"description": "男用，物理防御+350，魔法防御+350，月宫桂树上的灵蝉身上的蝉翼辅以金丝编织而成的铠甲。。",
 		"key":false, #兜率宫
 		"added":false,
 		"gold": 150000
@@ -689,7 +714,7 @@ var cloth = {
 		"icon":  "res://Pictures/ni.png",
 		"picture": "res://Pictures/ni.png",
 		"value": {"addPhysicDefense": 350 * Global.enKey,"addMagicDefense": 350 * Global.enKey},
-		"description": "女用，物理防御+350，模仿防御+350，以日月光芒所织造的霞衣，对敌之时往往令其目眩神驰。",
+		"description": "女用，物理防御+350，魔法防御+350，以日月光芒所织造的霞衣。",
 		"key":false, #兜率宫
 		"added":false,
 		"gold": 150000
@@ -700,7 +725,7 @@ var cloth = {
 		"icon": "res://Icons/GM男衣.png",
 		"picture": "res://Pictures/GM神甲.png",
 		"value": {"addPhysicDefense": 420 * Global.enKey,"addMagicDefense": 420 * Global.enKey},
-		"description": "男用，物理防御+420，模仿防御+420，好，好，好！",
+		"description": "男用，物理防御+420，魔法防御+420，好，好，好！",
 		"key":false, #兜率宫
 		"added":false,
 		"gold": 250000
@@ -711,7 +736,7 @@ var cloth = {
 		"icon": "res://Icons/GM女衣.png",
 		"picture": "res://Pictures/GM凤披.png",
 		"value": {"addPhysicDefense": 420 * Global.enKey,"addMagicDefense": 420 * Global.enKey},
-		"description": "女用，物理防御+420，模仿防御+420，好，好，好！",
+		"description": "女用，物理防御+420，魔法防御+420，好，好，好！",
 		"key":false, #兜率宫
 		"added":false,
 		"gold": 250000
@@ -900,7 +925,7 @@ var accessories = {
 		"icon": "res://Pictures/八卦指环.png",
 		"picture": "res://Pictures/八卦指环.png",
 		"value": {"addPlayerSpeed": 65 * Global.enKey, "addPhysicDefense": 105* Global.enKey, "addMagicDefense": 105* Global.enKey, "additionDmg": 255* Global.enKey, "addHp":400* Global.enKey},
-		"description":  "速度+65, 物理防御+105，灵力防御+105，伤害+225，血量+400",
+		"description":  "速度+65, 物理防御+105，灵力防御+105，伤害+255，血量+400",
 		"key":false,
 		"added":false,
 		"gold": 60000,
@@ -1078,6 +1103,18 @@ var addItemInfo ={
 		"type": "battleConsume",
 		"bagPlace": "battleItem"
 	},
+	"飞蝗石":{
+		"name": "飞蝗石",
+		"type": "battleConsume",
+		"bagPlace": "battleItem"
+	},	
+	"魔睛子":{
+		"name": "魔睛子",
+		"type": "battleConsume",
+		"bagPlace": "battleItem"
+	},		
+
+	
 	"佛手":{
 		"name": "佛手",
 		"type": "consume",
@@ -1085,6 +1122,11 @@ var addItemInfo ={
 	},	
 	"佛跳墙":{
 		"name": "佛跳墙",
+		"type": "consume",
+		"bagPlace": "consumeItem"
+	},
+	"狗不理包子":{
+		"name": "狗不理包子",
 		"type": "consume",
 		"bagPlace": "consumeItem"
 	},
@@ -1108,7 +1150,11 @@ var addItemInfo ={
 		"type": "consume",
 		"bagPlace": "consumeItem"
 	},		
-	
+	"圣兽洗髓":{
+		"name": "圣兽洗髓",
+		"type": "keyItem",
+		"bagPlace": "keyItem"
+	},		
 	
 	"洗髓丹":{
 		"name": "洗髓丹",
@@ -1151,6 +1197,12 @@ var addItemInfo ={
 		"bagPlace": "battleItem"		
 	},			
 	
+	
+	"仙狐涎":{
+		"name": "仙狐涎",
+		"type": "battleConsume",
+		"bagPlace": "battleItem"		
+	},			
 	"蛇蝎美人":{
 		"name": "蛇蝎美人",
 		"type": "battleConsume",

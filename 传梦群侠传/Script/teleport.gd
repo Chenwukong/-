@@ -183,6 +183,10 @@ func checkSetPos(currScene, toScene):
 			return Vector2(2222,1260)
 		if toScene == "平定峰":
 			return Vector2(2460,1222)	
+	if currScene == "平定峰":
+		return Vector2(1745,714)				
+			
+			
 	if currScene == "方寸山迷境":
 		return Vector2(526,2133)	
 	if currScene == "方寸山":

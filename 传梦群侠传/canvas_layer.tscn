@@ -1,4 +1,4 @@
-[gd_scene load_steps=208 format=3 uid="uid://b7m0e2bvanxoi"]
+[gd_scene load_steps=214 format=3 uid="uid://b7m0e2bvanxoi"]
 
 [ext_resource type="Script" path="res://Script/CanvasLayer.gd" id="1_njpa6"]
 [ext_resource type="Texture2D" uid="uid://w4dov1c3r346" path="res://消息底图 (1).png" id="2_wncf6"]
@@ -80,6 +80,7 @@
 [ext_resource type="Texture2D" uid="uid://s3ovwtx5sody" path="res://宠物加点/减点默认.png" id="59_jssxc"]
 [ext_resource type="Shader" path="res://shader/sandStorm.gdshader" id="62_lkti6"]
 [ext_resource type="Texture2D" uid="uid://bjexy8vuf58aj" path="res://宠物UI无字.png" id="66_o20tt"]
+[ext_resource type="Texture2D" uid="uid://u1rvb3v4xcc8" path="res://Pictures/菜单/友军背景.png" id="69_tyu8x"]
 [ext_resource type="Texture2D" uid="uid://br54nh7ksccf0" path="res://宠物加点/宠物UI宠物加点未弹起.png" id="70_gkjac"]
 [ext_resource type="Texture2D" uid="uid://stxd1yl2h77b" path="res://Pictures/菜单/宠物食物背景.png" id="72_sgiqk"]
 [ext_resource type="Texture2D" uid="uid://btnllngd3gp3h" path="res://Pictures/菜单/宠物食物按钮.png" id="73_rwrn5"]
@@ -92,6 +93,11 @@
 [ext_resource type="Texture2D" uid="uid://ux5x2oyx1as2" path="res://Pictures/2ceng.png" id="82_hv8lo"]
 [ext_resource type="PackedScene" uid="uid://bbr8r2yqceilb" path="res://Scene/传梦者名.tscn" id="84_cqgn7"]
 [ext_resource type="FontFile" uid="uid://pnau5vpfj34k" path="res://Pictures/菜单/179729f5654cecd8b961ac82b8b7d048.ttf" id="92_lnjxp"]
+[ext_resource type="Texture2D" uid="uid://gkqsvysnjnrs" path="res://Pictures/商店/商店背景.png" id="94_p65nd"]
+[ext_resource type="Script" path="res://Script/miniShopItem.gd" id="95_6xso6"]
+[ext_resource type="Texture2D" uid="uid://bjh21dolt23te" path="res://Icons/佛手.png" id="96_7h6gv"]
+[ext_resource type="Texture2D" uid="uid://cwk3h21o6wsbc" path="res://Pictures/商店/购买.png" id="97_bsesd"]
+[ext_resource type="Texture2D" uid="uid://dx03lwhftohb3" path="res://Pictures/商店/购买选中.png" id="98_fbor2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6tvqb"]
 atlas = ExtResource("11_guwxw")
@@ -1511,7 +1517,7 @@ offset_bottom = 164.0
 scale = Vector2(0.29187, 0.29187)
 theme_override_fonts/font = ExtResource("92_lnjxp")
 theme_override_font_sizes/font_size = 60
-text = "伤害倍数:"
+text = "伤害加成:"
 
 [node name="伤害加成value" type="Label" parent="position/伤害加成"]
 layout_mode = 0
@@ -1726,7 +1732,8 @@ offset_top = -35.7512
 offset_right = 135.904
 offset_bottom = 69.2488
 theme_override_font_sizes/font_size = 15
-text = "爱说大话咖啡碱撒都会发生的回复"
+text = "奇迹行者是2货
+桥是3货"
 autowrap_mode = 3
 
 [node name="hintButton" type="AnimatedSprite2D" parent="."]
@@ -1838,7 +1845,7 @@ offset_right = 184.604
 offset_bottom = 91.0647
 scale = Vector2(0.150569, 0.176717)
 theme_override_font_sizes/font_size = 100
-text = "地图
+text = "商店
 "
 
 [node name="mapButton" type="Button" parent="地图"]
@@ -1907,7 +1914,7 @@ offset_right = 183.051
 offset_bottom = 91.8333
 scale = Vector2(0.151021, 0.167107)
 theme_override_font_sizes/font_size = 100
-text = "交易"
+text = "灵宠店"
 
 [node name="shopButton" type="Button" parent="交易"]
 modulate = Color(1, 1, 1, 0)
@@ -1948,13 +1955,13 @@ autoplay = "default"
 
 [node name="Label" type="Label" parent="制作人"]
 visible = false
-offset_left = -16.917
+offset_left = -11.8413
 offset_top = -32.1414
-offset_right = 283.083
+offset_right = 288.159
 offset_bottom = 88.8586
 scale = Vector2(0.128331, 0.154592)
 theme_override_font_sizes/font_size = 100
-text = "制作人"
+text = "操作"
 
 [node name="authorButton" type="Button" parent="制作人"]
 self_modulate = Color(1, 1, 1, 0)
@@ -2017,8 +2024,9 @@ offset_right = 87.665
 offset_bottom = -91.9543
 scale = Vector2(0.505901, 0.616457)
 theme_override_font_sizes/font_size = 80
-text = "                                          其他梦单群
-梦仙梦魂： 310201519             梦幻5：240703671
+text = "                                          梦单群
+                               传梦之路：315974594
+梦仙梦魂：310201519             梦幻5：240703671
 梦幻群侠传4： 326508471         
 梦游战记：82326195
 西游奇缘： 185399519 
@@ -2033,41 +2041,50 @@ texture = ExtResource("9_t5u4b")
 
 [node name="Label" type="Label" parent="制作人列表"]
 modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
-offset_left = -103.959
-offset_top = -214.218
-offset_right = 96.0414
-offset_bottom = -163.218
+offset_left = -76.0
+offset_top = -214.0
+offset_right = 96.0
+offset_bottom = -163.0
 theme_override_font_sizes/font_size = 40
-text = "制作人名单"
+text = "操作提示"
 
 [node name="Label2" type="Label" parent="制作人列表"]
-offset_left = -567.0
-offset_top = -142.0
-offset_right = 567.0
-offset_bottom = -97.0
-theme_override_font_sizes/font_size = 35
-text = "剧情代码：传梦 
-美工UI: 老寒 加班 "
-horizontal_alignment = 1
-vertical_alignment = 2
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+offset_left = -556.021
+offset_top = -138.612
+offset_right = 384.979
+offset_bottom = -87.6115
+theme_override_font_sizes/font_size = 40
+text = "1: Alt + Q 可以在战斗中快捷施法（其他的自己领悟）"
 
 [node name="Label3" type="Label" parent="制作人列表"]
-modulate = Color(0, 0, 0, 1)
-offset_left = -44.275
-offset_top = -22.0518
-offset_right = 144.725
-offset_bottom = 28.9482
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+offset_left = -556.021
+offset_top = -75.6063
+offset_right = 384.979
+offset_bottom = -24.6063
 theme_override_font_sizes/font_size = 40
-text = "鸣谢"
+text = "2: 在地图中走路被地形卡住了可以按R键或者左上角坐标脱身"
 
 [node name="Label4" type="Label" parent="制作人列表"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
+offset_left = -556.0
+offset_top = -17.0
+offset_right = 648.0
+offset_bottom = 136.0
+theme_override_font_sizes/font_size = 40
+text = "3: 本作没有宠物，只有灵宠，获取到了之后可在右下角功能里
+添加属性（主角团四人之外的盟友同理）
+4: 菜单道具页面要用鼠标点击道具使用（妖皇干的）"
+
+[node name="Label5" type="Label" parent="制作人列表"]
+modulate = Color(0.0784314, 0.0784314, 0.0784314, 1)
 offset_left = -556.021
-offset_top = 37.5026
-offset_right = 569.979
-offset_bottom = 246.503
-theme_override_font_sizes/font_size = 30
-text = "所有梦单前辈    入您  橙子色の橘子    阿栋       飞仔    YUAN    Smile    АДЛИН    Tom
-清风柒"
+offset_top = 140.187
+offset_right = 647.979
+offset_bottom = 293.187
+theme_override_font_sizes/font_size = 40
+text = "5: 按tab键可以隐藏ui"
 
 [node name="TextureButton" type="TextureButton" parent="制作人列表"]
 offset_left = 568.622
@@ -2111,7 +2128,7 @@ theme_override_font_sizes/font_size = 30
 text = "灵宠"
 
 [node name="1bf2bc55" type="Sprite2D" parent="宠物列表"]
-position = Vector2(-351.945, -26.5108)
+position = Vector2(-1183.17, -23.1261)
 scale = Vector2(0.411532, 0.594207)
 texture = ExtResource("37_aoug8")
 
@@ -2143,7 +2160,7 @@ script = null
 position = Vector2(-124.684, -61.4854)
 scale = Vector2(2.10994, 1.51554)
 sprite_frames = SubResource("SpriteFrames_o6d5k")
-animation = &"玄武"
+animation = &"敖雨"
 autoplay = "小鹿"
 
 [node name="petName" type="Label" parent="宠物列表"]
@@ -2196,10 +2213,10 @@ text = "+"
 
 [node name="怒气" type="Label" parent="宠物列表"]
 self_modulate = Color(1, 1, 0, 1)
-offset_left = -169.783
-offset_top = 104.362
-offset_right = -73.7827
-offset_bottom = 158.362
+offset_left = -270.591
+offset_top = 178.824
+offset_right = -174.59
+offset_bottom = 232.824
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 40
 text = "怒气:"
@@ -2226,10 +2243,10 @@ text = "+"
 
 [node name="灵力" type="Label" parent="宠物列表"]
 self_modulate = Color(0.286275, 0.498039, 1, 1)
-offset_left = -368.746
-offset_top = 176.606
-offset_right = -272.746
-offset_bottom = 230.606
+offset_left = -162.708
+offset_top = 103.234
+offset_right = -66.708
+offset_bottom = 157.234
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 40
 text = "灵力:"
@@ -2256,10 +2273,10 @@ text = "+"
 
 [node name="饱食度" type="Label" parent="宠物列表"]
 self_modulate = Color(0.286275, 0.654902, 0, 1)
-offset_left = -168.014
-offset_top = 177.696
-offset_right = -72.0139
-offset_bottom = 231.696
+offset_left = -1205.28
+offset_top = 237.491
+offset_right = -1109.28
+offset_bottom = 291.491
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 40
 text = "饱食:"
@@ -2320,18 +2337,18 @@ sprite_frames = SubResource("SpriteFrames_v31wy")
 autoplay = "default"
 
 [node name="petRightButton" type="TextureButton" parent="宠物列表"]
-offset_left = -76.0479
-offset_top = 11.8485
-offset_right = -17.0479
-offset_bottom = 82.8485
+offset_left = -72.5112
+offset_top = 3.95101
+offset_right = -13.5112
+offset_bottom = 74.951
 texture_normal = ExtResource("46_gxkk8")
 stretch_mode = 4
 
 [node name="petLeftButton" type="TextureButton" parent="宠物列表"]
-offset_left = -269.706
-offset_top = 9.59207
-offset_right = -210.706
-offset_bottom = 80.5921
+offset_left = -1501.51
+offset_top = 580.468
+offset_right = -1442.51
+offset_bottom = 651.468
 texture_normal = ExtResource("47_2lskr")
 stretch_mode = 4
 
@@ -2367,25 +2384,27 @@ visible = false
 z_as_relative = false
 position = Vector2(577, 369.498)
 scale = Vector2(1.13086, 0.886357)
-texture = ExtResource("66_o20tt")
+texture = ExtResource("69_tyu8x")
 
 [node name="宠物加点小窗口" type="Sprite2D" parent="盟友列表"]
+visible = false
 position = Vector2(230.798, -48.2641)
 scale = Vector2(1.06737, 2.1048)
 texture = ExtResource("57_443lk")
 
 [node name="petAnimation" type="AnimatedSprite2D" parent="盟友列表"]
-position = Vector2(-129.99, -56.9725)
+position = Vector2(-154.749, -76.1521)
 scale = Vector2(1.45768, 1.04703)
 sprite_frames = SubResource("SpriteFrames_o6d5k")
 animation = &"敖白"
 autoplay = "小鹿"
 
 [node name="petName" type="Label" parent="盟友列表"]
-offset_left = -399.696
+offset_left = -412.96
 offset_top = -202.512
-offset_right = -248.696
-offset_bottom = -120.512
+offset_right = -261.96
+offset_bottom = -94.5121
+scale = Vector2(0.644144, 0.644144)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0.819608, 0.819608, 0.819608, 1)
 theme_override_constants/shadow_offset_x = 5
@@ -2400,21 +2419,21 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="伤害" type="Label" parent="盟友列表"]
-self_modulate = Color(1, 0, 0, 1)
-offset_left = -356.366
-offset_top = 100.977
-offset_right = -260.366
-offset_bottom = 154.977
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -421.803
+offset_top = 71.6431
+offset_right = -325.803
+offset_bottom = 125.643
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 30
 text = "力量:"
 
 [node name="Label" type="Label" parent="盟友列表/伤害"]
 layout_mode = 0
-offset_left = 76.0483
-offset_top = 4.51282
-offset_right = 127.048
-offset_bottom = 43.5128
+offset_left = 106.998
+offset_top = 11.2829
+offset_right = 157.998
+offset_bottom = 50.2829
 theme_override_font_sizes/font_size = 20
 text = "200"
 
@@ -2436,26 +2455,28 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("59_jssxc")
 
 [node name="怒气" type="Label" parent="盟友列表"]
-self_modulate = Color(0, 1, 0, 1)
-offset_left = -156.518
-offset_top = 100.977
-offset_right = -60.5179
-offset_bottom = 154.977
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -221.955
+offset_top = 71.6431
+offset_right = -125.955
+offset_bottom = 125.643
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 30
 text = "血量:"
 
 [node name="Label" type="Label" parent="盟友列表/怒气"]
 layout_mode = 0
-offset_left = 71.6269
-offset_top = 5.64105
-offset_right = 177.627
-offset_bottom = 44.6411
+offset_left = 105.0
+offset_top = 10.0
+offset_right = 198.0
+offset_bottom = 39.0
 theme_override_font_sizes/font_size = 20
 text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="加点默认" type="Sprite2D" parent="盟友列表/怒气"]
-position = Vector2(-15.9171, 16.9231)
+position = Vector2(213.997, 22.565)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("57_7wo8k")
 
@@ -2472,11 +2493,11 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("59_jssxc")
 
 [node name="天运" type="Label" parent="盟友列表"]
-self_modulate = Color(1, 1, 0, 1)
-offset_left = 1111.54
-offset_top = -177.691
-offset_right = 1207.54
-offset_bottom = -123.691
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = 1046.1
+offset_top = -207.025
+offset_right = 1142.1
+offset_bottom = -153.025
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 30
 text = "气运:"
@@ -2508,21 +2529,21 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("59_jssxc")
 
 [node name="灵力" type="Label" parent="盟友列表"]
-self_modulate = Color(0.286275, 0.498039, 1, 1)
-offset_left = -357.25
-offset_top = 186.722
-offset_right = -261.25
-offset_bottom = 240.722
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -422.687
+offset_top = 157.388
+offset_right = -326.687
+offset_bottom = 211.388
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 30
 text = "灵力:"
 
 [node name="Label" type="Label" parent="盟友列表/灵力"]
 layout_mode = 0
-offset_left = 75.164
-offset_top = 5.64108
-offset_right = 126.164
-offset_bottom = 44.6411
+offset_left = 107.882
+offset_top = -2.25644
+offset_right = 158.882
+offset_bottom = 36.7436
 theme_override_font_sizes/font_size = 20
 text = "100"
 
@@ -2544,26 +2565,26 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("59_jssxc")
 
 [node name="饱食度" type="Label" parent="盟友列表"]
-self_modulate = Color(0.286275, 0.654902, 1, 1)
-offset_left = -157.402
-offset_top = 187.85
-offset_right = -61.4023
-offset_bottom = 241.85
+self_modulate = Color(0.286275, 0.654902, 1, 0)
+offset_left = -222.839
+offset_top = 158.516
+offset_right = -126.839
+offset_bottom = 212.516
 theme_override_fonts/font = ExtResource("46_6q5oi")
 theme_override_font_sizes/font_size = 30
 text = "敏捷:"
 
 [node name="Label" type="Label" parent="盟友列表/饱食度"]
 layout_mode = 0
-offset_left = 70.7426
-offset_top = 6.76935
-offset_right = 121.743
-offset_bottom = 45.7693
+offset_left = 136.179
+offset_top = -4.51269
+offset_right = 187.18
+offset_bottom = 34.4873
 theme_override_font_sizes/font_size = 20
 text = "100"
 
 [node name="加点默认" type="Sprite2D" parent="盟友列表/饱食度"]
-position = Vector2(-15.9171, 15.795)
+position = Vector2(214.881, 6.76942)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("57_7wo8k")
 
@@ -2581,10 +2602,10 @@ texture = ExtResource("59_jssxc")
 
 [node name="技能名字" type="Label" parent="盟友列表"]
 self_modulate = Color(0.54902, 1, 1, 1)
-offset_left = 121.147
-offset_top = 82.926
-offset_right = 281.147
-offset_bottom = 133.926
+offset_left = 158.287
+offset_top = 56.9771
+offset_right = 318.287
+offset_bottom = 107.977
 scale = Vector2(1.18978, 1.22816)
 theme_override_font_sizes/font_size = 30
 text = "龙卷雨击"
@@ -2603,40 +2624,40 @@ horizontal_alignment = 1
 
 [node name="friendCloseButton" type="Button" parent="盟友列表"]
 self_modulate = Color(1, 1, 1, 0)
-offset_left = 389.084
-offset_top = -255.538
-offset_right = 433.084
-offset_bottom = -210.538
+offset_left = 418.266
+offset_top = -210.41
+offset_right = 462.266
+offset_bottom = -165.41
 theme_override_font_sizes/font_size = 30
 
 [node name="close" type="AnimatedSprite2D" parent="盟友列表/friendCloseButton"]
-position = Vector2(22.67, 21.5186)
+position = Vector2(20.3384, 22.5643)
 scale = Vector2(2.74588, 3.05803)
 sprite_frames = SubResource("SpriteFrames_v31wy")
 autoplay = "default"
 
 [node name="friendRightButton" type="TextureButton" parent="盟友列表"]
-offset_left = -58.3627
-offset_top = 11.8485
-offset_right = 0.637337
-offset_bottom = 82.8485
+offset_left = -51.2884
+offset_top = -50.2032
+offset_right = 7.71165
+offset_bottom = 20.7968
 texture_normal = ExtResource("46_gxkk8")
 stretch_mode = 4
 
 [node name="friendLeftButton" type="TextureButton" parent="盟友列表"]
-offset_left = -252.021
-offset_top = 9.59204
-offset_right = -193.021
-offset_bottom = 80.592
+offset_left = -319.226
+offset_top = -53.5879
+offset_right = -260.226
+offset_bottom = 17.4121
 texture_normal = ExtResource("47_2lskr")
 stretch_mode = 4
 
 [node name="等级" type="Label" parent="盟友列表"]
-self_modulate = Color(1, 1, 0, 1)
-offset_left = 33.6028
-offset_top = -166.409
-offset_right = 83.6028
-offset_bottom = -115.409
+self_modulate = Color(1, 1, 0, 0)
+offset_left = 46.867
+offset_top = -164.153
+offset_right = 136.867
+offset_bottom = -113.153
 theme_override_font_sizes/font_size = 40
 text = "等级:"
 
@@ -2651,30 +2672,30 @@ text = "40"
 vertical_alignment = 1
 
 [node name="经验" type="Label" parent="盟友列表"]
-self_modulate = Color(1, 1, 0, 1)
-offset_left = 32.7185
-offset_top = -97.5882
-offset_right = 121.719
-offset_bottom = -46.5882
+self_modulate = Color(1, 1, 0, 0)
+offset_left = 48.6356
+offset_top = -102.101
+offset_right = 138.636
+offset_bottom = -51.101
 theme_override_font_sizes/font_size = 40
 text = "经验:"
 
 [node name="Label" type="Label" parent="盟友列表/经验"]
 layout_mode = 0
-offset_left = 98.1553
-offset_top = 7.89749
-offset_right = 362.155
-offset_bottom = 46.8975
-theme_override_font_sizes/font_size = 30
+offset_left = 98.0
+offset_top = 8.0
+offset_right = 284.0
+offset_bottom = 47.0
+theme_override_font_sizes/font_size = 15
 text = "40/50"
 vertical_alignment = 1
 
 [node name="潜力" type="Label" parent="盟友列表"]
-self_modulate = Color(1, 1, 0, 1)
-offset_left = 33.6028
-offset_top = -26.5107
-offset_right = 122.603
-offset_bottom = 24.4893
+self_modulate = Color(1, 1, 0, 0)
+offset_left = 48.6355
+offset_top = -40.0493
+offset_right = 138.636
+offset_bottom = 10.9507
 theme_override_font_sizes/font_size = 40
 text = "潜力:"
 
@@ -2689,12 +2710,12 @@ text = "15"
 vertical_alignment = 1
 
 [node name="Label" type="Label" parent="盟友列表"]
-offset_left = -30.0656
-offset_top = -253.282
-offset_right = 49.9344
-offset_bottom = -202.282
+offset_left = -49.5198
+offset_top = -204.768
+offset_right = 30.4802
+offset_bottom = -153.768
 theme_override_font_sizes/font_size = 30
-text = "友军"
+text = "盟友"
 
 [node name="宠物食物商店" type="Sprite2D" parent="."]
 visible = false
@@ -2721,11 +2742,6 @@ position = Vector2(194.675, 74.7741)
 scale = Vector2(1.12529, 0.575185)
 texture = ExtResource("73_rwrn5")
 
-[node name="五龙丹" type="Sprite2D" parent="宠物食物商店"]
-position = Vector2(-121.531, 12.6541)
-scale = Vector2(1.09947, 0.561988)
-texture = ExtResource("37_aoug8")
-
 [node name="战斗-道具界面" type="Sprite2D" parent="宠物食物商店"]
 visible = false
 position = Vector2(5.24731, -2.38409)
@@ -2733,13 +2749,15 @@ scale = Vector2(1.16606, 0.596026)
 texture = ExtResource("37_1jmee")
 
 [node name="cost" type="Label" parent="宠物食物商店"]
-offset_left = -178.921
-offset_top = 53.4922
-offset_right = -109.921
-offset_bottom = 104.492
+offset_left = -243.0
+offset_top = 53.0
+offset_right = -60.0
+offset_bottom = 104.0
 scale = Vector2(0.787737, 0.787737)
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 20
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Panel" type="Panel" parent="宠物食物商店"]
 visible = false
@@ -2763,11 +2781,11 @@ offset_bottom = 10.0
 metadata/_edit_use_anchors_ = true
 
 [node name="Label2" type="Label" parent="宠物食物商店"]
-offset_left = 155.29
-offset_top = 60.3945
-offset_right = 275.29
-offset_bottom = 134.394
-scale = Vector2(0.798164, 0.381525)
+offset_left = 163.167
+offset_top = 63.2704
+offset_right = 283.167
+offset_bottom = 137.27
+scale = Vector2(0.593606, 0.283746)
 theme_override_font_sizes/font_size = 60
 text = "购买"
 
@@ -2821,12 +2839,26 @@ texture_normal = ExtResource("81_mvfmb")
 texture_hover = ExtResource("82_cly6t")
 
 [node name="buyAmount" type="Label" parent="宠物食物商店"]
-offset_left = 113.654
-offset_top = -13.2292
-offset_right = 159.654
-offset_bottom = 37.7708
+offset_left = 128.283
+offset_top = -8.05261
+offset_right = 174.283
+offset_bottom = 42.9474
 theme_override_font_sizes/font_size = 40
 text = "50"
+
+[node name="petFoodBall" parent="宠物食物商店" instance=ExtResource("21_ycq5q")]
+position = Vector2(-58.515, 16.1052)
+scale = Vector2(1.41284, 0.797558)
+script = null
+
+[node name="Label" type="Label" parent="宠物食物商店/petFoodBall"]
+offset_left = -89.0
+offset_top = -10.0
+offset_right = -20.0
+offset_bottom = 15.0
+scale = Vector2(0.433707, 0.433707)
+theme_override_font_sizes/font_size = 40
+text = "100000 /"
 
 [node name="currState" type="Label" parent="."]
 visible = false
@@ -3256,6 +3288,434 @@ offset_right = 707.0
 offset_bottom = 329.0
 text = "发送"
 
+[node name="cycle" type="Label" parent="."]
+self_modulate = Color(1, 1, 0, 1)
+offset_left = 256.0
+offset_top = 3.0
+offset_right = 309.0
+offset_bottom = 25.0
+scale = Vector2(0.296021, 0.296021)
+theme_override_font_sizes/font_size = 60
+text = "轮回数:"
+
+[node name="cycleValue" type="Label" parent="cycle"]
+layout_mode = 0
+offset_left = 199.31
+offset_top = 3.37814
+offset_right = 394.31
+offset_bottom = 77.3781
+theme_override_font_sizes/font_size = 60
+text = "0"
+
+[node name="随身商店" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(590, 385)
+scale = Vector2(0.696911, 0.696911)
+texture = ExtResource("94_p65nd")
+
+[node name="golds" type="Label" parent="随身商店"]
+modulate = Color(1, 1, 0, 1)
+offset_left = 338.637
+offset_top = -259.717
+offset_right = 644.637
+offset_bottom = -185.717
+scale = Vector2(0.566104, 0.566104)
+theme_override_font_sizes/font_size = 60
+text = "120000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="随身商店"]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = -1
+anchor_left = 0.969
+anchor_top = 0.171
+anchor_right = 0.984
+anchor_bottom = 0.223
+offset_left = -664.648
+offset_top = -394.978
+offset_right = -375.778
+offset_bottom = -362.11
+scale = Vector2(0.566104, 0.566104)
+theme_override_font_sizes/font_size = 60
+text = "两
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="items" type="Node2D" parent="随身商店"]
+position = Vector2(-578.266, -394.598)
+
+[node name="Label" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 18.6537
+offset_top = 136.316
+offset_right = 268.654
+offset_bottom = 199.316
+theme_override_font_sizes/font_size = 50
+text = "常规恢复："
+
+[node name="Label2" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 20.0887
+offset_top = 324.288
+offset_right = 270.089
+offset_bottom = 387.288
+theme_override_font_sizes/font_size = 50
+text = "战斗药品： "
+
+[node name="Label3" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 15.7839
+offset_top = 559.612
+offset_right = 279.784
+offset_bottom = 622.612
+theme_override_font_sizes/font_size = 50
+text = "暗器:"
+
+[node name="Label4" type="Label" parent="随身商店/items"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 15.7839
+offset_top = 670.1
+offset_right = 279.784
+offset_bottom = 733.1
+theme_override_font_sizes/font_size = 50
+text = "特殊:"
+
+[node name="HScrollBar" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 15.7839
+offset_top = 190.842
+offset_right = 818.784
+offset_bottom = 246.842
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "佛手"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "佛跳墙"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "狗不理包子"
+alignment = 2
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar2" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 17.2188
+offset_top = 256.848
+offset_right = 820.219
+offset_bottom = 312.848
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar2" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "西瓜"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar2/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar3" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 15.7839
+offset_top = 380.249
+offset_right = 818.784
+offset_bottom = 436.249
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar3" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "金疮药"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar3/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar3" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "小还丹"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar3/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar3" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "金香玉"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar3/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar4" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 17.2188
+offset_top = 440.515
+offset_right = 820.219
+offset_bottom = 496.515
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar4" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "老君仙丹"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar4/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem2" type="Button" parent="随身商店/items/HScrollBar4" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "仙狐涎"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar4/shopItem2"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="shopItem3" type="Button" parent="随身商店/items/HScrollBar4" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "人参"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar4/shopItem3"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar5" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 17.2188
+offset_top = 499.346
+offset_right = 820.219
+offset_bottom = 555.346
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar5" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "蛇蝎美人"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar5/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar6" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 12.9141
+offset_top = 615.573
+offset_right = 815.914
+offset_bottom = 671.573
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar6" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "含沙射影"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar6/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="HScrollBar7" type="HBoxContainer" parent="随身商店/items"]
+offset_left = 14.349
+offset_top = 727.496
+offset_right = 817.349
+offset_bottom = 783.496
+
+[node name="shopItem" type="Button" parent="随身商店/items/HScrollBar7" groups=["miniShopItem"]]
+custom_minimum_size = Vector2(265, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "圣兽洗髓"
+script = ExtResource("95_6xso6")
+
+[node name="itemPicture" type="TextureRect" parent="随身商店/items/HScrollBar7/shopItem"]
+layout_mode = 2
+offset_left = 5.39334
+offset_top = -1.81439
+offset_right = 58.3933
+offset_bottom = 54.1856
+texture = ExtResource("96_7h6gv")
+
+[node name="cost" type="Label" parent="随身商店/items"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 850.898
+offset_top = 208.061
+offset_right = 963.898
+offset_bottom = 290.061
+scale = Vector2(0.796363, 0.796363)
+theme_override_font_sizes/font_size = 50
+text = "价格:
+"
+
+[node name="costValue" type="Label" parent="随身商店/items/cost"]
+layout_mode = 1
+offset_left = 2.86975
+offset_top = 64.5706
+offset_right = 292.87
+offset_bottom = 127.571
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="bagAmount" type="Label" parent="随身商店/items"]
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 850.898
+offset_top = 406.078
+offset_right = 1013.9
+offset_bottom = 469.078
+scale = Vector2(0.741504, 0.741504)
+theme_override_font_sizes/font_size = 50
+text = "已拥有:"
+
+[node name="bagAmountValue" type="Label" parent="随身商店/items/bagAmount"]
+layout_mode = 1
+offset_left = 2.86975
+offset_top = 64.5706
+offset_right = 292.87
+offset_bottom = 127.571
+theme_override_font_sizes/font_size = 50
+text = "0"
+
+[node name="miniShopBuy" type="TextureButton" parent="随身商店"]
+offset_left = 424.732
+offset_top = 319.983
+offset_right = 543.732
+offset_bottom = 378.983
+texture_normal = ExtResource("97_bsesd")
+texture_pressed = ExtResource("98_fbor2")
+
+[node name="Label2" type="Label" parent="随身商店"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 432.0
+offset_top = 270.0
+offset_right = 735.0
+offset_bottom = 423.0
+scale = Vector2(0.468687, 0.468687)
+theme_override_font_sizes/font_size = 40
+text = "按下SHIFT点击
+物品数量+10"
+autowrap_mode = 3
+
+[node name="closeShopButton" type="Button" parent="随身商店"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 519.435
+offset_top = -387.424
+offset_right = 563.435
+offset_bottom = -342.424
+theme_override_font_sizes/font_size = 30
+
+[node name="close" type="AnimatedSprite2D" parent="随身商店/closeShopButton"]
+position = Vector2(22.67, 21.5186)
+scale = Vector2(2.74588, 3.05803)
+sprite_frames = SubResource("SpriteFrames_v31wy")
+autoplay = "default"
+
+[node name="description" type="Label" parent="随身商店"]
+offset_left = -555.0
+offset_top = -385.0
+offset_right = 248.0
+offset_bottom = -274.0
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="随身商店"]
+offset_left = 344.377
+offset_top = 331.463
+offset_right = 388.377
+offset_bottom = 355.463
+scale = Vector2(1.6108, 1.82005)
+
+[node name="Label" type="Label" parent="随身商店/CheckButton"]
+layout_mode = 0
+offset_left = -45.4309
+offset_top = 0.788391
+offset_right = 2.56909
+offset_bottom = 22.7884
+text = "买十个"
+
 [connection signal="button_down" from="map/mapSmallButton" to="." method="_on_map_small_button_button_down"]
 [connection signal="button_down" from="position/坐标button" to="." method="_on_坐标button_button_down"]
 [connection signal="button_down" from="phoneButtons/右上" to="." method="_on_右上_button_down"]
@@ -3340,5 +3800,21 @@ text = "发送"
 [connection signal="button_down" from="传梦者列表/AnimatedSprite2D/传梦者列表button" to="." method="_on_传梦者列表button_button_down"]
 [connection signal="timeout" from="onUiTimer" to="." method="_on_on_ui_timer_timeout"]
 [connection signal="button_down" from="Node2D/movePlaceButton" to="." method="_on_move_place_button_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar/shopItem" to="随身商店/items/HScrollBar/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar/shopItem2" to="随身商店/items/HScrollBar/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar/shopItem3" to="随身商店/items/HScrollBar/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar2/shopItem" to="随身商店/items/HScrollBar2/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar3/shopItem" to="随身商店/items/HScrollBar3/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar3/shopItem2" to="随身商店/items/HScrollBar3/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar3/shopItem3" to="随身商店/items/HScrollBar3/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar4/shopItem" to="随身商店/items/HScrollBar4/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar4/shopItem2" to="随身商店/items/HScrollBar4/shopItem2" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar4/shopItem3" to="随身商店/items/HScrollBar4/shopItem3" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar5/shopItem" to="随身商店/items/HScrollBar5/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar6/shopItem" to="随身商店/items/HScrollBar6/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/items/HScrollBar7/shopItem" to="随身商店/items/HScrollBar7/shopItem" method="_on_button_down"]
+[connection signal="button_down" from="随身商店/miniShopBuy" to="." method="_on_mini_shop_buy_button_down"]
+[connection signal="button_down" from="随身商店/closeShopButton" to="." method="_on_close_shop_button_button_down"]
+[connection signal="button_down" from="随身商店/CheckButton" to="." method="_on_check_button_button_down"]
 
 [editable path="importantMsg"]

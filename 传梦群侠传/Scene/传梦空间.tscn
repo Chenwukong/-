@@ -36,7 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://0uei0mkmg6ta" path="res://Characters/关重七.png" id="34_qoobe"]
 [ext_resource type="Texture2D" uid="uid://bx0w1o30r7i6e" path="res://Characters/巡游.png" id="35_gr1yy"]
 [ext_resource type="PackedScene" uid="uid://csr2bo6lfee2s" path="res://Scene/teleport.tscn" id="36_r66bw"]
-[ext_resource type="Texture2D" uid="uid://boxgtmk6wv3q3" path="res://Characters/帐房.png" id="37_o0y8b"]
+[ext_resource type="Texture2D" uid="uid://dlgro80ex6fq0" path="res://Characters/桥造型.png" id="37_ggkgn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5e4p"]
 
@@ -774,15 +774,15 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5jp7d"]
-atlas = ExtResource("37_o0y8b")
-region = Rect2(0, 0, 66, 97)
+[sub_resource type="AtlasTexture" id="AtlasTexture_djagb"]
+atlas = ExtResource("37_ggkgn")
+region = Rect2(0, 0, 268, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4d6vk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5jp7d")
+"texture": SubResource("AtlasTexture_djagb")
 }],
 "loop": true,
 "name": &"default",
@@ -989,6 +989,9 @@ id = "传梦空间9"
 [node name="Node2D3" parent="." instance=ExtResource("16_6fouk")]
 position = Vector2(2828.31, 244.75)
 id = "传梦空间"
+items = {
+"GM战靴": 1
+}
 
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_5188l")
@@ -1129,9 +1132,19 @@ position = Vector2(-189, 246)
 toScene = "长寿村"
 
 [node name="桥" parent="." instance=ExtResource("25_3vp4l")]
-position = Vector2(2094, 1696)
+position = Vector2(2036, 1719)
+scale = Vector2(0.566231, 0.566231)
 sprite_frames = SubResource("SpriteFrames_4d6vk")
 npcName = "桥"
+
+[node name="CollisionPolygon2D" parent="桥/npcBody" index="1"]
+polygon = PackedVector2Array(-270, -284, -293, -282, -296, -248, -293, -217, -295.491, -200.72, -284.894, -174.229, -277.83, -160.101, -231.912, -167.165, -225, -234, -225, -251, -224, -281, -238, -280, -258, -282, -266, -280)
+
+[node name="Button" parent="桥" index="1"]
+offset_left = -30.0232
+offset_top = -40.6196
+offset_right = 55.9768
+offset_bottom = 61.3804
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
@@ -1160,3 +1173,4 @@ color = Color(0, 0, 0, 1)
 [editable path="CanvasLayer"]
 [editable path="CanvasLayer/importantMsg"]
 [editable path="messageLayer"]
+[editable path="桥"]

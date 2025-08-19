@@ -20,6 +20,10 @@ var current_frame = 0
 var player 
 var noMouse = false
 var friendIndex = 0
+var miniShopItems
+var addItemInfo
+var currItemName = ""
+var miniShopBuyTen = false
 func get_all_audio_stream_player2D():
 	var audio_players = []
 	var all_nodes = get_tree().current_scene.get_children()
@@ -33,6 +37,12 @@ func get_all_audio_stream_player2D():
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# 创建 ColorRect
+	miniShopItems = get_tree().get_nodes_in_group("miniShopItem")
+	for i in miniShopItems:
+		i.connect("buy_signal", Callable(self, "_on_buy_signal"))
+		i.connect("item_select_signal", Callable(self, "on_item_select_signal"))
+	$"随身商店/golds".text = str(FightScenePlayers.golds)
+	$cycle/cycleValue.text = str(Global.gameRound - 1)
 	var dark_mask = ColorRect.new()
 	dark_mask.name = "DarkMask"
 	dark_mask.color = Color.BLACK
@@ -102,16 +112,12 @@ func _ready():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Global.currScene == "结束":
+		visible = false
+	$"position/伤害加成/伤害加成value".text = str(round((Global.damageReward1 - 1) * 100.0)) + "%"
 	
-	$"position/伤害加成/伤害加成value".text = str(Global.damageReward1)
+	
 	$Label/Label2.text = str(Engine.get_frames_per_second())
-	if Input.is_action_just_pressed("o"):
-		if Global.noKeyboard:
-			Global.noKeyboard = false
-		else:
-			Global.noKeyboard = true	
-		
-		$Node2D.visible = true
 	deltas = delta
 
 	$"position/限制".text = "限制:" + str(Global.maxLevel)
@@ -145,13 +151,14 @@ func _process(delta):
 			for i in all_nodes:
 				i.volume_db = 6
 	if (Input.is_action_just_pressed("esc") or Input.is_action_just_pressed("x") or Input.is_action_just_pressed("0")) and get_tree().current_scene.name != "北俱战场" and !Global.onTalk:
-		
+		$"宠物食物商店".visible = false
 		$"宠物列表".visible = false
 		$"制作人列表".visible = false
 		$"其他梦单".visible = false
+		$"随身商店".visible = false
 		$map.visible = false
 		get_tree().current_scene.get_node("player").canMove = true
-
+		
 
 
 
@@ -170,7 +177,7 @@ func _process(delta):
 		$"宠物列表/怒气/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].rage)
 		$"宠物列表/灵力/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].abilityPower)
 		$"宠物列表/Label".text = "X " + str(FightScenePlayers.petFoodBall)
-		$"宠物列表/潜力进度/Label".text = str(Global.petPotentialProgress) + "/" + "50"
+		$"宠物列表/潜力进度/Label".text = str(Global.petPotentialProgress) + "/" + "40"
 		$"宠物列表/饱食度/Label".text = str(SmallPetData.currSmallPetData[Global.onTeamSmallPet[0]].hungry)
 		$"宠物列表/1bf2bc55/Label".text = "X " + str(FightScenePlayers.petFood)
 	
@@ -485,6 +492,7 @@ func _on_weapon_button_button_down():
 	if !Global.canMenu:
 		Global.showMsg("目前无法打开菜单！")
 		return
+	$weaponButton/Label.visible = false
 	Global.onUi = true
 	$onUiTimer.start()	
 	$".".visible = false
@@ -538,6 +546,7 @@ func _on_item_button_button_down():
 	if !Global.canMenu:
 		Global.showMsg("目前无法打开菜单！")
 		return
+	$"物品/Label".visible = false
 	$".".visible = false
 	get_tree().current_scene.get_node("menuControl/menuAnimationPlayer").play("menuCallOut")
 	get_tree().current_scene.get_node("menuControl/menuControl").buttonIndex = 0
@@ -573,24 +582,11 @@ func _on_map_button_mouse_exited():
 
 
 func _on_map_button_button_down():
+	$"随身商店/golds".text = str(FightScenePlayers.golds)
+	$"随身商店".visible = true
+	get_tree().current_scene.onMap = true
+	Global.canMove =false
 	
-	
-	
-	if !$map.visible:
-		var mapName = get_tree().current_scene.name
-		if is_instance_valid(get_node("map/"+mapName)):
-			get_node("map/"+mapName).visible =true
-			get_tree().current_scene.onMap = true
-			$map.visible = true
-			get_tree().current_scene.get_node("player").canMove = false
-	else:
-		get_tree().current_scene.get_node("player").canMove = true
-		get_tree().current_scene.onMap = false
-		$map.visible = false
-		var mapName = get_tree().current_scene.name
-		if is_instance_valid(get_node("map/"+mapName)):
-			get_node("map/"+mapName).visible = false
-		
 
 
 func _on_map_small_button_button_down():
@@ -648,7 +644,7 @@ func _on_add_button_button_down():
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/AnimatedSprite2D2".play("click")
 	
-	cost = buyAmount * 100	
+	cost = buyAmount * 100000	
 	$"宠物食物商店/cost".text = str(cost)
 
 func _on_add_button_button_up():
@@ -662,7 +658,7 @@ func _on_min_button_button_down():
 	buyAmount -= 1
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/AnimatedSprite2D3".play("click")
-	cost = buyAmount * 100
+	cost = buyAmount * 100000
 	$"宠物食物商店/cost".text = str(cost)
 
 
@@ -714,7 +710,7 @@ func _on_count_down_timer_timeout():
 
 func _on_buy_button_button_down():
 	FightScenePlayers.golds -= cost * Global.enKey
-	FightScenePlayers.petFood += buyAmount
+	FightScenePlayers.petFoodBall += buyAmount
 	Global.showMsg("购买了"+str(buyAmount)+"个灵宠食物")
 	buyAmount = 0
 	cost = 0
@@ -971,7 +967,7 @@ func _on_button_button_down():
 func _on_pet_right_button_button_down():
 	
 	for i in Global.smallPets.size():
-		print(321)
+	
 		if Global.onTeamSmallPet[0] == Global.smallPets[i]:
 			# 找到当前宠物位置，将其替换为下一个宠物
 			Global.onTeamSmallPet.erase(Global.onTeamSmallPet[0])
@@ -1084,6 +1080,7 @@ func _on_血量加点_button_down():
 func _on_气运加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return
+		
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addCritChance += 0.25
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addBlockChance += 0.25
 	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
@@ -1091,16 +1088,25 @@ func _on_气运加点_button_down():
 func _on_灵力加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 1
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addMp += 10
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	if Input.is_action_pressed("shift") and FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential >9 :		
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 10
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addMp += 100
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 10
+	else:	
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addAbilityPower += 1
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addMp += 10
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
 
 func _on_敏捷加点_button_down():
 	if FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential == 0:
 		return
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addPlayerSpeed += 0.6
-	FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
+	if Input.is_action_pressed("shift") and FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential >9 :		
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addPlayerSpeed += 10
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 10
+	else:		
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].addPlayerSpeed += 1
+		FightScenePlayers.fightScenePlayerData[Global.onTeamPet[friendIndex]].potential -= 1
 	swapFriend()
 
 
@@ -1178,7 +1184,7 @@ func _on_button_base_button_mouse_exited():
 
 func _on_on_ui_timer_timeout():
 	Global.onUi = false
-
+	Global.canMove = true
 
 
 
@@ -1186,3 +1192,63 @@ func _on_on_ui_timer_timeout():
 func _on_move_place_button_button_down():
 	Global.getnode("player").position = Vector2(int($Node2D/TextEdit.text),int($Node2D/TextEdit2.text))
 	$Node2D.visible = false
+
+
+func _on_shop_item_button_down():
+	$"随身商店/items/HScrollBar/shopItem/西瓜"
+func on_item_select_signal(itemName):
+	currItemName = itemName
+	addItemInfo = ItemData.addItemInfo[itemName]
+	print(ItemData[addItemInfo.type].get(itemName).description)
+	$"随身商店/description".text = ItemData[addItemInfo.type].get(itemName).description
+	
+	$"随身商店/items/cost/costValue".text = str(ItemData[addItemInfo.type][addItemInfo.name].gold)
+	if FightScenePlayers[addItemInfo.bagPlace].get(itemName):
+		$"随身商店/items/bagAmount/bagAmountValue".text = str(FightScenePlayers[addItemInfo.bagPlace].get(itemName).number)
+	else:
+		$"随身商店/items/bagAmount/bagAmountValue".text = "0"
+
+
+func _on_mini_shop_buy_button_down():
+	var buyAmount = 1
+	if ItemData[addItemInfo.type][addItemInfo.name].gold > FightScenePlayers.golds:
+		return
+	if Input.is_action_pressed("shift") or miniShopBuyTen:
+		if FightScenePlayers.golds >= ItemData[addItemInfo.type][addItemInfo.name].gold * 10:
+			FightScenePlayers.golds -= ItemData[addItemInfo.type][addItemInfo.name].gold * 10
+			buyAmount = 10
+	else:	
+		FightScenePlayers.golds -= ItemData[addItemInfo.type][addItemInfo.name].gold
+		buyAmount = 1
+	
+	if FightScenePlayers[addItemInfo.bagPlace].get(currItemName):
+		FightScenePlayers[addItemInfo.bagPlace].get(currItemName).number += buyAmount
+		Global.playsound("res://Audio/SE/001-System01.ogg")
+		print(123123)
+	else:
+	
+		Global.addItem(currItemName, addItemInfo.type, addItemInfo.bagPlace, buyAmount)
+		
+	$"随身商店/items/bagAmount/bagAmountValue".text = str(FightScenePlayers[addItemInfo.bagPlace].get(currItemName).number)
+	$"随身商店/golds".text = str(FightScenePlayers.golds)
+
+
+func _on_close_shop_button_button_down():
+	$"随身商店".visible = false
+	get_tree().current_scene.onMap = false
+	$onUiTimer.start()
+
+
+func _on_check_button_button_down():
+	miniShopBuyTen = !miniShopBuyTen
+
+
+func _on_menut_button_mouse_entered():
+	$menutButton/Label2.visible = true
+	
+	
+
+
+
+func _on_menut_button_mouse_exited():
+	$menutButton/Label2.visible = false

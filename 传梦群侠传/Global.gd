@@ -1,7 +1,7 @@
 extends Node
 
 
-
+var potentialReward = 0
 var monsterIdx = -1
 var monsterRemain = false
 var playerIdx = -1
@@ -12,7 +12,8 @@ var dangerScene = {"东海湾":2, "江南野外": 5, "锁妖塔2": 4,"锁妖塔3
 "凤巢1": 3,"凤巢2": 3,"凤巢3": 3,"凤巢4": 3,"凤巢5": 3,"凤巢6": 3,"龙凤巢7": 4,
  "长寿郊外": 7,"幻境1": 2,"幻境2": 2,
  "女娲神迹": 2,
- "创界山":8, "创界山顶":8, "炼狱迷宫1": 8, "炼狱迷宫2":8, "炼狱迷宫3":8, "炼狱迷宫4":8, "炼狱迷宫5":8, "炼狱迷宫6":8, "炼狱迷宫7":8,"天宫":8}
+ "创界山":8, "创界山顶":8, "炼狱迷宫1": 8, "炼狱迷宫2":8, "炼狱迷宫3":8, "炼狱迷宫4":8, "炼狱迷宫5":8, "炼狱迷宫6":8, "炼狱迷宫7":8,"天宫":8
+,"玄天幻化":8}
 var menuOut = false
 var canMenu = true
 var healBuffAmount = 0
@@ -35,6 +36,8 @@ var playersAppended = false
 var onMagicAttacking = false
 var onAttacking = false
 var names = []
+var uniqueId
+var canMove = true
 var onFightDoubleSpeed = false
 var onHitPlayer = []
 var alivePlayers = []
@@ -48,9 +51,10 @@ var killedAmount = 0
 var gameRound = 1
 var haveGao = false
 signal autoAttackSignal
-var helperName = ""
-var helperMsg = ""
+var helperName = "作者"
+var helperMsg = "希望你能将梦传递下去"
 var wutongOn = false
+var tianDaoMoved = 0
 var onItemSelectPicking = false
 var onItemUsePicking = false
 var onItemUsing = false
@@ -82,6 +86,7 @@ var canAttack = false
 var prevScene = ""
 var petPotentialProgress = 0
 var difficulty = "hard"
+var haveMeng = false
 func connectAutoAttackSignal(enemy_instance):
 	enemy_instance.connect('autoAttackSignal', self, '_on_auto_attack')
 var noSounds = false
@@ -116,7 +121,7 @@ var fangCunState = 1
 var atDark = false
 var onBoss = false
 var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军", "青龙", "弥勒佛", "鬼帝", "蚩尤","魔尊","天道"]
-var cantShow = ["东海海道", "长安北","长安镖局", "长安","镇魔地1","镇魔地2","镇魔地3","花果山","普陀山","海底迷宫1", "地府迷宫1", "森罗殿","轮回司","大唐境外","大唐境外","西行之路","轮回之门","五庄观","龙窟1","凤巢1","雷音地下", "创界山", "神庙","女娲神迹","炼狱迷宫1","凌霄宝殿"]
+var cantShow = ["东海海道", "长安北","长安镖局", "长安","镇魔地1","镇魔地2","镇魔地3","花果山","普陀山","海底迷宫1", "地府迷宫1", "森罗殿","轮回司","大唐境外","西行之路","轮回之门","五庄观","龙窟1","凤巢1","雷音地下", "创界山", "神庙","女娲神迹","炼狱迷宫1","凌霄宝殿"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
 	"res://Audio/BGM/战斗-森林.mp3",
@@ -164,8 +169,8 @@ var currPlayer
 var currScene
 var noLimit = true
 var haveQianJi = false
-var onTeamPlayer = ["时追云","小二"]
-var onTeamPet = ["敖白"]
+var onTeamPlayer = ["时追云","小二真身"]
+var onTeamPet = []
 var onTeamSmallPet = ["小鹿"]
 var smallPets = []
 var currPlayerPos
@@ -175,6 +180,7 @@ var petTarget
 var systemMsg = [
 	
 ]
+var onWalkDoubleSpeed = false
 var onUi = false
 var onXiaoErZhenShen = false
 var onPet = false
@@ -343,7 +349,9 @@ var npcVis = {
 		
 		
 		"小二2": {"visible" : false},
-				
+		"兰虎": {"visible" : false},
+		"打更人": {"visible" : false},
+		"挽琴": {"visible" : false},
 	},
 	"长安酒店":{
 		"凌若昭": {"visible" : false},
@@ -406,6 +414,11 @@ var npcVis = {
 		"鹰狂": {"visible":true},
 		"npcs":{"visible":true}
 	},
+	"平定峰2":{
+		"挽琴": {"visible":true},
+
+	},	
+	
 	"方寸山":{
 		"提毗": {"visible":true},
 		"黑山": {"visible":true},
@@ -661,6 +674,10 @@ var npcVis = {
 
 								
 	},
+	"创界山":{
+		"镰魔": {"visible":true},	
+								
+	},
 	"炼狱迷宫1":{
 		"魔画": {"visible":true},	
 								
@@ -704,8 +721,17 @@ var npcVis = {
 		"姜韵": {"visible":false},				
 	},
 	"玄天幻化":{
-		"凌若昭": {"visible":true},
-		"小二": {"visible":true},			
+#		"凌若昭": {"visible":true},
+#		"小二": {"visible":true},	
+#		"姜韵": {"visible":true},	
+		
+		"敖白": {"visible":false},	
+		"金甲": {"visible":false},	
+		"六耳": {"visible":true},
+		"小女孩": {"visible":true},		
+		"怪物组1": {"visible":true},
+		"怪物组2": {"visible":true},
+		"怪物组3": {"visible":true},			
 	}						
 															
 }
@@ -1829,6 +1855,26 @@ var npcs = {
 		"current_dialogue_index": 0,	
 		"constNpc": false	
 	},	
+	"兰虎":{
+		"dialogues": [
+				#0
+					{"chapter": 6, "dialogue": "兰虎1", "unlocked": true, "bgm": null ,"trigger":false},				
+					{"chapter": 6, "dialogue": "兰虎2", "unlocked": true, "bgm": null,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎3", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎4", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎5", "unlocked": true, "bgm":  "res://Audio/BGM/0地狱少女.mp3" ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎6", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎7", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎8", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎9", "unlocked": true, "bgm": null ,"trigger":false},		
+					{"chapter": 6, "dialogue": "兰虎10", "unlocked": true, "bgm": null ,"trigger":false},		
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},		
+	
+	
+	
 	
 	"凌若昭回忆":{
 		"dialogues": [
@@ -2293,6 +2339,14 @@ var npcs = {
 				#0
 					{"chapter": 9, "dialogue": "女娲神迹1", "unlocked": true, "bgm":null,"trigger":false},	
 					{"chapter": 9, "dialogue": "女娲神迹2", "unlocked": true, "bgm":"res://Audio/BGM/雪見-落入凡塵 [TubeRipper.cc].ogg","trigger":false},																																															
+				],
+		"current_dialogue_index": 0,	
+		"constNpc": false	
+	},	
+	"切换入侵":{
+		"dialogues": [
+				#0
+					{"chapter": 9, "dialogue": "切换入侵", "unlocked": true, "bgm":null,"trigger":false},																																												
 				],
 		"current_dialogue_index": 0,	
 		"constNpc": false	
@@ -2771,7 +2825,7 @@ var onHurry = false
 
 var saved_trigger_places
 var totalPotentialBall = 0
-var uniqueId
+
 var countDownOn = false
 var triggerPlace ={				
    "新手警告": {"trigger":false, "disable": false},
@@ -2791,7 +2845,7 @@ var triggerPlace ={
 	"初见小二": {"trigger":false, "disable": false},
 	"小二休息": {"trigger":false, "disable": false},
 	"金甲吃饭": {"trigger":false, "disable": false},
-	
+	"姜韵来方寸": {"trigger":false, "disable": true},
 	"王婆卖瓜": {"trigger":false, "disable": false},
 	"解围金甲": {"trigger":false, "disable": false},
 	"初见若昭": {"trigger":false, "disable": true},
@@ -2871,6 +2925,7 @@ var isDead ={
 func _ready():
 	currScene = get_tree().get_current_scene().get_name()
 	uniqueId = OS.get_unique_id()
+	print(uniqueId,5555)
 	#FightScenePlayers.fightScenePlayerData['时追云'].additionDmg *= 10
 	
 var deltas
@@ -2894,6 +2949,18 @@ func _process(delta):
 
 
 func save():
+	saveData.potentialReward = potentialReward
+	
+	saveData.tianDaoMoved = tianDaoMoved
+	saveData.onWalkDoubleSpeed = onWalkDoubleSpeed
+	
+	saveData.haveMeng = haveMeng
+	saveData.haveQianji = haveQianJi
+	saveData.haveGao = haveGao
+	saveData.onFightDoubleSpeed= onFightDoubleSpeed
+	saveData.damageReward1 =  damageReward1
+	saveData.haveUi = haveUi
+	
 	saveData.petPotentialProgress = petPotentialProgress
 	saveData.smallPets = smallPets
 	saveData.totalPotentialBall = totalPotentialBall
@@ -2948,6 +3015,15 @@ func save():
 	saveData.gai = gai
 func loadData():
 	#lost = saveData.lost
+	potentialReward = saveData.potentialReward 
+	tianDaoMoved = saveData.tianDaoMoved
+	onWalkDoubleSpeed = saveData.onWalkDoubleSpeed
+	haveMeng = saveData.haveMeng
+	haveQianJi = saveData.haveQianji
+	haveGao = saveData.haveGao
+	onFightDoubleSpeed = saveData.onFightDoubleSpeed
+	damageReward1 = saveData.damageReward1
+	haveUi = saveData.haveUi 
 	petPotentialProgress = saveData.petPotentialProgress
 	smallPets = saveData.smallPets
 	totalPotentialBall = saveData.totalPotentialBall
@@ -3001,7 +3077,7 @@ func loadData():
 	if saveData.has("treasureBox"):
 		treasureBox = saveData.treasureBox
 	uniqueId = saveData.uniqueId
-
+	print(saveData.uniqueId,1010101)
 	# Ensure saved data has all default places, add if missing
 
 	get_tree().change_scene_to_file("res://Scene/"+saveData.currScene+".tscn")
@@ -3290,10 +3366,12 @@ func moveTiger():
 	get_tree().current_scene.get_node("SubViewportContainer2/SubViewport/北俱芦洲/AnimationPlayer").play("move白虎")
 	
 func showMsg(text):
+
 	getnode("messageLayer/importantMsg").visible = true
 	getnode("messageLayer/importantMsg/Panel/ImportantMsg").text = text
 
 static func resetGlobal():
+	
 	var new_state = load("res://Global.gd").new()
 	var vars_to_reset = [	"monsterIdx",
 	"monsterRemain",
@@ -3407,7 +3485,6 @@ static func resetGlobal():
 	"onSkipFight",
 	"violencePoint",
 	"questHint",
-	"damageReward1",
 	"chapters",
 	"tempValue",
 	"arDark",
@@ -3443,15 +3520,21 @@ static func resetGlobal():
 	"dial",
 	"onGhost"
 	]
+	
 	for name in vars_to_reset:
 		Global.set(name, new_state.get(name))
 
 static func resetPlayer():
 	var new_state = load("res://Script/FightScenePlayers.gd").new()
-	var vars_to_reset = ["keyItem","fightScenePlayerData2","fightScenePlayerData"]
+	var vars_to_reset = ["keyItem","fightScenePlayerData2","fightScenePlayerData","bagArmorItem","golds"]
 	for name in vars_to_reset:
 		FightScenePlayers.set(name, new_state.get(name))
+		
+		
+		
 	FightScenePlayers.fightScenePlayerData = FightScenePlayers.fightScenePlayerData2
+
+
 
 func playAllSound():
 	for i in getnode("thunderSound").get_children():
@@ -3465,27 +3548,7 @@ static func resetNpcVis():
 	]
 	for name in vars_to_reset:
 		Global.set(name, new_state.get(name))
-func addStuff():
-	npcs["创界山"] = {
-		"dialogues": [ 
-			{
-				"chapter": 10,
-				"dialogue": "创界山1",
-				"unlocked": true,
-				"bgm": null,
-				"trigger": false
-			},
-				{
-				"chapter": 10,
-				"dialogue": "创界山2",
-				"unlocked": true,
-				"bgm": null,
-				"trigger": false
-			}
-		],
-		"current_dialogue_index": 0,
-		"constNpc": false
-	}
+
 #	npcs["月宫之战"]["dialogues"].append({
 #		"chapter": 11,
 #		"dialogue": "月宫之战14",
@@ -3501,3 +3564,23 @@ func isNewPlayer():
 		get_tree().current_scene.get_current_player_num()
 	else:
 		pass
+
+func addPotential():
+	for i in FightScenePlayers.fightScenePlayerData:
+		FightScenePlayers.fightScenePlayerData[i].potential += 50 * (gameRound - 1)
+
+func delete_all_saves():
+	var dir = DirAccess.open("user://")
+	if dir:
+		for i in range(4): # 删除 saveFile0 到 saveFile3
+			var save_name = "saveFile%d" % i
+			if dir.file_exists(save_name):
+				var err = dir.remove(save_name)
+				if err == OK:
+					print("存档 %s 已删除" % save_name)
+				else:
+					print("删除 %s 失败，错误代码: %d" % [save_name, err])
+			else:
+				print("存档 %s 不存在" % save_name)
+
+

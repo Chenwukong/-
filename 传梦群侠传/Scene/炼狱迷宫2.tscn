@@ -1054,11 +1054,18 @@ animation = &"左上attack"
 autoplay = "左上"
 frame = 15
 frame_progress = 1.0
+script = null
+
+[node name="npcBody" parent="六耳" index="0"]
+position = Vector2(-1372, 709)
 
 [node name="小女孩" parent="六耳" instance=ExtResource("24_jpk5q")]
 position = Vector2(68, 84)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_uwe73")
+
+[node name="npcBody" parent="六耳/小女孩" index="0"]
+position = Vector2(1824, 723)
 
 [node name="六耳杀黑龙" parent="." instance=ExtResource("30_sdffh")]
 visible = false
@@ -1183,3 +1190,5 @@ triggerEvent = "炼狱迷宫"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="六耳"]
+[editable path="六耳/小女孩"]

@@ -75,7 +75,7 @@ var tempMagicDefense = 0
 var dmgRation = 1
 var healBuffAmount = 0
 var poisonDebuffAmount = 0
-var 真身round = 1
+var 真身round = 6
 
 var itemList = []
 var magicPanel
@@ -117,6 +117,7 @@ var critChance
 
 var commanButtonIndex = 0
 func _ready():
+	
 	$Control.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	$battleCommends.visible = false
 	if self.playerName == "时追云":
@@ -175,25 +176,16 @@ func _ready():
 	currPhysicDefense = decrypt(addPhysicDefense) + physicDefense
 	currMagicDefense = decrypt(addMagicDefense) + magicDefense
 	
-	if player_data.name == "时追云":	
-		var magic_names = []
-		for magic in playerMagic:
-			magic_names.append(magic["name"])
-				
-		var names =  magic_names
-		for name in names:
-			if name == "高等炼体术":		
-					
-		#if haveGao:
-				haveGao = true
-				currStr += 100
-				currPlayerSpeed += 70
-				currPhysicDefense += 200
-				currMagicDefense += 200
-				totalHp += 500
-				totalMp += 500
-				hp += 500
-				mp += 500
+	if player_data.name == "时追云":				
+		if haveGao:
+			currStr += 100
+			currPlayerSpeed += 70
+			currPhysicDefense += 200
+			currMagicDefense += 200
+			totalHp += 500
+			totalMp += 500
+			hp += 500
+			mp += 500
 				
 				
 	FightScenePlayers.hashTable = FightScenePlayers.fightScenePlayerData
@@ -206,7 +198,7 @@ func _ready():
 		FightScenePlayers.fightScenePlayerData.get(playerName).currHp = FightScenePlayers.fightScenePlayerData.get(playerName).hp
 	get_node("hpControl").visible = false
 func _process(delta):
-	
+
 	if Global.onAttackingList.size()>0 and Global.onAttackingList[0] == "小二真身":
 		$ColorRect.visible = true
 	else:
@@ -251,7 +243,10 @@ func _process(delta):
 #		var names =  magic_names
 #		for name in names:
 #			if name == "高等炼体术":	
-		playerMagic = playerMagic.filter(func(skill): return skill.get("name", "") != "高等炼体术")
+	
+		playerMagic = playerMagic.filter(func(skill): 
+		
+			return skill.get("name", "") != "高等炼体术")
 		Global.playerMagicList = playerMagic
 		
 
@@ -440,9 +435,10 @@ func _process(delta):
 											
 					if castLastMagic.magicInfo.attackType == "multi":			
 						cast_magic_multiple_times(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, 3)
+						
 					else:
 						castMagic(delta, castLastMagic.magicInfo,castLastMagic.target, castLastMagic.type, true)
-						
+						print(castLastMagic.magicInfo,"//",castLastMagic.target,"//" ,castLastMagic.type)
 					
 	
 	
@@ -818,7 +814,7 @@ func _process(delta):
 
 				for target in Global.onHitEnemy:
 					if i == "ice":
-						var chance = Global.currUsingMagic.chance + self.critChance - target.luck 
+						var chance = Global.currUsingMagic.value + self.critChance - target.luck 
 						if chance <= 5:
 							chance = 5
 						var random_value = randf() * 100						
@@ -833,7 +829,7 @@ func _process(delta):
 								target.buffs.append({"onIceDebuff":  Global.currUsingMagic.duration})
 					if i == "sleep":
 					
-						var chance = Global.currUsingMagic.chance + self.critChance - target.luck 
+						var chance = Global.currUsingMagic.value + self.critChance - target.luck 
 						var random_value = randf() * 100
 						if chance <= 5:
 							chance = 5						
@@ -846,7 +842,7 @@ func _process(delta):
 								target.onSleep = Global.currUsingMagic.duration		
 								target.buffs.append({"onSleepDebuff":  Global.currUsingMagic.duration})				
 					if i == "poison":
-						var chance = Global.currUsingMagic.chance + self.critChance - target.luck 
+						var chance = Global.currUsingMagic.value + self.critChance - target.luck 
 						var random_value = randf() * 100
 						if chance <= 5:
 							chance = 5
@@ -1391,9 +1387,10 @@ func attack(target, type):
 func castMagic(delta, magic, target, type, onLastMagic):
 	
 	
-	if Global.haveQianJi and playerName != "小二" and playerName != "小二真身":
+	if Global.haveQianJi and playerName != "小二" and playerName != "小二真身" and ("小二" in Global.onTeamPlayer or "小二真身" in Global.onTeamPlayer):
 		FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1].name)
 		FightScenePlayers.learnMagic("小二",magic.name)
+		print(magic.name,111)
 		FightScenePlayers.eraseMagic("小二真身",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1].name)
 		FightScenePlayers.learnMagic("小二真身",magic.name)		
 		for i in players:
@@ -1415,8 +1412,11 @@ func castMagic(delta, magic, target, type, onLastMagic):
 	Global.target = target
 	if magic.name == "六月飞雪":
 		Global.onHitEnemy = []
-	if randi_range(0,100) <= critChance :
-		crit = "crit"		
+	
+	var critRan = randi_range(0,100)
+	if critRan <= critChance :
+		crit = "crit"	
+		
 	if playerName == "朱雀":
 		get_parent().get_node("朱雀影").visible = true
 		get_parent().get_node("朱雀影").play("法术")
@@ -1427,7 +1427,11 @@ func castMagic(delta, magic, target, type, onLastMagic):
 		
 	magicControlType = type
 	if onLastMagic:
-		Global.target = castLastMagic.target
+		if is_instance_valid(castLastMagic.target):
+			Global.target = castLastMagic.target
+		else:
+			Global.target = monsters[0]
+	
 	if magic.name != "千机变":
 		castLastMagic.magicInfo = magic
 		castLastMagic.target = target
@@ -1887,7 +1891,7 @@ func castMagic(delta, magic, target, type, onLastMagic):
 							pass
 						else:
 							buffTarget.alive = true		
-							buffTarget.currHp += 200	
+							buffTarget.currHp = 300	
 							buffTarget.play(buffTarget.playerName + "idle")
 							buffTarget.get_node("Control").visible = true
 															

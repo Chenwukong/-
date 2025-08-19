@@ -1,7 +1,7 @@
 extends Node
 var hashTable = {}
 var gold = 0
-var golds = 3000000 * Global.enKey
+var golds = 100 * Global.enKey
 var seconds = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,14 +34,18 @@ var keyItem = {
 		"info": ItemData.keyItem.get("洗髓丹"),
 		"number": 9999
 	},
-#	"筋斗云":{
-#		"info": ItemData.keyItem.get("筋斗云"),
-#		"number": 9999
-#	},
-#	"避祸香囊":{
-#		"info": ItemData.keyItem.get("避祸香囊"),
-#		"number": 9999
-#	},
+	"圣兽洗髓":{
+		"info": ItemData.keyItem.get("圣兽洗髓"),
+		"number": 9999
+	},
+	"筋斗云":{
+		"info": ItemData.keyItem.get("筋斗云"),
+		"number": 9999
+	},
+	"避祸香囊":{
+		"info": ItemData.keyItem.get("避祸香囊"),
+		"number": 9999
+	},
 }
 var consumeItem = {
 #	"佛手":{
@@ -68,18 +72,18 @@ var battleItem = {
 #		"info": ItemData.battleConsume.get("月饼"),
 #		"number": 10
 #	},
-	"月饼":{
-		"info": ItemData.battleConsume.get("月饼"),
-		"number": 10
-	},
-	"老君仙丹":{
-		"info": ItemData.battleConsume.get("老君仙丹"),
-		"number": 5
-	},
-	"含沙射影":{
-		"info": ItemData.battleConsume.get("含沙射影"),
-		"number": 10
-	}
+#	"月饼":{
+#		"info": ItemData.battleConsume.get("月饼"),
+#		"number": 10
+#	},
+#	"老君仙丹":{
+#		"info": ItemData.battleConsume.get("老君仙丹"),
+#		"number": 5
+#	},
+#	"含沙射影":{
+#		"info": ItemData.battleConsume.get("含沙射影"),
+#		"number": 10
+#	}
 }
 
 var questItem = {
@@ -101,9 +105,15 @@ var bagArmorItem = {
 		"number": 1,
 		"added": false
 	},
-#	"梦澹":{
-#		"info": ItemData.weapon.get("梦澹"),
-#		"type": "weapon",
+	"传梦之棍":{
+		"info": ItemData.weapon.get("传梦之棍"),
+		"type": "weapon",
+		"number": 1,
+		"added": false
+	},
+#	"天香披肩":{
+#		"info": ItemData.cloth.get("天香披肩"),
+#		"type": "cloth",
 #		"number": 1,
 #		"added": false
 #	},
@@ -126,6 +136,14 @@ var bagArmorItem = {
 		"number": 1,
 		"added": false
 	},
+#	"鎏金浣月衣":{
+#		"info": ItemData.cloth.get("鎏金浣月衣"),
+#		"type": "cloth",
+#		"number": 1,
+#		"added": false
+#	},	
+	
+	
 	"方巾":{
 		"info": ItemData.hat.get("方巾"),
 		"type": "hat",
@@ -163,24 +181,24 @@ var bagArmorItem = {
 #		"number": 1,	
 #		"added": false	
 #	},
-	"面具":{
-		"info": ItemData.hat.get("面具"),
-		"type": "hat",
-		"number": 1,
-		"added": false
-	},
-	"黑魔冠":{
-		"info": ItemData.hat.get("黑魔冠"),
-		"type": "hat",
-		"number": 1,
-		"added": false
-	},
-	"白龙冠":{
-		"info": ItemData.hat.get("白龙冠"),
-		"type": "hat",
-		"number": 1,
-		"added": false
-	},	
+#	"狐媚面具":{
+#		"info": ItemData.hat.get("狐媚面具"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},
+#	"黑魔冠":{
+#		"info": ItemData.hat.get("黑魔冠"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},
+#	"白龙冠":{
+#		"info": ItemData.hat.get("白龙冠"),
+#		"type": "hat",
+#		"number": 1,
+#		"added": false
+#	},	
 #	"皮鞋":{
 #		"info": ItemData.shoes.get("皮鞋"),
 #		"type": "shoes",
@@ -241,8 +259,8 @@ var fightScenePlayerData2= {
 				"effectingNum": 8,
 				"damageSource": "AP",
 				"duration": 1,
-				"value": 4, 
-				"cost": 100,
+				"value": 4.5, 
+				"cost": 150,
 				"description": "黑色的火焰！！！(灵力加成)",
 				"effectArea": "aoe",
 				"animationArea":"enemy",
@@ -255,8 +273,8 @@ var fightScenePlayerData2= {
 				"currExp": 0,
 				"needExp": 50,
 				"attackType": "melee",
-				"value": 6,
-				"cost": 60,
+				"value": 5,
+				"cost": 100,
 				"description": "野兽般的一击！（物理加成）",	
 				"damageSource": "AD",
 				"effectArea": "single",
@@ -300,7 +318,7 @@ var fightScenePlayerData2= {
 			"level": 1,
 			"exp": 0,
 			"needExp":100 ,
-			"magicDeense": 5,
+			"magicDefense": 5,
 			"addMagicDefense": 0,
 			"physicDefense": 5,
 			"addPhysicDefense": 0,
@@ -329,7 +347,7 @@ var fightScenePlayerData2= {
 				"attackType": "buff",
 				"buffEffect": ["currHp","currMp",], 
 				"value": 260,
-				"cost": 50,
+				"cost": 90,
 				"description": "调息周身运转，恢复状态",	
 				"effectArea": "single",
 				"effectingNum": 1,
@@ -394,7 +412,7 @@ var fightScenePlayerData2= {
 			"addMp":0,
 			"currHp": 1000,
 			"currMp": 490,
-			"potential": 0,
+			"potential": 220,
 			"idle": "姜韵idle",
 			"autoAttack":'姜韵autoAttack',
 			"magicAutoAttack": "",
@@ -498,7 +516,7 @@ var fightScenePlayerData2= {
 			"addCritChance":0,
 			"blockChance":100,
 			"addBlockChance": 0,
-			"level": 4,
+			"level": 8,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -603,7 +621,7 @@ var fightScenePlayerData2= {
 				"damageSource": "AP",
 				"attackType": "range",
 				"value": 1,
-				"cost": 30,
+				"cost": 60,
 				"description": "小二的言语攻击，噪音污染",	
 				"effectArea": "aoe",
 				"effectingNum": 5,
@@ -691,8 +709,8 @@ var fightScenePlayerData2= {
 					"name": "五雷咒",
 					"attackType": "range",
 					"damageSource": "AP",
-					"value": 2.5,				
-					"cost": 180,
+					"value": 2.7,				
+					"cost": 80,
 					"description": "引来天雷轰杀单体敌人",	
 					"effectArea": "single",
 					"animationArea":"enemy",
@@ -1012,9 +1030,9 @@ var fightScenePlayerData2= {
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
-			"addMagicDefense": 550,
+			"addMagicDefense": 680,
 			"physicDefense": 5,
-			"addPhysicDefense": 550,
+			"addPhysicDefense": 680,
 			"str": 100,
 			"addStr": 0,
 			"abilityPower": 0,
@@ -1042,7 +1060,7 @@ var fightScenePlayerData2= {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 3, 
+					"value": 4.5, 
 					"cost": 300,
 					"description": "朱雀圣火！",
 					"effectArea": "aoe",
@@ -1096,9 +1114,9 @@ var fightScenePlayerData2= {
 			"physicDefense": 5,
 			"addPhysicDefense": 800,
 			"str": 100,
-			"addStr": 0,
+			"addStr": 500,
 			"abilityPower": 0,
-			"addAbilityPower": 300,
+			"addAbilityPower": 500,
 			"additionDmg": 0,
 			"hp": 500,
 			"addHp": 0,
@@ -1122,7 +1140,7 @@ var fightScenePlayerData2= {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 5.5, 
+					"value": 4, 
 					"cost": 200,
 					"description": "攻击全体敌人",
 					"effectArea": "aoe",
@@ -1161,11 +1179,11 @@ var fightScenePlayerData2= {
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
-			"addMagicDefense": 550,
+			"addMagicDefense": 700,
 			"physicDefense": 5,
-			"addPhysicDefense": 550,
+			"addPhysicDefense": 700,
 			"str": 100,
-			"addStr": 0,
+			"addStr": 500,
 			"abilityPower": 0,
 			"addAbilityPower": 500,
 			"additionDmg": 0,
@@ -1199,13 +1217,13 @@ var fightScenePlayerData2= {
 					"audio": "res://Audio/SE/法术16.ogg",
 					"icon": "res://Icons/●图标 (15).png",
 				},			
-			{
+		
+							{
 					"name": "灭世雷劫",
 					"level": 1,
 					"currExp": 0,
 					"needExp": 300,
 					"attackType": "range",
-					"multiHitTimes": 4,
 					"effectingNum": 5,
 					"damageSource": "AP",
 					"duration": 1,
@@ -1216,7 +1234,7 @@ var fightScenePlayerData2= {
 					"animationArea":"enemy",
 					"audio": "res://Audio/SE/061-Thunderclap01.ogg",
 					"icon": "res://Icons/●图标 (15).png",
-				},					
+				},						
 			# Add more magic spells as needed
 			],
 			"autoAttackSound": "res://Audio/SE/092-Attack04.ogg",
@@ -1247,13 +1265,13 @@ var fightScenePlayerData2= {
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
-			"addMagicDefense": 550,
+			"addMagicDefense": 700,
 			"physicDefense": 5,
-			"addPhysicDefense": 550,
+			"addPhysicDefense": 700,
 			"str": 100,
 			"addStr": 500,
 			"abilityPower": 0,
-			"addAbilityPower":0,
+			"addAbilityPower":500,
 			"additionDmg": 0,
 			"hp": 500,
 			"addHp": 0,
@@ -1488,7 +1506,7 @@ var fightScenePlayerData = {
 				"currExp": 0,
 				"needExp": 50,
 				"attackType": "melee",
-				"value": 6,
+				"value": 5.5,
 				"cost": 60,
 				"description": "野兽般的一击！（物理加成）",	
 				"damageSource": "AD",
@@ -1533,7 +1551,7 @@ var fightScenePlayerData = {
 			"level": 99,
 			"exp": 0,
 			"needExp":100 ,
-			"magicDeense": 5,
+			"magicDefense": 5,
 			"addMagicDefense": 0,
 			"physicDefense": 5,
 			"addPhysicDefense": 0,
@@ -1562,7 +1580,7 @@ var fightScenePlayerData = {
 				"attackType": "buff",
 				"buffEffect": ["currHp","currMp",], 
 				"value": 300,
-				"cost": 50,
+				"cost": 90,
 				"description": "调息周身运转，恢复状态",	
 				"effectArea": "single",
 				"effectingNum": 1,
@@ -1592,7 +1610,7 @@ var fightScenePlayerData = {
 				"multiHitTimes": 3,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 0.9, 
+				"value": 1.2, 
 				"cost": 50,
 				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
 				"effectArea": "single",
@@ -1889,6 +1907,20 @@ var fightScenePlayerData = {
 			"autoAttack":'小二autoAttack',
 			"magicAutoAttack": "",
 			"playerMagic":[
+			{
+					"name": "火域",
+					"attackType": "special",
+					"value": 5,
+					"cost": 500,
+					"damageSource": "AP",
+					"description": "触碰到的人都会受到伤害",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 3,
+					"duration": 8,
+					"audio": "res://Audio/SE/火4.ogg",
+					"icon":"res://Icons/●图标 (77).png",
+				},	
 	{
 				"name": "唧唧歪歪",
 				"level": 1,
@@ -1949,7 +1981,7 @@ var fightScenePlayerData = {
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 20,
+			"level": 70,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1973,19 +2005,23 @@ var fightScenePlayerData = {
 			#"playerAutoSound": "res://Audio/SE/男-剑.ogg",
 			"magicAutoAttack":"凌若昭magicAutoAttack",
 			"playerMagic": [
-#				{
-#					"name": "催眠",
-#					"attackType": "debuff",
-#					"buffEffect": ["sleep"], 
-#					"cost": 10,
-#					"description": "同时催眠3个敌人",	
-#					"effectArea": "aoe",
-#					"animationArea":"enemy",
-#					"effectingNum": 3,
-#					"duration": 2,
-#					"audio": "res://Audio/SE/法术5.ogg",
-#					"icon":"res://Icons/●图标 (88).png",
-#				},	{
+				{
+					"name": "催眠",
+					"level":1,
+					"currExp": 0,
+					"needExp":20,
+					"attackType": "debuff",
+					"buffEffect": ["sleep"], 
+					"cost": 130,
+					"value": 50,
+					"description": "同时催眠3个敌人",	
+					"effectArea": "aoe",
+					"animationArea":"enemy",
+					"effectingNum": 3,
+					"duration": 2,
+					"audio": "res://Audio/SE/法术5.ogg",
+					"icon":"res://Icons/●图标 (88).png",
+				},	
 #					"name": "冰封",
 #					"attackType": "debuff",
 #					"buffEffect": ["ice"], 
@@ -2003,7 +2039,7 @@ var fightScenePlayerData = {
 					"attackType": "range",
 					"damageSource": "AP",
 					"value": 2.5,				
-					"cost": 180,
+					"cost": 80,
 					"description": "引来天雷轰杀单体敌人",	
 					"effectArea": "single",
 					"animationArea":"enemy",
@@ -2353,7 +2389,7 @@ var fightScenePlayerData = {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 3, 
+					"value": 4.5, 
 					"cost": 300,
 					"description": "朱雀圣火！",
 					"effectArea": "aoe",
@@ -2433,7 +2469,7 @@ var fightScenePlayerData = {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 5, 
+					"value": 4, 
 					"cost": 200,
 					"description": "攻击全体敌人",
 					"effectArea": "aoe",
@@ -2472,9 +2508,9 @@ var fightScenePlayerData = {
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
-			"addMagicDefense": 550,
+			"addMagicDefense": 800,
 			"physicDefense": 5,
-			"addPhysicDefense": 550,
+			"addPhysicDefense": 800,
 			"str": 100,
 			"addStr": 0,
 			"abilityPower": 0,
@@ -2510,14 +2546,13 @@ var fightScenePlayerData = {
 					"audio": "res://Audio/SE/法术16.ogg",
 					"icon": "res://Icons/●图标 (15).png",
 				},			
-			{
+				{
 					"name": "灭世雷劫",
 					"level": 1,
 					"currExp": 0,
 					"needExp": 300,
 					"attackType": "range",
-					"multiHitTimes": 4,
-					"effectingNum": 1,
+					"effectingNum": 5,
 					"damageSource": "AP",
 					"duration": 1,
 					"value": 8, 
@@ -2899,7 +2934,8 @@ func update_status():
 				
 		var player_magic = player.get("playerMagic", [])
 		for magic in player_magic:
-			if magic.has("level"):
+			
+			if magic and magic.has("level"):
 				magic["needExp"] = calculate_exp_for_magic_level(magic["level"])
 				if magic.currExp >= magic.needExp:
 					
@@ -2953,9 +2989,13 @@ func update_status():
 			player["abilityPower"] = calculate_abilityPower_for_level(player["level"], player["name"])
 			
 			
-func calculate_exp_for_magic_level(level):
-	# You can adjust this formula as per your requirement	
-	return 20 * level
+func calculate_exp_for_magic_level(level: int) -> int:
+	var base = 20
+	var increment = 1
+	if Global.gameRound > 1:
+		base = 15
+		increment = 0
+	return base + (level - 1) * increment
 
 func calculate_exp_for_player_level(level: int) -> int:
 	var baseExp = 100  # 从60增到100
@@ -3087,7 +3127,36 @@ func remove_empty_items():
 	for key in keys_to_remove:
 		bagArmorItem.erase(key)
 var unLearnMagic = {
-			"飞剑决":{"name": "飞剑决",
+			"水攻":{
+				"name": "水攻",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 2,				
+				"cost": 10,
+				"description": "水产基本法术",	
+				"effectArea": "single",
+				"animationArea":"enemy",
+				"effectingNum": 1,
+				"audio":"res://Audio/SE/法术12.ogg",
+				"icon": "res://Icons/水攻.png",
+			},
+			"水漫金山":{
+				"name": "水漫金山",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 1, 
+				"cost": 50,
+				"description": "群攻法术",
+				"effectArea": "aoe",
+				"effectingNum": 4,
+				"animationArea":"enemy",
+				"audio":"res://Audio/SE/法术12.ogg",
+				"icon":"res://Icons/●图标 (120).png"
+			},	
+	
+	
+			"飞剑决":
+				{"name": "飞剑决",
 							"level": 1,
 							"currExp": 0,
 							"needExp": 50,
@@ -3103,12 +3172,14 @@ var unLearnMagic = {
 						},		
 	
 	
-			"催眠咒":{
+			"催眠":			{
 					"name": "催眠",
+					"currExp": 0,
+					"needExp":20,
 					"attackType": "debuff",
 					"buffEffect": ["sleep"], 
-					"cost": 100,
-					"chance": 50,
+					"cost": 130,
+					"value": 30,
 					"description": "同时催眠3个敌人",	
 					"effectArea": "aoe",
 					"animationArea":"enemy",
@@ -3141,7 +3212,7 @@ var unLearnMagic = {
 				"multiHitTimes": 3,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 0.9, 
+				"value": 1.2, 
 				"cost": 50,
 				"description": "全力攻击，休息一回合,如果三次攻击同一个目标，第三次伤害暴涨",
 				"effectArea": "single",
@@ -3328,7 +3399,7 @@ var unLearnMagic = {
 					"needExp": 50,
 					"attackType": "buff",
 					"buffEffect": ["contHp"], 
-					"value": 500,
+					"value": 550,
 					"cost": 240,
 					"description": "杨柳仙露的功效，持续恢复4名队友血量4回合",	
 					"effectArea": "aoe",
@@ -3345,11 +3416,11 @@ var unLearnMagic = {
 					"attackType": "buff",
 					"buffEffect": ["currMagicDefense"], 
 					"value": 600,
-					"cost": 500,
-					"description": "短时间内给三名队友提升大量灵力防御",	
+					"cost": 150,
+					"description": "短时间内给四名队友提升大量灵力防御",	
 					"effectArea": "aoe",
 					"animationArea":"allie",
-					"effectingNum": 3,
+					"effectingNum": 4,
 					"duration": 1,
 					"audio": "res://Audio/ME/啊弥拖佛.ogg",
 					"icon":"res://Icons/●图标 (77).png",
@@ -3371,8 +3442,8 @@ var unLearnMagic = {
 			"滔天":{
 					"name": "滔天",
 					"attackType": "range",
-					"value": 8,
-					"cost": 500,
+					"value": 10,
+					"cost": 300,
 					"damageSource": "AD",
 					"description": "单体伤害",	
 					"effectArea": "single",
@@ -3423,7 +3494,7 @@ var unLearnMagic = {
 				"damageSource": "AD",
 				"duration": 1,
 				"value": 7, 
-				"cost": 400,
+				"cost": 300,
 				"description": "挥动玉箍棒砸扁敌人(物理加成)",
 				"effectArea": "aoe",
 				"animationArea":"enemy",
@@ -3438,7 +3509,7 @@ var unLearnMagic = {
 				"attackType": "buff",
 				"buffEffect": ["currHp","currMp",], 
 				"value": 260,
-				"cost": 50,
+				"cost": 90,
 				"description": "调息周身运转，恢复状态",	
 				"effectArea": "single",
 				"effectingNum": 1,
@@ -3531,7 +3602,7 @@ var unLearnMagic = {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 3, 
+					"value": 4.5, 
 					"cost": 300,
 					"description": "朱雀圣火！",
 					"effectArea": "aoe",
@@ -3557,13 +3628,12 @@ var unLearnMagic = {
 					"audio": "res://Audio/SE/法术16.ogg",
 					"icon": "res://Icons/●图标 (15).png",
 				},			
-				"灭世雷劫":{
+				"灭世雷劫":				{
 					"name": "灭世雷劫",
 					"level": 1,
 					"currExp": 0,
 					"needExp": 300,
 					"attackType": "range",
-					"multiHitTimes": 4,
 					"effectingNum": 5,
 					"damageSource": "AP",
 					"duration": 1,
@@ -3574,7 +3644,7 @@ var unLearnMagic = {
 					"animationArea":"enemy",
 					"audio": "res://Audio/SE/061-Thunderclap01.ogg",
 					"icon": "res://Icons/●图标 (15).png",
-				},				
+				},					
 				"水龙吟":{
 					"name": "水龙吟",
 					"level": 1,
@@ -3585,14 +3655,40 @@ var unLearnMagic = {
 					"effectingNum": 8,
 					"damageSource": "AP",
 					"duration": 1,
-					"value": 5.5, 
+					"value": 4, 
 					"cost": 200,
 					"description": "攻击全体敌人",
 					"effectArea": "aoe",
 					"animationArea":"enemy",
 					"audio": "res://Audio/SE/128-Water03.ogg",
 					"icon": "res://Icons/龙卷雨击.png",
-				},			
+				},	
+				"龙卷雨击":{
+				"name": "龙卷雨击",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 3, 
+				"cost": 400,
+				"description": "群攻法术",
+				"effectArea": "aoe",
+				"effectingNum": 8,
+				"animationArea":"screen",
+				"audio":"res://Audio/SE/暗雷.ogg",
+				"icon":"res://Icons/龙卷雨击.png"
+			},	
+			"双龙戏珠":{
+				"name": "双龙戏珠",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 5,
+				"cost": 200,
+				"description": "龙王法术",
+				"effectArea": "single",
+				"effectingNum": 1,
+				"animationArea": "enemy",
+				"audio": "res://Audio/SE/双龙戏猪.ogg",
+				"icon": "res://Icons/●图标 (1).png"
+			},			
 				"虎啸":{
 				"name": "虎啸",
 				"level": 1,
@@ -3619,19 +3715,46 @@ var unLearnMagic = {
 				"multiHitTimes": 4,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 1.5, 
+				"value": 1.8, 
 				"cost": 50,
 				"description": "连续攻击4次，休息一回合",
 				"effectArea": "single",
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/野兽怒.ogg",
 				"icon": "res://Icons/●图标 (11).png",
-			},								
+			},
+			"五雷咒":{
+					"name": "五雷咒",
+					"attackType": "range",
+					"damageSource": "AP",
+					"value": 2.7,				
+					"cost": 80,
+					"description": "引来天雷轰杀单体敌人",	
+					"effectArea": "single",
+					"animationArea":"enemy",
+					"effectingNum": 1,
+					"audio": "res://Audio/SE/123-Thunder01.ogg",
+					"icon":"res://Icons/五雷.png"
+				},		
+			"水满金山":			{
+				"name": "水满金山",
+				"attackType": "range",
+				"damageSource": "AP",
+				"value": 2,
+				"cost": 60,
+				"description": "水漫金山的进阶法术",
+				"effectArea": "aoe",
+				"effectingNum": 6,
+				"animationArea": "enemy",
+				"audio": "res://Audio/SE/127-Water02.ogg",
+				"icon": "res://Icons/●图标 (14).png"
+			}	
+								
 }
 func learnMagic(character, magicName):
 	var magicList = fightScenePlayerData.get(character).playerMagic
 	magicList.append(unLearnMagic.get(magicName))
-
+	print(magicName,222)
 func eraseMagic(character, magicName):
 	var magicList = fightScenePlayerData.get(character).playerMagic
 	for i in range(magicList.size()):

@@ -936,11 +936,18 @@ animation = &"左上attack"
 autoplay = "左上"
 frame = 15
 frame_progress = 1.0
+script = null
+
+[node name="npcBody" parent="六耳" index="0"]
+position = Vector2(-1747, 717)
 
 [node name="小女孩" parent="六耳" instance=ExtResource("25_pa6wt")]
 position = Vector2(68, 84)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_uwe73")
+
+[node name="npcBody" parent="六耳/小女孩" index="0"]
+position = Vector2(1950, 506)
 
 [node name="六耳杀黑龙" parent="." instance=ExtResource("31_oxdn7")]
 visible = false
@@ -1054,3 +1061,5 @@ npcName = "画魔"
 [editable path="teleportCircle"]
 [editable path="小二"]
 [editable path="小二/小二"]
+[editable path="六耳"]
+[editable path="六耳/小女孩"]

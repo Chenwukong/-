@@ -253,6 +253,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer4/结尾/Node2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_eg635"]
 resource_name = "shake"
@@ -439,7 +451,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(91, 103.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(66.6439, -1019.55)]
+"values": [Vector2(0, 0), Vector2(-23.6834, -1673.45)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -961,19 +973,19 @@ visible = false
 [node name="position" parent="CanvasLayer" index="4"]
 visible = false
 
-[node name="限制" parent="CanvasLayer/position" index="0"]
+[node name="限制" parent="CanvasLayer/position" index="1"]
 visible = false
 
-[node name="xyLabel" parent="CanvasLayer/position" index="2"]
+[node name="xyLabel" parent="CanvasLayer/position" index="3"]
 visible = false
 
-[node name="mapName" parent="CanvasLayer/position" index="3"]
+[node name="mapName" parent="CanvasLayer/position" index="4"]
 visible = false
 
-[node name="Label" parent="CanvasLayer/position" index="4"]
+[node name="Label" parent="CanvasLayer/position" index="5"]
 visible = false
 
-[node name="坐标button" parent="CanvasLayer/position" index="5"]
+[node name="坐标button" parent="CanvasLayer/position" index="6"]
 visible = false
 
 [node name="phoneButtons" parent="CanvasLayer" index="5"]
@@ -1374,37 +1386,32 @@ text = "感谢所有测试的玩家！"
 [node name="Label2" type="Label" parent="CanvasLayer4/结尾/Node2D/Label"]
 modulate = Color(1, 0, 1, 1)
 layout_mode = 0
-offset_left = 237.935
-offset_top = 67.8907
-offset_right = 737.935
-offset_bottom = 1516.89
+offset_left = -24.2339
+offset_top = 446.65
+offset_right = 475.766
+offset_bottom = 1958.65
 theme_override_font_sizes/font_size = 50
-text = "入您
+text = "排名不分先后
+入您
 奇迹行者
 橙子色的橘子
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-x
-
-x
- "
+桥
+栋
+H.
+绘梦ing
+激情先生
+Missing You
+三要居士
+佛耶戈
+坏小x孩
+冗余.
+安静
+"
+horizontal_alignment = 1
 
 [node name="怀孕" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(579, 472.75)
 scale = Vector2(1.11719, 0.924316)
 texture = ExtResource("33_ujmaw")
@@ -1421,6 +1428,7 @@ text = "实在没什么好说的了，写这行凑凑数
 
 [node name="旅游" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(584, 471)
 scale = Vector2(0.611327, 0.611327)
 texture = ExtResource("34_hqbu0")
@@ -1441,6 +1449,7 @@ text = "            提供帮助的作者们:
 
 [node name="并肩作战" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(401.5, 398)
 scale = Vector2(0.990234, 0.792969)
 texture = ExtResource("35_ttvwo")
@@ -1458,6 +1467,7 @@ text = "游戏脚本：传梦
 
 [node name="敖白铃音" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(580, 401)
 scale = Vector2(0.516853, 0.515447)
 texture = ExtResource("32_7g6jc")
@@ -1474,6 +1484,7 @@ text = "素材来源：群侠传系列
 
 [node name="黑山吃鸡" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(561, 399)
 scale = Vector2(0.522461, 0.522461)
 texture = ExtResource("37_cvpir")
@@ -1490,6 +1501,7 @@ text = "插画来源: ChatGpt
 
 [node name="锁妖塔" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(605.5, 399)
 scale = Vector2(0.791016, 0.791016)
 texture = ExtResource("33_grp6j")
@@ -1507,6 +1519,7 @@ text = "UI美工：墨兮
 
 [node name="时追云杀妖" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(574.5, 383)
 scale = Vector2(0.755859, 0.755859)
 texture = ExtResource("32_nllsj")
@@ -1524,6 +1537,7 @@ text = "游戏编剧：传梦
 
 [node name="Dead" type="Sprite2D" parent="CanvasLayer4"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(574.445, 328.625)
 scale = Vector2(0.604398, 0.604398)
 texture = ExtResource("40_owxr5")
@@ -1538,6 +1552,8 @@ theme_override_font_sizes/font_size = 50
 text = "此张为b站画师加班Jab所画"
 
 [node name="家务" type="Sprite2D" parent="CanvasLayer4"]
+visible = false
+modulate = Color(1, 1, 1, 0)
 position = Vector2(566.25, 400.25)
 scale = Vector2(0.788574, 0.788574)
 texture = ExtResource("37_37gp8")

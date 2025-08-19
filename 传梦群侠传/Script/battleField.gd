@@ -128,8 +128,8 @@ func _ready():
 		totalHp += i.hp
 	if monsters[0].level >= Global.maxLevel:
 		Global.petPotentialProgress += monsters.size()
-		if Global.petPotentialProgress > 50:
-			Global.petPotentialProgress -= 50
+		if Global.petPotentialProgress > 40:
+			Global.petPotentialProgress -=  40
 			FightScenePlayers.petFoodBall += 1
 			FightScenePlayers.totalPetFoodBall += 1
 		
@@ -518,10 +518,10 @@ func _process(delta):
 					i.currHp = (i.hp + i.addHp )/7
 				if i.name == "小二" or i.name == "小二真身":
 					if Global.haveQianJi:
-						FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1])
+						FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1].name)
 						FightScenePlayers.eraseMagic("小二","千机变")
 						FightScenePlayers.learnMagic("小二","千机变")
-						FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1])
+						FightScenePlayers.eraseMagic("小二真身",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1].name)
 						FightScenePlayers.eraseMagic("小二真身","千机变")
 						FightScenePlayers.learnMagic("小二真身","千机变")
 						
@@ -545,7 +545,7 @@ func _process(delta):
 			Global.onItemUsing = false
 			Global.selectedTarget = false
 			Global.onHitPlayer = []
-			Global.killedAmount += selectedMonsters.size()
+			
 			if Global.atNight:
 				get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			else:
@@ -673,7 +673,7 @@ func _process(delta):
 		Global.onItemUsing = false
 		Global.selectedTarget = false
 		Global.onHitPlayer = []
-		Global.killedAmount += selectedMonsters.size()
+	
 		if Global.atNight and get_parent().get_parent().has_node("DirectionalLight2D") :
 			get_parent().get_parent().get_node("DirectionalLight2D").energy = 4.7	
 			get_parent().get_parent().get_node("AudioStreamPlayer2D").volume_db = 4.5	
@@ -707,6 +707,7 @@ func _process(delta):
 			get_parent().get_parent().get_node("CanvasLayer").visible = true
 		#战后结算经验和金币
 		if !Global.lost:
+			
 			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/item").visible = false
 			get_parent().get_parent().get_node("BattleReward/BattleReward/CanvasLayer/Panel/exp").visible = true
 			
@@ -724,6 +725,8 @@ func _process(delta):
 	
 		if !rewardAdded:
 			rewardAdded = true	
+			
+			Global.killedAmount += selectedMonsters.size()
 			FightScenePlayers.golds += totalGold * Global.enKey
 			for player_name in FightScenePlayers.fightScenePlayerData:
 				
@@ -1057,7 +1060,9 @@ func instantiateMonster():
 		enemySceneInstance.autoAttackSound = monsterData.autoAttackSound
 		enemySceneInstance.exp = monsterData.exp
 		enemySceneInstance.gold = monsterData.gold
-		enemySceneInstance.luck = monsterData.luck
+		enemySceneInstance.luck = monsterData.level * 1.05
+
+		
 		enemySceneInstance.monsterIndex = monsterIdx + 1
 		enemySceneInstance.set_name(enemySceneInstance.monsterName + str(monsterIdx + 1))
 		
@@ -1137,6 +1142,10 @@ func instantiateBoss():
 		enemySceneInstance.gold = monsterData.gold
 		enemySceneInstance.autoAttackSound = monsterData.autoAttackSound
 		
+		if enemySceneInstance.luck == 0:
+			enemySceneInstance.luck = monsterData.level * 1.3
+		else:
+			enemySceneInstance.luck = monsterData.luck		
 		enemySceneInstance.monsterIndex = monsterIdx + 1
 		enemySceneInstance.set_name(enemySceneInstance.monsterName + str(monsterIdx + 1))
 		
@@ -2018,10 +2027,10 @@ func setFightTime():
 func _on_speed_button_button_down():
 	if !Global.onFightDoubleSpeed:
 		Global.onFightDoubleSpeed = true
-		Engine.time_scale = 2.0
+		
 		$speedButton.text = "X2"
 	else:
 		Global.onFightDoubleSpeed = false
-		Engine.time_scale = 1.0
+		
 		$speedButton.text = "X1"
 		

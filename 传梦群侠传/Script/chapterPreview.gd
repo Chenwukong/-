@@ -7,29 +7,41 @@ func _ready():
 	match chapterId:
 		1:
 			$Panel/Label.text = "第一章:  浮生难安"
+			get_tree().get_root().get_window().set_title("传梦之路 第一章:  浮生难安")
 		2:
 			Global.cantShow.append("建邺城右")
-			$Panel/Label.text = "第二章:  人以当先"	
+			$Panel/Label.text = "第二章:  人以当先"
+			get_tree().get_root().get_window().set_title("传梦之路 第二章:  人以当先")	
 		3: 
 			$Panel/Label.text = "第三章:  灵台仙闻"
+			get_tree().get_root().get_window().set_title("传梦之路 第三章:  灵台仙闻")	
 		4:
 			$Panel/Label.text = "第四章:  无妄妖祸"
+			get_tree().get_root().get_window().set_title("传梦之路 第四章:  无妄妖祸")	
 		5:
 			$Panel/Label.text = "第五章:  鬼蜮迷途"
+			get_tree().get_root().get_window().set_title("传梦之路 第五章:  鬼蜮迷途")	
 		6:
 			$Panel/Label.text = "第六章:  魅情实切"
+			get_tree().get_root().get_window().set_title("传梦之路 第六章:  魅情实切")	
 		7:
 			$Panel/Label.text = "第七章:  不屈之魂"
+			get_tree().get_root().get_window().set_title("传梦之路 第七章:  不屈之魂")	
 		8:
 			$Panel/Label.text = "第八章:  西域险行"
+			get_tree().get_root().get_window().set_title("传梦之路 第八章:  西域险行")	
 		9:
-			$Panel/Label.text = "第九章:  梦澹现世"			
+			$Panel/Label.text = "第九章:  梦澹现世"
+			get_tree().get_root().get_window().set_title("传梦之路 第九章:  梦澹现世")				
 		10:
-			$Panel/Label.text = "第十章:  魔窟深渊"				
+			$Panel/Label.text = "第十章:  魔窟深渊"
+			get_tree().get_root().get_window().set_title("传梦之路 第十章:  魔窟深渊")					
 		11:
-			$Panel/Label.text = "第十一章:  终局之战"			
+			$Panel/Label.text = "第十一章:  终局之战"	
+			get_tree().get_root().get_window().set_title("传梦之路 第十一章:  终局之战")			
 		12:
-			$Panel/Label.text = "第十二章:  道归虚无"				
+			$Panel/Label.text = "第十二章:  道归虚无"	
+			get_tree().get_root().get_window().set_title("传梦之路 第十二章:  道归虚无")				
 		
 		
 	

@@ -17,7 +17,7 @@ set Global.onTeamPlayer.append("小二")
 
 ~ 战斗员
 set Global.onTalk = true
-set get_tree().current_scene.bossFight("鬼将军","res://Audio/BGM/战斗-BOSS 正义.mp3", "王姨")
+set get_tree().current_scene.bossFight("魔尊","res://Audio/BGM/战斗-BOSS 正义.mp3", "王姨")
 set Global.onTalk = false
 => END
 
@@ -39,14 +39,16 @@ set Global.onTalk = false
 ~ 新手警告
 set Global.onTalk = true
 set Global.isNewPlayer()
+set Global.addPotential()
 传梦: 这是传梦之路试玩版，目前还有许多的bug。
 set FightScenePlayers.healAll()
 传梦: 如果在游戏中被npc或者建筑卡住，可按r或者点击左上角的坐标图急救
 传梦: 你的包内有装备记得穿上
 传梦: 玩家无法高于当前剧情等级，具体请看ui左上角
-
-
-
+传梦: 右下角第二个功能按钮能查看一些操作提示
+传梦: 一周目是无法达成完美结局的
+传梦: 一周目是无法达成完美结局的
+传梦: 一周目是无法达成完美结局的
 #if !Global.onPhone:
 #	传梦: 鼠标和键盘大部分时候不可共用
 #	传梦: 鼠标模式没办法用键盘的快捷键如alt+q,alt+w等
@@ -112,13 +114,13 @@ set Global.currNpc = null
 ~ 初见两兵
 set Global.onTalk = true
 时追云喜: [speed=0.4]两位大哥，我先回去了
-丙假: [speed=0.4] 哟，追云，这就抛弃我们哥俩走了啊无奈
+丙假: [speed=0.4]哟，追云，这就抛弃我们哥俩走了啊无奈
 丁真: [speed=0.4]确实该早点回去的好，最近这海边可不太平
 时追云: [speed=0.4]怎么了吗？疑惑
 丙假: [speed=0.4]我们也是听说，你可不要说出去啊
 丙假: [speed=0.4]听说最近有妖怪在我们附近徘徊
 时追云惊: [speed=0.3]妖怪！？真的假的？惊讶
-丁真: [speed=0.4]这谁说得准呢，上头说是有人看见了，不过我看啊这事八成是真的，要不能派我两守这？
+丁真: [speed=0.4]这谁说得准呢，上头说是有人看见了，不过我看啊这事八成是真的，要不能派我俩守这？
 丁真: [speed=0.4]所以啊，你最近最好也小心点，免得运气不好真遇见了那些个玩意
 丙假: [speed=0.4]不用怕，如果真的有妖怪出来了哥们直接把他做了墨镜
 丁真: [speed=0.4]得了吧，就你那水平就别吹牛逼了️鼻血
@@ -139,8 +141,8 @@ set Global.currNpc = null
 ~ 遇见海龟
 set Global.onTalk = true
 时追云惊: [speed=0.3]这里怎么有只这么大的海龟惊呆
-时追云: [speed=0.3] 你挪开点，我要过去
-大海龟: [speed=0.1] 瞌睡
+时追云: [speed=0.3]你挪开点，我要过去
+大海龟: [speed=0.1]瞌睡
 时追云: ......
 时追云惊: [speed=0.8]我居然还推不动你了！
 大海龟: [speed=0.3]咕咕微笑
@@ -165,26 +167,27 @@ set Global.currNpc = null
 set Global.onTalk = true
 姜韵喜: [speed=0.5]夫君你回来了你好
 时追云喜: [speed=0.4]是啊，今天给我煮了什么好吃的，这么香垂涎
-姜韵喜: [speed=0.2] 牛羊羹~
-时追云喜: [speed=0.4] 娘子幸苦了
-时追云喜: [speed=0.3] 娘子的手艺真是世无双点赞
-姜韵喜: [speed=0.2] 别夸了，趁热吃吧吐舌
-时追云: [speed=0.3] 对了，最近官府派了丙哥和丁哥看守东海湾，说是有什么妖怪徘徊
-姜韵恐: [speed=0.7] 妖怪!？ 
+姜韵喜: [speed=0.2]牛羊羹~
+时追云喜: [speed=0.4]娘子幸苦了
+时追云喜: [speed=0.3]娘子的手艺真是举世无双点赞
+姜韵喜: [speed=0.2]别夸了，趁热吃吧吐舌
+时追云: [speed=0.2]不管看几次都觉得娘子你的头发很神奇
+姜韵喜: [speed=0.2]家族遗传，每当我情绪变化的时候头发颜色也会跟着变
+时追云: [speed=0.3]对了，最近官府派了丙哥和丁哥看守东海湾，说是有什么妖怪徘徊
+姜韵恐: [speed=0.7]妖怪!？ 
 时追云: [speed=0.3]是啊，我们最近最好也要小心一点
 姜韵哀: [speed=0.3]这些日子我一直隐隐感到不安，听闻各地天气都出现了异常，听说还有妖怪袭击城池
 姜韵哀: [speed=0.3]在这乱世之中，我们能安稳多久呢无奈
 时追云: [speed=0.3]娘子。。。
 时追云: [speed=0.3]在这世上我们确实太渺小了
-时追云怒: [speed=0.4] 但只要我还活着一天，就绝对不会让别人伤害到你
-姜韵喜: [speed=0.3] 夫君互亲
+时追云怒: [speed=0.4]但只要我还活着一天，就绝对不会让别人伤害到你
+姜韵喜: [speed=0.3]夫君互亲
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark") 
 [next=7]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-
-姜韵喜: [speed=0.3] 夫君，这些是你今天的行粮，我已经准备好了，还有一壶酒呢~
-姜韵喜: [speed=0.3] 两位差大哥也挺幸苦的，你分些给他们吧
+姜韵喜: [speed=0.3]夫君，这些是你今天的行粮，我已经准备好了，还有一壶酒呢~
+姜韵喜: [speed=0.3]两位差大哥也挺幸苦的，你分些给他们吧
 时追云喜: [speed=0.5]知道啦，我去干活了！出发
 姜韵喜: 嗯~女拜
 set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightScenePlayers.fightScenePlayerData.get("时追云").hp
@@ -250,7 +253,7 @@ set Global.changeVis(["城主"], "建邺城")
 [next=2]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 城主: [speed=0.4]管家，你去煮点吃的给他，顺便塞点碎银，注意别让人看见了。
-管家: [speed=0.4]大人，我不明白。你既然肯施舍与他，为何刚才要驱赶与他，这时却吩咐小人做这事
+管家: [speed=0.4]大人，我不明白。你既然肯施舍与他，为何刚才要驱赶他，这时却吩咐小人做这事
 城主: [speed=0.4]唉，最近四季失常，各地出现大旱，要么是大雨，有些地方则是又有大雪又有大水，难民已经没法控制了
 城主: [speed=0.4]虽说我们现在还有存银，可架不住难民多啊
 城主: [speed=0.4]如果让人看见我施舍给他银子了，那么明天我们门口就会多了几百个难民要我施舍
@@ -274,18 +277,18 @@ set Global.currNpc = null
 
 ~ 索要木剑
 set Global.onTalk = true
-时追云: [speed=0.4] 城主，二娃说在你这丢了木剑，你有看到吗？
+时追云: [speed=0.4]城主，二娃说在你这丢了木剑，你有看到吗？
 城主: [speed=0.4]是你啊
 城主: [speed=0.4]那小兔崽子真他娘的没礼貌，在我家乱丢东西还叫别人来拿，他奶奶的教训
 时追云: [speed=0.4]额。。。(你礼貌也不好吧)
 城主: [speed=0.4]是这把破剑吧，拿去拿去
-城主: [speed=0.4]告诉那小兔崽子下次别再我家乱丢东西了！怒喝
-时追云: [speed=0.4] 多谢城主
-时追云: [speed=0.4] 我。。会转告他的, 告辞
+城主: [speed=0.4]告诉那小兔崽子下次别在我家乱丢东西了！怒喝
+时追云: [speed=0.4]多谢城主
+时追云: [speed=0.4]我。。会转告他的, 告辞
 时追云: [speed=0.4]（嗯？居然还用上好的布包着了）
 时追云: [speed=0.4]（城主倒是没有表面看起来那么的粗犷）
-城主: [speed=0.4] 等等
-时追云: [speed=0.4] 什么事城主
+城主: [speed=0.4]等等
+时追云: [speed=0.4]什么事城主
 城主: [speed=0.6]你这小子年轻力壮的，上头正好发告示征兵，你何不来我们这参军
 时追云: (当兵吗？还是算了吧)
 时追云: (我只想守护我的小家......)
@@ -305,7 +308,7 @@ set Global.onTalk = true
 二娃: [speed=0.6]哇，这个就是我的剑，大哥哥真给我要回来了哇跳舞
 二娃: [speed=0.6]谢谢你大哥哥，不过这不是木剑，这是我的剑
 时追云: [speed=0.6]这不是木剑吗？再说了剑和木剑有什么区别？
-二娃: [speed=0.6]不一样不一样，我爹说了，[wait=1] [speed=0.1] 有剑则仗天涯，无友不成欢
+二娃: [speed=0.6]不一样不一样，我爹说了，[wait=1][speed=0.1]有剑则仗天涯，无友不成欢
 二娃: [speed=0.6]虽然我不是很懂这句话是什么意思，但我知道，男生一定要有剑 
 二娃: [speed=0.6]我以后也要去江湖上，我也要当大侠，帮助别人大笑
 
@@ -319,8 +322,8 @@ set Global.addGold(100)
 二娃: [speed=0.6]大哥哥，我先走啦，我要去找小花玩咯男拜
 时追云: [speed=0.6]嗯，再见
 时追云: (先把身上的酒送给两位差哥吧)
-set Global.violencePoint += 10
-set Global.showViolence("positive",10)
+set Global.violencePoint += 15
+set Global.showViolence("positive",15)
 set Global.questHint = "把身上的酒给两位差哥后继续捕鱼吧"
 set Global.npcs.get("丁真").dialogues[1].unlocked = true
 set Global.npcs.get("丙假").dialogues[1].unlocked = true
@@ -335,7 +338,7 @@ set Global.onTalk = true
 丙假: [speed=0.5]我去，还是你够意思哈哈哈点赞
 丁真: [speed=0.5]追云最近应该也不富裕吧
 丙假: [speed=0.5]。。。
-时追云: [speed=0.5]没事的，一壶酒而已，我钓鱼也是无聊，有两位大哥聊天解闷也不至于无聊
+时追云: [speed=0.5]没事的，一壶酒而已，平日我钓鱼甚是单调，有两位大哥聊天解闷也不至于无聊
 丙假: [speed=0.5]给
 set Global.addGold(100)	
 时追云: [speed=0.5]丙大哥这是干什么
@@ -344,7 +347,7 @@ set Global.addGold(100)
 丁真: [speed=0.5]你就收了吧，免得以后我们不敢吃你带的东西了哈哈哈微笑
 时追云: [speed=0.5]好吧，两位大哥我先去捕鱼了
 丙假: [speed=0.5]去吧去吧
-丁真: [speed=0.5] 回见男拜
+丁真: [speed=0.5]回见男拜
 set Global.npcs.get("鱼叟").dialogues[1].unlocked = true
 set Global.onTalk = false
 set Global.currNpc = null
@@ -352,15 +355,15 @@ set Global.currNpc = null
 	
 ~ 鱼叟第二天见面
 set Global.onTalk = true
-鱼叟: [speed=0.5] 今天来这么早啊
-时追云喜: [speed=0.5] 是啊，想补贴点家用
-鱼叟: [speed=0.5] 今个儿鱼还挺多的，一捕一个准，你快来帮我一把
-时追云喜: [speed=0.5] 好嘞大爷
+鱼叟: [speed=0.5]今天来这么早啊
+时追云喜: [speed=0.5]是啊，想补贴点家用
+鱼叟: [speed=0.5]今个儿鱼还挺多的，一捕一个准，你快来帮我一把
+时追云喜: [speed=0.5]好嘞大爷
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("turnDark") 
 [next=7]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-鱼叟: [speed=0.5] 时候不早了，追云你先回去吧
+鱼叟: [speed=0.5]时候不早了，追云你先回去吧
 set Global.addGold(200)
 时追云喜: 嗯, 再见老爷子，注意安全男拜
 set Global.npcVis.get("建邺城右").get("二娃").visible = false
@@ -370,6 +373,8 @@ set Global.triggerPlace.get("王姨尖叫").disable = false
 set Global.npcs.get("王姨").dialogues[0].unlocked = true
 set Global.questHint = "回家"
 set Global.onTalk = false
+set Global.cantShow.append("建邺城")
+
 set Global.currNpc = null
 => END
 
@@ -390,6 +395,7 @@ set Global.currNpc = null
 
 ~ 王姨遇险
 set Global.onTalk = true
+set Global.cantShow.erase("建邺城")
 王姨: [speed=0.6]救命啊，谁来救救我
 巨蛙: [speed=0.6]桀桀桀，这里不会有人来救你的
 巨蛙: [speed=0.6]虽然老了点，但人类的肉应该还是那么美味桀桀
@@ -403,12 +409,12 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer").play("海龟救场")	
 [next=2]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-大海龟: [speed=0.6] 咕咕咕生气
+大海龟: [speed=0.6]咕咕咕生气
 时追云惊: [speed=0.6]是你！？
 巨蛙: 桀桀桀，又来一个肥美的大龟，乖乖受死吧
 if !Global.onTeamPet.has("大海龟"):
 	set Global.onTeamPet.append("大海龟")
-set Global.dangerScene["东海湾"] = 5
+set Global.dangerScene["东海湾"]= 5
 set get_tree().current_scene.bossFight("巨蛙","res://Audio/BGM/战斗-BOSS 正义.mp3", "王姨")
 set Global.onFight = true
 set get_tree().current_scene.get_node("CanvasLayer2").visible = false
@@ -421,6 +427,7 @@ set Global.currNpc = null
 
 ~ 王姨得救
 set Global.onTalk = true
+set Global.cantShow.erase("建邺城")
 王姨: [speed=0.6]哎真是多亏你了小时，没想到你这么厉害，连妖怪都能打死握手
 王姨: [speed=0.6]真是没想到这里有妖怪，还这么大只，差点命就没了
 时追云: [speed=0.6]王姨您这么晚来这里干什么。。？疑惑
@@ -439,22 +446,23 @@ set Global.npcVis.get("东海湾").get("王姨").visible = false
 [next=11]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 时追云: [speed=0.6]额，好痛，身体感觉不是自己的了无奈
-时追云: [speed=0.6] 我这是睡了多久。。。月亮
+时追云: [speed=0.6]我这是睡了多久。。。月亮
 时追云惊: [speed=0.6]糟了，天色已经这么暗了，娘子肯定等我等着急了惊讶
 时追云惊: [speed=0.6]我得赶紧回家才行。。。
-大海龟: [speed=0.6] 咕咕
+大海龟: [speed=0.6]咕咕
 时追云喜: [speed=0.6]哦对了，还有你个小家伙，刚才多谢你帮忙了
-大海龟: [speed=0.6] 咕咕大笑
+大海龟: [speed=0.6]咕咕大笑
 时追云: [speed=0.6]不过真没想到你还会操控水，还这么大只，都快成精了吧
 大海龟: [speed=0.6]咕咕墨镜
 时追云: [speed=0.6]你想跟着我吗？
-大海龟: [speed=0.6] 咕咕垂涎
+大海龟: [speed=0.6]咕咕垂涎
 时追云喜: [speed=0.6]哈哈哈，放心吧，回家肯定能吃饱
 时追云: [speed=0.6]不过这夜路看起来阴森森的。。。汗颜
 set Global.questHint = "回家"
 set Global.npcVis.get("东海湾").get("大海龟").visible = false
 set Global.npcs.get("姜韵").dialogues[1].unlocked = true
-set Global.triggerPlace.get("玉帝物品事件").disable = true
+if Global.gameRound > 1:
+	set Global.triggerPlace.get("玉帝物品事件").disable = true
 set Global.atNight = true
  
 set Global.onTalk = false
@@ -488,29 +496,29 @@ set Global.currNpc = null
 
 ~ 二见女主
 set Global.onTalk = true
-姜韵喜: [speed=0.2] 夫君！
+姜韵喜: [speed=0.2]夫君！
 姜韵: ...
-姜韵怒: [speed=0.4] 今日怎么回来的这么晚？教训
+姜韵羞怒: [speed=0.4]今日怎么回来的这么晚？教训
 时追云: [speed=0.4]咳，今天。。。
 时追云: [speed=0.4]没什么，只是和朋友喝了几壶酒
-姜韵怒: [speed=0.4]真！的！吗！教训
-时追云怒: [speed=0.4] 当然。。。
-姜韵怒: [speed=0.4]你有没有喝酒当我闻不出来吗！说!真!话！生气
-时追云: [speed=0.4] 。。。。。。。。
-姜韵怒: [speed=0.4]哼
+姜韵羞怒: [speed=0.4]真！的！吗！教训
+时追云怒: [speed=0.4]当然。。。
+姜韵羞怒: [speed=0.4]你有没有喝酒当我闻不出来吗！说!真!话！生气
+时追云: [speed=0.4]。。。。。。。。
+姜韵羞怒: [speed=0.4]哼
 时追云: [speed=0.4]此事说来话长
-姜韵怒: [speed=0.4]你先说
+姜韵羞怒: [speed=0.4]你先说
 时追云: [speed=0.4]今日遇到妖怪行凶， 我前去帮忙，和妖怪缠斗许久，所以才回来的如此晚
 姜韵恐: [speed=0.4]妖怪！？他们真的出现了？
 时追云: [speed=0.4]我本来也不信， 但今日算是亲眼见到了，着实可怕
 姜韵哀: [speed=0.4]那夫君你有没有受伤。。大哭
 时追云喜: [speed=0.4]这倒未曾，说来也不知怎么回事， 和他们拼杀的时候浑身有劲，他们也伤不得我分毫
-时追云喜: [speed=0.4] 你看我，浑身上下哪里有伤
+时追云喜: [speed=0.4]你看我，浑身上下哪里有伤
 姜韵: ......
 姜韵: ......
 姜韵: [speed=0.4]夫君切莫自大，妖一般都具有很强的灵力，我们凡人最好还是不要和他们厮杀
 时追云: [speed=0.4]可我也不能眼睁睁的看着王姨被杀害啊
-姜韵:  [speed=0.4] 。。。可你为什么不早说
+姜韵:  [speed=0.4]。。。可你为什么不早说
 时追云: [speed=0.4]我只是怕你担心。。
 姜韵哀: [speed=0.4]刚才我。。。只是有点着急
 姜韵哭: [speed=0.4]要是你出事了。。大哭
@@ -522,11 +530,11 @@ set Global.onTalk = true
 姜韵: [speed=0.4]对了，你应该饿了吧，我去把饭菜重新热一下
 时追云喜: [speed=0.4]好，顺带也给这只大龟喂点鱼吧
 姜韵: ...
-姜韵: [speed=0.4] 好啊，不过你是从哪里找到的这只乌龟啊
-时追云: [speed=0.4] 前几天遇到的，不给吃的就不让我走，今天遇到妖魔还帮了我一把
+姜韵: [speed=0.4]好啊，不过你是从哪里找到的这只乌龟啊
+时追云: [speed=0.4]前几天遇到的，不给吃的就不让我走，今天遇到妖魔还帮了我一把
 姜韵: [speed=0.4]哦哦，是这样啊
 姜韵: [speed=0.4]来，这是点鱼干
-姜韵: [speed=0.4] 对了，以后就叫你小乌吧
+姜韵: [speed=0.4]对了，以后就叫你小乌吧
 大海龟: [speed=0.4]咕咕垂涎
 时追云喜: [speed=0.4]哈哈哈
 set Global.npcs.get("姜韵").dialogues[1].trigger = true
@@ -554,7 +562,7 @@ set Global.addItem("避祸香囊", "keyItem", "keyItem", 1)
 姜韵: [speed=0.4]柳大夫最近好像有卖一些宁神的药，你有空的话帮我买一些回来吧
 时追云: [speed=0.4]啊？哦哦，我回来的时候顺道去那看看，我先走了~
 姜韵哀: [speed=0.4]嗯，夫君再见女拜
-时追云: [speed=0.4] (一晚上疼的死去活来，还是先去柳大夫那吧)
+时追云: [speed=0.4](一晚上疼的死去活来，还是先去柳大夫那吧)
 set Global.questHint = "去医馆找柳大夫看伤"
 set Global.npcs.get("柳老").dialogues[0].unlocked = true
 set Global.haveLantern = true
@@ -707,7 +715,7 @@ set Global.addGold(200)
 鱼叟: [speed=0.4]追云啊，这可能是我最后一次收你的鱼了
 时追云: [speed=0.4]大爷怎么了吗？
 鱼叟: [speed=0.4]我要走了，去一个很远的地方
-时追云惊: [speed=0.4] 怎么这么突然？发生了什么事吗?
+时追云惊: [speed=0.4]怎么这么突然？发生了什么事吗?
 鱼叟: [speed=0.4]没什么，只是要去做我该做的事情了
 时追云: [speed=0.4]该做的事情？什么事？我能帮您做吗？
 鱼叟: [speed=0.4]哈哈哈，这件事不是你能干涉的
@@ -716,11 +724,11 @@ set Global.addGold(200)
 时追云: [speed=0.4]您到底要搬去哪？疑惑
 鱼叟: [speed=0.4]不要多问了，就当是我一时兴起吧，你也不必来送我
 时追云: ........好吧
-鱼叟: [speed=0.4]追云啊，你觉得什么是你这辈子有什么该做的事吗？
+鱼叟: [speed=0.4]追云啊，你觉得什么是你这辈子该做的事？
 时追云: [speed=0.4]这点我未曾想过，我只想着与娘子长相厮守，白头偕老。
-鱼叟: [speed=0.4] 呵呵，那也不错
-鱼叟: [speed=0.4] 只叹这世道难遂人意
-时追云: [speed=0.4] 追云不懂
+鱼叟: [speed=0.4]呵呵，那也不错
+鱼叟: [speed=0.4]只叹这世道难遂人意
+时追云: [speed=0.4]追云不懂
 鱼叟: [speed=0.4]时候到了自然会懂，我也该动身了，只望你将来再次遇见我时不会怨我才好
 时追云: [speed=0.4]大爷何出此言，晚辈万万不敢！
 时追云: [speed=0.4]我们夫妻二人五年前搬到这里，举目无亲，这些年有您的帮助才能勉强维持生计，虽然您从不曾告诉我您的姓名，但是我们二人已经把您当作亲人看待了
@@ -728,7 +736,8 @@ set Global.addGold(200)
 鱼叟: [speed=0.4]好孩子，快些回去吧，别又让你娘子等急了
 时追云: [speed=0.4]您。。多保重！
 set Global.npcs.get("姜韵").dialogues[2].unlocked = true
-set Global.triggerPlace.get("玉帝物品事件").disable = false
+
+
 set Global.questHint = "回家"
 set Global.currNpc = null
 set Global.onTalk = false
@@ -737,7 +746,9 @@ set Global.onTalk = false
 ~ 三见女主
 set Global.onTalk = true
 set Global.npcVis.get("东海湾").get("鱼叟").visible = false
-set Global.changevis("东海湾","玉帝物品")
+if Global.gameRound > 1:
+	set Global.triggerPlace.get("玉帝物品事件").disable = false
+	set Global.changevis("东海湾","玉帝物品")
 时追云: 娘子我回来了
 姜韵喜: 夫君你回来啦，身体怎么样
 时追云喜: 啊？哦，挺好的啊
@@ -810,7 +821,7 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 奔霸: 好感人啊？来不及了吧哈哈哈哈
 时追云惊: 什么！？
 时追云惊: (他什么时候站在我后面的)
-奔霸: 切，又来个废物人类，真没趣，
+奔霸: 切，又来个废物人类，真没趣
 奔霸: 不过大王有令，这城里的一个不留
 时追云怒: 你敢！
 奔霸: 哟呵，我有什么不敢的，只是没时间陪你浪费了，来几个陪他玩玩，剩下的跟我走
@@ -836,7 +847,7 @@ set Global.npcVis.get("建邺城右").get("小兵7").visible = true
 set Global.npcVis.get("建邺城右").get("小兵8").visible = true
 
 set Global.baseChance = 900
-
+set Global.onSkipFight = true
 
 set Global.onFight = true
 set get_tree().current_scene.bossFight("虾兵蟹将","res://Audio/BGM/P39.mp3","system")
@@ -849,6 +860,7 @@ set Global.onTalk = false
 
 ~ 时追云杀完
 set Global.baseChance = 900
+set Global.onSkipFight = true
 set Global.npcVis.get("东海湾").get("小兵").visible =  false
 set Global.npcVis.get("东海湾").get("小兵2").visible =  false
 set Global.npcVis.get("东海湾").get("小兵3").visible =  false
@@ -874,6 +886,7 @@ set Global.onTalk = false
 ~ 时追云杀完2
 set Global.onTalk = true
 set Global.baseChance = 900
+set Global.onSkipFight = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 4.5
 时追云怒: 你们这群畜生，给我他妈的滚开啊！怒喝
 set Global.triggerPlace.get("时追云杀完2").disable = true
@@ -884,6 +897,7 @@ set Global.onTalk = false
 ~ 时追云杀完3
 set Global.onTalk = true
 set Global.baseChance = 900
+set Global.onSkipFight = true
 set get_tree().current_scene.get_node("AudioStreamPlayer2D").volume_db = 4.5
 set Global.triggerPlace.get("时追云杀完3").disable = true
 set Global.triggerPlace.get("杀戮").disable = false
@@ -1039,7 +1053,7 @@ set get_tree().current_scene.get_node("AnimationPlayer").play("奔霸逃跑")
 set Global.npcVis.get("建邺城右").get("小兵9").visible = false
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 敖白哀: 抱歉 
-[next=auto] 
+[next=auto]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 [next=4]
 set get_tree().current_scene.get_node("player/Sprite2D").texture = load("res://main character/down.png")
@@ -1087,8 +1101,8 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 [next=4.5]
 set get_tree().current_scene.get_node("ExampleBalloon").visible = true
-时追云喜: [speed=0.8] 城主其实人也没那么坏。。。
-时追云喜: [speed=0.8] 他当时...
+时追云喜: [speed=0.8]城主其实人也没那么坏。。。
+时追云喜: [speed=0.8]他当时...
 set get_tree().current_scene.get_node("ExampleBalloon").visible = false
 set get_tree().current_scene.get_node("AnimationPlayer2").play("turnDark")
 [next=4.5]
@@ -1149,13 +1163,15 @@ set Global.npcVis.get("建邺城右").get("妖魔尸体16").visible = true
 set Global.npcVis.get("建邺城右").get("妖魔尸体17").visible = true
 set Global.npcVis.get("建邺城右").get("妖魔尸体18").visible = true
 set Global.baseChance = 900
-
+set Global.onSkipFight = true
 
 => END
 
 ~ 斩妖
 set Global.onTalk = true
+set Global.onSkipFight = false
 时追云: 一群畜生，碍事
+set Global.onSkipFight = false
 set Global.baseChance = 0
 set Global.onHurry = false
 set FightScenePlayers.learnMagic("时追云","飞剑决")
@@ -1181,7 +1197,7 @@ set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightSceneP
 set FightScenePlayers.fightScenePlayerData.get("大海龟").currHp = FightScenePlayers.fightScenePlayerData.get("大海龟").hp
 set FightScenePlayers.fightScenePlayerData.get("大海龟").currMp = FightScenePlayers.fightScenePlayerData.get("大海龟").mp
 set Global.current_chapter_id = 2
-set Global.maxLevel = 20
+set Global.maxLevel = 25
 set Global.onTalk =  false
 => END
 #set get_tree().current_scene.get_node("player/Sprite2D").visible = false
@@ -1197,7 +1213,7 @@ set FightScenePlayers.fightScenePlayerData.get("时追云").currHp = FightSceneP
 set FightScenePlayers.fightScenePlayerData.get("时追云").currMp = FightScenePlayers.fightScenePlayerData.get("时追云").mp
 set FightScenePlayers.fightScenePlayerData.get("大海龟").currHp = FightScenePlayers.fightScenePlayerData.get("大海龟").hp
 set FightScenePlayers.fightScenePlayerData.get("大海龟").currMp = FightScenePlayers.fightScenePlayerData.get("大海龟").mp
-牛妖: [speed=0.4] 把钱都给我交出来，不然砍死你
+牛妖: [speed=0.4]把钱都给我交出来，不然砍死你
 小二: [speed=0.4]别啊牛哥，我是真没钱了
 羊妖: [speed=0.4]我看你是不见棺材不落泪
 牛妖: [speed=0.4]揍他
@@ -1227,7 +1243,7 @@ set get_tree().current_scene.get_node("player").play("downStand")
 小二: [speed=0.4]哇塞，大哥你这么强啊惊愕
 小二: [speed=0.4]三下五除二就把他们两个解决了
 时追云: [speed=0.4]还好吧，你怎么会一个人在这
-小二: [speed=0.4] 啊，我是给我们掌柜的出来进货的，未曾想被那两只妖怪堵截了
+小二: [speed=0.4]啊，我是给我们掌柜的出来进货的，未曾想被那两只妖怪堵截了
 时追云: [speed=0.4]原来是这样，以后还是要小心为上，现在可不太平。
 时追云: [speed=0.4]话说刚才他们是在抢你钱吗，妖怪也要钱？
 小二: [speed=0.4]妖盟之间都是用人类的钱交易的
@@ -1263,16 +1279,16 @@ set get_tree().current_scene.get_node("ExampleBalloon").visible = true
 师爷: [speed=0.4]将军不可大意啊
 程咬金: [speed=0.4]就那些东西我还没放在眼里
 程咬金: [speed=0.4]对了，锁妖塔那边情况怎么样了？
-师爷: [speed=0.4] 情况不容乐观，封印应该已经松动的厉害了
-师爷: [speed=0.4] 里面的妖怪要是跑出来。。后果不堪设想啊
-程咬金: [speed=0.4] 我当然也知道，但现在全军集结准备一举歼灭反贼，里面的那些东西不是派一两营士兵就能解决的
-师爷: [speed=0.4] 此事不能强来
-程咬金: [speed=0.4] 你说该怎么办
-师爷: [speed=0.4] 我们应该派一队精兵进去，避免和妖怪们接触，直接去到塔顶
-程咬金: [speed=0.4] 那这事就交给你去办了，我得赶紧走了
-师爷: [speed=0.4] 是
-程咬金: [speed=0.4] 昨天刚晋升的那位呢？
-师爷: [speed=0.4] 额，以我对他的了解，此时应该在帮人跑腿。。
+师爷: [speed=0.4]情况不容乐观，封印应该已经松动的厉害了
+师爷: [speed=0.4]里面的妖怪要是跑出来。。后果不堪设想啊
+程咬金: [speed=0.4]我当然也知道，但现在全军集结准备一举歼灭反贼，里面的那些东西不是派一两营士兵就能解决的
+师爷: [speed=0.4]此事不能强来
+程咬金: [speed=0.4]你说该怎么办
+师爷: [speed=0.4]我们应该派一队精兵进去，避免和妖怪们接触，直接去到塔顶
+程咬金: [speed=0.4]那这事就交给你去办了，我得赶紧走了
+师爷: [speed=0.4]是
+程咬金: [speed=0.4]昨天刚晋升的那位呢？
+师爷: [speed=0.4]额，以我对他的了解，此时应该在帮人跑腿。。
 
 set get_tree().change_scene_to_file("res://Scene/"+"长安城"+".tscn")
 set Global.onTalk =  false
@@ -1332,7 +1348,7 @@ set Global.onTalk = true
 - 算了
 	set Global.onTalk = false
 	=> END
-老鸨: [speed=0.4] 好吧，不过我再问你最后一次，你真的要进去吗？
+老鸨: [speed=0.4]好吧，不过我再问你最后一次，你真的要进去吗？
 - 确定
 - 算了
 	set Global.onTalk = false

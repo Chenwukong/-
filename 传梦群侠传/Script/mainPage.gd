@@ -170,19 +170,24 @@ func loadGame():
 	Global.onLoadPage = false
 	
 	var data
+	
+	
 	if file:
 		data = file.get_var()		
 		FightScenePlayers.datas = data.FightScenePlayers
 		FightScenePlayers.loadData()
-	
+		if Global.uniqueId != data.Global.uniqueId:
+
+			return
 		Global.saveData = data.Global
+	
 		if mapPlayer:
 			mapPlayer[0].queue_free()
 		
 		Global.loadData()
 		get_tree().change_scene_to_file("res://Scene/"+Global.currScene+".tscn")
 		Global.load = true
-	
+		
 func _on_button_mouse_entered():
 	$Cloud.scale = Vector2(0.2,0.2)
 	$subSound.stream = load("res://Audio/SE/001-System01.ogg")
@@ -329,7 +334,6 @@ func _on_button_button_down():
 
 func _on_button_pressed():
 	SmallPetData.currSmallPetData =  SmallPetData.oriSmallPetData
-	
 	$openScene.play("openScene")
 	$AudioStreamPlayer2D.stream = load("res://Audio/BGM/欢乐家园.mp3")
 	$AudioStreamPlayer2D.play()

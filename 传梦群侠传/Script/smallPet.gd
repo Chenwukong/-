@@ -58,7 +58,7 @@ func _process(delta):
 			if monsters.size() >magicInfo.hitNum:
 				while targets.size()<magicInfo.hitNum:
 					var randi = randi_range(0,aliveMonsters.size()-1)
-					if (aliveMonsters[randi] in targets) == false:
+					if randi > -1 and (aliveMonsters[randi] in targets) == false:
 						targets.append(aliveMonsters[randi])
 			else:
 				for target in monsters:
@@ -138,6 +138,7 @@ func castMagic():
 			if i.currHp>=0:
 				alivePlayer.append(i)
 		if is_instance_valid(find_player_with_lowest_hp_percent(alivePlayer)):
+			print(find_player_with_lowest_hp_percent(alivePlayer),"lowest")
 			find_player_with_lowest_hp_percent(alivePlayer).currHp += magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower
 			var disDamage = display_damage(round(magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower),"heal")
 			find_player_with_lowest_hp_percent(alivePlayer).get_node("hpControl").add_child(disDamage)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=551 format=3 uid="uid://d6ot5y5nrhm1"]
+[gd_scene load_steps=555 format=3 uid="uid://d6ot5y5nrhm1"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_tbjjq"]
 [ext_resource type="Texture2D" uid="uid://dfbf0xiqv7nrn" path="res://panoramas2/##玄天幻化.jpg" id="2_pllbd"]
@@ -19,7 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://b426qjra4bj27" path="res://Scene/potentialBall.tscn" id="17_vgaqs"]
 [ext_resource type="AudioStream" uid="uid://du6dhdf3m3kkr" path="res://Audio/SE/男-剑.ogg" id="18_cap3l"]
 [ext_resource type="Texture2D" uid="uid://b6rv33sy85g7j" path="res://Pictures/四圣change.jpg" id="19_6tbfb"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="20_6vjdv"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="20_6vjdv"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="21_kpsd6"]
 [ext_resource type="Texture2D" uid="uid://dcqruoml3qljh" path="res://SeparateAnimation/天道/死亡.png" id="22_52omp"]
 [ext_resource type="Texture2D" uid="uid://kjk2xrs237c3" path="res://SeparateAnimation/天道/待机.png" id="22_d02x4"]
@@ -64,6 +64,7 @@
 [ext_resource type="Texture2D" uid="uid://yxjhbqh1tar" path="res://Characters/树怪.png" id="58_e0pi3"]
 [ext_resource type="Texture2D" uid="uid://cdggk5glervcr" path="res://SeparateAnimation/奔波儿霸/143-3.png" id="59_ed248"]
 [ext_resource type="Texture2D" uid="uid://c3xo7qsfxwi2" path="res://梦魂Animation/【进阶鬼将】.png" id="61_1amig"]
+[ext_resource type="Script" path="res://Script/npcs.gd" id="61_awe41"]
 [ext_resource type="Texture2D" uid="uid://d3oib0t4q1p3s" path="res://SeparateAnimation/骷刹/##黑山老妖.png" id="62_b7lee"]
 [ext_resource type="Texture2D" uid="uid://dw08a8dkfmnv2" path="res://Characters/守护兽.png" id="63_vdvfd"]
 [ext_resource type="Texture2D" uid="uid://b61kh5yy4er8q" path="res://Battlers/敖白★5.png" id="64_hj4r8"]
@@ -71,6 +72,7 @@
 [ext_resource type="Texture2D" uid="uid://p0kus2l2rfvi" path="res://Characters/@@孙悟空D4A12B10T.png" id="65_jxjxr"]
 [ext_resource type="Texture2D" uid="uid://dhlmc2n1ja00i" path="res://梦魂Animation/封-乾坤咒.png" id="66_1ojg8"]
 [ext_resource type="Texture2D" uid="uid://c2nh4w1qxh46p" path="res://Characters/小孩-女.png" id="66_xlof2"]
+[ext_resource type="Script" path="res://Script/npc.gd" id="67_a52j0"]
 [ext_resource type="Texture2D" uid="uid://b5jy5m28ffw65" path="res://梦魂Animation/【孙悟空攻击】.png" id="67_g2fng"]
 [ext_resource type="Texture2D" uid="uid://bkepcj86vgr3v" path="res://梦魂Animation/【雷暴】.png" id="68_cggho"]
 [ext_resource type="Shader" path="res://shader/player.gdshader" id="68_nk373"]
@@ -87,6 +89,7 @@
 [ext_resource type="Texture2D" uid="uid://bf3yio7elv58h" path="res://Animations/法术-斩龙诀.png" id="83_td8o4"]
 [ext_resource type="Texture2D" uid="uid://hbf3npwex2bt" path="res://梦魂Animation/030-Explosion01.png" id="86_w22ql"]
 [ext_resource type="Texture2D" uid="uid://b7ju6tt7qocm" path="res://梦魂Animation/#-持续回血.png" id="87_setxe"]
+[ext_resource type="Shader" path="res://shader/星辰.gdshader" id="89_d73x1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_e5u7i"]
 
@@ -841,18 +844,6 @@ animations = [{
 
 [sub_resource type="Animation" id="Animation_0owog"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("神秘人:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(506, -36)]
-}
 
 [sub_resource type="Animation" id="Animation_l5y81"]
 resource_name = "getDark"
@@ -3583,6 +3574,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ddquu"]
+shader = ExtResource("89_d73x1")
+shader_parameter/time_scale = 5.0
+shader_parameter/star_density = 1.0
+shader_parameter/star_brightness = 1.051
+shader_parameter/twinkle_speed = 1.2
+shader_parameter/nebula_color = Color(0.545098, 0.411765, 0.909804, 1)
+shader_parameter/star_color = Color(0.627451, 0.12549, 0.941176, 1)
+shader_parameter/nebula_intensity = 0.704
+
 [node name="玄天幻化" type="Node2D"]
 script = ExtResource("1_tbjjq")
 
@@ -3592,7 +3593,7 @@ position = Vector2(1201, 1197.1)
 texture = ExtResource("2_pllbd")
 
 [node name="player" parent="." instance=ExtResource("3_cbh1d")]
-position = Vector2(1212, 2049)
+position = Vector2(1225, 2042)
 
 [node name="Camera2D" parent="player" index="3"]
 zoom = Vector2(0.8, 0.8)
@@ -3638,7 +3639,7 @@ wait_time = 0.5
 
 [node name="subSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_jwnuv")
-volume_db = 24.0
+volume_db = 4.0
 max_distance = 10000.0
 
 [node name="BattleReward" parent="." instance=ExtResource("7_teec6")]
@@ -3663,9 +3664,8 @@ volume_db = 6.0
 max_distance = 100000.0
 
 [node name="shadow" type="Sprite2D" parent="."]
-visible = false
 z_index = 2
-position = Vector2(1200, 1197.1)
+position = Vector2(7043, 1293)
 texture = ExtResource("9_4y4c7")
 
 [node name="position" type="Control" parent="."]
@@ -3762,7 +3762,7 @@ id = "傲来国1"
 
 [node name="oneTimeSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_cap3l")
-volume_db = 24.0
+volume_db = 5.0
 
 [node name="battleFieldLayer" type="CanvasLayer" parent="."]
 
@@ -3777,10 +3777,9 @@ scale = Vector2(2.334, 2.18533)
 texture = ExtResource("19_6tbfb")
 
 [node name="天道" parent="." instance=ExtResource("21_kpsd6")]
-position = Vector2(2602, 50)
+position = Vector2(430, 150)
 scale = Vector2(1, 1.01867)
 sprite_frames = SubResource("SpriteFrames_70qxb")
-animation = &"施法"
 autoplay = "default"
 
 [node name="吸取" type="AnimatedSprite2D" parent="天道"]
@@ -3798,6 +3797,7 @@ libraries = {
 }
 
 [node name="姜韵" parent="." instance=ExtResource("25_3si70")]
+visible = false
 position = Vector2(1287, 2005)
 animation = &"left"
 autoplay = "left"
@@ -3810,11 +3810,13 @@ autoplay = "default"
 frame_progress = 0.920547
 
 [node name="小二" parent="." instance=ExtResource("26_qsin0")]
+visible = false
 position = Vector2(1139, 2093)
 
 [node name="小二" parent="小二" index="0"]
 scale = Vector2(-1, 1)
 autoplay = "真身右上"
+script = null
 
 [node name="Button" parent="小二/小二" index="1"]
 offset_left = -147.0
@@ -3830,10 +3832,12 @@ autoplay = "default"
 frame_progress = 0.920547
 
 [node name="凌若昭" parent="." instance=ExtResource("27_g2l3d")]
+visible = false
 position = Vector2(1072.13, 2136.62)
 animation = &"左上"
 autoplay = "左上"
 frame_progress = 0.0
+script = null
 
 [node name="吸取" type="AnimatedSprite2D" parent="凌若昭"]
 visible = false
@@ -3850,20 +3854,20 @@ autoplay = "default"
 
 [node name="玄武" type="AnimatedSprite2D" parent="."]
 z_index = 6
-position = Vector2(1430, 2187)
+position = Vector2(2227, 2945.5)
 sprite_frames = SubResource("SpriteFrames_s37u2")
 animation = &"玄武"
 autoplay = "玄武"
 
 [node name="白虎" type="AnimatedSprite2D" parent="."]
 z_index = 6
-position = Vector2(1513, 2145)
+position = Vector2(2310, 2903.5)
 sprite_frames = SubResource("SpriteFrames_nueg4")
 autoplay = "default"
 
 [node name="青龙朱雀" type="Node2D" parent="."]
 z_index = 6
-position = Vector2(1362, 2027)
+position = Vector2(1584, 2779)
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="青龙朱雀"]
 position = Vector2(65.6465, 227.983)
@@ -3876,8 +3880,8 @@ sprite_frames = SubResource("SpriteFrames_dtbog")
 autoplay = "default"
 
 [node name="怪物组1" type="Node2D" parent="."]
-visible = false
 position = Vector2(999, 1901)
+script = ExtResource("61_awe41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="怪物组1"]
 position = Vector2(81, -44.9998)
@@ -3916,8 +3920,8 @@ autoplay = "default"
 frame_progress = 0.328932
 
 [node name="怪物组2" type="Node2D" parent="."]
-visible = false
 position = Vector2(-336, 799)
+script = ExtResource("61_awe41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="怪物组2"]
 position = Vector2(-7.62939e-06, 43)
@@ -3983,6 +3987,7 @@ autoplay = "default"
 
 [node name="怪物组3" type="Node2D" parent="."]
 position = Vector2(772, 304)
+script = ExtResource("61_awe41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="怪物组3"]
 position = Vector2(47, 14)
@@ -4012,6 +4017,7 @@ autoplay = "default"
 visible = false
 position = Vector2(1033, 2027)
 sprite_frames = SubResource("SpriteFrames_o2h3o")
+script = ExtResource("67_a52j0")
 
 [node name="吸取" type="AnimatedSprite2D" parent="敖白"]
 visible = false
@@ -4033,9 +4039,10 @@ autoplay = "default"
 frame_progress = 0.969768
 
 [node name="六耳" type="AnimatedSprite2D" parent="."]
-position = Vector2(582, 229)
+position = Vector2(537, 246)
 sprite_frames = SubResource("SpriteFrames_83n3c")
 autoplay = "default"
+script = ExtResource("67_a52j0")
 
 [node name="ColorRect" type="ColorRect" parent="六耳"]
 visible = false
@@ -4052,6 +4059,7 @@ sprite_frames = SubResource("SpriteFrames_vstpb")
 animation = &"天机"
 autoplay = "default"
 frame_progress = 0.805613
+script = ExtResource("67_a52j0")
 
 [node name="金甲" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -4274,7 +4282,7 @@ frame_progress = 1.0
 [node name="神秘人" parent="." instance=ExtResource("21_kpsd6")]
 visible = false
 modulate = Color(0, 0, 0, 1)
-position = Vector2(506, -36)
+position = Vector2(336, 220)
 sprite_frames = SubResource("SpriteFrames_7vwe7")
 script = null
 
@@ -4287,7 +4295,7 @@ frame_progress = 1.0
 
 [node name="斩龙" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(611, 302)
+position = Vector2(487, 324)
 scale = Vector2(2.59849, 2.59849)
 sprite_frames = SubResource("SpriteFrames_bfvyl")
 frame = 14
@@ -4312,6 +4320,18 @@ frame_progress = 1.0
 offset_right = 63.3125
 offset_bottom = 27.0
 
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_ddquu")
+offset_left = -940.0
+offset_top = -1614.0
+offset_right = 3659.0
+offset_bottom = 2835.0
+
+[node name="星辰timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
@@ -4319,6 +4339,7 @@ offset_bottom = 27.0
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]
 [connection signal="timeout" from="battleRewardGone" to="." method="_on_battle_reward_gone_timeout" flags=18]
 [connection signal="timeout" from="circleTimer" to="." method="_on_circle_timer_timeout" flags=18]
+[connection signal="timeout" from="星辰timer" to="." method="_on_星辰timer_timeout"]
 
 [editable path="player"]
 [editable path="teleportCircle"]

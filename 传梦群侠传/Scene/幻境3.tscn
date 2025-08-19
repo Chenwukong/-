@@ -21,7 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://dx1uhpydba5uk" path="res://梦魂Animation/四法青云.png" id="19_ltwp7"]
 [ext_resource type="PackedScene" uid="uid://ymede6kvxndj" path="res://Scene/npc.tscn" id="20_e3uhp"]
 [ext_resource type="Script" path="res://Script/地图刮刮乐.gd" id="22_5g75p"]
-[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerplace.tscn" id="22_f14qk"]
+[ext_resource type="PackedScene" uid="uid://dr0073xj0ml3r" path="res://Scene/triggerPlace.tscn" id="22_f14qk"]
 [ext_resource type="Texture2D" uid="uid://dcylqtkijy35y" path="res://panoramas2/江南野外.jpg" id="23_dhkur"]
 [ext_resource type="Script" path="res://Script/fallOff.gd" id="24_r5ov7"]
 
@@ -275,9 +275,8 @@ texture = ExtResource("3_u6gy3")
 offset = Vector2(-2153, -82)
 
 [node name="shadow" type="Sprite2D" parent="."]
-visible = false
 z_index = 2
-position = Vector2(702, 829)
+position = Vector2(3709, 1266)
 texture = ExtResource("4_d2e6a")
 
 [node name="Node2D" type="TextureRect" parent="."]
@@ -290,7 +289,7 @@ cover_texture = ExtResource("23_dhkur")
 
 [node name="player" parent="." instance=ExtResource("5_4yfgo")]
 z_index = 1
-position = Vector2(67, 1318)
+position = Vector2(125, 1318)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" parent="player" index="1"]
@@ -556,7 +555,7 @@ one_shot = true
 polygon = PackedVector2Array(-35, 983, -25, 1270, 101, 1192, 188, 1224, 290, 1256, 356, 1223, 592, 1188, 710, 1206, 772, 1217, 880, 1211, 917, 1246, 926, 1244, 927, 1228, 971, 1191, 1057, 1116, 1045, 1045, 1120, 999, 1155, 968, 1107, 880, 887, 971)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Area2D"]
-polygon = PackedVector2Array(483, 1333, 622, 1330, 727, 1372, 803, 1371, 810, 1332, 902, 1359, 952, 1377, 1049, 1357, 1129, 1359, 1164, 1322, 1122, 1260, 1188, 1219, 1236, 1185, 1263, 1137, 1234, 1112, 1231, 1092, 1300, 1086, 1331, 1046, 1378, 1023, 1429, 992, 1414, 919, 1356, 909, 1248, 816, 1440, 807, 1478, 1121, 1238, 1459, 490, 1443, 551, 1363)
+polygon = PackedVector2Array(483, 1333, 622, 1330, 727, 1372, 803, 1371, 822, 1347, 902, 1359, 952, 1377, 1049, 1357, 1129, 1359, 1164, 1322, 1122, 1260, 1188, 1219, 1236, 1185, 1263, 1137, 1234, 1112, 1231, 1092, 1300, 1086, 1331, 1046, 1378, 1023, 1429, 992, 1414, 919, 1356, 909, 1248, 816, 1440, 807, 1478, 1121, 1238, 1459, 490, 1443, 551, 1363)
 
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]
 [connection signal="timeout" from="canFullTimer" to="." method="_on_can_full_timer_timeout" flags=18]

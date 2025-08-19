@@ -628,6 +628,10 @@ offset_bottom = 36.0
 position = Vector2(2243, 1694)
 toScene = "大唐境外"
 
+[node name="potentialBall3" parent="." instance=ExtResource("16_n25vb")]
+position = Vector2(1674, -753)
+id = "枯骨山1"
+
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]
 [connection signal="mouse_shape_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_shape_entered" flags=18]
 [connection signal="timeout" from="enterFightCd" to="." method="_on_enter_fight_cd_timeout" flags=18]

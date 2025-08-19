@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bk6y5d3akphyi"]
+[gd_scene load_steps=63 format=3 uid="uid://bk6y5d3akphyi"]
 
 [ext_resource type="Script" path="res://Script/map.gd" id="1_hgpky"]
 [ext_resource type="Texture2D" uid="uid://c33lr3mhhb6b" path="res://panoramas2/门派_天宫_兜率宫.jpg" id="2_2dp26"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://5rdlt34b6d4g" path="res://Scene/menu.tscn" id="19_tvq4j"]
 [ext_resource type="PackedScene" uid="uid://b7m0e2bvanxoi" path="res://canvas_layer.tscn" id="20_wfefq"]
 [ext_resource type="PackedScene" uid="uid://cxdsjwmums1gs" path="res://Scene/shop.tscn" id="21_wumgn"]
+[ext_resource type="PackedScene" uid="uid://bcmswm26mw11a" path="res://Scene/treasure.tscn" id="22_xk6cr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_su7y6"]
 vertices = PackedVector2Array(-52, 615, -53, 16, 744, 20, 9, 1337, 2390, 97, 2393, 2472, 11, 2472, 11, 1492)
@@ -450,7 +451,7 @@ wait_time = 0.1
 [node name="warnTimer" type="Timer" parent="."]
 
 [node name="太上老君" parent="." instance=ExtResource("13_b1ork")]
-position = Vector2(570, 208)
+position = Vector2(-207, 141)
 sprite_frames = SubResource("SpriteFrames_tdnve")
 animation = &"左下"
 autoplay = "左下"
@@ -493,6 +494,18 @@ zoom = Vector2(1.45, 1.35)
 [node name="CanvasLayer" parent="." instance=ExtResource("20_wfefq")]
 
 [node name="shop" parent="." instance=ExtResource("21_wumgn")]
+
+[node name="Node2D" parent="." instance=ExtResource("22_xk6cr")]
+position = Vector2(521, 235)
+id = "兜率宫"
+items = {
+"乾坤玉佩": 4,
+"蝉翼金丝甲": 2,
+"辟尘分光履": 4,
+"金凤尾冠": 4,
+"鎏金浣月衣": 2,
+"青冥双剑": 1
+}
 
 [connection signal="input_event" from="StaticBody2D" to="player" method="_on_static_body_2d_input_event" flags=18]
 [connection signal="mouse_entered" from="StaticBody2D" to="StaticBody2D" method="_on_mouse_entered" flags=18]

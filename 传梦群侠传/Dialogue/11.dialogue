@@ -17,7 +17,7 @@ set Global.toggleballon()
 [next=3]
 set Global.toggleballon()
 set Global.getnode("妖皇").play("战斗")
-妖皇: [speed=0.5]想把我们吃干抹尽？没那么便宜！
+妖皇: [speed=0.5]想把我们吃干抹尽？没那么容易！
 妖皇: [speed=0.5]你以为我不知道你在这里布置了结界吗，你是想阻止我给外面传递消息吧！
 魔尊: [speed=0.5]是又如何？
 妖皇: [speed=0.5]你笑我们妖怪粗鄙，却不知道我们也在防着你，我早就和我的几个心腹缔结了血约！不管在哪里，我都能对他们发号施令！
@@ -71,7 +71,7 @@ set Global.getnode("护体").visible = false
 玄武: 还好我反应快，连余波的威力都这么大吗
 姜韵: 看来他们已经到了拼死的阶段了，才会法术乱轰炸
 凌若昭: 师兄看来已经走到前方去战斗了，我们要快去帮忙吧
-白虎: 擒贼先擒王，我们只要把他们的将领和魔尊都杀了，他们就自然会崩溃了
+白虎: 擒贼先擒王，我们只要把他们的将领和魔尊都杀了，他们自然就会崩溃了
 时追云: 这是最后一场战斗了，大家都小心点，活着在人间再相聚！
 小二真身: 好！
 凌若昭: 嗯！
@@ -85,7 +85,7 @@ set Global.getnode("朱雀").visible = false
 set Global.getnode("白虎").visible = false
 set Global.getnode("玄武").visible = false
 
-
+set Global.questHint = "敌军还有30秒到达战场，击垮他们！"
 set Global.onTalk = false
 => END
 
@@ -120,7 +120,7 @@ set Global.getnode("大力金刚2").visible = false
 时追云: [speed=0.5]但也不能掉以轻心，因为如果魔军的人数少了，那么妖盟就很有可能变卦了
 凌若昭: [speed=0.5]好复杂啊！
 小二真身: [speed=0.5]好，我相信老大和大嫂的判断
-set Global.questHint = "先击败一些魔将首领"
+set Global.questHint = "先击败一些魔将首领，然后杀进月宫"
 set Global.onTalk = false
 => END
 
@@ -153,7 +153,7 @@ set Global.changevis("天宫","魔巫")
 夜护法: 你们果然很克制魔，是这位美人的原因吧。真是多谢你们了呢
 姜韵怒: 当初屠杀仙缘村是谁的命令！
 夜护法: 自然是魔尊咯，你们对他的威胁可太大了
-夜护法: 至于建业，那是奔霸加入我们的投名状
+夜护法: 至于建邺，那是奔霸加入我们的投名状
 姜韵: ...
 时追云: 与你们暂时合作，但要是你们突然变卦。你们会是先死的
 夜护法: 呵呵呵，小女明白了
@@ -376,7 +376,7 @@ set Global.onTalk = true
 魔金刚: [speed=0.5]我们大王能感染别人，将其变为伟大的魔！
 时追云惊: [speed=0.5]什么！
 小二真身: [speed=0.5]那与他对战的人岂不是...很危险
-魔金刚: [speed=0.5]世界将诚服在尊主之下！
+魔金刚: [speed=0.5]世界将臣服在尊主之下！
 set get_tree().current_scene.bossFight("四人组","res://Audio/BGM/战斗1.ogg", "月宫之战")
 
 
@@ -731,7 +731,7 @@ set Global.onTalk = true
 凌若昭喜: [speed=0.5]小二，我和你一起
 玉帝: [speed=0.5]嗯，这也算积德行善呐，与三界也有大益
 玉帝: [speed=0.5]那时追云你呢？要回去砍妖怪的头吗？还是回去捕鱼？
-if Global.quests.get("玉帝秘境").complete and Global.violencePoint >= 80 and Global.checkZhenMo():
+if Global.quests.get("玉帝秘境").complete and Global.violencePoint >= 100 and Global.checkZhenMo():
 	时追云惊: [speed=0.5]！！！！！！！！！
 	玉帝: [speed=0.5]嗯，怎么了吗？
 	时追云: [speed=0.5]你一直在天上看着我...
@@ -772,12 +772,19 @@ else:
 	传梦: [speed=0.5]还有很多奇怪的事情吧，还有很多遗憾没弥补吧，还有很多人没有再出现吧
 	传梦: [speed=0.5]在你这一路的旅途中，真的全部事都做完了吗？
 	传梦: [speed=0.5]不管怎么样，感谢你的游玩，起码魔尊是被你消灭了
-	传梦: [speed=0.5]但如果你想的话...我也可以送你回到开始的地方
+	传梦: [speed=0.5]但如果你想的话...我也可以送你回到开始的地方, 去尝试解锁真的结局
 	[next=1]
 	- 以更强的样子重新开始传梦之路	
 		set Global.resetPlayer()
-		set Global.resetGlobal()
+		if Global.violencePoint <= 0
+			set Global.resetGlobal()
+			set Global.violencePoint = -10
+		else:
+			set Global.resetGlobal()			
+		set Global.gameRound += 1
 		set Global.changeScene("新手村",null)
+		
+		
 	- 算了，这已经足够了
 		set get_tree().quit()
 

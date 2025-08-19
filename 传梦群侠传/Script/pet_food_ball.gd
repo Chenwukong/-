@@ -6,6 +6,11 @@ func _ready():
 	if id in Global.petFoodBalls:
 		pass
 	else:
+		if id == "":
+			var index = 0
+			for child in get_tree().get_nodes_in_group("petFoodBall"):
+				index += 1
+				id = get_tree().current_scene.name + str(index)
 		Global.petFoodBalls[id] = {"pickUp": false}
 		
 
@@ -30,6 +35,7 @@ func _on_area_2d_body_entered(body):
 		body.get_node("effect").play("potentialBall")
 		if !added:
 			Global.systemMsg.append("获得了1灵宠力！")
+			Global.playsound("res://Audio/SE/heal 1.ogg")
 		added = true
 		get_tree().current_scene.get_node("CanvasLayer").renderMsg()
 		queue_free()
