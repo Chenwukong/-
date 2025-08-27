@@ -1,10 +1,11 @@
 extends Node
 var hashTable = {}
 var gold = 0
-var golds = 100 * Global.enKey
+var golds = 10 * Global.enKey
 var seconds = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
+
 	return
 	golds *= Global.enKey
 	
@@ -16,7 +17,9 @@ func _process(delta):
 	update_status()
 	update_players_with_item_stats()
 	remove_empty_items()
-
+	for i in fightScenePlayerData:
+		if fightScenePlayerData[i].addPlayerSpeed >= 9999 or fightScenePlayerData[i].addHp>= 99999 or fightScenePlayerData[i].addStr>= 99999 or fightScenePlayerData[i].additionDmg>= 99999 or fightScenePlayerData[i].addPhysicDefense >= 8000 or fightScenePlayerData[i].addMagicDefense >= 8000   :
+			get_tree().quit()
 
 	
 func callFightScenePlayerData():
@@ -30,22 +33,19 @@ func callFightScenePlayerData():
 			
 	return playerDataList
 var keyItem = {
-	"洗髓丹":{
-		"info": ItemData.keyItem.get("洗髓丹"),
-		"number": 9999
-	},
-	"圣兽洗髓":{
-		"info": ItemData.keyItem.get("圣兽洗髓"),
-		"number": 9999
-	},
-	"筋斗云":{
-		"info": ItemData.keyItem.get("筋斗云"),
-		"number": 9999
-	},
-	"避祸香囊":{
-		"info": ItemData.keyItem.get("避祸香囊"),
-		"number": 9999
-	},
+#	"洗髓丹":{
+#		"info": ItemData.keyItem.get("洗髓丹"),
+#		"number": 9999
+#	},
+#	"圣兽洗髓":{
+#		"info": ItemData.keyItem.get("圣兽洗髓"),
+#		"number": 9999
+#	},
+#
+#	"避祸香囊":{
+#		"info": ItemData.keyItem.get("避祸香囊"),
+#		"number": 9999
+#	},
 }
 var consumeItem = {
 #	"佛手":{
@@ -99,18 +99,18 @@ var bagArmorItem = {
 		"number": 1,
 		"added": false
 	},
-	"传梦之剑":{
-		"info": ItemData.weapon.get("传梦之剑"),
-		"type": "weapon",
-		"number": 1,
-		"added": false
-	},
-	"传梦之棍":{
-		"info": ItemData.weapon.get("传梦之棍"),
-		"type": "weapon",
-		"number": 1,
-		"added": false
-	},
+#	"传梦之剑":{
+#		"info": ItemData.weapon.get("传梦之剑"),
+#		"type": "weapon",
+#		"number": 1,
+#		"added": false
+#	},
+#	"传梦之棍":{
+#		"info": ItemData.weapon.get("传梦之棍"),
+#		"type": "weapon",
+#		"number": 1,
+#		"added": false
+#	},
 #	"天香披肩":{
 #		"info": ItemData.cloth.get("天香披肩"),
 #		"type": "cloth",
@@ -305,13 +305,13 @@ var fightScenePlayerData2= {
 	"时追云":{
 			"name": "时追云",
 			"sex": "male",
-			"icon":"res://Pictures/Pictures/时追云.png",
+			"icon": "res://Pictures/Pictures/时追云头像.png",
 			"smallIcon":"res://main character/tile000.png",
 			"alive":true,
 			"playerAttackType": "melee",
 			"playerSpeed": 20,
 			"addPlayerSpeed": 0,
-			"critChance": 0,
+			"critChance": 1,
 			"addCritChance": 0,
 			"blockChance":1,
 			"addBlockChance": 0,
@@ -385,7 +385,7 @@ var fightScenePlayerData2= {
 	"姜韵": {
 			"name": "姜韵",
 			"sex": "female",
-			"icon":"res://portrait/姜韵.png",
+			"icon": "res://Pictures/Pictures/姜韵头像.png",
 			"smallIcon":"res://main character/jiangYuntile000.png",
 			"playerAttackType": "range",
 			"playerSpeed": 20,
@@ -394,7 +394,7 @@ var fightScenePlayerData2= {
 			"addCritChance":0,			
 			"blockChance":1,
 			"addBlockChance": 0,
-			"level": 45,
+			"level": 50,
 			"exp":0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -412,7 +412,7 @@ var fightScenePlayerData2= {
 			"addMp":0,
 			"currHp": 1000,
 			"currMp": 490,
-			"potential": 220,
+			"potential": 245,
 			"idle": "姜韵idle",
 			"autoAttack":'姜韵autoAttack',
 			"magicAutoAttack": "",
@@ -534,7 +534,7 @@ var fightScenePlayerData2= {
 			"addMp":0,
 			"currHp": 200,
 			"currMp": 300,
-			"potential":15,
+			"potential":35,
 			"idle": "大海龟idle",
 			"autoAttack":'大海龟autoAttack',
 			"magicAutoAttack": "",
@@ -588,7 +588,7 @@ var fightScenePlayerData2= {
 			"addPlayerSpeed": 0,
 			"critChance": 1,
 			"addCritChance":0,
-			"blockChance":0,
+			"blockChance":1,
 			"addBlockChance": 0,
 			"level": 10,
 			"exp": 0,
@@ -646,7 +646,7 @@ var fightScenePlayerData2= {
 	"凌若昭":{
 			"name": "凌若昭",
 			"sex": "female",
-			"icon":"res://Pictures/Pictures/云燕儿.png",
+			"icon":"res://Pictures/Pictures/凌若昭头像.png",
 			"smallIcon":"res://main character/若昭右下.png",
 			"alive":true,
 			"playerAttackType": "melee",
@@ -1354,7 +1354,7 @@ var fightScenePlayerData2= {
 			"addMagicDefense": 0,
 			"physicDefense": 5,
 			"addPhysicDefense": 0,
-			"str": 100,
+			"str": 700,
 			"addStr": 0,
 			"abilityPower": 0,
 			"addAbilityPower":0,
@@ -1397,7 +1397,7 @@ var fightScenePlayerData2= {
 				"multiHitTimes": 6,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 1, 
+				"value": 5, 
 				"cost": 50,
 				"description": "全力攻击六次，休息一回合",
 				"effectArea": "single",
@@ -1415,8 +1415,8 @@ var fightScenePlayerData2= {
 					"effectingNum": 1,
 					"damageSource": "AD",
 					"duration": 1,
-					"value": 300, 
-					"cost": 300,
+					"value": 150, 
+					"cost": 200,
 					"description": "终结技！",
 					"effectArea": "aoe",
 					"animationArea":"enemy",
@@ -1538,7 +1538,7 @@ var fightScenePlayerData = {
 	"时追云":{
 			"name": "时追云",
 			"sex": "male",
-			"icon":"res://Pictures/Pictures/时追云.png",
+			"icon": "res://Pictures/Pictures/时追云头像.png",
 			"smallIcon":"res://main character/tile000.png",
 			"alive":true,
 			"playerAttackType": "melee",
@@ -1679,7 +1679,7 @@ var fightScenePlayerData = {
 	"姜韵": {
 			"name": "姜韵",
 			"sex": "female",
-			"icon":"res://portrait/姜韵.png",
+			"icon":"res://Pictures/Pictures/姜韵头像.png",
 			"smallIcon":"res://main character/jiangYuntile000.png",
 			"playerAttackType": "range",
 			"playerSpeed": 20,
@@ -1740,7 +1740,23 @@ var fightScenePlayerData = {
 				"animationArea":"enemy",
 				"audio": "res://Audio/SE/魔音.ogg",
 				"icon": "res://Icons/●图标 (23).png"
-			},
+			},{ 
+					"name": "净瓶仙露",
+					"level": 1,
+					"currExp": 0,
+					"needExp": 50,
+					"attackType": "buff",
+					"buffEffect": ["contHp"], 
+					"value": 400,
+					"cost": 240,
+					"description": "杨柳仙露的功效，持续恢复4名队友血量4回合",	
+					"effectArea": "aoe",
+					"animationArea":"allie",
+					"effectingNum": 4,
+					"duration": 4,
+					"audio": "res://Audio/SE/回复-观音.ogg",
+					"icon":"res://Icons/●图标 (77).png",
+			},	
 			{
 				"name": "一苇渡江",
 				"level": 1,
@@ -1884,7 +1900,7 @@ var fightScenePlayerData = {
 			"addCritChance": 100,
 			"blockChance":0,
 			"addBlockChance": 0,
-			"level": 60,
+			"level": 10,
 			"exp": 0,
 			"needExp":100,
 			"magicDefense": 5,
@@ -1971,7 +1987,7 @@ var fightScenePlayerData = {
 	"凌若昭":{
 			"name": "凌若昭",
 			"sex": "female",
-			"icon":"res://Pictures/Pictures/云燕儿.png",
+			"icon": "res://Pictures/Pictures/凌若昭头像.png",
 			"smallIcon":"res://main character/若昭右下.png",
 			"alive":true,
 			"playerAttackType": "melee",
@@ -2723,7 +2739,7 @@ var fightScenePlayerData = {
 				"multiHitTimes": 6,
 				"damageSource": "AD",
 				"duration": 1,
-				"value": 1, 
+				"value": 5, 
 				"cost": 50,
 				"description": "全力攻击六次，休息一回合",
 				"effectArea": "single",
@@ -3021,7 +3037,7 @@ func calculate_hp_for_level(level, player = null):
 	var baseHp = 220  # Base HP at level 1
 	var finalHp = 2500  # Desired HP at level 100
 	if player == "姜韵":
-		finalHp = 3200
+		finalHp = 3450
 	var hpIncreasePerLevel = (finalHp - baseHp) / 99  # Linear increase per level
 
 	var totalHp = baseHp + hpIncreasePerLevel * (level - 1)
@@ -3163,7 +3179,7 @@ var unLearnMagic = {
 							"attackType": "range",
 							"damageSource": "AD",
 							"value": 2.2,
-							"cost": 60,
+							"cost": 30,
 							"description": "时追云通过修炼领悟的技能，比普通斩击多点伤害",	
 							"effectArea": "single",
 							"animationArea":"enemy",
@@ -3395,11 +3411,12 @@ var unLearnMagic = {
 						},	
 			"净瓶仙露":{ 
 					"name": "净瓶仙露",
+					"level": 1,
 					"currExp": 0,
 					"needExp": 50,
 					"attackType": "buff",
 					"buffEffect": ["contHp"], 
-					"value": 550,
+					"value": 400,
 					"cost": 240,
 					"description": "杨柳仙露的功效，持续恢复4名队友血量4回合",	
 					"effectArea": "aoe",
@@ -3812,4 +3829,11 @@ func removeMagic(character):
 	for i in magicList:
 		tempMagic.append(i)
 	fightScenePlayerData.get(character).playerMagic = []
+
+func set_hengsao_qianjun_hits(value: int) -> void:
+	var skills = fightScenePlayerData["时追云"]["playerMagic"]
+	for skill in skills:
+		if skill["name"] == "横扫千军":
+			skill["multiHitTimes"] = value
+			return
 

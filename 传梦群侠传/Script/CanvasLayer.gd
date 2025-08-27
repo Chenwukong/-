@@ -359,15 +359,12 @@ func _on_friend_button_mouse_entered():
 	$"好友/Label".visible = true
 	$"好友".play("mouseEnter")
 	Global.onUi = true
-	if Global.noMouse:
-		noMouse = true
-		Global.noMouse = false
+
 func _on_friend_button_mouse_exited():
 	Global.onUi = false
 	$"好友/Label".visible = false
 	$"好友".play("default")
-	if noMouse:
-		Global.noMouse = true
+
 
 func _on_梦单close_button_button_down():
 	Global.onUi = true
@@ -644,7 +641,7 @@ func _on_add_button_button_down():
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/AnimatedSprite2D2".play("click")
 	
-	cost = buyAmount * 100000	
+	cost = buyAmount * 200000	
 	$"宠物食物商店/cost".text = str(cost)
 
 func _on_add_button_button_up():
@@ -658,7 +655,7 @@ func _on_min_button_button_down():
 	buyAmount -= 1
 	$"宠物食物商店/buyAmount".text = str(buyAmount)
 	$"宠物食物商店/AnimatedSprite2D3".play("click")
-	cost = buyAmount * 100000
+	cost = buyAmount * 200000
 	$"宠物食物商店/cost".text = str(cost)
 
 
@@ -709,6 +706,8 @@ func _on_count_down_timer_timeout():
 
 
 func _on_buy_button_button_down():
+	if FightScenePlayers.golds - cost * Global.enKey < 0:
+		return
 	FightScenePlayers.golds -= cost * Global.enKey
 	FightScenePlayers.petFoodBall += buyAmount
 	Global.showMsg("购买了"+str(buyAmount)+"个灵宠食物")
@@ -1213,18 +1212,22 @@ func _on_mini_shop_buy_button_down():
 	var buyAmount = 1
 	if ItemData[addItemInfo.type][addItemInfo.name].gold > FightScenePlayers.golds:
 		return
+	print(ItemData[addItemInfo.type][addItemInfo.name].gold,FightScenePlayers.golds)
 	if Input.is_action_pressed("shift") or miniShopBuyTen:
+		
 		if FightScenePlayers.golds >= ItemData[addItemInfo.type][addItemInfo.name].gold * 10:
 			FightScenePlayers.golds -= ItemData[addItemInfo.type][addItemInfo.name].gold * 10
 			buyAmount = 10
+		else:
+			return
 	else:	
+		print(444)
 		FightScenePlayers.golds -= ItemData[addItemInfo.type][addItemInfo.name].gold
 		buyAmount = 1
 	
 	if FightScenePlayers[addItemInfo.bagPlace].get(currItemName):
 		FightScenePlayers[addItemInfo.bagPlace].get(currItemName).number += buyAmount
 		Global.playsound("res://Audio/SE/001-System01.ogg")
-		print(123123)
 	else:
 	
 		Global.addItem(currItemName, addItemInfo.type, addItemInfo.bagPlace, buyAmount)

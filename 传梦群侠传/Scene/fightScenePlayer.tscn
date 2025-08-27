@@ -14718,7 +14718,7 @@ max_distance = 1e+12
 visible = false
 position = Vector2(-2.34146, -8.57144)
 sprite_frames = SubResource("SpriteFrames_djvij")
-animation = &"星辰陨落"
+animation = &"金身出鞘"
 
 [node name="attackWaitTime" type="Timer" parent="."]
 wait_time = 2.0
@@ -14812,12 +14812,11 @@ volume_db = 13.783
 max_distance = 1e+09
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_8r48i")
-offset_left = -854.635
-offset_top = -744.286
-offset_right = 737.365
-offset_bottom = 708.714
+offset_left = 2072.2
+offset_top = -672.857
+offset_right = 3664.2
+offset_bottom = 780.143
 
 [node name="火域" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -14827,16 +14826,20 @@ rotation = -0.51325
 scale = Vector2(6.98178, -3.42629)
 sprite_frames = SubResource("SpriteFrames_naqlo")
 autoplay = "default"
-frame_progress = 0.747437
+frame_progress = 0.697172
 script = ExtResource("190_sivha")
 
 [node name="Area2D" type="Area2D" parent="火域"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="火域/Area2D"]
-polygon = PackedVector2Array(27.6498, -56.6255, 59.1832, -23.3847, 36.1297, 134.271, -51.8911, 130.07, -93.6645, 127.793, -75.2073, 18.1728, -18.5806, -21.3333)
+polygon = PackedVector2Array(27.6498, -56.6255, 59.1832, -23.3847, 37.7979, 144.434, -51.0171, 142.581, -94.9545, 139.44, -75.2073, 18.1728, -18.5806, -21.3333)
 
 [node name="canAttackAfterMulti" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
+
+[node name="canPressTimer" type="Timer" parent="."]
+wait_time = 1.6
 one_shot = true
 
 [connection signal="button_down" from="battleCommends/attackButton" to="." method="_on_attack_button_button_down"]
@@ -14858,3 +14861,4 @@ one_shot = true
 [connection signal="timeout" from="canCalculateAfterMulti" to="." method="_on_can_calculate_after_multi_timeout"]
 [connection signal="area_entered" from="火域/Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="canAttackAfterMulti" to="." method="_on_can_attack_after_multi_timeout"]
+[connection signal="timeout" from="canPressTimer" to="." method="_on_can_press_timer_timeout"]

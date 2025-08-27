@@ -14,6 +14,7 @@ Nathan: For more information see the online documentation.
 
 ~ 假方寸
 set Global.onTalk = true
+set Global.dial = null
 set FightScenePlayers.healAll()
 凌若昭: [speed=0.5]好了，我们到啦，睁开眼吧~
 小二: [speed=0.5]哎哟我去，这也太高了吧，这是飞起来的岛吗！！
@@ -708,7 +709,7 @@ if Global.quests.get("方寸罗师兄").get("小师弟") < 3:
 	set Global.npcs.get("罗师兄").current_dialogue_index = 1
 else:
 	罗师兄: [speed=0.5]嘿嘿，教训的不错，这张符就给你了吧
-	set FightScenePlayers.learnMagic("凌若昭", "催眠咒")
+	set FightScenePlayers.learnMagic("凌若昭", "催眠")
 	set get_tree().current_scene.showMsg("若昭可以用催眠咒了！")
 	set Global.npcVis.get("方寸山").get("小师弟").visible = false
 	set Global.npcVis.get("方寸山").get("小师弟2").visible = false
@@ -983,7 +984,7 @@ set get_tree().current_scene.get_node("AudioStreamPlayer2D").play()
 黑山: [speed=0.5]还有一种嘛，如果你的灵力不敌，那么为何不集中在一点，凝聚之后再出招呢教训
 时追云惊: [speed=0.5]聚集于一点
 黑山: [speed=0.5]你小子学东西是很快，但对灵力的经验还是太少了。
-黑山: [speed=0.5]我敢说用这个方法，配和祖师传给你的高等炼体法，天下少有能抵挡得住你的攻击的生物了
+黑山: [speed=0.5]我敢说用这个方法，配合祖师传给你的高等炼体法，天下少有能抵挡得住你的攻击的生物了
 时追云: [speed=0.5]可这是你的保命之法吧，你把他的破解方法说出来...
 黑山: [speed=0.5]哪有那么严重，比老夫强的不需要用这一招，比老夫弱的也不需要身体硬抗，再说了在这山上能遇到什么人
 黑山: [speed=0.5]老夫可不是那种知道了方法之后就能随便击败的人，你们，还得练

@@ -278,7 +278,7 @@ var battleConsume ={
 		"description": "恢复1000生命值",
 		"audio": "res://Audio/SE/HEAL11.ogg",
 		"key":false,
-		"gold": 1800
+		"gold": 4000
 	},		
 	
 	"老君仙丹":{
@@ -346,7 +346,7 @@ var battleConsume ={
 		"description": "造成200伤害",
 		"key":false,
 		"audio": "res://Audio/SE/094-Attack06.ogg",
-		"gold": 400
+		"gold": 300
 	},
 	"飞蝗石":{
 		"name": "飞蝗石",
@@ -948,8 +948,8 @@ var accessories = {
 		"user": "all",
 		"icon": "res://Icons/0016-3b8b41e-00003 副本.png",
 		"picture": "res://Pictures/Pictures/■护身符.png",
-		"value": {"addPlayerSpeed": 125 * Global.enKey, "addPhysicDefense": 160* Global.enKey, "addMagicDefense": 160* Global.enKey, "additionDmg": 600* Global.enKey, "addHp":1000* Global.enKey},
-		"description":  "速度+125, 物理防御+160，灵力防御+160，伤害+500，血量+1000",
+		"value": {"addPlayerSpeed": 100 * Global.enKey, "addPhysicDefense": 160* Global.enKey, "addMagicDefense": 160* Global.enKey, "additionDmg": 600* Global.enKey, "addHp":900* Global.enKey},
+		"description":  "速度+100, 物理防御+160，灵力防御+160，伤害+600，血量+900",
 		"key":false,
 		"added":false,
 		"gold": 990000,

@@ -1919,16 +1919,20 @@ func _on_accept_button_button_down():
 		currPlayer.magicButton.modulate = "#ffffff"
 		currPlayer.defenseButton.modulate = "#ffffff"
 		currPlayer.itemButton.modulate = "#ffffff"
+		print(000)
 		if currPlayer.get_parent().get_parent().canPress:
+			print(111)
 			if Global.onItemUsePicking or Global.onItemUsing or Global.onMagicAttacking or Global.onMagicAttackPicking:
+				print(222)
 				return
+				
 			if Global.onAttackPicking == false and currPlayer.canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
 				if currPlayer.canAttack:
 					Global.onAttackPicking = true
 					currPlayer.get_parent().get_node("enemyInfo").visible = false
 					get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/002-System02.ogg")
 					get_parent().get_parent().get_node("subSound").play()			
-
+					print(333)
 
 
 	if currPlayer.commanButtonIndex == 2 and Global.onMultiHit == 0:

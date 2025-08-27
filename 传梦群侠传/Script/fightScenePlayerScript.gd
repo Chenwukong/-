@@ -198,7 +198,7 @@ func _ready():
 		FightScenePlayers.fightScenePlayerData.get(playerName).currHp = FightScenePlayers.fightScenePlayerData.get(playerName).hp
 	get_node("hpControl").visible = false
 func _process(delta):
-
+	Global.onTeamPlayer = unique_array(Global.onTeamPlayer)
 	if Global.onAttackingList.size()>0 and Global.onAttackingList[0] == "小二真身":
 		$ColorRect.visible = true
 	else:
@@ -425,6 +425,8 @@ func _process(delta):
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").stream = load("res://Audio/SE/001-System01.ogg")
 				get_parent().get_parent().get_parent().get_parent().get_node("subSound").play()						
 			if Input.is_action_pressed("alt") and Input.is_action_pressed("q") and !Global.noKeyboard:
+				get_parent().get_parent().canPress = false
+				$canPressTimer.start()
 				if castLastMagic.magicInfo == null:
 					return
 				if castLastMagic.magicInfo.name == "真身现世":
@@ -468,7 +470,7 @@ func _process(delta):
 					
 					
 					return
-				if Global.target or target and canAttack == true:
+				if Global.target or target and canAttack == true :
 					attack(Global.target, "keyboard")
 					if playerName != '姜韵' and playerName != "狐葬魂":
 					
@@ -1163,6 +1165,7 @@ func _process(delta):
 		defenseButton.modulate = "#ffffff"
 		itemButton.modulate = "#ffffff"
 		if get_parent().get_parent().canPress:
+			
 			if Global.onAttackPicking == false and canAttack and Global.onAttackingList.size()>0 and (Global.onAttackingList[0] in Global.onTeamPlayer or Global.onAttackingList[0] in Global.onTeamPet):
 				if Global.onMagicSelectPicking or Global.onMagicAttackPicking:
 					return
@@ -1331,6 +1334,7 @@ func _process(delta):
 		
 ##普通攻击
 func attack(target, type):
+	crit = "normal"
 	if randi_range(0,100) < FightScenePlayers.fightScenePlayerData.get(playerName).critChance + FightScenePlayers.fightScenePlayerData.get(playerName).addCritChance :
 		crit = "crit"
 	for child in target.get_node("hpControl").get_children():
@@ -1385,12 +1389,14 @@ func attack(target, type):
 
 
 func castMagic(delta, magic, target, type, onLastMagic):
+	get_parent().get_parent().canPress = false
+	get_node("canPressTimer").start()	
 	
-	
+	crit = "normal"
 	if Global.haveQianJi and playerName != "小二" and playerName != "小二真身" and ("小二" in Global.onTeamPlayer or "小二真身" in Global.onTeamPlayer):
 		FightScenePlayers.eraseMagic("小二",FightScenePlayers.fightScenePlayerData["小二"].playerMagic[FightScenePlayers.fightScenePlayerData["小二"].playerMagic.size()-1].name)
 		FightScenePlayers.learnMagic("小二",magic.name)
-		print(magic.name,111)
+		
 		FightScenePlayers.eraseMagic("小二真身",FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic[FightScenePlayers.fightScenePlayerData["小二真身"].playerMagic.size()-1].name)
 		FightScenePlayers.learnMagic("小二真身",magic.name)		
 		for i in players:
@@ -1665,6 +1671,8 @@ func castMagic(delta, magic, target, type, onLastMagic):
 
 				var damage_to_deduct
 				$Control.visible = false
+				if !is_instance_valid(Global.target):
+					Global.target = monsters[0]
 				if Global.target:
 					Global.target.get_node("getHitEffect").visible = true
 					Global.target.get_node("getHitEffect").play(magic.name)		
@@ -2392,7 +2400,7 @@ func checkIncreaseDmg(magic):
 				
 func cast_magic_multiple_times(delta, magic, target, input_type, times):
 
-	
+	crit = "normal"
 	
 	Global.onMultiHit = times
 	Global.canCalculateAfterMulti = false
@@ -2470,3 +2478,16 @@ func remove_duplicates_in_place(arr: Array):
 			arr.remove_at(i)
 		else:
 			i += 1
+
+
+func _on_can_press_timer_timeout():
+	get_parent().get_parent().canPress = true
+	
+func unique_array(arr: Array) -> Array:
+	var seen = {}
+	var result = []
+	for item in arr:
+		if not seen.has(item):
+			seen[item] = true
+			result.append(item)
+	return result

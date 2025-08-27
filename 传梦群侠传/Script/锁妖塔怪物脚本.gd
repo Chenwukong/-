@@ -47,7 +47,7 @@ func _on_area_2d_area_entered(area):
 	velocity = Vector2.ZERO
 	if Global.onTalk:
 		return
-	if area.name == "playerTouch" and area.get_parent().velocity.x != 0:
+	if area.name == "playerTouch" and area.get_parent().velocity.x != 0 and !Global.onFight:
 		if get_tree().current_scene.name == "花果山":
 			get_parent().get_parent().touchFight()
 		else:

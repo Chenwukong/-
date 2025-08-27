@@ -1106,7 +1106,7 @@ set Global.changevis("玄天幻化","小女孩")
 set Global.getnode("小女孩").visible= true
 
 set Global.toggleballon()
-set get_tree().current_scene.fetch_first_unread()
+set get_tree().current_scene.check_unique_or_branch()
 时追云惊: [speed=0.5]这是？？？
 姜韵: [speed=0.5]这孩子...好像身上有天道的气息
 小二: [speed=0.5]什么！？难道是天道又复活了？
@@ -1341,7 +1341,7 @@ set Global.getnode("player/Sprite2D").visible = false
 天机娃娃: [speed=0.5]没有现在的你去帮助，曾经的你怎么会获得帮助呢
 凌天麒: [speed=0.5]...我明白了
 天机娃娃: [speed=0.5]那你要怎么做？[next=2]
-- 回去救助"后来者"并且留言(需要联网)
+- 回去救助"后来者"并且留言(需要联网,并且会删除所有存档，请慎重！请慎重！请慎重！)
 	凌天麒: [speed=0.5]让我去完成这个闭环吧
 	天机娃娃: 不能用原名，要有个代称哦
 	set Global.getnode("CanvasLayer3/id").visible = true

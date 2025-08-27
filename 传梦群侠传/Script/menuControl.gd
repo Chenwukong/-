@@ -128,9 +128,10 @@ func _process(delta):
 		for i in Global.onTeamPlayer.size():
 			var player = get_node("status/Player" + str(i + 1))
 			player.get_node("characterIcon").texture = load(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].icon)
-			if Global.onTeamPlayer[i] == "小二" or Global.onTeamPlayer[i] == "姜韵":
-				player.get_node("characterIcon").scale = Vector2(0.27,0.27)
-			
+			if Global.onTeamPlayer[i] == "小二":
+				player.get_node("characterIcon").scale = Vector2(0.26,0.26)
+			if Global.onTeamPlayer[i] == "姜韵" or Global.onTeamPlayer[i] == "时追云" or Global.onTeamPlayer[i] == "凌若昭":
+				player.get_node("characterIcon").scale = Vector2(0.77,0.85)
 			player.get_node("expText/expValue").text = str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].exp))+ "/" + str(decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].needExp))
 			player.get_node("TextureProgressBar").max_value = decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].needExp)
 			player.get_node("TextureProgressBar").value = decrypt(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[i]].exp) 
@@ -277,7 +278,6 @@ func _process(delta):
 				Global.onMagicPage = true
 				for i in FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic:
 					var menuMagic = menuMagicButtonScene.instantiate()
-					print(FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]].playerMagic)
 					if i.has("level"):
 						menuMagic.get_node("Button/name").text = i.name + "（" + str(i.level) + "） "
 						menuMagic.get_node("Button/cost").text = str(i.currExp) + "/" + str(i.needExp)
@@ -1439,7 +1439,7 @@ func _process(delta):
 				else:		
 					skillIndex -= 1	
 		if skillIndex == 0:
-			$"加点页面/介绍区/Label".text = "最大气血值10点"
+			$"加点页面/介绍区/Label".text = "最大气血值7点"
 			
 			$"加点页面/介绍区/总共提高".visible = true				
 		if skillIndex == 1:
@@ -1476,7 +1476,7 @@ func _process(delta):
 					currPlayer.potential -= Global.enKey 				
 				$"加点页面/属性区/最大气血/最大气血数字".modulate = 	"ff0000"
 				$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = true
-				$"加点页面/属性区/最大气血/最大气血数字/increaseValue".text = "(+ " + str(decrypt(pointOnHp) * 10) + ")"
+				$"加点页面/属性区/最大气血/最大气血数字/increaseValue".text = "(+ " + str(decrypt(pointOnHp) * 7) + ")"
 #				if pointOnHp >0:
 #					$"加点页面/属性区/物理防御/value/changedValue".modulate = "ff0000"
 #				$"加点页面/属性区/物理防御/value/changedValue"
@@ -2165,7 +2165,7 @@ func _on_体力加点_button_down():
 		$"加点页面/属性区/最大气血/最大气血数字".modulate = 	"ff0000"
 		$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = true
 		
-		$"加点页面/属性区/最大气血/最大气血数字/increaseValue".text = "(+ " + str(pointOnHp * 10) + ")"
+		$"加点页面/属性区/最大气血/最大气血数字/increaseValue".text = "(+ " + str(pointOnHp * 7) + ")"
 
 	
 	
@@ -2271,7 +2271,7 @@ func _on_确认按钮_button_down():
 	skillIndex = 5
 	var currPlayer = FightScenePlayers.fightScenePlayerData[Global.onTeamPlayer[characterIndex]]
 	if pointOnHp > 0:
-		currPlayer.addHp += pointOnHp * 10 * Global.enKey 
+		currPlayer.addHp += pointOnHp * 7 * Global.enKey 
 		currPlayer.addPhysicDefense += pointOnHp * 1 * Global.enKey 
 		$"加点页面/属性区/最大气血/最大气血数字".modulate = "ffffff"
 		$"加点页面/属性区/最大气血/最大气血数字/increaseValue".visible = false
@@ -2864,7 +2864,7 @@ func _on_足护_button_down():
 	$"../subSound".play()
 	bagMenuItems = get_tree().get_nodes_in_group("bagMenuItem")
 func _on_头饰_button_down():
-	print(32131)
+
 	canPress = false
 	$"../canPress".start()
 	itemSelectIndex = 0

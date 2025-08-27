@@ -57,9 +57,30 @@ func is_in_same_big_scene(scene_a: String, scene_b: String) -> bool:
 			return true
 	return false
 
+func set_chapter(chapter_id: int) -> void:
+	var chapters = {
+		1: "第一章:  浮生难安",
+		2: "第二章:  人以当先",
+		3: "第三章:  灵台仙闻",
+		4: "第四章:  无妄妖祸",
+		5: "第五章:  鬼蜮迷途",
+		6: "第六章:  魅情实切",
+		7: "第七章:  不屈之魂",
+		8: "第八章:  西域险行",
+		9: "第九章:  梦澹现世",
+		10: "第十章:  魔窟深渊",
+		11: "第十一章:  终局之战",
+		12: "第十二章:  道归虚无",
+	}
+	
+	if chapter_id in chapters:
+		var title = chapters[chapter_id]
+		get_tree().get_root().get_window().set_title("传梦之路 " + title)
+
 
 func _ready():
-	print(get_tree().current_scene.name)
+	
+	set_chapter(Global.current_chapter_id)
 	Global.uniqueId = OS.get_unique_id()
 	if has_node("shop"):
 		Global.getnode("shop").connect("buy_signal", Callable(self, "_on_buy_signal"))
@@ -75,6 +96,7 @@ func _ready():
 	http = $http
 	http.request_completed.connect(_on_http_request_completed)
 	connect("httpNameReady", Callable($CanvasLayer, "onHttpNameReady"))
+	
 	#-------------------------------------------------------------------------shader
 	if not has_node("oneTimeSound"):
 		var audio_player = AudioStreamPlayer.new()
@@ -150,6 +172,10 @@ func _ready():
 		#DialogueManager.show_chat(load("res://Dialogue/"+ str(chapter)+ ".dialogue"),get_npc_dialogue(Global.dial))
 
 func _process(delta):
+	if Global.currScene == "玄天幻化" and !Global.onFight:
+		$ColorRect.visible = false
+		
+		
 	if Global.onTalk:
 		Global.menuOut = false
 	
@@ -1400,7 +1426,7 @@ func _on_audio_finished():
 
 
 func _on_id_text_submitted(new_text):
-	if $CanvasLayer3/id.text.length() > 6:
+	if $CanvasLayer3/id.text.length() > 7:
 		$CanvasLayer3/Label.visible = true
 		$CanvasLayer3/Label.text = "字太多了！"
 		return
@@ -1419,6 +1445,7 @@ func _on_发送_button_down():
 
 
 func send_id(name: String, message: String) -> void:
+	Global.delete_all_saves()
 	httpStatus = "sendId"
 	var url = supabase_url + "/rest/v1/shareDream"
 	var headers = [
@@ -1472,7 +1499,7 @@ func check_if_id_exists(player_id: String):
 
 func _on_发送2_button_down():
 
-	if $CanvasLayer3/message.text.length() > 170:
+	if $CanvasLayer3/message.text.length() > 130:
 		$CanvasLayer3/Label.visible = true
 		$CanvasLayer3/Label.text = "字太多了！"
 		return
@@ -1496,6 +1523,40 @@ func _on_message_text_submitted(new_text):
 
 
 
+
+func check_unique_or_branch():
+	httpStatus = "checkUniqueId"
+	var uid = OS.get_unique_id()
+	var url = supabase_url + "/rest/v1/shareDream?select=id&uniqueId=eq." + uid + "&limit=1"
+
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	if err != OK:
+		print("❌ 检测 uniqueId 请求失败：", err)
+
+
+# 当 uniqueId 存在时，基于该 uniqueId 随机读取一条记录
+func fetch_random_by_uniqueid():
+	httpStatus = "fetchRandomByUID"
+	var uid = OS.get_unique_id()
+
+	var url = supabase_url + "/rest/v1/shareDream?select=id,name,message&uniqueId=eq." + uid + "&order=random()&limit=1"
+
+	var headers = [
+		"apikey: " + api_key,
+		"Authorization: Bearer " + api_key,
+		"Accept: application/json"
+	]
+	var err = http.request(url, headers, HTTPClient.METHOD_GET)
+	if err != OK:
+		print("❌ 随机读取请求失败：", err)
+
+
+
 func fetch_first_unread() -> void:
 	var url = supabase_url + "/rest/v1/shareDream?readed=eq.false&order=id.asc&limit=1&select=id,name,message"
 
@@ -1512,12 +1573,36 @@ func fetch_first_unread() -> void:
 		print("❌ 获取未读消息请求失败，错误码：", err)
 	else:
 		print("📡 获取未读消息请求已发送")
+		
+		
+		
 func _on_http_request_completed(result, response_code, headers, body):
 	print("返回状态码: ", response_code)
 	var response_text = body.get_string_from_utf8()
 	print("响应内容: ", response_text)
 	
 	if response_code == 200:
+		if httpStatus == "checkUniqueId":
+			var data = JSON.parse_string(response_text)
+			if typeof(data) == TYPE_ARRAY and data.size() > 0:
+				# 表里已存在本机 uniqueId -> 随机读取一条
+				print("random")
+				fetch_random_by_uniqueid()
+			else:
+				print("unread")
+				# 不存在 -> 用你已有的逻辑取第一条未读
+				fetch_first_unread()		
+		elif httpStatus == "fetchRandomByUID":
+			var data = JSON.parse_string(response_text)
+			if typeof(data) == TYPE_ARRAY and data.size() > 0:
+				var record = data[0]
+				Global.helperName = record.get("name", "")
+				Global.helperMsg  = record.get("message", "")
+				print("🎲 随机读取成功：", Global.helperName, " / ", Global.helperMsg)
+
+			else:
+				print("⚠️ 有 uniqueId 但没有可读记录")
+		
 		if httpStatus == "checkOld":
 			var data = JSON.parse_string(body.get_string_from_utf8())
 			if data and data.size() > 0:

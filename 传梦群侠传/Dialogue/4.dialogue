@@ -323,8 +323,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 
 if Global.questItem.has("双头斧"):
-	set Global.violencePoint += 15
-	set Global.showViolence("positive",15)
+
 	set Global.questItemShow.get("双头斧").visible = false
 	锦纹: [speed=0.5]谢谢你们，这是给你们的酬劳
 	set Global.addItem("飞蝗石", "battleConsume", "battleItem", 10)
@@ -333,7 +332,10 @@ if Global.questItem.has("双头斧"):
 	锦纹: [speed=0.5]等我长大后也要去杀妖，不，我现在就要去
 	小二: [speed=0.5]你这么暴力小心以后找不到夫家
 	锦纹: [speed=0.5]哼，找不到就找不到，我以后的如意郎君绝对不可能是一个拿着扇子油腔滑调的公子哥！
+	set Global.violencePoint += 15
+	set Global.showViolence("positive",15)
 else:
+	set Global.npcs.get("锦纹").current_dialogue_index = 1
 	锦纹: [speed=0.5]还没有找到吗？
 
 

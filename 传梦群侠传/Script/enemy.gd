@@ -68,8 +68,8 @@ var monsterAndMagic ={"巨蛙":{"name":"水漫金山","round":3},
 						,"弥勒佛":{"name":"佛掌","round":4}					
 						,"鬼帝":{"name":"黑象之力","round":5}
 						,"蚩尤":{"name":"炼狱真火","round":5}
-						,"魔尊":{"name":"裂","round":6}
-						,"天道":{"name":"星辰陨落","round":6}
+						,"魔尊":{"name":"裂","round":5}
+						,"天道":{"name":"星辰陨落","round":5}
 						}
 var bigMagics ={
 	"水漫金山":{

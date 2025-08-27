@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var 墨兮portrait = $"Balloon/墨兮rect"
 @onready var 真小二portrait = $"Balloon/真小二rect"
 @onready var 姜韵portrait = $"Balloon/姜韵rect"
-
+@onready var 时追云portrait = $"Balloon/时追云rect"
 
 @onready var dialogue_label: DialogueLabel = %DialogueLabel
 @onready var responses_menu: DialogueResponsesMenu = %ResponsesMenu
@@ -74,11 +74,12 @@ var dialogue_line: DialogueLine:
 		if dialogue_line.character == "<null>":
 			character_label.text = ""
 			mainPortrait.visible = false
+			
 			portrait.visible = false 
 		var name = dialogue_line.character.to_lower()
 	
 	
-		if  name == "云燕儿" or name == "魔金刚" or name == "狼叔" or name == "清风柒" or name == "九狐" or name == "孙悟空"  or name == "孙悟空怒"  or name == "无痕" or name == "程绣红" or name == "程绣红喜"  or name == "狐葬魂" or name == "狐葬魂怒" or name == "狐葬魂喜" or name == "关重七" or name == "玄武" or name == "小姜韵" or name == "小男孩" or name == "小追云"or name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀"  or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕" or name == "水云仙"  or name == "水云仙哀"  or name == "水云仙哭" or name == "水云仙死" or name == "凌天麒" or name == "凌天麒喜" or name == "柳烟儿" or name == "柳烟儿喜" or name == "柳烟儿哀"                                                   :
+		if  name == "云燕儿" or name == "魔金刚" or name == "狼叔" or name == "清风柒" or name == "九狐" or name == "孙悟空"  or name == "孙悟空怒"  or name == "无痕" or name == "程绣红" or name == "程绣红喜"  or name == "狐葬魂" or name == "狐葬魂怒" or name == "狐葬魂喜" or name == "关重七" or name == "玄武" or name == "小姜韵" or name == "小男孩" or name == "小追云"  or name == "凌若昭" or name == "凌若昭哀" or name == "凌若昭怒" or name == "凌若昭喜" or name == "凌若昭哭"   or name == "上官冕" or name == "水云仙"  or name == "水云仙哀"  or name == "水云仙哭" or name == "水云仙死" or name == "凌天麒" or name == "凌天麒喜" or name == "柳烟儿" or name == "柳烟儿喜" or name == "柳烟儿哀"                                                   :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			姜韵portrait.visible =  false
 			mainPortrait.visible = true
@@ -88,10 +89,11 @@ var dialogue_line: DialogueLine:
 			小二portrait.visible = false
 			$"Balloon/传梦rect".visible = false
 			墨兮portrait.visible = false
+			时追云portrait.visible =  false
 			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598,80)
-		elif name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "小姜韵" or name == "姜韵羞怒" :
+		elif name == "姜韵" or name == "姜韵喜" or name == "姜韵怒" or name == "姜韵哭" or name == "姜韵哀" or name == "姜韵恐" or name == "小姜韵" or name == "姜韵羞怒" or name == "入您" :
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			mainPortrait.visible = false
 			姜韵portrait.visible =  true
@@ -99,11 +101,27 @@ var dialogue_line: DialogueLine:
 			portrait.visible = false
 			敖雨portrait.visible = false
 			小二portrait.visible = false
+			时追云portrait.visible =  false
 			$"Balloon/传梦rect".visible = false
 			墨兮portrait.visible = false
 			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
 			%CharacterLabel.position = Vector2(598,80)			
+		elif  name == "时追云" or name == "时追云惊" or name == "时追云红眼"or name == "时追云红眼怒" or name == "时追云怒" or name == "时追云喜" or name == "时追云哀":
+			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
+			mainPortrait.visible = false
+			姜韵portrait.visible =  false
+			时追云portrait.visible =  true
+			时追云portrait.texture = load(portraitPath)
+			portrait.visible = false
+			敖雨portrait.visible = false
+			小二portrait.visible = false
+			$"Balloon/传梦rect".visible = false
+			墨兮portrait.visible = false
+			真小二portrait.visible = false
+			%Balloon.texture = load("res://Pictures/对话框2.png")
+			%CharacterLabel.position = Vector2(598,80)						
+			
 		elif  name == "虎范"  or name == "骑迹行者"  :
 			姜韵portrait.visible =  false
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
@@ -113,6 +131,7 @@ var dialogue_line: DialogueLine:
 			portrait.visible = false	
 			墨兮portrait.visible = false		 
 			mainPortrait.visible = false
+			时追云portrait.visible =  false
 			$"Balloon/传梦rect".visible = false
 			真小二portrait.visible = false
 			%Balloon.texture = load("res://Pictures/对话框2.png")
@@ -124,6 +143,7 @@ var dialogue_line: DialogueLine:
 			敖雨portrait.texture = load(portraitPath)
 			小二portrait.visible = false
 			portrait.visible = false	
+			时追云portrait.visible =  false
 			墨兮portrait.visible = false		 
 			mainPortrait.visible = false
 			真小二portrait.visible = false	
@@ -136,6 +156,7 @@ var dialogue_line: DialogueLine:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			墨兮portrait.texture = load(portraitPath)
 			墨兮portrait.visible = true
+			时追云portrait.visible =  false
 			敖雨portrait.visible = false
 			小二portrait.visible = false
 			portrait.visible = false			 
@@ -149,6 +170,7 @@ var dialogue_line: DialogueLine:
 			var portraitPath = "res://portrait/" + dialogue_line.character.to_lower() + ".png"	
 			真小二portrait.texture = load(portraitPath)
 			墨兮portrait.visible = false
+			时追云portrait.visible =  false
 			敖雨portrait.visible = false
 			小二portrait.visible = false
 			portrait.visible = false			 
@@ -163,6 +185,7 @@ var dialogue_line: DialogueLine:
 			$"Balloon/传梦rect".texture = load(portraitPath)
 			墨兮portrait.visible = false
 			敖雨portrait.visible = false
+			时追云portrait.visible =  false
 			小二portrait.visible = false
 			portrait.visible = false			 
 			mainPortrait.visible = false
@@ -176,6 +199,7 @@ var dialogue_line: DialogueLine:
 			姜韵portrait.visible =  false
 			portrait.visible = true
 			portrait.texture = load(portraitPath)
+			时追云portrait.visible =  false
 			敖雨portrait.visible = false
 			小二portrait.visible = false
 			mainPortrait.visible = false
@@ -271,9 +295,9 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 #		get_viewport().set_input_as_handled()
 #		dialogue_label.skip_typing()
 #		return
-#	if event.is_action_pressed("ui_cancel"):
-#		get_viewport().set_input_as_handled()  # 告诉 Godot 这个输入已经被处理
-#		return
+	if event.is_action_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()  # 告诉 Godot 这个输入已经被处理
+		return
 	if not is_waiting_for_input: return
 	if dialogue_line.responses.size() > 0: return
 

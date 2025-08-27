@@ -13,7 +13,14 @@ func update_descriptions():
 	magics["水满金山"].description = "随机攻击五名敌人，造成" + str(200 + currSmallPetData.get("敖雨").abilityPower ) + "点伤害"
 	magics["逆天破"].description = "随机攻击五名敌人，造成" + str(800 + currSmallPetData.get("狐葬魂").abilityPower ) + "点伤害"
 	magics["战神念法"].description = "每次释放之后按照当前仙力本场战斗永久叠加" + str(SmallPetData.currSmallPetData["水无痕"].abilityPower/4) + "点攻击力"
-
+	
+	
+	currSmallPetData['小鹿'].petMagic = magics.get("甘露逢春")
+	currSmallPetData['敖雨'].petMagic = magics.get("水满金山")	
+	
+	currSmallPetData['水无痕'].petMagic = magics.get("战神念法")
+	currSmallPetData['狐葬魂'].petMagic = magics.get("逆天破")
+	
 # Magic definitions
 var magics = {
 	"甘露逢春": {

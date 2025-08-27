@@ -239,7 +239,7 @@ func useItem():
 	
 	
 	for key in FightScenePlayers.consumeItem.keys():
-		if FightScenePlayers.consumeItem[key]["number"] == 0:
+		if FightScenePlayers.consumeItem[key]["number"] <= 0:
 			FightScenePlayers.consumeItem.erase(key)
 func decrypt(value):
 	return value / Global.enKey

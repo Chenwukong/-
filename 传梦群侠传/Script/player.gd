@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 900
+var speed = 300
 var current_frame = 0
 var time_since_last_frame_change = 0
 var canMove = true
@@ -29,7 +29,7 @@ func _ready():
 	if Global.onWalkDoubleSpeed:
 		Global.playerSpeed = 500
 	else:
-		Global.playerSpeed = 900
+		Global.playerSpeed = 300
 	canMouseMove = true
 	raycast = $RayCast2D3
 	raycast2 =  $RayCast2D2

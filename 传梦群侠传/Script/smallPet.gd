@@ -138,7 +138,7 @@ func castMagic():
 			if i.currHp>=0:
 				alivePlayer.append(i)
 		if is_instance_valid(find_player_with_lowest_hp_percent(alivePlayer)):
-			print(find_player_with_lowest_hp_percent(alivePlayer),"lowest")
+			
 			find_player_with_lowest_hp_percent(alivePlayer).currHp += magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower
 			var disDamage = display_damage(round(magicInfo.value + SmallPetData.currSmallPetData[petName].abilityPower),"heal")
 			find_player_with_lowest_hp_percent(alivePlayer).get_node("hpControl").add_child(disDamage)

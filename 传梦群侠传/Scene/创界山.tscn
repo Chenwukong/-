@@ -2728,7 +2728,7 @@ position = Vector2(-1436, -173)
 toScene = "女儿村"
 
 [node name="teleportCircle2" parent="." instance=ExtResource("11_md1h5")]
-position = Vector2(2107, 1811)
+position = Vector2(2662, 1816)
 toScene = "长寿村"
 
 [node name="teleportCircle3" parent="." instance=ExtResource("11_md1h5")]
@@ -3154,6 +3154,10 @@ texture = ExtResource("97_u3koj")
 visible = false
 position = Vector2(1292.32, 1257.86)
 sprite_frames = SubResource("SpriteFrames_dr5ib")
+script = null
+
+[node name="npcBody" parent="小女孩" index="0"]
+position = Vector2(1590.68, 170.14)
 
 [node name="六耳救女孩" parent="." instance=ExtResource("80_b61yv")]
 visible = false
@@ -3176,6 +3180,10 @@ animation = &"attack"
 autoplay = "default"
 frame = 15
 frame_progress = 1.0
+script = null
+
+[node name="npcBody" parent="六耳" index="0"]
+position = Vector2(1675, 434)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("101_og8xg")]
 position = Vector2(1662, 1621)
@@ -3258,4 +3266,6 @@ npcName = "镰魔"
 [editable path="青龙"]
 [editable path="青龙3"]
 [editable path="青龙4"]
+[editable path="小女孩"]
 [editable path="六耳救女孩"]
+[editable path="六耳"]

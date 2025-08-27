@@ -283,6 +283,8 @@ set Global.playsound("res://Audio/SE/ice-collecting-01.wav")
 set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.erase("姜韵")
 set Global.onTeamPet.erase("大海龟")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("小二真身")
 set Global.onTeamPlayer.append("凌若昭")
 set Global.onTeamPlayer.append("小二")
 set Global.wutongOn = true
@@ -318,6 +320,7 @@ set Global.onTalk = true
 set Global.wutongOn = false
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
+set Global.onTeamPlayer.erase("小二真身")
 set Global.onTeamPlayer.append("时追云")
 set Global.onTeamPlayer.append("姜韵")
 set Global.onTeamPet.append("大海龟")
@@ -377,6 +380,8 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.onTeamPlayer.erase("时追云")
 set Global.onTeamPlayer.erase("姜韵")
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("小二真身")
 set Global.onTeamPlayer.append("小二")
 set Global.onTeamPlayer.append("凌若昭")
 set Global.onTeamPet.erase("大海龟")
@@ -520,6 +525,7 @@ set Global.onTalk = false
 set Global.onTalk = true
 set Global.canLose = true
 set FightScenePlayers.eraseMagic("时追云","飞剑决")
+set Global.onTeamPlayer.erase("小二真身")
 set Global.onTeamPlayer.erase("小二")
 set Global.onTeamPlayer.erase("凌若昭")
 set Global.onTeamPlayer.append("时追云")
@@ -644,6 +650,7 @@ set Global.toggleballon()
 姜韵喜: [speed=0.5]噗！
 玄武: [speed=0.5]青龙的状态很不对劲，虽然他之前就是我们之中最强的，但他的实力没这么夸张，而且体型也变大了数倍
 玄武: [speed=0.5]白虎！朱雀！
+set Global.canMenu = false
 set Global.getnode("CanvasLayer3").visible = true
 set Global.playsound("res://Audio/SE/凤凰鸣叫2_爱给网_aigei_com.mp3")
 set Global.changeScene("北俱芦洲双屏",null)
@@ -679,6 +686,7 @@ set Global.onTalk = false
 ~ 寻四圣20
 set Global.onTalk = true
 set Global.showBlack = true
+set Global.canMenu = true
 set Global.getnode("shadow").visible = false
 set Global.getnode("建业左").texture = load("res://panoramas2/北俱芦洲全景改改.png")
 
@@ -699,6 +707,8 @@ set Global.playsound("res://Audio/SE/猛兽5.ogg")
 玄武: 他的身上隐约有股魔气，很不对劲！
 玄武: 看来情况比想的还糟糕！
 白虎: 他现在太危险了，我们试着打醒他！
+set Global.onTeamPlayer.erase("小二")
+set Global.onTeamPlayer.erase("小二真身")
 set Global.onTeamPlayer.append("凌若昭")
 set Global.onTeamPlayer.append("小二")
 

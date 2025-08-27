@@ -120,7 +120,7 @@ var onMultiHit = 0
 var fangCunState = 1
 var atDark = false
 var onBoss = false
-var isBoss = ["巨蛙","鹰孽大王","堕逝","黑山","奔霸","大鹏","鬼将军", "青龙", "弥勒佛", "鬼帝", "蚩尤","魔尊","天道"]
+var isBoss = ["巨蛙","鹰孽大王", "女儿村",  "堕逝","黑山","奔霸","大鹏","鬼将军", "青龙", "弥勒佛", "鬼帝", "蚩尤","魔尊","天道"]
 var cantShow = ["东海海道", "长安北","长安镖局", "长安","镇魔地1","镇魔地2","镇魔地3","花果山","普陀山","海底迷宫1", "地府迷宫1", "森罗殿","轮回司","大唐境外","西行之路","轮回之门","五庄观","龙窟1","凤巢1","雷音地下", "创界山", "神庙","女娲神迹","炼狱迷宫1","凌霄宝殿"]
 var bgmList = [
 	"res://Audio/BGM/战斗-城市.mp3",
@@ -169,9 +169,9 @@ var currPlayer
 var currScene
 var noLimit = true
 var haveQianJi = false
-var onTeamPlayer = ["时追云","小二真身"]
+var onTeamPlayer = ["姜韵","小二","小二"]
 var onTeamPet = []
-var onTeamSmallPet = ["小鹿"]
+var onTeamSmallPet = []
 var smallPets = []
 var currPlayerPos
 var currNpc = null
@@ -2925,7 +2925,7 @@ var isDead ={
 func _ready():
 	currScene = get_tree().get_current_scene().get_name()
 	uniqueId = OS.get_unique_id()
-	print(uniqueId,5555)
+
 	#FightScenePlayers.fightScenePlayerData['时追云'].additionDmg *= 10
 	
 var deltas
@@ -3077,7 +3077,6 @@ func loadData():
 	if saveData.has("treasureBox"):
 		treasureBox = saveData.treasureBox
 	uniqueId = saveData.uniqueId
-	print(saveData.uniqueId,1010101)
 	# Ensure saved data has all default places, add if missing
 
 	get_tree().change_scene_to_file("res://Scene/"+saveData.currScene+".tscn")
@@ -3374,6 +3373,7 @@ static func resetGlobal():
 	
 	var new_state = load("res://Global.gd").new()
 	var vars_to_reset = [	"monsterIdx",
+	"onWalkDoubleSpeed",
 	"monsterRemain",
 	"playerIdx",
 	"easyLevels",
@@ -3507,6 +3507,8 @@ static func resetGlobal():
 	"autoDialogue",
 	"storyVars",
 	"vis",
+	"haveQianJi",
+	"haveGao",
 	"mapPlayerPos",
 	"haveLantern",
 	"saveData",
@@ -3518,7 +3520,8 @@ static func resetGlobal():
 	"triggerPlace",
 	"isDead",
 	"dial",
-	"onGhost"
+	"onGhost",
+	"basechance",
 	]
 	
 	for name in vars_to_reset:
@@ -3526,7 +3529,7 @@ static func resetGlobal():
 
 static func resetPlayer():
 	var new_state = load("res://Script/FightScenePlayers.gd").new()
-	var vars_to_reset = ["keyItem","fightScenePlayerData2","fightScenePlayerData","bagArmorItem","golds"]
+	var vars_to_reset = ["keyItem","fightScenePlayerData2","fightScenePlayerData","bagArmorItem","golds","battleItem"]
 	for name in vars_to_reset:
 		FightScenePlayers.set(name, new_state.get(name))
 		
